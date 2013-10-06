@@ -34,13 +34,25 @@
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>gtk-sharp-2.0</Package>
     </Reference>
+    <Reference Include="Mono.Cairo" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedFlat" ResourceNamePolicy="FileFormatDefault" />
+        </Policies>
         <Deployment.LinuxDeployData scriptName="idp-gie" />
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <Compile Include="IdpdMethodAttribute.cs" />
+    <Compile Include="IdpCairoMapping.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="IdpdStructureAttribute.cs" />
+    <Compile Include="IName.cs" />
+    <Compile Include="NameBase.cs" />
+  </ItemGroup>
 </Project>
