@@ -73,6 +73,10 @@
     <Compile Include="TopWindow.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
     <Compile Include="MediaButtons.cs" />
+    <Compile Include="IdpdPolygonObject.cs" />
+    <Compile Include="IdpEllipseObject.cs" />
+    <Compile Include="IdpObjectModificationType.cs" />
+    <Compile Include="IdpdObjectTimeState.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

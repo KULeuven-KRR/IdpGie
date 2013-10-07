@@ -1,5 +1,5 @@
 //
-//  IdpdObject.cs
+//  IdpObjectModificationType.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,15 +22,12 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : NameBase {
-
-        protected IdpdObject (string name) : base(name) {
-        }
-
-        public void setTime (double time) {
-        }
-
+    [Flags]
+    public enum IdpObjectModificationType : long {
+        Visible    = 0x01,
+        XPos       = 0x02,
+        YPos       = 0x04,
+        ZIndex     = 0x08
     }
 
 }
-

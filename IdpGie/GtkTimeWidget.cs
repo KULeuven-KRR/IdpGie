@@ -18,13 +18,31 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using Cairo;
 
 namespace IdpGie {
 
     public class GtkTimeWidget : CairoWidget {
 
+        private IdpCairoMapping mapping;
+
+        public IdpCairoMapping Mapping {
+            get {
+                return mapping;
+            }
+            set {
+                mapping = value;
+            }
+        }
+
         public GtkTimeWidget () {
+        }
+
+        protected override void PaintWidget (Context ctx, int w, int h) {
+            base.PaintWidget (ctx, w, h);
+            if (this.mapping != null) {
+                this.mapping.PaintWidget (ctx, w, h);
+            }
         }
 
     }

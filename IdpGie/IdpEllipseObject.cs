@@ -1,5 +1,5 @@
 //
-//  IdpdObject.cs
+//  IdpEllipseObject.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,15 +22,31 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : NameBase {
+    public class IdpEllipseObject {
 
-        protected IdpdObject (string name) : base(name) {
+        private double width;
+        private double height;
+
+        public double Width {
+            get {
+                return width;
+            }
+            set {
+                width = value;
+            }
         }
 
-        public void setTime (double time) {
+        public double Height {
+            get {
+                return height;
+            }
+            set {
+                height = value;
+            }
         }
 
+        public IdpEllipseObject () {
+        }
     }
-
 }
 

@@ -18,11 +18,19 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using Cairo;
 using System.Collections.Generic;
 
 namespace IdpGie {
     public class IdpCairoMapping {
+
+        private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
+
+        public void setTime (double time) {
+            foreach (IdpdObject obj in objects.Values) {
+                obj.setTime (time);
+            }
+        }
 
         [IdpdMethod("idpd_polygon")]
         public void Polygon (string name, IList<Point> points) {
@@ -80,8 +88,7 @@ namespace IdpGie {
         }
 
         [IdpdMethod("idpd_depth")]
-        public void Depth (string name, int index) {
-
+        public void Depth (string name, double index) {
         }
 
         [IdpdMethod("idpd_show")]
@@ -92,6 +99,10 @@ namespace IdpGie {
         [IdpdMethod("idpd_hide")]
         public void Hide (string name) {
 
+        }
+
+        public void PaintWidget (Context ctx, int w, int h, double t) {
+            throw new System.NotImplementedException ();
         }
 
     }

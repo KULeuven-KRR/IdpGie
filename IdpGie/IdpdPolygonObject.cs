@@ -1,5 +1,5 @@
 //
-//  IdpdObject.cs
+//  IdpdPolygonObject.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,16 +21,9 @@
 using System;
 
 namespace IdpGie {
-
-    public abstract class IdpdObject : NameBase {
-
-        protected IdpdObject (string name) : base(name) {
+    public class IdpdPolygonObject {
+        public IdpdPolygonObject () {
         }
-
-        public void setTime (double time) {
-        }
-
     }
-
 }
 

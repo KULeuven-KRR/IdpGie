@@ -1,0 +1,12 @@
+2013-10-07  Willem Van Onsem  <vanonsem.willem@gmail.com>
+
+	* IdpGie.csproj:
+	* IdpdObject.cs:
+	* GtkTimeWidget.cs:
+	* IdpGie.userprefs:
+	* IdpCairoMapping.cs:
+	* IdpEllipseObject.cs:
+	* IdpdPolygonObject.cs:
+	* IdpdObjectTimeState.cs:
+	* IdpObjectModificationType.cs: 
+
