@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  MediaButtons.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,30 +22,20 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class NameBase : IName {
-
-        private string name;
-
-        public virtual string Name {
-            get {
-                return this.name;
-            }
-            protected set {
-                this.name = value;
-            }
-        }
-
-        protected NameBase () {
-        }
-
-        protected NameBase (string name) {
-            this.Name = name;
-        }
-
-        public override string ToString () {
-            return this.Name;
-        }
-
+    [Flags]
+    public enum MediaButtons : long {
+        Play         = 0x0001,
+        Pause        = 0x0002,
+        Default      = Play | Pause,
+        Stop         = 0x0004,
+        Rewind       = 0x0008,
+        FastForward  = 0x0010,
+        SkipPrevious = 0x0020,
+        SkipNext     = 0x0040,
+        Record       = 0x0080,
+        Eject        = 0x0100,
+        Shuffle      = 0x0200,
+        Repeat       = 0x0400
     }
 }
 

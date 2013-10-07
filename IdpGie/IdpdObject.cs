@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  IdpdObject.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,30 +22,10 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class NameBase : IName {
-
-        private string name;
-
-        public virtual string Name {
-            get {
-                return this.name;
-            }
-            protected set {
-                this.name = value;
-            }
+    public class IdpdObject : NameBase {
+        public IdpdObject () {
         }
-
-        protected NameBase () {
-        }
-
-        protected NameBase (string name) {
-            this.Name = name;
-        }
-
-        public override string ToString () {
-            return this.Name;
-        }
-
     }
+
 }
 

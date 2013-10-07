@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  GtkTimeWidget.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,28 +22,9 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class NameBase : IName {
+    public class GtkTimeWidget : CairoWidget {
 
-        private string name;
-
-        public virtual string Name {
-            get {
-                return this.name;
-            }
-            protected set {
-                this.name = value;
-            }
-        }
-
-        protected NameBase () {
-        }
-
-        protected NameBase (string name) {
-            this.Name = name;
-        }
-
-        public override string ToString () {
-            return this.Name;
+        public GtkTimeWidget () {
         }
 
     }

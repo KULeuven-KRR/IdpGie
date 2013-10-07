@@ -22,75 +22,75 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
-    public static class IdpCairoMapping {
+    public class IdpCairoMapping {
 
         [IdpdMethod("idpd_polygon")]
-        public static void Polygon (string name, IList<Point> points) {
+        public void Polygon (string name, IList<Point> points) {
 
         }
 
         [IdpdMethod("idpd_polygon")]
-        public static void Polygon (string name, int nbOfEdges, IList<Point> sizeOfEdge) {
+        public void Polygon (string name, int nbOfEdges, IList<Point> sizeOfEdge) {
 
         }
 
         [IdpdMethod("idpd_ellipse")]
-        public static void Ellipse (string name, double width, double height) {
+        public void Ellipse (string name, double width, double height) {
 
         }
 
         [IdpdMethod("idpd_graph")]
-        public static void Graph (string name, double width, double height) {
+        public void Graph (string name, double width, double height) {
 
         }
 
         [IdpdMethod("idpd_node")]
-        public static void Node (string name, string graph) {
+        public void Node (string name, string graph) {
 
         }
 
         [IdpdMethod("idpd_edge")]
-        public static void Edge (string node1, string node2, string graph) {
+        public void Edge (string node1, string node2, string graph) {
 
         }
 
         [IdpdMethod("idpd_image")]
-        public static void Image (string name, double width, double height, string filepath) {
+        public void Image (string name, double width, double height, string filepath) {
 
         }
 
         [IdpdMethod("idpd_xpos")]
-        public static void Xpos (string name, double xpos) {
+        public void Xpos (string name, double xpos) {
 
         }
 
         [IdpdMethod("idpd_ypos")]
-        public static void Ypos (string name, double ypos) {
+        public void Ypos (string name, double ypos) {
 
         }
 
         [IdpdMethod("idpd_edgecolor")]
-        public static void EdgeColor (string name, double r, double g, double b) {
+        public void EdgeColor (string name, double r, double g, double b) {
 
         }
 
         [IdpdMethod("idpd_innercolor")]
-        public static void InnerColor (string name, double r, double g, double b) {
+        public void InnerColor (string name, double r, double g, double b) {
 
         }
 
         [IdpdMethod("idpd_depth")]
-        public static void Depth (string name, int index) {
+        public void Depth (string name, int index) {
 
         }
 
         [IdpdMethod("idpd_show")]
-        public static void Show (string name) {
+        public void Show (string name) {
 
         }
 
         [IdpdMethod("idpd_hide")]
-        public static void Hide (string name) {
+        public void Hide (string name) {
 
         }
 

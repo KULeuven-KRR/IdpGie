@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  CairoWidget.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,33 +19,29 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
+using Cairo;
 
 namespace IdpGie {
 
-    public abstract class NameBase : IName {
+    public abstract class CairoWidget : DrawingArea {
 
-        private string name;
 
-        public virtual string Name {
-            get {
-                return this.name;
-            }
-            protected set {
-                this.name = value;
-            }
+        protected virtual void PaintWidget (Context ctx, int w, int h) {
         }
 
-        protected NameBase () {
-        }
-
-        protected NameBase (string name) {
-            this.Name = name;
-        }
-
-        public override string ToString () {
-            return this.Name;
+        protected override bool OnExposeEvent (Gdk.EventExpose ev) {
+            Context ctx = Gdk.CairoHelper.Create (this.GdkWindow);
+            ctx.FillRule = FillRule.EvenOdd;
+            int w, h;
+            this.GdkWindow.GetSize (out w, out h);
+            this.PaintWidget (ctx, w, h);
+            ((IDisposable)ctx.Target).Dispose ();
+            ((IDisposable)ctx).Dispose ();
+            return base.OnExposeEvent (ev);
         }
 
     }
+
 }
 

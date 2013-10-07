@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  TopWindow.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,31 +19,21 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
 
 namespace IdpGie {
+    public partial class TopWindow : Gtk.Window {
+        public TopWindow () : 
+                base(Gtk.WindowType.Toplevel) {
+            this.Build ();
+        }
 
-    public abstract class NameBase : IName {
-
-        private string name;
-
-        public virtual string Name {
-            get {
-                return this.name;
+        public static int Main (string[] args) {
+            Application.Init ("IdpGie", ref args);
+            using (TopWindow tw = new TopWindow()) {
+                Application.Run ();
             }
-            protected set {
-                this.name = value;
-            }
-        }
-
-        protected NameBase () {
-        }
-
-        protected NameBase (string name) {
-            this.Name = name;
-        }
-
-        public override string ToString () {
-            return this.Name;
+            return 0x00;
         }
 
     }

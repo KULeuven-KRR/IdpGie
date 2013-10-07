@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  MediaMode.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,30 +22,9 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class NameBase : IName {
-
-        private string name;
-
-        public virtual string Name {
-            get {
-                return this.name;
-            }
-            protected set {
-                this.name = value;
-            }
-        }
-
-        protected NameBase () {
-        }
-
-        protected NameBase (string name) {
-            this.Name = name;
-        }
-
-        public override string ToString () {
-            return this.Name;
-        }
-
+    public enum MediaMode : byte {
+        Pause = 0x00,
+        Play = 0x01,
+        Seek = 0x02
     }
 }
-

@@ -35,6 +35,15 @@
       <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Cairo" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -54,5 +63,20 @@
     <Compile Include="IdpdStructureAttribute.cs" />
     <Compile Include="IName.cs" />
     <Compile Include="NameBase.cs" />
+    <Compile Include="GtkTimeWidget.cs" />
+    <Compile Include="CairoWidget.cs" />
+    <Compile Include="IdpdObject.cs" />
+    <Compile Include="BlueprintMediabar.cs" />
+    <Compile Include="MediaMode.cs" />
+    <Compile Include="BlueprintStyle.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="TopWindow.cs" />
+    <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
+    <Compile Include="MediaButtons.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
