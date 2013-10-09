@@ -22,7 +22,7 @@ using System;
 
 namespace IdpGie {
 
-    public class ObjectTimeState {
+    public class IdpdObjectTimeState {
 
         private bool visible;
         private double zIndex;
@@ -65,7 +65,7 @@ namespace IdpGie {
             }
         }
 
-        public ObjectTimeState () {
+        public IdpdObjectTimeState () {
         }
 
         public void Show () {

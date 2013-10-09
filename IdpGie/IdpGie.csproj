@@ -44,6 +44,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="Mono.Posix" />
+    <Reference Include="OpenTK">
+      <HintPath>..\..\softalgos\SoftAlgos\SoftAlgos\libs\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl">
+      <HintPath>..\..\softalgos\SoftAlgos\SoftAlgos\libs\OpenTK.GLControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -77,6 +83,12 @@
     <Compile Include="IdpEllipseObject.cs" />
     <Compile Include="IdpObjectModificationType.cs" />
     <Compile Include="IdpdObjectTimeState.cs" />
+    <Compile Include="IZIndix.cs" />
+    <Compile Include="IdpdOutputDevice.cs" />
+    <Compile Include="IdpdCairoOutputDevice.cs" />
+    <Compile Include="IdpdLaTeXOutputDevice.cs" />
+    <Compile Include="OpenGLIdpOutputDevice.cs" />
+    <Compile Include="IdpdPrintOutputDevice.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

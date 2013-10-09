@@ -18,11 +18,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using Cairo;
 
 namespace IdpGie {
 
-    public class IdpEllipseObject {
+    public class IdpEllipseObject : IdpdObject {
 
         private double width;
         private double height;
@@ -47,6 +47,11 @@ namespace IdpGie {
 
         public IdpEllipseObject () {
         }
+
+        public override void PaintObject (Context ctx, int w, int h) {
+            base.PaintObject (ctx, w, h);
+        }
+
     }
 }
 

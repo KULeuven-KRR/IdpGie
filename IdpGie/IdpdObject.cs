@@ -18,16 +18,28 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using Cairo;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : NameBase {
+    public abstract class IdpdObject : NameBase, IZIndix {
+
+        public virtual double Time {
+            set {
+            }
+        }
+
+        public double ZIndex {
+            get {
+                return 0.0d;
+            }
+        }
 
         protected IdpdObject (string name) : base(name) {
         }
 
-        public void setTime (double time) {
+        public virtual void PaintObject (Context ctx, int w, int h) {
+
         }
 
     }

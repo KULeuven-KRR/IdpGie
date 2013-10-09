@@ -1,5 +1,5 @@
 //
-//  GtkTimeWidget.cs
+//  IdpdCairoOutputDevice.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,43 +18,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Cairo;
+using System;
 
 namespace IdpGie {
-
-    public class GtkTimeWidget : CairoWidget {
-
-        private IdpCairoMapping mapping;
-        private double time;
-
-        public IdpCairoMapping Mapping {
-            get {
-                return mapping;
-            }
-            set {
-                mapping = value;
-            }
+    public class IdpdCairoOutputDevice : IdpdOutputDevice {
+        public IdpdCairoOutputDevice () {
         }
-
-        public double Time {
-            get {
-                return time;
-            }
-            set {
-                time = value;
-            }
-        }
-
-        public GtkTimeWidget () {
-        }
-
-        protected override void PaintWidget (Context ctx, int w, int h) {
-            base.PaintWidget (ctx, w, h);
-            if (this.mapping != null) {
-                this.mapping.PaintWidget (ctx, w, h, this.time);
-            }
-        }
-
     }
 }
 

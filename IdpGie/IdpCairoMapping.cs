@@ -25,10 +25,13 @@ namespace IdpGie {
     public class IdpCairoMapping {
 
         private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
+        private readonly SortedSet<IdpdObject> zObjects = new SortedSet<IdpdObject> ();
 
-        public void setTime (double time) {
-            foreach (IdpdObject obj in objects.Values) {
-                obj.setTime (time);
+        public double Time {
+            set {
+                foreach (IdpdObject obj in objects.Values) {
+                    obj.Time = value;
+                }
             }
         }
 
@@ -102,9 +105,12 @@ namespace IdpGie {
         }
 
         public void PaintWidget (Context ctx, int w, int h, double t) {
-            throw new System.NotImplementedException ();
+            this.Time = t;
+            foreach (IdpdObject obj in this.zObjects) {
+                obj.PaintObject (ctx, w, h);
+            }
+
         }
-
     }
-}
 
+}
