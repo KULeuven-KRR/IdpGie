@@ -1,53 +1,36 @@
-%{
+%using QUT.Gppg;
 
-#include "term.h"
-#include "options.h"
-#include "parse.tab.hh"
-#include "commontypes.h"
+%namespace IdpGie.Parsing
 
-extern Options options;
+%scannertype MiniZincLexer
+%scanbasetype ScanBase
+%tokentype Token
 
-// Handle line and column numbers
-//	call advanceline() each time a newline is read
-//	call advancecol() each time a token is read
-unsigned int prevlength = 0;
-void advanceline() { 
-	yylloc.first_line++;	
-	yylloc.first_column = 1;	
-	prevlength = 0;
-}
-void advancecol()	{ 
-	yylloc.first_column += prevlength;
-	prevlength = yyleng;						
-}
+%option stack, minimize, parser, verbose, codepage:raw, out:Lexer.cs
 
-%}
+%option codepage:raw
 
-%option noyywrap
-
-WHITESPACE		[\r ]*
+WHITESPACE		[\r\t\n ]*
 ID				[^ \[\]()=,\.\r\t\n\"]*
 STR				\"[^\n\"]*\"
 
 %%
 
-{ID}					{ advancecol();
-						  yylval.str = new QString(yytext);
-						  return IDENTIFIER;		
-						}
-{STR}					{ advancecol();
-						  yylval.str = new QString(yytext);
-						  return IDENTIFIER;		
-						}
-{WHITESPACE}            { advancecol();				
-						}
-"\t"					{ advancecol(); 
-						  prevlength = options._tabLength;		
-						}
-.                       { advancecol();
-						  return *yytext;			
-						}
-\n                      { advanceline();			
-						}
+{ID}		    {return Token.IDENTIFIER;}
+{STR}		    {return Token.STRING;}
+{WHITESPACE}    {}
+
+/* ------------------------------------------ */
+%{
+    yylloc = new LexSpan(tokLin, tokCol, tokELin, tokECol, tokPos, tokEPos, buffer);
+%}
+/* ------------------------------------------ */
 
 %%
+public IEnumerable<Token> Tokenize() {
+    int tok;
+    do {
+        tok = yylex();
+        yield return (Token) tok;
+    } while (tok > (int)Token.EOF);
+}

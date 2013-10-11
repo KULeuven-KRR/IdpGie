@@ -1,3 +1,5 @@
 *.exe
 *.dll
 *.mdb
+IdpGie/Lexer.cs
+IdpGie/Parser.cs

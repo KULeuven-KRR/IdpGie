@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IdpEllipseObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="lex.ll">
     <Files>
       <File FileName="IdpdMethodAttribute.cs" Line="46" Column="48" />
       <File FileName="IdpCairoMapping.cs" Line="116" Column="2" />
@@ -21,13 +21,18 @@
       <File FileName="IdpdObjectTimeState.cs" Line="25" Column="37" />
       <File FileName="IdpObjectModificationType.cs" Line="33" Column="2" />
       <File FileName="IZIndix.cs" Line="27" Column="9" />
+      <File FileName="IdpdOutputDevice.cs" Line="28" Column="2" />
+      <File FileName="IdpdCairoOutputDevice.cs" Line="24" Column="58" />
+      <File FileName="IdpdLaTeXOutputDevice.cs" Line="24" Column="5" />
+      <File FileName="OpenGLIdpOutputDevice.cs" Line="25" Column="58" />
+      <File FileName="IdpdPrintOutputDevice.cs" Line="24" Column="58" />
+      <File FileName="lex.ll" Line="21" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True">
+          <Node name="IdpGie" expanded="True" selected="True">
             <Node name="References" expanded="True" />
-            <Node name="IdpEllipseObject.cs" selected="True" />
           </Node>
         </State>
       </Pad>

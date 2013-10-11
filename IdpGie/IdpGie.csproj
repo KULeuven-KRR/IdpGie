@@ -45,10 +45,13 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="Mono.Posix" />
     <Reference Include="OpenTK">
-      <HintPath>..\..\softalgos\SoftAlgos\SoftAlgos\libs\OpenTK.dll</HintPath>
+      <HintPath>libs\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK.GLControl">
-      <HintPath>..\..\softalgos\SoftAlgos\SoftAlgos\libs\OpenTK.GLControl.dll</HintPath>
+      <HintPath>libs\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="QUT.ShiftReduceParser">
+      <HintPath>libs\QUT.ShiftReduceParser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -89,10 +92,16 @@
     <Compile Include="IdpdLaTeXOutputDevice.cs" />
     <Compile Include="OpenGLIdpOutputDevice.cs" />
     <Compile Include="IdpdPrintOutputDevice.cs" />
+    <Compile Include="Lexer.cs" />
+    <Compile Include="LexSpan.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lex.ll" />
+    <None Include="parse.yy" />
   </ItemGroup>
 </Project>
