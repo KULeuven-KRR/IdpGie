@@ -18,8 +18,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#define PARSE
+
 using System;
+using System.IO;
 using Gtk;
+using IdpGie.Parser;
 
 namespace IdpGie {
     public partial class TopWindow : Gtk.Window {
@@ -29,6 +33,34 @@ namespace IdpGie {
         }
 
         public static int Main (string[] args) {
+            DirectoryInfo dirInfo = new DirectoryInfo (".");
+            foreach (string name in args) {
+                FileInfo[] fInfo = dirInfo.GetFiles (name);
+                foreach (FileInfo info in fInfo) {
+                    try {
+                        using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
+                            Lexer scnr = new Lexer (file);
+                            IdpParser pars = new IdpParser (scnr);
+
+                            Console.Error.WriteLine ("File: " + info.Name);
+#if PARSE
+                            pars.Parse ();
+#else
+                            foreach (Token tok in scnr.Tokenize()) {
+                                Console.Error.Write (tok);
+                                Console.Error.Write (' ');
+                            }
+#endif
+                            if (pars.Result != null) {
+                                Console.Error.WriteLine ("echo: ");
+                                Console.Error.WriteLine (pars.Result);
+                            }
+                        }
+                    } catch (IOException) {
+                        Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
+                    }
+                }
+            }
             Application.Init ("IdpGie", ref args);
             using (TopWindow tw = new TopWindow()) {
                 Application.Run ();

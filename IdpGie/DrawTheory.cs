@@ -1,5 +1,5 @@
 //
-//  TermBase.cs
+//  DrawTheory.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -23,35 +23,29 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class TermBase : NameBase {
+    public class DrawTheory {
 
-        private int arity;
+        private readonly List<Atom> atoms;
 
-        public int Arity {
+        public List<Atom> Atoms {
             get {
-                return this.arity;
+                return this.atoms;
             }
         }
 
-        public TermBase (string name, int arity) : base(name) {
-            if (name == null || name == string.Empty) {
-                throw new ArgumentNullException ("The name of a function or predicate must be effective.", "name");
-            } else if (arity < 0x00 || arity > 0xff) {
-                throw new ArgumentException ("The arity of a function must be larger or equal to zero and lower than 256.", "arity");
+        public DrawTheory (List<Atom> atoms) {
+            if (atoms != null) {
+                this.atoms = atoms;
+            } else {
+                atoms = new List<Atom> ();
             }
-            this.arity = arity;
         }
 
         public override string ToString () {
-            return string.Format ("{0}/{1}", this.Name, this.Arity);
-        }
-
-        public virtual string TermString (List<FunctionInstance> terms) {
-            if (terms.Count > 0x00) {
-                return string.Format ("{0}({1})", this.Name, string.Join (",", terms));
-            } else {
-                return this.Name;
+            foreach (Atom atm in this.atoms) {
+                Console.WriteLine ("TEST " + atm);
             }
+            return string.Join (".\n", this.atoms);
         }
 
     }

@@ -1,6 +1,24 @@
 2013-10-12  Willem Van Onsem  <vanonsem.willem@gmail.com>
 
 	* lex.ll:
+	* Term.cs:
+	* Atom.cs:
+	* Lexer.cs:
+	* parse.yy:
+	* TermBase.cs:
+	* TermType.cs:
+	* TopWindow.cs:
+	* DrawTheory.cs:
+	* IdpGie.csproj:
+	* InputContext.cs:
+	* ArrayFunction.cs:
+	* PredicateInstance.cs:
+	* ArrayTailFunction.cs:
+	* IdpdMethodAttribute.cs: 
+
+2013-10-12  Willem Van Onsem  <vanonsem.willem@gmail.com>
+
+	* lex.ll:
 	* parse.yy:
 	* TermBase.cs:
 	* NameBase.cs:

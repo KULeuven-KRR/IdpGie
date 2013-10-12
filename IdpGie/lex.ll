@@ -32,6 +32,7 @@ OPA             =
 {OFB}           {return (int) Token.OFB;}
 {CFB}           {return (int) Token.CFB;}
 {OPA}           {return (int) Token.OPA;}
+{COMMA}         {return (int) Token.COMMA;}
 {WHITESPACE}    {}
 
 /* ------------------------------------------ */

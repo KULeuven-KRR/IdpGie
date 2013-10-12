@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace IdpGie {
@@ -36,9 +37,44 @@ namespace IdpGie {
             Function f;
             if (!this.functions.TryGetValue (key, out f)) {
                 f = new Function (name, arity);
+                Console.WriteLine ("CF {0}/{1}", name, arity);
                 this.functions.Add (key, f);
             }
             return f;
+        }
+
+        public Atom CreateAtom (string name, IEnumerable<FunctionInstance> terms) {
+            int size = 0x00;
+            List<FunctionInstance> list;
+            if (terms != null) {
+                size = terms.Count ();
+                list = terms.ToList ();
+            } else {
+                list = new List<FunctionInstance> ();
+            }
+            Predicate p = this.CreatePredicate (name, size);
+            return new Atom (p, list);
+        }
+
+        public Atom CreateAtom (string name) {
+            return this.CreateAtom (name, new List<FunctionInstance> ());
+        }
+
+        public FunctionInstance CreateFunctionInstance (string name, IEnumerable<FunctionInstance> terms) {
+            int size = 0x00;
+            List<FunctionInstance> list;
+            if (terms != null) {
+                size = terms.Count ();
+                list = terms.ToList ();
+            } else {
+                list = new List<FunctionInstance> ();
+            }
+            Function f = this.CreateFunction (name, size);
+            return new FunctionInstance (f, list);
+        }
+
+        public FunctionInstance CreateFunctionInstance (string name) {
+            return this.CreateFunctionInstance (name, new List<FunctionInstance> ());
         }
 
         public Predicate CreatePredicate (string name, int arity) {
@@ -46,6 +82,7 @@ namespace IdpGie {
             Predicate p;
             if (!this.predicates.TryGetValue (key, out p)) {
                 p = new Predicate (name, arity);
+                Console.WriteLine ("CP {0}/{1}", name, arity);
                 this.predicates.Add (key, p);
             }
             return p;

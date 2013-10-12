@@ -95,7 +95,6 @@
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
     <Compile Include="InputContext.cs" />
-    <Compile Include="PredicateInstance.cs" />
     <Compile Include="FunctionInstance.cs" />
     <Compile Include="TermBase.cs" />
     <Compile Include="Predicate.cs" />
@@ -103,7 +102,11 @@
     <Compile Include="Parser.cs" />
     <Compile Include="HeadTail.cs" />
     <Compile Include="Term.cs" />
-    <Compile Include="IdpParserHelper.cs" />
+    <Compile Include="Atom.cs" />
+    <Compile Include="DrawTheory.cs" />
+    <Compile Include="TermType.cs" />
+    <Compile Include="ArrayFunction.cs" />
+    <Compile Include="ArrayTailFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

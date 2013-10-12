@@ -1,5 +1,5 @@
 //
-//  PredicateInstance.cs
+//  ArrayTailFunction.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,10 +22,18 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
-    public class PredicateInstance : Term {
 
-        public PredicateInstance (Predicate predicate, List<FunctionInstance> terms) : base(predicate,terms) {
+    public sealed class ArrayTailFunction : Function {
+
+        public static readonly ArrayTailFunction Function = new ArrayTailFunction ();
+
+        private ArrayTailFunction () : base("_arr_tail",0x00) {
         }
+
+        public override string TermString (List<FunctionInstance> terms) {
+            return "[]";
+        }
+
     }
 }
 

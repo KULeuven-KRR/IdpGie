@@ -18,13 +18,16 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace IdpGie {
+
     public class Term {
 
         private readonly TermBase header;
-        private readonly List<Term> terms;
+        private readonly List<FunctionInstance> terms;
 
         public TermBase Header {
             get {
@@ -38,11 +41,21 @@ namespace IdpGie {
             }
         }
 
-        public Term (TermBase termbase, List<FunctionInstance> terms) {
+        public Term (TermBase header, List<FunctionInstance> terms) {
+            if (header == null) {
+                throw new ArgumentNullException ("The header of a term always must be effective.", "header");
+            } else if (terms == null) {
+                throw new ArgumentNullException ("The list of terms must be effective.", "terms");
+            } else if (terms.Any (x => x == null)) {
+                throw new ArgumentException ("All subterms must be effective.", "terms");
+            } else {
+                this.header = header;
+                this.terms = terms;
+            }
         }
 
         public override string ToString () {
-            return string.Format ("{0}({1})", this.header.Name, string.Join (",", this.terms));
+            return this.header.TermString (this.terms);
         }
 
     }

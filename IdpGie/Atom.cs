@@ -1,5 +1,5 @@
 //
-//  IdpdMethodAttribute.cs
+//  PredicateInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,43 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Method)]
-    public class IdpdMethodAttribute : Attribute, IName {
+    public class Atom : Term {
 
-        private readonly string name;
-        private readonly bool timeDependent;
-        private readonly IList<TermType> types;
-
-        public string Name {
-            get {
-                return name;
-            }
+        public Atom (Predicate predicate, List<FunctionInstance> terms) : base(predicate,terms) {
         }
-
-        public bool TimeDependent {
-            get {
-                return this.timeDependent;
-            }
-        }
-
-        public IList<TermType> Types {
-            get {
-                return this.types;
-            }
-        }
-
-        public IdpdMethodAttribute (string name, bool timeDependent = false, params TermType[] types) {
-            this.name = name;
-            this.timeDependent = timeDependent;
-            this.types = types;
-        }
-
     }
-
 }
+
