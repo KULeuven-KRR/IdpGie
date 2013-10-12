@@ -1,5 +1,8 @@
 *.exe
 *.dll
 *.mdb
+*.*~*
+*~
+*.lst
 IdpGie/Lexer.cs
 IdpGie/Parser.cs
