@@ -1,5 +1,5 @@
 //
-//  IdpEllipseObject.cs
+//  IdpParserHelper.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,39 +18,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Cairo;
+using System;
+using QUT.Gppg;
 
 namespace IdpGie {
-
-    public class IdpEllipseObject : IdpdObject {
-
-        private double width;
-        private double height;
-
-        public double Width {
-            get {
-                return width;
-            }
-            set {
-                width = value;
-            }
-        }
-
-        public double Height {
-            get {
-                return height;
-            }
-            set {
-                height = value;
-            }
-        }
-
-        public IdpEllipseObject (string name) : base(name) {
-        }
-
-        public override void PaintObject (Context ctx, int w, int h) {
-            base.PaintObject (ctx, w, h);
-        }
+    public partial class IdpParser {
 
     }
 }

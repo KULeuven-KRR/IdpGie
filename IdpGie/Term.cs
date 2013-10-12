@@ -1,5 +1,5 @@
 //
-//  IdpEllipseObject.cs
+//  Term.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,38 +18,31 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Cairo;
+using System.Collections.Generic;
 
 namespace IdpGie {
+    public class Term {
 
-    public class IdpEllipseObject : IdpdObject {
+        private readonly TermBase header;
+        private readonly List<Term> terms;
 
-        private double width;
-        private double height;
-
-        public double Width {
+        public TermBase Header {
             get {
-                return width;
-            }
-            set {
-                width = value;
+                return this.header;
             }
         }
 
-        public double Height {
+        public List<FunctionInstance> Terms {
             get {
-                return height;
-            }
-            set {
-                height = value;
+                return this.terms;
             }
         }
 
-        public IdpEllipseObject (string name) : base(name) {
+        public Term (TermBase termbase, List<FunctionInstance> terms) {
         }
 
-        public override void PaintObject (Context ctx, int w, int h) {
-            base.PaintObject (ctx, w, h);
+        public override string ToString () {
+            return string.Format ("{0}({1})", this.header.Name, string.Join (",", this.terms));
         }
 
     }

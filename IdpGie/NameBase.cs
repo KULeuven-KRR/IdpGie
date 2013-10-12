@@ -42,19 +42,6 @@ namespace IdpGie {
             this.Name = name;
         }
 
-        public override bool Equals (object obj) {
-            if (obj != null && obj is NameBase) {
-                NameBase nb = (NameBase)obj;
-                return this.name == nb.name && base.Equals (obj);
-            } else {
-                return false;
-            }
-        }
-
-        public override int GetHashCode () {
-            return base.GetHashCode () ^ this.name.GetHashCode ();
-        }
-
         public override string ToString () {
             return this.Name;
         }

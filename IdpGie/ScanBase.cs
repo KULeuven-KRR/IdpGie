@@ -1,5 +1,5 @@
 //
-//  IdpEllipseObject.cs
+//  ScanBase.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,38 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Cairo;
+using System;
+using QUT.Gppg;
 
-namespace IdpGie {
+namespace IdpGie.Parser {
 
-    public class IdpEllipseObject : IdpdObject {
+    public abstract class ScanBase : AbstractScanner<string,LexSpan> {
 
-        private double width;
-        private double height;
-
-        public double Width {
-            get {
-                return width;
-            }
-            set {
-                width = value;
-            }
-        }
-
-        public double Height {
-            get {
-                return height;
-            }
-            set {
-                height = value;
-            }
-        }
-
-        public IdpEllipseObject (string name) : base(name) {
-        }
-
-        public override void PaintObject (Context ctx, int w, int h) {
-            base.PaintObject (ctx, w, h);
+        protected virtual bool yywrap () {
+            return true;
         }
 
     }

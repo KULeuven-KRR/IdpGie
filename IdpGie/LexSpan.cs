@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using QUT.Gppg;
 
-namespace ZincOxide.Parser {
+namespace IdpGie.Parser {
 
     public class LexSpan : IMerge<LexSpan> {
 

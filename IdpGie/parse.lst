@@ -1,8 +1,19 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <parse.yy - 10/12/2013 3:58:51 AM>
+// ==========================================================================
+//  Version:  1.5.0
+//  Machine:  kommusoft-X75VD
+//  DateTime: 10/12/2013 5:24:17 AM
+//  UserName: kommusoft
+// ==========================================================================
+
+
 %output=Parser.cs 
 %namespace IdpGie.Parser
 %parsertype IdpParser
 
-%using IdpGie.Utils;
+%using IdpGie;
 
 %tokentype Token
 
@@ -21,12 +32,18 @@
 %YYSTYPE StateStructure
 %YYLTYPE LexSpan
 
-%token	IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA
+%token	IDENTIFIER STRING OBR CBR DOT OFB CFB OPA
 %type	<str>	identifier
-%type	<ter>	term atom predatom funcatom
-%type	<vter>	terms atoms
+%type	<ter>	term
+%type	<vter>	terms
 
 %%
+// Error: NonTerminal symbol "COMMA" has no productions
+// Warning: Terminating COMMA fixes the following size-1 NonTerminal set
+   // {COMMA}
+// Error: There are 1 non-terminating NonTerminal Symbols
+   //  {COMMA}
+// ---------------------------------------------------------------------
 
 idpdraw		: atoms
 			;
@@ -65,19 +82,5 @@ dot			: /* empty */
 			| DOT
 			;
 
-%%
+%%// ==========================================================================
 
-private InputContext context;
-
-public InputContext Context {
-    get {
-        return this.context;
-    }
-    set {
-        this.context = value;
-    }
-}
-  
-public IdpParser (ScanBase sb, InputContext context) : base(sb) {
-    this.context = context;
-}

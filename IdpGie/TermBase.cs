@@ -36,19 +36,6 @@ namespace IdpGie {
             this.arity = arity;
         }
 
-        public override bool Equals (object obj) {
-            if (obj != null && obj is NameBase) {
-                TermBase nb = (TermBase)obj;
-                return this.arity == nb.arity && this.GetType ().Equals (nb.GetType ()) && base.Equals (obj);
-            } else {
-                return false;
-            }
-        }
-
-        public override int GetHashCode () {
-            return base.GetHashCode () ^ this.arity.GetHashCode () ^ this.GetType ().GetHashCode ();
-        }
-
         public override string ToString () {
             return string.Format ("{0}/{1}", this.Name, this.Arity);
         }

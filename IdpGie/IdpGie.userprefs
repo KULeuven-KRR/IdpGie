@@ -3,8 +3,10 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="parse.yy">
     <Files>
       <File FileName="lex.ll" Line="19" Column="1" />
-      <File FileName="parse.yy" Line="14" Column="1" />
+      <File FileName="parse.yy" Line="26" Column="40" />
       <File FileName="LexSpan.cs" Line="40" Column="9" />
+      <File FileName="Parser.cs" Line="131" Column="3" />
+      <File FileName="IdpParserHelper.cs" Line="25" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

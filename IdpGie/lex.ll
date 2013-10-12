@@ -1,8 +1,8 @@
 %using QUT.Gppg;
 
-%namespace IdpGie.Parsing
+%namespace IdpGie.Parser
 
-%scannertype MiniZincLexer
+%scannertype Lexer
 %scanbasetype ScanBase
 %tokentype Token
 
@@ -14,8 +14,8 @@ WHITESPACE      [\r\t\n ]*
 COMMA           ,
 ID              [^ \[\]()=,\.\r\t\n\"]*
 STR             \"[^\n\"]*\"
-OBR             (
-CBR             )
+OBR             \(
+CBR             \)
 DOT             \.
 OFB             \[
 CFB             \]
@@ -24,14 +24,14 @@ OPA             =
 
 %%
 
-{ID}		    {return Token.IDENTIFIER;}
-{STR}		    {return Token.STRING;}
-{OBR}           {return Token.OBR;}
-{CBR}           {return Token.CBR;}
-{DOT}           {return Token.DOT;}
-{OFB}           {return Token.OFB;}
-{CFB}           {return Token.CFB;}
-{OPA}           {return Token.OPA;}
+{ID}		    {return (int) Token.IDENTIFIER;}
+{STR}		    {return (int) Token.STRING;}
+{OBR}           {return (int) Token.OBR;}
+{CBR}           {return (int) Token.CBR;}
+{DOT}           {return (int) Token.DOT;}
+{OFB}           {return (int) Token.OFB;}
+{CFB}           {return (int) Token.CFB;}
+{OPA}           {return (int) Token.OPA;}
 {WHITESPACE}    {}
 
 /* ------------------------------------------ */

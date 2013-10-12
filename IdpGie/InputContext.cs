@@ -35,13 +35,20 @@ namespace IdpGie {
             Tuple<string,int> key = new Tuple<string, int> (name, arity);
             Function f;
             if (!this.functions.TryGetValue (key, out f)) {
-                f = new Function ();
+                f = new Function (name, arity);
+                this.functions.Add (key, f);
             }
             return f;
         }
 
         public Predicate CreatePredicate (string name, int arity) {
-
+            Tuple<string,int> key = new Tuple<string, int> (name, arity);
+            Predicate p;
+            if (!this.predicates.TryGetValue (key, out p)) {
+                p = new Predicate (name, arity);
+                this.predicates.Add (key, p);
+            }
+            return p;
         }
 
     }

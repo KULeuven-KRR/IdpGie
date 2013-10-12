@@ -19,11 +19,16 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
-    public class FunctionInstance {
-        public FunctionInstance () {
+
+    public class FunctionInstance : Term {
+
+        public FunctionInstance (Function func, List<FunctionInstance> terms) : base(func,terms) {
         }
+    
     }
+
 }
 

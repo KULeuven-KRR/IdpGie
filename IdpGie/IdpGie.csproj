@@ -100,6 +100,10 @@
     <Compile Include="TermBase.cs" />
     <Compile Include="Predicate.cs" />
     <Compile Include="Function.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="HeadTail.cs" />
+    <Compile Include="Term.cs" />
+    <Compile Include="IdpParserHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
