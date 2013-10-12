@@ -10,14 +10,28 @@
 
 %option codepage:raw
 
-WHITESPACE		[\r\t\n ]*
-ID				[^ \[\]()=,\.\r\t\n\"]*
-STR				\"[^\n\"]*\"
+WHITESPACE      [\r\t\n ]*
+COMMA           ,
+ID              [^ \[\]()=,\.\r\t\n\"]*
+STR             \"[^\n\"]*\"
+OBR             (
+CBR             )
+DOT             \.
+OFB             \[
+CFB             \]
+OPA             =
+
 
 %%
 
 {ID}		    {return Token.IDENTIFIER;}
 {STR}		    {return Token.STRING;}
+{OBR}           {return Token.OBR;}
+{CBR}           {return Token.CBR;}
+{DOT}           {return Token.DOT;}
+{OFB}           {return Token.OFB;}
+{CFB}           {return Token.CFB;}
+{OPA}           {return Token.OPA;}
 {WHITESPACE}    {}
 
 /* ------------------------------------------ */

@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  InputContext.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,44 +19,29 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public abstract class NameBase : IName {
+    public class InputContext {
 
-        private string name;
+        private readonly Dictionary<Tuple<string,int>,Function> functions = new Dictionary<Tuple<string, int>, Function> ();
+        private readonly Dictionary<Tuple<string,int>,Predicate> predicates = new Dictionary<Tuple<string, int>, Predicate> ();
 
-        public virtual string Name {
-            get {
-                return this.name;
+        public InputContext () {
+        }
+
+        public Function CreateFunction (string name, int arity) {
+            Tuple<string,int> key = new Tuple<string, int> (name, arity);
+            Function f;
+            if (!this.functions.TryGetValue (key, out f)) {
+                f = new Function ();
             }
-            protected set {
-                this.name = value;
-            }
+            return f;
         }
 
-        protected NameBase () {
-        }
+        public Predicate CreatePredicate (string name, int arity) {
 
-        protected NameBase (string name) {
-            this.Name = name;
-        }
-
-        public override bool Equals (object obj) {
-            if (obj != null && obj is NameBase) {
-                NameBase nb = (NameBase)obj;
-                return this.name == nb.name && base.Equals (obj);
-            } else {
-                return false;
-            }
-        }
-
-        public override int GetHashCode () {
-            return base.GetHashCode () ^ this.name.GetHashCode ();
-        }
-
-        public override string ToString () {
-            return this.Name;
         }
 
     }

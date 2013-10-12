@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  TermBase.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,41 +22,35 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class NameBase : IName {
+    public class TermBase : NameBase {
 
-        private string name;
+        private int arity;
 
-        public virtual string Name {
+        public int Arity {
             get {
-                return this.name;
-            }
-            protected set {
-                this.name = value;
+                return this.arity;
             }
         }
 
-        protected NameBase () {
-        }
-
-        protected NameBase (string name) {
-            this.Name = name;
+        public TermBase (string name, int arity) : base(name) {
+            this.arity = arity;
         }
 
         public override bool Equals (object obj) {
             if (obj != null && obj is NameBase) {
-                NameBase nb = (NameBase)obj;
-                return this.name == nb.name && base.Equals (obj);
+                TermBase nb = (TermBase)obj;
+                return this.arity == nb.arity && this.GetType ().Equals (nb.GetType ()) && base.Equals (obj);
             } else {
                 return false;
             }
         }
 
         public override int GetHashCode () {
-            return base.GetHashCode () ^ this.name.GetHashCode ();
+            return base.GetHashCode () ^ this.arity.GetHashCode () ^ this.GetType ().GetHashCode ();
         }
 
         public override string ToString () {
-            return this.Name;
+            return string.Format ("{0}/{1}", this.Name, this.Arity);
         }
 
     }

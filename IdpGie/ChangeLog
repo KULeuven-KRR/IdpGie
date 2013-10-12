@@ -1,3 +1,17 @@
+2013-10-12  Willem Van Onsem  <vanonsem.willem@gmail.com>
+
+	* lex.ll:
+	* parse.yy:
+	* TermBase.cs:
+	* NameBase.cs:
+	* Function.cs:
+	* Predicate.cs:
+	* IdpGie.csproj:
+	* InputContext.cs:
+	* IdpGie.userprefs:
+	* FunctionInstance.cs:
+	* PredicateInstance.cs: 
+
 2013-10-09  Willem Van Onsem  <vanonsem.willem@gmail.com>
 
 	* IZIndix.cs:

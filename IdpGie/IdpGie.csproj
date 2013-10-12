@@ -94,6 +94,12 @@
     <Compile Include="IdpdPrintOutputDevice.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
+    <Compile Include="InputContext.cs" />
+    <Compile Include="PredicateInstance.cs" />
+    <Compile Include="FunctionInstance.cs" />
+    <Compile Include="TermBase.cs" />
+    <Compile Include="Predicate.cs" />
+    <Compile Include="Function.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -1,38 +1,17 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="lex.ll">
+  <MonoDevelop.Ide.Workbench ActiveDocument="parse.yy">
     <Files>
-      <File FileName="IdpdMethodAttribute.cs" Line="46" Column="48" />
-      <File FileName="IdpCairoMapping.cs" Line="116" Column="2" />
-      <File FileName="Point.cs" Line="25" Column="26" />
-      <File FileName="IdpdStructureAttribute.cs" Line="36" Column="38" />
-      <File FileName="IName.cs" Line="28" Column="17" />
-      <File FileName="NameBase.cs" Line="46" Column="30" />
-      <File FileName="GtkTimeWidget.cs" Line="54" Column="63" />
-      <File FileName="CairoWidget.cs" Line="35" Column="28" />
-      <File FileName="IdpdObject.cs" Line="34" Column="29" />
-      <File FileName="BlueprintMediabar.cs" Line="179" Column="25" />
-      <File FileName="MediaMode.cs" Line="30" Column="2" />
-      <File FileName="BlueprintStyle.cs" Line="104" Column="5" />
-      <File FileName="TopWindow.cs" Line="33" Column="47" />
-      <File FileName="MediaButtons.cs" Line="30" Column="31" />
-      <File FileName="IdpdPolygonObject.cs" Line="1" Column="1" />
-      <File FileName="IdpEllipseObject.cs" Line="52" Column="22" />
-      <File FileName="IdpdObjectTimeState.cs" Line="25" Column="37" />
-      <File FileName="IdpObjectModificationType.cs" Line="33" Column="2" />
-      <File FileName="IZIndix.cs" Line="27" Column="9" />
-      <File FileName="IdpdOutputDevice.cs" Line="28" Column="2" />
-      <File FileName="IdpdCairoOutputDevice.cs" Line="24" Column="58" />
-      <File FileName="IdpdLaTeXOutputDevice.cs" Line="24" Column="5" />
-      <File FileName="OpenGLIdpOutputDevice.cs" Line="25" Column="58" />
-      <File FileName="IdpdPrintOutputDevice.cs" Line="24" Column="58" />
-      <File FileName="lex.ll" Line="21" Column="19" />
+      <File FileName="lex.ll" Line="19" Column="1" />
+      <File FileName="parse.yy" Line="14" Column="1" />
+      <File FileName="LexSpan.cs" Line="40" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True" selected="True">
+          <Node name="IdpGie" expanded="True">
             <Node name="References" expanded="True" />
+            <Node name="parse.yy" selected="True" />
           </Node>
         </State>
       </Pad>
