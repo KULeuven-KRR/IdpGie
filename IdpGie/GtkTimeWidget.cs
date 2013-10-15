@@ -24,15 +24,17 @@ namespace IdpGie {
 
     public class GtkTimeWidget : CairoWidget {
 
-        private IdpCairoMapping mapping;
+        private IdpdMapping mapping;
+        private readonly IdpdCairoOutputDevice cod = new IdpdCairoOutputDevice ();
         private double time;
 
-        public IdpCairoMapping Mapping {
+        public IdpdMapping Mapping {
             get {
                 return mapping;
             }
             set {
                 mapping = value;
+                cod.Mapping = mapping;
             }
         }
 
@@ -50,9 +52,8 @@ namespace IdpGie {
 
         protected override void PaintWidget (Context ctx, int w, int h) {
             base.PaintWidget (ctx, w, h);
-            if (this.mapping != null) {
-                this.mapping.PaintWidget (ctx, w, h, this.time);
-            }
+            this.cod.Context = ctx;
+            this.cod.Execute (this.time);
         }
 
     }

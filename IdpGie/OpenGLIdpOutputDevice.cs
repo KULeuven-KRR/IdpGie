@@ -25,6 +25,12 @@ namespace IdpGie {
     public class OpenGLIdpOutputDevice : IdpdOutputDevice {
         public OpenGLIdpOutputDevice () {
         }
+        #region implemented abstract members of IdpGie.IdpdOutputDevice
+        public override void Execute (double time) {
+            throw new System.NotImplementedException ();
+        }
+        #endregion
+
     }
 }
 

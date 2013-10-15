@@ -1,5 +1,5 @@
 //
-//  IdpdObject.cs
+//  TimeSensitiveBase.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,43 +18,37 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Text;
-using Cairo;
+using System;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : NameBase, IZIndix {
+    public abstract class TimeSensitiveBase : ITimesensitive {
 
-        public virtual double Time {
-            set {
-            }
-        }
+        private double time;
 
-        public double ZIndex {
+        public double Time {
             get {
-                return 0.0d;
+                return this.time;
+            }
+            protected set {
+                this.time = value;
             }
         }
 
-        protected IdpdObject (string name) : base(name) {
+        protected TimeSensitiveBase (double time) {
+            this.time = time;
         }
 
-        protected virtual void InnerPaintObject (Context ctx) {
-
+        #region IComparable implementation
+        public int CompareTo (ITimesensitive other) {
+            if (other != null) {
+                return this.time.CompareTo (other.Time);
+            } else {
+                return -0x01;
+            }
         }
-
-        public virtual void PaintObject (Context ctx) {
-            ctx.Save ();
-            //TODO: translate
-            this.InnerPaintObject (ctx);
-            ctx.Restore ();
-        }
-
-        public virtual void WriteTikz (StringBuilder builder) {
-
-        }
+        #endregion
 
     }
 
 }
-

@@ -1,5 +1,5 @@
 //
-//  IdpdObject.cs
+//  IdpdTimedObjectModification.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,40 +18,13 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Text;
-using Cairo;
+using System;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : NameBase, IZIndix {
+    public abstract class IdpdTimedObjectModification : TimeSensitiveBase {
 
-        public virtual double Time {
-            set {
-            }
-        }
-
-        public double ZIndex {
-            get {
-                return 0.0d;
-            }
-        }
-
-        protected IdpdObject (string name) : base(name) {
-        }
-
-        protected virtual void InnerPaintObject (Context ctx) {
-
-        }
-
-        public virtual void PaintObject (Context ctx) {
-            ctx.Save ();
-            //TODO: translate
-            this.InnerPaintObject (ctx);
-            ctx.Restore ();
-        }
-
-        public virtual void WriteTikz (StringBuilder builder) {
-
+        protected IdpdTimedObjectModification (double time) : base(time) {
         }
 
     }

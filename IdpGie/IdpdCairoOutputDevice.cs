@@ -19,11 +19,37 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Cairo;
 
 namespace IdpGie {
+
     public class IdpdCairoOutputDevice : IdpdOutputDevice {
+
+        private Context context;
+
+        public Context Context {
+            get {
+                return this.context;
+            }
+            set {
+                this.context = value;
+            }
+        }
+
         public IdpdCairoOutputDevice () {
         }
+
+        #region implemented abstract members of IdpGie.IdpdOutputDevice
+        public override void Execute (double time) {
+            Context ctx = this.context;
+            if (ctx != null && this.Mapping != null) {
+                foreach (IdpdObject obj in this.Mapping.ObjectsTime(time)) {
+                    obj.PaintObject (ctx);
+                }
+            }
+        }
+        #endregion
+
     }
 }
 

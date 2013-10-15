@@ -28,12 +28,19 @@ namespace IdpGie {
     public class IdpdMethodAttribute : Attribute, IName {
 
         private readonly string name;
+        private readonly bool nameDependent;
         private readonly bool timeDependent;
         private readonly IList<TermType> types;
 
         public string Name {
             get {
                 return name;
+            }
+        }
+
+        public bool NameDependent {
+            get {
+                return this.nameDependent;
             }
         }
 
@@ -49,8 +56,9 @@ namespace IdpGie {
             }
         }
 
-        public IdpdMethodAttribute (string name, bool timeDependent = false, params TermType[] types) {
+        public IdpdMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) {
             this.name = name;
+            this.nameDependent = nameDepedent;
             this.timeDependent = timeDependent;
             this.types = types;
         }

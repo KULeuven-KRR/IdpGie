@@ -67,7 +67,6 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="IdpdMethodAttribute.cs" />
-    <Compile Include="IdpCairoMapping.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="IdpdStructureAttribute.cs" />
     <Compile Include="IName.cs" />
@@ -107,6 +106,11 @@
     <Compile Include="TermType.cs" />
     <Compile Include="ArrayFunction.cs" />
     <Compile Include="ArrayTailFunction.cs" />
+    <Compile Include="IdpdMapping.cs" />
+    <Compile Include="MathExtra.cs" />
+    <Compile Include="IdpdTimedObjectModification.cs" />
+    <Compile Include="ITimesensitive.cs" />
+    <Compile Include="TimeSensitiveBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

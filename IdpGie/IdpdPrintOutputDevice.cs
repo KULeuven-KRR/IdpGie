@@ -24,6 +24,12 @@ namespace IdpGie {
     public class IdpdPrintOutputDevice : IdpdOutputDevice {
         public IdpdPrintOutputDevice () {
         }
+        #region implemented abstract members of IdpGie.IdpdOutputDevice
+        public override void Execute (double time) {
+            throw new System.NotImplementedException ();
+        }
+        #endregion
+
     }
 }
 

@@ -1,3 +1,23 @@
+2013-10-15  Willem Van Onsem  <vanonsem.willem@gmail.com>
+
+	* MathExtra.cs:
+	* IdpGie.csproj:
+	* IdpdObject.cs:
+	* IdpdMapping.cs:
+	* IdpGie.userprefs:
+	* GtkTimeWidget.cs:
+	* ITimesensitive.cs:
+	* IdpCairoMapping.cs:
+	* IdpEllipseObject.cs:
+	* IdpdOutputDevice.cs:
+	* TimeSensitiveBase.cs:
+	* IdpdMethodAttribute.cs:
+	* IdpdPrintOutputDevice.cs:
+	* OpenGLIdpOutputDevice.cs:
+	* IdpdLaTeXOutputDevice.cs:
+	* IdpdCairoOutputDevice.cs:
+	* IdpdTimedObjectModification.cs: 
+
 2013-10-12  Willem Van Onsem  <vanonsem.willem@gmail.com>
 
 	* lex.ll:

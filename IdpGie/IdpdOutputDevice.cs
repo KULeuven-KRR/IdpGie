@@ -21,8 +21,24 @@
 using System;
 
 namespace IdpGie {
-    public class IdpdOutputDevice {
+
+    public abstract class IdpdOutputDevice {
+
+        private IdpdMapping mapping;
+
+        public IdpdMapping Mapping {
+            get {
+                return this.mapping;
+            }
+            set {
+                this.mapping = value;
+            }
+        }
+
         public IdpdOutputDevice () {
         }
+
+        public abstract void Execute (double time);
+
     }
 }

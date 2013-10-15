@@ -1,19 +1,41 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="parse.yy">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IdpdObject.cs">
     <Files>
-      <File FileName="lex.ll" Line="19" Column="1" />
-      <File FileName="parse.yy" Line="26" Column="40" />
+      <File FileName="lex.ll" Line="35" Column="17" />
+      <File FileName="parse.yy" Line="49" Column="27" />
       <File FileName="LexSpan.cs" Line="40" Column="9" />
-      <File FileName="Parser.cs" Line="131" Column="3" />
+      <File FileName="Parser.cs" Line="128" Column="111" />
       <File FileName="IdpParserHelper.cs" Line="25" Column="37" />
+      <File FileName="Atom.cs" Line="25" Column="5" />
+      <File FileName="InputContext.cs" Line="63" Column="108" />
+      <File FileName="Term.cs" Line="58" Column="20" />
+      <File FileName="DrawTheory.cs" Line="46" Column="49" />
+      <File FileName="TopWindow.cs" Line="21" Column="14" />
+      <File FileName="TermBase.cs" Line="49" Column="23" />
+      <File FileName="IName.cs" Line="1" Column="1" />
+      <File FileName="TermType.cs" Line="25" Column="18" />
+      <File FileName="Function.cs" Line="25" Column="39" />
+      <File FileName="ArrayFunction.cs" Line="47" Column="33" />
+      <File FileName="ArrayTailFunction.cs" Line="28" Column="86" />
+      <File FileName="IdpdMethodAttribute.cs" Line="64" Column="10" />
+      <File FileName="IdpdMapping.cs" Line="2" Column="9" />
+      <File FileName="GtkTimeWidget.cs" Line="55" Column="22" />
+      <File FileName="IdpdCairoOutputDevice.cs" Line="47" Column="25" />
+      <File FileName="IdpdOutputDevice.cs" Line="34" Column="38" />
+      <File FileName="IdpdObject.cs" Line="61" Column="1" />
+      <File FileName="IdpEllipseObject.cs" Line="45" Column="14" />
+      <File FileName="IdpdLaTeXOutputDevice.cs" Line="25" Column="54" />
+      <File FileName="OpenGLIdpOutputDevice.cs" Line="25" Column="52" />
+      <File FileName="IdpdPrintOutputDevice.cs" Line="24" Column="51" />
+      <File FileName="MathExtra.cs" Line="27" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="IdpGie" expanded="True">
             <Node name="References" expanded="True" />
-            <Node name="parse.yy" selected="True" />
+            <Node name="IdpdObject.cs" selected="True" />
           </Node>
         </State>
       </Pad>

@@ -1,5 +1,5 @@
 //
-//  IdpCairoMapping.cs
+//  IdpdMapping.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,7 +22,8 @@ using Cairo;
 using System.Collections.Generic;
 
 namespace IdpGie {
-    public class IdpCairoMapping {
+
+    public class IdpdMapping {
 
         private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
         private readonly SortedSet<IdpdObject> zObjects = new SortedSet<IdpdObject> ();
@@ -35,82 +36,90 @@ namespace IdpGie {
             }
         }
 
-        [IdpdMethod("idpd_polygon")]
+        [IdpdMethod("polygon",true,false,TermType.PointList)]
         public void Polygon (string name, IList<Point> points) {
 
         }
 
-        [IdpdMethod("idpd_polygon")]
-        public void Polygon (string name, int nbOfEdges, IList<Point> sizeOfEdge) {
+        [IdpdMethod("polygon",true,false,TermType.Int,TermType.Float)]
+        public void Polygon (string name, int nbOfEdges, float sizeOfEdge) {
 
         }
 
-        [IdpdMethod("idpd_ellipse")]
+        [IdpdMethod("ellipse",true,false,TermType.Float,TermType.Float)]
         public void Ellipse (string name, double width, double height) {
 
         }
 
-        [IdpdMethod("idpd_graph")]
+        [IdpdMethod("graph",true,false,TermType.Float,TermType.Float)]
         public void Graph (string name, double width, double height) {
 
         }
 
-        [IdpdMethod("idpd_node")]
+        [IdpdMethod("node",true,true,TermType.String)]
         public void Node (string name, string graph) {
 
         }
 
-        [IdpdMethod("idpd_edge")]
+        [IdpdMethod("text",true,true,TermType.String)]
+        public void Text (string name, string text) {
+
+        }
+
+        [IdpdMethod("edge",false,false,TermType.String,TermType.String,TermType.String)]
         public void Edge (string node1, string node2, string graph) {
 
         }
 
-        [IdpdMethod("idpd_image")]
+        [IdpdMethod("image",true,true,TermType.Float,TermType.Float,TermType.String)]
         public void Image (string name, double width, double height, string filepath) {
 
         }
 
-        [IdpdMethod("idpd_xpos")]
+        [IdpdMethod("xpos",true,true,TermType.Float)]
         public void Xpos (string name, double xpos) {
 
         }
 
-        [IdpdMethod("idpd_ypos")]
+        [IdpdMethod("ypos",true,true,TermType.Float)]
         public void Ypos (string name, double ypos) {
 
         }
 
-        [IdpdMethod("idpd_edgecolor")]
+        [IdpdMethod("zpos",true,true,TermType.Float)]
+        public void Zpos (string name, double zpos) {
+
+        }
+
+        [IdpdMethod("edgecolor",true,true,TermType.Int,TermType.Int,TermType.Int)]
         public void EdgeColor (string name, double r, double g, double b) {
 
         }
 
-        [IdpdMethod("idpd_innercolor")]
+        [IdpdMethod("innercolor",true,true,TermType.Int,TermType.Int,TermType.Int)]
         public void InnerColor (string name, double r, double g, double b) {
 
         }
 
-        [IdpdMethod("idpd_depth")]
+        [IdpdMethod("depth",true,true,TermType.Float)]
         public void Depth (string name, double index) {
         }
 
-        [IdpdMethod("idpd_show")]
+        [IdpdMethod("show",true,true)]
         public void Show (string name) {
 
         }
 
-        [IdpdMethod("idpd_hide")]
+        [IdpdMethod("hide",true,true)]
         public void Hide (string name) {
 
         }
 
-        public void PaintWidget (Context ctx, int w, int h, double t) {
+        public IEnumerable<IdpdObject> ObjectsTime (double t) {
             this.Time = t;
-            foreach (IdpdObject obj in this.zObjects) {
-                obj.PaintObject (ctx, w, h);
-            }
-
+            return this.zObjects;
         }
+
     }
 
 }

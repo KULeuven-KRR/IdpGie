@@ -25,6 +25,12 @@ namespace IdpGie {
     public class IdpdLaTeXOutputDevice : IdpdOutputDevice {
         public IdpdLaTeXOutputDevice () {
         }
+        #region implemented abstract members of IdpGie.IdpdOutputDevice
+        public override void Execute (double time) {
+            throw new System.NotImplementedException ();
+        }
+        #endregion
+
     }
 }
 

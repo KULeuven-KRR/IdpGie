@@ -48,8 +48,11 @@ namespace IdpGie {
         public IdpEllipseObject (string name) : base(name) {
         }
 
-        public override void PaintObject (Context ctx, int w, int h) {
-            base.PaintObject (ctx, w, h);
+        protected override void InnerPaintObject (Context ctx) {
+            ctx.Scale (this.Width, this.Height);
+            ctx.Arc (0.0d, 0.0d, 1.0d, 0.0d, MathExtra.Theta);
+            ctx.Fill ();
+            base.InnerPaintObject (ctx);
         }
 
     }
