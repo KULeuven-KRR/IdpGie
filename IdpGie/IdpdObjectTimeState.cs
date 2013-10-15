@@ -25,9 +25,10 @@ namespace IdpGie {
     public class IdpdObjectTimeState {
 
         private bool visible;
-        private double zIndex;
         private double xpos;
         private double ypos;
+        private double zpos;
+        private string text;
 
         public bool Visible {
             get {
@@ -38,12 +39,12 @@ namespace IdpGie {
             }
         }
 
-        public double ZIndex {
+        public double Zpos {
             get {
-                return zIndex;
+                return zpos;
             }
             set {
-                zIndex = value;
+                zpos = value;
             }
         }
 
@@ -65,6 +66,15 @@ namespace IdpGie {
             }
         }
 
+        public string Text {
+            get {
+                return this.text;
+            }
+            set {
+                this.text = value;
+            }
+        }
+
         public IdpdObjectTimeState () {
         }
 
@@ -74,6 +84,22 @@ namespace IdpGie {
 
         public void Hide () {
             this.visible = false;
+        }
+
+        public void SetXpos (double xpos) {
+            this.xpos = xpos;
+        }
+
+        public void SetYpos (double ypos) {
+            this.ypos = ypos;
+        }
+
+        public void SetZpos (double zpos) {
+            this.zpos = zpos;
+        }
+
+        public void SetText (string text) {
+            this.text = text;
         }
 
     }

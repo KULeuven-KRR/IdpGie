@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  TypedActionPredicate.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,15 +18,28 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace IdpGie {
-    public enum TermType {
-        String        = 0x01,
-        Int           = 0x06,
-        Float         = 0x04,
-        PointList     = 0x08,
-        All           = String | Int | Float | PointList
+
+    public class TypedMethodPredicate : TypedPredicate {
+
+        private MethodInfo method;
+
+        public MethodInfo Method {
+            get {
+                return this.method;
+            }
+            protected set {
+                this.method = value;
+            }
+        }
+
+        public TypedMethodPredicate (string name, int arity, IList<TermType> termTypes, MethodInfo method) : base(name,arity,termTypes) {
+            this.method = method;
+        }
+
     }
 }
 

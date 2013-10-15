@@ -26,7 +26,7 @@ namespace IdpGie {
 
         private double time;
 
-        public double Time {
+        public virtual double Time {
             get {
                 return this.time;
             }
@@ -40,7 +40,7 @@ namespace IdpGie {
         }
 
         #region IComparable implementation
-        public int CompareTo (ITimesensitive other) {
+        public virtual int CompareTo (ITimesensitive other) {
             if (other != null) {
                 return this.time.CompareTo (other.Time);
             } else {

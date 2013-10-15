@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  TypedPredicate.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,15 +18,25 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
-    public enum TermType {
-        String        = 0x01,
-        Int           = 0x06,
-        Float         = 0x04,
-        PointList     = 0x08,
-        All           = String | Int | Float | PointList
+
+    public class TypedPredicate : Predicate {
+
+        private readonly IList<TermType> termTypes;
+
+        public IList<TermType> TermTypes {
+            get {
+                return this.termTypes;
+            }
+        }
+
+        public TypedPredicate (string name, int arity, IList<TermType> termTypes) : base(name,arity) {
+            this.termTypes = termTypes;
+        }
+
     }
+
 }
 

@@ -111,6 +111,10 @@
     <Compile Include="IdpdTimedObjectModification.cs" />
     <Compile Include="ITimesensitive.cs" />
     <Compile Include="TimeSensitiveBase.cs" />
+    <Compile Include="GlobalContext.cs" />
+    <Compile Include="TypedPredicate.cs" />
+    <Compile Include="IValidate.cs" />
+    <Compile Include="TypedMethodPredicate.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

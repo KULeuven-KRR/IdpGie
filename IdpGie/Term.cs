@@ -41,6 +41,12 @@ namespace IdpGie {
             }
         }
 
+        public TermType Type {
+            get {
+                return TermType.All;
+            }
+        }
+
         public Term (TermBase header, List<FunctionInstance> terms) {
             if (header == null) {
                 throw new ArgumentNullException ("The header of a term always must be effective.", "header");

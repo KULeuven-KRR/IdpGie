@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  BuiltinPredicate.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,12 +21,11 @@
 using System;
 
 namespace IdpGie {
-    public enum TermType {
-        String        = 0x01,
-        Int           = 0x06,
-        Float         = 0x04,
-        PointList     = 0x08,
-        All           = String | Int | Float | PointList
+
+    public abstract class BuiltinPredicate : Predicate {
+        public BuiltinPredicate () {
+        }
     }
+
 }
 
