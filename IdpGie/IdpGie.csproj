@@ -115,6 +115,7 @@
     <Compile Include="TypedPredicate.cs" />
     <Compile Include="IValidate.cs" />
     <Compile Include="TypedMethodPredicate.cs" />
+    <Compile Include="IdpdMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

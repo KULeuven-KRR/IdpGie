@@ -19,12 +19,39 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace IdpGie {
 
     public class GlobalContext {
 
+        private readonly List<TypedMethodPredicate> predicates = new List<TypedMethodPredicate> ();
+
         public GlobalContext () {
+        }
+
+        public void LoadAssembly (Assembly assembly) {
+            foreach (Type type in assembly.GetTypes()) {
+                analyzeType (type);
+            }
+        }
+
+        private void analyzeType (Type type) {
+            if (!type.IsAbstract && type.GetCustomAttributes (typeof(IdpdMapperAttribute), false).Length > 0x00) {
+                foreach (MethodInfo method in type.GetMethods()) {
+                    analyzeMethod (type, method);
+                }
+            }
+        }
+
+        private void analyzeMethod (Type type, MethodInfo method) {
+            if (!method.IsAbstract) {
+                foreach (IdpdMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdMethodAttribute),false).Cast<IdpdMethodAttribute>()) {
+                    this.predicates.Add (new TypedMethodPredicate ("idpd_" + ma.Name, ma.Types, method));
+                }
+            }
         }
 
     }

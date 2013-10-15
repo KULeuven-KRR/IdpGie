@@ -1,5 +1,5 @@
 //
-//  TypedActionPredicate.cs
+//  IdpdMapperAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,28 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Collections.Generic;
-using System.Reflection;
+using System;
 
 namespace IdpGie {
 
-    public class TypedMethodPredicate : TypedPredicate {
-
-        private MethodInfo method;
-
-        public MethodInfo Method {
-            get {
-                return this.method;
-            }
-            protected set {
-                this.method = value;
-            }
-        }
-
-        public TypedMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method) : base(name,termTypes) {
-            this.method = method;
-        }
+    [AttributeUsage(AttributeTargets.Class)]
+    public class IdpdMapperAttribute : Attribute {
 
     }
+
 }
 

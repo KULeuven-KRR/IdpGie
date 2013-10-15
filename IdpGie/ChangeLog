@@ -1,5 +1,14 @@
 2013-10-15  Willem Van Onsem  <vanonsem.willem@gmail.com>
 
+	* IdpGie.csproj:
+	* IdpdMapper.cs:
+	* IdpdMapping.cs:
+	* GlobalContext.cs:
+	* TypedPredicate.cs:
+	* TypedMethodPredicate.cs: 
+
+2013-10-15  Willem Van Onsem  <vanonsem.willem@gmail.com>
+
 	* Term.cs:
 	* TermType.cs:
 	* Predicate.cs:
