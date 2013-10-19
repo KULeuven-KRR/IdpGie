@@ -1,23 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TopWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GlobalInputContext.cs">
     <Files>
-      <File FileName="GlobalInputContext.cs" Line="34" Column="66" />
-      <File FileName="IdpdMapping.cs" Line="26" Column="7" />
-      <File FileName="IdpdMapper.cs" Line="26" Column="51" />
-      <File FileName="TypedPredicate.cs" Line="35" Column="43" />
-      <File FileName="TypedMethodPredicate.cs" Line="39" Column="99" />
-      <File FileName="LocalInputContext.cs" Line="27" Column="35" />
-      <File FileName="IInputContext.cs" Line="27" Column="5" />
-      <File FileName="TopWindow.cs" Line="36" Column="13" />
+      <File FileName="GlobalInputContext.cs" Line="54" Column="50" />
+      <File FileName="TopWindow.cs" Line="65" Column="38" />
+      <File FileName="LocalInputContext.cs" Line="27" Column="51" />
+      <File FileName="IInputContext.cs" Line="29" Column="31" />
+      <File FileName="IdpdMethodAttribute.cs" Line="62" Column="14" />
+      <File FileName="DrawTheory.cs" Line="45" Column="58" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True">
+          <Node name="IdpGie" expanded="True" selected="True">
             <Node name="References" expanded="True" />
             <Node name="UserInterface" expanded="True" />
-            <Node name="TopWindow.cs" selected="True" />
           </Node>
         </State>
       </Pad>

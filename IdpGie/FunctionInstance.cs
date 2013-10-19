@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class FunctionInstance : Term {
+    public class FunctionInstance : Term, IFunctionInstance {
 
         public FunctionInstance (Function func, List<FunctionInstance> terms) : base(func,terms) {
         }

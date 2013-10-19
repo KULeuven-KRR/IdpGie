@@ -13,6 +13,8 @@
 WHITESPACE      [\r\t\n ]*
 COMMA           ,
 ID              [^ \[\]()=,\.\r\t\n\"]*
+INT             ([\+\-])?([0-9]+|0x[0-9A-Fa-f]+||0o[0-7]+)
+FLT             ([\+\-])?[0-9]+\.([0-9]*)?([Ee]([\+\-])?[0-9]+)?
 STR             \"[^\n\"]*\"
 OBR             \(
 CBR             \)
@@ -24,8 +26,10 @@ OPA             =
 
 %%
 
-{ID}		    {return (int) Token.IDENTIFIER;}
-{STR}		    {return (int) Token.STRING;}
+{FLT}           {return (int) Token.FLOAT;}
+{INT}           {return (int) Token.INT;}
+{ID}            {return (int) Token.IDENTIFIER;}
+{STR}           {return (int) Token.STRING;}
 {OBR}           {return (int) Token.OBR;}
 {CBR}           {return (int) Token.CBR;}
 {DOT}           {return (int) Token.DOT;}

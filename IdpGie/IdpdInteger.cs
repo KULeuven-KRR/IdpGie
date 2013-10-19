@@ -1,5 +1,5 @@
 //
-//  DrawTheory.cs
+//  Integer.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,32 +19,18 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace IdpGie {
 
-    public class DrawTheory {
+    public class IdpdInteger : IFunctionInstance {
 
-        private readonly List<Atom> atoms;
+        private static Regex rgx = new Regex (@"([+-])?([0-9]+|0x[0-9A-Fa-f]+||0o[0-7]+)");
+        private int value;
 
-        public List<Atom> Atoms {
-            get {
-                return this.atoms;
-            }
+        public IdpdInteger (string text) {
+
         }
-
-        public DrawTheory (List<Atom> atoms) {
-            if (atoms != null) {
-                this.atoms = atoms;
-            } else {
-                atoms = new List<Atom> ();
-            }
-        }
-
-        public override string ToString () {
-            return string.Join (".\n", this.atoms) + ".";
-        }
-
     }
 }
 

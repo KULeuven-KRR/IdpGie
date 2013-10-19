@@ -11,7 +11,7 @@
 
 %union{
     public String                      str;
-    public FunctionInstance            ter;
+    public IFunctionInstance           ter;
     public HeadTail<FunctionInstance>  vter;
     public Atom                        atm;
     public HeadTail<Atom>              vatm;
@@ -23,59 +23,56 @@
 %YYSTYPE StateStructure
 %YYLTYPE LexSpan
 
-%token	IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA
-%type	<str>	identifier
-%type	<ter>	term
-%type	<vter>	terms
+%token IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA FLT INT
+%type   <str>   identifier
+%type   <ter>   term
+%type   <vter>  terms
 %type   <atm>   atom predatom
 %type   <vatm>  atoms
 
 %%
 
-idpdraw		: atoms                                         {this.result = new DrawTheory($1.ToList());}
-			;
+idpdraw     : atoms                                         {this.result = new DrawTheory($1.ToList());}
+            ;
 
-atoms		: /* empty */                                   {$$ = null;}
+atoms       : /* empty */                                   {$$ = null;}
             | DOT                                           {$$ = null;}
-			| atom DOT atoms                                {$$ = new HeadTail<Atom>($1,$3);}
-			;
+            | atom DOT atoms                                {$$ = new HeadTail<Atom>($1,$3);}
+            ;
 
-atom		: predatom                                      {$$ = $1;}
-//			| funcatom
-			| error                                         {$$ = null;}
-			;
+atom        : predatom                                      {$$ = $1;}
+            | error                                         {$$ = null;}
+            ;
 
-predatom	: identifier OBR terms CBR				    	{$$ = this.Context.CreateAtom($1,$3);}
-			| identifier							    	{$$ = this.Context.CreateAtom($1);}
-			;
+predatom    : identifier OBR terms CBR                      {$$ = this.Context.CreateAtom($1,$3);}
+            | identifier                                    {$$ = this.Context.CreateAtom($1);}
+            ;
 
-/*funcatom	: identifier OBR terms CBR OPA term DOT			{ Insert::instance()->atom(*$1,*$3,$6,@1); delete($1); delete($3);	}
-			| identifier OPA term dot						{ Insert::instance()->atom(*$1,$3,@1); delete($1);					}
-			;*/
-
-terms		: /* empty */									{ $$ = null;}
+terms       : /* empty */                                   { $$ = null;}
             | term                                          { $$ = new HeadTail<FunctionInstance>($1);}
             | term COMMA terms                              { $$ = new HeadTail<FunctionInstance>($1,$3);}
-			;
+            ;
 
-term		: identifier OBR terms CBR						{$$ = this.Context.CreateFunctionInstance($1,$3);}
-			| identifier									{$$ = this.Context.CreateFunctionInstance($1);}
-//			| OFB terms CFB									{ $$ = Insert::instance()->list(*$2,@1); delete($2);		}
-			;
+term        : identifier OBR terms CBR                      { $$ = this.Context.CreateFunctionInstance($1,$3);}
+            | identifier                                    { $$ = this.Context.CreateFunctionInstance($1);}
+            | list                                          { $$ = $1;}
+            | INT                                           { $$ = new IdpdIntegerFunction(@1.ToString());}
+            | FLT                                           { $$ = new IdpdFloatFunction(@1.ToString());}
+            | STRING                                        { $$ = new IdpdStringFunction(@1.LiteralString());}
+            ;
 
-identifier	: IDENTIFIER									{ $$ = @1.ToString();}
-			;
+list        : OFB CFB                                       { $$ = new ArrayTailFunction();}
+            ;
 
-/*dot		:
-			| DOT
-			; */
+identifier  : IDENTIFIER                                    { $$ = @1.ToString();}
+            ;
 
 %%
 
-private InputContext context;
+private LocalInputContext context;
 private DrawTheory result;
 
-public InputContext Context {
+public LocalInputContext Context {
     get {
         return this.context;
     }
@@ -91,5 +88,5 @@ public DrawTheory Result {
 }
   
 public IdpParser (ScanBase sb) : base(sb) {
-    this.context = new InputContext();
+    this.context = new LocalInputContext();
 }

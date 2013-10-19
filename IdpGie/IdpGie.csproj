@@ -9,6 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>IdpGie</RootNamespace>
     <AssemblyName>IdpGie</AssemblyName>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
+    <Commandlineparameters>../../testinput/standardTest1.idpd</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -117,6 +119,8 @@
     <Compile Include="LocalInputContext.cs" />
     <Compile Include="GlobalInputContext.cs" />
     <Compile Include="IInputContext.cs" />
+    <Compile Include="IdpdInteger.cs" />
+    <Compile Include="IFunctionInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
