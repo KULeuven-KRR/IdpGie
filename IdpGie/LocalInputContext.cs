@@ -24,15 +24,15 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class InputContext {
+    public class LocalInputContext : IInputContext {
 
         private readonly Dictionary<Tuple<string,int>,Function> functions = new Dictionary<Tuple<string, int>, Function> ();
         private readonly Dictionary<Tuple<string,int>,Predicate> predicates = new Dictionary<Tuple<string, int>, Predicate> ();
 
-        public InputContext () {
+        public LocalInputContext () {
         }
 
-        public Function CreateFunction (string name, int arity) {
+        public Function GetFunction (string name, int arity) {
             Tuple<string,int> key = new Tuple<string, int> (name, arity);
             Function f;
             if (!this.functions.TryGetValue (key, out f)) {
@@ -43,7 +43,7 @@ namespace IdpGie {
             return f;
         }
 
-        public Atom CreateAtom (string name, IEnumerable<FunctionInstance> terms) {
+        public Atom GetAtom (string name, IEnumerable<FunctionInstance> terms) {
             int size = 0x00;
             List<FunctionInstance> list;
             if (terms != null) {
@@ -52,15 +52,15 @@ namespace IdpGie {
             } else {
                 list = new List<FunctionInstance> ();
             }
-            Predicate p = this.CreatePredicate (name, size);
+            Predicate p = this.GetPredicate (name, size);
             return new Atom (p, list);
         }
 
-        public Atom CreateAtom (string name) {
-            return this.CreateAtom (name, new List<FunctionInstance> ());
+        public Atom GetAtom (string name) {
+            return this.GetAtom (name, new List<FunctionInstance> ());
         }
 
-        public FunctionInstance CreateFunctionInstance (string name, IEnumerable<FunctionInstance> terms) {
+        public FunctionInstance GetFunctionInstance (string name, IEnumerable<FunctionInstance> terms) {
             int size = 0x00;
             List<FunctionInstance> list;
             if (terms != null) {
@@ -69,15 +69,15 @@ namespace IdpGie {
             } else {
                 list = new List<FunctionInstance> ();
             }
-            Function f = this.CreateFunction (name, size);
+            Function f = this.GetFunction (name, size);
             return new FunctionInstance (f, list);
         }
 
-        public FunctionInstance CreateFunctionInstance (string name) {
-            return this.CreateFunctionInstance (name, new List<FunctionInstance> ());
+        public FunctionInstance GetFunctionInstance (string name) {
+            return this.GetFunctionInstance (name, new List<FunctionInstance> ());
         }
 
-        public Predicate CreatePredicate (string name, int arity) {
+        public Predicate GetPredicate (string name, int arity) {
             Tuple<string,int> key = new Tuple<string, int> (name, arity);
             Predicate p;
             if (!this.predicates.TryGetValue (key, out p)) {

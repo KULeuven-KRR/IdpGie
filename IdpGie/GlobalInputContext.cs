@@ -25,11 +25,13 @@ using System.Reflection;
 
 namespace IdpGie {
 
-    public class GlobalContext {
+    public class GlobalInputContext : IInputContext {
 
-        private readonly List<TypedMethodPredicate> predicates = new List<TypedMethodPredicate> ();
+        private readonly Dictionary<Tuple<string,int>,TypedMethodPredicate> predicates = new Dictionary<Tuple<string, int>, TypedMethodPredicate> ();
+        public static readonly GlobalInputContext Instance = new GlobalInputContext ();
 
-        public GlobalContext () {
+        private GlobalInputContext () {
+            this.LoadAssembly (Assembly.GetExecutingAssembly ());
         }
 
         public void LoadAssembly (Assembly assembly) {
@@ -49,10 +51,27 @@ namespace IdpGie {
         private void analyzeMethod (Type type, MethodInfo method) {
             if (!method.IsAbstract) {
                 foreach (IdpdMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdMethodAttribute),false).Cast<IdpdMethodAttribute>()) {
-                    this.predicates.Add (new TypedMethodPredicate ("idpd_" + ma.Name, ma.Types, method));
+                    this.predicates.Add (ma.Signature, new TypedMethodPredicate ("idpd_" + ma.Name, ma.Types, method));
                 }
             }
         }
+
+        #region IInputContext implementation
+        public Predicate GetPredicate (string name, int arity) {
+            TypedMethodPredicate p;
+            Tuple<string,int> key = new Tuple<string, int> (name, arity);
+            if (predicates.TryGetValue (key, out p)) {
+                return p;
+            } else {
+                return null;
+            }
+        }
+
+        public Function GetFunction (string name, int arity) {
+            return null;
+        }
+        #endregion
+
 
     }
 

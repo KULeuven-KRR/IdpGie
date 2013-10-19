@@ -93,7 +93,6 @@
     <Compile Include="IdpdPrintOutputDevice.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
-    <Compile Include="InputContext.cs" />
     <Compile Include="FunctionInstance.cs" />
     <Compile Include="TermBase.cs" />
     <Compile Include="Predicate.cs" />
@@ -111,11 +110,13 @@
     <Compile Include="IdpdTimedObjectModification.cs" />
     <Compile Include="ITimesensitive.cs" />
     <Compile Include="TimeSensitiveBase.cs" />
-    <Compile Include="GlobalContext.cs" />
     <Compile Include="TypedPredicate.cs" />
     <Compile Include="IValidate.cs" />
     <Compile Include="TypedMethodPredicate.cs" />
     <Compile Include="IdpdMapper.cs" />
+    <Compile Include="LocalInputContext.cs" />
+    <Compile Include="GlobalInputContext.cs" />
+    <Compile Include="IInputContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

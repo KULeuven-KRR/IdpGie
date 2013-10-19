@@ -56,6 +56,11 @@ namespace IdpGie {
             }
         }
 
+        public Tuple<string, int> Signature {
+            get {
+                return new Tuple<string,int> ("idpd_" + this.Name, this.types.Count);
+            }
+        }
         public IdpdMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) {
             this.name = name;
             this.nameDependent = nameDepedent;
