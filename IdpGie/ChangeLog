@@ -3,6 +3,19 @@
 	* lex.ll:
 	* Lexer.cs:
 	* parse.yy:
+	* IdpGie.csproj:
+	* IdpdInteger.cs:
+	* LocalInputContext.cs:
+	* ArrayTailFunction.cs:
+	* IdpdFloatFunctionInstance.cs:
+	* IdpdStringFunctionInstance.cs:
+	* IdpdIntegerFunctionInstance.cs: 
+
+2013-10-20  Willem Van Onsem  <vanonsem.willem@gmail.com>
+
+	* lex.ll:
+	* Lexer.cs:
+	* parse.yy:
 	* parse.dat:
 	* IdpGie.csproj:
 	* DrawTheory.cs:

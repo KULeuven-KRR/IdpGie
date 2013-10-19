@@ -119,8 +119,10 @@
     <Compile Include="LocalInputContext.cs" />
     <Compile Include="GlobalInputContext.cs" />
     <Compile Include="IInputContext.cs" />
-    <Compile Include="IdpdInteger.cs" />
     <Compile Include="IFunctionInstance.cs" />
+    <Compile Include="IdpdIntegerFunctionInstance.cs" />
+    <Compile Include="IdpdFloatFunctionInstance.cs" />
+    <Compile Include="IdpdStringFunctionInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

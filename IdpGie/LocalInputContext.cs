@@ -43,38 +43,54 @@ namespace IdpGie {
             return f;
         }
 
-        public Atom GetAtom (string name, IEnumerable<FunctionInstance> terms) {
+        public Atom GetAtom (string name, IEnumerable<IFunctionInstance> terms) {
             int size = 0x00;
-            List<FunctionInstance> list;
             if (terms != null) {
                 size = terms.Count ();
+            }
+            Predicate p = this.GetPredicate (name, size);
+            return GetAtom (p, terms);
+        }
+
+        public Atom GetAtom (Predicate predicate, IEnumerable<IFunctionInstance> terms) {
+            List<IFunctionInstance> list;
+            if (terms != null) {
                 list = terms.ToList ();
             } else {
                 list = new List<FunctionInstance> ();
             }
-            Predicate p = this.GetPredicate (name, size);
-            return new Atom (p, list);
+            return new Atom (predicate, list);
         }
 
         public Atom GetAtom (string name) {
-            return this.GetAtom (name, new List<FunctionInstance> ());
+            return this.GetAtom (name, new List<IFunctionInstance> ());
         }
 
-        public FunctionInstance GetFunctionInstance (string name, IEnumerable<FunctionInstance> terms) {
+        public FunctionInstance GetFunctionInstance (string name, IEnumerable<IFunctionInstance> terms) {
             int size = 0x00;
-            List<FunctionInstance> list;
             if (terms != null) {
                 size = terms.Count ();
+            }
+            Function f = this.GetFunction (name, size);
+            return GetFunctionInstance (f, terms);
+        }
+
+        public FunctionInstance GetFunctionInstance (Function function, IEnumerable<IFunctionInstance> terms) {
+            List<IFunctionInstance> list;
+            if (terms != null) {
                 list = terms.ToList ();
             } else {
                 list = new List<FunctionInstance> ();
             }
-            Function f = this.GetFunction (name, size);
-            return new FunctionInstance (f, list);
+            return new FunctionInstance (function, list);
         }
 
         public FunctionInstance GetFunctionInstance (string name) {
             return this.GetFunctionInstance (name, new List<FunctionInstance> ());
+        }
+
+        public FunctionInstance GetFunctionInstance (Function function) {
+            return this.GetFunctionInstance (function, new List<FunctionInstance> ());
         }
 
         public Predicate GetPredicate (string name, int arity) {

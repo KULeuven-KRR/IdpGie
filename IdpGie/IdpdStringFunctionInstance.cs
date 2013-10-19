@@ -1,5 +1,5 @@
 //
-//  ArrayTailFunction.cs
+//  IdpdStringFunctionInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,21 +19,11 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
 namespace IdpGie {
-
-    public sealed class ArrayTailFunction : Function, IFunctionInstance {
-
-        public static readonly ArrayTailFunction Instance = new ArrayTailFunction ();
-
-        private ArrayTailFunction () : base("_arr_tail",0x00) {
+    public class IdpdStringFunctionInstance {
+        public IdpdStringFunctionInstance () {
         }
-
-        public override string TermString (List<FunctionInstance> terms) {
-            return "[]";
-        }
-
     }
 }
 

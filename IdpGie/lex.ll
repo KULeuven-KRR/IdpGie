@@ -26,7 +26,7 @@ OPA             =
 
 %%
 
-{FLT}           {return (int) Token.FLOAT;}
+{FLT}           {return (int) Token.FLT;}
 {INT}           {return (int) Token.INT;}
 {ID}            {return (int) Token.IDENTIFIER;}
 {STR}           {return (int) Token.STRING;}

@@ -1,5 +1,5 @@
 //
-//  ArrayTailFunction.cs
+//  Integer.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,21 +19,18 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace IdpGie {
 
-    public sealed class ArrayTailFunction : Function, IFunctionInstance {
+    public class IdpdIntegerFunctionInstance : IFunctionInstance {
 
-        public static readonly ArrayTailFunction Instance = new ArrayTailFunction ();
+        private static Regex rgx = new Regex (@"([+-])?([0-9]+|0x[0-9A-Fa-f]+||0o[0-7]+)");
+        private int value;
 
-        private ArrayTailFunction () : base("_arr_tail",0x00) {
+        public IdpdIntegerFunctionInstance (string text) {
+
         }
-
-        public override string TermString (List<FunctionInstance> terms) {
-            return "[]";
-        }
-
     }
 }
 

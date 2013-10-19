@@ -1,5 +1,5 @@
 //
-//  Integer.cs
+//  IdpdFloatFunctionInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,17 +19,10 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Text.RegularExpressions;
 
 namespace IdpGie {
-
-    public class IdpdInteger : IFunctionInstance {
-
-        private static Regex rgx = new Regex (@"([+-])?([0-9]+|0x[0-9A-Fa-f]+||0o[0-7]+)");
-        private int value;
-
-        public IdpdInteger (string text) {
-
+    public class IdpdFloatFunctionInstance {
+        public IdpdFloatFunctionInstance () {
         }
     }
 }

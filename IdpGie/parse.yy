@@ -10,11 +10,11 @@
 %visibility public
 
 %union{
-    public String                      str;
-    public IFunctionInstance           ter;
-    public HeadTail<FunctionInstance>  vter;
-    public Atom                        atm;
-    public HeadTail<Atom>              vatm;
+    public String                       str;
+    public IFunctionInstance            ter;
+    public HeadTail<IFunctionInstance>  vter;
+    public Atom                         atm;
+    public HeadTail<Atom>               vatm;
 }
 
 %sharetokens
@@ -25,7 +25,7 @@
 
 %token IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA FLT INT
 %type   <str>   identifier
-%type   <ter>   term
+%type   <ter>   term list
 %type   <vter>  terms
 %type   <atm>   atom predatom
 %type   <vatm>  atoms
@@ -44,24 +44,24 @@ atom        : predatom                                      {$$ = $1;}
             | error                                         {$$ = null;}
             ;
 
-predatom    : identifier OBR terms CBR                      {$$ = this.Context.CreateAtom($1,$3);}
-            | identifier                                    {$$ = this.Context.CreateAtom($1);}
+predatom    : identifier OBR terms CBR                      {$$ = this.Context.GetAtom($1,$3);}
+            | identifier                                    {$$ = this.Context.GetAtom($1);}
             ;
 
 terms       : /* empty */                                   { $$ = null;}
-            | term                                          { $$ = new HeadTail<FunctionInstance>($1);}
-            | term COMMA terms                              { $$ = new HeadTail<FunctionInstance>($1,$3);}
+            | term                                          { $$ = new HeadTail<IFunctionInstance>($1);}
+            | term COMMA terms                              { $$ = new HeadTail<IFunctionInstance>($1,$3);}
             ;
 
-term        : identifier OBR terms CBR                      { $$ = this.Context.CreateFunctionInstance($1,$3);}
-            | identifier                                    { $$ = this.Context.CreateFunctionInstance($1);}
+term        : identifier OBR terms CBR                      { $$ = this.Context.GetFunctionInstance($1,$3);}
+            | identifier                                    { $$ = this.Context.GetFunctionInstance($1);}
             | list                                          { $$ = $1;}
-            | INT                                           { $$ = new IdpdIntegerFunction(@1.ToString());}
-            | FLT                                           { $$ = new IdpdFloatFunction(@1.ToString());}
-            | STRING                                        { $$ = new IdpdStringFunction(@1.LiteralString());}
+            | INT                                           { $$ = new IdpdIntegerFunctionInstance(@1.ToString());}
+            | FLT                                           { $$ = new IdpdFloatFunctionInstance(@1.ToString());}
+            | STRING                                        { $$ = new IdpdStringFunctionInstance(@1.LiteralString());}
             ;
 
-list        : OFB CFB                                       { $$ = new ArrayTailFunction();}
+list        : OFB CFB                                       { $$ = ArrayTailFunction.Instance;}
             ;
 
 identifier  : IDENTIFIER                                    { $$ = @1.ToString();}
