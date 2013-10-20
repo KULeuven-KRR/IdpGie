@@ -22,7 +22,7 @@ using System;
 
 namespace IdpGie {
 
-    public class IdpdFloatFunctionInstance : VirtualFunctionInstance {
+    public class IdpdFloatFunctionInstance : IdpdVirtualFunctionInstance {
 
         private double value;
 

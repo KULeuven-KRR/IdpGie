@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class TermHeader : NameBase {
+    public class TermHeader : NameBase, ITermHeader {
 
         private int arity;
 

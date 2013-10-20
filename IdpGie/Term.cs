@@ -29,7 +29,7 @@ namespace IdpGie {
         private readonly TermHeader header;
         private readonly List<IFunctionInstance> terms;
 
-        public TermHeader Header {
+        public ITermHeader Header {
             get {
                 return this.header;
             }

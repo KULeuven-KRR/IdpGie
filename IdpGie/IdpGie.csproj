@@ -123,9 +123,10 @@
     <Compile Include="IdpdIntegerFunctionInstance.cs" />
     <Compile Include="IdpdFloatFunctionInstance.cs" />
     <Compile Include="IdpdStringFunctionInstance.cs" />
-    <Compile Include="VirtualFunctionInstance.cs" />
     <Compile Include="TermHeader.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="IdpdVirtualFunctionInstance.cs" />
+    <Compile Include="ITermHeader.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

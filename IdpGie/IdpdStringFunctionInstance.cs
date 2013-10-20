@@ -21,7 +21,7 @@
 using System;
 
 namespace IdpGie {
-    public class IdpdStringFunctionInstance : VirtualFunctionInstance {
+    public class IdpdStringFunctionInstance : IdpdVirtualFunctionInstance {
 
         private string value;
 

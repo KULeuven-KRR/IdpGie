@@ -1,5 +1,5 @@
 //
-//  Integer.cs
+//  ITermHeader.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,23 +18,19 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class IdpdIntegerFunctionInstance : IdpdVirtualFunctionInstance {
+    public interface ITermHeader : IName {
 
-        private int value;
-
-        public IdpdIntegerFunctionInstance (string text) {
-            this.value = int.Parse (text);
+        int Arity {
+            get;
         }
 
-        public override string ToString () {
-            return value.ToString ();
-        }
+        string TermString (List<IFunctionInstance> terms);
 
     }
+
 }
 

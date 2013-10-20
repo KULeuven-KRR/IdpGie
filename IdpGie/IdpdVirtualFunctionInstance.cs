@@ -22,12 +22,12 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class VirtualFunctionInstance : IFunctionInstance {
+    public abstract class IdpdVirtualFunctionInstance : IFunctionInstance, ITermHeader {
 
         #region IFunctionInstance implementation
-        public virtual TermHeader Header {
+        public virtual ITermHeader Header {
             get {
-                return null;
+                return this;
             }
         }
 
@@ -37,6 +37,27 @@ namespace IdpGie {
             }
         }
         #endregion
+
+        #region IName implementation
+        public string Name {
+            get {
+                return this.ToString ();
+            }
+        }
+        #endregion
+
+        #region ITermHeader implementation
+        public string TermString (System.Collections.Generic.List<IFunctionInstance> terms) {
+            return this.ToString ();
+        }
+
+        public int Arity {
+            get {
+                return 0x00;
+            }
+        }
+        #endregion
+
 
     }
 }

@@ -33,7 +33,7 @@ namespace IdpGie {
                 throw new IndexOutOfRangeException ();
             }
         }
-        public TermHeader Header {
+        public ITermHeader Header {
             get {
                 return this;
             }
