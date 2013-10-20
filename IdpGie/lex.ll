@@ -22,10 +22,12 @@ DOT             \.
 OFB             \[
 CFB             \]
 OPA             =
+COMMENT         \/\/[^\n]*\n
 
 
 %%
 
+{COMMENT}       {}
 {FLT}           {return (int) Token.FLT;}
 {INT}           {return (int) Token.INT;}
 {ID}            {return (int) Token.IDENTIFIER;}

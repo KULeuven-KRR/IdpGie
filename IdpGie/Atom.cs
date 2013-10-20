@@ -25,7 +25,7 @@ namespace IdpGie {
 
     public class Atom : Term {
 
-        public Atom (Predicate predicate, List<FunctionInstance> terms) : base(predicate,terms) {
+        public Atom (Predicate predicate, List<IFunctionInstance> terms) : base(predicate,terms) {
         }
     }
 }

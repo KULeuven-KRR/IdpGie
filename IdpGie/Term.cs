@@ -27,7 +27,7 @@ namespace IdpGie {
     public class Term {
 
         private readonly TermBase header;
-        private readonly List<FunctionInstance> terms;
+        private readonly List<IFunctionInstance> terms;
 
         public TermBase Header {
             get {
@@ -35,9 +35,15 @@ namespace IdpGie {
             }
         }
 
-        public List<FunctionInstance> Terms {
+        public List<IFunctionInstance> Terms {
             get {
                 return this.terms;
+            }
+        }
+
+        public IFunctionInstance this [int index] {
+            get {
+                return this.terms [index];
             }
         }
 
@@ -47,7 +53,7 @@ namespace IdpGie {
             }
         }
 
-        public Term (TermBase header, List<FunctionInstance> terms) {
+        public Term (TermBase header, List<IFunctionInstance> terms) {
             if (header == null) {
                 throw new ArgumentNullException ("The header of a term always must be effective.", "header");
             } else if (terms == null) {

@@ -22,7 +22,7 @@ using System;
 
 namespace IdpGie {
 
-    public class Function : TermBase {
+    public class Function : TermHeader {
 
         public Function (string name, int arity) : base(name,arity) {
         }

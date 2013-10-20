@@ -21,7 +21,7 @@
 using System.Linq;
 
 namespace IdpGie {
-    public class Predicate : TermBase {
+    public class Predicate : TermHeader {
 
         public Predicate (string name, int arity) : base(name,arity) {
         }

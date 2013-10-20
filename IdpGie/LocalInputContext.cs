@@ -57,7 +57,7 @@ namespace IdpGie {
             if (terms != null) {
                 list = terms.ToList ();
             } else {
-                list = new List<FunctionInstance> ();
+                list = new List<IFunctionInstance> ();
             }
             return new Atom (predicate, list);
         }
@@ -80,7 +80,7 @@ namespace IdpGie {
             if (terms != null) {
                 list = terms.ToList ();
             } else {
-                list = new List<FunctionInstance> ();
+                list = new List<IFunctionInstance> ();
             }
             return new FunctionInstance (function, list);
         }

@@ -21,9 +21,18 @@
 using System;
 
 namespace IdpGie {
-    public class IdpdStringFunctionInstance {
-        public IdpdStringFunctionInstance () {
+    public class IdpdStringFunctionInstance : VirtualFunctionInstance {
+
+        private string value;
+
+        public IdpdStringFunctionInstance (string text) {
+            this.value = text;
         }
+
+        public override string ToString () {
+            return value;
+        }
+
     }
 }
 

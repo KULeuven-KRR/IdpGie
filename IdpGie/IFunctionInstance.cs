@@ -23,6 +23,15 @@ using System;
 namespace IdpGie {
 
     public interface IFunctionInstance {
+
+        IFunctionInstance this [int index] {
+            get;
+        }
+
+        TermBase Header {
+            get;
+        }
+
     }
 
 }

@@ -27,10 +27,23 @@ namespace IdpGie {
 
         public static readonly ArrayTailFunction Instance = new ArrayTailFunction ();
 
+        #region IFunctionInstance implementation
+        public IFunctionInstance this [int index] {
+            get {
+                throw new IndexOutOfRangeException ();
+            }
+        }
+        public TermBase Header {
+            get {
+                return this;
+            }
+        }
+        #endregion
+
         private ArrayTailFunction () : base("_arr_tail",0x00) {
         }
 
-        public override string TermString (List<FunctionInstance> terms) {
+        public override string TermString (List<IFunctionInstance> terms) {
             return "[]";
         }
 

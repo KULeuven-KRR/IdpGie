@@ -96,7 +96,6 @@
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
     <Compile Include="FunctionInstance.cs" />
-    <Compile Include="TermBase.cs" />
     <Compile Include="Predicate.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Parser.cs" />
@@ -123,6 +122,8 @@
     <Compile Include="IdpdIntegerFunctionInstance.cs" />
     <Compile Include="IdpdFloatFunctionInstance.cs" />
     <Compile Include="IdpdStringFunctionInstance.cs" />
+    <Compile Include="VirtualFunctionInstance.cs" />
+    <Compile Include="TermHeader.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -21,9 +21,19 @@
 using System;
 
 namespace IdpGie {
-    public class IdpdFloatFunctionInstance {
-        public IdpdFloatFunctionInstance () {
+
+    public class IdpdFloatFunctionInstance : VirtualFunctionInstance {
+
+        private double value;
+
+        public IdpdFloatFunctionInstance (string text) {
+            this.value = double.Parse (text);
         }
+
+        public override string ToString () {
+            return value.ToString ();
+        }
+
     }
 }
 

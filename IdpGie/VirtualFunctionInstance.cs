@@ -1,5 +1,5 @@
 //
-//  Integer.cs
+//  VirtualFunctionInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,21 +19,24 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Text.RegularExpressions;
 
 namespace IdpGie {
 
-    public class IdpdIntegerFunctionInstance : VirtualFunctionInstance {
+    public abstract class VirtualFunctionInstance : IFunctionInstance {
 
-        private int value;
-
-        public IdpdIntegerFunctionInstance (string text) {
-            this.value = int.Parse (text);
+        #region IFunctionInstance implementation
+        public virtual TermBase Header {
+            get {
+                return null;
+            }
         }
 
-        public override string ToString () {
-            return value.ToString ();
+        public virtual IFunctionInstance this [int index] {
+            get {
+                throw new IndexOutOfRangeException ();
+            }
         }
+        #endregion
 
     }
 }

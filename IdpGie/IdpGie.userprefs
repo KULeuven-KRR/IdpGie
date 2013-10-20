@@ -1,13 +1,16 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GlobalInputContext.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Parser.cs">
     <Files>
-      <File FileName="GlobalInputContext.cs" Line="54" Column="50" />
-      <File FileName="TopWindow.cs" Line="65" Column="38" />
-      <File FileName="LocalInputContext.cs" Line="27" Column="51" />
-      <File FileName="IInputContext.cs" Line="29" Column="31" />
-      <File FileName="IdpdMethodAttribute.cs" Line="62" Column="14" />
-      <File FileName="DrawTheory.cs" Line="45" Column="58" />
+      <File FileName="parse.yy" Line="28" Column="26" />
+      <File FileName="lex.ll" Line="29" Column="40" />
+      <File FileName="OpenGLIdpOutputDevice.cs" Line="1" Column="1" />
+      <File FileName="ArrayTailFunction.cs" Line="28" Column="58" />
+      <File FileName="LocalInputContext.cs" Line="79" Column="19" />
+      <File FileName="IdpdIntegerFunctionInstance.cs" Line="26" Column="45" />
+      <File FileName="IdpdFloatFunctionInstance.cs" Line="1" Column="1" />
+      <File FileName="IdpdStringFunctionInstance.cs" Line="1" Column="1" />
+      <File FileName="Parser.cs" Line="176" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

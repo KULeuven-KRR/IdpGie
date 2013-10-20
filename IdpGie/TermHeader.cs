@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class TermBase : NameBase {
+    public class TermHeader : NameBase {
 
         private int arity;
 
@@ -33,7 +33,7 @@ namespace IdpGie {
             }
         }
 
-        public TermBase (string name, int arity) : base(name) {
+        public TermHeader (string name, int arity) : base(name) {
             if (name == null || name == string.Empty) {
                 throw new ArgumentNullException ("The name of a function or predicate must be effective.", "name");
             } else if (arity < 0x00 || arity > 0xff) {
@@ -46,7 +46,7 @@ namespace IdpGie {
             return string.Format ("{0}/{1}", this.Name, this.Arity);
         }
 
-        public virtual string TermString (List<FunctionInstance> terms) {
+        public virtual string TermString (List<IFunctionInstance> terms) {
             if (terms.Count > 0x00) {
                 return string.Format ("{0}({1})", this.Name, string.Join (",", terms));
             } else {

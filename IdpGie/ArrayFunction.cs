@@ -30,15 +30,15 @@ namespace IdpGie {
         private ArrayFunction () : base("_arr",2) {
         }
 
-        public override string TermString (List<FunctionInstance> terms) {
-            FunctionInstance tail = terms [0x01];
+        public override string TermString (List<IFunctionInstance> terms) {
+            IFunctionInstance tail = terms [0x01];
             StringBuilder sb = new StringBuilder ("[");
             sb.Append (terms [0x00]);
             while (tail != null) {
                 if (tail.Header is ArrayFunction) {
                     sb.Append (',');
-                    tail = tail.Terms [0x00];
-                    sb.Append (tail.Terms [0x00]);
+                    tail = tail [0x00];
+                    sb.Append (tail [0x00]);
                 } else if (!(tail.Header is ArrayTailFunction)) {
                     sb.Append ('|');
                     sb.Append (tail);

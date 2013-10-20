@@ -25,7 +25,7 @@ namespace IdpGie {
 
     public class FunctionInstance : Term, IFunctionInstance {
 
-        public FunctionInstance (Function func, List<FunctionInstance> terms) : base(func,terms) {
+        public FunctionInstance (Function func, List<IFunctionInstance> terms) : base(func,terms) {
         }
     
     }
