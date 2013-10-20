@@ -25,7 +25,7 @@ namespace IdpGie {
     public abstract class VirtualFunctionInstance : IFunctionInstance {
 
         #region IFunctionInstance implementation
-        public virtual TermBase Header {
+        public virtual TermHeader Header {
             get {
                 return null;
             }

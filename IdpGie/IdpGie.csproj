@@ -10,6 +10,7 @@
     <RootNamespace>IdpGie</RootNamespace>
     <AssemblyName>IdpGie</AssemblyName>
     <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\keypair.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -124,6 +125,7 @@
     <Compile Include="IdpdStringFunctionInstance.cs" />
     <Compile Include="VirtualFunctionInstance.cs" />
     <Compile Include="TermHeader.cs" />
+    <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

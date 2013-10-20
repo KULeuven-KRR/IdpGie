@@ -1,16 +1,24 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Parser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AssemblyInfo.cs">
     <Files>
       <File FileName="parse.yy" Line="28" Column="26" />
-      <File FileName="lex.ll" Line="29" Column="40" />
+      <File FileName="lex.ll" Line="17" Column="65" />
       <File FileName="OpenGLIdpOutputDevice.cs" Line="1" Column="1" />
-      <File FileName="ArrayTailFunction.cs" Line="28" Column="58" />
-      <File FileName="LocalInputContext.cs" Line="79" Column="19" />
-      <File FileName="IdpdIntegerFunctionInstance.cs" Line="26" Column="45" />
-      <File FileName="IdpdFloatFunctionInstance.cs" Line="1" Column="1" />
-      <File FileName="IdpdStringFunctionInstance.cs" Line="1" Column="1" />
-      <File FileName="Parser.cs" Line="176" Column="30" />
+      <File FileName="ArrayTailFunction.cs" Line="38" Column="29" />
+      <File FileName="LocalInputContext.cs" Line="62" Column="20" />
+      <File FileName="IdpdIntegerFunctionInstance.cs" Line="26" Column="55" />
+      <File FileName="IdpdFloatFunctionInstance.cs" Line="25" Column="53" />
+      <File FileName="IdpdStringFunctionInstance.cs" Line="24" Column="54" />
+      <File FileName="Parser.cs" Line="176" Column="29" />
+      <File FileName="Atom.cs" Line="28" Column="49" />
+      <File FileName="FunctionInstance.cs" Line="26" Column="62" />
+      <File FileName="Term.cs" Line="46" Column="43" />
+      <File FileName="TermHeader.cs" Line="53" Column="34" />
+      <File FileName="ArrayFunction.cs" Line="38" Column="26" />
+      <File FileName="IFunctionInstance.cs" Line="32" Column="17" />
+      <File FileName="VirtualFunctionInstance.cs" Line="28" Column="23" />
+      <File FileName="AssemblyInfo.cs" Line="45" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

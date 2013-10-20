@@ -28,7 +28,7 @@ namespace IdpGie {
             get;
         }
 
-        TermBase Header {
+        TermHeader Header {
             get;
         }
 
