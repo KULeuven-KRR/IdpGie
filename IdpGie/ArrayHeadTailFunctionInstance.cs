@@ -22,10 +22,36 @@ using System;
 
 namespace IdpGie {
 
-    public class ArrayHeadTailFunctionInstance {
+    public class ArrayHeadTailFunctionInstance : IArrayFunctionInstance {
 
-        public ArrayHeadTailFunctionInstance () {
+        private readonly IFunctionInstance term;
+        private readonly IArrayFunctionInstance tail;
 
+        #region IFunctionInstance implementation
+        public IFunctionInstance this [int index] {
+            get {
+                switch (index) {
+                case 0x00:
+                    return this.term;
+                case 0x01:
+                    return this.tail;
+                default :
+                    throw new IndexOutOfRangeException ("An array head-tail function has only two arguments.");
+                }
+            }
+        }
+
+        public ITermHeader Header {
+            get {
+                return ArrayFunction.Instance;
+            }
+        }
+        #endregion
+
+
+        public ArrayHeadTailFunctionInstance (IFunctionInstance term, IArrayFunctionInstance tail) {
+            this.term = term;
+            this.tail = tail;
         }
 
     }

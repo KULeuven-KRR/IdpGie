@@ -31,10 +31,10 @@ namespace IdpGie {
         private ArrayFunction () : base("_arr",2) {
         }
 
-        public static IFunctionInstance ToInstance (IEnumerable<Term> enumerable) {
-            IFunctionInstance tail = ArrayTailFunction.Instance;
-            foreach (Term t in enumerable.Reverse()) {
-                IFunctionInstance ifi = new FunctionInstance (Instance, t, tail);
+        public static IArrayFunctionInstance ToInstance (IEnumerable<IFunctionInstance> enumerable) {
+            IArrayFunctionInstance tail = ArrayTailFunction.Instance;
+            foreach (IFunctionInstance t in enumerable.Reverse()) {
+                tail = new ArrayHeadTailFunctionInstance (t, tail);
             }
             return tail;
         }

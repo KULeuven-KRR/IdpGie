@@ -1,5 +1,5 @@
 //
-//  ArrayTailFunction.cs
+//  IArrayFunctionInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,34 +19,10 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public sealed class ArrayTailFunction : Function, IArrayFunctionInstance {
-
-        public static readonly ArrayTailFunction Instance = new ArrayTailFunction ();
-
-        #region IFunctionInstance implementation
-        public IFunctionInstance this [int index] {
-            get {
-                throw new IndexOutOfRangeException ();
-            }
-        }
-        public ITermHeader Header {
-            get {
-                return this;
-            }
-        }
-        #endregion
-
-        private ArrayTailFunction () : base("_arr_tail",0x00) {
-        }
-
-        public override string TermString (List<IFunctionInstance> terms) {
-            return "[]";
-        }
-
+    public interface IArrayFunctionInstance : IFunctionInstance {
     }
-}
 
+}

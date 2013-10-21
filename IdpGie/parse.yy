@@ -61,7 +61,7 @@ term        : identifier OBR terms CBR                      { $$ = this.Context.
             | STRING                                        { $$ = new IdpdStringFunctionInstance(@1.LiteralString());}
             ;
 
-list        : OFB CFB                                       { $$ = ArrayTailFunction.Instance;}
+list        : OFB terms CFB                                 { $$ = ArrayFunction.ToInstance($2);}
             ;
 
 identifier  : IDENTIFIER                                    { $$ = @1.ToString();}
