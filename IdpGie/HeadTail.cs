@@ -24,10 +24,10 @@ using System.Collections.Generic;
 
 namespace IdpGie.Utils {
 
-    public sealed class HeadTail<T> : IEnumerable<T> {
+    public sealed class HeadTail<T> : IList<T> {
 
         private readonly T head;
-        private readonly HeadTail<T> tail;
+        private readonly IList<T> tail;
 
         public T Head {
             get {
@@ -35,11 +35,50 @@ namespace IdpGie.Utils {
             }
         }
 
-        public HeadTail<T> Tail {
+        public IList<T> Tail {
             get {
                 return tail;
             }
         }
+
+        #region ICollection implementation
+        public int Count {
+            get {
+                int count = 0x01;
+                if (this.tail != null) {
+                    count += this.tail.Count;
+                }
+                return count;
+            }
+        }
+
+        public bool IsReadOnly {
+            get {
+                return true;
+            }
+        }
+        #endregion
+
+        #region IList implementation
+        public T this [int index] {
+            get {
+                if (index != 0x00) {
+                    return this.tail [index - 0x01];
+                } else {
+                    return this.head;
+                }
+            }
+            set {
+                if (index > 0x00) {
+                    this.tail [index - 0x01] = value;
+                } else if (index == 0x00) {
+                    throw new InvalidOperationException ("The specified part of the collection is read-only.");
+                } else {
+                    throw new IndexOutOfRangeException ("The index must be larger or equal to zero.");
+                }
+            }
+        }
+        #endregion
 
         private HeadTail (IEnumerator<T> values) {
             this.head = values.Current;
@@ -51,7 +90,7 @@ namespace IdpGie.Utils {
         public HeadTail (T head) : this(head,null) {
         }
 
-        public HeadTail (T head, HeadTail<T> tail) {
+        public HeadTail (T head, IList<T> tail) {
             this.head = head;
             this.tail = tail;
         }
@@ -73,6 +112,84 @@ namespace IdpGie.Utils {
             }
         }
 
+        #region ICollection implementation
+        public void Add (T item) {
+            if (this.tail == null) {
+                throw new InvalidOperationException ("The specified part of the collection is read-only.");
+            } else {
+                this.tail.Add (item);
+            }
+        }
+
+        public void Clear () {
+            throw new InvalidOperationException ("At least a part of the collection is read-only and cannot be removed.");
+        }
+
+        public bool Contains (T item) {
+            if (Object.Equals (this.head, item)) {
+                return true;
+            } else if (this.tail != null) {
+                return this.tail.Contains (item);
+            } else {
+                return false;
+            }
+        }
+
+        public void CopyTo (T[] array, int arrayIndex) {
+            IEnumerator<T> enumerator = this.GetEnumerator ();
+            for (int i = arrayIndex; enumerator.MoveNext() && i < array.Length; i++) {
+                array [i] = enumerator.Current;
+            }
+        }
+
+        public bool Remove (T item) {
+            return (this.tail != null && this.tail.Remove (item));
+        }
+        #endregion
+
+        #region IList implementation
+        public int IndexOf (T item) {
+            if (Object.Equals (this.head, item)) {
+                return 0x00;
+            } else if (this.tail != null) {
+                int idx = this.tail.IndexOf (item);
+                if (idx >= 0x00) {
+                    return idx + 0x01;
+                }
+            }
+            return -0x01;
+        }
+
+        public void Insert (int index, T item) {
+            if (index > 0x00) {
+                if (this.tail != null) {
+                    this.tail.Insert (index - 0x01, item);
+                } else {
+                    throw new IndexOutOfRangeException ("The index must be smaller than the size of the collection.");
+                }
+            }
+            if (index == 0x00) {
+                throw new InvalidOperationException ("The specified part of the list is read-only.");
+            } else {
+                throw new IndexOutOfRangeException ("The index must be larger or equal to zero.");
+            }
+        }
+
+        public void RemoveAt (int index) {
+            if (index > 0x00) {
+                if (this.tail != null) {
+                    this.tail.RemoveAt (index - 0x01);
+                } else {
+                    throw new IndexOutOfRangeException ("The index must be smaller than the size of the collection.");
+                }
+            }
+            if (index == 0x00) {
+                throw new InvalidOperationException ("The specified part of the list is read-only.");
+            } else {
+                throw new IndexOutOfRangeException ("The index must be larger or equal to zero.");
+            }
+        }
+        #endregion
         #region IEnumerable implementation
         IEnumerator IEnumerable.GetEnumerator () {
             return this.GetEnumerator ();
@@ -81,11 +198,17 @@ namespace IdpGie.Utils {
 
         #region IEnumerable implementation
         public IEnumerator<T> GetEnumerator () {
-            HeadTail<T> current = this;
+            IList<T> current = this;
             do {
-                yield return current.Head;
-                current = current.Tail;
-            } while(current != null);
+                HeadTail<T> ht = (HeadTail<T>)current;
+                yield return ht.Head;
+                current = ht.Tail;
+            } while(current != null && current is HeadTail<T>);
+            if (current != null) {
+                foreach (T t in current) {
+                    yield return t;
+                }
+            }
         }
         #endregion
 

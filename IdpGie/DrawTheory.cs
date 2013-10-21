@@ -18,7 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using System.Text;
 using System.Collections.Generic;
 
 namespace IdpGie {
@@ -42,7 +42,12 @@ namespace IdpGie {
         }
 
         public override string ToString () {
-            return string.Join (".\n", this.atoms) + ".";
+            StringBuilder sb = new StringBuilder ();
+            foreach (Atom atm in atoms) {
+                sb.AppendFormat ("{0}.", atm);
+                sb.AppendLine ();
+            }
+            return sb.ToString ();
         }
 
     }
