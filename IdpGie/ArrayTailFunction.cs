@@ -40,10 +40,14 @@ namespace IdpGie {
         }
         #endregion
 
-        private ArrayTailFunction () : base("_arr_tail",0x00) {
+        private ArrayTailFunction () : base("[]",0x00) {
         }
 
         public override string TermString (List<IFunctionInstance> terms) {
+            return this.ToString ();
+        }
+
+        public override string ToString () {
             return "[]";
         }
 

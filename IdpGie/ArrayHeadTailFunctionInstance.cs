@@ -48,10 +48,27 @@ namespace IdpGie {
         }
         #endregion
 
+        public IFunctionInstance Term {
+            get {
+                return this.term;
+            }
+        }
+
+        public IArrayFunctionInstance Tail {
+            get {
+                return this.tail;
+            }
+        }
+
 
         public ArrayHeadTailFunctionInstance (IFunctionInstance term, IArrayFunctionInstance tail) {
             this.term = term;
             this.tail = tail;
+        }
+
+        public override string ToString () {
+            //return String.Format ("[{0}|{1}]", this.term, this.tail);
+            return ArrayFunction.Instance.TermString (this);
         }
 
     }
