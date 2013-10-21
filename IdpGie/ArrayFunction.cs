@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 
@@ -25,9 +26,17 @@ namespace IdpGie {
 
     public sealed class ArrayFunction : Function {
 
-        public static readonly ArrayFunction Function = new ArrayFunction ();
+        public static readonly ArrayFunction Instance = new ArrayFunction ();
 
         private ArrayFunction () : base("_arr",2) {
+        }
+
+        public static IFunctionInstance ToInstance (IEnumerable<Term> enumerable) {
+            IFunctionInstance tail = ArrayTailFunction.Instance;
+            foreach (Term t in enumerable.Reverse()) {
+                IFunctionInstance ifi = new FunctionInstance (Instance, t, tail);
+            }
+            return tail;
         }
 
         public override string TermString (List<IFunctionInstance> terms) {

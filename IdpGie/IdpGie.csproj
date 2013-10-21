@@ -127,6 +127,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="IdpdVirtualFunctionInstance.cs" />
     <Compile Include="ITermHeader.cs" />
+    <Compile Include="ArrayHeadTailFunctionInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

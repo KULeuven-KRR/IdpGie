@@ -22,6 +22,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+//TODO: make code less stack intensive by using do-while loops
+
 namespace IdpGie.Utils {
 
     public sealed class HeadTail<T> : IList<T> {

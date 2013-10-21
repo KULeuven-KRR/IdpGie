@@ -1,5 +1,5 @@
 //
-//  FunctionInstance.cs
+//  ArrayFunctionInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,20 +18,16 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Linq;
-using System.Collections.Generic;
+using System;
 
 namespace IdpGie {
 
-    public class FunctionInstance : Term, IFunctionInstance {
+    public class ArrayHeadTailFunctionInstance {
 
-        public FunctionInstance (Function func, List<IFunctionInstance> terms) : base(func,terms) {
+        public ArrayHeadTailFunctionInstance () {
+
         }
 
-        public FunctionInstance (Function func, params IFunctionInstance[] terms) : base(func,terms.ToList()) {
-        }
-    
     }
 
 }
-
