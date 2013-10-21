@@ -51,7 +51,9 @@ namespace IdpGie {
         private void analyzeMethod (Type type, MethodInfo method) {
             if (!method.IsAbstract) {
                 foreach (IdpdMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdMethodAttribute),false).Cast<IdpdMethodAttribute>()) {
-                    this.predicates.Add (ma.Signature, new TypedMethodPredicate ("idpd_" + ma.Name, ma.Types, method));
+                    foreach (TypedMethodPredicate tmp in ma.Predicates(method)) {
+                        this.predicates.Add (tmp.Signature, tmp);
+                    }
                 }
             }
         }

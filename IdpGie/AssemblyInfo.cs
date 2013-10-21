@@ -25,11 +25,13 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("IDP-GIE")]
-[assembly: AssemblyDescription("A Graphical Interactive Environment for IDP.")]
+[assembly: AssemblyDescription("A Graphical Interactive Environment for the IDP system." +
+    "An artificial intelligence tool that uses first order logic on finite domains in order" +
+    "to solve a constraint based theory.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("KU Leuven")]
+[assembly: AssemblyCompany("Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>, KU Leuven")]
 [assembly: AssemblyProduct("IDP-GIE")]
-[assembly: AssemblyCopyright("Willem Van Onsem")]
+[assembly: AssemblyCopyright("2013 KU Leuven, Celestijnenlaan 200A, 3001 Heverlee, Belgium")]
 [assembly: AssemblyTrademark("IDP")]
 [assembly: AssemblyCulture("")]
 

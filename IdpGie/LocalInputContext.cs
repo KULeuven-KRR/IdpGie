@@ -95,11 +95,13 @@ namespace IdpGie {
 
         public Predicate GetPredicate (string name, int arity) {
             Tuple<string,int> key = new Tuple<string, int> (name, arity);
-            Predicate p;
-            if (!this.predicates.TryGetValue (key, out p)) {
-                p = new Predicate (name, arity);
-                Console.WriteLine ("CP {0}/{1}", name, arity);
-                this.predicates.Add (key, p);
+            Predicate p = GlobalInputContext.Instance.GetPredicate (name, arity);
+            if (p == null) {
+                if (!this.predicates.TryGetValue (key, out p)) {
+                    p = new Predicate (name, arity);
+                    Console.WriteLine ("CP {0}/{1}", name, arity);
+                    this.predicates.Add (key, p);
+                }
             }
             return p;
         }

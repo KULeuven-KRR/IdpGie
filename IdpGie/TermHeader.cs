@@ -27,11 +27,19 @@ namespace IdpGie {
 
         private int arity;
 
+        #region ITermHeader implementation
         public int Arity {
             get {
                 return this.arity;
             }
         }
+
+        public Tuple<string, int> Signature {
+            get {
+                return new Tuple<string, int> (this.Name, this.Arity);
+            }
+        }
+        #endregion
 
         public TermHeader (string name, int arity) : base(name) {
             if (name == null || name == string.Empty) {

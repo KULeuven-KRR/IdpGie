@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    //[Idpd]
+    [IdpdMapper]
     public class IdpdMapping {
 
         private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();

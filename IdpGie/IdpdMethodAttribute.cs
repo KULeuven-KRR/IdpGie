@@ -21,6 +21,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using IdpGie.Utils;
 
 namespace IdpGie {
 
@@ -66,6 +69,21 @@ namespace IdpGie {
             this.nameDependent = nameDepedent;
             this.timeDependent = timeDependent;
             this.types = types;
+        }
+
+        public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {
+            string stem = "idpd_" + this.Name;
+            List<TermType> tt = this.types.ToList ();
+            if (this.nameDependent) {
+                tt.Insert (0x00, TermType.String);
+            }
+            yield return new TypedMethodPredicate (stem, tt, mi);
+            if (this.TimeDependent) {
+                tt.Add (TermType.Float);
+                yield return new TypedMethodPredicate (stem, tt, mi);
+                stem += "_t";
+                yield return new TypedMethodPredicate (stem, tt, mi);
+            }
         }
 
     }

@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
@@ -47,13 +48,19 @@ namespace IdpGie {
         #endregion
 
         #region ITermHeader implementation
-        public string TermString (System.Collections.Generic.List<IFunctionInstance> terms) {
+        public string TermString (List<IFunctionInstance> terms) {
             return this.ToString ();
         }
 
         public int Arity {
             get {
                 return 0x00;
+            }
+        }
+
+        public Tuple<string,int> Signature {
+            get {
+                return new Tuple<string, int> (this.Name, this.Arity);
             }
         }
         #endregion

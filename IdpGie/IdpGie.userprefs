@@ -1,28 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HeadTail.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ArrayFunction.cs">
     <Files>
-      <File FileName="parse.yy" Line="28" Column="26" />
-      <File FileName="lex.ll" Line="17" Column="65" />
-      <File FileName="OpenGLIdpOutputDevice.cs" Line="1" Column="1" />
-      <File FileName="ArrayTailFunction.cs" Line="36" Column="17" />
-      <File FileName="LocalInputContext.cs" Line="62" Column="20" />
-      <File FileName="IdpdIntegerFunctionInstance.cs" Line="26" Column="75" />
-      <File FileName="IdpdFloatFunctionInstance.cs" Line="25" Column="73" />
-      <File FileName="IdpdStringFunctionInstance.cs" Line="24" Column="74" />
-      <File FileName="Parser.cs" Line="176" Column="29" />
-      <File FileName="Atom.cs" Line="28" Column="49" />
-      <File FileName="FunctionInstance.cs" Line="26" Column="18" />
-      <File FileName="Term.cs" Line="32" Column="17" />
-      <File FileName="TermHeader.cs" Line="49" Column="24" />
-      <File FileName="ArrayFunction.cs" Line="38" Column="26" />
-      <File FileName="IFunctionInstance.cs" Line="31" Column="20" />
-      <File FileName="IdpdVirtualFunctionInstance.cs" Line="56" Column="29" />
-      <File FileName="AssemblyInfo.cs" Line="34" Column="29" />
-      <File FileName="ITermHeader.cs" Line="21" Column="33" />
-      <File FileName="IdpdCairoOutputDevice.cs" Line="1" Column="1" />
-      <File FileName="DrawTheory.cs" Line="50" Column="35" />
-      <File FileName="HeadTail.cs" Line="25" Column="63" />
+      <File FileName="ArrayHeadTailFunctionInstance.cs" Line="59" Column="34" />
+      <File FileName="ArrayFunction.cs" Line="73" Column="33" />
+      <File FileName="ArrayTailFunction.cs" Line="43" Column="48" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -30,7 +12,7 @@
           <Node name="IdpGie" expanded="True">
             <Node name="References" expanded="True" />
             <Node name="UserInterface" expanded="True" />
-            <Node name="HeadTail.cs" selected="True" />
+            <Node name="AssemblyInfo.cs" selected="True" />
           </Node>
         </State>
       </Pad>
