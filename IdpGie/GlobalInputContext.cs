@@ -41,7 +41,7 @@ namespace IdpGie {
         }
 
         private void analyzeType (Type type) {
-            if (!type.IsAbstract && type.GetCustomAttributes (typeof(IdpdMapperAttribute), false).Length > 0x00) {
+            if (type.GetCustomAttributes (typeof(IdpdMapperAttribute), false).Length > 0x00) {
                 foreach (MethodInfo method in type.GetMethods()) {
                     analyzeMethod (type, method);
                 }
@@ -49,11 +49,11 @@ namespace IdpGie {
         }
 
         private void analyzeMethod (Type type, MethodInfo method) {
-            if (!method.IsAbstract) {
+            if (method.IsStatic) {
                 ParameterInfo[] pis = method.GetParameters ();
                 if (pis.Length > 0x00) {
                     ParameterInfo pi0 = pis [0x00];
-                    if (pi0.IsIn && !pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
+                    if (!pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
                         foreach (IdpdMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdMethodAttribute),false).Cast<IdpdMethodAttribute>()) {
                             foreach (TypedMethodPredicate tmp in ma.Predicates(method)) {
                                 this.predicates.Add (tmp.Signature, tmp);

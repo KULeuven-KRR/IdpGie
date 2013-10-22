@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  NamedObject.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,13 +21,18 @@
 using System;
 
 namespace IdpGie {
-    public enum TermType {
-        String        = 0x01,
-        Int           = 0x06,
-        Float         = 0x04,
-        PointList     = 0x08,
-        Named         = 0x10,
-        All           = String | Int | Float | PointList | Named
+
+    public enum NamedObject : long {
+        #region Generic   (0x000000 family)
+        Unknown = 0x000000,
+        #endregion
+        #region ModeNames (0x030000 family)
+        Opengl  = 0x030001,
+        Cairo   = 0x030002,
+        Latex   = 0x030003,
+        Print   = 0x030004
+        #endregion
     }
+
 }
 

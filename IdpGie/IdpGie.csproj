@@ -131,6 +131,8 @@
     <Compile Include="IdpdMapperAttribute.cs" />
     <Compile Include="EnumerableUtils.cs" />
     <Compile Include="IdpdRegularPolygonObject.cs" />
+    <Compile Include="NamedObject.cs" />
+    <Compile Include="DrawTheoryMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -24,17 +24,6 @@ namespace IdpGie {
 
     public abstract class IdpdOutputDevice {
 
-        private IdpdMapping mapping;
-
-        public IdpdMapping Mapping {
-            get {
-                return this.mapping;
-            }
-            set {
-                this.mapping = value;
-            }
-        }
-
         public IdpdOutputDevice () {
         }
 

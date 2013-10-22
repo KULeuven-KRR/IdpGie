@@ -21,6 +21,7 @@
 using System.Linq;
 
 namespace IdpGie {
+
     public class Predicate : TermHeader {
 
         public Predicate (string name, int arity) : base(name,arity) {
@@ -28,6 +29,9 @@ namespace IdpGie {
 
         public bool ValidateAtom (Atom atom) {
             return (atom != null && atom.Header == this && atom.Terms.Count == this.Arity);
+        }
+
+        public virtual void Execute (DrawTheory theory) {
         }
 
     }

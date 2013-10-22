@@ -29,6 +29,17 @@ namespace IdpGie {
         private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
         private readonly SortedSet<IdpdObject> zObjects = new SortedSet<IdpdObject> ();
 
+        private DrawTheoryMode mode = DrawTheoryMode.Cairo;
+
+        public DrawTheoryMode Mode {
+            get {
+                return this.mode;
+            }
+            set {
+                this.mode = value;
+            }
+        }
+
         public double Time {
             set {
                 foreach (IdpdObject obj in objects.Values) {

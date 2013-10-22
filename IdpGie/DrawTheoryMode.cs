@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  DrawTheoryMode.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,13 +21,13 @@
 using System;
 
 namespace IdpGie {
-    public enum TermType {
-        String        = 0x01,
-        Int           = 0x06,
-        Float         = 0x04,
-        PointList     = 0x08,
-        Named         = 0x10,
-        All           = String | Int | Float | PointList | Named
+
+    public enum DrawTheoryMode : byte {
+        Unknown = 0x00,
+        OpenGL  = 0x01,
+        Cairo   = 0x02,
+        LaTeX   = 0x03,
+        Print   = 0x04
     }
 }
 

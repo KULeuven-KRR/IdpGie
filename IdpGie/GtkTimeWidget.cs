@@ -24,19 +24,8 @@ namespace IdpGie {
 
     public class GtkTimeWidget : CairoWidget {
 
-        private IdpdMapping mapping;
         private readonly IdpdCairoOutputDevice cod = new IdpdCairoOutputDevice ();
         private double time;
-
-        public IdpdMapping Mapping {
-            get {
-                return mapping;
-            }
-            set {
-                mapping = value;
-                cod.Mapping = mapping;
-            }
-        }
 
         public double Time {
             get {

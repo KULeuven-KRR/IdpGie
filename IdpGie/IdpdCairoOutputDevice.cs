@@ -42,11 +42,6 @@ namespace IdpGie {
         #region implemented abstract members of IdpGie.IdpdOutputDevice
         public override void Execute (double time) {
             Context ctx = this.context;
-            if (ctx != null && this.Mapping != null) {
-                /*foreach (IdpdObject obj in this.Mapping.ObjectsTime(time)) {
-                    obj.PaintObject (ctx);
-                }*/
-            }
         }
         #endregion
 
