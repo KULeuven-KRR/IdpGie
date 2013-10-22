@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using OpenTK;
+using Cairo;
 
 namespace IdpGie {
 
@@ -27,6 +28,7 @@ namespace IdpGie {
 
         private bool visible;
         private Matrix4d transformations;
+        private Matrix cairoTransformations = null;
         private string text;
 
         public bool Visible {
@@ -47,12 +49,19 @@ namespace IdpGie {
             }
         }
 
+        public Matrix CairoTransformations {
+            get {
+                return this.calcCairoTransformations ();
+            }
+        }
+
         public double Xpos {
             get {
                 return this.transformations.M14;
             }
             set {
                 this.transformations.M14 = value;
+                this.makeDirty ();
             }
         }
 
@@ -62,6 +71,7 @@ namespace IdpGie {
             }
             set {
                 this.transformations.M24 = value;
+                this.makeDirty ();
             }
         }
         
@@ -71,6 +81,7 @@ namespace IdpGie {
             }
             set {
                 this.transformations.M34 = value;
+                this.makeDirty ();
             }
         }
 
@@ -96,6 +107,32 @@ namespace IdpGie {
 
         public void SetText (string text) {
             this.text = text;
+        }
+
+        public void Transform (Matrix4d transformation) {
+            this.transformations *= transformation;
+            this.makeDirty ();
+        }
+
+        public void Shift (Vector3d shift) {
+            this.transformations.M14 += shift.X;
+            this.transformations.M24 += shift.Y;
+            this.transformations.M34 += shift.Z;
+            this.makeDirty ();
+        }
+
+        private Matrix calcCairoTransformations () {
+            Matrix ct = this.cairoTransformations;
+            if (ct == null) {
+                Matrix4d t = this.transformations;
+                ct = new Matrix (t.M11, t.M21, t.M12, t.M22, t.M14, t.M24);
+                this.cairoTransformations = ct;
+            }
+            return ct;
+        }
+
+        private void makeDirty () {
+            this.cairoTransformations = null;
         }
 
     }
