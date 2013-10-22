@@ -115,7 +115,6 @@
     <Compile Include="TypedPredicate.cs" />
     <Compile Include="IValidate.cs" />
     <Compile Include="TypedMethodPredicate.cs" />
-    <Compile Include="IdpdMapper.cs" />
     <Compile Include="LocalInputContext.cs" />
     <Compile Include="GlobalInputContext.cs" />
     <Compile Include="IInputContext.cs" />
@@ -129,6 +128,9 @@
     <Compile Include="ITermHeader.cs" />
     <Compile Include="ArrayHeadTailFunctionInstance.cs" />
     <Compile Include="IArrayFunctionInstance.cs" />
+    <Compile Include="IdpdMapperAttribute.cs" />
+    <Compile Include="EnumerableUtils.cs" />
+    <Compile Include="IdpdRegularPolygonObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

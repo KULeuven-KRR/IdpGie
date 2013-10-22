@@ -1,10 +1,18 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ArrayFunction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GlobalInputContext.cs">
     <Files>
-      <File FileName="ArrayHeadTailFunctionInstance.cs" Line="59" Column="34" />
-      <File FileName="ArrayFunction.cs" Line="73" Column="33" />
-      <File FileName="ArrayTailFunction.cs" Line="43" Column="48" />
+      <File FileName="AssemblyInfo.cs" Line="34" Column="91" />
+      <File FileName="IdpdMethodAttribute.cs" Line="78" Column="48" />
+      <File FileName="GlobalInputContext.cs" Line="54" Column="82" />
+      <File FileName="ITermHeader.cs" Line="33" Column="17" />
+      <File FileName="TypedMethodPredicate.cs" Line="1" Column="1" />
+      <File FileName="TypedPredicate.cs" Line="1" Column="1" />
+      <File FileName="Predicate.cs" Line="1" Column="1" />
+      <File FileName="TermHeader.cs" Line="39" Column="69" />
+      <File FileName="IdpdVirtualFunctionInstance.cs" Line="63" Column="69" />
+      <File FileName="LocalInputContext.cs" Line="99" Column="20" />
+      <File FileName="IdpdMapping.cs" Line="26" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +20,7 @@
           <Node name="IdpGie" expanded="True">
             <Node name="References" expanded="True" />
             <Node name="UserInterface" expanded="True" />
-            <Node name="AssemblyInfo.cs" selected="True" />
+            <Node name="GlobalInputContext.cs" selected="True" />
           </Node>
         </State>
       </Pad>

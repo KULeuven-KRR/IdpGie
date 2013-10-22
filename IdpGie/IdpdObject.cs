@@ -40,7 +40,7 @@ namespace IdpGie {
         }
 
         protected virtual void InnerPaintObject (Context ctx) {
-
+            this.CairoFillStroke (ctx);
         }
 
         public virtual void PaintObject (Context ctx) {
@@ -48,6 +48,11 @@ namespace IdpGie {
             //TODO: translate
             this.InnerPaintObject (ctx);
             ctx.Restore ();
+        }
+
+        protected void CairoFillStroke (Context ctx) {
+            ctx.FillPreserve ();
+            ctx.Stroke ();
         }
 
         public virtual void WriteTikz (StringBuilder builder) {

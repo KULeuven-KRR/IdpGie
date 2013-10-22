@@ -19,15 +19,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using OpenTK;
 
 namespace IdpGie {
 
     public class IdpdObjectTimeState {
 
         private bool visible;
-        private double xpos;
-        private double ypos;
-        private double zpos;
+        private Matrix4d transformations;
         private string text;
 
         public bool Visible {
@@ -39,30 +38,39 @@ namespace IdpGie {
             }
         }
 
-        public double Zpos {
+        public Matrix4d Transformations {
             get {
-                return zpos;
+                return this.transformations;
             }
             set {
-                zpos = value;
+                this.transformations = value;
             }
         }
 
         public double Xpos {
             get {
-                return xpos;
+                return this.transformations.M14;
             }
             set {
-                xpos = value;
+                this.transformations.M14 = value;
             }
         }
 
         public double Ypos {
             get {
-                return ypos;
+                return this.transformations.M24;
             }
             set {
-                ypos = value;
+                this.transformations.M24 = value;
+            }
+        }
+        
+        public double Zpos {
+            get {
+                return this.transformations.M34;
+            }
+            set {
+                this.transformations.M34 = value;
             }
         }
 
@@ -84,18 +92,6 @@ namespace IdpGie {
 
         public void Hide () {
             this.visible = false;
-        }
-
-        public void SetXpos (double xpos) {
-            this.xpos = xpos;
-        }
-
-        public void SetYpos (double ypos) {
-            this.ypos = ypos;
-        }
-
-        public void SetZpos (double zpos) {
-            this.zpos = zpos;
         }
 
         public void SetText (string text) {

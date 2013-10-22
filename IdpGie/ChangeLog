@@ -1,3 +1,19 @@
+2013-10-22  Willem Van Onsem  <vanonsem.willem@gmail.com>
+
+	* IdpGie.csproj:
+	* DrawTheory.cs:
+	* IdpdMapper.cs:
+	* IdpdObject.cs:
+	* IdpdMapping.cs:
+	* IdpGie.userprefs:
+	* EnumerableUtils.cs:
+	* IdpdPolygonObject.cs:
+	* GlobalInputContext.cs:
+	* IdpdObjectTimeState.cs:
+	* IdpdMapperAttribute.cs:
+	* IdpdCairoOutputDevice.cs:
+	* IdpdRegularPolygonObject.cs: 
+
 2013-10-20  Willem Van Onsem  <vanonsem.willem@gmail.com>
 
 	* lex.ll:

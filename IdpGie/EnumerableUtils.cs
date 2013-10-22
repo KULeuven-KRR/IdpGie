@@ -1,5 +1,5 @@
 //
-//  IdpdCairoOutputDevice.cs
+//  EnumerableUtils.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,38 +18,28 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using Cairo;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class IdpdCairoOutputDevice : IdpdOutputDevice {
+    public static class EnumerableUtils {
 
-        private Context context;
-
-        public Context Context {
-            get {
-                return this.context;
-            }
-            set {
-                this.context = value;
-            }
+        public static T SplitHead<T> (this IEnumerable<T> source, out IEnumerable<T> tail) {
+            tail = source.Tail ();
+            return source.FirstOrDefault ();
         }
 
-        public IdpdCairoOutputDevice () {
-        }
-
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Execute (double time) {
-            Context ctx = this.context;
-            if (ctx != null && this.Mapping != null) {
-                /*foreach (IdpdObject obj in this.Mapping.ObjectsTime(time)) {
-                    obj.PaintObject (ctx);
-                }*/
+        public static IEnumerable<T> Tail<T> (this IEnumerable<T> source) {
+            IEnumerator<T> tor = source.GetEnumerator ();
+            if (tor.MoveNext ()) {
+                while (tor.MoveNext()) {
+                    yield return tor.Current;
+                }
             }
         }
-        #endregion
 
     }
+
 }
 

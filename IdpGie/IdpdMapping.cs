@@ -26,99 +26,155 @@ namespace IdpGie {
     [IdpdMapper]
     public class IdpdMapping {
 
-        private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
-        private readonly SortedSet<IdpdObject> zObjects = new SortedSet<IdpdObject> ();
-
-        public double Time {
-            set {
-                foreach (IdpdObject obj in objects.Values) {
-                    obj.Time = value;
-                }
-            }
+        public IdpdMapping () {
         }
 
         [IdpdMethod("polygon",true,false,TermType.PointList)]
-        public void Polygon (string name, IList<Point> points) {
+        public void Polygon (DrawTheory dt, string name, IList<Point> points) {
 
         }
 
         [IdpdMethod("polygon",true,false,TermType.Int,TermType.Float)]
-        public void Polygon (string name, int nbOfEdges, float sizeOfEdge) {
+        public void Polygon (DrawTheory dt, string name, int nbOfEdges, double sizeOfEdge) {
 
         }
 
         [IdpdMethod("ellipse",true,false,TermType.Float,TermType.Float)]
-        public void Ellipse (string name, double width, double height) {
+        public void Ellipse (DrawTheory dt, string name, double width, double height) {
 
         }
 
         [IdpdMethod("graph",true,false,TermType.Float,TermType.Float)]
-        public void Graph (string name, double width, double height) {
+        public void Graph (DrawTheory dt, string name, double width, double height) {
 
         }
 
         [IdpdMethod("node",true,true,TermType.String)]
-        public void Node (string name, string graph) {
+        public void Node (DrawTheory dt, string name, string graph) {
 
         }
 
         [IdpdMethod("text",true,true,TermType.String)]
-        public void Text (string name, string text) {
+        public void Text (DrawTheory dt, string name, string text) {
 
         }
 
         [IdpdMethod("edge",false,false,TermType.String,TermType.String,TermType.String)]
-        public void Edge (string node1, string node2, string graph) {
+        public void Edge (DrawTheory dt, string node1, string node2, string graph) {
 
         }
 
         [IdpdMethod("image",true,true,TermType.Float,TermType.Float,TermType.String)]
-        public void Image (string name, double width, double height, string filepath) {
+        public void Image (DrawTheory dt, string name, double width, double height, string filepath) {
 
         }
 
         [IdpdMethod("xpos",true,true,TermType.Float)]
-        public void Xpos (string name, double xpos) {
+        public void Xpos (DrawTheory dt, string name, double xpos) {
 
         }
 
         [IdpdMethod("ypos",true,true,TermType.Float)]
-        public void Ypos (string name, double ypos) {
+        public void Ypos (DrawTheory dt, string name, double ypos) {
 
         }
 
         [IdpdMethod("zpos",true,true,TermType.Float)]
-        public void Zpos (string name, double zpos) {
+        public void Zpos (DrawTheory dt, string name, double zpos) {
 
         }
 
+        [IdpdMethod("pos",true,true,TermType.Float,TermType.Float,TermType.Float)]
+        public void Pos (DrawTheory dt, string name, double xpos, double ypos, double zpos) {
+            this.Xpos (dt, name, xpos);
+            this.Ypos (dt, name, ypos);
+            this.Zpos (dt, name, zpos);
+        }
+
+        
+
+        [IdpdMethod("xshift",true,true,TermType.Float)]
+        public void Xshift (DrawTheory dt, string name, double xpos) {
+
+        }
+
+        [IdpdMethod("yshift",true,true,TermType.Float)]
+        public void Yshift (DrawTheory dt, string name, double ypos) {
+
+        }
+
+        [IdpdMethod("zshift",true,true,TermType.Float)]
+        public void Zshift (DrawTheory dt, string name, double zpos) {
+
+        }
+
+        [IdpdMethod("shift",true,true,TermType.Float,TermType.Float,TermType.Float)]
+        public void Shift (DrawTheory dt, string name, double xpos, double ypos, double zpos) {
+            this.Xshift (dt, name, xpos);
+            this.Yshift (dt, name, ypos);
+            this.Zshift (dt, name, zpos);
+        }
+
+        [IdpdMethod("xscale",true,true,TermType.Float)]
+        public void Xscale (DrawTheory dt, string name, double xscale) {
+
+        }
+
+        [IdpdMethod("yscale",true,true,TermType.Float)]
+        public void Yscale (DrawTheory dt, string name, double yscale) {
+
+        }
+
+        [IdpdMethod("zscale",true,true,TermType.Float)]
+        public void Zscale (DrawTheory dt, string name, double zscale) {
+
+        }
+
+        [IdpdMethod("scale",true,true,TermType.Float,TermType.Float,TermType.Float)]
+        public void Scale (DrawTheory dt, string name, double xscale, double yscale, double zscale) {
+            this.Xscale (dt, name, xscale);
+            this.Yscale (dt, name, yscale);
+            this.Zscale (dt, name, zscale);
+        }
+
+        [IdpdMethod("rotate",true,true,TermType.Float,TermType.Float,TermType.Float,TermType.Float)]
+        public void Rotate (DrawTheory dt, string name, double ex, double ey, double ez, double alpha) {
+        }
+
+        [IdpdMethod("rotateX",true,true,TermType.Float)]
+        public void RotateX (DrawTheory dt, string name, double alpha) {
+        }
+
+        [IdpdMethod("rotateY",true,true,TermType.Float)]
+        public void RotateY (DrawTheory dt, string name, double alpha) {
+        }
+
+        [IdpdMethod("rotateZ",true,true,TermType.Float)]
+        public void RotateZ (DrawTheory dt, string name, double alpha) {
+        }
+
         [IdpdMethod("edgecolor",true,true,TermType.Int,TermType.Int,TermType.Int)]
-        public void EdgeColor (string name, double r, double g, double b) {
+        public void EdgeColor (DrawTheory dt, string name, double r, double g, double b) {
 
         }
 
         [IdpdMethod("innercolor",true,true,TermType.Int,TermType.Int,TermType.Int)]
-        public void InnerColor (string name, double r, double g, double b) {
+        public void InnerColor (DrawTheory dt, string name, double r, double g, double b) {
 
         }
 
         [IdpdMethod("depth",true,true,TermType.Float)]
-        public void Depth (string name, double index) {
+        public void Depth (DrawTheory dt, string name, double index) {
         }
 
         [IdpdMethod("show",true,true)]
-        public void Show (string name) {
+        public void Show (DrawTheory dt, string name) {
 
         }
 
         [IdpdMethod("hide",true,true)]
-        public void Hide (string name) {
+        public void Hide (DrawTheory dt, string name) {
 
-        }
-
-        public IEnumerable<IdpdObject> ObjectsTime (double t) {
-            this.Time = t;
-            return this.zObjects;
         }
 
     }

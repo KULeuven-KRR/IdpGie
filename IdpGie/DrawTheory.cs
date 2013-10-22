@@ -26,6 +26,16 @@ namespace IdpGie {
     public class DrawTheory {
 
         private readonly List<Atom> atoms;
+        private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
+        private readonly SortedSet<IdpdObject> zObjects = new SortedSet<IdpdObject> ();
+
+        public double Time {
+            set {
+                foreach (IdpdObject obj in objects.Values) {
+                    obj.Time = value;
+                }
+            }
+        }
 
         public List<Atom> Atoms {
             get {
@@ -48,6 +58,11 @@ namespace IdpGie {
                 sb.AppendLine ();
             }
             return sb.ToString ();
+        }
+
+        public IEnumerable<IdpdObject> ObjectsTime (double t) {
+            this.Time = t;
+            return this.zObjects;
         }
 
     }

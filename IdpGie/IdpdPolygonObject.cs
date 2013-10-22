@@ -18,12 +18,27 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using System.Collections.Generic;
+using Cairo;
 
 namespace IdpGie {
-    public class IdpdPolygonObject {
-        public IdpdPolygonObject () {
+
+    public abstract class IdpdPolygonObject : IdpdObject {
+
+        protected IdpdPolygonObject (string name) : base(name) {
         }
+
+        protected override void InnerPaintObject (Context ctx) {
+            IEnumerable<PointD> tail;
+            ctx.MoveTo (this.GetPoints ().SplitHead (out tail));
+            foreach (PointD pt in tail) {
+                ctx.LineTo (pt);
+            }
+            base.InnerPaintObject (ctx);
+        }
+
+        public abstract IEnumerable<PointD> GetPoints ();
+
     }
 }
 
