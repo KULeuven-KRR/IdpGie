@@ -24,11 +24,11 @@ namespace IdpGie {
 
     public class ArrayHeadTailFunctionInstance : IArrayFunctionInstance {
 
-        private readonly IFunctionInstance term;
+        private readonly ITerm term;
         private readonly IArrayFunctionInstance tail;
 
         #region IFunctionInstance implementation
-        public IFunctionInstance this [int index] {
+        public ITerm this [int index] {
             get {
                 switch (index) {
                 case 0x00:
@@ -48,7 +48,7 @@ namespace IdpGie {
         }
         #endregion
 
-        public IFunctionInstance Term {
+        public ITerm Term {
             get {
                 return this.term;
             }
@@ -61,7 +61,7 @@ namespace IdpGie {
         }
 
 
-        public ArrayHeadTailFunctionInstance (IFunctionInstance term, IArrayFunctionInstance tail) {
+        public ArrayHeadTailFunctionInstance (ITerm term, IArrayFunctionInstance tail) {
             this.term = term;
             this.tail = tail;
         }

@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  IPredicate.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,16 +21,7 @@
 using System;
 
 namespace IdpGie {
-
-    [Flags]
-    public enum TermType : ulong {
-        None          = 0x0000000000000000,
-        String        = 0x0000000000000001,
-        Int           = 0x0000000000000006,
-        Float         = 0x0000000000000004,
-        PointList     = 0x0000000000000008,
-        Named         = 0x0000000000000010,
-        All           = String | Int | Float | PointList | Named
+    public interface IAtom : ITerm, IPriority {
     }
 }
 

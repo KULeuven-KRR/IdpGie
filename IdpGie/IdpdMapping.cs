@@ -26,7 +26,7 @@ namespace IdpGie {
     [IdpdMapper]
     public static class IdpdMapping {
 
-        [IdpdMethod("rendering",false,false,TermType.Named)]
+        [IdpdMethod("rendering",false,false,-1.0d,TermType.Named)]
         public static void Rendering (DrawTheory dt, NamedObject nobj) {
 
         }

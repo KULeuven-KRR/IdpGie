@@ -25,6 +25,14 @@ namespace IdpGie {
 
         private string value;
 
+        #region implemented abstract members of IdpGie.IdpdVirtualFunctionInstance
+        public override TermType Type {
+            get {
+                return TermType.String;
+            }
+        }
+        #endregion
+
         public IdpdStringFunctionInstance (string text) {
             this.value = text;
         }

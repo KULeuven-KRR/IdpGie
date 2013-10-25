@@ -43,7 +43,7 @@ namespace IdpGie {
             return f;
         }
 
-        public Atom GetAtom (string name, IEnumerable<IFunctionInstance> terms) {
+        public Atom GetAtom (string name, IEnumerable<ITerm> terms) {
             int size = 0x00;
             if (terms != null) {
                 size = terms.Count ();
@@ -52,21 +52,21 @@ namespace IdpGie {
             return GetAtom (p, terms);
         }
 
-        public Atom GetAtom (Predicate predicate, IEnumerable<IFunctionInstance> terms) {
-            List<IFunctionInstance> list;
+        public Atom GetAtom (Predicate predicate, IEnumerable<ITerm> terms) {
+            List<ITerm> list;
             if (terms != null) {
                 list = terms.ToList ();
             } else {
-                list = new List<IFunctionInstance> ();
+                list = new List<ITerm> ();
             }
             return new Atom (predicate, list);
         }
 
         public Atom GetAtom (string name) {
-            return this.GetAtom (name, new List<IFunctionInstance> ());
+            return this.GetAtom (name, new List<ITerm> ());
         }
 
-        public FunctionInstance GetFunctionInstance (string name, IEnumerable<IFunctionInstance> terms) {
+        public FunctionInstance GetFunctionInstance (string name, IEnumerable<ITerm> terms) {
             int size = 0x00;
             if (terms != null) {
                 size = terms.Count ();
@@ -75,12 +75,12 @@ namespace IdpGie {
             return GetFunctionInstance (f, terms);
         }
 
-        public FunctionInstance GetFunctionInstance (Function function, IEnumerable<IFunctionInstance> terms) {
-            List<IFunctionInstance> list;
+        public FunctionInstance GetFunctionInstance (Function function, IEnumerable<ITerm> terms) {
+            List<ITerm> list;
             if (terms != null) {
                 list = terms.ToList ();
             } else {
-                list = new List<IFunctionInstance> ();
+                list = new List<ITerm> ();
             }
             return new FunctionInstance (function, list);
         }

@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  IFunction.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,18 +19,23 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    [Flags]
-    public enum TermType : ulong {
-        None          = 0x0000000000000000,
-        String        = 0x0000000000000001,
-        Int           = 0x0000000000000006,
-        Float         = 0x0000000000000004,
-        PointList     = 0x0000000000000008,
-        Named         = 0x0000000000000010,
-        All           = String | Int | Float | PointList | Named
-    }
-}
+    public interface IFunction : ITermHeader {
 
+        TermType OutputType {
+            get;
+        }
+
+        TermType InputType (int index);
+
+        void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00);
+
+        void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength);
+
+        void WidenInput (IEnumerable<IFunctionInstance> terms);
+    }
+
+}

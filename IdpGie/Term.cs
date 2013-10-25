@@ -24,10 +24,10 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class Term {
+    public class Term : ITerm {
 
-        private readonly TermHeader header;
-        private readonly List<IFunctionInstance> terms;
+        private readonly ITermHeader header;
+        private readonly List<ITerm> terms;
 
         public ITermHeader Header {
             get {
@@ -35,25 +35,19 @@ namespace IdpGie {
             }
         }
 
-        public List<IFunctionInstance> Terms {
+        public List<ITerm> Terms {
             get {
                 return this.terms;
             }
         }
 
-        public IFunctionInstance this [int index] {
+        public ITerm this [int index] {
             get {
                 return this.terms [index];
             }
         }
 
-        public TermType Type {
-            get {
-                return TermType.All;
-            }
-        }
-
-        public Term (TermHeader header, List<IFunctionInstance> terms) {
+        public Term (ITermHeader header, List<ITerm> terms) {
             if (header == null) {
                 throw new ArgumentNullException ("The header of a term always must be effective.", "header");
             } else if (terms == null) {

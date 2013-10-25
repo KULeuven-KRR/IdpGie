@@ -23,9 +23,18 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class Atom : Term {
+    public class Atom : Term, IAtom {
 
-        public Atom (Predicate predicate, List<IFunctionInstance> terms) : base(predicate,terms) {
+        #region IPriority implementation
+        public double Priority {
+            get {
+                return this.Header.Priority;
+            }
+        }
+        #endregion
+
+
+        public Atom (Predicate predicate, List<ITerm> terms) : base(predicate,terms) {
         }
     }
 }

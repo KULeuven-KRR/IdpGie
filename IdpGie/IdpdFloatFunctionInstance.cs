@@ -26,6 +26,14 @@ namespace IdpGie {
 
         private double value;
 
+        #region implemented abstract members of IdpGie.IdpdVirtualFunctionInstance
+        public override TermType Type {
+            get {
+                return TermType.Float;
+            }
+        }
+        #endregion
+
         public IdpdFloatFunctionInstance (string text) {
             this.value = double.Parse (text);
         }

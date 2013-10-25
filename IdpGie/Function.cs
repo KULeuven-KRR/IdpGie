@@ -19,12 +19,60 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class Function : TermHeader {
+    public class Function : TermHeader, IFunction {
 
-        public Function (string name, int arity) : base(name,arity) {
+        private TermType outputType;
+        private readonly TermType[] inputTypes;
+
+
+        #region IFunction implementation
+        public TermType OutputType {
+            get {
+                return this.outputType;
+            }
+            protected set {
+                this.outputType = value;
+            }
+        }
+        #endregion
+
+        public Function (string name, int arity, TermType outputType = TermType.All, params TermType[] inputTypes) : base(name,arity) {
+            this.OutputType = outputType;
+            this.inputTypes = new TermType[arity];
+            for (int i = arity-0x01; i >= 0x00; i--) {
+                this.inputTypes [i] = TermType.None;
+            }
+            this.WidenInput (inputTypes);
+        }
+
+        #region IFunction implementation
+        public TermType InputType (int index) {
+            return this.inputTypes [index];
+        }
+        #endregion
+
+        public void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00) {
+            this.WidenInput (types, termOffset, inputOffset, types.Length);
+        }
+
+        public void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
+            int io = Math.Min (Math.Max (0x00, inputOffset), types.Length);
+            int n = io + Math.Min (Math.Min (inputLength, types.Length - io), this.inputTypes.Length - termOffset);
+            for (int i = io, j = termOffset; i < n; i++, j++) {
+                inputTypes [j] |= types [i];
+            }
+        }
+
+        public void WidenInput (IEnumerable<IFunctionInstance> fis) {
+            IEnumerator<IFunctionInstance> fise = fis.GetEnumerator ();
+            int n = inputTypes.Length;
+            for (int i = 0x00; i < n && fise.MoveNext(); i++) {
+                inputTypes [i] |= fise.Current.Type;
+            }
         }
 
     }

@@ -118,7 +118,6 @@
     <Compile Include="LocalInputContext.cs" />
     <Compile Include="GlobalInputContext.cs" />
     <Compile Include="IInputContext.cs" />
-    <Compile Include="IFunctionInstance.cs" />
     <Compile Include="IdpdIntegerFunctionInstance.cs" />
     <Compile Include="IdpdFloatFunctionInstance.cs" />
     <Compile Include="IdpdStringFunctionInstance.cs" />
@@ -135,6 +134,10 @@
     <Compile Include="DrawTheoryMode.cs" />
     <Compile Include="IPriority.cs" />
     <Compile Include="PriorityComparator.cs" />
+    <Compile Include="ITerm.cs" />
+    <Compile Include="IAtom.cs" />
+    <Compile Include="IFunctionInstance.cs" />
+    <Compile Include="IFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

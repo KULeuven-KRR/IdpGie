@@ -25,10 +25,24 @@ namespace IdpGie {
 
     public class FunctionInstance : Term, IFunctionInstance {
 
-        public FunctionInstance (Function func, List<IFunctionInstance> terms) : base(func,terms) {
+        #region IFunctionInstance implementation
+        public TermType Type {
+            get {
+                return this.Function.OutputType;
+            }
         }
 
-        public FunctionInstance (Function func, params IFunctionInstance[] terms) : base(func,terms.ToList()) {
+        public IFunction Function {
+            get {
+                return (IFunction)this.Header;
+            }
+        }
+#endregion
+
+        public FunctionInstance (IFunction func, List<ITerm> terms) : base(func,terms) {
+        }
+
+        public FunctionInstance (IFunction func, params ITerm[] terms) : base(func,terms.ToList()) {
         }
     
     }

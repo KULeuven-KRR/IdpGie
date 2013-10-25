@@ -33,6 +33,7 @@ namespace IdpGie {
         private readonly string name;
         private readonly bool nameDependent;
         private readonly bool timeDependent;
+        private readonly double priority;
         private readonly IList<TermType> types;
 
         public string Name {
@@ -64,11 +65,22 @@ namespace IdpGie {
                 return new Tuple<string,int> ("idpd_" + this.Name, this.types.Count);
             }
         }
-        public IdpdMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) {
+
+        public double Priority {
+            get {
+                return this.priority;
+            }
+        }
+
+        public IdpdMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, double priority = 1.0d, params TermType[] types) {
             this.name = name;
             this.nameDependent = nameDepedent;
             this.timeDependent = timeDependent;
+            this.priority = priority;
             this.types = types;
+        }
+
+        public IdpdMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this(name,nameDepedent,timeDependent,1.0d,types) {
         }
 
         public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {

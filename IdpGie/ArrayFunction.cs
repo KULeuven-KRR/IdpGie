@@ -32,15 +32,15 @@ namespace IdpGie {
         private ArrayFunction () : base("_arr",2) {
         }
 
-        public static IArrayFunctionInstance ToInstance (IEnumerable<IFunctionInstance> enumerable) {
+        public static IArrayFunctionInstance ToInstance (IEnumerable<ITerm> enumerable) {
             IArrayFunctionInstance tail = ArrayTailFunction.Instance;
-            foreach (IFunctionInstance t in enumerable.Reverse()) {
+            foreach (ITerm t in enumerable.Reverse()) {
                 tail = new ArrayHeadTailFunctionInstance (t, tail);
             }
             return tail;
         }
 
-        private void generateRestTermString (StringBuilder sb, IFunctionInstance tail) {
+        private void generateRestTermString (StringBuilder sb, ITerm tail) {
             while (tail != null) {
                 if (this.Equals (tail.Header)) {
                     sb.Append (',');
@@ -56,8 +56,8 @@ namespace IdpGie {
             }
         }
 
-        public override string TermString (List<IFunctionInstance> terms) {
-            IFunctionInstance tail = terms [0x01];
+        public override string TermString (List<ITerm> terms) {
+            ITerm tail = terms [0x01];
             StringBuilder sb = new StringBuilder ("[");
             sb.Append (terms [0x00]);
             this.generateRestTermString (sb, tail);

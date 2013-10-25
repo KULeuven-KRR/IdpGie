@@ -27,6 +27,14 @@ namespace IdpGie {
 
         private int value;
 
+        #region implemented abstract members of IdpGie.IdpdVirtualFunctionInstance
+        public override TermType Type {
+            get {
+                return TermType.Int;
+            }
+        }
+        #endregion
+
         public IdpdIntegerFunctionInstance (string text) {
             this.value = int.Parse (text);
         }

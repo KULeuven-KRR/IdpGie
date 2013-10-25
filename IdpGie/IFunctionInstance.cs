@@ -22,13 +22,13 @@ using System;
 
 namespace IdpGie {
 
-    public interface IFunctionInstance {
+    public interface IFunctionInstance : ITerm {
 
-        IFunctionInstance this [int index] {
+        TermType Type {
             get;
         }
 
-        ITermHeader Header {
+        IFunction Function {
             get;
         }
 

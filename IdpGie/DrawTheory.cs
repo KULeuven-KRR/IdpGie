@@ -76,6 +76,10 @@ namespace IdpGie {
             return this.zObjects;
         }
 
+        public void Compile () {
+            atoms.Sort (PriorityComparator.Instance);
+        }
+
     }
 }
 

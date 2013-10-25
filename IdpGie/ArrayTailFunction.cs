@@ -28,7 +28,7 @@ namespace IdpGie {
         public static readonly ArrayTailFunction Instance = new ArrayTailFunction ();
 
         #region IFunctionInstance implementation
-        public IFunctionInstance this [int index] {
+        public ITerm this [int index] {
             get {
                 throw new IndexOutOfRangeException ();
             }
@@ -43,7 +43,7 @@ namespace IdpGie {
         private ArrayTailFunction () : base("[]",0x00) {
         }
 
-        public override string TermString (List<IFunctionInstance> terms) {
+        public override string TermString (List<ITerm> terms) {
             return this.ToString ();
         }
 

@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public abstract class IdpdVirtualFunctionInstance : IFunctionInstance, ITermHeader {
+    public abstract class IdpdVirtualFunctionInstance : IFunction, IFunctionInstance {
 
         private double priority;
 
@@ -34,7 +34,7 @@ namespace IdpGie {
             }
         }
 
-        public virtual IFunctionInstance this [int index] {
+        public virtual ITerm this [int index] {
             get {
                 throw new IndexOutOfRangeException ();
             }
@@ -50,7 +50,7 @@ namespace IdpGie {
         #endregion
 
         #region ITermHeader implementation
-        public string TermString (List<IFunctionInstance> terms) {
+        public string TermString (List<ITerm> terms) {
             return this.ToString ();
         }
 
@@ -78,9 +78,45 @@ namespace IdpGie {
         }
         #endregion
 
+        #region IFunctionInstance implementation
+        public abstract TermType Type {
+            get;
+        }
+
+        public IFunction Function {
+            get {
+                return this;
+            }
+        }
+        #endregion
+
+        #region IFunction implementation
+        public virtual TermType OutputType {
+            get {
+                return this.Type;
+            }
+        }
+        #endregion
+
         protected IdpdVirtualFunctionInstance (double priority = 1.0d) {
             this.Priority = priority;
         }
+
+        #region IFunction implementation
+        public TermType InputType (int index) {
+            return TermType.None;
+        }
+
+        public virtual void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00) {
+        }
+
+        public virtual void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
+        }
+
+        public virtual void WidenInput (IEnumerable<IFunctionInstance> terms) {
+        }
+        #endregion
+
 
     }
 }
