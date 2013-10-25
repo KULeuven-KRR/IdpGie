@@ -29,12 +29,12 @@ namespace IdpGie {
 
         public static readonly ArrayFunction Instance = new ArrayFunction ();
 
-        private ArrayFunction () : base("_arr",2) {
+        private ArrayFunction () : base("[]",2) {
         }
 
-        public static IArrayFunctionInstance ToInstance (IEnumerable<ITerm> enumerable) {
+        public static IArrayFunctionInstance ToInstance (IEnumerable<IFunctionInstance> enumerable) {
             IArrayFunctionInstance tail = ArrayTailFunction.Instance;
-            foreach (ITerm t in enumerable.Reverse()) {
+            foreach (IFunctionInstance t in enumerable.Reverse()) {
                 tail = new ArrayHeadTailFunctionInstance (t, tail);
             }
             return tail;
@@ -56,7 +56,7 @@ namespace IdpGie {
             }
         }
 
-        public override string TermString (List<ITerm> terms) {
+        public override string TermString (List<IFunctionInstance> terms) {
             ITerm tail = terms [0x01];
             StringBuilder sb = new StringBuilder ("[");
             sb.Append (terms [0x00]);

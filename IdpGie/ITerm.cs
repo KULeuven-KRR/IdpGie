@@ -24,7 +24,7 @@ namespace IdpGie {
 
     public interface ITerm {
 
-        ITerm this [int index] {
+        IFunctionInstance this [int index] {
             get;
         }
 

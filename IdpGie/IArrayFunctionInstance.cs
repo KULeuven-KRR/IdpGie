@@ -22,7 +22,7 @@ using System;
 
 namespace IdpGie {
 
-    public interface IArrayFunctionInstance : ITerm {
+    public interface IArrayFunctionInstance : IFunctionInstance {
     }
 
 }

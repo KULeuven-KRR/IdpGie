@@ -39,6 +39,10 @@ namespace IdpGie {
             }
         }
 
+        public static bool Empty<T> (this IEnumerable<T> source) {
+            return !source.GetEnumerator ().MoveNext ();
+        }
+
     }
 
 }

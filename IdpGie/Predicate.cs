@@ -18,11 +18,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Linq;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class Predicate : TermHeader {
+    public class Predicate : TermHeader, IPredicate {
 
         public Predicate (string name, int arity) : base(name,arity) {
         }
@@ -31,7 +31,7 @@ namespace IdpGie {
             return (atom != null && atom.Header == this && atom.Terms.Count == this.Arity);
         }
 
-        public virtual void Execute (DrawTheory theory) {
+        public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
         }
 
     }

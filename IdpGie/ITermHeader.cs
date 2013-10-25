@@ -33,7 +33,7 @@ namespace IdpGie {
             get;
         }
 
-        string TermString (List<ITerm> terms);
+        string TermString (List<IFunctionInstance> terms);
 
     }
 

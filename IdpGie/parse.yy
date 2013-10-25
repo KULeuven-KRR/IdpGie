@@ -13,8 +13,8 @@
     public String                       str;
     public IFunctionInstance            ter;
     public HeadTail<IFunctionInstance>  vter;
-    public Atom                         atm;
-    public HeadTail<Atom>               vatm;
+    public IAtom                        atm;
+    public HeadTail<IAtom>              vatm;
 }
 
 %sharetokens
@@ -37,7 +37,7 @@ idpdraw     : atoms                                         {this.result = new D
 
 atoms       : /* empty */                                   {$$ = null;}
             | DOT                                           {$$ = null;}
-            | atom DOT atoms                                {$$ = new HeadTail<Atom>($1,$3);}
+            | atom DOT atoms                                {$$ = new HeadTail<IAtom>($1,$3);}
             ;
 
 atom        : predatom                                      {$$ = $1;}

@@ -138,6 +138,10 @@
     <Compile Include="IAtom.cs" />
     <Compile Include="IFunctionInstance.cs" />
     <Compile Include="IFunction.cs" />
+    <Compile Include="IPredicate.cs" />
+    <Compile Include="NamedFunctionInstance.cs" />
+    <Compile Include="IdpdNamedObjectAttribute.cs" />
+    <Compile Include="IdpdNamedObjectEnumAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

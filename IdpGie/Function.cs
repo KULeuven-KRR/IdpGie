@@ -38,6 +38,12 @@ namespace IdpGie {
                 this.outputType = value;
             }
         }
+
+        public bool HasInstance {
+            get {
+                return true;
+            }
+        }
         #endregion
 
         public Function (string name, int arity, TermType outputType = TermType.All, params TermType[] inputTypes) : base(name,arity) {

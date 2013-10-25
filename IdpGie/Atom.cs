@@ -33,9 +33,25 @@ namespace IdpGie {
         }
         #endregion
 
-
-        public Atom (Predicate predicate, List<ITerm> terms) : base(predicate,terms) {
+        #region IAtom implementation
+        public IPredicate Predicate {
+            get {
+                return (IPredicate)this.Header;
+            }
         }
+        #endregion
+
+
+        public Atom (IPredicate predicate, List<IFunctionInstance> terms) : base(predicate,terms) {
+        }
+
+        #region IAtom implementation
+        public void Execute (DrawTheory theory) {
+            this.Predicate.Execute (theory, this.Terms);
+        }
+        #endregion
+
+
     }
 }
 

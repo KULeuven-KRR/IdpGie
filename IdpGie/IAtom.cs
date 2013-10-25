@@ -22,6 +22,13 @@ using System;
 
 namespace IdpGie {
     public interface IAtom : ITerm, IPriority {
+
+        IPredicate Predicate {
+            get;
+        }
+
+        void Execute (DrawTheory theory);
+
     }
 }
 

@@ -70,8 +70,8 @@ namespace IdpGie {
             return string.Format ("{0}/{1}", this.Name, this.Arity);
         }
 
-        public virtual string TermString (List<ITerm> terms) {
-            if (terms.Count > 0x00) {
+        public virtual string TermString (List<IFunctionInstance> terms) {
+            if (!terms.Empty ()) {
                 return string.Format ("{0}({1})", this.Name, string.Join (",", terms));
             } else {
                 return this.Name;

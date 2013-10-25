@@ -28,6 +28,7 @@ namespace IdpGie {
     public class GlobalInputContext : IInputContext {
 
         private readonly Dictionary<Tuple<string,int>,TypedMethodPredicate> predicates = new Dictionary<Tuple<string, int>, TypedMethodPredicate> ();
+        private readonly Dictionary<Tuple<string,int>,NamedFunctionInstance> functions = new Dictionary<Tuple<string, int>, NamedFunctionInstance> ();
         public static readonly GlobalInputContext Instance = new GlobalInputContext ();
 
         private GlobalInputContext () {
@@ -36,11 +37,30 @@ namespace IdpGie {
 
         public void LoadAssembly (Assembly assembly) {
             foreach (Type type in assembly.GetTypes()) {
-                analyzeType (type);
+                if (type.IsClass) {
+                    analyzeClass (type);
+                } else if (type.IsEnum) {
+                    analyzeEnum (type);
+                }
             }
         }
 
-        private void analyzeType (Type type) {
+        private void analyzeEnum (Type type) {
+            if (type.GetCustomAttributes (typeof(IdpdNamedObjectEnumAttribute), false).Length > 0x00) {
+                foreach (FieldInfo field in type.GetFields()) {
+                    analyzeField (field);
+                }
+            }
+        }
+
+        private void analyzeField (FieldInfo field) {
+            foreach (IdpdNamedObjectAttribute noa in field.GetCustomAttributes(typeof(IdpdNamedObjectAttribute),false)) {
+                NamedFunctionInstance nfi = new NamedFunctionInstance (field.GetValue (null));
+                this.functions.Add (nfi.Signature, nfi);
+            }
+        }
+
+        private void analyzeClass (Type type) {
             if (type.GetCustomAttributes (typeof(IdpdMapperAttribute), false).Length > 0x00) {
                 foreach (MethodInfo method in type.GetMethods()) {
                     analyzeMethod (type, method);
@@ -65,7 +85,7 @@ namespace IdpGie {
         }
 
         #region IInputContext implementation
-        public Predicate GetPredicate (string name, int arity) {
+        public IPredicate GetPredicate (string name, int arity) {
             TypedMethodPredicate p;
             Tuple<string,int> key = new Tuple<string, int> (name, arity);
             if (predicates.TryGetValue (key, out p)) {
@@ -75,8 +95,14 @@ namespace IdpGie {
             }
         }
 
-        public Function GetFunction (string name, int arity) {
-            return null;
+        public IFunction GetFunction (string name, int arity) {
+            NamedFunctionInstance f;
+            Tuple<string,int> key = new Tuple<string, int> (name, arity);
+            if (functions.TryGetValue (key, out f)) {
+                return f;
+            } else {
+                return null;
+            }
         }
         #endregion
 

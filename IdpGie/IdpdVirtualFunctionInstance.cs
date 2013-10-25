@@ -34,7 +34,13 @@ namespace IdpGie {
             }
         }
 
-        public virtual ITerm this [int index] {
+        public bool HasInstance {
+            get {
+                return false;
+            }
+        }
+
+        public virtual IFunctionInstance this [int index] {
             get {
                 throw new IndexOutOfRangeException ();
             }
@@ -50,10 +56,6 @@ namespace IdpGie {
         #endregion
 
         #region ITermHeader implementation
-        public string TermString (List<ITerm> terms) {
-            return this.ToString ();
-        }
-
         public int Arity {
             get {
                 return 0x00;
@@ -117,6 +119,11 @@ namespace IdpGie {
         }
         #endregion
 
+        #region ITermHeader implementation
+        public string TermString (List<IFunctionInstance> terms) {
+            return this.ToString ();
+        }
+        #endregion
 
     }
 }

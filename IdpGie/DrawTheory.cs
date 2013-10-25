@@ -18,16 +18,16 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Text;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace IdpGie {
 
     public class DrawTheory {
 
-        private readonly List<Atom> atoms;
+        private readonly List<IAtom> atoms;
         private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
-        private readonly SortedSet<IdpdObject> zObjects = new SortedSet<IdpdObject> ();
 
         private DrawTheoryMode mode = DrawTheoryMode.Cairo;
 
@@ -48,23 +48,23 @@ namespace IdpGie {
             }
         }
 
-        public List<Atom> Atoms {
+        public List<IAtom> Atoms {
             get {
                 return this.atoms;
             }
         }
 
-        public DrawTheory (List<Atom> atoms) {
+        public DrawTheory (List<IAtom> atoms) {
             if (atoms != null) {
                 this.atoms = atoms;
             } else {
-                atoms = new List<Atom> ();
+                atoms = new List<IAtom> ();
             }
         }
 
         public override string ToString () {
             StringBuilder sb = new StringBuilder ();
-            foreach (Atom atm in atoms) {
+            foreach (IAtom atm in atoms) {
                 sb.AppendFormat ("{0}.", atm);
                 sb.AppendLine ();
             }
@@ -73,11 +73,15 @@ namespace IdpGie {
 
         public IEnumerable<IdpdObject> ObjectsTime (double t) {
             this.Time = t;
-            return this.zObjects;
+            return this.objects.Values;
         }
 
-        public void Compile () {
+        public void Execute () {
+            //TODO: Tp operator
             atoms.Sort (PriorityComparator.Instance);
+            foreach (IAtom atom in atoms) {
+                atom.Execute (this);
+            }
         }
 
     }

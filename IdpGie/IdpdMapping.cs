@@ -28,7 +28,7 @@ namespace IdpGie {
 
         [IdpdMethod("rendering",false,false,-1.0d,TermType.Named)]
         public static void Rendering (DrawTheory dt, NamedObject nobj) {
-
+            dt.Mode = (DrawTheoryMode)(byte)(((ulong)nobj) & 0xff);
         }
 
         [IdpdMethod("polygon",true,false,TermType.PointList)]

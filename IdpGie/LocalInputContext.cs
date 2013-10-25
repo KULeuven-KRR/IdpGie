@@ -26,77 +26,83 @@ namespace IdpGie {
 
     public class LocalInputContext : IInputContext {
 
-        private readonly Dictionary<Tuple<string,int>,Function> functions = new Dictionary<Tuple<string, int>, Function> ();
-        private readonly Dictionary<Tuple<string,int>,Predicate> predicates = new Dictionary<Tuple<string, int>, Predicate> ();
+        private readonly Dictionary<Tuple<string,int>,IFunction> functions = new Dictionary<Tuple<string, int>, IFunction> ();
+        private readonly Dictionary<Tuple<string,int>,IPredicate> predicates = new Dictionary<Tuple<string, int>, IPredicate> ();
+        private static readonly List<IFunctionInstance> emptyList = new List<IFunctionInstance> ();
 
         public LocalInputContext () {
         }
 
-        public Function GetFunction (string name, int arity) {
-            Tuple<string,int> key = new Tuple<string, int> (name, arity);
-            Function f;
-            if (!this.functions.TryGetValue (key, out f)) {
-                f = new Function (name, arity);
-                Console.WriteLine ("CF {0}/{1}", name, arity);
-                this.functions.Add (key, f);
+        public IFunction GetFunction (string name, int arity) {
+            IFunction f = GlobalInputContext.Instance.GetFunction (name, arity);
+            if (f == null) {
+                Tuple<string,int> key = new Tuple<string, int> (name, arity);
+                if (!this.functions.TryGetValue (key, out f)) {
+                    f = new Function (name, arity);
+                    Console.WriteLine ("CF {0}/{1}", name, arity);
+                    this.functions.Add (key, f);
+                }
             }
             return f;
         }
 
-        public Atom GetAtom (string name, IEnumerable<ITerm> terms) {
+        public IAtom GetAtom (string name, IEnumerable<IFunctionInstance> terms) {
             int size = 0x00;
             if (terms != null) {
                 size = terms.Count ();
             }
-            Predicate p = this.GetPredicate (name, size);
+            IPredicate p = this.GetPredicate (name, size);
             return GetAtom (p, terms);
         }
 
-        public Atom GetAtom (Predicate predicate, IEnumerable<ITerm> terms) {
-            List<ITerm> list;
+        public IAtom GetAtom (IPredicate predicate, IEnumerable<IFunctionInstance> terms) {
+            List<IFunctionInstance> list;
             if (terms != null) {
                 list = terms.ToList ();
             } else {
-                list = new List<ITerm> ();
+                list = new List<IFunctionInstance> ();
             }
             return new Atom (predicate, list);
         }
 
-        public Atom GetAtom (string name) {
-            return this.GetAtom (name, new List<ITerm> ());
+        public IAtom GetAtom (string name) {
+            return this.GetAtom (name, emptyList);
         }
 
-        public FunctionInstance GetFunctionInstance (string name, IEnumerable<ITerm> terms) {
+        public IFunctionInstance GetFunctionInstance (string name, IEnumerable<IFunctionInstance> terms) {
             int size = 0x00;
             if (terms != null) {
                 size = terms.Count ();
             }
-            Function f = this.GetFunction (name, size);
+            IFunction f = this.GetFunction (name, size);
             return GetFunctionInstance (f, terms);
         }
 
-        public FunctionInstance GetFunctionInstance (Function function, IEnumerable<ITerm> terms) {
-            List<ITerm> list;
+        public IFunctionInstance GetFunctionInstance (IFunction function, IEnumerable<IFunctionInstance> terms) {
+            if (!function.HasInstance && typeof(IFunctionInstance).IsAssignableFrom (function.GetType ())) {
+                return (IFunctionInstance)function;
+            }
+            List<IFunctionInstance> list;
             if (terms != null) {
                 list = terms.ToList ();
             } else {
-                list = new List<ITerm> ();
+                list = new List<IFunctionInstance> ();
             }
             return new FunctionInstance (function, list);
         }
 
-        public FunctionInstance GetFunctionInstance (string name) {
-            return this.GetFunctionInstance (name, new List<FunctionInstance> ());
+        public IFunctionInstance GetFunctionInstance (string name) {
+            return this.GetFunctionInstance (name, emptyList);
         }
 
-        public FunctionInstance GetFunctionInstance (Function function) {
-            return this.GetFunctionInstance (function, new List<FunctionInstance> ());
+        public IFunctionInstance GetFunctionInstance (Function function) {
+            return this.GetFunctionInstance (function, emptyList);
         }
 
-        public Predicate GetPredicate (string name, int arity) {
-            Tuple<string,int> key = new Tuple<string, int> (name, arity);
-            Predicate p = GlobalInputContext.Instance.GetPredicate (name, arity);
+        public IPredicate GetPredicate (string name, int arity) {
+            IPredicate p = GlobalInputContext.Instance.GetPredicate (name, arity);
             if (p == null) {
+                Tuple<string,int> key = new Tuple<string, int> (name, arity);
                 if (!this.predicates.TryGetValue (key, out p)) {
                     p = new Predicate (name, arity);
                     Console.WriteLine ("CP {0}/{1}", name, arity);

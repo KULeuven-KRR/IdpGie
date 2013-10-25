@@ -29,6 +29,10 @@ namespace IdpGie {
             get;
         }
 
+        bool HasInstance {
+            get;
+        }
+
         TermType InputType (int index);
 
         void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00);

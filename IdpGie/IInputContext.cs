@@ -24,9 +24,9 @@ namespace IdpGie {
 
     public interface IInputContext {
 
-        Function GetFunction (string name, int arity);
+        IFunction GetFunction (string name, int arity);
 
-        Predicate GetPredicate (string name, int arity);
+        IPredicate GetPredicate (string name, int arity);
 
     }
 

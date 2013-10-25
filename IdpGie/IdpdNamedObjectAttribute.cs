@@ -1,5 +1,5 @@
 //
-//  FunctionInstance.cs
+//  IdpdNamedObjectAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,34 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Linq;
-using System.Collections.Generic;
+using System;
 
 namespace IdpGie {
 
-    public class FunctionInstance : Term, IFunctionInstance {
+    [AttributeUsage(AttributeTargets.Field)]
+    public class IdpdNamedObjectAttribute : Attribute {
 
-        #region IFunctionInstance implementation
-        public TermType Type {
-            get {
-                return this.Function.OutputType;
-            }
+        public IdpdNamedObjectAttribute () {
         }
-
-        public IFunction Function {
-            get {
-                return (IFunction)this.Header;
-            }
-        }
-#endregion
-
-        public FunctionInstance (IFunction func, List<IFunctionInstance> terms) : base(func,terms) {
-        }
-
-        public FunctionInstance (IFunction func, params IFunctionInstance[] terms) : base(func,terms.ToList()) {
-        }
-    
     }
-
 }
 

@@ -22,14 +22,20 @@ using System;
 
 namespace IdpGie {
 
+    [IdpdNamedObjectEnum]
     public enum NamedObject : long {
         #region Generic   (0x000000 family)
+        [IdpdNamedObject]
         Unknown = 0x000000,
         #endregion
         #region ModeNames (0x030000 family)
+        [IdpdNamedObject]
         Opengl  = 0x030001,
+        [IdpdNamedObject]
         Cairo   = 0x030002,
+        [IdpdNamedObject]
         Latex   = 0x030003,
+        [IdpdNamedObject]
         Print   = 0x030004
         #endregion
     }
