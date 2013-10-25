@@ -25,6 +25,8 @@ namespace IdpGie {
 
     public abstract class IdpdVirtualFunctionInstance : IFunctionInstance, ITermHeader {
 
+        private double priority;
+
         #region IFunctionInstance implementation
         public virtual ITermHeader Header {
             get {
@@ -65,6 +67,20 @@ namespace IdpGie {
         }
         #endregion
 
+        #region IPriority implementation
+        public double Priority {
+            get {
+                return this.priority;
+            }
+            protected set {
+                this.priority = value;
+            }
+        }
+        #endregion
+
+        protected IdpdVirtualFunctionInstance (double priority = 1.0d) {
+            this.Priority = priority;
+        }
 
     }
 }

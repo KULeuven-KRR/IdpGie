@@ -23,14 +23,18 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class TermHeader : NameBase, ITermHeader {
+    public abstract class TermHeader : NameBase, ITermHeader {
 
         private int arity;
+        private double priority;
 
         #region ITermHeader implementation
         public int Arity {
             get {
                 return this.arity;
+            }
+            protected set {
+                this.arity = value;
             }
         }
 
@@ -41,13 +45,25 @@ namespace IdpGie {
         }
         #endregion
 
-        public TermHeader (string name, int arity) : base(name) {
+        #region IPriority implementation
+        public double Priority {
+            get {
+                return this.priority;
+            }
+            protected set {
+                this.priority = value;
+            }
+        }
+        #endregion
+
+        protected TermHeader (string name, int arity, double priority = 1.0d) : base(name) {
             if (name == null || name == string.Empty) {
                 throw new ArgumentNullException ("The name of a function or predicate must be effective.", "name");
             } else if (arity < 0x00 || arity > 0xff) {
                 throw new ArgumentException ("The arity of a function must be larger or equal to zero and lower than 256.", "arity");
             }
-            this.arity = arity;
+            this.Arity = arity;
+            this.Priority = priority;
         }
 
         public override string ToString () {

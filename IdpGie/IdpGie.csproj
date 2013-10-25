@@ -133,6 +133,8 @@
     <Compile Include="IdpdRegularPolygonObject.cs" />
     <Compile Include="NamedObject.cs" />
     <Compile Include="DrawTheoryMode.cs" />
+    <Compile Include="IPriority.cs" />
+    <Compile Include="PriorityComparator.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

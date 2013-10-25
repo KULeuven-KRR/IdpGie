@@ -1,5 +1,5 @@
 //
-//  ITermHeader.cs
+//  IPriority.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,23 +19,15 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface ITermHeader : IName, IPriority {
+    public interface IPriority {
 
-        int Arity {
+        double Priority {
             get;
         }
-
-        Tuple<string,int> Signature {
-            get;
-        }
-
-        string TermString (List<IFunctionInstance> terms);
 
     }
-
 }
 

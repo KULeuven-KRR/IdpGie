@@ -1,34 +1,40 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IdpdObjectTimeState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NamedObject.cs">
     <Files>
       <File FileName="AssemblyInfo.cs" Line="34" Column="91" />
       <File FileName="IdpdMethodAttribute.cs" Line="78" Column="48" />
-      <File FileName="GlobalInputContext.cs" Line="55" Column="52" />
+      <File FileName="GlobalInputContext.cs" Line="53" Column="44" />
       <File FileName="ITermHeader.cs" Line="33" Column="17" />
       <File FileName="TypedMethodPredicate.cs" Line="1" Column="1" />
       <File FileName="TypedPredicate.cs" Line="1" Column="1" />
-      <File FileName="Predicate.cs" Line="1" Column="1" />
+      <File FileName="Predicate.cs" Line="34" Column="55" />
       <File FileName="TermHeader.cs" Line="39" Column="69" />
       <File FileName="IdpdVirtualFunctionInstance.cs" Line="63" Column="69" />
       <File FileName="LocalInputContext.cs" Line="99" Column="20" />
-      <File FileName="DrawTheory.cs" Line="62" Column="9" />
+      <File FileName="DrawTheory.cs" Line="39" Column="35" />
       <File FileName="IdpdMapperAttribute.cs" Line="1" Column="1" />
-      <File FileName="IdpdCairoOutputDevice.cs" Line="48" Column="20" />
+      <File FileName="IdpdCairoOutputDevice.cs" Line="44" Column="40" />
       <File FileName="IdpdPolygonObject.cs" Line="34" Column="39" />
       <File FileName="IdpdObject.cs" Line="43" Column="40" />
       <File FileName="IdpdFloatFunctionInstance.cs" Line="1" Column="1" />
       <File FileName="EnumerableUtils.cs" Line="30" Column="19" />
       <File FileName="IdpdRegularPolygonObject.cs" Line="50" Column="101" />
-      <File FileName="IdpdMapping.cs" Line="137" Column="42" />
-      <File FileName="IdpdObjectTimeState.cs" Line="46" Column="46" />
+      <File FileName="IdpdMapping.cs" Line="30" Column="70" />
+      <File FileName="IdpdObjectTimeState.cs" Line="121" Column="31" />
+      <File FileName="GtkTimeWidget.cs" Line="28" Column="29" />
+      <File FileName="IdpdOutputDevice.cs" Line="25" Column="45" />
+      <File FileName="TermType.cs" Line="30" Column="65" />
+      <File FileName="NamedObject.cs" Line="27" Column="27" />
+      <File FileName="DrawTheoryMode.cs" Line="30" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True" selected="True">
+          <Node name="IdpGie" expanded="True">
             <Node name="References" expanded="True" />
             <Node name="UserInterface" expanded="True" />
+            <Node name="NamedObject.cs" selected="True" />
           </Node>
         </State>
       </Pad>

@@ -1,5 +1,5 @@
 //
-//  ITermHeader.cs
+//  PriorityComparator.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,24 +18,30 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface ITermHeader : IName, IPriority {
+    public class PriorityComparator : IComparer<IPriority> {
 
-        int Arity {
-            get;
+        public static readonly PriorityComparator Instance = new PriorityComparator ();
+
+        private PriorityComparator () {
         }
 
-        Tuple<string,int> Signature {
-            get;
+        #region IComparer implementation
+        public int Compare (IPriority x, IPriority y) {
+            if (y == null) {
+                return -0x01;
+            } else if (x == null) {
+                return 0x01;
+            } else {
+                return x.Priority.CompareTo (y.Priority);
+            }
         }
+        #endregion
 
-        string TermString (List<IFunctionInstance> terms);
 
     }
-
 }
 
