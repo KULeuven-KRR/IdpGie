@@ -1,0 +1,96 @@
+idpd_polygon(eetzaal,4,90).
+idpd_show(eetzaal).
+idpd_xpos(eetzaal,110).
+idpd_ypos(eetzaal,0).
+idpd_innercolor(eetzaal,100,150,150).
+idpd_depth(eetzaal, 1).
+idpd_text(eetzaal, eetzaal).
+
+idpd_polygon(plein,4,200).
+idpd_show(plein).
+idpd_xpos(plein,0).
+idpd_ypos(plein,0).
+idpd_innercolor(plein,100,150,150).
+idpd_depth(plein, 2).
+idpd_text(plein, plein).
+
+idpd_polygon(sluis,4,25).
+idpd_show(sluis).
+idpd_xpos(sluis,0).
+idpd_ypos(sluis,175).
+idpd_innercolor(sluis,100,150,150).
+idpd_depth(sluis, 1).
+idpd_text(sluis, sluis).
+
+idpd_polygon(hq,4,50).
+idpd_show(hq).
+idpd_xpos(hq,0).
+idpd_ypos(hq,0).
+idpd_innercolor(hq,100,150,150).
+idpd_depth(hq, 1).
+idpd_text(hq, hq).
+
+idpd_polygon(gang,list(point(0,0),point(50,0),point(50,200), point(0,200))).
+idpd_show(gang).
+idpd_xpos(gang,200).
+idpd_ypos(gang,150).
+idpd_innercolor(gang,100,150,150).
+idpd_depth(gang, 1).
+idpd_text(gang, gang).
+
+idpd_polygon(cell1,4,25).
+idpd_show(cell1).
+idpd_xpos(cell1,175).
+idpd_ypos(cell1,225).
+idpd_innercolor(cell1,100,150,150).
+idpd_depth(cell1, 1).
+idpd_text(cell1, cell1).
+
+idpd_polygon(cell2,4,25).
+idpd_show(cell2).
+idpd_xpos(cell2,175).
+idpd_ypos(cell2,275).
+idpd_innercolor(cell2,100,150,150).
+idpd_depth(cell2, 1).
+idpd_text(cell2, cell2).
+
+idpd_polygon(cell3,4,25).
+idpd_show(cell3).
+idpd_xpos(cell3,175).
+idpd_ypos(cell3,325).
+idpd_innercolor(cell3,100,150,150).
+idpd_depth(cell3, 1).
+idpd_text(cell3, cell3).
+
+idpd_polygon(cell4,4,25).
+idpd_show(cell4).
+idpd_xpos(cell4,250).
+idpd_ypos(cell4,175).
+idpd_innercolor(cell4,100,150,150).
+idpd_depth(cell4, 1).
+idpd_text(cell4, cell4).
+
+idpd_polygon(cell5,4,25).
+idpd_show(cell5).
+idpd_xpos(cell5,250).
+idpd_ypos(cell5,225).
+idpd_innercolor(cell5,100,150,150).
+idpd_depth(cell5, 1).
+idpd_text(cell5, cell5).
+
+idpd_polygon(cell6,4,25).
+idpd_show(cell6).
+idpd_xpos(cell6,250).
+idpd_ypos(cell6,275).
+idpd_innercolor(cell6,100,150,150).
+idpd_depth(cell6, 1).
+idpd_text(cell6, cell6).
+
+idpd_polygon(cell7,4,25).
+idpd_show(cell7).
+idpd_xpos(cell7,250).
+idpd_ypos(cell7,325).
+idpd_innercolor(cell7,100,150,150).
+idpd_depth(cell7, 1).
+idpd_text(cell7, cell7).
+

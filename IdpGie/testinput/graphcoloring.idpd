@@ -1,0 +1,32 @@
+idpd_graph(graph, 2000, 2000).
+idpd_show(graph).
+
+idpd_ellipse(node1, 200, 100).
+idpd_show(node1).
+idpd_ellipse(node2, 200, 100).
+idpd_show(node2).
+idpd_ellipse(node3, 200, 100).
+idpd_show(node3).
+
+idpd_node(node1, graph).
+idpd_node(node2, graph).
+idpd_node(node3, graph).
+
+idpd_text(node1, node1).
+idpd_text(node2, node2).
+idpd_text(node3, node3).
+
+idpd_edge(node1, node2, graph).
+idpd_show(edge(node1, node2)).
+
+idpd_edge(node1, node3, graph).
+idpd_show(edge(node1, node3)).
+
+idpd_innercolor(node2, 0,0,128, 0).
+idpd_innercolor(node3, 0,0,128, 0).
+
+idpd_innercolor(node1, 0,0,128, 1).
+idpd_innercolor(node1, 0,0,158, 2).
+idpd_innercolor(node1, 0,0,188, 3).
+idpd_innercolor(node1, 0,0,218, 4).
+idpd_innercolor(node1, 0,0,248, 5).

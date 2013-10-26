@@ -1,0 +1,14 @@
+idpd_polygon(a,6,100).
+idpd_show(a).
+idpd_xpos(a,500).
+idpd_ypos(a,-400).
+idpd_innercolor(a,255,0,0).
+idpd_innercolor(a,0,0,255,1).
+idpd_innercolor(a,0,255,0,2).
+
+
+idpd_xpos(a,100,1).
+idpd_ypos(a,-100,2).
+
+
+idpd_xpos(a,300,500).

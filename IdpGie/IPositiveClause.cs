@@ -1,5 +1,5 @@
 //
-//  IPredicate.cs
+//  Clause.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,21 +18,20 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface IPredicate : ITermHeader {
+    public interface IPositiveClause : ITheoryItem {
 
-        bool IsDrawCommand {
+        IAtom Head {
             get;
         }
 
-        bool IsHook {
+        IEnumerable<IAtom> Body {
             get;
         }
-
-        void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments);
 
     }
 

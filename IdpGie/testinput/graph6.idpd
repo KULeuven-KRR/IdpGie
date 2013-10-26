@@ -1,0 +1,93 @@
+idpd_graph(graph, 1000, 500).
+idpd_show(graph).
+
+idpd_ellipse(node1, 200, 200).
+idpd_show(node1).
+idpd_polygon(node2, 4, 190).
+idpd_show(node2).
+idpd_ellipse(node3, 333, 200).
+idpd_show(node3).
+idpd_polygon(node4, 4, 100).
+idpd_show(node4).
+idpd_ellipse(node5, 400, 300).
+idpd_show(node5).
+idpd_polygon(node6, 2, 40).
+idpd_show(node6).
+idpd_ellipse(node7, 20, 55).
+idpd_show(node7).
+
+
+idpd_node(node1, graph).
+idpd_node(node2, graph).
+idpd_node(node3, graph).
+idpd_node(node4, graph).
+idpd_node(node5, graph).
+idpd_node(node6, graph).
+idpd_node(node7, graph).
+
+idpd_text(node1, node1).
+idpd_text(node2, node2).
+idpd_text(node3, node3).
+idpd_text(node4, node4).
+idpd_text(node5, node5).
+idpd_text(node6, node6).
+idpd_text(node7, node7).
+
+idpd_edge(node1, node2, graph).
+idpd_show(edge(node1, node2)).
+idpd_edge(node1, node3, graph).
+idpd_show(edge(node1, node3)).
+idpd_edge(node1, node4, graph).
+idpd_show(edge(node1, node4)).
+idpd_edge(node1, node5, graph).
+idpd_show(edge(node1, node5)).
+idpd_edge(node1, node7, graph).
+idpd_show(edge(node1, node7)).
+idpd_edge(node4, node5, graph).
+idpd_show(edge(node4, node5)).
+idpd_edge(node4, node6, graph).
+idpd_show(edge(node4, node6)).
+idpd_edge(node6, node7, graph).
+idpd_show(edge(node6, node7)).
+
+
+
+
+//some basic coloring
+idpd_innercolor(node1, 255, 0, 0).
+idpd_innercolor(node3, 255, 0, 255).
+idpd_innercolor(node5, 0, 255, 0).
+idpd_edgecolor(node2, 255, 255, 255).
+idpd_edgecolor(edge(node1, node2), 255, 255, 255).
+
+
+//timepoint1: hide the edge between node 1 and node 2
+idpd_hide(edge(node1,node2),1).
+
+//timepoint2: create an edge between node 2 and node 4 and show it
+idpd_edge(node2, node4, graph).
+idpd_show(edge(node2,node4),2).
+
+//timepoint3: also connect node 2 to node 3  and node 6
+idpd_edge(node2, node3, graph).
+idpd_show(edge(node2,node3),3).
+idpd_edge(node2, node6, graph).
+idpd_show(edge(node2,node6),3).
+
+//timepoint4: hide the majority of the edges
+idpd_hide(edge(node2,node3),4).
+idpd_hide(edge(node2,node4),4).
+idpd_hide(edge(node2,node6),4).
+idpd_hide(edge(node1,node3),4).
+idpd_hide(edge(node1,node4),4).
+
+//timepoint5: create a new node
+idpd_node(nodeNew,graph,5).
+idpd_polygon(nodeNew, 4, 130).
+idpd_show(nodeNew,5).
+
+//timepoint6: connect this newest node to node2 and node3
+idpd_edge(nodeNew,node2,graph).
+idpd_edge(nodeNew,node3,graph).
+idpd_show(edge(nodeNew,node2),6).
+idpd_show(edge(nodeNew,node3),6).

@@ -1,0 +1,62 @@
+idpd_graph(graph, 2000, 2000).
+idpd_show(graph).
+
+idpd_ellipse(node1, 100, 100).
+idpd_show(node1).
+idpd_ellipse(node2, 200, 200).
+idpd_show(node2).
+idpd_ellipse(node3, 400, 400).
+idpd_show(node3).
+idpd_ellipse(node4, 200, 150).
+idpd_show(node4).
+idpd_ellipse(node5, 150, 150).
+idpd_show(node5).
+idpd_ellipse(node6, 160, 110).
+idpd_show(node6).
+idpd_ellipse(node7, 160, 110).
+idpd_show(node7).
+idpd_polygon(node8, [point(0,0), point(300, 0), point(300, 700), point(0, 700)]).
+idpd_show(node8).
+
+idpd_node(node1, graph).
+idpd_node(node2, graph).
+idpd_node(node3, graph).
+idpd_node(node4, graph).
+idpd_node(node5, graph).
+idpd_node(node6, graph).
+idpd_node(node7, graph).
+idpd_node(node8, graph).
+
+idpd_text(node1, node1).
+idpd_text(node2, node2).
+idpd_text(node3, node3).
+idpd_text(node4, node4).
+idpd_text(node5, node5).
+idpd_text(node6, node6).
+idpd_text(node7, node7).
+idpd_text(node8, node8).
+
+idpd_edge(node1, node2, graph).
+idpd_show(edge(node1, node2)).
+idpd_edge(node1, node3, graph).
+idpd_show(edge(node1, node3)).
+idpd_edge(node1, node4, graph).
+idpd_show(edge(node1, node4)).
+idpd_edge(node1, node5, graph).
+idpd_show(edge(node1, node5)).
+idpd_edge(node1, node7, graph).
+idpd_show(edge(node1, node7)).
+idpd_edge(node4, node5, graph).
+idpd_show(edge(node4, node5)).
+idpd_edge(node4, node6, graph).
+idpd_show(edge(node4, node6)).
+idpd_edge(node6, node7, graph).
+idpd_show(edge(node6, node7)).
+
+idpd_edge(node1, node8, graph).
+idpd_show(edge(node1, node8)).
+idpd_edge(node2, node8, graph).
+idpd_show(edge(node2, node8)).
+idpd_edge(node3, node8, graph).
+idpd_show(edge(node3, node8)).
+

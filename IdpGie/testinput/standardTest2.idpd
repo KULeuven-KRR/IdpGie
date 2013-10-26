@@ -1,0 +1,36 @@
+idpd_polygon(a,[point(0,0),point(100,0),point(100,100),point(0,100)]).
+idpd_polygon(b,[point(0,0),point(100,0),point(100,100),point(0,100)]).
+idpd_polygon(c,[point(0,0),point(100,0),point(100,100),point(0,100)]).
+idpd_polygon(d,[point(0,0),point(100,0),point(100,100),point(0,100)]).
+idpd_polygon(e,[point(0,0),point(100,0),point(100,100),point(0,100)]).
+idpd_polygon(f,[point(0,0),point(100,0),point(100,100),point(0,100)]).
+idpd_polygon(g,[point(0,0),point(100,0),point(100,100),point(0,100)]).
+idpd_show(a).
+idpd_show(b).
+idpd_show(c).
+idpd_show(d).
+idpd_show(e).
+idpd_show(f).
+idpd_show(g).
+idpd_xpos(a,100).
+idpd_ypos(a,-100).
+idpd_xpos(c,200).
+idpd_xpos(d,300).
+idpd_xpos(e,400).
+idpd_ypos(e,-100).
+idpd_xpos(f,500).
+idpd_xpos(g,600).
+idpd_innercolor(b,155,0,110).
+idpd_edgecolor(b,255,255,255).
+idpd_text(a, 1).
+idpd_text(b, 2).
+idpd_text(c, 3).
+idpd_text(d, 4).
+idpd_text(e, 5).
+idpd_text(f, 6).
+idpd_text(g, 7).
+//ypos en xpos werken cumulatief.
+idpd_xpos(b,100).
+idpd_xpos(b,200).
+idpd_ypos(b,-200).
+idpd_xpos(b,100).

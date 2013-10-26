@@ -1,0 +1,7 @@
+idpd_polygon(1,4,80).
+idpd_image(1,80,80,sf1).
+idpd_innercolor(1,0,0,0).
+idpd_edgecolor(1,255,255,255).
+idpd_show(1). 
+idpd_xpos(1,80). idpd_xpos(1,160,10000).
+idpd_ypos(1,80). idpd_ypos(1,160,10000).

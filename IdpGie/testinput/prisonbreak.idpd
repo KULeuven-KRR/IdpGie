@@ -1,0 +1,61 @@
+idpd_graph(graph, 1000, 500).
+
+idpd_ellipse(eetzaal, 200, 200).
+idpd_node(eetzaal, graph).
+idpd_text(eetzaal, eetzaal).
+
+idpd_ellipse(sluis, 200, 200).
+idpd_node(sluis, graph).
+idpd_text(sluis, sluis).
+
+idpd_ellipse(gang, 200, 200).
+idpd_node(gang, graph).
+idpd_text(gang, gang).
+
+idpd_ellipse(hq, 200, 200).
+idpd_node(hq, graph).
+idpd_text(hq, hq).
+
+idpd_ellipse(cellen, 200, 200).
+idpd_node(cellen, graph).
+idpd_text(cellen, cellen).
+
+idpd_ellipse(plein, 200, 200).
+idpd_node(plein, graph).
+idpd_text(plein, plein).
+
+idpd_ellipse(buiten, 200, 200).
+idpd_node(buiten, graph).
+idpd_text(buiten, buiten).
+
+door(a, plein, hq). 
+door(b, plein, gang). 
+door(c, plein, eetzaal). 
+door(d, plein, sluis). 
+door(e, gang, cellen).
+door(f, buiten, sluis).
+open(a).
+open(b).
+open(c).
+open(d).
+open(e).
+open(f).
+
+in(jos, plein).
+guard(jos).
+prisoner(joe).
+in(joe, cellen).
+
+idpd_ellipse(D,150,150) :- in(D, _).
+idpd_node(D, graph) :- in(D, _).
+idpd_text(D, D) :- in(D, _).
+idpd_image(D,150,150,inmate) :- in(D, _), prisoner(D).
+idpd_image(D,150,150,guard) :- in(D, _), guard(D).
+idpd_edge(P, R, graph) :- in(P, R).
+idpd_edge(X, Y, graph) :- door(D, X, Y), open(D).
+
+idpd_edge(X, Y, graph) :- door(D, X, Y), open(D).
+idpd_show(X) :- idpd_node(X, _).
+idpd_show(X) :- idpd_graph(X, _, _).
+idpd_show(X) :- idpd_image(X, _, _, _).
+idpd_show(edge(X, Y)) :- idpd_edge(X, Y, _).

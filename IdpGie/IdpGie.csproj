@@ -142,6 +142,9 @@
     <Compile Include="NamedFunctionInstance.cs" />
     <Compile Include="IdpdNamedObjectAttribute.cs" />
     <Compile Include="IdpdNamedObjectEnumAttribute.cs" />
+    <Compile Include="ITheoryItem.cs" />
+    <Compile Include="IPositiveClause.cs" />
+    <Compile Include="PositiveClause.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

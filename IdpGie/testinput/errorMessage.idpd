@@ -1,0 +1,4 @@
+idpd_ellipse(object1,50,50).
+idpd_innercolor(object1,255,255,0).
+idpd_innercolor(object1,255,0,0).
+idpd_show(object1).

@@ -1,5 +1,5 @@
 //
-//  IPredicate.cs
+//  PositiveClause.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,23 +18,39 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface IPredicate : ITermHeader {
+    public class PositiveClause : IPositiveClause {
 
-        bool IsDrawCommand {
-            get;
+        private IAtom head;
+        private IEnumerable<IAtom> body;
+
+        #region IPositiveClause implementation
+        public IAtom Head {
+            get {
+                return this.head;
+            }
         }
 
-        bool IsHook {
-            get;
+        public IEnumerable<IAtom> Body {
+            get {
+                return this.body;
+            }
+        }
+        #endregion
+
+        public PositiveClause (IAtom head, IEnumerable<IAtom> body) {
+            this.head = head;
+            this.body = body;
         }
 
-        void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments);
+        public override string ToString () {
+            return string.Format ("{0} :- {1}", this.head, string.Join (", ", this.body));
+        }
 
     }
-
 }
 

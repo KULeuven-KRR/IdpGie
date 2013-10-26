@@ -1,0 +1,17 @@
+idpd_graph(graph, 20, 20).
+idpd_show(graph).
+
+idpd_ellipse(node1, 4, 4).
+idpd_show(node1).
+idpd_ellipse(node2, 6, 6).
+idpd_show(node2).
+
+
+idpd_node(node1, graph).
+idpd_node(node2, graph).
+
+idpd_text(node1, node1).
+idpd_text(node2, node2).
+
+idpd_edge(node1, node2, graph).
+idpd_show(edge(node1, node2)).
