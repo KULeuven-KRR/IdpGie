@@ -147,6 +147,8 @@
     <Compile Include="IdpdDrawMethodAttribute.cs" />
     <Compile Include="IdpdHookMethodAttribute.cs" />
     <Compile Include="NamedAttributeBase.cs" />
+    <Compile Include="IdpdTheoryAlteringMethodAttribute.cs" />
+    <Compile Include="IdpdMethodAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

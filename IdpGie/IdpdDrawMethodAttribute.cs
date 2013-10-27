@@ -28,12 +28,10 @@ using IdpGie.Utils;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Method)]
-    public class IdpdDrawMethodAttribute : NamedAttributeBase {
+    public class IdpdDrawMethodAttribute : IdpdMethodAttribute {
 
         private readonly bool nameDependent;
         private readonly bool timeDependent;
-        private readonly double priority;
-        private readonly IList<TermType> types;
 
         public bool NameDependent {
             get {
@@ -47,29 +45,9 @@ namespace IdpGie {
             }
         }
 
-        public IList<TermType> Types {
-            get {
-                return this.types;
-            }
-        }
-
-        public Tuple<string, int> Signature {
-            get {
-                return new Tuple<string,int> ("idpd_" + this.Name, this.types.Count);
-            }
-        }
-
-        public double Priority {
-            get {
-                return this.priority;
-            }
-        }
-
-        public IdpdDrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, double priority = 1.0d, params TermType[] types) : base(name) {
+        public IdpdDrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
             this.nameDependent = nameDepedent;
             this.timeDependent = timeDependent;
-            this.priority = priority;
-            this.types = types;
         }
 
         public IdpdDrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this(name,nameDepedent,timeDependent,1.0d,types) {
@@ -77,7 +55,7 @@ namespace IdpGie {
 
         public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {
             string stem = "idpd_" + this.Name;
-            List<TermType> tt = this.types.ToList ();
+            List<TermType> tt = this.Types.ToList ();
             if (this.nameDependent) {
                 tt.Insert (0x00, TermType.String);
             }

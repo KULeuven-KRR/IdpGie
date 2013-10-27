@@ -1,5 +1,5 @@
 //
-//  IdpdHookMethodAttribut.cs
+//  IdpdTheoryAlteringMethodAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -23,10 +23,11 @@ using System;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Method)]
-    public class IdpdHookMethodAttribute : IdpdMethodAttribute {
+    public class IdpdTheoryAlteringMethodAttribute : IdpdMethodAttribute {
 
-        public IdpdHookMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
+        public IdpdTheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
         }
+
     }
 }
 
