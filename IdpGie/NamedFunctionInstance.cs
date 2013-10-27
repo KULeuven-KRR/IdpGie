@@ -66,7 +66,13 @@ namespace IdpGie {
 
         public ITermHeader Header {
             get {
-                throw new System.NotImplementedException ();
+                return this;
+            }
+        }
+
+        public IEnumerable<IFunctionInstance> Terms {
+            get {
+                yield break;
             }
         }
         #endregion
@@ -137,6 +143,15 @@ namespace IdpGie {
         public override string ToString () {
             return this.Name;
         }
+
+        #region ITerm implementation
+        public bool Equals (ITerm other) {
+            return Object.Equals (this, other.Header);
+        }
+        #endregion
+
+
+
 
     }
 

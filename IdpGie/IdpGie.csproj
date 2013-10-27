@@ -149,6 +149,7 @@
     <Compile Include="NamedAttributeBase.cs" />
     <Compile Include="IdpdTheoryAlteringMethodAttribute.cs" />
     <Compile Include="IdpdMethodAttribute.cs" />
+    <Compile Include="Interval.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

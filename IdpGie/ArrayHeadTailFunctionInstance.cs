@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
@@ -80,7 +81,14 @@ namespace IdpGie {
         }
         #endregion
 
-
+        #region ITerm implementation
+        public IEnumerable<IFunctionInstance> Terms {
+            get {
+                yield return this.Term;
+                yield return this.Tail;
+            }
+        }
+        #endregion
 
         public ArrayHeadTailFunctionInstance (IFunctionInstance term, IArrayFunctionInstance tail) {
             this.term = term;
@@ -91,6 +99,17 @@ namespace IdpGie {
             //return String.Format ("[{0}|{1}]", this.term, this.tail);
             return ArrayFunction.Instance.TermString (this);
         }
+
+        #region ITerm implementation
+        public bool Equals (ITerm other) {
+            return Object.Equals (other.Header, ArrayFunction.Instance) && this.Terms.AllDual (other.Terms, (x,y) => x.Equals (y));
+        }
+        #endregion
+
+
+
+
+
 
     }
 

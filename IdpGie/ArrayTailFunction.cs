@@ -61,7 +61,13 @@ namespace IdpGie {
         }
         #endregion
 
-
+        #region ITerm implementation
+        public IEnumerable<IFunctionInstance> Terms {
+            get {
+                yield break;
+            }
+        }
+        #endregion
 
         private ArrayTailFunction () : base("[]",0x00) {
         }
@@ -73,6 +79,17 @@ namespace IdpGie {
         public override string ToString () {
             return "[]";
         }
+
+        #region ITerm implementation
+        public bool Equals (ITerm other) {
+            return Object.Equals (this, other);
+        }
+        #endregion
+
+
+
+
+
 
     }
 }

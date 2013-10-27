@@ -63,12 +63,6 @@ namespace IdpGie {
                     }
                 }
             }
-            /*if (args.Length > 0x00) {
-                Application.Init ("IdpGie", ref args);
-                using (TopWindow tw = new TopWindow()) {
-                    Application.Run ();
-                }
-            }*/
             return 0x00;
         }
 

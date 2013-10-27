@@ -1,4 +1,4 @@
-idpd_rendering(opengl).
+idpd_rendering(cairo).
 
 //'slides'
 idpd_polygon(een,4,800).

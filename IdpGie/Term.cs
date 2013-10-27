@@ -35,6 +35,12 @@ namespace IdpGie {
             }
         }
 
+        IEnumerable<IFunctionInstance> ITerm.Terms {
+            get {
+                return this.Terms;
+            }
+        }
+
         public List<IFunctionInstance> Terms {
             get {
                 return this.terms;
@@ -63,6 +69,12 @@ namespace IdpGie {
         public override string ToString () {
             return this.header.TermString (this.terms);
         }
+
+        #region ITerm implementation
+        public bool Equals (ITerm other) {
+            return Object.Equals (this.Header, other.Header) && this.Terms.AllDual (other.Terms, (x,y) => x.Equals (y));
+        }
+        #endregion
 
     }
 }

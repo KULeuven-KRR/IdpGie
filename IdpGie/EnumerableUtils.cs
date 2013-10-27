@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -37,6 +38,38 @@ namespace IdpGie {
                     yield return tor.Current;
                 }
             }
+        }
+
+        public static bool AllDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate) {
+            IEnumerator<T> e1 = source1.GetEnumerator ();
+            IEnumerator<Q> e2 = source2.GetEnumerator ();
+            bool n1 = e1.MoveNext (), n2 = e2.MoveNext ();
+            while (n1 && n2) {
+                T v1 = e1.Current;
+                Q v2 = e2.Current;
+                if (!predicate (v1, v2)) {
+                    return false;
+                }
+                n1 = e1.MoveNext ();
+                n2 = e2.MoveNext ();
+            }
+            return n1 == n2;
+        }
+
+        public static bool AnyDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate) {
+            IEnumerator<T> e1 = source1.GetEnumerator ();
+            IEnumerator<Q> e2 = source2.GetEnumerator ();
+            bool n1 = e1.MoveNext (), n2 = e2.MoveNext ();
+            while (n1 && n2) {
+                T v1 = e1.Current;
+                Q v2 = e2.Current;
+                if (predicate (v1, v2)) {
+                    return true;
+                }
+                n1 = e1.MoveNext ();
+                n2 = e2.MoveNext ();
+            }
+            return false;
         }
 
         public static bool Empty<T> (this IEnumerable<T> source) {

@@ -21,13 +21,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gtk;
 
 namespace IdpGie {
 
     public class DrawTheory {
 
         private readonly List<ITheoryItem> elements;
-        private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
+        private readonly Dictionary<object,IdpdObject> objects = new Dictionary<object, IdpdObject> ();
 
         private DrawTheoryMode mode = DrawTheoryMode.Cairo;
 
@@ -71,8 +72,7 @@ namespace IdpGie {
             return sb.ToString ();
         }
 
-        public IEnumerable<IdpdObject> ObjectsTime (double t) {
-            this.Time = t;
+        public IEnumerable<IdpdObject> ObjectsTime () {
             return this.objects.Values;
         }
 
@@ -81,6 +81,14 @@ namespace IdpGie {
             elements.Sort (PriorityComparator.Instance);
             foreach (ITheoryItem item in elements) {
                 item.Execute (this);
+            }
+            switch (this.Mode) {
+            case DrawTheoryMode.Cairo:
+                Application.Init ();
+                using (TopWindow tw = new TopWindow()) {
+                    Application.Run ();
+                }
+                break;
             }
         }
 

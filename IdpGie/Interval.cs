@@ -1,5 +1,5 @@
 //
-//  IFunctionInstance.cs
+//  Interval.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,27 +19,23 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface ITerm {
+    public struct Interval {
 
-        IFunctionInstance this [int index] {
-            get;
+        private double min;
+        private double max;
+
+        public Interval (double min, double max) {
+            this.min = min;
+            this.max = max;
         }
 
-        ITermHeader Header {
-            get;
+        public bool Contains (double x) {
+            return (min <= x && x <= max);
         }
-
-        IEnumerable<IFunctionInstance> Terms {
-            get;
-        }
-
-        bool Equals (ITerm other);
 
     }
-
 }
 

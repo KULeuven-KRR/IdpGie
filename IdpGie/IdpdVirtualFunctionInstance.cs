@@ -104,6 +104,14 @@ namespace IdpGie {
         }
         #endregion
 
+        #region ITerm implementation
+        public virtual IEnumerable<IFunctionInstance> Terms {
+            get {
+                yield break;
+            }
+        }
+        #endregion
+
         protected IdpdVirtualFunctionInstance (double priority = 1.0d) {
             this.Priority = priority;
         }
@@ -128,6 +136,15 @@ namespace IdpGie {
             return this.ToString ();
         }
         #endregion
+
+        #region ITerm implementation
+        public virtual bool Equals (ITerm other) {
+            return Object.Equals (this, other);
+        }
+        #endregion
+
+
+
 
     }
 }
