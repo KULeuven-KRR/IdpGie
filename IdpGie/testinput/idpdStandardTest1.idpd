@@ -1,3 +1,5 @@
+idpd_rendering(opengl).
+
 //'slides'
 idpd_polygon(een,4,800).
 idpd_polygon(twee,4,800).
@@ -212,4 +214,3 @@ idpd_innercolor(n,255,0,0,6).
 idpd_edgecolor(n,255,0,0,6).
 idpd_depth(n,1,6).
 idpd_hide(n,7).
-

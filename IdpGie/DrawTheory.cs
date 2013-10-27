@@ -79,8 +79,8 @@ namespace IdpGie {
         public void Execute () {
             //TODO: Tp operator
             elements.Sort (PriorityComparator.Instance);
-            foreach (IAtom atom in elements) {
-                atom.Execute (this);
+            foreach (ITheoryItem item in elements) {
+                item.Execute (this);
             }
         }
 

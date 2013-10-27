@@ -31,6 +31,12 @@ namespace IdpGie {
                 return TermType.String;
             }
         }
+
+        public override object Value {
+            get {
+                return value;
+            }
+        }
         #endregion
 
         public IdpdStringFunctionInstance (string text) {

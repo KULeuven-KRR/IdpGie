@@ -46,6 +46,12 @@ namespace IdpGie {
                 return ArrayFunction.Instance;
             }
         }
+
+        public object Value {
+            get {
+                return this;
+            }
+        }
         #endregion
 
         public IFunctionInstance Term {

@@ -54,17 +54,18 @@ namespace IdpGie {
         }
 
         public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {
+            double pr = this.Priority;
             string stem = "idpd_" + this.Name;
             List<TermType> tt = this.Types.ToList ();
             if (this.nameDependent) {
                 tt.Insert (0x00, TermType.String);
             }
-            yield return new TypedMethodPredicate (stem, tt, mi);
+            yield return new TypedMethodPredicate (stem, tt, mi, pr);
             if (this.TimeDependent) {
                 tt.Add (TermType.Float);
-                yield return new TypedMethodPredicate (stem, tt, mi);
+                yield return new TypedMethodPredicate (stem, tt, mi, pr);
                 stem += "_t";
-                yield return new TypedMethodPredicate (stem, tt, mi);
+                yield return new TypedMethodPredicate (stem, tt, mi, pr);
             }
         }
 

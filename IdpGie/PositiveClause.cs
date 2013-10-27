@@ -59,6 +59,10 @@ namespace IdpGie {
             return string.Format ("{0} :- {1}", this.head, string.Join (", ", this.body));
         }
 
+        public virtual void Execute (DrawTheory theory) {
+
+        }
+
     }
 }
 

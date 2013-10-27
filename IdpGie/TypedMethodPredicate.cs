@@ -36,7 +36,7 @@ namespace IdpGie {
             }
         }
 
-        public TypedMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method) : base(name,termTypes) {
+        public TypedMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base(name,termTypes,priority) {
             this.method = method;
         }
 

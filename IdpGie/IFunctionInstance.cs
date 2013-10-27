@@ -32,6 +32,10 @@ namespace IdpGie {
             get;
         }
 
+        object Value {
+            get;
+        }
+
     }
 
 }

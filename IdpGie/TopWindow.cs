@@ -53,6 +53,7 @@ namespace IdpGie {
                             }
 #endif
                             if (pars.Result != null) {
+                                pars.Result.Execute ();
                                 Console.Error.WriteLine ("echo: ");
                                 Console.Error.WriteLine (pars.Result);
                             }
@@ -62,12 +63,12 @@ namespace IdpGie {
                     }
                 }
             }
-            if (args.Length > 0x00) {
+            /*if (args.Length > 0x00) {
                 Application.Init ("IdpGie", ref args);
                 using (TopWindow tw = new TopWindow()) {
                     Application.Run ();
                 }
-            }
+            }*/
             return 0x00;
         }
 

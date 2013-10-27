@@ -23,6 +23,8 @@ using System;
 namespace IdpGie {
     public interface ITheoryItem : IPriority {
 
+        void Execute (DrawTheory theory);
+
     }
 }
 

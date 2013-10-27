@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IdpdHookMethodAttribute.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IdpdMapping.cs">
     <Files>
       <File FileName="GlobalInputContext.cs" Line="88" Column="17" />
       <File FileName="IdpdNamedObjectAttribute.cs" Line="25" Column="43" />
@@ -12,26 +12,27 @@
       <File FileName="IFunction.cs" Line="33" Column="17" />
       <File FileName="Function.cs" Line="44" Column="29" />
       <File FileName="IdpdVirtualFunctionInstance.cs" Line="39" Column="30" />
-      <File FileName="parse.yy" Line="40" Column="81" />
+      <File FileName="parse.yy" Line="40" Column="14" />
       <File FileName="DrawTheory.cs" Line="82" Column="23" />
       <File FileName="ITheoryItem.cs" Line="25" Column="9" />
       <File FileName="IPositiveClause.cs" Line="28" Column="18" />
       <File FileName="IArrayFunctionInstance.cs" Line="1" Column="1" />
-      <File FileName="IAtom.cs" Line="24" Column="59" />
+      <File FileName="IAtom.cs" Line="24" Column="50" />
       <File FileName="PositiveClause.cs" Line="40" Column="30" />
       <File FileName="Predicate.cs" Line="34" Column="24" />
       <File FileName="IPredicate.cs" Line="32" Column="17" />
-      <File FileName="IdpdDrawMethodAttribute.cs" Line="33" Column="38" />
-      <File FileName="IdpdMapping.cs" Line="150" Column="24" />
-      <File FileName="IdpdHookMethodAttribute.cs" Line="26" Column="55" />
+      <File FileName="IdpdDrawMethodAttribute.cs" Line="58" Column="39" />
+      <File FileName="IdpdMapping.cs" Line="180" Column="10" />
+      <File FileName="IdpdHookMethodAttribute.cs" Line="26" Column="63" />
+      <File FileName="IdpdMethodAttribute.cs" Line="55" Column="9" />
+      <File FileName="IdpdTheoryAlteringMethodAttribute.cs" Line="28" Column="95" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True">
+          <Node name="IdpGie" expanded="True" selected="True">
             <Node name="References" expanded="True" />
             <Node name="UserInterface" expanded="True" />
-            <Node name="IdpdHookMethodAttribute.cs" selected="True" />
           </Node>
         </State>
       </Pad>

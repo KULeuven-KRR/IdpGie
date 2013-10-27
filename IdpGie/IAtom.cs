@@ -27,8 +27,6 @@ namespace IdpGie {
             get;
         }
 
-        void Execute (DrawTheory theory);
-
     }
 }
 

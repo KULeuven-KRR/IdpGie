@@ -32,7 +32,7 @@ namespace IdpGie {
             }
         }
 
-        public TypedPredicate (string name, IList<TermType> termTypes) : base(name,termTypes.Count) {
+        public TypedPredicate (string name, IList<TermType> termTypes, double priority = 1.0d) : base(name,termTypes.Count,priority) {
             this.termTypes = termTypes;
         }
 

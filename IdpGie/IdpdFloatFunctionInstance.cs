@@ -32,6 +32,12 @@ namespace IdpGie {
                 return TermType.Float;
             }
         }
+
+        public override object Value {
+            get {
+                return value;
+            }
+        }
         #endregion
 
         public IdpdFloatFunctionInstance (string text) {

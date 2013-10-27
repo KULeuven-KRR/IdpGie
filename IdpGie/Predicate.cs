@@ -37,7 +37,7 @@ namespace IdpGie {
             }
         }
         #endregion
-        public Predicate (string name, int arity) : base(name,arity) {
+        public Predicate (string name, int arity, double priority = 1.0d) : base(name,arity,priority) {
         }
 
         public bool ValidateAtom (Atom atom) {

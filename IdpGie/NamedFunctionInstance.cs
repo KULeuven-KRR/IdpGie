@@ -97,6 +97,13 @@ namespace IdpGie {
                 return false;
             }
         }
+
+        public object Value {
+            get {
+                return namedObject;
+            }
+        }
+
         #endregion
 
         public NamedFunctionInstance (object namedObject) {

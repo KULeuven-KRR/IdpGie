@@ -37,7 +37,13 @@ namespace IdpGie {
                 return (IFunction)this.Header;
             }
         }
-#endregion
+
+        public object Value {
+            get {
+                return this;
+            }
+        }
+        #endregion
 
         public FunctionInstance (IFunction func, List<IFunctionInstance> terms) : base(func,terms) {
         }

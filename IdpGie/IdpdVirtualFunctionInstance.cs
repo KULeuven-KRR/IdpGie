@@ -45,6 +45,10 @@ namespace IdpGie {
                 throw new IndexOutOfRangeException ();
             }
         }
+
+        public abstract object Value {
+            get;
+        }
         #endregion
 
         #region IName implementation
