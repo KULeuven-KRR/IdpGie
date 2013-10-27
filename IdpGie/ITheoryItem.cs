@@ -21,7 +21,7 @@
 using System;
 
 namespace IdpGie {
-    public interface ITheoryItem {
+    public interface ITheoryItem : IPriority {
 
     }
 }

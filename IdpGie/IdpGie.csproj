@@ -69,7 +69,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="IdpdMethodAttribute.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="IdpdStructureAttribute.cs" />
     <Compile Include="IName.cs" />
@@ -145,6 +144,9 @@
     <Compile Include="ITheoryItem.cs" />
     <Compile Include="IPositiveClause.cs" />
     <Compile Include="PositiveClause.cs" />
+    <Compile Include="IdpdDrawMethodAttribute.cs" />
+    <Compile Include="IdpdHookMethodAttribute.cs" />
+    <Compile Include="NamedAttributeBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

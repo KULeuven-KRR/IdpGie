@@ -74,7 +74,7 @@ namespace IdpGie {
                 if (pis.Length > 0x00) {
                     ParameterInfo pi0 = pis [0x00];
                     if (!pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
-                        foreach (IdpdMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdMethodAttribute),false).Cast<IdpdMethodAttribute>()) {
+                        foreach (IdpdDrawMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdDrawMethodAttribute),false).Cast<IdpdDrawMethodAttribute>()) {
                             foreach (TypedMethodPredicate tmp in ma.Predicates(method)) {
                                 this.predicates.Add (tmp.Signature, tmp);
                             }

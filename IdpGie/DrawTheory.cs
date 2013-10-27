@@ -26,7 +26,7 @@ namespace IdpGie {
 
     public class DrawTheory {
 
-        private readonly List<IAtom> atoms;
+        private readonly List<ITheoryItem> elements;
         private readonly Dictionary<string,IdpdObject> objects = new Dictionary<string, IdpdObject> ();
 
         private DrawTheoryMode mode = DrawTheoryMode.Cairo;
@@ -48,23 +48,23 @@ namespace IdpGie {
             }
         }
 
-        public List<IAtom> Atoms {
+        public List<ITheoryItem> Elements {
             get {
-                return this.atoms;
+                return this.elements;
             }
         }
 
-        public DrawTheory (List<IAtom> atoms) {
-            if (atoms != null) {
-                this.atoms = atoms;
+        public DrawTheory (List<ITheoryItem> elements) {
+            if (elements != null) {
+                this.elements = elements;
             } else {
-                atoms = new List<IAtom> ();
+                this.elements = new List<ITheoryItem> ();
             }
         }
 
         public override string ToString () {
             StringBuilder sb = new StringBuilder ();
-            foreach (IAtom atm in atoms) {
+            foreach (IAtom atm in elements) {
                 sb.AppendFormat ("{0}.", atm);
                 sb.AppendLine ();
             }
@@ -78,8 +78,8 @@ namespace IdpGie {
 
         public void Execute () {
             //TODO: Tp operator
-            atoms.Sort (PriorityComparator.Instance);
-            foreach (IAtom atom in atoms) {
+            elements.Sort (PriorityComparator.Instance);
+            foreach (IAtom atom in elements) {
                 atom.Execute (this);
             }
         }

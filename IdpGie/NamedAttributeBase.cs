@@ -1,5 +1,5 @@
 //
-//  PositiveClause.cs
+//  NamedAttributeBase.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,45 +18,26 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-using System.Collections.Generic;
+using System;
 
 namespace IdpGie {
 
-    public class PositiveClause : IPositiveClause {
+    public class NamedAttributeBase : Attribute, IName {
 
-        private IAtom head;
-        private IEnumerable<IAtom> body;
+        private readonly string name;
 
-        #region IPositiveClause implementation
-        public IAtom Head {
-            get {
-                return this.head;
-            }
+        public string Name {
+           get {
+               return this.name;
+           }
         }
 
-        public IEnumerable<IAtom> Body {
-            get {
-                return this.body;
-            }
-        }
-        #endregion
-
-        #region IPriority implementation
-        public double Priority {
-            get {
-                return this.head.Priority;
-            }
-        }
-        #endregion
-
-        public PositiveClause (IAtom head, IEnumerable<IAtom> body) {
-            this.head = head;
-            this.body = body;
+        protected NamedAttributeBase (string name) {
+            this.name = name;
         }
 
         public override string ToString () {
-            return string.Format ("{0} :- {1}", this.head, string.Join (", ", this.body));
+            return this.name;
         }
 
     }

@@ -15,6 +15,8 @@
     public HeadTail<IFunctionInstance>  vter;
     public IAtom                        atm;
     public HeadTail<IAtom>              vatm;
+    public ITheoryItem                  thi;
+    public HeadTail<ITheoryItem>        vthi;
 }
 
 %sharetokens
@@ -23,21 +25,34 @@
 %YYSTYPE StateStructure
 %YYLTYPE LexSpan
 
-%token IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA FLT INT
+%token IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA FLT INT IMPLY
 %type   <str>   identifier
 %type   <ter>   term list
 %type   <vter>  terms
 %type   <atm>   atom predatom
-%type   <vatm>  atoms
+%type   <vatm>  body
+%type   <thi>   element clause
+%type   <vthi>  items
 
 %%
 
-idpdraw     : atoms                                         {this.result = new DrawTheory($1.ToList());}
+idpdraw     : items                                         {this.result = new DrawTheory($1.ToList());}
             ;
 
-atoms       : /* empty */                                   {$$ = null;}
+items       : /* empty */                                   {$$ = null;}
             | DOT                                           {$$ = null;}
-            | atom DOT atoms                                {$$ = new HeadTail<IAtom>($1,$3);}
+            | element DOT items                             {$$ = new HeadTail<ITheoryItem>($1,$3);}
+            ;
+
+element     : clause                                        {$$ = $1;}
+            | atom                                          {$$ = $1;}
+            ;
+
+clause      : atom IMPLY body                               {$$ = new PositiveClause($1,$3);}
+            ;
+
+body        : /* empty */                                   {$$ = null;}
+            | atom COMMA body                               {$$ = new HeadTail<IAtom>($1,$3);}
             ;
 
 atom        : predatom                                      {$$ = $1;}

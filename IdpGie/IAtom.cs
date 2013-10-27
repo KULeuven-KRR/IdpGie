@@ -21,7 +21,7 @@
 using System;
 
 namespace IdpGie {
-    public interface IAtom : ITerm, IPriority, ITheoryItem {
+    public interface IAtom : ITerm, ITheoryItem {
 
         IPredicate Predicate {
             get;

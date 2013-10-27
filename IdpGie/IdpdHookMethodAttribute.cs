@@ -1,5 +1,5 @@
 //
-//  Predicate.cs
+//  IdpdHookMethodAttribut.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,35 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Collections.Generic;
+using System;
 
 namespace IdpGie {
 
-    public class Predicate : TermHeader, IPredicate {
+    [AttributeUsage(AttributeTargets.Method)]
+    public class IdpdHookMethodAttribute : NamedAttributeBase {
 
-        #region IPredicate implementation
-        public virtual bool IsDrawCommand {
-            get {
-                return false;
-            }
+        public IdpdHookMethodAttribute (string name) : base(name) {
         }
-
-        public virtual bool IsHook {
-            get {
-                return false;
-            }
-        }
-        #endregion
-        public Predicate (string name, int arity) : base(name,arity) {
-        }
-
-        public bool ValidateAtom (Atom atom) {
-            return (atom != null && atom.Header == this && atom.Terms.Count == this.Arity);
-        }
-
-        public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
-        }
-
     }
 }
 
