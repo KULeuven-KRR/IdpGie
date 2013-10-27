@@ -62,9 +62,9 @@ namespace IdpGie {
             }
         }
 
-        public override string ToString () {
+        public string ToFullString () {
             StringBuilder sb = new StringBuilder ();
-            foreach (IAtom atm in elements) {
+            foreach (ITheoryItem atm in elements) {
                 sb.AppendFormat ("{0}.", atm);
                 sb.AppendLine ();
             }

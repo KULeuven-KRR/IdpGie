@@ -18,7 +18,9 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace IdpGie {
@@ -38,6 +40,16 @@ namespace IdpGie {
 
         public TypedMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base(name,termTypes,priority) {
             this.method = method;
+        }
+
+        public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
+            object[] val = EnumerableUtils.HeadTail (theory, arguments.Select (x => x.Value)).ToArray ();
+            try {
+                this.method.Invoke (null, val);
+                base.Execute (theory, arguments);
+            } catch (Exception e) {
+                Console.WriteLine ("Could not execute a {0} predicate invoked with [{2}]: {1}", this.Name, e, string.Join (",", val.Select (x => new Tuple<object,Type> (x, x.GetType ()))));
+            }
         }
 
     }

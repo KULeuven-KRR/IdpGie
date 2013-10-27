@@ -43,6 +43,13 @@ namespace IdpGie {
             return !source.GetEnumerator ().MoveNext ();
         }
 
+        public static IEnumerable<T> HeadTail<T> (T head, IEnumerable<T> tail) {
+            yield return head;
+            foreach (T val in tail) {
+                yield return val;
+            }
+        }
+
     }
 
 }
