@@ -1,5 +1,5 @@
 //
-//  ITermHeader.cs
+//  IArity.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,19 +19,15 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface ITermHeader : IName, IPriority, IArity {
+    public interface IArity {
 
-        Tuple<string,int> Signature {
+        int Arity {
             get;
         }
 
-        string TermString (IEnumerable<IFunctionInstance> terms);
-
     }
-
 }
 

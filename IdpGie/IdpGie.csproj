@@ -152,6 +152,9 @@
     <Compile Include="IZIndex.cs" />
     <Compile Include="IdpdFunctionStructureAttribute.cs" />
     <Compile Include="StructureFunctionInstance.cs" />
+    <Compile Include="StructureFunction.cs" />
+    <Compile Include="IArity.cs" />
+    <Compile Include="NameArityPriorityBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

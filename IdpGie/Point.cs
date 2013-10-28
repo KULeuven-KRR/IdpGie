@@ -24,7 +24,7 @@ using OpenTK;
 
 namespace IdpGie {
 
-    [IdpdFunctionStructure("Point")]
+    [IdpdFunctionStructure("point")]
     public struct Point {
 
         private double x;

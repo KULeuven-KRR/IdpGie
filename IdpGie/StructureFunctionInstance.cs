@@ -19,11 +19,77 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
-    public class StructureFunctionInstance {
-        public StructureFunctionInstance () {
+
+    public class StructureFunctionInstance : IFunctionInstance {
+
+        private StructureFunction function;
+        private object value;
+
+        #region ITerm implementation
+        public IFunctionInstance this [int index] {
+            get {
+                throw new IndexOutOfRangeException ();
+            }
         }
+
+        public ITermHeader Header {
+            get {
+                return this.function;
+            }
+        }
+
+        public IEnumerable<IFunctionInstance> Terms {
+            get {
+                yield break;
+            }
+        }
+        #endregion
+
+        #region IFunctionInstance implementation
+        public TermType Type {
+            get {
+                return TermType.None;//TODO
+                //return this.function.ReturnType;
+            }
+        }
+
+        public IFunction Function {
+            get {
+                return this.function;
+            }
+        }
+
+        public object Value {
+            get {
+                return this.value;
+            }
+        }
+        #endregion
+        public StructureFunctionInstance (StructureFunction function, object value) {
+            this.function = function;
+            this.value = value;
+        }
+
+
+        #region ITerm implementation
+        public bool Equals (ITerm other) {
+            throw new System.NotImplementedException ();
+        }
+        #endregion
+
+        #region IFunctionInstance implementation
+        public bool CanConvert (TermType target) {
+            return TypeSystem.CanConvert (this.Type, target);
+        }
+
+        public object ConvertedValue (TermType target) {
+            throw new System.NotImplementedException ();
+        }
+        #endregion
+
     }
 }
 

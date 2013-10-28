@@ -1,18 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IdpdObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Point.cs">
     <Files>
       <File FileName="IdpdObject.cs" Line="26" Column="47" />
-      <File FileName="DrawTheory.cs" Line="23" Column="19" />
-      <File FileName="IdpdMapping.cs" Line="39" Column="109" />
-      <File FileName="IZIndex.cs" Line="1" Column="1" />
+      <File FileName="TopWindow.cs" Line="36" Column="45" />
+      <File FileName="IdpdOpenGLOutputDevice.cs" Line="31" Column="20" />
+      <File FileName="IdpdCairoOutputDevice.cs" Line="45" Column="13" />
+      <File FileName="Point.cs" Line="34" Column="26" />
+      <File FileName="IdpdFunctionStructureAttribute.cs" Line="33" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="IdpGie" expanded="True">
             <Node name="UserInterface" expanded="True" />
-            <Node name="IdpdObject.cs" selected="True" />
+            <Node name="Parser.cs" selected="True" />
           </Node>
         </State>
       </Pad>
