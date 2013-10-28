@@ -40,6 +40,9 @@ namespace IdpGie {
                     throw new IndexOutOfRangeException ("An array head-tail function has only two arguments.");
                 }
             }
+            set {
+
+            }
         }
 
         public ITermHeader Header {

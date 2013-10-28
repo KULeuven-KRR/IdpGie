@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace IdpGie {
@@ -27,9 +28,26 @@ namespace IdpGie {
 
         public static readonly ArrayTailFunction Instance = new ArrayTailFunction ();
 
+        #region ICollection implementation
+        public int Count {
+            get {
+                return 0x00;
+            }
+        }
+
+        public bool IsReadOnly {
+            get {
+                return true;
+            }
+        }
+        #endregion
+
         #region IFunctionInstance implementation
         public IFunctionInstance this [int index] {
             get {
+                throw new IndexOutOfRangeException ();
+            }
+            set {
                 throw new IndexOutOfRangeException ();
             }
         }
@@ -99,6 +117,56 @@ namespace IdpGie {
         public override int GetHashCode () {
             return 0x238ff745;
         }
+
+        #region IEnumerable implementation
+        IEnumerator IEnumerable.GetEnumerator () {
+            yield break;
+        }
+        #endregion
+
+        #region IEnumerable implementation
+        public IEnumerator<IFunctionInstance> GetEnumerator () {
+            yield break;
+        }
+        #endregion
+
+        #region ICollection implementation
+        public void Add (IFunctionInstance item) {
+            throw new InvalidOperationException ("Readonly collection.");
+        }
+
+        public void Clear () {
+            throw new InvalidOperationException ("Readonly collection.");
+        }
+
+        public bool Contains (IFunctionInstance item) {
+            return false;
+        }
+
+        public void CopyTo (IFunctionInstance[] array, int arrayIndex) {
+        }
+
+        public bool Remove (IFunctionInstance item) {
+            throw new InvalidOperationException ("Readonly collection.");
+        }
+        #endregion
+
+        #region IList implementation
+        public int IndexOf (IFunctionInstance item) {
+            return -0x01;
+        }
+
+        public void Insert (int index, IFunctionInstance item) {
+            throw new InvalidOperationException ("Readonly collection.");
+        }
+
+        public void RemoveAt (int index) {
+            throw new InvalidOperationException ("Readonly collection.");
+        }
+        #endregion
+
+
+
 
     }
 }
