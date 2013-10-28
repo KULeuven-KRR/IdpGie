@@ -23,7 +23,7 @@ using System;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Struct)]
-    public class IdpdStructureAttribute : Attribute, IName {
+    public class IdpdFunctionStructureAttribute : Attribute, IName {
 
         private readonly string name;
 
@@ -33,7 +33,7 @@ namespace IdpGie {
             }
         }
 
-        public IdpdStructureAttribute (string name) {
+        public IdpdFunctionStructureAttribute (string name) {
             this.name = name;
         }
 

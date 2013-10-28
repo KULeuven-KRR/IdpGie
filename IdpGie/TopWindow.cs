@@ -33,7 +33,7 @@ namespace IdpGie {
         }
 
         public static int Main (string[] args) {
-
+            Application.Init ("IdpGie", ref args);
             DirectoryInfo dirInfo = new DirectoryInfo (".");
             foreach (string name in args) {
                 FileInfo[] fInfo = dirInfo.GetFiles (name);

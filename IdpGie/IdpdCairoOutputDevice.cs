@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
 using Cairo;
 
 namespace IdpGie {
@@ -41,7 +42,9 @@ namespace IdpGie {
 
         #region implemented abstract members of IdpGie.IdpdOutputDevice
         public override void Run () {
-            Context ctx = this.context;
+            using (TopWindow tw = new TopWindow()) {
+                Application.Run ();
+            }
         }
         #endregion
 

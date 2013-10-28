@@ -1,5 +1,5 @@
 //
-//  OpenGLIdpOutputDevice.cs
+//  StructureFunctionInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,23 +19,11 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Gtk;
 
 namespace IdpGie {
-
-    public class IdpdOpenGLOutputDevice : IdpdOutputDevice {
-
-        public IdpdOpenGLOutputDevice (DrawTheory theory) : base(theory) {
+    public class StructureFunctionInstance {
+        public StructureFunctionInstance () {
         }
-
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run () {
-            using (TopWindow tw = new TopWindow()) {
-                Application.Run ();
-            }
-        }
-        #endregion
-
     }
 }
 
