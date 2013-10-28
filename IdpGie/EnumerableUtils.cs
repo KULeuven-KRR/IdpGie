@@ -53,6 +53,25 @@ namespace IdpGie {
             }
         }
 
+        public static IEnumerable<Tuple<T,Q>> WhereDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate) {
+            return WhereDual<T,Q,Tuple<T,Q>> (source1, source2, predicate, (x,y) => new Tuple<T,Q> (x, y));
+        }
+
+        public static IEnumerable<R> WhereDual<T,Q,R> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate, Func<T,Q,R> function) {
+            IEnumerator<T> e1 = source1.GetEnumerator ();
+            IEnumerator<Q> e2 = source2.GetEnumerator ();
+            bool n1 = e1.MoveNext (), n2 = e2.MoveNext ();
+            while (n1 && n2) {
+                T v1 = e1.Current;
+                Q v2 = e2.Current;
+                if (predicate (v1, v2)) {
+                    yield return function (v1, v2);
+                }
+                n1 = e1.MoveNext ();
+                n2 = e2.MoveNext ();
+            }
+        }
+
         public static bool AllDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate) {
             IEnumerator<T> e1 = source1.GetEnumerator ();
             IEnumerator<Q> e2 = source2.GetEnumerator ();
@@ -70,19 +89,7 @@ namespace IdpGie {
         }
 
         public static bool AnyDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate) {
-            IEnumerator<T> e1 = source1.GetEnumerator ();
-            IEnumerator<Q> e2 = source2.GetEnumerator ();
-            bool n1 = e1.MoveNext (), n2 = e2.MoveNext ();
-            while (n1 && n2) {
-                T v1 = e1.Current;
-                Q v2 = e2.Current;
-                if (predicate (v1, v2)) {
-                    return true;
-                }
-                n1 = e1.MoveNext ();
-                n2 = e2.MoveNext ();
-            }
-            return false;
+            return !source1.WhereDual (source2, predicate).Empty ();
         }
 
         public static bool Empty<T> (this IEnumerable<T> source) {
