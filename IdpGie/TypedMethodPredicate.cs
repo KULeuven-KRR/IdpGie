@@ -43,7 +43,7 @@ namespace IdpGie {
         }
 
         public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
-            object[] val = EnumerableUtils.HeadTail (theory, arguments.Select (x => x.Value)).ToArray ();
+            object[] val = EnumerableUtils.HeadTail (theory, arguments.SelectDual (this.TermTypes, (x,y) => x.ConvertedValue (y))).ToArray ();
             try {
                 this.method.Invoke (null, val);
                 base.Execute (theory, arguments);

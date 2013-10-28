@@ -55,7 +55,7 @@ namespace IdpGie {
             case TermType.Int:
                 return this.Value;
             case TermType.Float:
-                return (double)this.Value;
+                return (double)this.value;
             default :
                 throw new InvalidCastException ();
             }

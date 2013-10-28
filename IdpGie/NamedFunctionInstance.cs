@@ -156,7 +156,7 @@ namespace IdpGie {
 
         #region IFunctionInstance implemention
         public object ConvertedValue (TermType target) {
-            return this;
+            return this.Value;
         }
         #endregion
 

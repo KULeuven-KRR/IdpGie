@@ -40,6 +40,19 @@ namespace IdpGie {
             }
         }
 
+        public static IEnumerable<R> SelectDual<T,Q,R> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,R> function) {
+            IEnumerator<T> e1 = source1.GetEnumerator ();
+            IEnumerator<Q> e2 = source2.GetEnumerator ();
+            bool n1 = e1.MoveNext (), n2 = e2.MoveNext ();
+            while (n1 && n2) {
+                T v1 = e1.Current;
+                Q v2 = e2.Current;
+                yield return function (v1, v2);
+                n1 = e1.MoveNext ();
+                n2 = e2.MoveNext ();
+            }
+        }
+
         public static bool AllDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate) {
             IEnumerator<T> e1 = source1.GetEnumerator ();
             IEnumerator<Q> e2 = source2.GetEnumerator ();
