@@ -1,5 +1,5 @@
 //
-//  OpenGLIdpOutputDevice.cs
+//  TypeSystem.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,14 +22,11 @@ using System;
 
 namespace IdpGie {
 
-    public class OpenGLIdpOutputDevice : IdpdOutputDevice {
-        public OpenGLIdpOutputDevice () {
+    public static class TypeSystem {
+
+        public static bool CanConvert (TermType frm, TermType to) {
+            return (frm & to) == to;
         }
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Execute (double time) {
-            throw new System.NotImplementedException ();
-        }
-        #endregion
 
     }
 }

@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  OpenGLIdpOutputDevice.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,16 +22,15 @@ using System;
 
 namespace IdpGie {
 
-    [Flags]
-    public enum TermType : ulong {
-        None          = 0x0000000000000000,
-        String        = 0x0000000000000021,
-        Int           = 0x0000000000000026,
-        Float         = 0x0000000000000024,
-        PointList     = 0x0000000000000028,
-        Named         = 0x0000000000000030,
-        Term          = 0x0000000000000020,
-        All           = String | Int | Float | PointList | Named | Term
+    public class IdpdOpenGLOutputDevice : IdpdOutputDevice {
+        public IdpdOpenGLOutputDevice (DrawTheory theory) : base(theory) {
+        }
+        #region implemented abstract members of IdpGie.IdpdOutputDevice
+        public override void Run () {
+            throw new System.NotImplementedException ();
+        }
+        #endregion
+
     }
 }
 

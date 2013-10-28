@@ -49,6 +49,19 @@ namespace IdpGie {
             return value.ToString ();
         }
 
+        #region implemented abstract members of IdpGie.IdpVirtualFunctionInstance
+        public override object ConvertedValue (TermType target) {
+            switch (target) {
+            case TermType.Int:
+                return this.Value;
+            case TermType.Float:
+                return (double)this.Value;
+            default :
+                throw new InvalidCastException ();
+            }
+        }
+        #endregion
+
     }
 }
 

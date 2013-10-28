@@ -138,6 +138,10 @@ namespace IdpGie {
         public void WidenInput (IEnumerable<IFunctionInstance> terms) {
             throw new IndexOutOfRangeException ("A named object has no arguments.");
         }
+
+        public bool CanConvert (TermType type) {
+            return TypeSystem.CanConvert (this.Type, type);
+        }
         #endregion
 
         public override string ToString () {
@@ -150,8 +154,11 @@ namespace IdpGie {
         }
         #endregion
 
-
-
+        #region IFunctionInstance implemention
+        public object ConvertedValue (TermType target) {
+            return this;
+        }
+        #endregion
 
     }
 

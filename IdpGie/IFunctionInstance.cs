@@ -36,6 +36,10 @@ namespace IdpGie {
             get;
         }
 
+        bool CanConvert (TermType target);
+
+        object ConvertedValue (TermType target);
+
     }
 
 }

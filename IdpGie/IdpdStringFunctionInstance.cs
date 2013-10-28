@@ -47,6 +47,12 @@ namespace IdpGie {
             return value;
         }
 
+        #region implemented abstract members of IdpGie.IdpVirtualFunctionInstance
+        public override object ConvertedValue (TermType target) {
+            return this.value;
+        }
+        #endregion
+
     }
 }
 

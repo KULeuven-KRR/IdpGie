@@ -106,10 +106,17 @@ namespace IdpGie {
         }
         #endregion
 
+        #region IFunctionInstance implementation
+        public bool CanConvert (TermType type) {
+            return TypeSystem.CanConvert (this.Type, type);
+        }
+        #endregion
 
-
-
-
+        #region implemented abstract members of IdpGie.IdpVirtualFunctionInstance
+        public object ConvertedValue (TermType target) {
+            return this;
+        }
+        #endregion
 
     }
 

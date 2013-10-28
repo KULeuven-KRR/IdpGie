@@ -28,7 +28,7 @@ namespace IdpGie {
     public class DrawTheory {
 
         private readonly List<ITheoryItem> elements;
-        private readonly Dictionary<object,IdpdObject> objects = new Dictionary<object, IdpdObject> ();
+        private readonly Dictionary<IFunctionInstance,IdpdObject> objects = new Dictionary<IFunctionInstance, IdpdObject> ();
 
         private DrawTheoryMode mode = DrawTheoryMode.Cairo;
 
@@ -84,9 +84,23 @@ namespace IdpGie {
             }
             switch (this.Mode) {
             case DrawTheoryMode.Cairo:
-                Application.Init ();
-                using (TopWindow tw = new TopWindow()) {
-                    Application.Run ();
+                using (IdpdOutputDevice device = new IdpdCairoOutputDevice(this)) {
+                    device.Run ();
+                }
+                break;
+            case DrawTheoryMode.OpenGL:
+                using (IdpdOutputDevice device = new IdpdOpenGLOutputDevice(this)) {
+                    device.Run ();
+                }
+                break;
+            case DrawTheoryMode.LaTeX:
+                using (IdpdOutputDevice device = new IdpdLaTeXOutputDevice(this)) {
+                    device.Run ();
+                }
+                break;
+            case DrawTheoryMode.Print:
+                using (IdpdOutputDevice device = new IdpdPrintOutputDevice(this)) {
+                    device.Run ();
                 }
                 break;
             }

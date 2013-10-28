@@ -22,12 +22,27 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class IdpdOutputDevice {
+    public abstract class IdpdOutputDevice : IDisposable {
 
-        public IdpdOutputDevice () {
+        private readonly DrawTheory theory;
+
+        public DrawTheory Theory {
+            get {
+                return this.theory;
+            }
         }
 
-        public abstract void Execute (double time);
+        protected IdpdOutputDevice (DrawTheory theory) {
+            this.theory = theory;
+        }
+
+        public abstract void Run ();
+
+        #region IDisposable implementation
+        public virtual void Dispose () {
+        }
+        #endregion
+
 
     }
 }

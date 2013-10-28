@@ -24,25 +24,11 @@ namespace IdpGie {
 
     public class GtkTimeWidget : CairoWidget {
 
-        private readonly IdpdCairoOutputDevice cod = new IdpdCairoOutputDevice ();
-        private double time;
-
-        public double Time {
-            get {
-                return time;
-            }
-            set {
-                time = value;
-            }
-        }
-
         public GtkTimeWidget () {
         }
 
         protected override void PaintWidget (Context ctx, int w, int h) {
             base.PaintWidget (ctx, w, h);
-            this.cod.Context = ctx;
-            this.cod.Execute (this.time);
         }
 
     }

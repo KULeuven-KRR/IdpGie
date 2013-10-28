@@ -23,10 +23,10 @@ using System;
 namespace IdpGie {
 
     public class IdpdLaTeXOutputDevice : IdpdOutputDevice {
-        public IdpdLaTeXOutputDevice () {
+        public IdpdLaTeXOutputDevice (DrawTheory theory) : base(theory) {
         }
         #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Execute (double time) {
+        public override void Run () {
             throw new System.NotImplementedException ();
         }
         #endregion

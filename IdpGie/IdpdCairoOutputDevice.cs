@@ -36,11 +36,11 @@ namespace IdpGie {
             }
         }
 
-        public IdpdCairoOutputDevice () {
+        public IdpdCairoOutputDevice (DrawTheory theory) : base(theory) {
         }
 
         #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Execute (double time) {
+        public override void Run () {
             Context ctx = this.context;
         }
         #endregion

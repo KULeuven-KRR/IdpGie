@@ -22,10 +22,10 @@ using System;
 
 namespace IdpGie {
     public class IdpdPrintOutputDevice : IdpdOutputDevice {
-        public IdpdPrintOutputDevice () {
+        public IdpdPrintOutputDevice (DrawTheory theory) : base(theory) {
         }
         #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Execute (double time) {
+        public override void Run () {
             throw new System.NotImplementedException ();
         }
         #endregion

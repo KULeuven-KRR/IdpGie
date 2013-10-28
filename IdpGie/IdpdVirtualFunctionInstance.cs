@@ -129,6 +129,12 @@ namespace IdpGie {
 
         public virtual void WidenInput (IEnumerable<IFunctionInstance> terms) {
         }
+
+        public bool CanConvert (TermType type) {
+            return TypeSystem.CanConvert (this.Type, type);
+        }
+
+        public abstract object ConvertedValue (TermType target);
         #endregion
 
         #region ITermHeader implementation

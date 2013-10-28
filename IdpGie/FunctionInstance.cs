@@ -39,7 +39,7 @@ namespace IdpGie {
             }
         }
 
-        public object Value {
+        public virtual object Value {
             get {
                 return this;
             }
@@ -52,6 +52,15 @@ namespace IdpGie {
         public FunctionInstance (IFunction func, params IFunctionInstance[] terms) : base(func,terms.ToList()) {
         }
 
+        #region IFunctionInstance implementation
+        public bool CanConvert (TermType type) {
+            return TypeSystem.CanConvert (this.Type, type);
+        }
+
+        public object ConvertedValue (TermType target) {
+            return this.Value;
+        }
+        #endregion
     
     }
 

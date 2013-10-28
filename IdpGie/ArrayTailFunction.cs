@@ -86,10 +86,15 @@ namespace IdpGie {
         }
         #endregion
 
+        #region IFunctionInstance implementation
+        public bool CanConvert (TermType type) {
+            return TypeSystem.CanConvert (this.Type, type);
+        }
 
-
-
-
+        public object ConvertedValue (TermType target) {
+            return this.Value;
+        }
+        #endregion
 
     }
 }
