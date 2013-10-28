@@ -18,10 +18,9 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using Gtk;
 
 namespace IdpGie {
 
@@ -38,6 +37,12 @@ namespace IdpGie {
             }
             set {
                 this.mode = value;
+            }
+        }
+
+        public IdpdObject this [IFunctionInstance key] {
+            get {
+                return this.objects [key];
             }
         }
 
@@ -70,6 +75,11 @@ namespace IdpGie {
                 sb.AppendLine ();
             }
             return sb.ToString ();
+        }
+
+        internal void AddIdpdObject (IdpdObject obj) {
+            Console.WriteLine ("Added {0}", obj);
+            this.objects.Add (obj.Name, obj);
         }
 
         public IEnumerable<IdpdObject> ObjectsTime () {

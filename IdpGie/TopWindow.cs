@@ -43,7 +43,7 @@ namespace IdpGie {
                             Lexer scnr = new Lexer (file);
                             IdpParser pars = new IdpParser (scnr);
 
-                            Console.Error.WriteLine ("File: " + info.Name);
+                            //Console.Error.WriteLine ("File: " + info.Name);
 #if PARSE
                             pars.Parse ();
 #else
@@ -54,8 +54,8 @@ namespace IdpGie {
 #endif
                             if (pars.Result != null) {
                                 pars.Result.Execute ();
-                                Console.Error.WriteLine ("echo: ");
-                                Console.Error.WriteLine (pars.Result);
+                                //Console.Error.WriteLine ("echo: ");
+                                //Console.Error.WriteLine (pars.Result);
                             }
                         }
                     } catch (IOException) {

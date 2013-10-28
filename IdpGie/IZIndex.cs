@@ -22,7 +22,7 @@ using System;
 
 namespace IdpGie {
 
-    public interface IZIndix {
+    public interface IZIndex {
 
         double ZIndex {
             get;

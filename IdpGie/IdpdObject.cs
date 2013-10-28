@@ -23,9 +23,10 @@ using Cairo;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : IZIndix {
+    public abstract class IdpdObject : IZIndex {
 
         private readonly IFunctionInstance name;
+        private readonly IdpdObjectTimeState state = new IdpdObjectTimeState ();
 
         public IFunctionInstance Name {
             get {
@@ -38,9 +39,17 @@ namespace IdpGie {
             }
         }
 
+        #region IZIndix implementation
         public double ZIndex {
             get {
-                return 0.0d;
+                return this.state.Zpos;
+            }
+        }
+        #endregion
+
+        public IdpdObjectTimeState State {
+            get {
+                return this.state;
             }
         }
 
@@ -66,6 +75,10 @@ namespace IdpGie {
 
         public virtual void WriteTikz (StringBuilder builder) {
 
+        }
+
+        public override string ToString () {
+            return string.Format ("{0}[{1}]", this.GetType ().Name, this.Name);
         }
 
     }

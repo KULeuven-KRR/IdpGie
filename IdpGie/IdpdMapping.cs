@@ -36,8 +36,8 @@ namespace IdpGie {
         }
 
         [IdpdDrawMethod("polygon",true,false,TermType.Int,TermType.Float)]
-        public static void Polygon (DrawTheory dt, IFunctionInstance name, int nbOfEdges, double sizeOfEdge) {
-
+        public static void Polygon (DrawTheory dt, IFunctionInstance name, int nbOfEdges, double sizeOfEdges) {
+            dt.AddIdpdObject (new IdpdRegularPolygonObject (name, nbOfEdges, sizeOfEdges));
         }
 
         [IdpdDrawMethod("ellipse",true,false,TermType.Float,TermType.Float)]

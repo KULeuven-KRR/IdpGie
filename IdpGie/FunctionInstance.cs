@@ -65,8 +65,8 @@ namespace IdpGie {
         public override int GetHashCode () {
             int hash = this.Header.GetHashCode (), spill;
             foreach (IFunctionInstance ifi in this.Terms) {
-                spill = (hash >> 0x1d) & 0x07;
-                hash <<= 0x03;
+                spill = (hash >> 0x15) & 0x0fff;
+                hash <<= 0x0b;
                 hash |= spill;
                 hash ^= ifi.GetHashCode ();
             }
