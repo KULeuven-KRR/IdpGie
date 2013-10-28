@@ -72,7 +72,7 @@ namespace IdpGie {
         private ArrayTailFunction () : base("[]",0x00) {
         }
 
-        public override string TermString (List<IFunctionInstance> terms) {
+        public override string TermString (IEnumerable<IFunctionInstance> terms) {
             return this.ToString ();
         }
 
@@ -95,6 +95,10 @@ namespace IdpGie {
             return this.Value;
         }
         #endregion
+
+        public override int GetHashCode () {
+            return 0x238ff745;
+        }
 
     }
 }

@@ -57,6 +57,10 @@ namespace IdpGie {
             return WhereDual<T,Q,Tuple<T,Q>> (source1, source2, predicate, (x,y) => new Tuple<T,Q> (x, y));
         }
 
+        public static IEnumerable<Tuple<T,Q,int>> WhereIndexedDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,int,bool> predicate) {
+            return WhereIndexedDual<T,Q,Tuple<T,Q,int>> (source1, source2, predicate, (x,y,z) => new Tuple<T,Q,int> (x, y, z));
+        }
+
         public static IEnumerable<R> WhereDual<T,Q,R> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate, Func<T,Q,R> function) {
             IEnumerator<T> e1 = source1.GetEnumerator ();
             IEnumerator<Q> e2 = source2.GetEnumerator ();
@@ -69,6 +73,23 @@ namespace IdpGie {
                 }
                 n1 = e1.MoveNext ();
                 n2 = e2.MoveNext ();
+            }
+        }
+
+        public static IEnumerable<R> WhereIndexedDual<T,Q,R> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,int,bool> predicate, Func<T,Q,int,R> function) {
+            IEnumerator<T> e1 = source1.GetEnumerator ();
+            IEnumerator<Q> e2 = source2.GetEnumerator ();
+            int index = 0x00;
+            bool n1 = e1.MoveNext (), n2 = e2.MoveNext ();
+            while (n1 && n2) {
+                T v1 = e1.Current;
+                Q v2 = e2.Current;
+                if (predicate (v1, v2, index)) {
+                    yield return function (v1, v2, index);
+                }
+                n1 = e1.MoveNext ();
+                n2 = e2.MoveNext ();
+                index++;
             }
         }
 

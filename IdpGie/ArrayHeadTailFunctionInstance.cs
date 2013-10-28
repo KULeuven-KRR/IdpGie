@@ -118,6 +118,10 @@ namespace IdpGie {
         }
         #endregion
 
+        public override int GetHashCode () {
+            return 0x122de704 ^ (this.term.GetHashCode () << 0x03) ^ (this.tail.GetHashCode () << 0x06);
+        }
+
     }
 
 }

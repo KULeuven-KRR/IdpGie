@@ -56,10 +56,14 @@ namespace IdpGie {
             }
         }
 
-        public override string TermString (List<IFunctionInstance> terms) {
-            ITerm tail = terms [0x01];
+        public override string TermString (IEnumerable<IFunctionInstance> terms) {
+            IEnumerator<IFunctionInstance> enumerator = terms.GetEnumerator ();
+            enumerator.MoveNext ();
+            IFunctionInstance head = enumerator.Current;
+            enumerator.MoveNext ();
+            IFunctionInstance tail = enumerator.Current;
             StringBuilder sb = new StringBuilder ("[");
-            sb.Append (terms [0x00]);
+            sb.Append (head);
             this.generateRestTermString (sb, tail);
             sb.Append ("]");
             return sb.ToString ();

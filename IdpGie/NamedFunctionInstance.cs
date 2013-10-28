@@ -117,7 +117,7 @@ namespace IdpGie {
         }
 
         #region ITermHeader implementation
-        public string TermString (List<IFunctionInstance> terms) {
+        public string TermString (IEnumerable<IFunctionInstance> terms) {
             return this.Name;
         }
         #endregion
@@ -159,6 +159,10 @@ namespace IdpGie {
             return this.Value;
         }
         #endregion
+
+        public override int GetHashCode () {
+            return this.namedObject.GetHashCode ();
+        }
 
     }
 

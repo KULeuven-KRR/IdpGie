@@ -70,7 +70,7 @@ namespace IdpGie {
             return string.Format ("{0}/{1}", this.Name, this.Arity);
         }
 
-        public virtual string TermString (List<IFunctionInstance> terms) {
+        public virtual string TermString (IEnumerable<IFunctionInstance> terms) {
             if (!terms.Empty ()) {
                 return string.Format ("{0}({1})", this.Name, string.Join (",", terms));
             } else {

@@ -61,6 +61,17 @@ namespace IdpGie {
             return this.Value;
         }
         #endregion
+
+        public override int GetHashCode () {
+            int hash = this.Header.GetHashCode (), spill;
+            foreach (IFunctionInstance ifi in this.Terms) {
+                spill = (hash >> 0x1d) & 0x07;
+                hash <<= 0x03;
+                hash |= spill;
+                hash ^= ifi.GetHashCode ();
+            }
+            return hash;
+        }
     
     }
 

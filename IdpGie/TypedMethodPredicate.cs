@@ -48,7 +48,7 @@ namespace IdpGie {
                 this.method.Invoke (null, val);
                 base.Execute (theory, arguments);
             } catch (Exception e) {
-                Console.WriteLine ("Could not execute a {0} predicate invoked with [{2}]: {1}", this.Name, e, string.Join (",", val.Select (x => new Tuple<object,Type> (x, x.GetType ()))));
+                Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
             }
         }
 
