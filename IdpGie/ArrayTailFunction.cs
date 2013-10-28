@@ -47,9 +47,6 @@ namespace IdpGie {
             get {
                 throw new IndexOutOfRangeException ();
             }
-            set {
-                throw new IndexOutOfRangeException ();
-            }
         }
 
         public ITermHeader Header {
@@ -132,7 +129,6 @@ namespace IdpGie {
 
         #region ICollection implementation
         public void Add (IFunctionInstance item) {
-            throw new InvalidOperationException ("Readonly collection.");
         }
 
         public void Clear () {
@@ -150,23 +146,6 @@ namespace IdpGie {
             throw new InvalidOperationException ("Readonly collection.");
         }
         #endregion
-
-        #region IList implementation
-        public int IndexOf (IFunctionInstance item) {
-            return -0x01;
-        }
-
-        public void Insert (int index, IFunctionInstance item) {
-            throw new InvalidOperationException ("Readonly collection.");
-        }
-
-        public void RemoveAt (int index) {
-            throw new InvalidOperationException ("Readonly collection.");
-        }
-        #endregion
-
-
-
 
     }
 }

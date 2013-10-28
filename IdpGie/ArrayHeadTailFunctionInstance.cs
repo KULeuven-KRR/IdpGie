@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace IdpGie {
@@ -27,6 +28,20 @@ namespace IdpGie {
 
         private readonly IFunctionInstance term;
         private readonly IArrayFunctionInstance tail;
+
+        #region ICollection implementation
+        public int Count {
+            get {
+                return 0x01 + this.tail.Count;
+            }
+        }
+
+        public bool IsReadOnly {
+            get {
+                return true;
+            }
+        }
+        #endregion
 
         #region IFunctionInstance implementation
         public IFunctionInstance this [int index] {
@@ -39,9 +54,6 @@ namespace IdpGie {
                 default :
                     throw new IndexOutOfRangeException ("An array head-tail function has only two arguments.");
                 }
-            }
-            set {
-
             }
         }
 
@@ -124,6 +136,53 @@ namespace IdpGie {
         public override int GetHashCode () {
             return 0x122de704 ^ (this.term.GetHashCode () << 0x03) ^ (this.tail.GetHashCode () << 0x06);
         }
+
+        #region IEnumerable implementation
+        IEnumerator IEnumerable.GetEnumerator () {
+            return this.GetEnumerator ();
+        }
+        #endregion
+
+        #region IEnumerable implementation
+        public IEnumerator<IFunctionInstance> GetEnumerator () {
+            yield return this.term;
+            IArrayFunctionInstance afi = this.tail;
+            while (afi is ArrayHeadTailFunctionInstance) {
+                ArrayHeadTailFunctionInstance ahfi = (ArrayHeadTailFunctionInstance)afi;
+                yield return ahfi.term;
+                afi = ahfi.tail;
+            }
+        }
+        #endregion
+
+        #region ICollection implementation
+        public void Add (IFunctionInstance item) {
+            throw new InvalidOperationException ("Collection is readonly.");
+        }
+
+        public void Clear () {
+            throw new InvalidOperationException ("Collection is readonly.");
+        }
+
+        public bool Contains (IFunctionInstance item) {
+            return Object.Equals (this.term, item) || this.tail.Contains (item);
+        }
+
+        public void CopyTo (IFunctionInstance[] array, int arrayIndex) {
+            IEnumerator<IFunctionInstance> enumerator = this.GetEnumerator ();
+            int n = array.Length;
+            for (int i = arrayIndex; i < n && enumerator.MoveNext(); i++) {
+                array [i] = enumerator.Current;
+            }
+        }
+
+        public bool Remove (IFunctionInstance item) {
+            throw new InvalidOperationException ("Collection is readonly.");
+        }
+        #endregion
+
+
+
 
     }
 

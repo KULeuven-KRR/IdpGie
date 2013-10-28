@@ -47,7 +47,7 @@ namespace IdpGie {
             }
         }
 
-        public IdpdRegularPolygonObject (string name, int nbOfEdges, double sizeOfEdges) : base(name) {
+        public IdpdRegularPolygonObject (IFunctionInstance name, int nbOfEdges, double sizeOfEdges) : base(name) {
             this.NumberOfEdges = nbOfEdges;
             this.SizeOfEdges = sizeOfEdges;
         }

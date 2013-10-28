@@ -23,7 +23,15 @@ using Cairo;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : NameBase, IZIndix {
+    public abstract class IdpdObject : IZIndix {
+
+        private readonly IFunctionInstance name;
+
+        public IFunctionInstance Name {
+            get {
+                return this.name;
+            }
+        }
 
         public virtual double Time {
             set {
@@ -36,7 +44,8 @@ namespace IdpGie {
             }
         }
 
-        protected IdpdObject (string name) : base(name) {
+        protected IdpdObject (IFunctionInstance name) {
+            this.name = name;
         }
 
         protected virtual void InnerPaintObject (Context ctx) {

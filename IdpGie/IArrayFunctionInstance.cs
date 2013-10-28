@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface IArrayFunctionInstance : IFunctionInstance, IEnumerable<IFunctionInstance> {
+    public interface IArrayFunctionInstance : IFunctionInstance, ICollection<IFunctionInstance> {
     }
 
 }

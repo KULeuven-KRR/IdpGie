@@ -25,7 +25,7 @@ namespace IdpGie {
 
     public abstract class IdpdPolygonObject : IdpdObject {
 
-        protected IdpdPolygonObject (string name) : base(name) {
+        protected IdpdPolygonObject (IFunctionInstance name) : base(name) {
         }
 
         protected override void InnerPaintObject (Context ctx) {

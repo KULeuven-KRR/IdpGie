@@ -32,8 +32,7 @@ namespace IdpGie {
         }
 
         [IdpdDrawMethod("polygon",true,false,TermType.PointList)]
-        public static void Polygon (DrawTheory dt, IFunctionInstance name, IList<Point> points) {
-
+        public static void Polygon (DrawTheory dt, IFunctionInstance name, ICollection<IFunctionInstance> points) {
         }
 
         [IdpdDrawMethod("polygon",true,false,TermType.Int,TermType.Float)]

@@ -45,7 +45,7 @@ namespace IdpGie {
             }
         }
 
-        public IdpEllipseObject (string name) : base(name) {
+        public IdpEllipseObject (IFunctionInstance name) : base(name) {
         }
 
         protected override void InnerPaintObject (Context ctx) {
