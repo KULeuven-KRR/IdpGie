@@ -58,10 +58,12 @@ namespace IdpGie {
             }
         }
 
+        [IdpdFunctionStructureConstructor(TermType.Float,TermType.Float)]
         public Point (double x, double y) : this(x,y,0.0d) {
 
         }
 
+        [IdpdFunctionStructureConstructor(TermType.Float,TermType.Float,TermType.Float)]
         public Point (double x, double y, double z) {
             this.x = x;
             this.y = y;

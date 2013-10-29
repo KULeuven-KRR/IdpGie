@@ -1,5 +1,5 @@
 //
-//  IFunction.cs
+//  IdpdFunctionStructureConstructorAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -23,25 +23,20 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface IFunction : ITermHeader {
+    [AttributeUsage(AttributeTargets.Constructor)]
+    public class IdpdFunctionStructureConstructorAttribute : Attribute {
 
-        TermType OutputType {
-            get;
+        private readonly IList<TermType> inputTypes;
+
+        public IList<TermType> InputTypes {
+            get {
+                return this.inputTypes;
+            }
         }
 
-        bool HasInstance {
-            get;
+        public IdpdFunctionStructureConstructorAttribute (params TermType[] inputTypes) {
+            this.inputTypes = inputTypes;
         }
-
-        TermType InputType (int index);
-
-        void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00);
-
-        void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength);
-
-        void WidenInput (IEnumerable<IFunctionInstance> terms);
-
-        IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms);
     }
-
 }
+

@@ -68,9 +68,9 @@ namespace IdpGie {
             }
         }
         #endregion
-        public StructureFunctionInstance (StructureFunction function, object value) {
+        public StructureFunctionInstance (StructureFunction function, IEnumerable<IFunctionInstance> terms) {
             this.function = function;
-            this.value = value;
+            this.value = function.Fold (terms);
         }
 
 
