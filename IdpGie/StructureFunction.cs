@@ -60,8 +60,9 @@ namespace IdpGie {
             this.constructor = constructor;
         }
 
-        public object Fold (IEnumerable<IFunctionInstance> fis) {
-            return this.constructor.Invoke (fis.ToArray ());
+        public object Fold (IEnumerable<IFunctionInstance> arguments) {
+            object[] val = arguments.SelectDual (this.inputTypes, (x,y) => x.ConvertedValue (y)).ToArray ();
+            return this.constructor.Invoke (val);
         }
 
         #region ITermHeader implementation
@@ -84,6 +85,10 @@ namespace IdpGie {
         public void WidenInput (IEnumerable<IFunctionInstance> terms) {
         }
         #endregion
+
+        public void ConvertedValue (TermType target, object value) {
+            return target;
+        }
 
     }
 }

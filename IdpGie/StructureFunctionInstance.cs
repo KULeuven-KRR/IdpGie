@@ -68,9 +68,9 @@ namespace IdpGie {
             }
         }
         #endregion
-        public StructureFunctionInstance (StructureFunction function, object value) {
+        public StructureFunctionInstance (StructureFunction function, IEnumerable<IFunctionInstance> parameters) {
             this.function = function;
-            this.value = value;
+            this.value = function.Fold (parameters);
         }
 
 
@@ -86,7 +86,7 @@ namespace IdpGie {
         }
 
         public object ConvertedValue (TermType target) {
-            throw new System.NotImplementedException ();
+            this.function.ConvertedValue (target, this.value);
         }
         #endregion
 

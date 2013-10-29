@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  IdpdFunctionStructureConverterAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,17 +22,21 @@ using System;
 
 namespace IdpGie {
 
-    [Flags]
-    public enum TermType : ulong {
-        None          = 0x0000000000000000 | Term,
-        String        = 0x0000000000000001 | Term,
-        Int           = 0x0000000000000006 | Term,
-        Float         = 0x0000000000000004 | Term,
-        Point         = 0x0000000000000008 | Term,
-        PointList     = 0x0000000000000010 | Term,
-        Named         = 0x0000000000000020 | Term,
-        Term          = 0x8000000000000000,
-        All           = String | Int | Float | PointList | Named | Term
+    [AttributeUsage(AttributeTargets.Method)]
+    public class IdpdFunctionStructureConverterAttribute : Attribute {
+
+        private readonly TermType outputType;
+
+        public TermType OutputType {
+            get {
+                return this.outputType;
+            }
+        }
+
+        public IdpdFunctionStructureConverterAttribute (TermType outputType) {
+            this.outputType = outputType;
+        }
+
     }
 }
 

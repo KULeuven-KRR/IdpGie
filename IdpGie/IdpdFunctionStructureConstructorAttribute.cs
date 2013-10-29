@@ -1,5 +1,5 @@
 //
-//  TermType.cs
+//  IdpdFunctionStructureConstructorAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,20 +19,25 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    [Flags]
-    public enum TermType : ulong {
-        None          = 0x0000000000000000 | Term,
-        String        = 0x0000000000000001 | Term,
-        Int           = 0x0000000000000006 | Term,
-        Float         = 0x0000000000000004 | Term,
-        Point         = 0x0000000000000008 | Term,
-        PointList     = 0x0000000000000010 | Term,
-        Named         = 0x0000000000000020 | Term,
-        Term          = 0x8000000000000000,
-        All           = String | Int | Float | PointList | Named | Term
+    [AttributeUsage(AttributeTargets.Constructor)]
+    public class IdpdFunctionStructureConstructorAttribute : Attribute {
+
+        private readonly IList<TermType> inputTypes;
+
+        public IList<TermType> InputTypes {
+            get {
+                return this.inputTypes;
+            }
+        }
+
+        public IdpdFunctionStructureConstructorAttribute (params TermType[] inputTypes) {
+            this.inputTypes = inputTypes;
+        }
+
     }
 }
 
