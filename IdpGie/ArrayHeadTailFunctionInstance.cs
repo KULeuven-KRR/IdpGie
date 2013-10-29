@@ -181,8 +181,17 @@ namespace IdpGie {
         }
         #endregion
 
-
-
+        #region IArrayFunctionInstance implementation
+        public IEnumerator<T> ValueIterator<T> (TermType target) {
+            yield return (T)this.term.ConvertedValue (target);
+            IArrayFunctionInstance afi = this.tail;
+            while (afi is ArrayHeadTailFunctionInstance) {
+                ArrayHeadTailFunctionInstance ahfi = (ArrayHeadTailFunctionInstance)afi;
+                yield return (T)ahfi.term.ConvertedValue (target);
+                afi = ahfi.tail;
+            }
+        }
+        #endregion
 
     }
 

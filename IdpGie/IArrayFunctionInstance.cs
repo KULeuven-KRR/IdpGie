@@ -24,6 +24,9 @@ using System.Collections.Generic;
 namespace IdpGie {
 
     public interface IArrayFunctionInstance : IFunctionInstance, ICollection<IFunctionInstance> {
+
+        IEnumerator<T> ValueIterator<T> (TermType target);
+
     }
 
 }

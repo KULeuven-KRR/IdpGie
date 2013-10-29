@@ -121,7 +121,7 @@ namespace IdpGie {
         }
         #endregion
 
-        #region IEnumerable implementation
+        #region IEnumerable<> implementation
         public IEnumerator<IFunctionInstance> GetEnumerator () {
             yield break;
         }
@@ -146,6 +146,13 @@ namespace IdpGie {
             throw new InvalidOperationException ("Readonly collection.");
         }
         #endregion
+
+        #region IArrayFunctionInstance implementation
+        public IEnumerator<T> ValueIterator<T> (TermType target) {
+            yield break;
+        }
+        #endregion
+
 
     }
 }
