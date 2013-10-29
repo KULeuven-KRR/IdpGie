@@ -48,11 +48,7 @@ namespace IdpGie {
         public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
         }
 
-        ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return this.CreateInstance (terms);
-        }
-
-        IAtom IPredicate.GetInstance (IEnumerable<IFunctionInstance> terms) {
+        IAtom IPredicate.CreateInstance (IEnumerable<IFunctionInstance> terms) {
             return (IAtom)this.CreateInstance (terms);
         }
 

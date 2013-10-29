@@ -52,10 +52,16 @@ namespace IdpGie {
             }
         }
 
-        public StructureFunction (string name, int arity, TermType outputType, ConstructorInfo constructor, params TermType[] inputTypes) : this(name,arity,outputType,constructor,1.0d,inputTypes) {
+        public StructureFunction (string name, int arity, TermType outputType, ConstructorInfo constructor, params TermType[] inputTypes) : this(name,arity,outputType,constructor,1.0d,(IList<TermType>)inputTypes) {
         }
 
-        public StructureFunction (string name, int arity, TermType outputType, ConstructorInfo constructor, double priority = 1.0d, params TermType[] inputTypes) : base(name,arity,priority) {
+        public StructureFunction (string name, int arity, TermType outputType, ConstructorInfo constructor, double priority = 1.0d, params TermType[] inputTypes) : this(name,arity,outputType,constructor,priority,(IList<TermType>)inputTypes) {
+        }
+
+        public StructureFunction (string name, int arity, TermType outputType, ConstructorInfo constructor, IList<TermType> inputTypes) : this(name,arity,outputType,constructor,1.0d,inputTypes) {
+        }
+
+        public StructureFunction (string name, int arity, TermType outputType, ConstructorInfo constructor, double priority, IList<TermType> inputTypes) : base(name,arity,priority) {
             this.outputType = outputType;
             this.inputTypes = inputTypes;
             this.constructor = constructor;

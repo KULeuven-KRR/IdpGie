@@ -27,18 +27,28 @@ namespace IdpGie {
 
     public class GlobalInputContext : IInputContext {
 
-        private readonly Dictionary<Tuple<string,int>,TypedMethodPredicate> predicates = new Dictionary<Tuple<string, int>, TypedMethodPredicate> ();
-        private readonly Dictionary<Tuple<string,int>,NamedFunctionInstance> functions = new Dictionary<Tuple<string, int>, NamedFunctionInstance> ();
+        private readonly Dictionary<Tuple<string,int>,IPredicate> predicates = new Dictionary<Tuple<string, int>, IPredicate> ();
+        private readonly Dictionary<Tuple<string,int>,IFunction> functions = new Dictionary<Tuple<string, int>, IFunction> ();
         public static readonly GlobalInputContext Instance = new GlobalInputContext ();
 
         private GlobalInputContext () {
             this.LoadAssembly (Assembly.GetExecutingAssembly ());
         }
 
+        private void addPredicate (IPredicate pred) {
+            this.predicates.Add (pred.Signature, pred);
+        }
+
+        private void addFunction (IFunction func) {
+            this.functions.Add (func.Signature, func);
+        }
+
         public void LoadAssembly (Assembly assembly) {
             foreach (Type type in assembly.GetTypes()) {
                 if (type.IsClass) {
                     analyzeClass (type);
+                } else if (type.IsValueType) {
+                    this.analyzeStruct (type);
                 } else if (type.IsEnum) {
                     analyzeEnum (type);
                 }
@@ -62,9 +72,29 @@ namespace IdpGie {
 
         private void analyzeClass (Type type) {
             if (type.GetCustomAttributes (typeof(IdpdMapperAttribute), false).Length > 0x00) {
-                foreach (MethodInfo method in type.GetMethods()) {
-                    analyzeMethod (type, method);
+                this.analyzeMapperClass (type);
+            }
+        }
+
+        private void analyzeStruct (Type type) {
+            foreach (IdpdFunctionStructureAttribute fsa in type.GetCustomAttributes(typeof(IdpdFunctionStructureAttribute),false).Cast<IdpdFunctionStructureAttribute>()) {
+                analyzeFunctionStruct (type, fsa);
+            }
+        }
+
+        private void analyzeFunctionStruct (Type type, IdpdFunctionStructureAttribute fsa) {
+            foreach (ConstructorInfo ci in type.GetConstructors()) {
+                foreach (IdpdFunctionStructureConstructorAttribute fsca in ci.GetCustomAttributes(typeof(IdpdFunctionStructureConstructorAttribute),false).Cast<IdpdFunctionStructureConstructorAttribute>()) {
+                    foreach (StructureFunction f in fsca.StructureFunctions(fsa,ci)) {
+                        this.addFunction (f);
+                    }
                 }
+            }
+        }
+
+        private void analyzeMapperClass (Type type) {
+            foreach (MethodInfo method in type.GetMethods()) {
+                analyzeMethod (type, method);
             }
         }
 
@@ -75,8 +105,8 @@ namespace IdpGie {
                     ParameterInfo pi0 = pis [0x00];
                     if (!pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
                         foreach (IdpdDrawMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdDrawMethodAttribute),false).Cast<IdpdDrawMethodAttribute>()) {
-                            foreach (TypedMethodPredicate tmp in ma.Predicates(method)) {
-                                this.predicates.Add (tmp.Signature, tmp);
+                            foreach (TypedMethodPredicate p in ma.Predicates(method)) {
+                                this.addPredicate (p);
                             }
                         }
                     }
@@ -86,7 +116,7 @@ namespace IdpGie {
 
         #region IInputContext implementation
         public IPredicate GetPredicate (string name, int arity) {
-            TypedMethodPredicate p;
+            IPredicate p;
             Tuple<string,int> key = new Tuple<string, int> (name, arity);
             if (predicates.TryGetValue (key, out p)) {
                 return p;
@@ -96,7 +126,7 @@ namespace IdpGie {
         }
 
         public IFunction GetFunction (string name, int arity) {
-            NamedFunctionInstance f;
+            IFunction f;
             Tuple<string,int> key = new Tuple<string, int> (name, arity);
             if (functions.TryGetValue (key, out f)) {
                 return f;

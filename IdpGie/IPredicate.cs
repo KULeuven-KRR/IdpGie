@@ -34,7 +34,7 @@ namespace IdpGie {
 
         void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments);
 
-        IAtom GetInstance (IEnumerable<IFunctionInstance> terms);
+        IAtom CreateInstance (IEnumerable<IFunctionInstance> terms);
 
     }
 
