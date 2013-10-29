@@ -1,5 +1,5 @@
 //
-//  NamePriorityArityBase.cs
+//  INameSignature.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,24 +22,12 @@ using System;
 
 namespace IdpGie {
 
-    public abstract class NameArityPriorityBase : NameArityBase, INameArity, IPriority {
+    public interface INameArity : IName, IArity {
 
-        private double priority;
-
-        #region IPriority implementation
-        public virtual double Priority {
-            get {
-                return this.priority;
-            }
-            protected set {
-                this.priority = value;
-            }
+        Tuple<string, int> Signature {
+            get;
         }
-        #endregion
 
-        protected NameArityPriorityBase (string name, int arity = 0x00, double priority = 1.0d) : base(name,arity) {
-            this.Priority = priority;
-        }
     }
-}
 
+}

@@ -70,12 +70,16 @@ namespace IdpGie {
             return string.Format ("{0}/{1}", this.Name, this.Arity);
         }
 
-        public virtual string TermString (IEnumerable<IFunctionInstance> terms) {
+        public static string TermString (string name, IEnumerable<IFunctionInstance> terms) {
             if (!terms.Empty ()) {
-                return string.Format ("{0}({1})", this.Name, string.Join (",", terms));
+                return string.Format ("{0}({1})", name, string.Join (",", terms));
             } else {
-                return this.Name;
+                return name;
             }
+        }
+
+        public virtual string TermString (IEnumerable<IFunctionInstance> terms) {
+            return TermHeader.TermString (this.Name, terms);
         }
 
     }

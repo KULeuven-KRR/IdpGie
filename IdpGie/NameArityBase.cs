@@ -1,5 +1,5 @@
 //
-//  NamePriorityArityBase.cs
+//  NameArityBase.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,24 +21,31 @@
 using System;
 
 namespace IdpGie {
+    public abstract class NameArityBase : NameBase, INameArity {
 
-    public abstract class NameArityPriorityBase : NameArityBase, INameArity, IPriority {
+        private int arity;
 
-        private double priority;
-
-        #region IPriority implementation
-        public virtual double Priority {
+        #region IArity implementation
+        public virtual int Arity {
             get {
-                return this.priority;
+                return this.arity;
             }
             protected set {
-                this.priority = value;
+                this.arity = value;
             }
         }
         #endregion
 
-        protected NameArityPriorityBase (string name, int arity = 0x00, double priority = 1.0d) : base(name,arity) {
-            this.Priority = priority;
+        #region INameArity implementation
+        public virtual Tuple<string, int> Signature {
+            get {
+                return new Tuple<string, int> (this.Name, this.Arity);
+            }
+        }
+        #endregion
+
+        protected NameArityBase (string name, int arity = 0x00) : base(name) {
+            this.Arity = arity;
         }
     }
 }

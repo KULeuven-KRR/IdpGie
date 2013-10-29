@@ -155,6 +155,8 @@
     <Compile Include="StructureFunction.cs" />
     <Compile Include="IArity.cs" />
     <Compile Include="NameArityPriorityBase.cs" />
+    <Compile Include="INameArity.cs" />
+    <Compile Include="NameArityBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
