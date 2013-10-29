@@ -86,10 +86,6 @@ namespace IdpGie {
         }
         #endregion
 
-        public void ConvertedValue (TermType target, object value) {
-            return target;
-        }
-
     }
-}
 
+}

@@ -86,7 +86,8 @@ namespace IdpGie {
         }
 
         public object ConvertedValue (TermType target) {
-            this.function.ConvertedValue (target, this.value);
+            return null;
+            //return this.function.ConvertedValue (target, this.value);
         }
         #endregion
 
