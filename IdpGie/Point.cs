@@ -95,6 +95,22 @@ namespace IdpGie {
             this.y = newy;
         }
 
+        public override bool Equals (object obj) {
+            if (obj is Point) {
+                Point p = (Point)obj;
+                return (this.X == p.X && this.Y == p.Y && this.Z == p.Z);
+            }
+            return base.Equals (obj);
+        }
+
+        public override int GetHashCode () {
+            return base.GetHashCode () ^ this.X.GetHashCode () ^ (this.Y.GetHashCode () << 0x0b) ^ (this.Z.GetHashCode () << 0x16);
+        }
+
+        public override string ToString () {
+            return string.Format ("({0} ; {1} ; {2})", this.X, this.Y, this.Z);
+        }
+
     }
 
 }

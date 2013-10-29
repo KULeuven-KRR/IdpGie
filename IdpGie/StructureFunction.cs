@@ -91,6 +91,19 @@ namespace IdpGie {
             return this.converts [targetType].Invoke (source, new object[0x00]);
         }
 
+        #region IFunction implementation
+        public IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return new StructureFunctionInstance (this, this.Fold (terms));
+        }
+        #endregion
+
+        #region ITermHeader implementation
+        ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return this.CreateInstance (terms);
+        }
+        #endregion
+
+
     }
 
 }

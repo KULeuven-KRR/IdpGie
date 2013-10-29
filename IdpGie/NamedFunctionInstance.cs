@@ -164,6 +164,19 @@ namespace IdpGie {
             return this.namedObject.GetHashCode ();
         }
 
+        #region IFunction implementation
+        public IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return this;
+        }
+        #endregion
+
+        #region ITermHeader implementation
+        ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return this.CreateInstance (terms);
+        }
+        #endregion
+
+
     }
 
 }

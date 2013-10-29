@@ -39,7 +39,7 @@ namespace IdpGie {
                 Tuple<string,int> key = new Tuple<string, int> (name, arity);
                 if (!this.functions.TryGetValue (key, out f)) {
                     f = new Function (name, arity);
-                    //Console.WriteLine ("CF {0}/{1}", name, arity);
+                    Console.WriteLine ("CF {0}/{1}", name, arity);
                     this.functions.Add (key, f);
                 }
             }
@@ -56,13 +56,7 @@ namespace IdpGie {
         }
 
         public IAtom GetAtom (IPredicate predicate, IEnumerable<IFunctionInstance> terms) {
-            List<IFunctionInstance> list;
-            if (terms != null) {
-                list = terms.ToList ();
-            } else {
-                list = new List<IFunctionInstance> ();
-            }
-            return new Atom (predicate, list);
+            return predicate.CreateInstance (terms);
         }
 
         public IAtom GetAtom (string name) {
@@ -79,16 +73,7 @@ namespace IdpGie {
         }
 
         public IFunctionInstance GetFunctionInstance (IFunction function, IEnumerable<IFunctionInstance> terms) {
-            if (!function.HasInstance && typeof(IFunctionInstance).IsAssignableFrom (function.GetType ())) {
-                return (IFunctionInstance)function;
-            }
-            List<IFunctionInstance> list;
-            if (terms != null) {
-                list = terms.ToList ();
-            } else {
-                list = new List<IFunctionInstance> ();
-            }
-            return new FunctionInstance (function, list);
+            return function.CreateInstance (terms);
         }
 
         public IFunctionInstance GetFunctionInstance (string name) {

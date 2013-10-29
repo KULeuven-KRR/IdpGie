@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System.Linq;
 using System.Collections.Generic;
 
 namespace IdpGie {
@@ -46,6 +47,33 @@ namespace IdpGie {
 
         public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
         }
+
+        ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return this.CreateInstance (terms);
+        }
+
+        IAtom IPredicate.GetInstance (IEnumerable<IFunctionInstance> terms) {
+            return (IAtom)this.CreateInstance (terms);
+        }
+
+        #region IPredicate implementation
+        public override ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            List<IFunctionInstance> list;
+            if (terms != null) {
+                list = terms.ToList ();
+            } else {
+                list = new List<IFunctionInstance> ();
+            }
+            return new Atom (this, list);
+        }
+        #endregion
+
+        #region IPredicate implementation
+        public IAtom GetInstance (IEnumerable<IFunctionInstance> terms) {
+            throw new System.NotImplementedException ();
+        }
+        #endregion
+
 
     }
 }

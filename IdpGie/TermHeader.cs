@@ -82,6 +82,8 @@ namespace IdpGie {
             return TermHeader.TermString (this.Name, terms);
         }
 
+        public abstract ITerm CreateInstance (IEnumerable<IFunctionInstance> terms);
+
     }
 }
 

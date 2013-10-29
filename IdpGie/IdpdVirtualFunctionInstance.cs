@@ -36,7 +36,7 @@ namespace IdpGie {
 
         public bool HasInstance {
             get {
-                return false;
+                return true;
             }
         }
 
@@ -153,6 +153,17 @@ namespace IdpGie {
             return this.Value.GetHashCode ();
         }
 
+        #region IFunction implementation
+        public IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            throw new InvalidOperationException ("Virtual functions cannot be used for prototyping.");
+        }
+        #endregion
+
+        #region ITermHeader implementation
+        ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return this.CreateInstance (terms);
+        }
+        #endregion
 
     }
 }

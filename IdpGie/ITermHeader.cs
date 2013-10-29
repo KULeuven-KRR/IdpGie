@@ -31,6 +31,8 @@ namespace IdpGie {
 
         string TermString (IEnumerable<IFunctionInstance> terms);
 
+        ITerm CreateInstance (IEnumerable<IFunctionInstance> terms);
+
     }
 
 }

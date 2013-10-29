@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace IdpGie {
@@ -80,6 +81,23 @@ namespace IdpGie {
                 inputTypes [i] |= fise.Current.Type;
             }
         }
+
+        IFunctionInstance IFunction.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return (IFunctionInstance)this.CreateInstance (terms);
+        }
+
+        #region IFunction implementation
+        public override ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            List<IFunctionInstance> list;
+            if (terms != null) {
+                list = terms.ToList ();
+            } else {
+                list = new List<IFunctionInstance> ();
+            }
+            return new FunctionInstance (this, list);
+        }
+        #endregion
+
 
     }
 }
