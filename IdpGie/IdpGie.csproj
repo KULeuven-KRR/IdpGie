@@ -157,8 +157,6 @@
     <Compile Include="NameArityPriorityBase.cs" />
     <Compile Include="INameArity.cs" />
     <Compile Include="NameArityBase.cs" />
-    <Compile Include="IdpdFunctionStructureConstructorAttribute.cs" />
-    <Compile Include="IdpdFunctionStructureConverterAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -1,20 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="StructureFunctionInstance.cs">
-    <Files>
-      <File FileName="StructureFunction.cs" Line="97" Column="25" />
-      <File FileName="StructureFunctionInstance.cs" Line="86" Column="10" />
-      <File FileName="TypedMethodPredicate.cs" Line="45" Column="56" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="IdpGie" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="UserInterface" expanded="True" />
-            <Node name="StructureFunctionInstance.cs" selected="True" />
-          </Node>
-        </State>
+        <State />
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />

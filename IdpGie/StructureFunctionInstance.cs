@@ -68,9 +68,9 @@ namespace IdpGie {
             }
         }
         #endregion
-        public StructureFunctionInstance (StructureFunction function, IEnumerable<IFunctionInstance> parameters) {
+        public StructureFunctionInstance (StructureFunction function, object value) {
             this.function = function;
-            this.value = function.Fold (parameters);
+            this.value = value;
         }
 
 
@@ -86,8 +86,12 @@ namespace IdpGie {
         }
 
         public object ConvertedValue (TermType target) {
+<<<<<<< HEAD
             return null;
             //return this.function.ConvertedValue (target, this.value);
+=======
+            throw new System.NotImplementedException ();
+>>>>>>> parent of 1275c26... annotated constructors and convertors
         }
         #endregion
 
