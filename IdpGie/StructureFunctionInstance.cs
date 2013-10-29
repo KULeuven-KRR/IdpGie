@@ -85,16 +85,10 @@ namespace IdpGie {
             return TypeSystem.CanConvert (this.Type, target);
         }
 
-        public object ConvertedValue (TermType target) {
-<<<<<<< HEAD
-            return null;
-            //return this.function.ConvertedValue (target, this.value);
-=======
-            throw new System.NotImplementedException ();
->>>>>>> parent of 1275c26... annotated constructors and convertors
+        public object ConvertedValue (TermType targetType) {
+            return this.function.ConvertedValue (this.value, targetType);
         }
         #endregion
 
     }
 }
-

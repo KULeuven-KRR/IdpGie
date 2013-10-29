@@ -23,18 +23,18 @@ using System;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Struct)]
-    public class IdpdFunctionStructureAttribute : Attribute, IName {
+    public class IdpdFunctionStructureAttribute : NamedAttributeBase {
 
-        private readonly string name;
+        private readonly TermType outputType;
 
-        public string Name {
+        public TermType OutputType {
             get {
-                return name;
+                return this.outputType;
             }
         }
 
-        public IdpdFunctionStructureAttribute (string name) {
-            this.name = name;
+        public IdpdFunctionStructureAttribute (string name, TermType outputType) : base(name) {
+            this.outputType = outputType;
         }
 
     }

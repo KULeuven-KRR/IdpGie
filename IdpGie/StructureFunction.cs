@@ -30,6 +30,7 @@ namespace IdpGie {
         private readonly TermType outputType;
         private readonly IList<TermType> inputTypes;
         private readonly ConstructorInfo constructor;
+        private readonly Dictionary<TermType,MethodInfo> converts = new Dictionary<TermType, MethodInfo> ();
 
         #region IFunction implementation
         public TermType OutputType {
@@ -84,6 +85,10 @@ namespace IdpGie {
         public void WidenInput (IEnumerable<IFunctionInstance> terms) {
         }
         #endregion
+
+        public object ConvertedValue (object source, TermType targetType) {
+            return this.converts [targetType].Invoke (source, new object[0x00]);
+        }
 
     }
 

@@ -22,16 +22,16 @@ using System;
 
 namespace IdpGie {
 
-    [Flags]
     public enum TermType : ulong {
-        None          = 0x0000000000000000,
-        String        = 0x0000000000000021,
-        Int           = 0x0000000000000026,
-        Float         = 0x0000000000000024,
-        PointList     = 0x0000000000000028,
-        Named         = 0x0000000000000030,
-        Term          = 0x0000000000000020,
-        All           = String | Int | Float | PointList | Named | Term
+        None          = 0x0000000000000000UL,
+        Term          = 0x0800000000000000UL,
+        Float         = 0x0800000000000001UL,
+        Int           = 0x0800000000000003UL,
+        String        = 0x0800000000000004UL,
+        PointList     = 0x0800000000000008UL,
+        Named         = 0x0800000000000010UL,
+        Point         = 0x0800000000000020UL,
+        All           = 0x080000000000003fUL
     }
 }
 
