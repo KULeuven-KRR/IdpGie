@@ -165,6 +165,8 @@
     <Compile Include="IMediaObject.cs" />
     <Compile Include="CairoMediaWidget.cs" />
     <Compile Include="OpenGLFrameWidget.cs" />
+    <Compile Include="IdpdObjectTimeStateModifier.cs" />
+    <Compile Include="IInterpolatable.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

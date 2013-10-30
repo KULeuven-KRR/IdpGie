@@ -30,6 +30,8 @@ namespace IdpGie {
         private Matrix4d transformations;
         private Matrix cairoTransformations = null;
         private string text;
+        private Color innerColor = new Color (0.0d, 0.0d, 0.0d, 0.0d);
+        private Color edgeColor = new Color (0.0d, 0.0d, 0.0d);
 
         public bool Visible {
             get {
@@ -37,6 +39,24 @@ namespace IdpGie {
             }
             set {
                 visible = value;
+            }
+        }
+
+        public Color InnerColor {
+            get {
+                return this.innerColor;
+            }
+            set {
+                this.innerColor = value;
+            }
+        }
+
+        public Color EdgeColor {
+            get {
+                return this.edgeColor;
+            }
+            set {
+                this.edgeColor = value;
             }
         }
 
