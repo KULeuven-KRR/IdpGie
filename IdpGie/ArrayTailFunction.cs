@@ -148,7 +148,7 @@ namespace IdpGie {
         #endregion
 
         #region IArrayFunctionInstance implementation
-        public IEnumerator<T> ValueIterator<T> (TermType target) {
+        public IEnumerable<T> ValueEnumerable<T> (TermType target) {
             yield break;
         }
         #endregion

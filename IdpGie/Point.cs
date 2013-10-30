@@ -111,6 +111,30 @@ namespace IdpGie {
             return string.Format ("({0} ; {1} ; {2})", this.X, this.Y, this.Z);
         }
 
+        public static explicit operator PointD (Point v) {
+            return new PointD (v.x, v.y);
+        }
+
+        public static explicit operator Point (PointD v) {
+            return new Point (v.X, v.Y);
+        }
+
+        public static explicit operator Point (Vector2 v) {
+            return new Point (v.X, v.Y);
+        }
+
+        public static explicit operator Point (Vector2d v) {
+            return new Point (v.X, v.Y);
+        }
+
+        public static explicit operator Point (Vector3 v) {
+            return new Point (v.X, v.Y, v.Z);
+        }
+
+        public static explicit operator Point (Vector3d v) {
+            return new Point (v.X, v.Y, v.Z);
+        }
+
     }
 
 }

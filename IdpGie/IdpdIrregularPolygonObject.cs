@@ -1,5 +1,5 @@
 //
-//  IArrayFunctionInstance.cs
+//  IdpdIrregularPolygonObject.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,12 +19,24 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using Cairo;
 
 namespace IdpGie {
 
-    public interface IArrayFunctionInstance : IFunctionInstance, EnhancedTermCollection {
+    public class IdpdIrregularPolygonObject : IdpdPolygonObject {
+
+        private List<Point> points;
+
+        public IdpdIrregularPolygonObject (IFunctionInstance name, IEnumerable<Point> points) : base(name) {
+            this.points = points.ToList ();
+        }
+
+        public override IEnumerable<PointD> GetPoints () {
+            return points.Select (x => (PointD)x);
+        }
 
     }
-
 }
+

@@ -94,7 +94,9 @@ namespace IdpGie {
         #endregion
 
         public object ConvertedValue (object source, TermType targetType) {
-            return this.converts [targetType].Invoke (source, new object[0x00]);
+            return source;
+            //TODO: convert
+            //return this.converts [targetType].Invoke (source, new object[0x00]);
         }
 
         #region IFunction implementation

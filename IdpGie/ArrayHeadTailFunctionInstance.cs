@@ -182,7 +182,7 @@ namespace IdpGie {
         #endregion
 
         #region IArrayFunctionInstance implementation
-        public IEnumerator<T> ValueIterator<T> (TermType target) {
+        public IEnumerable<T> ValueEnumerable<T> (TermType target) {
             yield return (T)this.term.ConvertedValue (target);
             IArrayFunctionInstance afi = this.tail;
             while (afi is ArrayHeadTailFunctionInstance) {

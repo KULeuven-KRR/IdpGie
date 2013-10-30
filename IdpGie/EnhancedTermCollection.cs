@@ -1,5 +1,5 @@
 //
-//  IArrayFunctionInstance.cs
+//  EnhancedTermCollection.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,13 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public interface IArrayFunctionInstance : IFunctionInstance, EnhancedTermCollection {
+    public interface EnhancedTermCollection : ICollection<IFunctionInstance> {
+
+        IEnumerable<T> ValueEnumerable<T> (TermType target);
 
     }
-
 }
+
