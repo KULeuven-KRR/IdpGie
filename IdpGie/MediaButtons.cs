@@ -24,18 +24,19 @@ namespace IdpGie {
 
     [Flags]
     public enum MediaButtons : long {
-        Play         = 0x0001,
-        Pause        = 0x0002,
-        Default      = Play | Pause,
-        Stop         = 0x0004,
-        Rewind       = 0x0008,
-        FastForward  = 0x0010,
-        SkipPrevious = 0x0020,
-        SkipNext     = 0x0040,
-        Record       = 0x0080,
-        Eject        = 0x0100,
-        Shuffle      = 0x0200,
-        Repeat       = 0x0400
+        None             = 0x0000,
+        Play             = 0x0001,
+        Pause            = 0x0002,
+        Default          = Play | Pause,
+        Rewind           = 0x0004,
+        Forward          = 0x0008,
+        PreviousChapter  = 0x0010,
+        NextChapter      = 0x0020,
+        Shuffle          = 0x0100,
+        Repeat           = 0x0200,
+        Eject            = 0x0400,
+        Record           = 0x4000,
+        Stop             = 0x8000,
     }
 }
 

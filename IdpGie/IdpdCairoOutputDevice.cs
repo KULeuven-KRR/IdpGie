@@ -42,7 +42,7 @@ namespace IdpGie {
 
         #region implemented abstract members of IdpGie.IdpdOutputDevice
         public override void Run () {
-            using (TopWindow tw = new TopWindow()) {
+            using (TopWindow tw = TopWindow.Create<CairoFrameWidget>(new CairoFrameWidget(this.Theory))) {
                 Application.Run ();
             }
         }

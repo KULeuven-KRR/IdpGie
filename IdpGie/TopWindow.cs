@@ -27,8 +27,12 @@ using IdpGie.Parser;
 
 namespace IdpGie {
     public partial class TopWindow : Gtk.Window {
-        public TopWindow () : 
-                base(Gtk.WindowType.Toplevel) {
+
+        public static TopWindow Create<T> (T widget) where T : Widget, IMediaObject {
+            return new TopWindow (widget);
+        }
+
+        private TopWindow (Widget widget) : base(WindowType.Toplevel) {
             this.Build ();
         }
 

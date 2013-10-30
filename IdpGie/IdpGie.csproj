@@ -73,7 +73,6 @@
     <Compile Include="IName.cs" />
     <Compile Include="NameBase.cs" />
     <Compile Include="GtkTimeWidget.cs" />
-    <Compile Include="CairoWidget.cs" />
     <Compile Include="IdpdObject.cs" />
     <Compile Include="BlueprintMediabar.cs" />
     <Compile Include="MediaMode.cs" />
@@ -160,6 +159,12 @@
     <Compile Include="IdpdFunctionStructureConstructorAttribute.cs" />
     <Compile Include="EnhancedTermCollection.cs" />
     <Compile Include="IdpdIrregularPolygonObject.cs" />
+    <Compile Include="CairoFrameWidget.cs" />
+    <Compile Include="ZIndexComparator.cs" />
+    <Compile Include="IdpdColor.cs" />
+    <Compile Include="IMediaObject.cs" />
+    <Compile Include="CairoMediaWidget.cs" />
+    <Compile Include="OpenGLFrameWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

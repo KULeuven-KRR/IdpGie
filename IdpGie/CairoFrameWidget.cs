@@ -1,5 +1,5 @@
 //
-//  GtkTimeWidget.cs
+//  CairoWidget.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,19 +18,38 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
+using System.Linq;
+using Gtk;
 using Cairo;
 
 namespace IdpGie {
 
-    public class GtkTimeWidget : CairoMediaWidget {
+    public class CairoFrameWidget : CairoMediaWidget {
 
-        public GtkTimeWidget () {
+        private DrawTheory theory;
+
+        public DrawTheory Theory {
+            get {
+                return this.theory;
+            }
+            set {
+                this.theory = value;
+            }
         }
 
+        public CairoFrameWidget (DrawTheory theory) {
+            this.Theory = theory;
+        }
+
+
         protected override void PaintWidget (Context ctx, int w, int h) {
-            base.PaintWidget (ctx, w, h);
+            foreach (IdpdObject obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
+                obj.PaintObject (ctx);
+            }
         }
 
     }
+
 }
 

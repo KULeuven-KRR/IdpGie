@@ -1,5 +1,5 @@
 //
-//  GtkTimeWidget.cs
+//  OpenGLFrameWidget.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,19 +18,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Cairo;
+using System;
 
 namespace IdpGie {
-
-    public class GtkTimeWidget : CairoMediaWidget {
-
-        public GtkTimeWidget () {
+    public class OpenGLFrameWidget : CairoMediaWidget {
+        public OpenGLFrameWidget () {
         }
-
-        protected override void PaintWidget (Context ctx, int w, int h) {
-            base.PaintWidget (ctx, w, h);
-        }
-
     }
 }
 

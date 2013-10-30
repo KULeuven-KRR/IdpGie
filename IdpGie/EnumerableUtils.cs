@@ -53,6 +53,14 @@ namespace IdpGie {
             }
         }
 
+        public static IEnumerable<T> OrderBy<T,Q> (this IEnumerable<T> source, IComparer<Q> comparer) where T : Q {
+            return source.OrderBy (x => x, comparer);
+        }
+
+        public static IEnumerable<T> OrderByDescending<T,Q> (this IEnumerable<T> source, IComparer<Q> comparer) where T : Q {
+            return source.OrderByDescending (x => x, comparer);
+        }
+
         public static IEnumerable<Tuple<T,Q>> WhereDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,bool> predicate) {
             return WhereDual<T,Q,Tuple<T,Q>> (source1, source2, predicate, (x,y) => new Tuple<T,Q> (x, y));
         }

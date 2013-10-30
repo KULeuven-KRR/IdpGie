@@ -30,7 +30,7 @@ namespace IdpGie {
 
         #region implemented abstract members of IdpGie.IdpdOutputDevice
         public override void Run () {
-            using (TopWindow tw = new TopWindow()) {
+            using (TopWindow tw = TopWindow.Create<OpenGLFrameWidget>(new OpenGLFrameWidget())) {
                 Application.Run ();
             }
         }

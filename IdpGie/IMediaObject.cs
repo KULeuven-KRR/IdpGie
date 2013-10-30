@@ -1,5 +1,5 @@
 //
-//  CairoWidget.cs
+//  IMediaWidget.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -20,26 +20,36 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Gtk;
-using Cairo;
 
 namespace IdpGie {
 
-    public abstract class CairoWidget : DrawingArea {
+    public interface IMediaObject {
 
-
-        protected virtual void PaintWidget (Context ctx, int w, int h) {
+        MediaButtons SupportedMedia {
+            get;
         }
 
-        protected override bool OnExposeEvent (Gdk.EventExpose ev) {
-            Context ctx = Gdk.CairoHelper.Create (this.GdkWindow);
-            ctx.FillRule = FillRule.EvenOdd;
-            int w, h;
-            this.GdkWindow.GetSize (out w, out h);
-            this.PaintWidget (ctx, w, h);
-            ((IDisposable)ctx.Target).Dispose ();
-            ((IDisposable)ctx).Dispose ();
-            return base.OnExposeEvent (ev);
-        }
+        void Play ();
+
+        void Pause ();
+
+        void Rewind ();
+
+        void Forward ();
+
+        void PreviousChapter ();
+
+        void NextChapter ();
+
+        void Shuffle ();
+
+        void Repeat ();
+
+        void Eject ();
+
+        void Record ();
+
+        void Stop ();
 
     }
 

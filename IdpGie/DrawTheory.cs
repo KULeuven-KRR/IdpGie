@@ -82,7 +82,7 @@ namespace IdpGie {
             this.objects.Add (obj.Name, obj);
         }
 
-        public IEnumerable<IdpdObject> ObjectsTime () {
+        public IEnumerable<IdpdObject> Objects () {
             return this.objects.Values;
         }
 

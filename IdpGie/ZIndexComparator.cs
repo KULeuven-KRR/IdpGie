@@ -1,5 +1,5 @@
 //
-//  GtkTimeWidget.cs
+//  ZIndexComparator.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,19 +18,31 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Cairo;
+using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class GtkTimeWidget : CairoMediaWidget {
+    public class ZIndexComparator : IComparer<IZIndex> {
 
-        public GtkTimeWidget () {
+        public static readonly ZIndexComparator Instance = new ZIndexComparator ();
+
+        private ZIndexComparator () {
         }
 
-        protected override void PaintWidget (Context ctx, int w, int h) {
-            base.PaintWidget (ctx, w, h);
+        #region IComparer implementation
+        public int Compare (IZIndex x, IZIndex y) {
+            if (x == null) {
+                return 0x01;
+            } else if (y == null) {
+                return -0x01;
+            } else {
+                return x.ZIndex.CompareTo (y.ZIndex);
+            }
         }
+        #endregion
+
 
     }
-}
 
+}

@@ -31,7 +31,8 @@ namespace IdpGie {
         PointList     = 0x0800000000000008UL,
         Named         = 0x0800000000000010UL,
         Point         = 0x0800000000000020UL,
-        All           = 0x080000000000003fUL
+        Color         = 0x0800000000000040UL,
+        All           = 0x080000000000007FUL
     }
 }
 

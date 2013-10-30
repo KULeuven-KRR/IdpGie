@@ -7,7 +7,82 @@
   <import>
     <widget-library name="../bin/Debug/IdpGie.exe" internal="true" />
   </import>
+  <icon-factory>
+    <icon-set id="play">
+      <source>
+        <property name="Image">stock:stock_media-play Menu</property>
+      </source>
+    </icon-set>
+    <icon-set id="pause">
+      <source>
+        <property name="Image">stock:gtk-media-pause Menu</property>
+      </source>
+    </icon-set>
+    <icon-set id="rewind">
+      <source>
+        <property name="Image">stock:gtk-goto-first Menu</property>
+      </source>
+    </icon-set>
+    <icon-set id="forward">
+      <source>
+        <property name="Image">stock:gtk-goto-last Menu</property>
+      </source>
+    </icon-set>
+    <icon-set id="previous">
+      <source>
+        <property name="Image">stock:gtk-go-back Menu</property>
+      </source>
+    </icon-set>
+    <icon-set id="next">
+      <source>
+        <property name="Image">stock:gtk-go-forward Menu</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Window" id="IdpGie.TopWindow" design-size="400 300">
+    <action-group name="Default">
+      <action id="ControlsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Controls</property>
+        <property name="ShortLabel" translatable="yes">Controls</property>
+      </action>
+      <action id="PlayAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Play</property>
+        <property name="ShortLabel" translatable="yes">Play</property>
+        <property name="StockId">play</property>
+      </action>
+      <action id="PauseAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Pause</property>
+        <property name="ShortLabel" translatable="yes">Pause</property>
+        <property name="StockId">pause</property>
+      </action>
+      <action id="RewindAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Rewind</property>
+        <property name="ShortLabel" translatable="yes">Rewind</property>
+        <property name="StockId">rewind</property>
+      </action>
+      <action id="ForwardAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Forward</property>
+        <property name="ShortLabel" translatable="yes">Forward</property>
+        <property name="StockId">forward</property>
+      </action>
+      <action id="PreviousChapterAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Previous Chapter</property>
+        <property name="ShortLabel" translatable="yes">Previous Chapter</property>
+        <property name="StockId">previous</property>
+      </action>
+      <action id="NextChapterAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Next Chapter</property>
+        <property name="ShortLabel" translatable="yes">Next Chapter</property>
+        <property name="StockId">next</property>
+      </action>
+    </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">TopWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -16,7 +91,25 @@
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <child>
-          <placeholder />
+          <widget class="Gtk.MenuBar" id="menubar1">
+            <property name="MemberName" />
+            <node name="__gtksharp_147_Stetic_Editor_ActionMenuBar" type="Menubar">
+              <node type="Menu" action="ControlsAction">
+                <node type="Menuitem" action="PlayAction" />
+                <node type="Menuitem" action="PauseAction" />
+                <node type="Menuitem" action="RewindAction" />
+                <node type="Menuitem" action="ForwardAction" />
+                <node type="Menuitem" action="PreviousChapterAction" />
+                <node type="Menuitem" action="NextChapterAction" />
+              </node>
+            </node>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
         </child>
         <child>
           <placeholder />
@@ -32,8 +125,6 @@
           <packing>
             <property name="Position">2</property>
             <property name="AutoSize">False</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>
