@@ -12,9 +12,12 @@ namespace IdpGie
 		private global::Gtk.Action ForwardAction;
 		private global::Gtk.Action PreviousChapterAction;
 		private global::Gtk.Action NextChapterAction;
-		private global::Gtk.VBox vbox1;
+		private global::Gtk.VBox vhierarchy;
 		private global::Gtk.MenuBar menubar1;
+		private global::Gtk.VBox mainhierarchy;
 		private global::IdpGie.BlueprintMediabar blueprintmediabar1;
+		private global::IdpGie.BlueprintTabControl blueprinttabcontrol2;
+		private global::Gtk.Statusbar statusbar;
 		
 		protected virtual void Build ()
 		{
@@ -46,37 +49,66 @@ namespace IdpGie
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "IdpGie.TopWindow";
-			this.Title = global::Mono.Unix.Catalog.GetString ("TopWindow");
+			this.Title = global::Mono.Unix.Catalog.GetString ("Idp-GIE The IDP Graphical Interactive Environment");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Modal = true;
+			this.AllowShrink = true;
+			this.DefaultWidth = 1024;
+			this.DefaultHeight = 800;
 			// Container child IdpGie.TopWindow.Gtk.Container+ContainerChild
-			this.vbox1 = new global::Gtk.VBox ();
-			this.vbox1.Name = "vbox1";
-			this.vbox1.Spacing = 6;
-			// Container child vbox1.Gtk.Box+BoxChild
+			this.vhierarchy = new global::Gtk.VBox ();
+			this.vhierarchy.Name = "vhierarchy";
+			// Container child vhierarchy.Gtk.Box+BoxChild
 			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='ControlsAction' action='ControlsAction'><menuitem name='PlayAction' action='PlayAction'/><menuitem name='PauseAction' action='PauseAction'/><menuitem name='RewindAction' action='RewindAction'/><menuitem name='ForwardAction' action='ForwardAction'/><menuitem name='PreviousChapterAction' action='PreviousChapterAction'/><menuitem name='NextChapterAction' action='NextChapterAction'/></menu></menubar></ui>");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 			this.menubar1.Name = "menubar1";
-			this.vbox1.Add (this.menubar1);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.menubar1]));
+			this.vhierarchy.Add (this.menubar1);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vhierarchy [this.menubar1]));
 			w2.Position = 0;
 			w2.Expand = false;
 			w2.Fill = false;
-			// Container child vbox1.Gtk.Box+BoxChild
+			// Container child vhierarchy.Gtk.Box+BoxChild
+			this.mainhierarchy = new global::Gtk.VBox ();
+			this.mainhierarchy.Name = "mainhierarchy";
+			// Container child mainhierarchy.Gtk.Box+BoxChild
 			this.blueprintmediabar1 = new global::IdpGie.BlueprintMediabar ();
 			this.blueprintmediabar1.Name = "blueprintmediabar1";
 			this.blueprintmediabar1.Min = 0;
 			this.blueprintmediabar1.Max = 0;
 			this.blueprintmediabar1.Current = 0;
 			this.blueprintmediabar1.Speed = 0;
-			this.vbox1.Add (this.blueprintmediabar1);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.blueprintmediabar1]));
-			w3.Position = 2;
-			this.Add (this.vbox1);
+			this.mainhierarchy.Add (this.blueprintmediabar1);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [this.blueprintmediabar1]));
+			w3.Position = 1;
+			w3.Expand = false;
+			w3.Fill = false;
+			// Container child mainhierarchy.Gtk.Box+BoxChild
+			this.blueprinttabcontrol2 = new global::IdpGie.BlueprintTabControl ();
+			this.blueprinttabcontrol2.Name = "blueprinttabcontrol2";
+			this.blueprinttabcontrol2.Min = 0;
+			this.blueprinttabcontrol2.Max = 2;
+			this.blueprinttabcontrol2.Current = 0;
+			this.mainhierarchy.Add (this.blueprinttabcontrol2);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [this.blueprinttabcontrol2]));
+			w4.Position = 2;
+			w4.Expand = false;
+			w4.Fill = false;
+			this.vhierarchy.Add (this.mainhierarchy);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vhierarchy [this.mainhierarchy]));
+			w5.Position = 1;
+			// Container child vhierarchy.Gtk.Box+BoxChild
+			this.statusbar = new global::Gtk.Statusbar ();
+			this.statusbar.Name = "statusbar";
+			this.statusbar.Spacing = 6;
+			this.vhierarchy.Add (this.statusbar);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vhierarchy [this.statusbar]));
+			w6.Position = 3;
+			w6.Expand = false;
+			w6.Fill = false;
+			this.Add (this.vhierarchy);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 400;
-			this.DefaultHeight = 300;
 			this.Show ();
 		}
 	}

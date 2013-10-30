@@ -78,8 +78,8 @@ namespace IdpGie {
         }
 
         internal void AddIdpdObject (IdpdObject obj) {
-            Console.WriteLine ("Added {0}", obj);
             this.objects.Add (obj.Name, obj);
+            Console.WriteLine ("Added {0} now {1}", obj, this.objects.Count);
         }
 
         public IEnumerable<IdpdObject> Objects () {

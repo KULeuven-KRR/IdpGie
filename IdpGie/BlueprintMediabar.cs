@@ -23,8 +23,9 @@ using System.ComponentModel;
 using Cairo;
 
 namespace IdpGie {
+
     [ToolboxItem(true)]
-    public class BlueprintMediabar : Gtk.DrawingArea {
+    public class BlueprintMediabar : CairoMediaWidget {
         
         public const double Offset = 10.0d;
         public const double Epsilon = 1e-6;
@@ -93,7 +94,6 @@ namespace IdpGie {
         }
         
         public BlueprintMediabar () {
-            // Insert initialization code here.
             this.AddEvents ((int)(Gdk.EventMask.PointerMotionMask | Gdk.EventMask.ButtonPressMask | Gdk.EventMask.ButtonReleaseMask));
         }
         public void SetMinCurrentMax (double min, double current, double max) {
@@ -127,7 +127,6 @@ namespace IdpGie {
             return base.OnButtonReleaseEvent (evnt);
         }
         protected override bool OnButtonPressEvent (Gdk.EventButton ev) {
-            // Insert button press handling code here.
             double x = ev.X;
             int w, h;
             this.GdkWindow.GetSize (out w, out h);
@@ -168,13 +167,8 @@ namespace IdpGie {
         }
         protected virtual void OnCurrentChanged () {
         }
-        protected override bool OnExposeEvent (Gdk.EventExpose ev) {
-            base.OnExposeEvent (ev);
-            // Insert drawing code here.
-            Context ctx = Gdk.CairoHelper.Create (this.GdkWindow);
-            ctx.FillRule = FillRule.EvenOdd;
-            int w, h;
-            this.GdkWindow.GetSize (out w, out h);
+
+        protected override void PaintWidget (Context ctx, int w, int h) {
             ctx.Rectangle (0.0d, 0.0d, w, h);
             ctx.Color = BlueprintStyle.BluePrint;
             double xb = 2 * Offset + 36.0d;
@@ -209,19 +203,13 @@ namespace IdpGie {
                 ctx.LineTo (w - Offset - 4.0d, 16.0d);
             }
             ctx.Stroke ();
-            ((IDisposable)ctx.Target).Dispose ();
-            ((IDisposable)ctx).Dispose ();
-            return true;
         }
-        protected override void OnSizeAllocated (Gdk.Rectangle allocation) {
-            base.OnSizeAllocated (allocation);
-            // Insert layout code here.
-        }
+
         protected override void OnSizeRequested (ref Gtk.Requisition requisition) {
-            // Calculate desired size here.
             requisition.Height = 34;
             requisition.Width = 100;
         }
+
     }
 }
 

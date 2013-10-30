@@ -38,6 +38,8 @@ namespace IdpGie {
         }
 
         protected override bool OnExposeEvent (Gdk.EventExpose ev) {
+            base.OnExposeEvent (ev);
+            // Insert drawing code here.
             Context ctx = Gdk.CairoHelper.Create (this.GdkWindow);
             ctx.FillRule = FillRule.EvenOdd;
             int w, h;
@@ -45,7 +47,7 @@ namespace IdpGie {
             this.PaintWidget (ctx, w, h);
             ((IDisposable)ctx.Target).Dispose ();
             ((IDisposable)ctx).Dispose ();
-            return base.OnExposeEvent (ev);
+            return true;
         }
 
         public virtual void Play () {

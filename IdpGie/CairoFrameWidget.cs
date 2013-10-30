@@ -28,6 +28,11 @@ namespace IdpGie {
     public class CairoFrameWidget : CairoMediaWidget {
 
         private DrawTheory theory;
+        public const double Offset = 10.0d;
+        public const double Offset2 = Offset + BlueprintStyle.Thickness;
+        public const double Offset3 = Offset2 + BlueprintStyle.Thickness;
+        public const double Offset4 = Offset3 + BlueprintStyle.Thickness;
+        public const double LineDelta = 10.0d;
 
         public DrawTheory Theory {
             get {
@@ -40,13 +45,50 @@ namespace IdpGie {
 
         public CairoFrameWidget (DrawTheory theory) {
             this.Theory = theory;
+            this.AddEvents ((int)(Gdk.EventMask.PointerMotionMask | Gdk.EventMask.ButtonPressMask | Gdk.EventMask.ButtonReleaseMask));
         }
 
 
         protected override void PaintWidget (Context ctx, int w, int h) {
+            this.paintBackground (ctx, w, h);
+            ctx.Color = new Color (0.0d, 0.0d, 0.0d);
             foreach (IdpdObject obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
                 obj.PaintObject (ctx);
             }
+        }
+
+        private void paintBackground (Context ctx, int w, int h) {
+            ctx.Color = BlueprintStyle.BluePrint;
+            ctx.Rectangle (0.0d, 0.0d, w, h);
+            ctx.Fill ();
+            ctx.Color = BlueprintStyle.SoftWhite;
+            ctx.Rectangle (Offset, Offset, w - 2 * Offset, h - 2 * Offset);
+            ctx.ClosePath ();
+            ctx.Rectangle (Offset2, Offset2, w - 2 * Offset2, h - 2 * Offset2);
+            ctx.ClosePath ();
+            ctx.Fill ();
+            double W = w - 2 * Offset2;
+            int n = (int)Math.Round ((double)W / LineDelta);
+            double dx = (double)W / n;
+            ctx.LineWidth = 0.5d;
+            for (int i = 1; i < n; i++) {
+                ctx.MoveTo (dx * i + Offset2, Offset2);
+                ctx.RelLineTo (0.0d, h - 2 * Offset2);
+                ctx.Stroke ();
+            }
+            double H = h - 2 * Offset2;
+            n = (int)Math.Round ((double)H / LineDelta);
+            double dy = (double)H / n;
+            for (int i = 1; i < n; i++) {
+                ctx.MoveTo (Offset2, dy * i + Offset2);
+                ctx.RelLineTo (w - 2.0d * Offset2, 0.0d);
+                ctx.Stroke ();
+            }
+        }
+
+        protected override void OnSizeRequested (ref Gtk.Requisition requisition) {
+            requisition.Height = 34;
+            requisition.Width = 100;
         }
 
     }

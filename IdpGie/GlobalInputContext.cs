@@ -47,9 +47,11 @@ namespace IdpGie {
             foreach (Type type in assembly.GetTypes()) {
                 if (type.IsClass) {
                     analyzeClass (type);
-                } else if (type.IsValueType) {
+                }
+                if (type.IsValueType) {
                     this.analyzeStruct (type);
-                } else if (type.IsEnum) {
+                }
+                if (type.IsEnum) {
                     analyzeEnum (type);
                 }
             }

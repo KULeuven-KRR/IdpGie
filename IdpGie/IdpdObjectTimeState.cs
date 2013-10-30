@@ -26,10 +26,10 @@ namespace IdpGie {
 
     public class IdpdObjectTimeState {
 
-        private bool visible;
-        private Matrix4d transformations;
+        private bool visible = true;
+        private Matrix4d transformations = new Matrix4d ();
         private Matrix cairoTransformations = null;
-        private string text;
+        private string text = null;
         private Color innerColor = new Color (0.0d, 0.0d, 0.0d, 0.0d);
         private Color edgeColor = new Color (0.0d, 0.0d, 0.0d);
 

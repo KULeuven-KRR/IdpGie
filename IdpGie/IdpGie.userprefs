@@ -1,41 +1,22 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="StructureFunction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TopWindow.cs">
     <Files>
-      <File FileName="StructureFunctionInstance.cs" Line="73" Column="40" />
-      <File FileName="StructureFunction.cs" Line="33" Column="58" />
-      <File FileName="Point.cs" Line="123" Column="41" />
-      <File FileName="IdpdFunctionStructureAttribute.cs" Line="37" Column="23" />
-      <File FileName="TermType.cs" Line="26" Column="28" />
-      <File FileName="Function.cs" Line="85" Column="9" />
-      <File FileName="IdpdFunctionStructureConstructorAttribute.cs" Line="43" Column="26" />
-      <File FileName="IFunction.cs" Line="44" Column="9" />
-      <File FileName="IFunctionInstance.cs" Line="1" Column="1" />
-      <File FileName="IdpdVirtualFunctionInstance.cs" Line="160" Column="19" />
-      <File FileName="IdpdIntegerFunctionInstance.cs" Line="1" Column="1" />
-      <File FileName="NamedFunctionInstance.cs" Line="177" Column="19" />
-      <File FileName="LocalInputContext.cs" Line="58" Column="92" />
-      <File FileName="IPredicate.cs" Line="37" Column="15" />
-      <File FileName="ITermHeader.cs" Line="34" Column="69" />
-      <File FileName="TermHeader.cs" Line="85" Column="85" />
-      <File FileName="Predicate.cs" Line="51" Column="32" />
-      <File FileName="FunctionInstance.cs" Line="1" Column="1" />
-      <File FileName="EnumerableUtils.cs" Line="1" Column="1" />
-      <File FileName="GlobalInputContext.cs" Line="85" Column="93" />
-      <File FileName="IArrayFunctionInstance.cs" Line="26" Column="90" />
-      <File FileName="ArrayTailFunction.cs" Line="151" Column="27" />
-      <File FileName="ArrayHeadTailFunctionInstance.cs" Line="185" Column="27" />
-      <File FileName="IdpdMapping.cs" Line="36" Column="91" />
-      <File FileName="EnhancedTermCollection.cs" Line="27" Column="39" />
-      <File FileName="IdpdPolygonObject.cs" Line="1" Column="1" />
-      <File FileName="IdpdIrregularPolygonObject.cs" Line="37" Column="49" />
-      <File FileName="IdpdRegularPolygonObject.cs" Line="27" Column="42" />
+      <File FileName="TopWindow.cs" Line="41" Column="26" />
+      <File FileName="CairoMediaWidget.cs" Line="50" Column="25" />
+      <File FileName="CairoFrameWidget.cs" Line="53" Column="44" />
+      <File FileName="DrawTheory.cs" Line="82" Column="76" />
+      <File FileName="BlueprintMediabar.cs" Line="97" Column="13" />
+      <File FileName="GlobalInputContext.cs" Line="54" Column="17" />
+      <File FileName="BlueprintTabControl.cs" Line="80" Column="43" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="IdpGie" expanded="True">
-            <Node name="StructureFunction.cs" selected="True" />
+            <Node name="UserInterface" expanded="True" selected="True">
+              <Node name="IdpGie.TopWindow" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

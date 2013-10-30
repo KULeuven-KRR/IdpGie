@@ -167,6 +167,8 @@
     <Compile Include="OpenGLFrameWidget.cs" />
     <Compile Include="IdpdObjectTimeStateModifier.cs" />
     <Compile Include="IInterpolatable.cs" />
+    <Compile Include="TimeSensitiveComparer.cs" />
+    <Compile Include="BlueprintTabControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
