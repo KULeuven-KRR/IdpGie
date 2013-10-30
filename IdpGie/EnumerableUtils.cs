@@ -40,6 +40,21 @@ namespace IdpGie {
             }
         }
 
+        public static IEnumerable<Q> GenerateDual<T,Q> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T> generator) {
+            IEnumerator<T> e1 = source1.GetEnumerator ();
+            IEnumerator<Q> e2 = source2.GetEnumerator ();
+            bool n1 = e1.MoveNext (), n2 = e2.MoveNext ();
+            while (n1 && n2) {
+                yield return e2.Current;
+                n1 = e1.MoveNext ();
+                n2 = e2.MoveNext ();
+            }
+            while (n1) {
+                yield return generator (e1.Current);
+                n1 = e1.MoveNext ();
+            }
+        }
+
         public static IEnumerable<R> SelectDual<T,Q,R> (this IEnumerable<T> source1, IEnumerable<Q> source2, Func<T,Q,R> function) {
             IEnumerator<T> e1 = source1.GetEnumerator ();
             IEnumerator<Q> e2 = source2.GetEnumerator ();

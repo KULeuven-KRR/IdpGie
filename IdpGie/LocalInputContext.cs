@@ -39,7 +39,6 @@ namespace IdpGie {
                 Tuple<string,int> key = new Tuple<string, int> (name, arity);
                 if (!this.functions.TryGetValue (key, out f)) {
                     f = new Function (name, arity);
-                    Console.WriteLine ("CF {0}/{1}", name, arity);
                     this.functions.Add (key, f);
                 }
             }

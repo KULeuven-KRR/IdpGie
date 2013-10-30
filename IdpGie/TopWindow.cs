@@ -24,6 +24,7 @@ using System;
 using System.IO;
 using Gtk;
 using IdpGie.Parser;
+using Mono.Unix;
 
 namespace IdpGie {
     public partial class TopWindow : Gtk.Window {
@@ -46,7 +47,13 @@ namespace IdpGie {
             //this.mainhierarchy.PackStart (new BlueprintMediabar (), true, true, 0x00);
         }
 
+        protected override bool OnDeleteEvent (Gdk.Event evnt) {
+            Application.Quit ();
+            return base.OnDeleteEvent (evnt);
+        }
+
         public static int Main (string[] args) {
+            Catalog.Init ("IdpGie", "./locale");
             Application.Init ("IdpGie", ref args);
             DirectoryInfo dirInfo = new DirectoryInfo (".");
             foreach (string name in args) {
@@ -78,6 +85,11 @@ namespace IdpGie {
                 }
             }
             return 0x00;
+        }
+
+        protected void Quit (object sender, EventArgs e) {
+            this.Destroy ();
+            Application.Quit ();
         }
 
     }

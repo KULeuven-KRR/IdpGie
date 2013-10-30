@@ -27,7 +27,7 @@ namespace IdpGie {
     public class DrawTheory {
 
         private readonly List<ITheoryItem> elements;
-        private readonly Dictionary<IFunctionInstance,IdpdObject> objects = new Dictionary<IFunctionInstance, IdpdObject> ();
+        private readonly Dictionary<IFunctionInstance,IIdpdObject> objects = new Dictionary<IFunctionInstance, IIdpdObject> ();
 
         private DrawTheoryMode mode = DrawTheoryMode.Cairo;
 
@@ -40,17 +40,9 @@ namespace IdpGie {
             }
         }
 
-        public IdpdObject this [IFunctionInstance key] {
+        public IIdpdObject this [IFunctionInstance key] {
             get {
                 return this.objects [key];
-            }
-        }
-
-        public double Time {
-            set {
-                foreach (IdpdObject obj in objects.Values) {
-                    obj.Time = value;
-                }
             }
         }
 
@@ -77,12 +69,11 @@ namespace IdpGie {
             return sb.ToString ();
         }
 
-        internal void AddIdpdObject (IdpdObject obj) {
+        internal void AddIdpdObject (IIdpdObject obj) {
             this.objects.Add (obj.Name, obj);
-            Console.WriteLine ("Added {0} now {1}", obj, this.objects.Count);
         }
 
-        public IEnumerable<IdpdObject> Objects () {
+        public IEnumerable<IIdpdObject> Objects () {
             return this.objects.Values;
         }
 

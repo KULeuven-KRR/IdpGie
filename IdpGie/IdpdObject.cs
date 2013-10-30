@@ -23,21 +23,18 @@ using Cairo;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : IZIndex {
+    public abstract class IdpdObject : IIdpdObject {
 
         private readonly IFunctionInstance name;
         private readonly IdpdObjectTimeState state = new IdpdObjectTimeState ();
 
+        #region IIdpdObject implementation
         public IFunctionInstance Name {
             get {
                 return this.name;
             }
         }
-
-        public virtual double Time {
-            set {
-            }
-        }
+        #endregion
 
         #region IZIndix implementation
         public double ZIndex {
@@ -47,20 +44,23 @@ namespace IdpGie {
         }
         #endregion
 
+        #region IIdpdObject implementation
         public IdpdObjectTimeState State {
             get {
                 return this.state;
             }
         }
+        #endregion
 
         protected IdpdObject (IFunctionInstance name) {
             this.name = name;
         }
 
         protected virtual void InnerPaintObject (Context ctx) {
-            this.CairoFillStroke (ctx);
+            cairoFillStroke (ctx);
         }
 
+        #region IIdpdObject implementation
         public virtual void PaintObject (Context ctx) {
             ctx.Save ();
             //TODO: translate
@@ -68,13 +68,18 @@ namespace IdpGie {
             ctx.Restore ();
         }
 
-        protected void CairoFillStroke (Context ctx) {
-            ctx.FillPreserve ();
-            ctx.Stroke ();
-        }
-
         public virtual void WriteTikz (StringBuilder builder) {
 
+        }
+
+        public virtual void Render () {
+
+        }
+        #endregion
+
+        private static void cairoFillStroke (Context ctx) {
+            ctx.FillPreserve ();
+            ctx.Stroke ();
         }
 
         public override string ToString () {

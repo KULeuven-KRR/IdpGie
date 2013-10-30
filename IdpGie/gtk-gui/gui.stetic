@@ -38,8 +38,13 @@
         <property name="Image">stock:gtk-go-forward Menu</property>
       </source>
     </icon-set>
+    <icon-set id="Quit">
+      <source>
+        <property name="Image">stock:gtk-quit Menu</property>
+      </source>
+    </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="IdpGie.TopWindow" design-size="401 300">
+  <widget class="Gtk.Window" id="IdpGie.TopWindow" design-size="413 300">
     <action-group name="Default">
       <action id="ControlsAction">
         <property name="Type">Action</property>
@@ -82,6 +87,28 @@
         <property name="ShortLabel" translatable="yes">Next Chapter</property>
         <property name="StockId">next</property>
       </action>
+      <action id="FileAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">File</property>
+        <property name="ShortLabel" translatable="yes">File</property>
+      </action>
+      <action id="OpenAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Open</property>
+        <property name="ShortLabel" translatable="yes">Open</property>
+      </action>
+      <action id="ExitAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Exit</property>
+        <property name="ShortLabel" translatable="yes">Exit</property>
+        <property name="StockId">Quit</property>
+        <signal name="Activated" handler="Quit" />
+      </action>
+      <action id="Action">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">-</property>
+        <property name="ShortLabel" translatable="yes">--</property>
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes" context="yes">Title of the window|Idp-GIE The IDP Graphical Interactive Environment</property>
@@ -97,6 +124,11 @@
           <widget class="Gtk.MenuBar" id="menubar1">
             <property name="MemberName" />
             <node name="__gtksharp_147_Stetic_Editor_ActionMenuBar" type="Menubar">
+              <node type="Menu" action="FileAction">
+                <node type="Menuitem" action="OpenAction" />
+                <node type="Separator" />
+                <node type="Menuitem" action="ExitAction" />
+              </node>
               <node type="Menu" action="ControlsAction">
                 <node type="Menuitem" action="PlayAction" />
                 <node type="Menuitem" action="PauseAction" />
@@ -168,7 +200,7 @@
                 <property name="LabelProp" translatable="yes" context="yes">loading in status bar|Loading...</property>
               </widget>
               <packing>
-                <property name="Position">1</property>
+                <property name="Position">0</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>

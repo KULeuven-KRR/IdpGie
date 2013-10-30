@@ -23,6 +23,8 @@ namespace Stetic
 				w1.Add ("previous", w6);
 				global::Gtk.IconSet w7 = new global::Gtk.IconSet (global::Stetic.IconLoader.LoadIcon (iconRenderer, "gtk-go-forward", global::Gtk.IconSize.Menu));
 				w1.Add ("next", w7);
+				global::Gtk.IconSet w8 = new global::Gtk.IconSet (global::Stetic.IconLoader.LoadIcon (iconRenderer, "gtk-quit", global::Gtk.IconSize.Menu));
+				w1.Add ("Quit", w8);
 				w1.AddDefault ();
 			}
 		}

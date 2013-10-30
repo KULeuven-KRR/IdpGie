@@ -51,10 +51,13 @@ namespace IdpGie {
 
         protected override void PaintWidget (Context ctx, int w, int h) {
             this.paintBackground (ctx, w, h);
+            ctx.Translate (Offset2, Offset2);
+            ctx.Save ();
             ctx.Color = new Color (0.0d, 0.0d, 0.0d);
-            foreach (IdpdObject obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
+            foreach (IIdpdObject obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
                 obj.PaintObject (ctx);
             }
+            ctx.Restore ();
         }
 
         private void paintBackground (Context ctx, int w, int h) {
