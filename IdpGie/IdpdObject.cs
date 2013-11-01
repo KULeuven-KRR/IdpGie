@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.Text;
 using Cairo;
 
@@ -62,10 +63,14 @@ namespace IdpGie {
 
         #region IIdpdObject implementation
         public virtual void PaintObject (Context ctx) {
-            ctx.Save ();
-            //TODO: translate
-            this.InnerPaintObject (ctx);
-            ctx.Restore ();
+            if (this.state.Visible) {
+                ctx.Save ();
+                //TODO: translate
+                Console.WriteLine (this.state.CairoTransformations);
+                ctx.Transform (this.state.CairoTransformations);
+                this.InnerPaintObject (ctx);
+                ctx.Restore ();
+            }
         }
 
         public virtual void WriteTikz (StringBuilder builder) {
@@ -85,6 +90,23 @@ namespace IdpGie {
         public override string ToString () {
             return string.Format ("{0}[{1}]", this.GetType ().Name, this.Name);
         }
+
+        #region IIdpdTransformable implementation
+        public void SetXPos (double xpos) {
+            this.state.SetXPos (xpos);
+        }
+
+        public void SetYPos (double ypos) {
+            this.state.SetYPos (ypos);
+        }
+
+        public void SetZPos (double zpos) {
+            this.state.SetZPos (zpos);
+        }
+        #endregion
+
+
+
 
     }
 

@@ -30,6 +30,8 @@ namespace IdpGie {
         private readonly Dictionary<IFunctionInstance,IIdpdObject> objects = new Dictionary<IFunctionInstance, IIdpdObject> ();
 
         private DrawTheoryMode mode = DrawTheoryMode.Cairo;
+        private double minTime = 0.0d;
+        private double maxTime = 0.0d;
 
         public DrawTheoryMode Mode {
             get {
@@ -42,6 +44,7 @@ namespace IdpGie {
 
         public IIdpdObject this [IFunctionInstance key] {
             get {
+                Console.WriteLine ("query {0}", key);
                 return this.objects [key];
             }
         }
@@ -52,12 +55,35 @@ namespace IdpGie {
             }
         }
 
+        public double MinTime {
+            get {
+                return this.minTime;
+            }
+        }
+
+        public double MaxTime {
+            get {
+                return this.maxTime;
+            }
+        }
+
+        public double TimeSpan {
+            get {
+                return this.maxTime - minTime;
+            }
+        }
+
         public DrawTheory (List<ITheoryItem> elements) {
             if (elements != null) {
                 this.elements = elements;
             } else {
                 this.elements = new List<ITheoryItem> ();
             }
+        }
+
+        private void registerTime (double time) {
+            this.minTime = Math.Min (this.minTime, time);
+            this.maxTime = Math.Max (this.maxTime, time);
         }
 
         public string ToFullString () {
@@ -71,6 +97,10 @@ namespace IdpGie {
 
         internal void AddIdpdObject (IIdpdObject obj) {
             this.objects.Add (obj.Name, obj);
+            Console.WriteLine ("added {0} as {1}", obj, obj.Name);
+            if (this.objects [obj.Name] != obj) {
+                Console.WriteLine ("CORRUPT HASH!");
+            }
         }
 
         public IEnumerable<IIdpdObject> Objects () {

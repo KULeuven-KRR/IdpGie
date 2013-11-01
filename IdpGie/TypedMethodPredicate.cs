@@ -43,12 +43,13 @@ namespace IdpGie {
         }
 
         public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
-            object[] val = EnumerableUtils.HeadTail (theory, arguments.SelectDual (this.TermTypes, (x,y) => x.ConvertedValue (y))).ToArray ();
+            object[] val = EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.method.GetParameters ().Skip (0x01).Select (x => x.ParameterType))).ToArray ();
             try {
                 this.method.Invoke (null, val);
                 base.Execute (theory, arguments);
-            } catch (Exception) {
+            } catch (Exception e) {
                 Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
+                //Console.WriteLine (e);
             }
         }
 

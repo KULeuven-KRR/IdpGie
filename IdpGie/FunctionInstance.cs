@@ -72,6 +72,14 @@ namespace IdpGie {
             }
             return hash;
         }
+
+        public override bool Equals (object obj) {
+            if (obj is IFunctionInstance) {
+                IFunctionInstance ifi = (IFunctionInstance)obj;
+                return Object.Equals (this.Function, ifi.Function) && this.Terms.AllDual (ifi.Terms, Object.Equals);
+            }
+            return false;
+        }
     
     }
 

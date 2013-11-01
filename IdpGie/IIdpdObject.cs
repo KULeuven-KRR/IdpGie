@@ -24,7 +24,7 @@ using OpenTK.Graphics;
 
 namespace IdpGie {
 
-    public interface IIdpdObject : IZIndex {
+    public interface IIdpdObject : IZIndex, IIdpdTransformable {
 
         IFunctionInstance Name {
             get;

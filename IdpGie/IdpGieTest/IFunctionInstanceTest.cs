@@ -1,5 +1,5 @@
 //
-//  TypeSystem.cs
+//  IFunctionInstanceTest.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,28 +19,15 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
+using NUnit.Framework;
 
-namespace IdpGie {
+namespace IdpGieTest {
 
-    public static class TypeSystem {
-
-        public static bool CanConvert (TermType frm, TermType to) {
-            return (frm & to) == to;
+    [TestFixture()]
+    public class IFunctionInstanceTest {
+        [Test()]
+        public void TestCase () {
         }
-
-        public static IEnumerable<object> GetArguments (IEnumerable<IFunctionInstance> arguments, IEnumerable<TermType> termTypes, IEnumerable<Type> methodTypes) {
-            return methodTypes.GenerateDual (arguments.SelectDual (termTypes, (x,y) => x.ConvertedValue (y)), GetDefault);
-        }
-
-        public static object GetDefault (Type type) {
-            if (type.IsValueType) {
-                return Activator.CreateInstance (type);
-            } else {
-                return null;
-            }
-        }
-
     }
 }
 

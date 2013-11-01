@@ -30,7 +30,6 @@ namespace IdpGie {
         private readonly TermType outputType;
         private readonly IList<TermType> inputTypes;
         private readonly ConstructorInfo constructor;
-        private readonly Dictionary<TermType,MethodInfo> converts = new Dictionary<TermType, MethodInfo> ();
 
         #region IFunction implementation
         public TermType OutputType {

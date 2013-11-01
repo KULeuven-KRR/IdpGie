@@ -24,10 +24,10 @@ using Cairo;
 
 namespace IdpGie {
 
-    public class IdpdObjectTimeState {
+    public class IdpdObjectTimeState : IIdpdTransformable {
 
         private bool visible = true;
-        private Matrix4d transformations = new Matrix4d ();
+        private Matrix4d transformations = Matrix4d.Identity;
         private Matrix cairoTransformations = null;
         private string text = null;
         private Color innerColor = new Color (0.0d, 0.0d, 0.0d, 0.0d);
@@ -141,9 +141,28 @@ namespace IdpGie {
             this.makeDirty ();
         }
 
+        public void Shift (double dx, double dy, double dz = 0.0d) {
+            this.transformations.M14 += dx;
+            this.transformations.M24 += dy;
+            this.transformations.M34 += dz;
+            this.makeDirty ();
+        }
+
+        public void SetXPos (double xpos) {
+            this.transformations.M14 = xpos;
+        }
+
+        public void SetYPos (double ypos) {
+            this.transformations.M24 = ypos;
+        }
+
+        public void SetZPos (double zpos) {
+            this.transformations.M34 = zpos;
+        }
+
         private Matrix calcCairoTransformations () {
             Matrix ct = this.cairoTransformations;
-            if (ct == null) {
+            if (Object.ReferenceEquals (ct, null)) {
                 Matrix4d t = this.transformations;
                 ct = new Matrix (t.M11, t.M21, t.M12, t.M22, t.M14, t.M24);
                 this.cairoTransformations = ct;
