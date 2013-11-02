@@ -52,6 +52,7 @@ namespace IdpGie {
         protected override void PaintWidget (Context ctx, int w, int h) {
             this.paintBackground (ctx, w, h);
             ctx.Translate (Offset2, Offset2);
+            ctx.Scale (1.0d, -1.0d);
             ctx.Save ();
             ctx.Color = new Color (0.0d, 0.0d, 0.0d);
             foreach (IIdpdObject obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {

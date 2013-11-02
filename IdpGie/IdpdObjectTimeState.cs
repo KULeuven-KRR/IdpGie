@@ -19,12 +19,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 using OpenTK;
 using Cairo;
 
 namespace IdpGie {
 
-    public class IdpdObjectTimeState : IIdpdTransformable {
+    public class IdpdObjectTimeState : TimeSensitiveBase, IIdpdTransformable {
 
         private bool visible = true;
         private Matrix4d transformations = Matrix4d.Identity;
@@ -32,6 +33,8 @@ namespace IdpGie {
         private string text = null;
         private Color innerColor = new Color (0.0d, 0.0d, 0.0d, 0.0d);
         private Color edgeColor = new Color (0.0d, 0.0d, 0.0d);
+        private readonly SortedSet<IdpdObjectTimeStateModifier> before = new SortedSet<IdpdObjectTimeStateModifier> ();
+        private readonly SortedSet<IdpdObjectTimeStateModifier> after = new SortedSet<IdpdObjectTimeStateModifier> ();
 
         public bool Visible {
             get {
@@ -39,6 +42,18 @@ namespace IdpGie {
             }
             set {
                 visible = value;
+            }
+        }
+
+        public override double Time {
+            get {
+                return base.Time;
+            }
+            protected set {
+                if (value != double.NaN) {
+                    this.setTime (value);
+                    base.Time = value;
+                }
             }
         }
 
@@ -114,7 +129,7 @@ namespace IdpGie {
             }
         }
 
-        public IdpdObjectTimeState () {
+        public IdpdObjectTimeState () : base(double.NegativeInfinity) {
         }
 
         public void Show () {
@@ -174,7 +189,26 @@ namespace IdpGie {
             this.cairoTransformations = null;
         }
 
+        void setTime (double value) {
+            throw new NotImplementedException ();
+        }
+
+        public void AddModifier (IdpdObjectTimeStateModifier modifier) {
+            if (modifier != null) {
+                int comp = this.CompareTo (modifier);
+                if (comp < 0x00) {
+                    this.after.Add (modifier);
+                } else {
+                    //TODO: reprocess?
+                    this.before.Add (modifier);
+                }
+            }
+        }
+
+        public void AddModifier (double time, Action<IdpdObjectTimeState> modifier) {
+            this.AddModifier (new IdpdObjectTimeStateModifier (time, modifier));
+        }
+
     }
 
 }
-

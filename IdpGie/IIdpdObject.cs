@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Text;
 using Cairo;
-using OpenTK.Graphics;
+using OpenTK;
 
 namespace IdpGie {
 
@@ -38,7 +38,7 @@ namespace IdpGie {
 
         void WriteTikz (StringBuilder builder);
 
-        void Render ();
+        void Render (FrameEventArgs e);
 
     }
 

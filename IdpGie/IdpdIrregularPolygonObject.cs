@@ -31,6 +31,7 @@ namespace IdpGie {
 
         public IdpdIrregularPolygonObject (IFunctionInstance name, IEnumerable<Point> points) : base(name) {
             this.points = points.ToList ();
+            Console.WriteLine (string.Join (",", this.points));
         }
 
         public override IEnumerable<PointD> GetPoints () {

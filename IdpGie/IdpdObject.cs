@@ -21,6 +21,7 @@
 using System;
 using System.Text;
 using Cairo;
+using OpenTK;
 
 namespace IdpGie {
 
@@ -61,12 +62,14 @@ namespace IdpGie {
             cairoFillStroke (ctx);
         }
 
+        protected virtual void InnerWriteTikz (StringBuilder sb) {
+
+        }
+
         #region IIdpdObject implementation
         public virtual void PaintObject (Context ctx) {
             if (this.state.Visible) {
                 ctx.Save ();
-                //TODO: translate
-                Console.WriteLine (this.state.CairoTransformations);
                 ctx.Transform (this.state.CairoTransformations);
                 this.InnerPaintObject (ctx);
                 ctx.Restore ();
@@ -74,10 +77,12 @@ namespace IdpGie {
         }
 
         public virtual void WriteTikz (StringBuilder builder) {
-
+            builder.AppendFormat ("\\begin{scope}[xshift={0} cm,yshift={1} cm]", this.State.Xpos, this.State.Ypos);
+            this.InnerWriteTikz (builder);
+            builder.Append (@"\end{scope}");
         }
 
-        public virtual void Render () {
+        public virtual void Render (FrameEventArgs e) {
 
         }
         #endregion
@@ -104,9 +109,6 @@ namespace IdpGie {
             this.state.SetZPos (zpos);
         }
         #endregion
-
-
-
 
     }
 

@@ -24,7 +24,7 @@ namespace IdpGie {
 
     public class IdpdObjectTimeStateModifier : TimeSensitiveBase {
 
-        public IdpdObjectTimeStateModifier (double time) : base(time) {
+        public IdpdObjectTimeStateModifier (double time, Action<IdpdObjectTimeState> action) : base(time) {
         }
     }
 

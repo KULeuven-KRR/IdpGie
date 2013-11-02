@@ -31,12 +31,16 @@ namespace IdpGie {
                 return this.time;
             }
             protected set {
-                this.time = value;
+                if (!double.IsNaN (value)) {
+                    this.time = value;
+                } else {
+                    throw new ArgumentException ("Time must be a number different from NaN.", "time");
+                }
             }
         }
 
         protected TimeSensitiveBase (double time) {
-            this.time = time;
+            this.time = Time;
         }
 
         #region IComparable implementation
