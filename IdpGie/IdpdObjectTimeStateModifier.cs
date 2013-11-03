@@ -24,7 +24,16 @@ namespace IdpGie {
 
     public class IdpdObjectTimeStateModifier : TimeSensitiveBase {
 
+        private readonly Action<IdpdObjectTimeState> action;
+
+        public Action<IdpdObjectTimeState> Action {
+            get {
+                return this.action;
+            }
+        }
+
         public IdpdObjectTimeStateModifier (double time, Action<IdpdObjectTimeState> action) : base(time) {
+            this.action = action;
         }
     }
 

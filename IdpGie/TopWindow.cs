@@ -43,8 +43,8 @@ namespace IdpGie {
             if ((this.Child != null)) {
                 this.Child.ShowAll ();
             }
+            this.tabcontrol.Open ("Test.idpd");
             this.Show ();
-            //this.mainhierarchy.PackStart (new BlueprintMediabar (), true, true, 0x00);
         }
 
         protected override bool OnDeleteEvent (Gdk.Event evnt) {

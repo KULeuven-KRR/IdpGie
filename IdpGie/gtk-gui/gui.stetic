@@ -168,10 +168,10 @@
               </packing>
             </child>
             <child>
-              <widget class="IdpGie.BlueprintTabControl" id="blueprinttabcontrol2">
+              <widget class="IdpGie.BlueprintTabControl" id="tabcontrol">
                 <property name="MemberName" />
                 <property name="Min">0</property>
-                <property name="Max">2</property>
+                <property name="Max">-1</property>
                 <property name="Current">0</property>
               </widget>
               <packing>

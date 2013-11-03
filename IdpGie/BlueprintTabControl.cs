@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Cairo;
 
 namespace IdpGie {
@@ -27,31 +29,48 @@ namespace IdpGie {
     public class BlueprintTabControl : CairoMediaWidget {
         
         public const double Offset = 10;
-        private int min = 1;
-        private int max = 2;
-        private int current = 1;
+        private int min = 0;
+        private int max = -1;
+        private int current = 0;
         private const double shaft = 0.25d;
         private double flapWidth = 1.0d;
         private event EventHandler currentChanged;
+        private LinkedList<string> names = new LinkedList<string> ();
         
         public int Min {
             get {
                 return this.min;
             }
             set {
-                this.min = Math.Min (value, this.max);
+                this.min = Math.Min (value, this.max + 0x01);
                 this.QueueDraw ();
             }
         }
+
         public int Max {
             get {
                 return this.max;
             }
             set {
-                this.max = Math.Max (value, this.min);
+                int val = Math.Max (value, this.min - 0x01);
+                this.max = val++;
+                while (names.Count < val) {
+                    this.names.AddLast (names.Count.ToString ());
+                }
                 this.QueueDraw ();
             }
         }
+
+        public LinkedList<string> Names {
+            get {
+                return this.names;
+            }
+            set {
+                this.names = value;
+                //TODO: fill?
+            }
+        }
+
         public event EventHandler CurrentChanged {
             add {
                 this.currentChanged += value;
@@ -189,10 +208,13 @@ namespace IdpGie {
             ctx.LineTo (w - Offset + (1.0d + shaft) * ew * (current - max), Offset);
             ctx.Stroke ();
             xc = Offset + 0.5d * ew;
-            for (int i = min; i <= max; i++) {
-                TextExtents te = ctx.TextExtents (i.ToString ());
+            IEnumerable<string> namei = this.names.Skip (this.min);
+            IEnumerator<string> enume = namei.GetEnumerator ();
+            for (int i = min; i <= max && enume.MoveNext(); i++) {
+                string name = enume.Current;
+                TextExtents te = ctx.TextExtents (name);
                 ctx.MoveTo (xc - 0.5d * te.Width, 0.5d * (h + te.Height));
-                ctx.ShowText (i.ToString ());
+                ctx.ShowText (name);
                 xc += (1.0d + shaft) * ew;
             }
         }
@@ -206,6 +228,13 @@ namespace IdpGie {
             requisition.Height = 50;
             requisition.Width = 35;
         }
+
+        public void Open (string name) {
+            this.max++;
+            this.names.AddLast (name);
+            this.QueueDraw ();
+        }
+
     }
 }
 

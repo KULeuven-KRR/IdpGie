@@ -171,6 +171,7 @@
     <Compile Include="BlueprintTabControl.cs" />
     <Compile Include="IIdpdObject.cs" />
     <Compile Include="IIdpdTransformable.cs" />
+    <Compile Include="CairoUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

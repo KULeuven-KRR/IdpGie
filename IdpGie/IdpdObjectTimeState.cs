@@ -51,7 +51,7 @@ namespace IdpGie {
             }
             protected set {
                 if (value != double.NaN) {
-                    this.setTime (value);
+                    this.SetTime (value);
                     base.Time = value;
                 }
             }
@@ -189,8 +189,20 @@ namespace IdpGie {
             this.cairoTransformations = null;
         }
 
-        void setTime (double value) {
-            throw new NotImplementedException ();
+        public void SetTime (double time) {
+            if (time > base.Time) {
+                if (this.after.Count > 0x00) {
+                    IdpdObjectTimeStateModifier mod = this.after.Min;
+                    while (mod != null && mod.Time <= time) {
+                        this.after.Remove (mod);
+                        mod.Action (this);
+                        mod = this.after.Min;
+                    }
+                }
+            } else if (time < base.Time) {
+                //revert
+            }
+            base.Time = time;
         }
 
         public void AddModifier (IdpdObjectTimeStateModifier modifier) {

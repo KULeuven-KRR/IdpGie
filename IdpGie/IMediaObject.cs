@@ -19,13 +19,53 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Gtk;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
     public interface IMediaObject {
 
         MediaButtons SupportedMedia {
+            get;
+        }
+
+        double MinTime {
+            get;
+        }
+
+        double MaxTime {
+            get;
+        }
+
+        double TimeSpan {
+            get;
+        }
+
+        event EventHandler OnPlay;
+
+        event EventHandler OnPause;
+
+        event EventHandler OnRewind;
+
+        event EventHandler OnForward;
+
+        event EventHandler OnPreviousChapter;
+
+        event EventHandler OnNextChapter;
+
+        event EventHandler OnShuffle;
+
+        event EventHandler OnRepeat;
+
+        event EventHandler OnEject;
+
+        event EventHandler OnRecord;
+
+        event EventHandler OnStop;
+
+        event EventHandler OnSeek;
+
+        IEnumerable<double> Chapters {
             get;
         }
 
@@ -50,6 +90,8 @@ namespace IdpGie {
         void Record ();
 
         void Stop ();
+
+        void Seek (double time);
 
     }
 

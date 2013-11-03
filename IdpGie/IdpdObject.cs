@@ -36,6 +36,15 @@ namespace IdpGie {
                 return this.name;
             }
         }
+
+        public double Time {
+            get {
+                return this.state.Time;
+            }
+            set {
+                this.state.SetTime (value);
+            }
+        }
         #endregion
 
         #region IZIndix implementation
@@ -84,6 +93,14 @@ namespace IdpGie {
 
         public virtual void Render (FrameEventArgs e) {
 
+        }
+
+        public void AddModifier (IdpdObjectTimeStateModifier modifier) {
+            this.State.AddModifier (modifier);
+        }
+
+        public void AddModifier (double time, Action<IdpdObjectTimeState> modifier) {
+            this.State.AddModifier (time, modifier);
         }
         #endregion
 

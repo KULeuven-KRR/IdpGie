@@ -47,7 +47,7 @@ namespace IdpGie {
             try {
                 this.method.Invoke (null, val);
                 base.Execute (theory, arguments);
-            } catch (Exception e) {
+            } catch (Exception) {
                 Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
                 //Console.WriteLine (e);
             }
