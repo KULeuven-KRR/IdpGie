@@ -40,6 +40,12 @@ namespace IdpGie {
                 return false;
             }
         }
+
+        public bool DisposeSupport {
+            get {
+                return false;
+            }
+        }
         #endregion
 
         public HardFlyweight (Func<TKey,TValue> generator) {

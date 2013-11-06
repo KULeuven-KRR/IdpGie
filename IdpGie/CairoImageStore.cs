@@ -19,12 +19,17 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Cairo;
 
 namespace IdpGie {
 
-    public class CairoImageStore {
+    public class CairoImageStore : WeakFlyweight<string,ImageSurface> {
 
-        public CairoImageStore () {
+        public CairoImageStore () : base(createImage) {
+        }
+
+        private static ImageSurface createImage (string name) {
+            return new ImageSurface (name);
         }
 
     }

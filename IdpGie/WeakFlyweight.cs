@@ -40,6 +40,12 @@ namespace IdpGie {
                 return true;
             }
         }
+
+        public bool DisposeSupport {
+            get {
+                return false;
+            }
+        }
         #endregion
         public WeakFlyweight (Func<TKey,TValue> generator) {
             this.generator = generator;

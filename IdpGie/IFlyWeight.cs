@@ -32,6 +32,10 @@ namespace IdpGie {
             get;
         }
 
+        bool DisposeSupport {
+            get;
+        }
+
         TValue GetOrCreate (TKey key);
 
         bool Contains (TKey key);
