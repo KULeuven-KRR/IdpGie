@@ -173,6 +173,11 @@
     <Compile Include="ShapeEllipse.cs" />
     <Compile Include="ShapeIrregularPolygonObject.cs" />
     <Compile Include="ShapeRegularPolygonObject.cs" />
+    <Compile Include="ShapeGraph.cs" />
+    <Compile Include="GraphModifier.cs" />
+    <Compile Include="AddNodeGraphModifier.cs" />
+    <Compile Include="NodeGraphModifier.cs" />
+    <Compile Include="ITermName.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -33,17 +33,17 @@ namespace IdpGie {
 
         [IdpdDrawMethod("polygon",true,false,0.0d,TermType.PointList)]
         public static void Polygon (DrawTheory dt, IFunctionInstance name, EnhancedTermCollection points) {
-            dt.AddIdpdObject (new IdpdIrregularPolygonObject (name, points.ValueEnumerable<Point> (TermType.Point)));
+            dt.AddIdpdObject (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<Point> (TermType.Point)));
         }
 
         [IdpdDrawMethod("polygon",true,false,0.0d,TermType.Int,TermType.Float)]
         public static void Polygon (DrawTheory dt, IFunctionInstance name, int nbOfEdges, double sizeOfEdges) {
-            dt.AddIdpdObject (new IdpdRegularPolygonObject (name, nbOfEdges, sizeOfEdges));
+            dt.AddIdpdObject (new ShapeRegularPolygonObject (name, nbOfEdges, sizeOfEdges));
         }
 
         [IdpdDrawMethod("ellipse",true,false,0.0d,TermType.Float,TermType.Float)]
         public static void Ellipse (DrawTheory dt, IFunctionInstance name, double width, double height) {
-            dt.AddIdpdObject (new IdpdRegularPolygonObject (name, 4, width));
+            dt.AddIdpdObject (new ShapeRegularPolygonObject (name, 4, width));
         }
 
         [IdpdDrawMethod("graph",true,false,0.0d,TermType.Float,TermType.Float)]

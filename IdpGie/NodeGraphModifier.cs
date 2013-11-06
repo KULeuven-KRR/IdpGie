@@ -1,5 +1,5 @@
 //
-//  IdpdIrregularPolygonObject.cs
+//  NodeGraphModifier.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,25 +19,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Linq;
-using System.Collections.Generic;
-using Cairo;
 
 namespace IdpGie {
 
-    public class ShapeIrregularPolygonObject : ShapePolygon {
+    public abstract class NodeGraphModifier : GraphModifier {
 
-        private List<Point> points;
-
-        public ShapeIrregularPolygonObject (IFunctionInstance name, IEnumerable<Point> points) : base(name) {
-            this.points = points.ToList ();
-            Console.WriteLine (string.Join (",", this.points));
-        }
-
-        public override IEnumerable<PointD> GetPoints () {
-            return points.Select (x => (PointD)x);
+        public NodeGraphModifier (double time, IFunctionInstance name) : base(time) {
         }
 
     }
-}
 
+}
