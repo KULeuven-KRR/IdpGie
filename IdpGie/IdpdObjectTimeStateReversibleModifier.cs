@@ -1,5 +1,5 @@
 //
-//  IdpdPolygonObject.cs
+//  IdpdObjectTimeStateReversibleModifier.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,26 +18,25 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Collections.Generic;
-using Cairo;
+using System;
 
 namespace IdpGie {
 
-    public abstract class IdpdPolygonObject : IdpdObject {
+    using Ac = Action<IdpdObjectTimeState>;
 
-        protected IdpdPolygonObject (IFunctionInstance name) : base(name) {
-        }
+    public class IdpdObjectTimeStateReversibleModifier : IdpdObjectTimeStateModifier {
 
-        protected override void InnerPaintObject (Context ctx) {
-            IEnumerable<PointD> tail;
-            ctx.MoveTo (this.GetPoints ().SplitHead (out tail));
-            foreach (PointD pt in tail) {
-                ctx.LineTo (pt);
+        private readonly Ac reverser;
+
+        public Ac Reverser {
+            get {
+                return this.reverser;
             }
-            base.InnerPaintObject (ctx);
         }
 
-        public abstract IEnumerable<PointD> GetPoints ();
+        public IdpdObjectTimeStateReversibleModifier (double time, Ac action, Ac reverser) : base(time,action) {
+            this.reverser = reverser;
+        }
 
     }
 }

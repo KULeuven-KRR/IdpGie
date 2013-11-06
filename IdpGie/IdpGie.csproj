@@ -81,8 +81,6 @@
     <Compile Include="TopWindow.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
     <Compile Include="MediaButtons.cs" />
-    <Compile Include="IdpdPolygonObject.cs" />
-    <Compile Include="IdpEllipseObject.cs" />
     <Compile Include="IdpObjectModificationType.cs" />
     <Compile Include="IdpdObjectTimeState.cs" />
     <Compile Include="IdpdOutputDevice.cs" />
@@ -124,7 +122,6 @@
     <Compile Include="IArrayFunctionInstance.cs" />
     <Compile Include="IdpdMapperAttribute.cs" />
     <Compile Include="EnumerableUtils.cs" />
-    <Compile Include="IdpdRegularPolygonObject.cs" />
     <Compile Include="NamedObject.cs" />
     <Compile Include="DrawTheoryMode.cs" />
     <Compile Include="IPriority.cs" />
@@ -158,7 +155,6 @@
     <Compile Include="NameArityBase.cs" />
     <Compile Include="IdpdFunctionStructureConstructorAttribute.cs" />
     <Compile Include="EnhancedTermCollection.cs" />
-    <Compile Include="IdpdIrregularPolygonObject.cs" />
     <Compile Include="CairoFrameWidget.cs" />
     <Compile Include="ZIndexComparator.cs" />
     <Compile Include="IdpdColor.cs" />
@@ -172,6 +168,11 @@
     <Compile Include="IIdpdObject.cs" />
     <Compile Include="IIdpdTransformable.cs" />
     <Compile Include="CairoUtils.cs" />
+    <Compile Include="IdpdObjectTimeStateReversibleModifier.cs" />
+    <Compile Include="ShapePolygon.cs" />
+    <Compile Include="ShapeEllipse.cs" />
+    <Compile Include="ShapeIrregularPolygonObject.cs" />
+    <Compile Include="ShapeRegularPolygonObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

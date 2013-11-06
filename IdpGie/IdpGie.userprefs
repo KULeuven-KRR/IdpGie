@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CairoMediaWidget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TopWindow.cs">
     <Files>
       <File FileName="IdpdIrregularPolygonObject.cs" Line="34" Column="63" />
       <File FileName="Point.cs" Line="136" Column="10" />
@@ -13,6 +13,10 @@
       <File FileName="TypedMethodPredicate.cs" Line="50" Column="31" />
       <File FileName="IMediaObject.cs" Line="44" Column="9" />
       <File FileName="CairoMediaWidget.cs" Line="44" Column="30" />
+      <File FileName="CairoFrameWidget.cs" Line="1" Column="1" />
+      <File FileName="BlueprintTabControl.cs" Line="73" Column="9" />
+      <File FileName="CairoUtils.cs" Line="66" Column="39" />
+      <File FileName="TopWindow.cs" Line="47" Column="26" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,7 +25,7 @@
             <Node name="UserInterface" expanded="True">
               <Node name="IdpGie.TopWindow" expanded="True" />
             </Node>
-            <Node name="CairoMediaWidget.cs" selected="True" />
+            <Node name="TopWindow.cs" selected="True" />
           </Node>
           <Node name="IdpGieTest" expanded="True" />
         </State>

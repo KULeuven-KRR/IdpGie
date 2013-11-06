@@ -24,7 +24,7 @@ using Cairo;
 
 namespace IdpGie {
 
-    public class IdpdRegularPolygonObject : IdpdPolygonObject {
+    public class ShapeRegularPolygonObject : ShapePolygon {
 
         private int nbOfEdges;
         private double sizeOfEdges;
@@ -47,7 +47,7 @@ namespace IdpGie {
             }
         }
 
-        public IdpdRegularPolygonObject (IFunctionInstance name, int nbOfEdges, double sizeOfEdges) : base(name) {
+        public ShapeRegularPolygonObject (IFunctionInstance name, int nbOfEdges, double sizeOfEdges) : base(name) {
             this.NumberOfEdges = nbOfEdges;
             this.SizeOfEdges = sizeOfEdges;
         }

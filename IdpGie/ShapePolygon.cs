@@ -1,5 +1,5 @@
 //
-//  IdpEllipseObject.cs
+//  IdpdPolygonObject.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,42 +18,26 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System.Collections.Generic;
 using Cairo;
 
 namespace IdpGie {
 
-    public class IdpEllipseObject : IdpdObject {
+    public abstract class ShapePolygon : IdpdObject {
 
-        private double width;
-        private double height;
-
-        public double Width {
-            get {
-                return width;
-            }
-            set {
-                width = value;
-            }
-        }
-
-        public double Height {
-            get {
-                return height;
-            }
-            set {
-                height = value;
-            }
-        }
-
-        public IdpEllipseObject (IFunctionInstance name) : base(name) {
+        protected ShapePolygon (IFunctionInstance name) : base(name) {
         }
 
         protected override void InnerPaintObject (Context ctx) {
-            ctx.Scale (this.Width, this.Height);
-            ctx.Arc (0.0d, 0.0d, 1.0d, 0.0d, MathExtra.Theta);
-            ctx.Fill ();
+            IEnumerable<PointD> tail;
+            ctx.MoveTo (this.GetPoints ().SplitHead (out tail));
+            foreach (PointD pt in tail) {
+                ctx.LineTo (pt);
+            }
             base.InnerPaintObject (ctx);
         }
+
+        public abstract IEnumerable<PointD> GetPoints ();
 
     }
 }
