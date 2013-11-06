@@ -178,6 +178,11 @@
     <Compile Include="AddNodeGraphModifier.cs" />
     <Compile Include="NodeGraphModifier.cs" />
     <Compile Include="ITermName.cs" />
+    <Compile Include="ShapeImage.cs" />
+    <Compile Include="CairoImageStore.cs" />
+    <Compile Include="IFlyWeight.cs" />
+    <Compile Include="HardFlyweight.cs" />
+    <Compile Include="WeakFlyweight.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
