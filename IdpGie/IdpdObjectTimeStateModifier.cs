@@ -40,6 +40,18 @@ namespace IdpGie {
             return string.Format ("<{0}:{1}>", this.Time, Action);
         }
 
+        public override int CompareTo (ITimesensitive other) {
+            int comp = base.CompareTo (other);
+            if (comp != 0x00) {
+                return comp;
+            } else if (other is IdpdObjectTimeStateModifier) {
+                IdpdObjectTimeStateModifier mod = (IdpdObjectTimeStateModifier)other;
+                return this.action.GetHashCode ().CompareTo (mod.action.GetHashCode ());
+            } else {
+                return 0x00;
+            }
+        }
+
     }
 
 }

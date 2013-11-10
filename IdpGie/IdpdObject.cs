@@ -104,8 +104,10 @@ namespace IdpGie {
         }
         #endregion
 
-        private static void cairoFillStroke (Context ctx) {
+        private void cairoFillStroke (Context ctx) {
+            ctx.Color = this.state.InnerColor;
             ctx.FillPreserve ();
+            ctx.Color = this.state.EdgeColor;
             ctx.Stroke ();
         }
 

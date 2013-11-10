@@ -27,7 +27,7 @@ namespace IdpGie {
 
     public class IdpdObjectTimeState : TimeSensitiveBase, IIdpdTransformable {
 
-        private bool visible = true;
+        private bool visible = false;
         private Matrix4d transformations = Matrix4d.Identity;
         private Matrix cairoTransformations = null;
         private string text = null;
@@ -133,10 +133,12 @@ namespace IdpGie {
         }
 
         public void Show () {
+            Console.WriteLine ("Show");
             this.visible = true;
         }
 
         public void Hide () {
+            Console.WriteLine ("Hide");
             this.visible = false;
         }
 
@@ -164,14 +166,17 @@ namespace IdpGie {
         }
 
         public void SetXPos (double xpos) {
+            Console.WriteLine ("XPos " + xpos);
             this.transformations.M14 = xpos;
         }
 
         public void SetYPos (double ypos) {
+            Console.WriteLine ("YPos " + ypos);
             this.transformations.M24 = ypos;
         }
 
         public void SetZPos (double zpos) {
+            Console.WriteLine ("ZPos " + zpos);
             this.transformations.M34 = zpos;
         }
 
@@ -192,9 +197,9 @@ namespace IdpGie {
         public void SetTime (double time) {
             if (time > base.Time) {
                 if (this.after.Count > 0x00) {
-                    Console.WriteLine ("advance something");
                     IdpdObjectTimeStateModifier mod = this.after.Min;
                     while (mod != null && mod.Time <= time) {
+                        Console.WriteLine ("advance " + mod);
                         this.after.Remove (mod);
                         mod.Action (this);
                         mod = this.after.Min;
@@ -221,6 +226,16 @@ namespace IdpGie {
 
         public void AddModifier (double time, Action<IdpdObjectTimeState> modifier) {
             this.AddModifier (new IdpdObjectTimeStateModifier (time, modifier));
+        }
+
+        public void SetEdgeColor (double r, double g, double b) {
+            Console.WriteLine ("Edge " + r + ";" + g + ";" + b);
+            this.edgeColor = new Color (r, g, b);
+        }
+
+        public void SetInnerColor (double r, double g, double b) {
+            Console.WriteLine ("Inner " + r + ";" + g + ";" + b);
+            this.innerColor = new Color (r, g, b);
         }
 
     }

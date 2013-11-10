@@ -40,7 +40,7 @@ namespace IdpGie {
         }
 
         protected TimeSensitiveBase (double time = 0.0d) {
-            this.time = time;
+            this.Time = time;
         }
 
         #region IComparable implementation

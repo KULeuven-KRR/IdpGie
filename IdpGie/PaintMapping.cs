@@ -158,26 +158,27 @@ namespace IdpGie {
 
         [IdpdDrawMethod("edgecolor",true,true,TermType.Int,TermType.Int,TermType.Int)]
         public static void EdgeColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
-
+            dt [name].AddModifier (time, x => x.SetEdgeColor (r, g, b));
         }
 
         [IdpdDrawMethod("innercolor",true,true,TermType.Int,TermType.Int,TermType.Int)]
         public static void InnerColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
-
+            dt [name].AddModifier (time, x => x.SetInnerColor (r, g, b));
         }
 
         [IdpdDrawMethod("depth",true,true,TermType.Float)]
         public static void Depth (DrawTheory dt, IFunctionInstance name, double index, double time = double.NaN) {
+            dt [name].AddModifier (time, x => x.SetZPos (index));
         }
 
         [IdpdDrawMethod("show",true,true)]
         public static void Show (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
-
+            dt [name].AddModifier (time, x => x.Show ());
         }
 
         [IdpdDrawMethod("hide",true,true)]
         public static void Hide (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
-
+            dt [name].AddModifier (time, x => x.Hide ());
         }
 
     }

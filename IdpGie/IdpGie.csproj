@@ -186,6 +186,8 @@
     <Compile Include="PaintMapping.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="ITagable.cs" />
+    <Compile Include="Box2d.cs" />
+    <Compile Include="IGeometry2d.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
