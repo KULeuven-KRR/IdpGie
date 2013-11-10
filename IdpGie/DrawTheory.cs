@@ -73,7 +73,7 @@ namespace IdpGie {
             }
         }
 
-        public DrawTheory (List<ITheoryItem> elements) {
+        public DrawTheory (string name, List<ITheoryItem> elements) : base(name) {
             if (elements != null) {
                 this.elements = elements;
             } else {

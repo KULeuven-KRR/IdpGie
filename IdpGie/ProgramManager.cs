@@ -52,7 +52,7 @@ namespace IdpGie {
         #endregion
 
         public void OpenTab (string name, Widget widget) {
-
+            this.tw.CreateTab (name, widget);
         }
 
         public static int Main (string[] args) {
@@ -67,7 +67,7 @@ namespace IdpGie {
                         try {
                             using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
                                 Lexer scnr = new Lexer (file);
-                                IdpParser pars = new IdpParser (scnr);
+                                IdpParser pars = new IdpParser (info.Name, scnr);
                                 pars.Parse ();
                                 if (pars.Result != null) {
                                     pars.Result.Execute (manager);
