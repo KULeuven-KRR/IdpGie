@@ -33,7 +33,7 @@ namespace IdpGie {
         public ProgramManager () {
         }
 
-        public void ShowWindow () {
+        public void CreateWindow () {
             tw = new TopWindow ();
         }
 
@@ -41,25 +41,37 @@ namespace IdpGie {
         
         }
 
+        #region IDisposable implementation
+        public void Dispose () {
+            tw.Dispose ();
+        }
+        #endregion
+
+        public void OpenTab (string name, Widget widget) {
+
+        }
+
         public static int Main (string[] args) {
-            ProgramManager manager = new ProgramManager ();
-            Catalog.Init ("IdpGie", "./locale");
-            Application.Init ("IdpGie", ref args);
-            DirectoryInfo dirInfo = new DirectoryInfo (".");
-            foreach (string name in args) {
-                FileInfo[] fInfo = dirInfo.GetFiles (name);
-                foreach (FileInfo info in fInfo) {
-                    try {
-                        using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
-                            Lexer scnr = new Lexer (file);
-                            IdpParser pars = new IdpParser (scnr);
-                            pars.Parse ();
-                            if (pars.Result != null) {
-                                pars.Result.Execute (manager);
+            using (ProgramManager manager = new ProgramManager ()) {
+                manager.CreateWindow ();
+                Catalog.Init ("IdpGie", "./locale");
+                Application.Init ("IdpGie", ref args);
+                DirectoryInfo dirInfo = new DirectoryInfo (".");
+                foreach (string name in args) {
+                    FileInfo[] fInfo = dirInfo.GetFiles (name);
+                    foreach (FileInfo info in fInfo) {
+                        try {
+                            using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
+                                Lexer scnr = new Lexer (file);
+                                IdpParser pars = new IdpParser (scnr);
+                                pars.Parse ();
+                                if (pars.Result != null) {
+                                    pars.Result.Execute (manager);
+                                }
                             }
+                        } catch (IOException) {
+                            Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
                         }
-                    } catch (IOException) {
-                        Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
                     }
                 }
             }

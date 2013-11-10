@@ -24,7 +24,7 @@ using System.Text;
 
 namespace IdpGie {
 
-    public class DrawTheory {
+    public class DrawTheory : NameBase {
 
         private readonly List<ITheoryItem> elements;
         private readonly Dictionary<IFunctionInstance,IIdpdObject> objects = new Dictionary<IFunctionInstance, IIdpdObject> ();

@@ -42,7 +42,7 @@ namespace IdpGie {
 
         #region implemented abstract members of IdpGie.IdpdOutputDevice
         public override void Run (ProgramManager manager) {
-            manager.OpenTab ("test", new CairoFrameWidget (this.Theory));
+            manager.OpenTab (this.Theory.Name, new CairoFrameWidget (this.Theory));
         }
         #endregion
 

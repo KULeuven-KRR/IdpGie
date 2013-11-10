@@ -23,23 +23,15 @@ using System;
 using Gtk;
 
 namespace IdpGie {
+
     public partial class TopWindow : Gtk.Window {
 
-        private TopWindow () : base(WindowType.Toplevel) {
+        public TopWindow () : base(WindowType.Toplevel) {
             this.Build ();
             this.Show ();
         }
 
         public void LoadTab (string title, Widget widget) {
-            /*this.mainhierarchy.Add (widget);
-            global::Gtk.Box.BoxChild w = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [widget]));
-            w.Position = 0;
-            w.Expand = true;
-            w.Fill = true;
-            if ((this.Child != null)) {
-                this.Child.ShowAll ();
-            }*/
-            this.tabcontrol.Open ("Test.idpd");
         }
 
         protected override bool OnDeleteEvent (Gdk.Event evnt) {

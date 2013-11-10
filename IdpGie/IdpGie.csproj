@@ -78,8 +78,6 @@
     <Compile Include="MediaMode.cs" />
     <Compile Include="BlueprintStyle.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="TopWindow.cs" />
-    <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
     <Compile Include="MediaButtons.cs" />
     <Compile Include="IdpObjectModificationType.cs" />
     <Compile Include="IdpdObjectTimeState.cs" />
@@ -184,6 +182,8 @@
     <Compile Include="OutputOpenGLDevice.cs" />
     <Compile Include="OutputPrintDevice.cs" />
     <Compile Include="OutputLaTeXDevice.cs" />
+    <Compile Include="CreateWindow.cs" />
+    <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
