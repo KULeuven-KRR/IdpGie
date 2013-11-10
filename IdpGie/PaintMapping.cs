@@ -18,13 +18,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Cairo;
-using System.Collections.Generic;
 
 namespace IdpGie {
 
     [IdpdMapper]
-    public static class IdpdMapping {
+    public static class PaintMapping {
 
         [IdpdDrawMethod("rendering",false,false,-1.0d,TermType.Named)]
         public static void Rendering (DrawTheory dt, NamedObject nobj) {
@@ -73,17 +71,20 @@ namespace IdpGie {
 
         [IdpdDrawMethod("xpos",true,true,TermType.Float)]
         public static void Xpos (DrawTheory dt, IFunctionInstance name, double xpos, double time = double.NaN) {
-            dt [name].SetXPos (xpos);
+            dt.RegisterTime (time);
+            dt [name].AddModifier (time, x => x.SetXPos (xpos));
         }
 
         [IdpdDrawMethod("ypos",true,true,TermType.Float)]
         public static void Ypos (DrawTheory dt, IFunctionInstance name, double ypos, double time = double.NaN) {
-            dt [name].SetYPos (ypos);
+            dt.RegisterTime (time);
+            dt [name].AddModifier (time, x => x.SetYPos (ypos));
         }
 
         [IdpdDrawMethod("zpos",true,true,TermType.Float)]
         public static void Zpos (DrawTheory dt, IFunctionInstance name, double zpos, double time = double.NaN) {
-            dt [name].SetZPos (zpos);
+            dt.RegisterTime (time);
+            dt [name].AddModifier (time, x => x.SetZPos (zpos));
         }
 
         [IdpdDrawMethod("pos",true,true,TermType.Float,TermType.Float,TermType.Float)]

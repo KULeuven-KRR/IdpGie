@@ -96,7 +96,6 @@
     <Compile Include="TermType.cs" />
     <Compile Include="ArrayFunction.cs" />
     <Compile Include="ArrayTailFunction.cs" />
-    <Compile Include="IdpdMapping.cs" />
     <Compile Include="MathExtra.cs" />
     <Compile Include="IdpdTimedObjectModification.cs" />
     <Compile Include="ITimesensitive.cs" />
@@ -184,6 +183,7 @@
     <Compile Include="OutputOpenGLDevice.cs" />
     <Compile Include="OutputPrintDevice.cs" />
     <Compile Include="OutputLaTeXDevice.cs" />
+    <Compile Include="PaintMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

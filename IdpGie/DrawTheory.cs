@@ -81,9 +81,13 @@ namespace IdpGie {
             }
         }
 
-        private void registerTime (double time) {
-            this.minTime = Math.Min (this.minTime, time);
-            this.maxTime = Math.Max (this.maxTime, time);
+        public void RegisterTime (double time) {
+            if (this.minTime > time) {
+                this.minTime = time;
+            } else if (this.maxTime < time) {
+                this.maxTime = time;
+            }
+            Console.WriteLine ("Timespan: [{0}:{1}]", this.minTime, this.maxTime);
         }
 
         public string ToFullString () {
@@ -112,6 +116,9 @@ namespace IdpGie {
             elements.Sort (PriorityComparator.Instance);
             foreach (ITheoryItem item in elements) {
                 item.Execute (this);
+            }
+            foreach (IdpdObject obj in this.objects.Values) {
+                obj.Time = 0.0d;
             }
             switch (this.Mode) {
             case DrawTheoryMode.Cairo:

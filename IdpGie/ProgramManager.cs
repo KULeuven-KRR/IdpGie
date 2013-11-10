@@ -51,13 +51,14 @@ namespace IdpGie {
         }
         #endregion
 
-        public void OpenTab (string name, Widget widget) {
-            this.tw.CreateTab (name, widget);
+        public void OpenTab (DrawTheory dt, Widget widget) {
+            this.tw.CreateTab (dt, widget);
         }
 
         public static int Main (string[] args) {
             Catalog.Init ("IdpGie", "./locale");
             Application.Init ("IdpGie", ref args);
+            Gdk.Threads.Init ();
             using (ProgramManager manager = new ProgramManager ()) {
                 manager.CreateWindow ();
                 DirectoryInfo dirInfo = new DirectoryInfo (".");
