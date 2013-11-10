@@ -1,22 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WeakFlyweight.cs">
-    <Files>
-      <File FileName="ShapeImage.cs" Line="32" Column="13" />
-      <File FileName="CairoImageStore.cs" Line="29" Column="10" />
-      <File FileName="IFlyWeight.cs" Line="36" Column="17" />
-      <File FileName="HardFlyweight.cs" Line="42" Column="10" />
-      <File FileName="WeakFlyweight.cs" Line="48" Column="10" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="IdpGie" expanded="True">
-            <Node name="UserInterface" expanded="True">
-              <Node name="IdpGie.TopWindow" expanded="True" />
-            </Node>
-            <Node name="WeakFlyweight.cs" selected="True" />
-          </Node>
+        <State expanded="True" selected="True">
+          <Node name="IdpGie" expanded="True" />
           <Node name="IdpGieTest" expanded="True" />
         </State>
       </Pad>

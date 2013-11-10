@@ -30,7 +30,9 @@ namespace IdpGie {
 
         #region implemented abstract members of IdpGie.IdpdOutputDevice
         public override void Run (ProgramManager manager) {
-            manager.OpenTab (this.Theory.Name, new OpenGLFrameWidget ());
+            using (TopWindow tw = TopWindow.Create<OpenGLFrameWidget>(new OpenGLFrameWidget())) {
+                Application.Run ();
+            }
         }
         #endregion
 
