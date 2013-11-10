@@ -184,6 +184,8 @@
     <Compile Include="OutputPrintDevice.cs" />
     <Compile Include="OutputLaTeXDevice.cs" />
     <Compile Include="PaintMapping.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="ITagable.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

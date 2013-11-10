@@ -1,5 +1,5 @@
 //
-//  IdpdIrregularPolygonObject.cs
+//  EventArgs.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,24 +19,23 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Linq;
-using System.Collections.Generic;
-using Cairo;
 
 namespace IdpGie {
 
-    public class ShapeIrregularPolygonObject : ShapePolygon {
+    public class EventArgs<T> : EventArgs, ITagable<T> {
 
-        private List<Point> points;
+        private readonly T tag;
 
-        public ShapeIrregularPolygonObject (IFunctionInstance name, IEnumerable<Point> points) : base(name) {
-            this.points = points.ToList ();
+        public T Tag {
+            get {
+                return this.tag;
+            }
         }
 
-        public override IEnumerable<PointD> GetPoints () {
-            return points.Select (x => (PointD)x);
+        public EventArgs (T tag) {
+            this.tag = tag;
         }
 
     }
-}
 
+}

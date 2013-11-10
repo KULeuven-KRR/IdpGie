@@ -95,6 +95,12 @@ namespace IdpGie {
             requisition.Width = 100;
         }
 
+        public override void Seek (double time) {
+
+            this.QueueDraw ();
+            base.Seek (time);
+        }
+
     }
 
 }

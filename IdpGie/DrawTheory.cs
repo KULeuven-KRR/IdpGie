@@ -42,6 +42,29 @@ namespace IdpGie {
             }
         }
 
+        public double Time {
+            get {
+                IEnumerable<IIdpdObject> tail;
+                IIdpdObject head = this.objects.Values.SplitHead (out tail);
+                if (head != null) {
+                    double time = head.Time;
+                    foreach (IIdpdObject obj in tail) {
+                        if (obj.Time != time) {
+                            return double.NaN;
+                        }
+                    }
+                    return time;
+                } else {
+                    return double.NaN;
+                }
+            }
+            set {
+                foreach (IIdpdObject obj in this.objects.Values) {
+                    obj.Time = value;
+                }
+            }
+        }
+
         public IIdpdObject this [IFunctionInstance key] {
             get {
                 return this.objects [key];
@@ -99,10 +122,6 @@ namespace IdpGie {
 
         internal void AddIdpdObject (IIdpdObject obj) {
             this.objects.Add (obj.Name, obj);
-            Console.WriteLine ("added {0} as {1}", obj, obj.Name);
-            if (this.objects [obj.Name] != obj) {
-                Console.WriteLine ("CORRUPT HASH!");
-            }
         }
 
         public IEnumerable<IIdpdObject> Objects () {
@@ -115,9 +134,7 @@ namespace IdpGie {
             foreach (ITheoryItem item in elements) {
                 item.Execute (this);
             }
-            foreach (IdpdObject obj in this.objects.Values) {
-                obj.Time = 0.0d;
-            }
+            this.Time = minTime;
             switch (this.Mode) {
             case DrawTheoryMode.Cairo:
                 using (OutputDevice device = new OutputCairoDevice(this)) {

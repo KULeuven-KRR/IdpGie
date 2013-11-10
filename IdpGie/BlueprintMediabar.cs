@@ -37,7 +37,7 @@ namespace IdpGie {
         private double xtickS = 0.0d;
         private double xtickE = 0.0d;
         private MediaMode mode = MediaMode.Pause;
-        private event EventHandler currentChanged;
+        private event Action<BlueprintMediabar,double> currentChanged;
         
         public double Min {
             get {
@@ -85,7 +85,7 @@ namespace IdpGie {
                 this.QueueDrawArea ((int)Math.Floor (Offset) - 1, 0, 35, 34);
             }
         }
-        public event EventHandler CurrentChanged {
+        public event Action<BlueprintMediabar,double> CurrentChanged {
             add {
                 this.currentChanged += value;
             }
@@ -163,7 +163,7 @@ namespace IdpGie {
         private void handleCurrentChanged () {
             this.OnCurrentChanged ();
             if (currentChanged != null) {
-                this.currentChanged (this, EventArgs.Empty);
+                this.currentChanged (this, this.current);
             }
         }
         protected virtual void OnCurrentChanged () {
