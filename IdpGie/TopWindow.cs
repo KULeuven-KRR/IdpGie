@@ -18,73 +18,33 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#define PARSE
 
 using System;
-using System.IO;
 using Gtk;
-using IdpGie.Parser;
-using Mono.Unix;
 
 namespace IdpGie {
     public partial class TopWindow : Gtk.Window {
 
-        public static TopWindow Create<T> (T widget) where T : Widget, IMediaObject {
-            return new TopWindow (widget);
+        private TopWindow () : base(WindowType.Toplevel) {
+            this.Build ();
+            this.Show ();
         }
 
-        private TopWindow (Widget widget) : base(WindowType.Toplevel) {
-            this.Build ();
-            this.mainhierarchy.Add (widget);
+        public void LoadTab (string title, Widget widget) {
+            /*this.mainhierarchy.Add (widget);
             global::Gtk.Box.BoxChild w = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [widget]));
             w.Position = 0;
             w.Expand = true;
             w.Fill = true;
             if ((this.Child != null)) {
                 this.Child.ShowAll ();
-            }
+            }*/
             this.tabcontrol.Open ("Test.idpd");
-            this.Show ();
         }
 
         protected override bool OnDeleteEvent (Gdk.Event evnt) {
             Application.Quit ();
             return base.OnDeleteEvent (evnt);
-        }
-
-        public static int Main (string[] args) {
-            Catalog.Init ("IdpGie", "./locale");
-            Application.Init ("IdpGie", ref args);
-            DirectoryInfo dirInfo = new DirectoryInfo (".");
-            foreach (string name in args) {
-                FileInfo[] fInfo = dirInfo.GetFiles (name);
-                foreach (FileInfo info in fInfo) {
-                    try {
-                        using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
-                            Lexer scnr = new Lexer (file);
-                            IdpParser pars = new IdpParser (scnr);
-
-                            //Console.Error.WriteLine ("File: " + info.Name);
-#if PARSE
-                            pars.Parse ();
-#else
-                            foreach (Token tok in scnr.Tokenize()) {
-                                Console.Error.Write (tok);
-                                Console.Error.Write (' ');
-                            }
-#endif
-                            if (pars.Result != null) {
-                                pars.Result.Execute ();
-                                //Console.Error.WriteLine ("echo: ");
-                                //Console.Error.WriteLine (pars.Result);
-                            }
-                        }
-                    } catch (IOException) {
-                        Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
-                    }
-                }
-            }
-            return 0x00;
         }
 
         protected void Quit (object sender, EventArgs e) {

@@ -1,5 +1,5 @@
 //
-//  IdpdLaTeXOutputDevice.cs
+//  IdpdCairoOutputDevice.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,15 +19,30 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
+using Cairo;
 
 namespace IdpGie {
 
-    public class IdpdLaTeXOutputDevice : IdpdOutputDevice {
-        public IdpdLaTeXOutputDevice (DrawTheory theory) : base(theory) {
+    public class OutputCairoDevice : OutputDevice {
+
+        private Context context;
+
+        public Context Context {
+            get {
+                return this.context;
+            }
+            set {
+                this.context = value;
+            }
         }
+
+        public OutputCairoDevice (DrawTheory theory) : base(theory) {
+        }
+
         #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run () {
-            throw new System.NotImplementedException ();
+        public override void Run (ProgramManager manager) {
+            manager.OpenTab ("test", new CairoFrameWidget (this.Theory));
         }
         #endregion
 

@@ -104,11 +104,6 @@
         <property name="StockId">Quit</property>
         <signal name="Activated" handler="Quit" />
       </action>
-      <action id="Action">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">-</property>
-        <property name="ShortLabel" translatable="yes">--</property>
-      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes" context="yes">Title of the window|Idp-GIE The IDP Graphical Interactive Environment</property>

@@ -15,7 +15,6 @@ namespace IdpGie
 		private global::Gtk.Action FileAction;
 		private global::Gtk.Action OpenAction;
 		private global::Gtk.Action ExitAction;
-		private global::Gtk.Action Action;
 		private global::Gtk.VBox vhierarchy;
 		private global::Gtk.MenuBar menubar1;
 		private global::Gtk.VBox mainhierarchy;
@@ -60,9 +59,6 @@ namespace IdpGie
 			this.ExitAction = new global::Gtk.Action ("ExitAction", global::Mono.Unix.Catalog.GetString ("Exit"), null, "Quit");
 			this.ExitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Exit");
 			w1.Add (this.ExitAction, null);
-			this.Action = new global::Gtk.Action ("Action", global::Mono.Unix.Catalog.GetString ("-"), null, null);
-			this.Action.ShortLabel = global::Mono.Unix.Catalog.GetString ("--");
-			w1.Add (this.Action, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "IdpGie.TopWindow";

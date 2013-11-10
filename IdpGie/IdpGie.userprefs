@@ -1,22 +1,12 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TopWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WeakFlyweight.cs">
     <Files>
-      <File FileName="IdpdIrregularPolygonObject.cs" Line="34" Column="63" />
-      <File FileName="Point.cs" Line="136" Column="10" />
-      <File FileName="IdpdObjectTimeStateModifier.cs" Line="36" Column="34" />
-      <File FileName="IdpdObjectTimeState.cs" Line="198" Column="41" />
-      <File FileName="TimeSensitiveBase.cs" Line="58" Column="2" />
-      <File FileName="IdpdMapping.cs" Line="76" Column="22" />
-      <File FileName="IdpdObject.cs" Line="45" Column="42" />
-      <File FileName="IIdpdObject.cs" Line="40" Column="17" />
-      <File FileName="TypedMethodPredicate.cs" Line="50" Column="31" />
-      <File FileName="IMediaObject.cs" Line="44" Column="9" />
-      <File FileName="CairoMediaWidget.cs" Line="44" Column="30" />
-      <File FileName="CairoFrameWidget.cs" Line="1" Column="1" />
-      <File FileName="BlueprintTabControl.cs" Line="73" Column="9" />
-      <File FileName="CairoUtils.cs" Line="66" Column="39" />
-      <File FileName="TopWindow.cs" Line="47" Column="26" />
+      <File FileName="ShapeImage.cs" Line="32" Column="13" />
+      <File FileName="CairoImageStore.cs" Line="29" Column="10" />
+      <File FileName="IFlyWeight.cs" Line="36" Column="17" />
+      <File FileName="HardFlyweight.cs" Line="42" Column="10" />
+      <File FileName="WeakFlyweight.cs" Line="48" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,7 +15,7 @@
             <Node name="UserInterface" expanded="True">
               <Node name="IdpGie.TopWindow" expanded="True" />
             </Node>
-            <Node name="TopWindow.cs" selected="True" />
+            <Node name="WeakFlyweight.cs" selected="True" />
           </Node>
           <Node name="IdpGieTest" expanded="True" />
         </State>

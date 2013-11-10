@@ -1,5 +1,5 @@
 //
-//  IdpdOutputDevice.cs
+//  IdpdPrintOutputDevice.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,28 +21,15 @@
 using System;
 
 namespace IdpGie {
-
-    public abstract class IdpdOutputDevice : IDisposable {
-
-        private readonly DrawTheory theory;
-
-        public DrawTheory Theory {
-            get {
-                return this.theory;
-            }
+    public class OutputPrintDevice : OutputDevice {
+        public OutputPrintDevice (DrawTheory theory) : base(theory) {
         }
-
-        protected IdpdOutputDevice (DrawTheory theory) {
-            this.theory = theory;
-        }
-
-        public abstract void Run ();
-
-        #region IDisposable implementation
-        public virtual void Dispose () {
+        #region implemented abstract members of IdpGie.IdpdOutputDevice
+        public override void Run (ProgramManager manager) {
+            throw new System.NotImplementedException ();
         }
         #endregion
 
-
     }
 }
+

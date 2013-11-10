@@ -1,5 +1,5 @@
 //
-//  IdpdCairoOutputDevice.cs
+//  IdpdOutputDevice.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,35 +19,30 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Gtk;
-using Cairo;
 
 namespace IdpGie {
 
-    public class IdpdCairoOutputDevice : IdpdOutputDevice {
+    public abstract class OutputDevice : IDisposable {
 
-        private Context context;
+        private readonly DrawTheory theory;
 
-        public Context Context {
+        public DrawTheory Theory {
             get {
-                return this.context;
-            }
-            set {
-                this.context = value;
+                return this.theory;
             }
         }
 
-        public IdpdCairoOutputDevice (DrawTheory theory) : base(theory) {
+        protected OutputDevice (DrawTheory theory) {
+            this.theory = theory;
         }
 
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run () {
-            using (TopWindow tw = TopWindow.Create<CairoFrameWidget>(new CairoFrameWidget(this.Theory))) {
-                Application.Run ();
-            }
+        public abstract void Run (ProgramManager manager);
+
+        #region IDisposable implementation
+        public virtual void Dispose () {
         }
         #endregion
 
+
     }
 }
-

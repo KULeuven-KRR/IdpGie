@@ -107,7 +107,7 @@ namespace IdpGie {
             return this.objects.Values;
         }
 
-        public void Execute () {
+        public void Execute (ProgramManager manager) {
             //TODO: Tp operator
             elements.Sort (PriorityComparator.Instance);
             foreach (ITheoryItem item in elements) {
@@ -115,23 +115,23 @@ namespace IdpGie {
             }
             switch (this.Mode) {
             case DrawTheoryMode.Cairo:
-                using (IdpdOutputDevice device = new IdpdCairoOutputDevice(this)) {
-                    device.Run ();
+                using (OutputDevice device = new OutputCairoDevice(this)) {
+                    device.Run (manager);
                 }
                 break;
             case DrawTheoryMode.OpenGL:
-                using (IdpdOutputDevice device = new IdpdOpenGLOutputDevice(this)) {
-                    device.Run ();
+                using (OutputDevice device = new OutputOpenGLDevice(this)) {
+                    device.Run (manager);
                 }
                 break;
             case DrawTheoryMode.LaTeX:
-                using (IdpdOutputDevice device = new IdpdLaTeXOutputDevice(this)) {
-                    device.Run ();
+                using (OutputDevice device = new OutputLaTeXDevice(this)) {
+                    device.Run (manager);
                 }
                 break;
             case DrawTheoryMode.Print:
-                using (IdpdOutputDevice device = new IdpdPrintOutputDevice(this)) {
-                    device.Run ();
+                using (OutputDevice device = new OutputPrintDevice(this)) {
+                    device.Run (manager);
                 }
                 break;
             }

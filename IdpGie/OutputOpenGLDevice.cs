@@ -1,5 +1,5 @@
 //
-//  IdpdPrintOutputDevice.cs
+//  OpenGLIdpOutputDevice.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,14 +19,20 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
 
 namespace IdpGie {
-    public class IdpdPrintOutputDevice : IdpdOutputDevice {
-        public IdpdPrintOutputDevice (DrawTheory theory) : base(theory) {
+
+    public class OutputOpenGLDevice : OutputDevice {
+
+        public OutputOpenGLDevice (DrawTheory theory) : base(theory) {
         }
+
         #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run () {
-            throw new System.NotImplementedException ();
+        public override void Run (ProgramManager manager) {
+            using (TopWindow tw = TopWindow.Create<OpenGLFrameWidget>(new OpenGLFrameWidget())) {
+                Application.Run ();
+            }
         }
         #endregion
 

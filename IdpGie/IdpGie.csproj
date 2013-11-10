@@ -83,10 +83,6 @@
     <Compile Include="MediaButtons.cs" />
     <Compile Include="IdpObjectModificationType.cs" />
     <Compile Include="IdpdObjectTimeState.cs" />
-    <Compile Include="IdpdOutputDevice.cs" />
-    <Compile Include="IdpdCairoOutputDevice.cs" />
-    <Compile Include="IdpdLaTeXOutputDevice.cs" />
-    <Compile Include="IdpdPrintOutputDevice.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
     <Compile Include="FunctionInstance.cs" />
@@ -143,7 +139,6 @@
     <Compile Include="IdpdTheoryAlteringMethodAttribute.cs" />
     <Compile Include="IdpdMethodAttribute.cs" />
     <Compile Include="Interval.cs" />
-    <Compile Include="IdpdOpenGLOutputDevice.cs" />
     <Compile Include="TypeSystem.cs" />
     <Compile Include="IZIndex.cs" />
     <Compile Include="IdpdFunctionStructureAttribute.cs" />
@@ -183,6 +178,12 @@
     <Compile Include="IFlyWeight.cs" />
     <Compile Include="HardFlyweight.cs" />
     <Compile Include="WeakFlyweight.cs" />
+    <Compile Include="ProgramManager.cs" />
+    <Compile Include="OutputDevice.cs" />
+    <Compile Include="OutputCairoDevice.cs" />
+    <Compile Include="OutputOpenGLDevice.cs" />
+    <Compile Include="OutputPrintDevice.cs" />
+    <Compile Include="OutputLaTeXDevice.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
