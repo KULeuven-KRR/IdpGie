@@ -29,6 +29,7 @@ namespace IdpGie {
         
         public const double Offset = 10.0d;
         public const double Epsilon = 1e-6;
+        public const uint UpdateInterval = 0x28;
         private double min = 0.0d;
         private double max = 1.0d;
         private double current = 0.0d;
@@ -142,14 +143,14 @@ namespace IdpGie {
         }
         private void checkMode () {
             if (this.mode == MediaMode.Play) {
-                Gdk.Threads.AddTimeout (0, 40, this.updateCurrent);
+                Gdk.Threads.AddTimeout (0, UpdateInterval, this.updateCurrent);
             }
         }
         private bool updateCurrent () {
             if (this.mode != MediaMode.Play) {
                 return false;
             } else {
-                this.current += 0.04d * this.speed;
+                this.current += 0.001d * UpdateInterval * this.speed;
                 if (this.current >= this.max - Epsilon) {
                     this.current = this.max - Epsilon;
                     this.Mode = MediaMode.Pause;

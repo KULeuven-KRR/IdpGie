@@ -44,7 +44,6 @@ namespace IdpGie {
 
         public IIdpdObject this [IFunctionInstance key] {
             get {
-                Console.WriteLine ("query {0}", key);
                 return this.objects [key];
             }
         }
@@ -87,7 +86,6 @@ namespace IdpGie {
             } else if (this.maxTime < time) {
                 this.maxTime = time;
             }
-            Console.WriteLine ("Timespan: [{0}:{1}]", this.minTime, this.maxTime);
         }
 
         public string ToFullString () {
