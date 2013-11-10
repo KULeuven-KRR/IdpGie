@@ -39,8 +39,8 @@ namespace IdpGie {
             }
         }
 
-        protected TimeSensitiveBase (double time) {
-            this.time = Time;
+        protected TimeSensitiveBase (double time = 0.0d) {
+            this.time = time;
         }
 
         #region IComparable implementation

@@ -192,6 +192,7 @@ namespace IdpGie {
         public void SetTime (double time) {
             if (time > base.Time) {
                 if (this.after.Count > 0x00) {
+                    Console.WriteLine ("advance something");
                     IdpdObjectTimeStateModifier mod = this.after.Min;
                     while (mod != null && mod.Time <= time) {
                         this.after.Remove (mod);
@@ -208,6 +209,7 @@ namespace IdpGie {
         public void AddModifier (IdpdObjectTimeStateModifier modifier) {
             if (modifier != null) {
                 int comp = this.CompareTo (modifier);
+                Console.WriteLine ("with modifier + " + modifier);
                 if (comp < 0x00) {
                     this.after.Add (modifier);
                 } else {

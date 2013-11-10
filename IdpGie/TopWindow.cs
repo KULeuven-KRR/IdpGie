@@ -43,7 +43,7 @@ namespace IdpGie {
             if (this.current != null) {
                 DrawTheory dt = this.sheets [this.current];
                 this.mediabar.Min = dt.MinTime;
-                this.mediabar.Max = dt.MaxTime;
+                this.mediabar.Max = dt.MaxTime + 1.0d;
                 this.mediabar.CurrentChanged += (x,y) => current.Seek (y);
                 this.current.Show ();
             } else {

@@ -96,7 +96,7 @@ namespace IdpGie {
         }
 
         public override void Seek (double time) {
-
+            this.theory.Time = time;
             this.QueueDraw ();
             base.Seek (time);
         }

@@ -24,7 +24,7 @@ using System.Text;
 
 namespace IdpGie {
 
-    public class DrawTheory : NameBase {
+    public class DrawTheory : NameBase, ITimesensitive {
 
         private readonly List<ITheoryItem> elements;
         private readonly Dictionary<IFunctionInstance,IIdpdObject> objects = new Dictionary<IFunctionInstance, IIdpdObject> ();
@@ -39,29 +39,6 @@ namespace IdpGie {
             }
             set {
                 this.mode = value;
-            }
-        }
-
-        public double Time {
-            get {
-                IEnumerable<IIdpdObject> tail;
-                IIdpdObject head = this.objects.Values.SplitHead (out tail);
-                if (head != null) {
-                    double time = head.Time;
-                    foreach (IIdpdObject obj in tail) {
-                        if (obj.Time != time) {
-                            return double.NaN;
-                        }
-                    }
-                    return time;
-                } else {
-                    return double.NaN;
-                }
-            }
-            set {
-                foreach (IIdpdObject obj in this.objects.Values) {
-                    obj.Time = value;
-                }
             }
         }
 
@@ -94,6 +71,32 @@ namespace IdpGie {
                 return this.maxTime - minTime;
             }
         }
+        
+
+        #region ITimesensitive implementation
+        public double Time {
+            get {
+                IEnumerable<IIdpdObject> tail;
+                IIdpdObject head = this.objects.Values.SplitHead (out tail);
+                if (head != null) {
+                    double time = head.Time;
+                    foreach (IIdpdObject obj in tail) {
+                        if (obj.Time != time) {
+                            return double.NaN;
+                        }
+                    }
+                    return time;
+                } else {
+                    return double.NaN;
+                }
+            }
+            set {
+                foreach (IIdpdObject obj in this.objects.Values) {
+                    obj.Time = value;
+                }
+            }
+        }
+        #endregion
 
         public DrawTheory (string name, List<ITheoryItem> elements) : base(name) {
             if (elements != null) {
@@ -158,6 +161,17 @@ namespace IdpGie {
                 break;
             }
         }
+
+        #region IComparable implementation
+        public int CompareTo (ITimesensitive other) {
+            if (other != null) {
+                return this.Time.CompareTo (other.Time);
+            } else {
+                return -0x01;
+            }
+        }
+        #endregion
+
 
     }
 }
