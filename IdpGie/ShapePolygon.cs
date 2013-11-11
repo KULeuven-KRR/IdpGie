@@ -29,11 +29,8 @@ namespace IdpGie {
         }
 
         protected override void InnerPaintObject (Context ctx) {
-            IEnumerable<PointD> tail;
-            ctx.MoveTo (this.GetPoints ().SplitHead (out tail));
-            foreach (PointD pt in tail) {
-                ctx.LineTo (pt);
-            }
+            ctx.MoveLineTo (this.GetPoints ());
+            ctx.ClosePath ();
             base.InnerPaintObject (ctx);
         }
 

@@ -69,6 +69,7 @@ namespace IdpGie {
 
         protected virtual void InnerPaintObject (Context ctx) {
             cairoFillStroke (ctx);
+            cairoShowText (ctx);
         }
 
         protected virtual void InnerWriteTikz (StringBuilder sb) {
@@ -109,6 +110,15 @@ namespace IdpGie {
             ctx.FillPreserve ();
             ctx.Color = this.state.EdgeColor;
             ctx.Stroke ();
+        }
+
+        private void cairoShowText (Context ctx) {
+            string text = this.state.Text;
+            if (text != null && text != string.Empty) {
+                TextExtents te = ctx.TextExtents (text);
+                ctx.MoveTo (-0.5d * te.XAdvance, 0.5d * (te.Height + 0.5d * te.YBearing));
+                ctx.ShowText (text);
+            }
         }
 
         public override string ToString () {

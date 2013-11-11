@@ -1,0 +1,7 @@
+idpd_rendering(cairo).
+
+idpd_polygon(een,4,64).
+idpd_show(een,0).
+idpd_text(een,"vierkant").
+idpd_xpos(een,128).
+idpd_ypos(een,128).

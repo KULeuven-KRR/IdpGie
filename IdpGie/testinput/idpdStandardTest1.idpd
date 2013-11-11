@@ -51,35 +51,35 @@ idpd_edgecolor(een,255,255,255).
 //twee
 idpd_innercolor(twee,0,0,0,1).
 idpd_edgecolor(twee,255,255,255,1).
-idpd_text(twee,standaardfunctionaliteit,1).
+idpd_text(twee,"standaardfunctionaliteit",1).
 
 //drie
 idpd_innercolor(drie,0,0,0,2).
 idpd_edgecolor(drie,255,255,255,2).
 idpd_xpos(drie,300,2).
 idpd_ypos(drie,-300,2).
-idpd_text(drie,driehoek,2).
+idpd_text(drie,"driehoek",2).
 
 //vier
 idpd_innercolor(vier,0,0,0,3).
 idpd_edgecolor(vier,255,255,255,3).
 idpd_xpos(vier,360,3).
 idpd_ypos(vier,-300,3).
-idpd_text(vier,twaalfhoek,3).
+idpd_text(vier,"twaalfhoek",3).
 
 //vijf
 idpd_innercolor(vijf,0,0,0,4).
 idpd_edgecolor(vijf,255,255,255,4).
 idpd_xpos(vijf,300,4).
 idpd_ypos(vijf,-300,4).
-idpd_text(vijf,ellipse,4).
+idpd_text(vijf,"ellipse",4).
 
 //zes
 idpd_innercolor(zes,0,0,0,5).
 idpd_edgecolor(zes,255,255,255,5).
 idpd_xpos(zes,300,5).
 idpd_ypos(zes,-300,5).
-idpd_text(zes,?,5).
+idpd_text(zes,"?",5).
 
 //zeven
 idpd_innercolor(zeven,0,0,0,6).
