@@ -80,7 +80,6 @@
     <Compile Include="TopWindow.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
     <Compile Include="MediaButtons.cs" />
-    <Compile Include="IdpObjectModificationType.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
     <Compile Include="FunctionInstance.cs" />

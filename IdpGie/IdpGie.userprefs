@@ -1,22 +1,12 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Box2d.cs">
-    <Files>
-      <File FileName="DrawTheory.cs" Line="34" Column="39" />
-      <File FileName="CairoFrameWidget.cs" Line="99" Column="37" />
-      <File FileName="TopWindow.cs" Line="46" Column="54" />
-      <File FileName="IdpdObject.cs" Line="97" Column="1" />
-      <File FileName="IdpdObjectTimeState.cs" Line="232" Column="37" />
-      <File FileName="IdpdObjectTimeStateModifier.cs" Line="49" Column="87" />
-      <File FileName="TimeSensitiveBase.cs" Line="35" Column="39" />
-      <File FileName="PaintMapping.cs" Line="163" Column="9" />
-      <File FileName="Box2d.cs" Line="85" Column="80" />
-      <File FileName="IGeometry2d.cs" Line="31" Column="34" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True" />
+          <Node name="IdpGie" expanded="True">
+            <Node name="IdpObjectModificationType.cs" selected="True" />
+          </Node>
           <Node name="IdpGieTest" expanded="True" />
         </State>
       </Pad>

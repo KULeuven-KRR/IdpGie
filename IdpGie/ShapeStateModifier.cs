@@ -47,7 +47,7 @@ namespace IdpGie {
         #endregion
 
         public ShapeStateModifier (double time, Action<ShapeState> action, Action<ShapeState> reverseAction = null) : base(time) {
-            if (this.action != null) {
+            if (action != null) {
                 this.action = action;
             } else {
                 throw new ArgumentNullException ("action", "Action must be effective.");
