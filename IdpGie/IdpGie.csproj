@@ -186,6 +186,10 @@
     <Compile Include="FunctionStringInstance.cs" />
     <Compile Include="ColorStructure.cs" />
     <Compile Include="FunctionVirtualInstance.cs" />
+    <Compile Include="ITimeSensitiveFastReversible.cs" />
+    <Compile Include="TimeSensitiveReversibleBase.cs" />
+    <Compile Include="TimeSensitiveFastReversibleBase.cs" />
+    <Compile Include="ITimeSensitiveReversible.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
