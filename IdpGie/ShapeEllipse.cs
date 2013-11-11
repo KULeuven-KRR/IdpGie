@@ -22,7 +22,7 @@ using Cairo;
 
 namespace IdpGie {
 
-    public class ShapeEllipse : IdpdObject {
+    public class ShapeEllipse : Shape {
 
         private double width;
         private double height;
@@ -49,9 +49,10 @@ namespace IdpGie {
         }
 
         protected override void InnerPaintObject (Context ctx) {
+            ctx.Save ();
             ctx.Scale (this.Width, this.Height);
             ctx.Arc (0.0d, 0.0d, 1.0d, 0.0d, MathExtra.Theta);
-            ctx.Fill ();
+            ctx.Restore ();
             base.InnerPaintObject (ctx);
         }
 

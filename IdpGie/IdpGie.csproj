@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
-    <Commandlineparameters>../../testinput/idpdStandardTest1.idpd</Commandlineparameters>
+    <Commandlineparameters>../../testinput/test1.idpd</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -73,7 +73,6 @@
     <Compile Include="IName.cs" />
     <Compile Include="NameBase.cs" />
     <Compile Include="GtkTimeWidget.cs" />
-    <Compile Include="IdpdObject.cs" />
     <Compile Include="BlueprintMediabar.cs" />
     <Compile Include="MediaMode.cs" />
     <Compile Include="BlueprintStyle.cs" />
@@ -81,8 +80,6 @@
     <Compile Include="TopWindow.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
     <Compile Include="MediaButtons.cs" />
-    <Compile Include="IdpObjectModificationType.cs" />
-    <Compile Include="IdpdObjectTimeState.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
     <Compile Include="FunctionInstance.cs" />
@@ -97,7 +94,6 @@
     <Compile Include="ArrayFunction.cs" />
     <Compile Include="ArrayTailFunction.cs" />
     <Compile Include="MathExtra.cs" />
-    <Compile Include="IdpdTimedObjectModification.cs" />
     <Compile Include="ITimesensitive.cs" />
     <Compile Include="TimeSensitiveBase.cs" />
     <Compile Include="TypedPredicate.cs" />
@@ -106,16 +102,11 @@
     <Compile Include="LocalInputContext.cs" />
     <Compile Include="GlobalInputContext.cs" />
     <Compile Include="IInputContext.cs" />
-    <Compile Include="IdpdIntegerFunctionInstance.cs" />
-    <Compile Include="IdpdFloatFunctionInstance.cs" />
-    <Compile Include="IdpdStringFunctionInstance.cs" />
     <Compile Include="TermHeader.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="IdpdVirtualFunctionInstance.cs" />
     <Compile Include="ITermHeader.cs" />
     <Compile Include="ArrayHeadTailFunctionInstance.cs" />
     <Compile Include="IArrayFunctionInstance.cs" />
-    <Compile Include="IdpdMapperAttribute.cs" />
     <Compile Include="EnumerableUtils.cs" />
     <Compile Include="NamedObject.cs" />
     <Compile Include="DrawTheoryMode.cs" />
@@ -127,42 +118,29 @@
     <Compile Include="IFunction.cs" />
     <Compile Include="IPredicate.cs" />
     <Compile Include="NamedFunctionInstance.cs" />
-    <Compile Include="IdpdNamedObjectAttribute.cs" />
-    <Compile Include="IdpdNamedObjectEnumAttribute.cs" />
     <Compile Include="ITheoryItem.cs" />
     <Compile Include="IPositiveClause.cs" />
     <Compile Include="PositiveClause.cs" />
-    <Compile Include="IdpdDrawMethodAttribute.cs" />
-    <Compile Include="IdpdHookMethodAttribute.cs" />
     <Compile Include="NamedAttributeBase.cs" />
-    <Compile Include="IdpdTheoryAlteringMethodAttribute.cs" />
-    <Compile Include="IdpdMethodAttribute.cs" />
     <Compile Include="Interval.cs" />
     <Compile Include="TypeSystem.cs" />
     <Compile Include="IZIndex.cs" />
-    <Compile Include="IdpdFunctionStructureAttribute.cs" />
     <Compile Include="StructureFunctionInstance.cs" />
     <Compile Include="StructureFunction.cs" />
     <Compile Include="IArity.cs" />
     <Compile Include="NameArityPriorityBase.cs" />
     <Compile Include="INameArity.cs" />
     <Compile Include="NameArityBase.cs" />
-    <Compile Include="IdpdFunctionStructureConstructorAttribute.cs" />
     <Compile Include="EnhancedTermCollection.cs" />
     <Compile Include="CairoFrameWidget.cs" />
     <Compile Include="ZIndexComparator.cs" />
-    <Compile Include="IdpdColor.cs" />
     <Compile Include="IMediaObject.cs" />
     <Compile Include="CairoMediaWidget.cs" />
     <Compile Include="OpenGLFrameWidget.cs" />
-    <Compile Include="IdpdObjectTimeStateModifier.cs" />
     <Compile Include="IInterpolatable.cs" />
     <Compile Include="TimeSensitiveComparer.cs" />
     <Compile Include="BlueprintTabControl.cs" />
-    <Compile Include="IIdpdObject.cs" />
-    <Compile Include="IIdpdTransformable.cs" />
     <Compile Include="CairoUtils.cs" />
-    <Compile Include="IdpdObjectTimeStateReversibleModifier.cs" />
     <Compile Include="ShapePolygon.cs" />
     <Compile Include="ShapeEllipse.cs" />
     <Compile Include="ShapeIrregularPolygonObject.cs" />
@@ -188,6 +166,31 @@
     <Compile Include="ITagable.cs" />
     <Compile Include="Box2d.cs" />
     <Compile Include="IGeometry2d.cs" />
+    <Compile Include="Shape.cs" />
+    <Compile Include="IShape.cs" />
+    <Compile Include="IShapeTransformable.cs" />
+    <Compile Include="DrawMethodAttribute.cs" />
+    <Compile Include="MapperAttribute.cs" />
+    <Compile Include="ShapeState.cs" />
+    <Compile Include="NamedObjectAttribute.cs" />
+    <Compile Include="MethodBaseAttribute.cs" />
+    <Compile Include="NamedObjectEnumAttribute.cs" />
+    <Compile Include="HookMethodAttribute.cs" />
+    <Compile Include="ShapeStateModifier.cs" />
+    <Compile Include="IShapeStateModifier.cs" />
+    <Compile Include="TheoryAlteringMethodAttribute.cs" />
+    <Compile Include="FunctionFloatInstance.cs" />
+    <Compile Include="FunctionStructureAttribute.cs" />
+    <Compile Include="FunctionStructureConstructorAttribute.cs" />
+    <Compile Include="FunctionIntegerInstance.cs" />
+    <Compile Include="FunctionStringInstance.cs" />
+    <Compile Include="ColorStructure.cs" />
+    <Compile Include="FunctionVirtualInstance.cs" />
+    <Compile Include="ITimeSensitiveFastReversible.cs" />
+    <Compile Include="TimeSensitiveReversibleBase.cs" />
+    <Compile Include="TimeSensitiveFastReversibleBase.cs" />
+    <Compile Include="ITimeSensitiveReversible.cs" />
+    <Compile Include="CollectionUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

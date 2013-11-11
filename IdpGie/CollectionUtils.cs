@@ -1,5 +1,5 @@
 //
-//  ShapeGraph.cs
+//  CollectionUtils.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,14 +19,19 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public class ShapeGraph : Shape {
+    public static class CollectionUtils {
 
-        public ShapeGraph (IFunctionInstance name) : base(name) {
+        public static void AddAll<T,Q> (this ICollection<T> collection, IEnumerable<Q> source) where Q : T {
+            foreach (Q q in source) {
+                collection.Add (q);
+            }
         }
 
     }
 
 }
+

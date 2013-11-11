@@ -1,5 +1,5 @@
 //
-//  IdpdTheoryAlteringMethodAttribute.cs
+//  IdpdNamedObjectAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,12 +22,11 @@ using System;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Method)]
-    public class IdpdTheoryAlteringMethodAttribute : IdpdMethodAttribute {
+    [AttributeUsage(AttributeTargets.Field)]
+    public class NamedObjectAttribute : Attribute {
 
-        public IdpdTheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
+        public NamedObjectAttribute () {
         }
-
     }
 }
 

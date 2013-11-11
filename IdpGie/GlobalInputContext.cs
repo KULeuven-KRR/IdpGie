@@ -58,7 +58,7 @@ namespace IdpGie {
         }
 
         private void analyzeEnum (Type type) {
-            if (type.GetCustomAttributes (typeof(IdpdNamedObjectEnumAttribute), false).Length > 0x00) {
+            if (type.GetCustomAttributes (typeof(NamedObjectEnumAttribute), false).Length > 0x00) {
                 foreach (FieldInfo field in type.GetFields()) {
                     analyzeField (field);
                 }
@@ -66,27 +66,27 @@ namespace IdpGie {
         }
 
         private void analyzeField (FieldInfo field) {
-            foreach (IdpdNamedObjectAttribute noa in field.GetCustomAttributes(typeof(IdpdNamedObjectAttribute),false)) {
+            foreach (NamedObjectAttribute noa in field.GetCustomAttributes(typeof(NamedObjectAttribute),false)) {
                 NamedFunctionInstance nfi = new NamedFunctionInstance (field.GetValue (null));
                 this.functions.Add (nfi.Signature, nfi);
             }
         }
 
         private void analyzeClass (Type type) {
-            if (type.GetCustomAttributes (typeof(IdpdMapperAttribute), false).Length > 0x00) {
+            if (type.GetCustomAttributes (typeof(MapperAttribute), false).Length > 0x00) {
                 this.analyzeMapperClass (type);
             }
         }
 
         private void analyzeStruct (Type type) {
-            foreach (IdpdFunctionStructureAttribute fsa in type.GetCustomAttributes(typeof(IdpdFunctionStructureAttribute),false).Cast<IdpdFunctionStructureAttribute>()) {
+            foreach (FunctionStructureAttribute fsa in type.GetCustomAttributes(typeof(FunctionStructureAttribute),false).Cast<FunctionStructureAttribute>()) {
                 analyzeFunctionStruct (type, fsa);
             }
         }
 
-        private void analyzeFunctionStruct (Type type, IdpdFunctionStructureAttribute fsa) {
+        private void analyzeFunctionStruct (Type type, FunctionStructureAttribute fsa) {
             foreach (ConstructorInfo ci in type.GetConstructors()) {
-                foreach (IdpdFunctionStructureConstructorAttribute fsca in ci.GetCustomAttributes(typeof(IdpdFunctionStructureConstructorAttribute),false).Cast<IdpdFunctionStructureConstructorAttribute>()) {
+                foreach (FunctionStructureConstructorAttribute fsca in ci.GetCustomAttributes(typeof(FunctionStructureConstructorAttribute),false).Cast<FunctionStructureConstructorAttribute>()) {
                     foreach (StructureFunction f in fsca.StructureFunctions(fsa,ci)) {
                         this.addFunction (f);
                     }
@@ -106,7 +106,7 @@ namespace IdpGie {
                 if (pis.Length > 0x00) {
                     ParameterInfo pi0 = pis [0x00];
                     if (!pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
-                        foreach (IdpdDrawMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdDrawMethodAttribute),false).Cast<IdpdDrawMethodAttribute>()) {
+                        foreach (DrawMethodAttribute ma in method.GetCustomAttributes(typeof(DrawMethodAttribute),false).Cast<DrawMethodAttribute>()) {
                             foreach (TypedMethodPredicate p in ma.Predicates(method)) {
                                 this.addPredicate (p);
                             }

@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public abstract class IdpdVirtualFunctionInstance : IFunction, IFunctionInstance {
+    public abstract class FunctionVirtualInstance : IFunction, IFunctionInstance {
 
         private double priority;
 
@@ -112,7 +112,7 @@ namespace IdpGie {
         }
         #endregion
 
-        protected IdpdVirtualFunctionInstance (double priority = 1.0d) {
+        protected FunctionVirtualInstance (double priority = 1.0d) {
             this.Priority = priority;
         }
 

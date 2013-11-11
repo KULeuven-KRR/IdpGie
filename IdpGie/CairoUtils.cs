@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Cairo;
 
 namespace IdpGie {
@@ -36,6 +37,14 @@ namespace IdpGie {
                         ctx.LineTo (xn, yn);
                     }
                 }
+            }
+        }
+
+        public static void MoveLineTo (this Context ctx, IEnumerable<PointD> pts) {
+            IEnumerable<PointD> tail;
+            ctx.MoveTo (pts.SplitHead (out tail));
+            foreach (PointD pt in tail) {
+                ctx.LineTo (pt);
             }
         }
 

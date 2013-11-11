@@ -28,7 +28,7 @@ using IdpGie.Utils;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Method)]
-    public class IdpdDrawMethodAttribute : IdpdMethodAttribute {
+    public class DrawMethodAttribute : MethodBaseAttribute {
 
         private readonly bool nameDependent;
         private readonly bool timeDependent;
@@ -45,12 +45,12 @@ namespace IdpGie {
             }
         }
 
-        public IdpdDrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
+        public DrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
             this.nameDependent = nameDepedent;
             this.timeDependent = timeDependent;
         }
 
-        public IdpdDrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this(name,nameDepedent,timeDependent,1.0d,types) {
+        public DrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this(name,nameDepedent,timeDependent,1.0d,types) {
         }
 
         public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {

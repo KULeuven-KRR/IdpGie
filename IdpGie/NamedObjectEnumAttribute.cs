@@ -1,5 +1,5 @@
 //
-//  IdpdMapperAttribute.cs
+//  IdpdNamedObjectEnum.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,10 +22,12 @@ using System;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Class)]
-    public class IdpdMapperAttribute : Attribute {
+    [AttributeUsage(AttributeTargets.Enum)]
+    public class NamedObjectEnumAttribute : Attribute {
+
+        public NamedObjectEnumAttribute () {
+        }
 
     }
-
 }
 

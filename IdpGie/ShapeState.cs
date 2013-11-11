@@ -25,16 +25,16 @@ using Cairo;
 
 namespace IdpGie {
 
-    public class IdpdObjectTimeState : TimeSensitiveBase, IIdpdTransformable {
+    public class ShapeState : TimeSensitiveFastReversibleBase, IShapeTransformable {
 
-        private bool visible = false;
-        private Matrix4d transformations = Matrix4d.Identity;
-        private Matrix cairoTransformations = null;
-        private string text = null;
-        private Color innerColor = new Color (0.0d, 0.0d, 0.0d, 0.0d);
-        private Color edgeColor = new Color (0.0d, 0.0d, 0.0d);
-        private readonly SortedSet<IdpdObjectTimeStateModifier> before = new SortedSet<IdpdObjectTimeStateModifier> ();
-        private readonly SortedSet<IdpdObjectTimeStateModifier> after = new SortedSet<IdpdObjectTimeStateModifier> ();
+        private bool visible;
+        private Matrix4d transformations;
+        private Matrix cairoTransformations;
+        private string text;
+        private Color innerColor;
+        private Color edgeColor;
+        private readonly SortedSet<IShapeStateModifier> before = new SortedSet<IShapeStateModifier> ();
+        private readonly SortedSet<IShapeStateModifier> after = new SortedSet<IShapeStateModifier> ();
 
         public bool Visible {
             get {
@@ -86,7 +86,7 @@ namespace IdpGie {
 
         public Matrix CairoTransformations {
             get {
-                return this.calcCairoTransformations ();
+                return this.CalcCairoTransformations ();
             }
         }
 
@@ -129,16 +129,60 @@ namespace IdpGie {
             }
         }
 
-        public IdpdObjectTimeState () : base(double.NegativeInfinity) {
+        public ShapeState () : base(double.NegativeInfinity,double.NegativeInfinity) {
+            this.Reset ();
+        }
+
+        public void Reset () {
+            this.visible = false;
+            this.transformations = Matrix4d.Identity;
+            this.cairoTransformations = null;
+            this.text = null;
+            this.innerColor = new Color (0.0d, 0.0d, 0.0d, 0.0d);
+            this.edgeColor = new Color (0.0d, 0.0d, 0.0d);
+            base.Time = double.NegativeInfinity;
+            this.Checkpoint = double.NegativeInfinity;
+        }
+
+        public void Reset (double time) {
+            this.Reset ();
+            this.after.AddAll (this.before);
+            before.Clear ();
+            this.Advance (time);
+        }
+
+        public void Advance (double time) {
+            double checkpoint = this.Checkpoint;
+            IShapeStateModifier mod = this.after.Min;
+            while (mod != null && mod.Time <= time) {
+                this.after.Remove (mod);
+                this.before.Add (mod);
+                mod.Action (this);
+                if (!mod.Reversible) {
+                    checkpoint = mod.Time;
+                }
+                mod = this.after.Min;
+            }
+            this.Checkpoint = checkpoint;
+            base.Time = time;
+        }
+
+        private void FastReverse (double time) {
+            IShapeStateModifier mod = this.before.Max;
+            while (mod != null && mod.Time > time) {
+                this.before.Remove (mod);
+                this.after.Add (mod);
+                mod.ReverseAction (this);
+                mod = this.before.Max;
+            }
+            base.Time = time;
         }
 
         public void Show () {
-            Console.WriteLine ("Show");
             this.visible = true;
         }
 
         public void Hide () {
-            Console.WriteLine ("Hide");
             this.visible = false;
         }
 
@@ -166,21 +210,21 @@ namespace IdpGie {
         }
 
         public void SetXPos (double xpos) {
-            Console.WriteLine ("XPos " + xpos);
             this.transformations.M14 = xpos;
+            this.makeDirty ();
         }
 
         public void SetYPos (double ypos) {
-            Console.WriteLine ("YPos " + ypos);
             this.transformations.M24 = ypos;
+            this.makeDirty ();
         }
 
         public void SetZPos (double zpos) {
-            Console.WriteLine ("ZPos " + zpos);
             this.transformations.M34 = zpos;
+            this.makeDirty ();
         }
 
-        private Matrix calcCairoTransformations () {
+        private Matrix CalcCairoTransformations () {
             Matrix ct = this.cairoTransformations;
             if (Object.ReferenceEquals (ct, null)) {
                 Matrix4d t = this.transformations;
@@ -196,25 +240,15 @@ namespace IdpGie {
 
         public void SetTime (double time) {
             if (time > base.Time) {
-                if (this.after.Count > 0x00) {
-                    IdpdObjectTimeStateModifier mod = this.after.Min;
-                    while (mod != null && mod.Time <= time) {
-                        Console.WriteLine ("advance " + mod);
-                        this.after.Remove (mod);
-                        mod.Action (this);
-                        mod = this.after.Min;
-                    }
-                }
+                this.Advance (time);
             } else if (time < base.Time) {
-                //revert
+                this.Reverse (time);
             }
-            base.Time = time;
         }
 
-        public void AddModifier (IdpdObjectTimeStateModifier modifier) {
+        public void AddModifier (IShapeStateModifier modifier) {
             if (modifier != null) {
                 int comp = this.CompareTo (modifier);
-                Console.WriteLine ("with modifier + " + modifier);
                 if (comp < 0x00) {
                     this.after.Add (modifier);
                 } else {
@@ -224,18 +258,34 @@ namespace IdpGie {
             }
         }
 
-        public void AddModifier (double time, Action<IdpdObjectTimeState> modifier) {
-            this.AddModifier (new IdpdObjectTimeStateModifier (time, modifier));
+        public void AddModifier (double time, Action<ShapeState> modifier) {
+            this.AddModifier (new ShapeStateModifier (time, modifier));
         }
 
         public void SetEdgeColor (double r, double g, double b) {
-            Console.WriteLine ("Edge " + r + ";" + g + ";" + b);
-            this.edgeColor = new Color (r, g, b);
+            this.edgeColor = new Color (r * MathExtra.Inv255, g * MathExtra.Inv255, b * MathExtra.Inv255);
         }
 
         public void SetInnerColor (double r, double g, double b) {
-            Console.WriteLine ("Inner " + r + ";" + g + ";" + b);
-            this.innerColor = new Color (r, g, b);
+            this.innerColor = new Color (r * MathExtra.Inv255, g * MathExtra.Inv255, b * MathExtra.Inv255);
+        }
+
+        public override bool CanReverse (double time) {
+            return time <= this.Time;
+        }
+
+        public override bool CanFastReverse (double time) {
+            return time > this.Checkpoint;
+        }
+
+        public override void Reverse (double time) {
+            if (this.CanFastReverse (time)) {
+                FastReverse (time);
+            } else if (this.CanReverse (time)) {
+                this.Reset (time);
+            } else {
+                throw new ArgumentException ("Cannot reverse to the given time!");
+            }
         }
 
     }

@@ -1,5 +1,5 @@
 //
-//  IdpdStringFunctionInstance.cs
+//  IdpdStructureAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,37 +21,21 @@
 using System;
 
 namespace IdpGie {
-    public class IdpdStringFunctionInstance : IdpdVirtualFunctionInstance {
 
-        private string value;
+    [AttributeUsage(AttributeTargets.Struct)]
+    public class FunctionStructureAttribute : NamedAttributeBase {
 
-        #region implemented abstract members of IdpGie.IdpdVirtualFunctionInstance
-        public override TermType Type {
+        private readonly TermType outputType;
+
+        public TermType OutputType {
             get {
-                return TermType.String;
+                return this.outputType;
             }
         }
 
-        public override object Value {
-            get {
-                return value;
-            }
+        public FunctionStructureAttribute (string name, TermType outputType) : base(name) {
+            this.outputType = outputType;
         }
-        #endregion
-
-        public IdpdStringFunctionInstance (string text) {
-            this.value = text;
-        }
-
-        public override string ToString () {
-            return value;
-        }
-
-        #region implemented abstract members of IdpGie.IdpVirtualFunctionInstance
-        public override object ConvertedValue (TermType target) {
-            return this.value;
-        }
-        #endregion
 
     }
 }

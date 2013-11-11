@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 
-    public abstract class IdpdMethodAttribute : NamedAttributeBase, IPriority {
+    public abstract class MethodBaseAttribute : NamedAttributeBase, IPriority {
 
         private readonly double priority;
         private readonly IList<TermType> types;
@@ -48,7 +48,7 @@ namespace IdpGie {
             }
         }
 
-        protected IdpdMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name) {
+        protected MethodBaseAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name) {
             this.priority = priority;
             this.types = types;
         }

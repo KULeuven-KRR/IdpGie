@@ -1,5 +1,5 @@
 //
-//  IdpdTimedObjectModification.cs
+//  IFastReverse.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,25 +19,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Linq;
 
 namespace IdpGie {
 
-    public class IdpdTimedObjectModification : TimeSensitiveBase {
+    public interface ITimeSensitiveReversible : ITimesensitive {
 
-        private Action action;
+        bool CanReverse (double time);
 
-        public Action Action {
-            get {
-                return this.action;
-            }
-            set {
-                this.action = value;
-            }
-        }
-
-        public IdpdTimedObjectModification (double time, Action action) : base(time) {
-        }
+        void Reverse (double time);
 
     }
 

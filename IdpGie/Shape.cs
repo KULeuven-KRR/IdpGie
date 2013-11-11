@@ -25,10 +25,10 @@ using OpenTK;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : IIdpdObject {
+    public abstract class Shape : IShape {
 
         private readonly IFunctionInstance name;
-        private readonly IdpdObjectTimeState state = new IdpdObjectTimeState ();
+        private readonly ShapeState state = new ShapeState ();
 
         #region IIdpdObject implementation
         public IFunctionInstance Name {
@@ -56,19 +56,20 @@ namespace IdpGie {
         #endregion
 
         #region IIdpdObject implementation
-        public IdpdObjectTimeState State {
+        public ShapeState State {
             get {
                 return this.state;
             }
         }
         #endregion
 
-        protected IdpdObject (IFunctionInstance name) {
+        protected Shape (IFunctionInstance name) {
             this.name = name;
         }
 
         protected virtual void InnerPaintObject (Context ctx) {
             cairoFillStroke (ctx);
+            cairoShowText (ctx);
         }
 
         protected virtual void InnerWriteTikz (StringBuilder sb) {
@@ -95,11 +96,11 @@ namespace IdpGie {
 
         }
 
-        public void AddModifier (IdpdObjectTimeStateModifier modifier) {
+        public void AddModifier (ShapeStateModifier modifier) {
             this.State.AddModifier (modifier);
         }
 
-        public void AddModifier (double time, Action<IdpdObjectTimeState> modifier) {
+        public void AddModifier (double time, Action<ShapeState> modifier) {
             this.State.AddModifier (time, modifier);
         }
         #endregion
@@ -109,6 +110,15 @@ namespace IdpGie {
             ctx.FillPreserve ();
             ctx.Color = this.state.EdgeColor;
             ctx.Stroke ();
+        }
+
+        private void cairoShowText (Context ctx) {
+            string text = this.state.Text;
+            if (text != null && text != string.Empty) {
+                TextExtents te = ctx.TextExtents (text);
+                ctx.MoveTo (-0.5d * te.XAdvance, 0.5d * (te.Height + 0.5d * te.YBearing));
+                ctx.ShowText (text);
+            }
         }
 
         public override string ToString () {

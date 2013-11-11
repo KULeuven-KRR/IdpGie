@@ -1,27 +1,21 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BlueprintMediabar.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CairoFrameWidget.cs">
     <Files>
-      <File FileName="ProgramManager.cs" Line="61" Column="33" />
-      <File FileName="TopWindow.cs" Line="53" Column="35" />
-      <File FileName="DrawTheory.cs" Line="88" Column="14" />
-      <File FileName="PaintMapping.cs" Line="86" Column="36" />
-      <File FileName="IdpdObject.cs" Line="117" Column="41" />
-      <File FileName="OutputCairoDevice.cs" Line="45" Column="41" />
-      <File FileName="OutputOpenGLDevice.cs" Line="33" Column="41" />
-      <File FileName="MediaButtons.cs" Line="1" Column="1" />
-      <File FileName="BlueprintMediabar.cs" Line="144" Column="36" />
-      <File FileName="BlueprintStyle.cs" Line="1" Column="1" />
+      <File FileName="PaintMapping.cs" Line="182" Column="58" />
+      <File FileName="ShapeStateModifier.cs" Line="49" Column="131" />
+      <File FileName="Shape.cs" Line="120" Column="37" />
+      <File FileName="ShapeState.cs" Line="221" Column="39" />
+      <File FileName="ShapePolygon.cs" Line="34" Column="41" />
+      <File FileName="CairoUtils.cs" Line="44" Column="38" />
+      <File FileName="Maths.cs" Line="27" Column="52" />
+      <File FileName="lex.ll" Line="6" Column="23" />
+      <File FileName="CairoFrameWidget.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True">
-            <Node name="UserInterface" expanded="True">
-              <Node name="IdpGie.TopWindow" expanded="True" />
-            </Node>
-            <Node name="BlueprintMediabar.cs" selected="True" />
-          </Node>
+          <Node name="IdpGie" expanded="True" selected="True" />
           <Node name="IdpGieTest" expanded="True" />
         </State>
       </Pad>

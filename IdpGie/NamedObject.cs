@@ -22,10 +22,10 @@ using System;
 
 namespace IdpGie {
 
-    [IdpdNamedObjectEnum]
+    [NamedObjectEnum]
     public enum NamedObject : long {
         #region Generic   (0x000000 family)
-        [IdpdNamedObject]
+        [NamedObject]
         Unknown = 0x000000,
         #endregion
         #region Keys      (0x010000 family)
@@ -48,13 +48,13 @@ namespace IdpGie {
         #region Mouse
         #endregion
         #region ModeNames (0x030000 family)
-        [IdpdNamedObject]
+        [NamedObject]
         Opengl  = 0x030001,
-        [IdpdNamedObject]
+        [NamedObject]
         Cairo   = 0x030002,
-        [IdpdNamedObject]
+        [NamedObject]
         Latex   = 0x030003,
-        [IdpdNamedObject]
+        [NamedObject]
         Print   = 0x030004
         #endregion
     }

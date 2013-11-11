@@ -28,13 +28,32 @@ namespace IdpGie {
 
         private int nbOfEdges;
         private double sizeOfEdges;
+        private double alpha;
 
         public int NumberOfEdges {
             get {
                 return this.nbOfEdges;
             }
             set {
-                this.nbOfEdges = Math.Max (0x00, this.nbOfEdges);
+                this.nbOfEdges = Math.Max (0x00, value);
+            }
+        }
+
+        public double Alpha {
+            get {
+                return this.alpha;
+            }
+            set {
+                this.alpha = value;
+            }
+        }
+
+        public double Beta {
+            get {
+                return MathExtra.Theta / this.nbOfEdges;
+            }
+            set {
+                this.NumberOfEdges = (int)Math.Round (MathExtra.InvTheta / value);
             }
         }
 
@@ -47,16 +66,17 @@ namespace IdpGie {
             }
         }
 
-        public ShapeRegularPolygonObject (IFunctionInstance name, int nbOfEdges, double sizeOfEdges) : base(name) {
+        public ShapeRegularPolygonObject (IFunctionInstance name, int nbOfEdges, double sizeOfEdges, double alpha = 0.0d) : base(name) {
             this.NumberOfEdges = nbOfEdges;
             this.SizeOfEdges = sizeOfEdges;
+            this.alpha = alpha;
         }
 
         public override IEnumerable<PointD> GetPoints () {
-            int n = this.nbOfEdges;
+            int n = this.NumberOfEdges;
             double e = this.sizeOfEdges;
-            double alpha = 0.0d;
-            double beta = MathExtra.Theta / n;
+            double alpha = this.Alpha;
+            double beta = this.Beta;
             for (int i = n-0x01; i >= 0x00; i--) {
                 yield return new PointD (e * Math.Cos (alpha), e * Math.Sin (alpha));
                 alpha += beta;

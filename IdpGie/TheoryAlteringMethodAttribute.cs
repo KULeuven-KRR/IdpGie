@@ -1,5 +1,5 @@
 //
-//  ShapeGraph.cs
+//  IdpdTheoryAlteringMethodAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,11 +22,12 @@ using System;
 
 namespace IdpGie {
 
-    public class ShapeGraph : Shape {
+    [AttributeUsage(AttributeTargets.Method)]
+    public class TheoryAlteringMethodAttribute : MethodBaseAttribute {
 
-        public ShapeGraph (IFunctionInstance name) : base(name) {
+        public TheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
         }
 
     }
-
 }
+

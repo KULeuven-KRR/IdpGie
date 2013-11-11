@@ -1,5 +1,5 @@
 //
-//  IdpdObjectTimeStateReversibleModifier.cs
+//  TimeSensitiveReversibleBase.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,22 +22,25 @@ using System;
 
 namespace IdpGie {
 
-    using Ac = Action<IdpdObjectTimeState>;
+    public abstract class TimeSensitiveReversibleBase : TimeSensitiveBase, ITimeSensitiveReversible {
 
-    public class IdpdObjectTimeStateReversibleModifier : IdpdObjectTimeStateModifier {
+        protected TimeSensitiveReversibleBase (double time = 0.0d) : base(time) {
+        }
 
-        private readonly Ac reverser;
+        #region ITimeSensitiveReverseable implementation
+        public virtual bool CanReverse (double time) {
+            return false;
+        }
 
-        public Ac Reverser {
-            get {
-                return this.reverser;
+        public virtual void Reverse (double time) {
+            if (!this.CanReverse (time)) {
+                throw new ArgumentException ("time", "Cannot reverse to the given time point.");
             }
         }
+        #endregion
 
-        public IdpdObjectTimeStateReversibleModifier (double time, Ac action, Ac reverser) : base(time,action) {
-            this.reverser = reverser;
-        }
 
     }
+
 }
 

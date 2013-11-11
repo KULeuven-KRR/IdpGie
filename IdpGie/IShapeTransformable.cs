@@ -1,5 +1,5 @@
 //
-//  IdpdNamedObjectAttribute.cs
+//  ITransformable.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,11 +22,12 @@ using System;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Field)]
-    public class IdpdNamedObjectAttribute : Attribute {
+    public interface IShapeTransformable {
 
-        public IdpdNamedObjectAttribute () {
-        }
+        void SetXPos (double xpos);
+        void SetYPos (double ypos);
+        void SetZPos (double zpos);
+
     }
 }
 

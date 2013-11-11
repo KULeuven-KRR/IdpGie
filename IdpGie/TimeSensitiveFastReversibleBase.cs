@@ -1,5 +1,5 @@
 //
-//  IdpdStructureAttribute.cs
+//  TimeSensitiveFastReversibleBase.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,21 +22,31 @@ using System;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Struct)]
-    public class IdpdFunctionStructureAttribute : NamedAttributeBase {
+    public abstract class TimeSensitiveFastReversibleBase : TimeSensitiveReversibleBase, ITimeSensitiveFastReversible {
 
-        private readonly TermType outputType;
+        private double checkpoint;
 
-        public TermType OutputType {
+        #region ITimeSensitiveFastReversible implementation
+        public virtual double Checkpoint {
             get {
-                return this.outputType;
+                return this.checkpoint;
+            }
+            protected set {
+                this.checkpoint = value;
             }
         }
+        #endregion
 
-        public IdpdFunctionStructureAttribute (string name, TermType outputType) : base(name) {
-            this.outputType = outputType;
+        protected TimeSensitiveFastReversibleBase (double time = 0.0d, double checkpoint = double.NegativeInfinity) : base(time) {
+            this.Checkpoint = checkpoint;
         }
 
-    }
-}
+        #region ITimeSensitiveFastReversible implementation
+        public virtual bool CanFastReverse (double time) {
+            return time >= this.checkpoint && time <= this.Time;
+        }
+        #endregion
 
+    }
+
+}

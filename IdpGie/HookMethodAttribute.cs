@@ -1,5 +1,5 @@
 //
-//  IdpObjectModificationType.cs
+//  IdpdHookMethodAttribut.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,12 +22,11 @@ using System;
 
 namespace IdpGie {
 
-    [Flags]
-    public enum IdpObjectModificationType : long {
-        Visible    = 0x01,
-        XPos       = 0x02,
-        YPos       = 0x04,
-        ZIndex     = 0x08
-    }
+    [AttributeUsage(AttributeTargets.Method)]
+    public class HookMethodAttribute : MethodBaseAttribute {
 
+        public HookMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
+        }
+    }
 }
+

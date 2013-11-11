@@ -1,5 +1,5 @@
 //
-//  ShapeGraph.cs
+//  IShapeStateModifier.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,11 +22,21 @@ using System;
 
 namespace IdpGie {
 
-    public class ShapeGraph : Shape {
+    public interface IShapeStateModifier : ITimesensitive {
 
-        public ShapeGraph (IFunctionInstance name) : base(name) {
+        bool Reversible {
+            get;
+        }
+
+        Action<ShapeState> Action {
+            get;
+        }
+
+        Action<ShapeState> ReverseAction {
+            get;
         }
 
     }
 
 }
+

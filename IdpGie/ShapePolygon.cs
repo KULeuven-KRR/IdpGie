@@ -23,17 +23,14 @@ using Cairo;
 
 namespace IdpGie {
 
-    public abstract class ShapePolygon : IdpdObject {
+    public abstract class ShapePolygon : Shape {
 
         protected ShapePolygon (IFunctionInstance name) : base(name) {
         }
 
         protected override void InnerPaintObject (Context ctx) {
-            IEnumerable<PointD> tail;
-            ctx.MoveTo (this.GetPoints ().SplitHead (out tail));
-            foreach (PointD pt in tail) {
-                ctx.LineTo (pt);
-            }
+            ctx.MoveLineTo (this.GetPoints ());
+            ctx.ClosePath ();
             base.InnerPaintObject (ctx);
         }
 
