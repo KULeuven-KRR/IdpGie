@@ -57,6 +57,7 @@ namespace IdpGie {
 
         [DrawMethod("text",true,true,TermType.String)]
         public static void Text (DrawTheory dt, IFunctionInstance name, string text, double time = double.NaN) {
+            dt.RegisterTime (time);
             dt [name].AddModifier (time, x => x.SetText (text));
         }
 

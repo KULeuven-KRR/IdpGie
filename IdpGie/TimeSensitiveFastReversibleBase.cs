@@ -32,7 +32,7 @@ namespace IdpGie {
                 return this.checkpoint;
             }
             protected set {
-                this.checkpoint = Math.Min (value, this.Time);
+                this.checkpoint = value;
             }
         }
         #endregion

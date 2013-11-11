@@ -190,6 +190,7 @@
     <Compile Include="TimeSensitiveReversibleBase.cs" />
     <Compile Include="TimeSensitiveFastReversibleBase.cs" />
     <Compile Include="ITimeSensitiveReversible.cs" />
+    <Compile Include="CollectionUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
