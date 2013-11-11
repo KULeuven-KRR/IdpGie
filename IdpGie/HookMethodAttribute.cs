@@ -1,5 +1,5 @@
 //
-//  IdpdNamedObjectEnum.cs
+//  IdpdHookMethodAttribut.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,12 +22,11 @@ using System;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Enum)]
-    public class IdpdNamedObjectEnumAttribute : Attribute {
+    [AttributeUsage(AttributeTargets.Method)]
+    public class HookMethodAttribute : MethodBaseAttribute {
 
-        public IdpdNamedObjectEnumAttribute () {
+        public HookMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
         }
-
     }
 }
 

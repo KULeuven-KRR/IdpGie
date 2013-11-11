@@ -23,8 +23,8 @@ using System.Globalization;
 
 namespace IdpGie {
 
-    [IdpdFunctionStructureAttribute("color",TermType.Color)]
-    public struct IdpdColor {
+    [FunctionStructure("color",TermType.Color)]
+    public struct ColorStructure {
 
         public const ulong AlphaChannel = 0xff000000;
         public const ulong RedChannel = 0x00ff0000;
@@ -62,19 +62,19 @@ namespace IdpGie {
             }
         }
 
-        [IdpdFunctionStructureConstructor(TermType.Int,TermType.Int,TermType.Int)]
-        public IdpdColor (int red, int green, int blue) {
+        [FunctionStructureConstructor(TermType.Int,TermType.Int,TermType.Int)]
+        public ColorStructure (int red, int green, int blue) {
             this.data = AlphaChannel | (ulong)(red << RedShift) | (ulong)(green << GreenShift) | (ulong)(blue << BlueShift);
         }
 
-        [IdpdFunctionStructureConstructor(TermType.Int,TermType.Int,TermType.Int,TermType.Int)]
-        public IdpdColor (int alpha, int red, int green, int blue) {
+        [FunctionStructureConstructor(TermType.Int,TermType.Int,TermType.Int,TermType.Int)]
+        public ColorStructure (int alpha, int red, int green, int blue) {
             this.data = (ulong)(alpha << AlphaShift) | (ulong)(red << RedShift) | (ulong)(green << GreenShift) | (ulong)(blue << BlueShift);
         }
 
         public override bool Equals (object obj) {
-            if (obj is IdpdColor) {
-                return this.data == ((IdpdColor)obj).data;
+            if (obj is ColorStructure) {
+                return this.data == ((ColorStructure)obj).data;
             } else {
                 return false;
             }

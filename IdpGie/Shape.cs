@@ -28,7 +28,7 @@ namespace IdpGie {
     public abstract class Shape : IShape {
 
         private readonly IFunctionInstance name;
-        private readonly IdpdObjectTimeState state = new IdpdObjectTimeState ();
+        private readonly ShapeState state = new ShapeState ();
 
         #region IIdpdObject implementation
         public IFunctionInstance Name {
@@ -56,7 +56,7 @@ namespace IdpGie {
         #endregion
 
         #region IIdpdObject implementation
-        public IdpdObjectTimeState State {
+        public ShapeState State {
             get {
                 return this.state;
             }
@@ -95,11 +95,11 @@ namespace IdpGie {
 
         }
 
-        public void AddModifier (IdpdObjectTimeStateModifier modifier) {
+        public void AddModifier (ShapeStateModifier modifier) {
             this.State.AddModifier (modifier);
         }
 
-        public void AddModifier (double time, Action<IdpdObjectTimeState> modifier) {
+        public void AddModifier (double time, Action<ShapeState> modifier) {
             this.State.AddModifier (time, modifier);
         }
         #endregion

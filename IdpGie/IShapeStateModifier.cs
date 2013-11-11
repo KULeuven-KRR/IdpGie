@@ -1,5 +1,5 @@
 //
-//  IdpdObjectTimeStateReversibleModifier.cs
+//  IShapeStateModifier.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,22 +22,21 @@ using System;
 
 namespace IdpGie {
 
-    using Ac = Action<IdpdObjectTimeState>;
+    public interface IShapeStateModifier : ITimesensitive {
 
-    public class IdpdObjectTimeStateReversibleModifier : IdpdObjectTimeStateModifier {
-
-        private readonly Ac reverser;
-
-        public Ac Reverser {
-            get {
-                return this.reverser;
-            }
+        bool Reversible {
+            get;
         }
 
-        public IdpdObjectTimeStateReversibleModifier (double time, Ac action, Ac reverser) : base(time,action) {
-            this.reverser = reverser;
+        Action<ShapeState> Action {
+            get;
+        }
+
+        Action<ShapeState> ReverseAction {
+            get;
         }
 
     }
+
 }
 

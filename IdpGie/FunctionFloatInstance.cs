@@ -1,5 +1,5 @@
 //
-//  IdpdFunctionStructureConstructorAttribute.cs
+//  IdpdFloatFunctionInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,29 +19,40 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Reflection;
-using System.Collections.Generic;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Constructor)]
-    public class IdpdFunctionStructureConstructorAttribute : Attribute {
+    public class FunctionFloatInstance : FunctionVirtualInstance {
 
-        private readonly IList<TermType> inputTypes;
+        private double value;
 
-        public IList<TermType> InputTypes {
+        #region implemented abstract members of IdpGie.IdpdVirtualFunctionInstance
+        public override TermType Type {
             get {
-                return this.inputTypes;
+                return TermType.Float;
             }
         }
 
-        public IdpdFunctionStructureConstructorAttribute (params TermType[] inputTypes) {
-            this.inputTypes = inputTypes;
+        public override object Value {
+            get {
+                return value;
+            }
+        }
+        #endregion
+
+        public FunctionFloatInstance (string text) {
+            this.value = double.Parse (text);
         }
 
-        public IEnumerable<StructureFunction> StructureFunctions (IdpdFunctionStructureAttribute fsa, ConstructorInfo ci) {
-            yield return new StructureFunction (fsa.Name, inputTypes.Count, fsa.OutputType, ci, this.InputTypes);
+        public override string ToString () {
+            return value.ToString ();
         }
+
+        #region implemented abstract members of IdpGie.IdpVirtualFunctionInstance
+        public override object ConvertedValue (TermType target) {
+            return this.value;
+        }
+        #endregion
 
     }
 }

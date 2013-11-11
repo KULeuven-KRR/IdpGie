@@ -1,5 +1,5 @@
 //
-//  IdpdFloatFunctionInstance.cs
+//  IdpdStringFunctionInstance.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,15 +21,14 @@
 using System;
 
 namespace IdpGie {
+    public class FunctionStringInstance : FunctionVirtualInstance {
 
-    public class IdpdFloatFunctionInstance : IdpdVirtualFunctionInstance {
-
-        private double value;
+        private string value;
 
         #region implemented abstract members of IdpGie.IdpdVirtualFunctionInstance
         public override TermType Type {
             get {
-                return TermType.Float;
+                return TermType.String;
             }
         }
 
@@ -40,12 +39,12 @@ namespace IdpGie {
         }
         #endregion
 
-        public IdpdFloatFunctionInstance (string text) {
-            this.value = double.Parse (text);
+        public FunctionStringInstance (string text) {
+            this.value = text;
         }
 
         public override string ToString () {
-            return value.ToString ();
+            return value;
         }
 
         #region implemented abstract members of IdpGie.IdpVirtualFunctionInstance

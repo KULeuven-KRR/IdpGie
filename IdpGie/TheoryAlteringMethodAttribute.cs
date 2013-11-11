@@ -23,9 +23,9 @@ using System;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Method)]
-    public class IdpdTheoryAlteringMethodAttribute : IdpdMethodAttribute {
+    public class TheoryAlteringMethodAttribute : MethodBaseAttribute {
 
-        public IdpdTheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
+        public TheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
         }
 
     }

@@ -1,5 +1,5 @@
 //
-//  IdpdHookMethodAttribut.cs
+//  IdpdFunctionStructureConstructorAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,14 +19,30 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Reflection;
+using System.Collections.Generic;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Method)]
-    public class IdpdHookMethodAttribute : IdpdMethodAttribute {
+    [AttributeUsage(AttributeTargets.Constructor)]
+    public class FunctionStructureConstructorAttribute : Attribute {
 
-        public IdpdHookMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
+        private readonly IList<TermType> inputTypes;
+
+        public IList<TermType> InputTypes {
+            get {
+                return this.inputTypes;
+            }
         }
+
+        public FunctionStructureConstructorAttribute (params TermType[] inputTypes) {
+            this.inputTypes = inputTypes;
+        }
+
+        public IEnumerable<StructureFunction> StructureFunctions (FunctionStructureAttribute fsa, ConstructorInfo ci) {
+            yield return new StructureFunction (fsa.Name, inputTypes.Count, fsa.OutputType, ci, this.InputTypes);
+        }
+
     }
 }
 

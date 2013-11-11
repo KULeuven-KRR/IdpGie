@@ -23,7 +23,7 @@ using System.Text.RegularExpressions;
 
 namespace IdpGie {
 
-    public class IdpdIntegerFunctionInstance : IdpdVirtualFunctionInstance {
+    public class FunctionIntegerInstance : FunctionVirtualInstance {
 
         private int value;
 
@@ -41,7 +41,7 @@ namespace IdpGie {
         }
         #endregion
 
-        public IdpdIntegerFunctionInstance (string text) {
+        public FunctionIntegerInstance (string text) {
             this.value = int.Parse (text);
         }
 

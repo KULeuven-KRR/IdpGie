@@ -31,7 +31,7 @@ namespace IdpGie {
             get;
         }
 
-        IdpdObjectTimeState State {
+        ShapeState State {
             get;
         }
 
@@ -46,9 +46,9 @@ namespace IdpGie {
 
         void Render (FrameEventArgs e);
 
-        void AddModifier (IdpdObjectTimeStateModifier modifier);
+        void AddModifier (ShapeStateModifier modifier);
 
-        void AddModifier (double time, Action<IdpdObjectTimeState> modifier);
+        void AddModifier (double time, Action<ShapeState> modifier);
 
     }
 

@@ -25,7 +25,7 @@ using Cairo;
 
 namespace IdpGie {
 
-    public class IdpdObjectTimeState : TimeSensitiveBase, IShapeTransformable {
+    public class ShapeState : TimeSensitiveBase, IShapeTransformable {
 
         private bool visible = false;
         private Matrix4d transformations = Matrix4d.Identity;
@@ -33,8 +33,8 @@ namespace IdpGie {
         private string text = null;
         private Color innerColor = new Color (0.0d, 0.0d, 0.0d, 0.0d);
         private Color edgeColor = new Color (0.0d, 0.0d, 0.0d);
-        private readonly SortedSet<IdpdObjectTimeStateModifier> before = new SortedSet<IdpdObjectTimeStateModifier> ();
-        private readonly SortedSet<IdpdObjectTimeStateModifier> after = new SortedSet<IdpdObjectTimeStateModifier> ();
+        private readonly SortedSet<ShapeStateModifier> before = new SortedSet<ShapeStateModifier> ();
+        private readonly SortedSet<ShapeStateModifier> after = new SortedSet<ShapeStateModifier> ();
 
         public bool Visible {
             get {
@@ -129,7 +129,7 @@ namespace IdpGie {
             }
         }
 
-        public IdpdObjectTimeState () : base(double.NegativeInfinity) {
+        public ShapeState () : base(double.NegativeInfinity) {
         }
 
         public void Show () {
@@ -197,7 +197,7 @@ namespace IdpGie {
         public void SetTime (double time) {
             if (time > base.Time) {
                 if (this.after.Count > 0x00) {
-                    IdpdObjectTimeStateModifier mod = this.after.Min;
+                    ShapeStateModifier mod = this.after.Min;
                     while (mod != null && mod.Time <= time) {
                         Console.WriteLine ("advance " + mod);
                         this.after.Remove (mod);
@@ -211,7 +211,7 @@ namespace IdpGie {
             base.Time = time;
         }
 
-        public void AddModifier (IdpdObjectTimeStateModifier modifier) {
+        public void AddModifier (ShapeStateModifier modifier) {
             if (modifier != null) {
                 int comp = this.CompareTo (modifier);
                 Console.WriteLine ("with modifier + " + modifier);
@@ -224,8 +224,8 @@ namespace IdpGie {
             }
         }
 
-        public void AddModifier (double time, Action<IdpdObjectTimeState> modifier) {
-            this.AddModifier (new IdpdObjectTimeStateModifier (time, modifier));
+        public void AddModifier (double time, Action<ShapeState> modifier) {
+            this.AddModifier (new ShapeStateModifier (time, modifier));
         }
 
         public void SetEdgeColor (double r, double g, double b) {

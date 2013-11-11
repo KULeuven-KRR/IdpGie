@@ -28,7 +28,7 @@ using IdpGie.Utils;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Method)]
-    public class DrawMethodAttribute : IdpdMethodAttribute {
+    public class DrawMethodAttribute : MethodBaseAttribute {
 
         private readonly bool nameDependent;
         private readonly bool timeDependent;

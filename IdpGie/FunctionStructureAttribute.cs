@@ -1,5 +1,5 @@
 //
-//  IdpdNamedObjectAttribute.cs
+//  IdpdStructureAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,11 +22,21 @@ using System;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Field)]
-    public class IdpdNamedObjectAttribute : Attribute {
+    [AttributeUsage(AttributeTargets.Struct)]
+    public class FunctionStructureAttribute : NamedAttributeBase {
 
-        public IdpdNamedObjectAttribute () {
+        private readonly TermType outputType;
+
+        public TermType OutputType {
+            get {
+                return this.outputType;
+            }
         }
+
+        public FunctionStructureAttribute (string name, TermType outputType) : base(name) {
+            this.outputType = outputType;
+        }
+
     }
 }
 

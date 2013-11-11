@@ -1,5 +1,5 @@
 //
-//  IdpdStructureAttribute.cs
+//  IdpdNamedObjectEnum.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -22,19 +22,10 @@ using System;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Struct)]
-    public class IdpdFunctionStructureAttribute : NamedAttributeBase {
+    [AttributeUsage(AttributeTargets.Enum)]
+    public class NamedObjectEnumAttribute : Attribute {
 
-        private readonly TermType outputType;
-
-        public TermType OutputType {
-            get {
-                return this.outputType;
-            }
-        }
-
-        public IdpdFunctionStructureAttribute (string name, TermType outputType) : base(name) {
-            this.outputType = outputType;
+        public NamedObjectEnumAttribute () {
         }
 
     }
