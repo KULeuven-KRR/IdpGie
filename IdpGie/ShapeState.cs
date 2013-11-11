@@ -223,11 +223,11 @@ namespace IdpGie {
         }
 
         public void SetEdgeColor (double r, double g, double b) {
-            this.edgeColor = new Color (r, g, b);
+            this.edgeColor = new Color (r * MathExtra.Inv255, g * MathExtra.Inv255, b * MathExtra.Inv255);
         }
 
         public void SetInnerColor (double r, double g, double b) {
-            this.innerColor = new Color (r, g, b);
+            this.innerColor = new Color (r * MathExtra.Inv255, g * MathExtra.Inv255, b * MathExtra.Inv255);
         }
 
     }
