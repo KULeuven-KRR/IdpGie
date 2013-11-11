@@ -23,7 +23,7 @@ using Cairo;
 
 namespace IdpGie {
 
-    public abstract class ShapePolygon : IdpdObject {
+    public abstract class ShapePolygon : Shape {
 
         protected ShapePolygon (IFunctionInstance name) : base(name) {
         }

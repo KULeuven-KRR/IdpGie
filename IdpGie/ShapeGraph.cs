@@ -22,7 +22,7 @@ using System;
 
 namespace IdpGie {
 
-    public class ShapeGraph : IdpdObject {
+    public class ShapeGraph : Shape {
 
         public ShapeGraph (IFunctionInstance name) : base(name) {
         }

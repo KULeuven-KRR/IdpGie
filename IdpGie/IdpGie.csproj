@@ -73,7 +73,6 @@
     <Compile Include="IName.cs" />
     <Compile Include="NameBase.cs" />
     <Compile Include="GtkTimeWidget.cs" />
-    <Compile Include="IdpdObject.cs" />
     <Compile Include="BlueprintMediabar.cs" />
     <Compile Include="MediaMode.cs" />
     <Compile Include="BlueprintStyle.cs" />
@@ -115,7 +114,6 @@
     <Compile Include="ITermHeader.cs" />
     <Compile Include="ArrayHeadTailFunctionInstance.cs" />
     <Compile Include="IArrayFunctionInstance.cs" />
-    <Compile Include="IdpdMapperAttribute.cs" />
     <Compile Include="EnumerableUtils.cs" />
     <Compile Include="NamedObject.cs" />
     <Compile Include="DrawTheoryMode.cs" />
@@ -132,7 +130,6 @@
     <Compile Include="ITheoryItem.cs" />
     <Compile Include="IPositiveClause.cs" />
     <Compile Include="PositiveClause.cs" />
-    <Compile Include="IdpdDrawMethodAttribute.cs" />
     <Compile Include="IdpdHookMethodAttribute.cs" />
     <Compile Include="NamedAttributeBase.cs" />
     <Compile Include="IdpdTheoryAlteringMethodAttribute.cs" />
@@ -159,8 +156,6 @@
     <Compile Include="IInterpolatable.cs" />
     <Compile Include="TimeSensitiveComparer.cs" />
     <Compile Include="BlueprintTabControl.cs" />
-    <Compile Include="IIdpdObject.cs" />
-    <Compile Include="IIdpdTransformable.cs" />
     <Compile Include="CairoUtils.cs" />
     <Compile Include="IdpdObjectTimeStateReversibleModifier.cs" />
     <Compile Include="ShapePolygon.cs" />
@@ -188,6 +183,11 @@
     <Compile Include="ITagable.cs" />
     <Compile Include="Box2d.cs" />
     <Compile Include="IGeometry2d.cs" />
+    <Compile Include="Shape.cs" />
+    <Compile Include="IShape.cs" />
+    <Compile Include="IShapeTransformable.cs" />
+    <Compile Include="DrawMethodAttribute.cs" />
+    <Compile Include="MapperAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -73,7 +73,7 @@ namespace IdpGie {
         }
 
         private void analyzeClass (Type type) {
-            if (type.GetCustomAttributes (typeof(IdpdMapperAttribute), false).Length > 0x00) {
+            if (type.GetCustomAttributes (typeof(MapperAttribute), false).Length > 0x00) {
                 this.analyzeMapperClass (type);
             }
         }
@@ -106,7 +106,7 @@ namespace IdpGie {
                 if (pis.Length > 0x00) {
                     ParameterInfo pi0 = pis [0x00];
                     if (!pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
-                        foreach (IdpdDrawMethodAttribute ma in method.GetCustomAttributes(typeof(IdpdDrawMethodAttribute),false).Cast<IdpdDrawMethodAttribute>()) {
+                        foreach (DrawMethodAttribute ma in method.GetCustomAttributes(typeof(DrawMethodAttribute),false).Cast<DrawMethodAttribute>()) {
                             foreach (TypedMethodPredicate p in ma.Predicates(method)) {
                                 this.addPredicate (p);
                             }

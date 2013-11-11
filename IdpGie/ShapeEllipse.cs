@@ -22,7 +22,7 @@ using Cairo;
 
 namespace IdpGie {
 
-    public class ShapeEllipse : IdpdObject {
+    public class ShapeEllipse : Shape {
 
         private double width;
         private double height;

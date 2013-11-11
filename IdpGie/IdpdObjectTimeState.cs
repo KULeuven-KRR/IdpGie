@@ -25,7 +25,7 @@ using Cairo;
 
 namespace IdpGie {
 
-    public class IdpdObjectTimeState : TimeSensitiveBase, IIdpdTransformable {
+    public class IdpdObjectTimeState : TimeSensitiveBase, IShapeTransformable {
 
         private bool visible = false;
         private Matrix4d transformations = Matrix4d.Identity;

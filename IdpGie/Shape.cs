@@ -25,7 +25,7 @@ using OpenTK;
 
 namespace IdpGie {
 
-    public abstract class IdpdObject : IIdpdObject {
+    public abstract class Shape : IShape {
 
         private readonly IFunctionInstance name;
         private readonly IdpdObjectTimeState state = new IdpdObjectTimeState ();
@@ -63,7 +63,7 @@ namespace IdpGie {
         }
         #endregion
 
-        protected IdpdObject (IFunctionInstance name) {
+        protected Shape (IFunctionInstance name) {
             this.name = name;
         }
 

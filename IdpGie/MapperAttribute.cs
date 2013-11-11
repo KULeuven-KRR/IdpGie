@@ -23,7 +23,7 @@ using System;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Class)]
-    public class IdpdMapperAttribute : Attribute {
+    public class MapperAttribute : Attribute {
 
     }
 

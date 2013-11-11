@@ -23,7 +23,7 @@ using Cairo;
 
 namespace IdpGie {
 
-    public class ShapeImage : IdpdObject {
+    public class ShapeImage : Shape {
 
         public ShapeImage (IFunctionInstance name) : base(name) {
         }

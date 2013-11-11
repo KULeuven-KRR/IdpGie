@@ -27,7 +27,7 @@ namespace IdpGie {
     public class DrawTheory : NameBase, ITimesensitive {
 
         private readonly List<ITheoryItem> elements;
-        private readonly Dictionary<IFunctionInstance,IIdpdObject> objects = new Dictionary<IFunctionInstance, IIdpdObject> ();
+        private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
 
         private DrawTheoryMode mode = DrawTheoryMode.Cairo;
         private double minTime = 0.0d;
@@ -42,7 +42,7 @@ namespace IdpGie {
             }
         }
 
-        public IIdpdObject this [IFunctionInstance key] {
+        public IShape this [IFunctionInstance key] {
             get {
                 return this.objects [key];
             }
@@ -76,11 +76,11 @@ namespace IdpGie {
         #region ITimesensitive implementation
         public double Time {
             get {
-                IEnumerable<IIdpdObject> tail;
-                IIdpdObject head = this.objects.Values.SplitHead (out tail);
+                IEnumerable<IShape> tail;
+                IShape head = this.objects.Values.SplitHead (out tail);
                 if (head != null) {
                     double time = head.Time;
-                    foreach (IIdpdObject obj in tail) {
+                    foreach (IShape obj in tail) {
                         if (obj.Time != time) {
                             return double.NaN;
                         }
@@ -91,7 +91,7 @@ namespace IdpGie {
                 }
             }
             set {
-                foreach (IIdpdObject obj in this.objects.Values) {
+                foreach (IShape obj in this.objects.Values) {
                     obj.Time = value;
                 }
             }
@@ -123,11 +123,11 @@ namespace IdpGie {
             return sb.ToString ();
         }
 
-        internal void AddIdpdObject (IIdpdObject obj) {
+        internal void AddIdpdObject (IShape obj) {
             this.objects.Add (obj.Name, obj);
         }
 
-        public IEnumerable<IIdpdObject> Objects () {
+        public IEnumerable<IShape> Objects () {
             return this.objects.Values;
         }
 

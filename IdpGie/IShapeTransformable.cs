@@ -1,5 +1,5 @@
 //
-//  IIdpdObject.cs
+//  ITransformable.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,38 +19,15 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Text;
-using Cairo;
-using OpenTK;
 
 namespace IdpGie {
 
-    public interface IIdpdObject : IZIndex, IIdpdTransformable {
+    public interface IShapeTransformable {
 
-        IFunctionInstance Name {
-            get;
-        }
-
-        IdpdObjectTimeState State {
-            get;
-        }
-
-        double Time {
-            get;
-            set;
-        }
-
-        void PaintObject (Context ctx);
-
-        void WriteTikz (StringBuilder builder);
-
-        void Render (FrameEventArgs e);
-
-        void AddModifier (IdpdObjectTimeStateModifier modifier);
-
-        void AddModifier (double time, Action<IdpdObjectTimeState> modifier);
+        void SetXPos (double xpos);
+        void SetYPos (double ypos);
+        void SetZPos (double zpos);
 
     }
-
 }
 

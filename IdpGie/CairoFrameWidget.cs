@@ -55,7 +55,7 @@ namespace IdpGie {
             ctx.Scale (1.0d, -1.0d);
             ctx.Save ();
             ctx.Color = new Color (0.0d, 0.0d, 0.0d);
-            foreach (IIdpdObject obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
+            foreach (IShape obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
                 obj.PaintObject (ctx);
             }
             ctx.Restore ();
