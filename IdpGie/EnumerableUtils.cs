@@ -40,12 +40,44 @@ namespace IdpGie {
             }
         }
 
+        public static IEnumerable<T> ToEnumerable<T> (this T val) {
+            yield return val;
+        }
+
         public static IEnumerable<T> Append<T> (this IEnumerable<T> source1, IEnumerable<T> source2) {
             foreach (T t in source1) {
                 yield return t;
             }
             foreach (T t in source2) {
                 yield return t;
+            }
+        }
+
+        public static IEnumerable<T> SkipTail<T> (this IEnumerable<T> source, int skip) {
+            T[] cache = new T[skip];
+            IEnumerator<T> enumerator = source.GetEnumerator ();
+            int i;
+            for (i = 0x00; i < skip && enumerator.MoveNext(); i++) {
+                cache [i] = enumerator.Current;
+            }
+            if (i >= skip) {
+                i = 0x00;
+                while (enumerator.MoveNext()) {
+                    yield return cache [i];
+                    cache [i++] = enumerator.Current;
+                    i %= skip;
+                }
+            }
+        }
+
+        public static IEnumerable<T> Append<T> (this IEnumerable<T> source1, params IEnumerable<T>[] sources) {
+            foreach (T t in source1) {
+                yield return t;
+            }
+            foreach (IEnumerable<T> ts in sources) {
+                foreach (T t in ts) {
+                    yield return t;
+                }
             }
         }
 

@@ -34,6 +34,8 @@ namespace IdpGie.Logic {
 
         void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments);
 
+        void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body);
+
         IAtom CreateInstance (IEnumerable<IFunctionInstance> terms);
 
     }

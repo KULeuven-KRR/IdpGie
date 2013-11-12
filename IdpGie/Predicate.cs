@@ -45,13 +45,6 @@ namespace IdpGie.Logic {
             return (atom != null && atom.Header == this && atom.Terms.Count == this.Arity);
         }
 
-        public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
-        }
-
-        IAtom IPredicate.CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return (IAtom)this.CreateInstance (terms);
-        }
-
         #region IPredicate implementation
         public override ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
             List<IFunctionInstance> list;
@@ -65,10 +58,18 @@ namespace IdpGie.Logic {
         #endregion
 
         #region IPredicate implementation
-        public IAtom GetInstance (IEnumerable<IFunctionInstance> terms) {
-            throw new System.NotImplementedException ();
+        IAtom IPredicate.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return (IAtom)this.CreateInstance (terms);
+        }
+
+        public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
+        }
+
+        public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
+            this.Execute (theory, arguments);
         }
         #endregion
+
 
 
     }

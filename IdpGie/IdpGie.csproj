@@ -193,6 +193,7 @@
     <Compile Include="DrawMethodMapping.cs" />
     <Compile Include="HookMethodMapping.cs" />
     <Compile Include="IMethodPredicateGenerator.cs" />
+    <Compile Include="TypedMethodHeadPredicate.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -1,5 +1,5 @@
 //
-//  TypedActionPredicate.cs
+//  TypesMethodHeadPredicate.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,33 +19,21 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace IdpGie.Logic {
 
-    public class TypedMethodPredicate : TypedPredicate {
+    public class TypedMethodHeadPredicate : TypedMethodPredicate {
 
-        private MethodInfo method;
-
-        public MethodInfo Method {
-            get {
-                return this.method;
-            }
-            protected set {
-                this.method = value;
-            }
+        public TypedMethodHeadPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base(name,termTypes,method,priority) {
         }
 
-        public TypedMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base(name,termTypes,priority) {
-            this.method = method;
-        }
-
-        public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
-            object[] val = EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.method.GetParameters ().Skip (0x01).Select (x => x.ParameterType))).ToArray ();
+        public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
+            object[] val = EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.Method.GetParameters ().Skip (0x01).Select (x => x.ParameterType))).ToArray ();
             try {
-                this.method.Invoke (null, val);
+                this.Method.Invoke (null, val);
                 base.Execute (theory, arguments);
             } catch (Exception) {
                 Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
@@ -53,5 +41,6 @@ namespace IdpGie.Logic {
         }
 
     }
+
 }
 
