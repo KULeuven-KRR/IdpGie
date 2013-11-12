@@ -161,7 +161,6 @@
     <Compile Include="OutputOpenGLDevice.cs" />
     <Compile Include="OutputPrintDevice.cs" />
     <Compile Include="OutputLaTeXDevice.cs" />
-    <Compile Include="PaintMapping.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="ITagable.cs" />
     <Compile Include="Box2d.cs" />
@@ -191,6 +190,8 @@
     <Compile Include="TimeSensitiveFastReversibleBase.cs" />
     <Compile Include="ITimeSensitiveReversible.cs" />
     <Compile Include="CollectionUtils.cs" />
+    <Compile Include="DrawMethodMapping.cs" />
+    <Compile Include="HookMethodMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

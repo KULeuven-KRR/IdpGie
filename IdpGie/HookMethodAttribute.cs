@@ -25,7 +25,7 @@ namespace IdpGie {
     [AttributeUsage(AttributeTargets.Method)]
     public class HookMethodAttribute : MethodBaseAttribute {
 
-        public HookMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
+        public HookMethodAttribute (string name, double priority = 1000.0d, params TermType[] types) : base(name,priority,types) {
         }
     }
 }

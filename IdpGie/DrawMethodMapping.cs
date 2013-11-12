@@ -23,7 +23,7 @@ using System;
 namespace IdpGie {
 
     [Mapper]
-    public static class PaintMapping {
+    public static class DrawMethodMapping {
 
         [DrawMethod("rendering",false,false,-1.0d,TermType.Named)]
         public static void Rendering (DrawTheory dt, NamedObject nobj) {
