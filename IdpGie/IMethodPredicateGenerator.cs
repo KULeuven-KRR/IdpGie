@@ -1,5 +1,5 @@
 //
-//  IdpdHookMethodAttribut.cs
+//  IPredicateGenerator.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -20,27 +20,16 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using IdpGie.Logic;
 
 namespace IdpGie {
 
-    [AttributeUsage(AttributeTargets.Method)]
-    public class HookMethodAttribute : MethodBaseAttribute, IMethodPredicateGenerator {
+    public interface IMethodPredicateGenerator {
 
-        public HookMethodAttribute (string name, double priority = 1000.0d, params TermType[] types) : base(name,priority,types) {
-        }
-
-        #region IMethodPredicateGenerator implementation
-        public IEnumerable<IPredicate> Predicates (MethodInfo mi) {
-            double pr = this.Priority;
-            string stem = "idph_" + this.Name;
-            List<TermType> tt = this.Types.ToList ();
-            yield return new TypedMethodPredicate (stem, tt, mi, pr);
-        }
-        #endregion
+        IEnumerable<IPredicate> Predicates (MethodInfo method);
 
     }
+
 }
 

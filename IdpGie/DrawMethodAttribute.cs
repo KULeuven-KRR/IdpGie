@@ -29,7 +29,7 @@ using IdpGie.Logic;
 namespace IdpGie {
 
     [AttributeUsage(AttributeTargets.Method)]
-    public class DrawMethodAttribute : MethodBaseAttribute {
+    public class DrawMethodAttribute : MethodBaseAttribute, IMethodPredicateGenerator {
 
         private readonly bool nameDependent;
         private readonly bool timeDependent;
@@ -54,7 +54,8 @@ namespace IdpGie {
         public DrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this(name,nameDepedent,timeDependent,1.0d,types) {
         }
 
-        public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {
+        #region IMethodPredicateGenerator implementation
+        public IEnumerable<IPredicate> Predicates (MethodInfo mi) {
             double pr = this.Priority;
             string stem = "idpd_" + this.Name;
             List<TermType> tt = this.Types.ToList ();
@@ -69,6 +70,7 @@ namespace IdpGie {
                 yield return new TypedMethodPredicate (stem, tt, mi, pr);
             }
         }
+        #endregion
 
     }
 

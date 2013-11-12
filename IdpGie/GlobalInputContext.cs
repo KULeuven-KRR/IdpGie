@@ -108,7 +108,12 @@ namespace IdpGie.Parser {
                     ParameterInfo pi0 = pis [0x00];
                     if (!pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
                         foreach (DrawMethodAttribute ma in method.GetCustomAttributes(typeof(DrawMethodAttribute),false).Cast<DrawMethodAttribute>()) {
-                            foreach (TypedMethodPredicate p in ma.Predicates(method)) {
+                            foreach (IPredicate p in ma.Predicates(method)) {
+                                this.addPredicate (p);
+                            }
+                        }
+                        foreach (HookMethodAttribute ma in method.GetCustomAttributes(typeof(HookMethodAttribute),false).Cast<HookMethodAttribute>()) {
+                            foreach (IPredicate p in ma.Predicates(method)) {
                                 this.addPredicate (p);
                             }
                         }
