@@ -22,6 +22,7 @@ using System;
 using System.Text;
 using Cairo;
 using OpenTK;
+using IdpGie.Logic;
 
 namespace IdpGie {
 

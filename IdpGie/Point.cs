@@ -22,7 +22,7 @@ using System;
 using Cairo;
 using OpenTK;
 
-namespace IdpGie {
+namespace IdpGie.Logic.Structures {
 
     [FunctionStructure("point",TermType.Point)]
     public struct Point {

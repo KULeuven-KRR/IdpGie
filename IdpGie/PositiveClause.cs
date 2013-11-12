@@ -21,7 +21,7 @@
 
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
     public class PositiveClause : IPositiveClause {
 

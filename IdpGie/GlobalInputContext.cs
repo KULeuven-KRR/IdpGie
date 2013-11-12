@@ -22,8 +22,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Parser {
 
     public class GlobalInputContext : IInputContext {
 

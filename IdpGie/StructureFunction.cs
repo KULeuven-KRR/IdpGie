@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
     public class StructureFunction : NameArityPriorityBase, IFunction {
 

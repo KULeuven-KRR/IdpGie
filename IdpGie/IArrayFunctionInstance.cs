@@ -21,9 +21,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
-    public interface IArrayFunctionInstance : IFunctionInstance, EnhancedTermCollection {
+    public interface IArrayFunctionInstance : IFunctionInstance, IEnhancedTermCollection {
 
     }
 

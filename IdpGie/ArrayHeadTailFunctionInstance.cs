@@ -22,7 +22,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
     public class ArrayHeadTailFunctionInstance : IArrayFunctionInstance {
 

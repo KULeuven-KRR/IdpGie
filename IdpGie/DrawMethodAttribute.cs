@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using IdpGie.Utils;
+using IdpGie.Logic;
 
 namespace IdpGie {
 

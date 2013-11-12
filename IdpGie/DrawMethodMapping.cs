@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using IdpGie.Logic;
+using IdpGie.Logic.Structures;
 
 namespace IdpGie {
 
@@ -31,7 +33,7 @@ namespace IdpGie {
         }
 
         [DrawMethod("polygon",true,false,0.0d,TermType.PointList)]
-        public static void Polygon (DrawTheory dt, IFunctionInstance name, EnhancedTermCollection points) {
+        public static void Polygon (DrawTheory dt, IFunctionInstance name, IEnhancedTermCollection points) {
             dt.AddIdpdObject (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<Point> (TermType.Point)));
         }
 

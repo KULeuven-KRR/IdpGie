@@ -21,7 +21,7 @@
 using System;
 using System.Globalization;
 
-namespace IdpGie {
+namespace IdpGie.Logic.Structures {
 
     [FunctionStructure("color",TermType.Color)]
     public struct ColorStructure {

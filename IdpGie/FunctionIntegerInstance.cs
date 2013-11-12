@@ -21,7 +21,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
     public class FunctionIntegerInstance : FunctionVirtualInstance {
 

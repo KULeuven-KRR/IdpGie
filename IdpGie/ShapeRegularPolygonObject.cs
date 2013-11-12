@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using Cairo;
+using IdpGie.Logic;
 
 namespace IdpGie {
 

@@ -21,7 +21,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
     public class Predicate : TermHeader, IPredicate {
 

@@ -22,14 +22,16 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Cairo;
+using IdpGie.Logic;
+using IdpGie.Logic.Structures;
 
 namespace IdpGie {
 
     public class ShapeIrregularPolygonObject : ShapePolygon {
 
-        private List<Point> points;
+        private List<IdpGie.Logic.Structures.Point> points;
 
-        public ShapeIrregularPolygonObject (IFunctionInstance name, IEnumerable<Point> points) : base(name) {
+        public ShapeIrregularPolygonObject (IFunctionInstance name, IEnumerable<IdpGie.Logic.Structures.Point> points) : base(name) {
             this.points = points.ToList ();
         }
 

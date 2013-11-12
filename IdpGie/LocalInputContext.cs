@@ -21,8 +21,9 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Parser {
 
     public class LocalInputContext : IInputContext {
 
