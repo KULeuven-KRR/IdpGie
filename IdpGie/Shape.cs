@@ -24,7 +24,7 @@ using Cairo;
 using OpenTK;
 using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public abstract class Shape : IShape {
 

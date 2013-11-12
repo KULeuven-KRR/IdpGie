@@ -22,7 +22,7 @@ using System;
 using Cairo;
 using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public class ShapeImage : Shape {
 

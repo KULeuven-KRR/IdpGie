@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using IdpGie.Logic;
+using IdpGie.Shapes;
 
 namespace IdpGie {
 

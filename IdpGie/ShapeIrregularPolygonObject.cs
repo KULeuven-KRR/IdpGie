@@ -23,9 +23,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Cairo;
 using IdpGie.Logic;
-using IdpGie.Logic.Structures;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public class ShapeIrregularPolygonObject : ShapePolygon {
 

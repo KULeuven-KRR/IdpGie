@@ -21,6 +21,7 @@
 using System;
 using IdpGie.Logic;
 using IdpGie.Logic.Structures;
+using IdpGie.Shapes;
 
 namespace IdpGie {
 

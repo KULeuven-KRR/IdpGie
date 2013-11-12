@@ -21,7 +21,7 @@
 using System;
 using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public class ShapeGraph : Shape {
 

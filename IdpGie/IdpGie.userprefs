@@ -1,26 +1,97 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CairoFrameWidget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HookMethodMapping.cs">
     <Files>
-      <File FileName="PaintMapping.cs" Line="182" Column="58" />
-      <File FileName="ShapeStateModifier.cs" Line="49" Column="131" />
-      <File FileName="Shape.cs" Line="120" Column="37" />
-      <File FileName="ShapeState.cs" Line="221" Column="39" />
-      <File FileName="ShapePolygon.cs" Line="34" Column="41" />
+      <File FileName="DrawMethodMapping.cs" Line="37" Column="31" />
+      <File FileName="ShapeStateModifier.cs" Line="46" Column="10" />
+      <File FileName="Shape.cs" Line="25" Column="20" />
+      <File FileName="ShapeState.cs" Line="157" Column="54" />
+      <File FileName="ShapePolygon.cs" Line="23" Column="20" />
       <File FileName="CairoUtils.cs" Line="44" Column="38" />
-      <File FileName="Maths.cs" Line="27" Column="52" />
       <File FileName="lex.ll" Line="6" Column="23" />
-      <File FileName="CairoFrameWidget.cs" Line="1" Column="1" />
+      <File FileName="CairoFrameWidget.cs" Line="60" Column="28" />
+      <File FileName="ShapeRegularPolygonObject.cs" Line="24" Column="20" />
+      <File FileName="MathExtra.cs" Line="27" Column="32" />
+      <File FileName="ShapeEllipse.cs" Line="22" Column="20" />
+      <File FileName="ITimeSensitiveReversible.cs" Line="25" Column="46" />
+      <File FileName="ITimeSensitiveFastReversible.cs" Line="25" Column="50" />
+      <File FileName="TimeSensitiveReversibleBase.cs" Line="35" Column="23" />
+      <File FileName="TimeSensitiveFastReversibleBase.cs" Line="34" Column="28" />
+      <File FileName="CollectionUtils.cs" Line="28" Column="27" />
+      <File FileName="HookMethodAttribute.cs" Line="22" Column="20" />
+      <File FileName="HookMethodMapping.cs" Line="37" Column="10" />
+      <File FileName="MapperAttribute.cs" Line="1" Column="1" />
+      <File FileName="DrawTheory.cs" Line="31" Column="37" />
+      <File FileName="WeakFlyweight.cs" Line="24" Column="17" />
+      <File FileName="IFlyWeight.cs" Line="23" Column="32" />
+      <File FileName="HardFlyweight.cs" Line="24" Column="32" />
+      <File FileName="CairoImageStore.cs" Line="23" Column="29" />
+      <File FileName="ArrayFunction.cs" Line="26" Column="17" />
+      <File FileName="ArrayHeadTailFunctionInstance.cs" Line="25" Column="23" />
+      <File FileName="ArrayTailFunction.cs" Line="25" Column="23" />
+      <File FileName="Atom.cs" Line="24" Column="24" />
+      <File FileName="Function.cs" Line="25" Column="23" />
+      <File FileName="FunctionFloatInstance.cs" Line="23" Column="23" />
+      <File FileName="FunctionInstance.cs" Line="25" Column="23" />
+      <File FileName="FunctionIntegerInstance.cs" Line="24" Column="23" />
+      <File FileName="FunctionStringInstance.cs" Line="24" Column="5" />
+      <File FileName="FunctionStructureConstructorAttribute.cs" Line="25" Column="23" />
+      <File FileName="FunctionStructureAttribute.cs" Line="23" Column="23" />
+      <File FileName="FunctionVirtualInstance.cs" Line="24" Column="23" />
+      <File FileName="IArrayFunctionInstance.cs" Line="24" Column="23" />
+      <File FileName="IAtom.cs" Line="24" Column="5" />
+      <File FileName="IFunction.cs" Line="24" Column="23" />
+      <File FileName="IFunctionInstance.cs" Line="23" Column="23" />
+      <File FileName="IPositiveClause.cs" Line="24" Column="23" />
+      <File FileName="IPredicate.cs" Line="37" Column="15" />
+      <File FileName="ITerm.cs" Line="24" Column="23" />
+      <File FileName="ITermHeader.cs" Line="24" Column="23" />
+      <File FileName="ITermName.cs" Line="22" Column="20" />
+      <File FileName="ITheoryItem.cs" Line="24" Column="5" />
+      <File FileName="PositiveClause.cs" Line="24" Column="23" />
+      <File FileName="Predicate.cs" Line="24" Column="23" />
+      <File FileName="StructureFunction.cs" Line="26" Column="23" />
+      <File FileName="StructureFunctionInstance.cs" Line="24" Column="23" />
+      <File FileName="Term.cs" Line="25" Column="23" />
+      <File FileName="TermHeader.cs" Line="24" Column="23" />
+      <File FileName="TermType.cs" Line="23" Column="23" />
+      <File FileName="TypedMethodPredicate.cs" Line="26" Column="23" />
+      <File FileName="TypedPredicate.cs" Line="23" Column="23" />
+      <File FileName="TypeSystem.cs" Line="24" Column="23" />
+      <File FileName="EnhancedTermCollection.cs" Line="25" Column="45" />
+      <File FileName="NamedFunctionInstance.cs" Line="24" Column="23" />
+      <File FileName="Point.cs" Line="25" Column="34" />
+      <File FileName="parse.yy" Line="77" Column="86" />
+      <File FileName="Parser.cs" Line="204" Column="34" />
+      <File FileName="IInputContext.cs" Line="24" Column="24" />
+      <File FileName="LocalInputContext.cs" Line="26" Column="24" />
+      <File FileName="GlobalInputContext.cs" Line="25" Column="20" />
+      <File FileName="IShape.cs" Line="25" Column="20" />
+      <File FileName="ShapeIrregularPolygonObject.cs" Line="34" Column="105" />
+      <File FileName="ShapeGraph.cs" Line="22" Column="20" />
+      <File FileName="NodeGraphModifier.cs" Line="22" Column="20" />
+      <File FileName="ShapeImage.cs" Line="23" Column="20" />
+      <File FileName="IGeometry2d.cs" Line="22" Column="30" />
+      <File FileName="Box2d.cs" Line="22" Column="30" />
+      <File FileName="MethodBaseAttribute.cs" Line="23" Column="19" />
+      <File FileName="DrawMethodAttribute.cs" Line="27" Column="20" />
+      <File FileName="TheoryAlteringMethodAttribute.cs" Line="22" Column="20" />
+      <File FileName="ColorStructure.cs" Line="24" Column="34" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True" selected="True" />
-          <Node name="IdpGieTest" expanded="True" />
+          <Node name="IdpGie" expanded="True">
+            <Node name="INameArity.cs" selected="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True" selected="True">
+          <Node name="IdpGie" expanded="True">
+            <Node name="IdpGie" expanded="True" />
+          </Node>
+        </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State />

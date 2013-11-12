@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using OpenTK;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public class ShapeState : TimeSensitiveFastReversibleBase, IShapeTransformable {
 

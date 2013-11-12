@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using Cairo;
 using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public class ShapeRegularPolygonObject : ShapePolygon {
 

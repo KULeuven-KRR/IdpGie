@@ -22,6 +22,7 @@ using System;
 using System.Linq;
 using Gtk;
 using Cairo;
+using IdpGie.Shapes;
 
 namespace IdpGie {
 
