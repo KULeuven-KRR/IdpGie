@@ -31,5 +31,8 @@ namespace IdpGie {
 
         void Fire ();
 
+        void RegisterSource (IHookSource source);
+
     }
 
+}

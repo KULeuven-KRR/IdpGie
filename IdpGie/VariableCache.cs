@@ -1,5 +1,5 @@
 //
-//  IFunctionInstance.cs
+//  VariableCache.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -20,31 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie.Logic {
-
-    public interface IFunctionInstance : ITerm {
-
-        TermType Type {
-            get;
+namespace IdpGie {
+    public class VariableCache {
+        public VariableCache () {
         }
-
-        IFunction Function {
-            get;
-        }
-
-        object Value {
-            get;
-        }
-
-        bool IsConstant {
-            get;
-        }
-
-        bool CanConvert (TermType target);
-
-        object ConvertedValue (TermType target);
-
     }
-
 }
 

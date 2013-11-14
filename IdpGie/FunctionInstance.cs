@@ -44,6 +44,12 @@ namespace IdpGie.Logic {
                 return this;
             }
         }
+
+        public virtual bool IsConstant {
+            get {
+                return this.Function.Arity <= 0x00;
+            }
+        }
         #endregion
 
         public FunctionInstance (IFunction func, List<IFunctionInstance> terms) : base(func,terms) {

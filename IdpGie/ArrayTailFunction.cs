@@ -60,6 +60,12 @@ namespace IdpGie.Logic {
                 return this;
             }
         }
+
+        public bool IsConstant {
+            get {
+                return true;
+            }
+        }
         #endregion
 
         #region IFunctionInstance implementation

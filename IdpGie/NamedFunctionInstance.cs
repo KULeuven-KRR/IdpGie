@@ -84,6 +84,12 @@ namespace IdpGie.Logic {
             }
         }
 
+        public bool IsConstant {
+            get {
+                return true;
+            }
+        }
+
         public IFunction Function {
             get {
                 return this;

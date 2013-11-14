@@ -57,6 +57,12 @@ namespace IdpGie.Logic {
             }
         }
 
+        public bool IsConstant {
+            get {
+                return false;
+            }
+        }
+
         public ITermHeader Header {
             get {
                 return ArrayFunction.Instance;

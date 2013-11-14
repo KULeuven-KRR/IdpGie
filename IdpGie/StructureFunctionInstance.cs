@@ -49,6 +49,12 @@ namespace IdpGie.Logic {
         #endregion
 
         #region IFunctionInstance implementation
+        public virtual bool IsConstant {
+            get {
+                return this.Function.Arity <= 0x00;
+            }
+        }
+
         public TermType Type {
             get {
                 return TermType.None;//TODO

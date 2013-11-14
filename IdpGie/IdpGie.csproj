@@ -196,6 +196,8 @@
     <Compile Include="TypedMethodHeadPredicate.cs" />
     <Compile Include="IHook.cs" />
     <Compile Include="IHookSource.cs" />
+    <Compile Include="VariableCache.cs" />
+    <Compile Include="IVariable.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

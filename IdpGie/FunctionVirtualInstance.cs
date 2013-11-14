@@ -46,6 +46,12 @@ namespace IdpGie.Logic {
             }
         }
 
+        public virtual bool IsConstant {
+            get {
+                return true;
+            }
+        }
+
         public abstract object Value {
             get;
         }
