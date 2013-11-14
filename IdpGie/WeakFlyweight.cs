@@ -71,6 +71,10 @@ namespace IdpGie.DesignPatterns {
             WeakReference wr;
             return (this.cache.TryGetValue (key, out wr) && wr.IsAlive);
         }
+
+        public void Clear () {
+            this.cache.Clear ();
+        }
         #endregion
 
         public void Compact () {

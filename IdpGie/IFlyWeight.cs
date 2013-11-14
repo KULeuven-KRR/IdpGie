@@ -40,6 +40,8 @@ namespace IdpGie.DesignPatterns {
 
         bool Contains (TKey key);
 
+        void Clear ();
+
     }
 
 }

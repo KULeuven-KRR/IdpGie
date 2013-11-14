@@ -21,7 +21,7 @@
 using System;
 
 namespace IdpGie {
-    public interface IVariable {
+    public interface IVariable : IName {
     }
 }
 

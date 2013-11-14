@@ -65,6 +65,10 @@ namespace IdpGie.DesignPatterns {
         public bool Contains (TKey key) {
             return this.cache.ContainsKey (key);
         }
+
+        public void Clear () {
+            this.cache.Clear ();
+        }
         #endregion
 
     }
