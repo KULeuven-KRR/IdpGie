@@ -23,7 +23,44 @@ using System;
 namespace IdpGie {
 
     public interface IHookSource {
+
+        event EventHandler Delete;
+        event EventHandler Destroy;
+        event EventHandler Expose;
+        event EventHandler MotionNotify;
+        event EventHandler ButtonPress;
+        event EventHandler TwoButtonPress;
+        event EventHandler ThreeButtonPress;
+        event EventHandler ButtonRelease;
+        event EventHandler KeyPress;
+        event EventHandler KeyRelease;
+        event EventHandler EnterNotify;
+        event EventHandler LeaveNotify;
+        event EventHandler FocusChange;
+        event EventHandler Configure;
+        event EventHandler Map;
+        event EventHandler Unmap;
+        event EventHandler PropertyNotify;
+        event EventHandler SelectionClear;
+        event EventHandler SelectionRequest;
+        event EventHandler SelectionNotify;
+        event EventHandler ProximityIn;
+        event EventHandler ProximityOut;
+        event EventHandler DragEnter;
+        event EventHandler DragLeave;
+        event EventHandler DragMotion;
+        event EventHandler DragStatus;
+        event EventHandler DropStart;
+        event EventHandler DropFinished;
+        event EventHandler ClientEvent;
+        event EventHandler VisibilityNotify;
+        event EventHandler NoExpose;
+        event EventHandler Scroll;
+        event EventHandler WindowState;
+        event EventHandler Setting;
+        event EventHandler OwnerChange;
+        event EventHandler GrabBroken;
+
     }
 
 }
-
