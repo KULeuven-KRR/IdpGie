@@ -29,7 +29,8 @@ namespace IdpGie {
     public class DrawTheory : NameBase, ITimesensitive {
 
         private readonly List<ITheoryItem> elements;
-        private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
+        private readonly List<IHook> hooks = new List<IHook> ();
+        private readonly Dictionary<IFunctionInstance,IShape> shape = new Dictionary<IFunctionInstance, IShape> ();
 
         private DrawTheoryMode mode = DrawTheoryMode.Cairo;
         private double minTime = 0.0d;
@@ -46,13 +47,19 @@ namespace IdpGie {
 
         public IShape this [IFunctionInstance key] {
             get {
-                return this.objects [key];
+                return this.shape [key];
             }
         }
 
         public List<ITheoryItem> Elements {
             get {
                 return this.elements;
+            }
+        }
+
+        public List<IHook> Hooks {
+            get {
+                return this.hooks;
             }
         }
 
@@ -79,7 +86,7 @@ namespace IdpGie {
         public double Time {
             get {
                 IEnumerable<IShape> tail;
-                IShape head = this.objects.Values.SplitHead (out tail);
+                IShape head = this.shape.Values.SplitHead (out tail);
                 if (head != null) {
                     double time = head.Time;
                     foreach (IShape obj in tail) {
@@ -93,7 +100,7 @@ namespace IdpGie {
                 }
             }
             set {
-                foreach (IShape obj in this.objects.Values) {
+                foreach (IShape obj in this.shape.Values) {
                     obj.Time = value;
                 }
             }
@@ -125,12 +132,16 @@ namespace IdpGie {
             return sb.ToString ();
         }
 
-        internal void AddIdpdObject (IShape obj) {
-            this.objects.Add (obj.Name, obj);
+        internal void AddShape (IShape obj) {
+            this.shape.Add (obj.Name, obj);
+        }
+
+        internal void AddHook (IHook hook) {
+
         }
 
         public IEnumerable<IShape> Objects () {
-            return this.objects.Values;
+            return this.shape.Values;
         }
 
         public void Execute (ProgramManager manager) {

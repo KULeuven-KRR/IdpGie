@@ -31,7 +31,7 @@ namespace IdpGie.Logic {
         }
 
         public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
-            object[] val = EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.Method.GetParameters ().Skip (0x01).Select (x => x.ParameterType))).ToArray ();
+            object[] val = EnumerableUtils.HeadsLast (EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.Method.GetParameters ().Skip (0x01).Select (x => x.ParameterType)).SkipTail (0x01)), body).ToArray ();
             try {
                 this.Method.Invoke (null, val);
                 base.Execute (theory, arguments);

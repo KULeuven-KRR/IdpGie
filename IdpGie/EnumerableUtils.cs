@@ -188,6 +188,13 @@ namespace IdpGie {
             }
         }
 
+        public static IEnumerable<T> HeadsLast<T> (this IEnumerable<T> heads, T last) {
+            foreach (T t in heads) {
+                yield return t;
+            }
+            yield return last;
+        }
+
     }
 
 }
