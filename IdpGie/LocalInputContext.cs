@@ -25,13 +25,17 @@ using IdpGie.Logic;
 
 namespace IdpGie.Parser {
 
-    public class LocalInputContext : IInputContext {
+    public class LocalInputContext : VariableCache, IInputContext {
 
         private readonly Dictionary<Tuple<string,int>,IFunction> functions = new Dictionary<Tuple<string, int>, IFunction> ();
         private readonly Dictionary<Tuple<string,int>,IPredicate> predicates = new Dictionary<Tuple<string, int>, IPredicate> ();
         private static readonly List<IFunctionInstance> emptyList = new List<IFunctionInstance> ();
 
         public LocalInputContext () {
+        }
+
+        public IVariable GetVariable (string name) {
+            return this.GetOrCreate (name);
         }
 
         public IFunction GetFunction (string name, int arity) {

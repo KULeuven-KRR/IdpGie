@@ -26,8 +26,8 @@
 %YYSTYPE StateStructure
 %YYLTYPE LexSpan
 
-%token IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA FLT INT IMPLY
-%type   <str>   identifier
+%token IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA FLT INT IMPLY VAR
+%type   <str>   identifier variable
 %type   <ter>   term list
 %type   <vter>  terms
 %type   <atm>   atom predatom
@@ -75,12 +75,16 @@ term        : identifier OBR terms CBR                      { $$ = this.Context.
             | INT                                           { $$ = new FunctionIntegerInstance(@1.ToString());}
             | FLT                                           { $$ = new FunctionFloatInstance(@1.ToString());}
             | STRING                                        { $$ = new FunctionStringInstance(@1.LiteralString());}
+            | variable                                      { $$ = this.Context.GetVariable($1);}
             ;
 
 list        : OFB terms CFB                                 { $$ = ArrayFunction.ToInstance($2);}
             ;
 
 identifier  : IDENTIFIER                                    { $$ = @1.ToString();}
+            ;
+
+variable    : VAR                                           { $$ = @1.ToString();}
             ;
 
 %%

@@ -29,6 +29,8 @@ namespace IdpGie.Parser {
 
         IPredicate GetPredicate (string name, int arity);
 
+        IVariable GetVariable (string name);
+
     }
 
 }

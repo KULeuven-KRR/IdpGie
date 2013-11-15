@@ -70,7 +70,7 @@ namespace IdpGie.Logic {
         #endregion
 
 
-        public Variable (string name) : base(name) {
+        internal Variable (string name) : base(name) {
         }
 
         #region ITerm implementation

@@ -12,7 +12,8 @@
 
 WHITESPACE      [\r\t\n ]*
 COMMA           ,
-ID              [^ \[\]()=,\.\r\t\n\"]*
+ID              [^ \[\]()=,\.\r\t\n\"A-Z_][^ \[\]()=,\.\r\t\n\"]*
+VAR             [A-Z_][^ \[\]()=,\.\r\t\n\"]*
 INT             ([\+\-])?([0-9]+|0x[0-9A-Fa-f]+||0o[0-7]+)
 FLT             ([\+\-])?[0-9]+\.([0-9]*)?([Ee]([\+\-])?[0-9]+)?|NaN
 STR             \"[^\n\"]*\"
@@ -33,6 +34,7 @@ IMPLY           \:\-
 {INT}           {return (int) Token.INT;}
 {IMPLY}         {return (int) Token.IMPLY;}
 {ID}            {return (int) Token.IDENTIFIER;}
+{VAR}           {return (int) Token.VAR;}
 {STR}           {return (int) Token.STRING;}
 {OBR}           {return (int) Token.OBR;}
 {CBR}           {return (int) Token.CBR;}
