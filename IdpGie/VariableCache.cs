@@ -19,11 +19,19 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using IdpGie.DesignPatterns;
 
-namespace IdpGie {
-    public class VariableCache {
-        public VariableCache () {
+namespace IdpGie.Logic {
+
+    public class VariableCache : HardFlyweight<string,IVariable> {
+
+        public VariableCache () : base(generateVariable) {
         }
-    }
-}
 
+        private static IVariable generateVariable (string name) {
+            return new Variable (name);
+        }
+
+    }
+
+}

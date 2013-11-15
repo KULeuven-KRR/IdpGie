@@ -198,6 +198,7 @@
     <Compile Include="IHookSource.cs" />
     <Compile Include="VariableCache.cs" />
     <Compile Include="IVariable.cs" />
+    <Compile Include="Variable.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
