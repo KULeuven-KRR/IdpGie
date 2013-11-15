@@ -36,7 +36,7 @@ namespace IdpGie {
             _ClientEvent, _VisibilityNotify, _NoExpose, _Scroll, _WindowState, _Setting, _OwnerChange, _GrabBroken;
 
         #region IHookSource implementation
-        event EventHandler Delete {
+        public event EventHandler DeleteHook {
             add {
                 this._Delete += value;
             }
@@ -44,7 +44,7 @@ namespace IdpGie {
                 this._Delete -= value;
             }
         }
-        event EventHandler Destroy {
+        public event EventHandler DestroyHook {
             add {
                 this._Destroy += value;
             }
@@ -52,7 +52,7 @@ namespace IdpGie {
                 this._Destroy -= value;
             }
         }
-        event EventHandler Expose {
+        public event EventHandler ExposeHook {
             add {
                 this._Expose += value;
             }
@@ -60,7 +60,7 @@ namespace IdpGie {
                 this._Expose -= value;
             }
         }
-        event EventHandler MotionNotify {
+        public event EventHandler MotionNotifyHook {
             add {
                 this._MotionNotify += value;
             }
@@ -68,7 +68,7 @@ namespace IdpGie {
                 this._MotionNotify -= value;
             }
         }
-        event EventHandler ButtonPress {
+        public event EventHandler ButtonPressHook {
             add {
                 this._ButtonPress += value;
             }
@@ -76,7 +76,7 @@ namespace IdpGie {
                 this._ButtonPress -= value;
             }
         }
-        event EventHandler TwoButtonPress {
+        public event EventHandler TwoButtonPressHook {
             add {
                 this._TwoButtonPress += value;
             }
@@ -84,7 +84,7 @@ namespace IdpGie {
                 this._TwoButtonPress -= value;
             }
         }
-        event EventHandler ThreeButtonPress {
+        public event EventHandler ThreeButtonPressHook {
             add {
                 this._ThreeButtonPress += value;
             }
@@ -92,7 +92,7 @@ namespace IdpGie {
                 this._ThreeButtonPress -= value;
             }
         }
-        event EventHandler ButtonRelease {
+        public event EventHandler ButtonReleaseHook {
             add {
                 this._ButtonRelease += value;
             }
@@ -100,7 +100,7 @@ namespace IdpGie {
                 this._ButtonRelease -= value;
             }
         }
-        event EventHandler KeyPress {
+        public event EventHandler KeyPressHook {
             add {
                 this._KeyPress += value;
             }
@@ -108,7 +108,7 @@ namespace IdpGie {
                 this._KeyPress -= value;
             }
         }
-        event EventHandler KeyRelease {
+        public event EventHandler KeyReleaseHook {
             add {
                 this._KeyRelease += value;
             }
@@ -116,7 +116,7 @@ namespace IdpGie {
                 this._KeyRelease -= value;
             }
         }
-        event EventHandler EnterNotify {
+        public event EventHandler EnterNotifyHook {
             add {
                 this._EnterNotify += value;
             }
@@ -124,7 +124,7 @@ namespace IdpGie {
                 this._EnterNotify -= value;
             }
         }
-        event EventHandler LeaveNotify {
+        public event EventHandler LeaveNotifyHook {
             add {
                 this._LeaveNotify += value;
             }
@@ -132,7 +132,7 @@ namespace IdpGie {
                 this._LeaveNotify -= value;
             }
         }
-        event EventHandler FocusChange {
+        public event EventHandler FocusChangeHook {
             add {
                 this._FocusChange += value;
             }
@@ -140,7 +140,7 @@ namespace IdpGie {
                 this._FocusChange -= value;
             }
         }
-        event EventHandler Configure {
+        public event EventHandler ConfigureHook {
             add {
                 this._Configure += value;
             }
@@ -148,7 +148,7 @@ namespace IdpGie {
                 this._Configure -= value;
             }
         }
-        event EventHandler Map {
+        public event EventHandler MapHook {
             add {
                 this._Map += value;
             }
@@ -156,7 +156,7 @@ namespace IdpGie {
                 this._Map -= value;
             }
         }
-        event EventHandler Unmap {
+        public event EventHandler UnmapHook {
             add {
                 this._Unmap += value;
             }
@@ -164,7 +164,7 @@ namespace IdpGie {
                 this._Unmap -= value;
             }
         }
-        event EventHandler PropertyNotify {
+        public event EventHandler PropertyNotifyHook {
             add {
                 this._PropertyNotify += value;
             }
@@ -172,7 +172,7 @@ namespace IdpGie {
                 this._PropertyNotify -= value;
             }
         }
-        event EventHandler SelectionClear {
+        public event EventHandler SelectionClearHook {
             add {
                 this._SelectionClear += value;
             }
@@ -180,7 +180,7 @@ namespace IdpGie {
                 this._SelectionClear -= value;
             }
         }
-        event EventHandler SelectionRequest {
+        public event EventHandler SelectionRequestHook {
             add {
                 this._SelectionRequest += value;
             }
@@ -188,7 +188,7 @@ namespace IdpGie {
                 this._SelectionRequest -= value;
             }
         }
-        event EventHandler SelectionNotify {
+        public event EventHandler SelectionNotifyHook {
             add {
                 this._SelectionNotify += value;
             }
@@ -196,7 +196,7 @@ namespace IdpGie {
                 this._SelectionNotify -= value;
             }
         }
-        event EventHandler ProximityIn {
+        public event EventHandler ProximityInHook {
             add {
                 this._ProximityIn += value;
             }
@@ -204,7 +204,7 @@ namespace IdpGie {
                 this._ProximityIn -= value;
             }
         }
-        event EventHandler ProximityOut {
+        public event EventHandler ProximityOutHook {
             add {
                 this._ProximityOut += value;
             }
@@ -212,7 +212,7 @@ namespace IdpGie {
                 this._ProximityOut -= value;
             }
         }
-        event EventHandler DragEnter {
+        public event EventHandler DragEnterHook {
             add {
                 this._DragEnter += value;
             }
@@ -220,7 +220,7 @@ namespace IdpGie {
                 this._DragEnter -= value;
             }
         }
-        event EventHandler DragLeave {
+        public event EventHandler DragLeaveHook {
             add {
                 this._DragLeave += value;
             }
@@ -228,7 +228,7 @@ namespace IdpGie {
                 this._DragLeave -= value;
             }
         }
-        event EventHandler DragMotion {
+        public event EventHandler DragMotionHook {
             add {
                 this._DragMotion += value;
             }
@@ -236,7 +236,7 @@ namespace IdpGie {
                 this._DragMotion -= value;
             }
         }
-        event EventHandler DragStatus {
+        public event EventHandler DragStatusHook {
             add {
                 this._DragStatus += value;
             }
@@ -244,15 +244,15 @@ namespace IdpGie {
                 this._DragStatus -= value;
             }
         }
-        event EventHandler DropStart {
+        public event EventHandler DropStartHook {
             add {
                 this._DropStart += value;
             }
             remove {
-                this._DragStart -= value;
+                this._DropStart -= value;
             }
         }
-        event EventHandler DropFinished {
+        public event EventHandler DropFinishedHook {
             add {
                 this._DropFinished += value;
             }
@@ -260,7 +260,7 @@ namespace IdpGie {
                 this._DropFinished -= value;
             }
         }
-        event EventHandler ClientEvent {
+        public event EventHandler ClientEventHook {
             add {
                 this._ClientEvent += value;
             }
@@ -268,7 +268,7 @@ namespace IdpGie {
                 this._ClientEvent -= value;
             }
         }
-        event EventHandler VisibilityNotify {
+        public event EventHandler VisibilityNotifyHook {
             add {
                 this._VisibilityNotify += value;
             }
@@ -276,7 +276,7 @@ namespace IdpGie {
                 this._VisibilityNotify -= value;
             }
         }
-        event EventHandler NoExpose {
+        public event EventHandler NoExposeHook {
             add {
                 this._NoExpose += value;
             }
@@ -284,7 +284,7 @@ namespace IdpGie {
                 this._NoExpose -= value;
             }
         }
-        event EventHandler Scroll {
+        public event EventHandler ScrollHook {
             add {
                 this._Scroll += value;
             }
@@ -292,7 +292,7 @@ namespace IdpGie {
                 this._Scroll -= value;
             }
         }
-        event EventHandler WindowState {
+        public event EventHandler WindowStateHook {
             add {
                 this._WindowState += value;
             }
@@ -300,7 +300,7 @@ namespace IdpGie {
                 this._WindowState -= value;
             }
         }
-        event EventHandler Setting {
+        public event EventHandler SettingHook {
             add {
                 this._Setting += value;
             }
@@ -308,7 +308,7 @@ namespace IdpGie {
                 this._Setting -= value;
             }
         }
-        event EventHandler OwnerChange {
+        public event EventHandler OwnerChangeHook {
             add {
                 this._OwnerChange += value;
             }
@@ -316,7 +316,7 @@ namespace IdpGie {
                 this._OwnerChange -= value;
             }
         }
-        event EventHandler GrabBroken {
+        public event EventHandler GrabBrokenHook {
             add {
                 this._GrabBroken += value;
             }
