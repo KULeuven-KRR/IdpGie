@@ -1,23 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EnumerableUtils.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CairoMediaWidget.cs">
     <Files>
-      <File FileName="GlobalInputContext.cs" Line="115" Column="1" />
-      <File FileName="IMethodPredicateGenerator.cs" Line="30" Column="64" />
-      <File FileName="DrawMethodAttribute.cs" Line="57" Column="48" />
-      <File FileName="HookMethodAttribute.cs" Line="36" Column="38" />
-      <File FileName="TypedMethodPredicate.cs" Line="52" Column="14" />
-      <File FileName="HookMethodMapping.cs" Line="31" Column="13" />
-      <File FileName="IPredicate.cs" Line="37" Column="107" />
-      <File FileName="Predicate.cs" Line="60" Column="30" />
-      <File FileName="TypedMethodHeadPredicate.cs" Line="34" Column="154" />
-      <File FileName="EnumerableUtils.cs" Line="68" Column="31" />
+      <File FileName="IHook.cs" Line="36" Column="6" />
+      <File FileName="IHookSource.cs" Line="62" Column="39" />
+      <File FileName="TopWindow.cs" Line="55" Column="92" />
+      <File FileName="ProgramManager.cs" Line="54" Column="101" />
+      <File FileName="OutputCairoDevice.cs" Line="45" Column="21" />
+      <File FileName="CairoMediaWidget.cs" Line="28" Column="27" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="IdpGie" expanded="True">
-            <Node name="EnumerableUtils.cs" selected="True" />
+            <Node name="UserInterface" expanded="True" />
+            <Node name="CairoMediaWidget.cs" selected="True" />
           </Node>
         </State>
       </Pad>

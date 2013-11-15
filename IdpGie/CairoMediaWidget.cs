@@ -25,9 +25,306 @@ using Cairo;
 
 namespace IdpGie {
 
-    public abstract class CairoMediaWidget : DrawingArea, IMediaObject {
+    public abstract class CairoMediaWidget : DrawingArea, IMediaObject, IHookSource {
 
-        protected event EventHandler _OnPlay, _OnPause, _OnRewind, _OnForward, _OnPreviousChapter, _OnNextChapter, _OnShuffle, _OnRepeat, _OnEject, _OnRecord, _OnStop, _OnSeek;
+        protected event EventHandler _OnPlay, _OnPause, _OnRewind, _OnForward, _OnPreviousChapter, _OnNextChapter,
+            _OnShuffle, _OnRepeat, _OnEject, _OnRecord, _OnStop, _OnSeek;
+        protected event EventHandler _Delete, _Destroy, _Expose, _MotionNotify, _ButtonPress, _TwoButtonPress,
+            _ThreeButtonPress, _ButtonRelease, _KeyPress, _KeyRelease, _EnterNotify, _LeaveNotify, _FocusChange,
+            _Configure, _Map, _Unmap, _PropertyNotify, _SelectionClear, _SelectionRequest, _SelectionNotify,
+            _ProximityIn, _ProximityOut, _DragEnter, _DragLeave, _DragMotion, _DragStatus, _DropStart, _DropFinished,
+            _ClientEvent, _VisibilityNotify, _NoExpose, _Scroll, _WindowState, _Setting, _OwnerChange, _GrabBroken;
+
+        #region IHookSource implementation
+        event EventHandler Delete {
+            add {
+                this._Delete += value;
+            }
+            remove {
+                this._Delete -= value;
+            }
+        }
+        event EventHandler Destroy {
+            add {
+                this._Destroy += value;
+            }
+            remove {
+                this._Destroy -= value;
+            }
+        }
+        event EventHandler Expose {
+            add {
+                this._Expose += value;
+            }
+            remove {
+                this._Expose -= value;
+            }
+        }
+        event EventHandler MotionNotify {
+            add {
+                this._MotionNotify += value;
+            }
+            remove {
+                this._MotionNotify -= value;
+            }
+        }
+        event EventHandler ButtonPress {
+            add {
+                this._ButtonPress += value;
+            }
+            remove {
+                this._ButtonPress -= value;
+            }
+        }
+        event EventHandler TwoButtonPress {
+            add {
+                this._TwoButtonPress += value;
+            }
+            remove {
+                this._TwoButtonPress -= value;
+            }
+        }
+        event EventHandler ThreeButtonPress {
+            add {
+                this._ThreeButtonPress += value;
+            }
+            remove {
+                this._ThreeButtonPress -= value;
+            }
+        }
+        event EventHandler ButtonRelease {
+            add {
+                this._ButtonRelease += value;
+            }
+            remove {
+                this._ButtonRelease -= value;
+            }
+        }
+        event EventHandler KeyPress {
+            add {
+                this._KeyPress += value;
+            }
+            remove {
+                this._KeyPress -= value;
+            }
+        }
+        event EventHandler KeyRelease {
+            add {
+                this._KeyRelease += value;
+            }
+            remove {
+                this._KeyRelease -= value;
+            }
+        }
+        event EventHandler EnterNotify {
+            add {
+                this._EnterNotify += value;
+            }
+            remove {
+                this._EnterNotify -= value;
+            }
+        }
+        event EventHandler LeaveNotify {
+            add {
+                this._LeaveNotify += value;
+            }
+            remove {
+                this._LeaveNotify -= value;
+            }
+        }
+        event EventHandler FocusChange {
+            add {
+                this._FocusChange += value;
+            }
+            remove {
+                this._FocusChange -= value;
+            }
+        }
+        event EventHandler Configure {
+            add {
+                this._Configure += value;
+            }
+            remove {
+                this._Configure -= value;
+            }
+        }
+        event EventHandler Map {
+            add {
+                this._Map += value;
+            }
+            remove {
+                this._Map -= value;
+            }
+        }
+        event EventHandler Unmap {
+            add {
+                this._Unmap += value;
+            }
+            remove {
+                this._Unmap -= value;
+            }
+        }
+        event EventHandler PropertyNotify {
+            add {
+                this._PropertyNotify += value;
+            }
+            remove {
+                this._PropertyNotify -= value;
+            }
+        }
+        event EventHandler SelectionClear {
+            add {
+                this._SelectionClear += value;
+            }
+            remove {
+                this._SelectionClear -= value;
+            }
+        }
+        event EventHandler SelectionRequest {
+            add {
+                this._SelectionRequest += value;
+            }
+            remove {
+                this._SelectionRequest -= value;
+            }
+        }
+        event EventHandler SelectionNotify {
+            add {
+                this._SelectionNotify += value;
+            }
+            remove {
+                this._SelectionNotify -= value;
+            }
+        }
+        event EventHandler ProximityIn {
+            add {
+                this._ProximityIn += value;
+            }
+            remove {
+                this._ProximityIn -= value;
+            }
+        }
+        event EventHandler ProximityOut {
+            add {
+                this._ProximityOut += value;
+            }
+            remove {
+                this._ProximityOut -= value;
+            }
+        }
+        event EventHandler DragEnter {
+            add {
+                this._DragEnter += value;
+            }
+            remove {
+                this._DragEnter -= value;
+            }
+        }
+        event EventHandler DragLeave {
+            add {
+                this._DragLeave += value;
+            }
+            remove {
+                this._DragLeave -= value;
+            }
+        }
+        event EventHandler DragMotion {
+            add {
+                this._DragMotion += value;
+            }
+            remove {
+                this._DragMotion -= value;
+            }
+        }
+        event EventHandler DragStatus {
+            add {
+                this._DragStatus += value;
+            }
+            remove {
+                this._DragStatus -= value;
+            }
+        }
+        event EventHandler DropStart {
+            add {
+                this._DropStart += value;
+            }
+            remove {
+                this._DragStart -= value;
+            }
+        }
+        event EventHandler DropFinished {
+            add {
+                this._DropFinished += value;
+            }
+            remove {
+                this._DropFinished -= value;
+            }
+        }
+        event EventHandler ClientEvent {
+            add {
+                this._ClientEvent += value;
+            }
+            remove {
+                this._ClientEvent -= value;
+            }
+        }
+        event EventHandler VisibilityNotify {
+            add {
+                this._VisibilityNotify += value;
+            }
+            remove {
+                this._VisibilityNotify -= value;
+            }
+        }
+        event EventHandler NoExpose {
+            add {
+                this._NoExpose += value;
+            }
+            remove {
+                this._NoExpose -= value;
+            }
+        }
+        event EventHandler Scroll {
+            add {
+                this._Scroll += value;
+            }
+            remove {
+                this._Scroll -= value;
+            }
+        }
+        event EventHandler WindowState {
+            add {
+                this._WindowState += value;
+            }
+            remove {
+                this._WindowState -= value;
+            }
+        }
+        event EventHandler Setting {
+            add {
+                this._Setting += value;
+            }
+            remove {
+                this._Setting -= value;
+            }
+        }
+        event EventHandler OwnerChange {
+            add {
+                this._OwnerChange += value;
+            }
+            remove {
+                this._OwnerChange -= value;
+            }
+        }
+        event EventHandler GrabBroken {
+            add {
+                this._GrabBroken += value;
+            }
+            remove {
+                this._GrabBroken -= value;
+            }
+        }
+        #endregion
 
         #region IMediaObject implementation
         public virtual event EventHandler OnPlay {

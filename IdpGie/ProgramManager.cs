@@ -51,7 +51,7 @@ namespace IdpGie {
         }
         #endregion
 
-        public void OpenTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject {
+        public void OpenTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject, IHookSource {
             this.tw.CreateTab<T> (dt, widget);
         }
 

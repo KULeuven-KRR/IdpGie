@@ -34,7 +34,7 @@ namespace IdpGie {
             this.Show ();
         }
 
-        private void SetCurrent<T> (T current) where T : Widget, IMediaObject {
+        private void SetCurrent<T> (T current) where T : Widget, IMediaObject,IHookSource {
             if (this.current != null) {
                 this.current.Hide ();
                 this.mediabar.CurrentChanged -= (x,y) => current.Seek (y);
@@ -52,7 +52,7 @@ namespace IdpGie {
             }
         }
 
-        public void CreateTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject {
+        public void CreateTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject, IHookSource {
             string name = dt.Name;
             this.mainhierarchy.Add (widget);
             global::Gtk.Box.BoxChild w = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [widget]));
