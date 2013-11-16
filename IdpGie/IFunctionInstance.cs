@@ -40,6 +40,10 @@ namespace IdpGie.Logic {
             get;
         }
 
+        bool ContainsVariables {
+            get;
+        }
+
         bool CanConvert (TermType target);
 
         object ConvertedValue (TermType target);

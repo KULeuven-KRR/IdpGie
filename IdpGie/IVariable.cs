@@ -22,7 +22,7 @@ using System;
 
 namespace IdpGie.Logic {
 
-    public interface IVariable : IName, IFunctionInstance, ITermHeader {
+    public interface IVariable : IName, IFunctionInstance, IFunction {
     }
 
 }

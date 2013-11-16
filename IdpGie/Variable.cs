@@ -25,6 +25,58 @@ namespace IdpGie.Logic {
 
     public class Variable : NameBase, IVariable {
 
+        private object value;
+
+        #region IFunction implementation
+        public TermType OutputType {
+            get {
+                return TermType.All;
+            }
+        }
+
+        public bool HasInstance {
+            get {
+                return false;
+            }
+        }
+        #endregion
+
+
+        #region IFunctionInstance implementation
+        public TermType Type {
+            get {
+                return TermType.All;
+            }
+        }
+
+        public IFunction Function {
+            get {
+                return this;
+            }
+        }
+
+        public object Value {
+            get {
+                return this.value;
+            }
+            set {
+                this.value = value;
+            }
+        }
+
+        public bool IsConstant {
+            get {
+                return false;
+            }
+        }
+
+        public bool ContainsVariables {
+            get {
+                return true;
+            }
+        }
+        #endregion
+
         #region IPriority implementation
         public double Priority {
             get {
@@ -89,8 +141,34 @@ namespace IdpGie.Logic {
         }
         #endregion
 
+        #region IFunctionInstance implementation
+        public bool CanConvert (TermType target) {
+            return true;
+        }
 
+        public object ConvertedValue (TermType target) {
+            return this.Value;
+        }
+        #endregion
 
+        #region IFunction implementation
+        public TermType InputType (int index) {
+            throw new IndexOutOfRangeException ();
+        }
+
+        public void WidenInput (TermType[] types, int termOffset, int inputOffset) {
+        }
+
+        public void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
+        }
+
+        public void WidenInput (IEnumerable<IFunctionInstance> terms) {
+        }
+
+        IFunctionInstance IFunction.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+            return this;
+        }
+        #endregion
 
     }
 

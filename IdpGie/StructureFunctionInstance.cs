@@ -55,6 +55,12 @@ namespace IdpGie.Logic {
             }
         }
 
+        public bool ContainsVariables {
+            get {
+                return true;
+            }
+        }
+
         public TermType Type {
             get {
                 return TermType.None;//TODO

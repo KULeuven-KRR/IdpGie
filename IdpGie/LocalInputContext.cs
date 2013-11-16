@@ -101,6 +101,15 @@ namespace IdpGie.Parser {
             return p;
         }
 
+        #region IVariableCache implementation
+        public void ClearVariables () {
+            this.Clear ();
+        }
+        #endregion
+
+
+
+
     }
 }
 

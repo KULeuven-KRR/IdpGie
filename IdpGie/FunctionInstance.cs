@@ -50,6 +50,12 @@ namespace IdpGie.Logic {
                 return this.Function.Arity <= 0x00;
             }
         }
+
+        public virtual bool ContainsVariables {
+            get {
+                return this.Terms.Any (x => x.ContainsVariables);
+            }
+        }
         #endregion
 
         public FunctionInstance (IFunction func, List<IFunctionInstance> terms) : base(func,terms) {

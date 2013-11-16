@@ -95,6 +95,12 @@ namespace IdpGie.Logic {
                 return this;
             }
         }
+
+        public bool ContainsVariables {
+            get {
+                return false;
+            }
+        }
         #endregion
 
         #region IFunction implementation

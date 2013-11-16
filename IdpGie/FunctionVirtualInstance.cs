@@ -52,6 +52,12 @@ namespace IdpGie.Logic {
             }
         }
 
+        public virtual bool ContainsVariables {
+            get {
+                return false;
+            }
+        }
+
         public abstract object Value {
             get;
         }

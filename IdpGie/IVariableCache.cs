@@ -1,5 +1,5 @@
 //
-//  IInputContext.cs
+//  IVariableCache.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,15 +19,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using IdpGie.Logic;
 
-namespace IdpGie.Parser {
+namespace IdpGie.Logic {
 
-    public interface IInputContext : IVariableCache {
+    public interface IVariableCache {
 
-        IFunction GetFunction (string name, int arity);
+        void ClearVariables ();
 
-        IPredicate GetPredicate (string name, int arity);
+        IVariable GetVariable (string name);
 
     }
 

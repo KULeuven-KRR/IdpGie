@@ -146,6 +146,10 @@ namespace IdpGie.Parser {
         public IVariable GetVariable (string name) {
             return null;
         }
+
+        public void ClearVariables () {
+
+        }
         #endregion
 
 

@@ -45,8 +45,8 @@ items       : /* empty */                                   {$$ = null;}
             | element DOT items                             {$$ = new HeadTail<ITheoryItem>($1,$3);}
             ;
 
-element     : clause                                        {$$ = $1;}
-            | atom                                          {$$ = $1;}
+element     : clause                                        {$$ = $1; this.Context.ClearVariables();}
+            | atom                                          {$$ = $1; this.Context.ClearVariables();}
             ;
 
 clause      : atom IMPLY body                               {$$ = new PositiveClause($1,$3);}
