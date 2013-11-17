@@ -207,6 +207,7 @@
     <Compile Include="ILogicAlteringMethod.cs" />
     <Compile Include="TpOperator.cs" />
     <Compile Include="IUnificationAlgorithm.cs" />
+    <Compile Include="UnificationException.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

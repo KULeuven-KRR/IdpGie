@@ -1,5 +1,5 @@
 //
-//  IFunctionInstance.cs
+//  UnificationException.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -20,40 +20,25 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Collections;
-using IdpGie.Utils;
+using System.Runtime.Serialization;
 
-namespace IdpGie.Logic {
+namespace IdpGie.Logic.Altering {
 
-	public interface ITerm {
-		IFunctionInstance this [int index] {
-			get;
+	public class UnificationException : Exception {
+		public UnificationException () : base () {
 		}
 
-		ITermHeader Header {
-			get;
+		public UnificationException (string message) : base (message) {
 		}
 
-		IEnumerable<IFunctionInstance> Terms {
-			get;
+		public UnificationException (string message, params object[] args) : base (string.Format (message, args)) {
 		}
 
-		bool IsConstant {
-			get;
+		public UnificationException (string message, Exception innerException) : base (message, innerException) {
 		}
 
-		bool ContainsVariables {
-			get;
+		public UnificationException (SerializationInfo info, StreamingContext context) : base (info, context) {
 		}
-
-		bool IsVariable {
-			get;
-		}
-
-		bool Equals (ITerm other);
-
-		void Replace (IEnumerable<Tuple<IVariable,ITerm>> replacement);
 	}
 }
 

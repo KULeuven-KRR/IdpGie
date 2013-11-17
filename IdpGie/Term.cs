@@ -26,7 +26,7 @@ using IdpGie.Utils;
 
 namespace IdpGie.Logic {
 
-	public class Term : ITerm {
+	public abstract class Term : ITerm {
 		private readonly ITermHeader header;
 		private readonly List<IFunctionInstance> terms;
 
@@ -72,7 +72,7 @@ namespace IdpGie.Logic {
 			}
 		}
 
-		public Term (ITermHeader header, List<IFunctionInstance> terms) {
+		protected Term (ITermHeader header, List<IFunctionInstance> terms) {
 			if (header == null) {
 				throw new ArgumentNullException ("The header of a term always must be effective.", "header");
 			} else if (terms == null) {
@@ -93,6 +93,10 @@ namespace IdpGie.Logic {
 
 		public bool Equals (ITerm other) {
 			return Object.Equals (this.Header, other.Header) && this.Terms.AllDual (other.Terms, (x, y) => x.Equals (y));
+		}
+
+		public void Replace (IEnumerable<Tuple<IVariable, ITerm>> replacement) {
+			throw new NotImplementedException ();
 		}
 
 		#endregion
