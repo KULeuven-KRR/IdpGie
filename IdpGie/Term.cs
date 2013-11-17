@@ -96,7 +96,9 @@ namespace IdpGie.Logic {
 		}
 
 		public void Replace (IEnumerable<Tuple<IVariable, ITerm>> replacement) {
-			throw new NotImplementedException ();
+			for (int i = 0x00; i < this.terms; i++) {
+
+			}
 		}
 
 		#endregion

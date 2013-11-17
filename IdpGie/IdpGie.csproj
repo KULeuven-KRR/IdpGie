@@ -208,6 +208,7 @@
     <Compile Include="TpOperator.cs" />
     <Compile Include="IUnificationAlgorithm.cs" />
     <Compile Include="UnificationException.cs" />
+    <Compile Include="LazyDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

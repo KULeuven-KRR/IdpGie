@@ -18,11 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace IdpGie.Utils {
+
 	public static class EnumerableUtils {
 		public static T SplitHead<T> (this IEnumerable<T> source, out IEnumerable<T> tail) {
 			tail = source.Tail ();
@@ -35,6 +38,20 @@ namespace IdpGie.Utils {
 				while (tor.MoveNext ()) {
 					yield return tor.Current;
 				}
+			}
+		}
+
+		public static Dictionary<TKey,TValue> ToDictionary<TKey,TValue> (IEnumerable<Tuple<TKey,TValue>> tuples) {
+			Dictionary<TKey,TValue> result = new Dictionary<TKey, TValue> ();
+			foreach (Tuple<TKey,TValue> tuple in tuples) {
+				result.Add (tuple.Item1, tuple.Item2);
+			}
+			return result;
+		}
+
+		public static IEnumerable<Tuple<TItem2,TItem1>> Swap<TItem1,TItem2> (IEnumerable<Tuple<TItem1,TItem2>> tuples) {
+			foreach (Tuple<TItem1,TItem2> tuple in tuples) {
+				yield return new Tuple<TItem2,TItem1>>(tuple.Item2,tuple.Item1);
 			}
 		}
 
