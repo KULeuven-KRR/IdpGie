@@ -1,5 +1,5 @@
 //
-//  IFunctionInstance.cs
+//  LogicAlteringMethod.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,42 +18,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using IdpGie.Utils;
 
-namespace IdpGie.Logic {
-
-	public interface ITerm {
-		IFunctionInstance this [int index] {
-			get;
-		}
-
-		ITermHeader Header {
-			get;
-		}
-
-		IEnumerable<IFunctionInstance> Terms {
-			get;
-		}
-
-		bool IsConstant {
-			get;
-		}
-
-		bool ContainsVariables {
-			get;
-		}
-
-		bool IsVariable {
-			get;
-		}
-
-		bool Equals (ITerm other);
-
-		void Replace (IEnumerable<Tuple<IValidate,ITerm>> replacement);
+namespace IdpGie.Logic.Altering {
+	public interface ILogicAlteringMethod {
+		void Execute (ICollection<ITheoryItem> a);
 	}
 }
 

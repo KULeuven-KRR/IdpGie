@@ -18,12 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+
 	public class Term : ITerm {
 		private readonly ITermHeader header;
 		private readonly List<IFunctionInstance> terms;
@@ -49,6 +51,24 @@ namespace IdpGie.Logic {
 		public IFunctionInstance this [int index] {
 			get {
 				return this.terms [index];
+			}
+		}
+
+		public virtual bool IsConstant {
+			get {
+				return this.Header.Arity <= 0x00;
+			}
+		}
+
+		public virtual bool ContainsVariables {
+			get {
+				return this.Terms.Any (x => x.ContainsVariables);
+			}
+		}
+
+		public virtual bool IsVariable {
+			get {
+				return false;
 			}
 		}
 

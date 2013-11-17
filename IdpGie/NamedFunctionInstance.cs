@@ -18,178 +18,205 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 
 namespace IdpGie.Logic {
 
-    public class NamedFunctionInstance : IFunction, IFunctionInstance {
+	public class NamedFunctionInstance : IFunction, IFunctionInstance {
+		private readonly object namedObject;
 
-        private readonly object namedObject;
+		#region IName implementation
 
-        #region IName implementation
-        public string Name {
-            get {
-                return namedObject.ToString ().ToLower ().Trim ();
-            }
-        }
-        #endregion
+		public string Name {
+			get {
+				return namedObject.ToString ().ToLower ().Trim ();
+			}
+		}
 
-        #region IPriority implementation
-        public double Priority {
-            get {
-                return 2.0d;
-            }
-        }
-        #endregion
+		#endregion
 
-        #region ITermHeader implementation
-        public int Arity {
-            get {
-                return 0x00;
-            }
-        }
+		#region IPriority implementation
 
-        public Tuple<string, int> Signature {
-            get {
-                return new Tuple<string, int> (this.Name, this.Arity);
-            }
-        }
-        #endregion
+		public double Priority {
+			get {
+				return 2.0d;
+			}
+		}
 
-        #region ITerm implementation
-        public IFunctionInstance this [int index] {
-            get {
-                throw new IndexOutOfRangeException ();
-            }
-        }
+		#endregion
 
-        public ITermHeader Header {
-            get {
-                return this;
-            }
-        }
+		#region ITermHeader implementation
 
-        public IEnumerable<IFunctionInstance> Terms {
-            get {
-                yield break;
-            }
-        }
-        #endregion
+		public int Arity {
+			get {
+				return 0x00;
+			}
+		}
 
-        #region IFunctionInstance implementation
-        public TermType Type {
-            get {
-                return TermType.Named;
-            }
-        }
+		public Tuple<string, int> Signature {
+			get {
+				return new Tuple<string, int> (this.Name, this.Arity);
+			}
+		}
 
-        public bool IsConstant {
-            get {
-                return true;
-            }
-        }
+		#endregion
 
-        public IFunction Function {
-            get {
-                return this;
-            }
-        }
+		#region ITerm implementation
 
-        public bool ContainsVariables {
-            get {
-                return false;
-            }
-        }
-        #endregion
+		public IFunctionInstance this [int index] {
+			get {
+				throw new IndexOutOfRangeException ();
+			}
+		}
 
-        #region IFunction implementation
-        public TermType OutputType {
-            get {
-                return this.Type;
-            }
-        }
+		public ITermHeader Header {
+			get {
+				return this;
+			}
+		}
 
-        public bool HasInstance {
-            get {
-                return false;
-            }
-        }
+		public IEnumerable<IFunctionInstance> Terms {
+			get {
+				yield break;
+			}
+		}
 
-        public object Value {
-            get {
-                return namedObject;
-            }
-        }
+		#endregion
 
-        #endregion
+		#region IFunctionInstance implementation
 
-        public NamedFunctionInstance (object namedObject) {
-            this.namedObject = namedObject;
-        }
+		public TermType Type {
+			get {
+				return TermType.Named;
+			}
+		}
 
-        #region ITermHeader implementation
-        public string TermString (IEnumerable<IFunctionInstance> terms) {
-            return this.Name;
-        }
-        #endregion
+		public bool IsConstant {
+			get {
+				return true;
+			}
+		}
 
-        #region IFunction implementation
-        public TermType InputType (int index) {
-            throw new IndexOutOfRangeException ("A named object has no arguments.");
-        }
+		public bool IsVariable {
+			get {
+				return false;
+			}
+		}
 
-        public void WidenInput (TermType[] types, int termOffset, int inputOffset) {
-            throw new IndexOutOfRangeException ("A named object has no arguments.");
-        }
+		public IFunction Function {
+			get {
+				return this;
+			}
+		}
 
-        public void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
-            throw new IndexOutOfRangeException ("A named object has no arguments.");
-        }
+		public bool ContainsVariables {
+			get {
+				return false;
+			}
+		}
 
-        public void WidenInput (IEnumerable<IFunctionInstance> terms) {
-            throw new IndexOutOfRangeException ("A named object has no arguments.");
-        }
+		#endregion
 
-        public bool CanConvert (TermType type) {
-            return TypeSystem.CanConvert (this.Type, type);
-        }
-        #endregion
+		#region IFunction implementation
 
-        public override string ToString () {
-            return this.Name;
-        }
+		public TermType OutputType {
+			get {
+				return this.Type;
+			}
+		}
 
-        #region ITerm implementation
-        public bool Equals (ITerm other) {
-            return Object.Equals (this, other.Header);
-        }
-        #endregion
+		public bool HasInstance {
+			get {
+				return false;
+			}
+		}
 
-        #region IFunctionInstance implemention
-        public object ConvertedValue (TermType target) {
-            return this.Value;
-        }
-        #endregion
+		public object Value {
+			get {
+				return namedObject;
+			}
+		}
 
-        public override int GetHashCode () {
-            return this.namedObject.GetHashCode ();
-        }
+		#endregion
 
-        #region IFunction implementation
-        public IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return this;
-        }
-        #endregion
+		public NamedFunctionInstance (object namedObject) {
+			this.namedObject = namedObject;
+		}
 
-        #region ITermHeader implementation
-        ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return this.CreateInstance (terms);
-        }
-        #endregion
+		#region ITermHeader implementation
 
+		public string TermString (IEnumerable<IFunctionInstance> terms) {
+			return this.Name;
+		}
 
-    }
+		#endregion
 
+		#region IFunction implementation
+
+		public TermType InputType (int index) {
+			throw new IndexOutOfRangeException ("A named object has no arguments.");
+		}
+
+		public void WidenInput (TermType[] types, int termOffset, int inputOffset) {
+			throw new IndexOutOfRangeException ("A named object has no arguments.");
+		}
+
+		public void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
+			throw new IndexOutOfRangeException ("A named object has no arguments.");
+		}
+
+		public void WidenInput (IEnumerable<IFunctionInstance> terms) {
+			throw new IndexOutOfRangeException ("A named object has no arguments.");
+		}
+
+		public bool CanConvert (TermType type) {
+			return TypeSystem.CanConvert (this.Type, type);
+		}
+
+		#endregion
+
+		public override string ToString () {
+			return this.Name;
+		}
+
+		#region ITerm implementation
+
+		public bool Equals (ITerm other) {
+			return Object.Equals (this, other.Header);
+		}
+
+		#endregion
+
+		#region IFunctionInstance implemention
+
+		public object ConvertedValue (TermType target) {
+			return this.Value;
+		}
+
+		#endregion
+
+		public override int GetHashCode () {
+			return this.namedObject.GetHashCode ();
+		}
+
+		#region IFunction implementation
+
+		public IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			return this;
+		}
+
+		#endregion
+
+		#region ITermHeader implementation
+
+		ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			return this.CreateInstance (terms);
+		}
+
+		#endregion
+
+	}
 }
 

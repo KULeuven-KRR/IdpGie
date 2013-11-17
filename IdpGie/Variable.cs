@@ -18,11 +18,13 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+
 	public class Variable : NameBase, IVariable {
 		private object value;
 
@@ -68,6 +70,12 @@ namespace IdpGie.Logic {
 		public bool IsConstant {
 			get {
 				return false;
+			}
+		}
+
+		public bool IsVariable {
+			get {
+				return true;
 			}
 		}
 

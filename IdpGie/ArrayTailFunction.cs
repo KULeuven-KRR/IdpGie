@@ -18,154 +18,179 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace IdpGie.Logic {
 
-    public sealed class ArrayTailFunction : Function, IArrayFunctionInstance {
+	public sealed class ArrayTailFunction : Function, IArrayFunctionInstance {
+		public static readonly ArrayTailFunction Instance = new ArrayTailFunction ();
 
-        public static readonly ArrayTailFunction Instance = new ArrayTailFunction ();
+		#region ICollection implementation
 
-        #region ICollection implementation
-        public int Count {
-            get {
-                return 0x00;
-            }
-        }
+		public int Count {
+			get {
+				return 0x00;
+			}
+		}
 
-        public bool IsReadOnly {
-            get {
-                return true;
-            }
-        }
-        #endregion
+		public bool IsReadOnly {
+			get {
+				return true;
+			}
+		}
 
-        #region IFunctionInstance implementation
-        public IFunctionInstance this [int index] {
-            get {
-                throw new IndexOutOfRangeException ();
-            }
-        }
+		#endregion
 
-        public ITermHeader Header {
-            get {
-                return this;
-            }
-        }
+		#region IFunctionInstance implementation
 
-        public object Value {
-            get {
-                return this;
-            }
-        }
+		public IFunctionInstance this [int index] {
+			get {
+				throw new IndexOutOfRangeException ();
+			}
+		}
 
-        public bool IsConstant {
-            get {
-                return true;
-            }
-        }
+		public ITermHeader Header {
+			get {
+				return this;
+			}
+		}
 
-        public bool ContainsVariables {
-            get {
-                return false;
-            }
-        }
-        #endregion
+		public object Value {
+			get {
+				return this;
+			}
+		}
 
-        #region IFunctionInstance implementation
-        public TermType Type {
-            get {
-                return TermType.All;
-            }
-        }
+		public bool IsConstant {
+			get {
+				return true;
+			}
+		}
 
-        public IFunction Function {
-            get {
-                return this;
-            }
-        }
-        #endregion
+		public bool IsVariable {
+			get {
+				return false;
+			}
+		}
 
-        #region ITerm implementation
-        public IEnumerable<IFunctionInstance> Terms {
-            get {
-                yield break;
-            }
-        }
-        #endregion
+		public bool ContainsVariables {
+			get {
+				return false;
+			}
+		}
 
-        private ArrayTailFunction () : base("[]",0x00) {
-        }
+		#endregion
 
-        public override string TermString (IEnumerable<IFunctionInstance> terms) {
-            return this.ToString ();
-        }
+		#region IFunctionInstance implementation
 
-        public override string ToString () {
-            return "[]";
-        }
+		public TermType Type {
+			get {
+				return TermType.All;
+			}
+		}
 
-        #region ITerm implementation
-        public bool Equals (ITerm other) {
-            return Object.Equals (this, other);
-        }
-        #endregion
+		public IFunction Function {
+			get {
+				return this;
+			}
+		}
 
-        #region IFunctionInstance implementation
-        public bool CanConvert (TermType type) {
-            return TypeSystem.CanConvert (this.Type, type);
-        }
+		#endregion
 
-        public object ConvertedValue (TermType target) {
-            return this.Value;
-        }
-        #endregion
+		#region ITerm implementation
 
-        public override int GetHashCode () {
-            return 0x238ff745;
-        }
+		public IEnumerable<IFunctionInstance> Terms {
+			get {
+				yield break;
+			}
+		}
 
-        #region IEnumerable implementation
-        IEnumerator IEnumerable.GetEnumerator () {
-            yield break;
-        }
-        #endregion
+		#endregion
 
-        #region IEnumerable<> implementation
-        public IEnumerator<IFunctionInstance> GetEnumerator () {
-            yield break;
-        }
-        #endregion
+		private ArrayTailFunction () : base ("[]", 0x00) {
+		}
 
-        #region ICollection implementation
-        public void Add (IFunctionInstance item) {
-        }
+		public override string TermString (IEnumerable<IFunctionInstance> terms) {
+			return this.ToString ();
+		}
 
-        public void Clear () {
-            throw new InvalidOperationException ("Readonly collection.");
-        }
+		public override string ToString () {
+			return "[]";
+		}
 
-        public bool Contains (IFunctionInstance item) {
-            return false;
-        }
+		#region ITerm implementation
 
-        public void CopyTo (IFunctionInstance[] array, int arrayIndex) {
-        }
+		public bool Equals (ITerm other) {
+			return Object.Equals (this, other);
+		}
 
-        public bool Remove (IFunctionInstance item) {
-            throw new InvalidOperationException ("Readonly collection.");
-        }
-        #endregion
+		#endregion
 
-        #region IArrayFunctionInstance implementation
-        public IEnumerable<T> ValueEnumerable<T> (TermType target) {
-            yield break;
-        }
-        #endregion
+		#region IFunctionInstance implementation
 
+		public bool CanConvert (TermType type) {
+			return TypeSystem.CanConvert (this.Type, type);
+		}
 
-    }
+		public object ConvertedValue (TermType target) {
+			return this.Value;
+		}
+
+		#endregion
+
+		public override int GetHashCode () {
+			return 0x238ff745;
+		}
+
+		#region IEnumerable implementation
+
+		IEnumerator IEnumerable.GetEnumerator () {
+			yield break;
+		}
+
+		#endregion
+
+		#region IEnumerable<> implementation
+
+		public IEnumerator<IFunctionInstance> GetEnumerator () {
+			yield break;
+		}
+
+		#endregion
+
+		#region ICollection implementation
+
+		public void Add (IFunctionInstance item) {
+		}
+
+		public void Clear () {
+			throw new InvalidOperationException ("Readonly collection.");
+		}
+
+		public bool Contains (IFunctionInstance item) {
+			return false;
+		}
+
+		public void CopyTo (IFunctionInstance[] array, int arrayIndex) {
+		}
+
+		public bool Remove (IFunctionInstance item) {
+			throw new InvalidOperationException ("Readonly collection.");
+		}
+
+		#endregion
+
+		#region IArrayFunctionInstance implementation
+
+		public IEnumerable<T> ValueEnumerable<T> (TermType target) {
+			yield break;
+		}
+
+		#endregion
+
+	}
 }
 

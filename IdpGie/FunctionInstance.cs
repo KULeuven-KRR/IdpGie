@@ -18,12 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+
 	public class FunctionInstance : Term, IFunctionInstance {
 
 		#region IFunctionInstance implementation
@@ -43,18 +45,6 @@ namespace IdpGie.Logic {
 		public virtual object Value {
 			get {
 				return this;
-			}
-		}
-
-		public virtual bool IsConstant {
-			get {
-				return this.Function.Arity <= 0x00;
-			}
-		}
-
-		public virtual bool ContainsVariables {
-			get {
-				return this.Terms.Any (x => x.ContainsVariables);
 			}
 		}
 

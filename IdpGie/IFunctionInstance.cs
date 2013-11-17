@@ -18,37 +18,27 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 
 namespace IdpGie.Logic {
 
-    public interface IFunctionInstance : ITerm {
+	public interface IFunctionInstance : ITerm {
+		TermType Type {
+			get;
+		}
 
-        TermType Type {
-            get;
-        }
+		IFunction Function {
+			get;
+		}
 
-        IFunction Function {
-            get;
-        }
+		object Value {
+			get;
+		}
 
-        object Value {
-            get;
-        }
+		bool CanConvert (TermType target);
 
-        bool IsConstant {
-            get;
-        }
-
-        bool ContainsVariables {
-            get;
-        }
-
-        bool CanConvert (TermType target);
-
-        object ConvertedValue (TermType target);
-
-    }
-
+		object ConvertedValue (TermType target);
+	}
 }
 

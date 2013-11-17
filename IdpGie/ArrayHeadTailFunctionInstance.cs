@@ -18,12 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+
 	public class ArrayHeadTailFunctionInstance : IArrayFunctionInstance {
 		private readonly IFunctionInstance term;
 		private readonly IArrayFunctionInstance tail;
@@ -66,6 +68,12 @@ namespace IdpGie.Logic {
 		}
 
 		public bool IsConstant {
+			get {
+				return false;
+			}
+		}
+
+		public bool IsVariable {
 			get {
 				return false;
 			}
@@ -130,7 +138,6 @@ namespace IdpGie.Logic {
 		}
 
 		public override string ToString () {
-			//return String.Format ("[{0}|{1}]", this.term, this.tail);
 			return ArrayFunction.Instance.TermString (this);
 		}
 

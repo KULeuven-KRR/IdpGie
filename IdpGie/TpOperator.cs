@@ -1,5 +1,5 @@
 //
-//  IFunctionInstance.cs
+//  TpOperator.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,39 +21,20 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using IdpGie.Utils;
 
-namespace IdpGie.Logic {
+namespace IdpGie.Logic.Altering {
 
-	public interface ITerm {
-		IFunctionInstance this [int index] {
-			get;
+	public class TpOperator : ILogicAlteringMethod {
+		public TpOperator () {
 		}
 
-		ITermHeader Header {
-			get;
+		#region ILogicAlteringMethod implementation
+
+		public void Execute (ICollection<ITheoryItem> a) {
+			throw new NotImplementedException ();
 		}
 
-		IEnumerable<IFunctionInstance> Terms {
-			get;
-		}
+		#endregion
 
-		bool IsConstant {
-			get;
-		}
-
-		bool ContainsVariables {
-			get;
-		}
-
-		bool IsVariable {
-			get;
-		}
-
-		bool Equals (ITerm other);
-
-		void Replace (IEnumerable<Tuple<IValidate,ITerm>> replacement);
 	}
 }
-
