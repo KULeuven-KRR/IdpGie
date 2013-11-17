@@ -23,6 +23,7 @@ using IdpGie.Logic;
 using IdpGie.Logic.Structures;
 using IdpGie.Shapes;
 using IdpGie.Utils;
+using IdpGie.Parser;
 
 namespace IdpGie.Draws {
 	[Mapper]

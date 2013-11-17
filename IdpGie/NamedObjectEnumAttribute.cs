@@ -20,14 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    [AttributeUsage(AttributeTargets.Enum)]
-    public class NamedObjectEnumAttribute : Attribute {
-
-        public NamedObjectEnumAttribute () {
-        }
-
-    }
+namespace IdpGie.Parser {
+	[AttributeUsage (AttributeTargets.Enum)]
+	public class NamedObjectEnumAttribute : Attribute {
+		public NamedObjectEnumAttribute () {
+		}
+	}
 }
 

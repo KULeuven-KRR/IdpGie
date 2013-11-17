@@ -20,13 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    [AttributeUsage(AttributeTargets.Field)]
-    public class NamedObjectAttribute : Attribute {
-
-        public NamedObjectAttribute () {
-        }
-    }
+namespace IdpGie.Parser {
+	[AttributeUsage (AttributeTargets.Field)]
+	public class NamedObjectAttribute : Attribute {
+		public NamedObjectAttribute () {
+		}
+	}
 }
 
