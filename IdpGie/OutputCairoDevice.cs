@@ -21,30 +21,31 @@
 using System;
 using Gtk;
 using Cairo;
+using IdpGie.GUI;
 
-namespace IdpGie {
+namespace IdpGie.Output {
+	public class OutputCairoDevice : OutputDevice {
+		private Context context;
 
-    public class OutputCairoDevice : OutputDevice {
+		public Context Context {
+			get {
+				return this.context;
+			}
+			set {
+				this.context = value;
+			}
+		}
 
-        private Context context;
+		public OutputCairoDevice (DrawTheory theory) : base (theory) {
+		}
 
-        public Context Context {
-            get {
-                return this.context;
-            }
-            set {
-                this.context = value;
-            }
-        }
+		#region implemented abstract members of IdpGie.IdpdOutputDevice
 
-        public OutputCairoDevice (DrawTheory theory) : base(theory) {
-        }
+		public override void Run (ProgramManager manager) {
+			manager.OpenTab (this.Theory, new CairoFrameWidget (this.Theory));
+		}
 
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run (ProgramManager manager) {
-            manager.OpenTab (this.Theory, new CairoFrameWidget (this.Theory));
-        }
-        #endregion
+		#endregion
 
-    }
+	}
 }

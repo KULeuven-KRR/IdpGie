@@ -21,22 +21,20 @@
 using System.Collections.Generic;
 using Cairo;
 using IdpGie.Logic;
+using IdpGie.Draws;
 
 namespace IdpGie.Shapes {
+	public abstract class ShapePolygon : Shape {
+		protected ShapePolygon (IFunctionInstance name) : base (name) {
+		}
 
-    public abstract class ShapePolygon : Shape {
+		protected override void InnerPaintObject (Context ctx) {
+			ctx.MoveLineTo (this.GetPoints ());
+			ctx.ClosePath ();
+			base.InnerPaintObject (ctx);
+		}
 
-        protected ShapePolygon (IFunctionInstance name) : base(name) {
-        }
-
-        protected override void InnerPaintObject (Context ctx) {
-            ctx.MoveLineTo (this.GetPoints ());
-            ctx.ClosePath ();
-            base.InnerPaintObject (ctx);
-        }
-
-        public abstract IEnumerable<PointD> GetPoints ();
-
-    }
+		public abstract IEnumerable<PointD> GetPoints ();
+	}
 }
 

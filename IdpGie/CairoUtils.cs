@@ -23,60 +23,57 @@ using System.Collections;
 using System.Collections.Generic;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.Draws {
+	public static class CairoUtils {
+		public static void LineTo (this Context ctx, params double[] vals) {
+			if (vals != null && vals.Length > 0x00) {
+				IEnumerator enu = vals.GetEnumerator ();
+				while (enu.MoveNext ()) {
+					double xn = (double)enu.Current;
+					if (enu.MoveNext ()) {
+						double yn = (double)enu.Current;
+						ctx.LineTo (xn, yn);
+					}
+				}
+			}
+		}
 
-    public static class CairoUtils {
+		public static void MoveLineTo (this Context ctx, IEnumerable<PointD> pts) {
+			IEnumerable<PointD> tail;
+			ctx.MoveTo (pts.SplitHead (out tail));
+			foreach (PointD pt in tail) {
+				ctx.LineTo (pt);
+			}
+		}
 
-        public static void LineTo (this Context ctx, params double[] vals) {
-            if (vals != null && vals.Length > 0x00) {
-                IEnumerator enu = vals.GetEnumerator ();
-                while (enu.MoveNext()) {
-                    double xn = (double)enu.Current;
-                    if (enu.MoveNext ()) {
-                        double yn = (double)enu.Current;
-                        ctx.LineTo (xn, yn);
-                    }
-                }
-            }
-        }
+		public static void LineTo (this Context ctx, params PointD[] vals) {
+			if (vals != null) {
+				foreach (PointD p in vals) {
+					ctx.LineTo (p);
+				}
+			}
+		}
 
-        public static void MoveLineTo (this Context ctx, IEnumerable<PointD> pts) {
-            IEnumerable<PointD> tail;
-            ctx.MoveTo (pts.SplitHead (out tail));
-            foreach (PointD pt in tail) {
-                ctx.LineTo (pt);
-            }
-        }
+		public static void RelLineTo (this Context ctx, params double[] vals) {
+			if (vals != null && vals.Length > 0x00) {
+				IEnumerator enu = vals.GetEnumerator ();
+				while (enu.MoveNext ()) {
+					double xn = (double)enu.Current;
+					if (enu.MoveNext ()) {
+						double yn = (double)enu.Current;
+						ctx.RelLineTo (xn, yn);
+					}
+				}
+			}
+		}
 
-        public static void LineTo (this Context ctx, params PointD[] vals) {
-            if (vals != null) {
-                foreach (PointD p in vals) {
-                    ctx.LineTo (p);
-                }
-            }
-        }
-
-        public static void RelLineTo (this Context ctx, params double[] vals) {
-            if (vals != null && vals.Length > 0x00) {
-                IEnumerator enu = vals.GetEnumerator ();
-                while (enu.MoveNext()) {
-                    double xn = (double)enu.Current;
-                    if (enu.MoveNext ()) {
-                        double yn = (double)enu.Current;
-                        ctx.RelLineTo (xn, yn);
-                    }
-                }
-            }
-        }
-
-        public static void LineTo (this Context ctx, params Distance[] vals) {
-            if (vals != null) {
-                foreach (Distance p in vals) {
-                    ctx.RelLineTo (p);
-                }
-            }
-        }
-
-    }
+		public static void LineTo (this Context ctx, params Distance[] vals) {
+			if (vals != null) {
+				foreach (Distance p in vals) {
+					ctx.RelLineTo (p);
+				}
+			}
+		}
+	}
 }
 

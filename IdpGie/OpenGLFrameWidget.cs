@@ -20,7 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.GUI {
+
     public class OpenGLFrameWidget : CairoMediaWidget {
         public OpenGLFrameWidget () {
         }

@@ -22,17 +22,13 @@ using System;
 using Cairo;
 using IdpGie.DesignPatterns;
 
-namespace IdpGie {
+namespace IdpGie.GUI {
+	public class CairoImageStore : WeakFlyweight<string,ImageSurface> {
+		public CairoImageStore () : base (createImage) {
+		}
 
-    public class CairoImageStore : WeakFlyweight<string,ImageSurface> {
-
-        public CairoImageStore () : base(createImage) {
-        }
-
-        private static ImageSurface createImage (string name) {
-            return new ImageSurface (name);
-        }
-
-    }
-
+		private static ImageSurface createImage (string name) {
+			return new ImageSurface (name);
+		}
+	}
 }

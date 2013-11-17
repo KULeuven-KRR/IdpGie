@@ -75,7 +75,6 @@
     <Compile Include="Point.cs" />
     <Compile Include="IName.cs" />
     <Compile Include="NameBase.cs" />
-    <Compile Include="GtkTimeWidget.cs" />
     <Compile Include="BlueprintMediabar.cs" />
     <Compile Include="MediaMode.cs" />
     <Compile Include="BlueprintStyle.cs" />
@@ -213,5 +212,9 @@
   <ItemGroup>
     <None Include="lex.ll" />
     <None Include="parse.yy" />
+    <None Include="testinput\test1.idpd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="testinput\" />
   </ItemGroup>
 </Project>

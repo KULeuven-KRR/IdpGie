@@ -8,3 +8,5 @@ idpd_ypos(een,128).
 idpd_xpos(een,256,1).
 idpd_ypos(een,256,2).
 idpd_text(een,"ruit",3).
+
+idph_keypress

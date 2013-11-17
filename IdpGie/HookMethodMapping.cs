@@ -21,118 +21,115 @@
 using System;
 using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Hooks {
+	[Mapper]
+	public static class HookMethodMapping {
+		[HookMethod ("buttonpress", 1000.0d, TermType.Int)]
+		public static void ButtonPress (int keyval) {
 
-    [Mapper]
-    public static class HookMethodMapping {
+		}
 
-        [HookMethod("buttonpress",1000.0d,TermType.Int)]
-        public static void ButtonPress (int keyval) {
+		[HookMethod ("buttonrelease", 1000.0d, TermType.Int)]
+		public static void ButtonRelease () {
 
-        }
+		}
 
-        [HookMethod("buttonrelease",1000.0d,TermType.Int)]
-        public static void ButtonRelease () {
+		public static void Scroll () {
 
-        }
+		}
 
-        public static void Scroll () {
+		public static void MotionNotify () {
 
-        }
+		}
 
-        public static void MotionNotify () {
+		public static void Delete () {
 
-        }
+		}
 
-        public static void Delete () {
+		public static void Destroy () {
 
-        }
+		}
 
-        public static void Destroy () {
+		public static void Expose () {
 
-        }
+		}
 
-        public static void Expose () {
+		[HookMethod ("keypress", 1000.0d, TermType.Int)]
+		public static void KeyPress () {
 
-        }
+		}
 
-        public static void KeyPress () {
+		public static void KeyRelease () {
 
-        }
+		}
 
-        public static void KeyRelease () {
+		public static void EnterNotify () {
 
-        }
+		}
 
-        public static void EnterNotify () {
+		public static void LeaveNotify () {
 
-        }
+		}
 
-        public static void LeaveNotify () {
+		public static void Configure () {
 
-        }
+		}
 
-        public static void Configure () {
+		public static void FocusIn () {
 
-        }
+		}
 
-        public static void FocusIn () {
+		public static void FocusOut () {
 
-        }
+		}
 
-        public static void FocusOut () {
+		public static void Map () {
 
-        }
+		}
 
-        public static void Map () {
+		public static void Unmap () {
 
-        }
+		}
 
-        public static void Unmap () {
+		public static void PropertyNotify () {
 
-        }
+		}
 
-        public static void PropertyNotify () {
+		public static void SelectionClear () {
 
-        }
+		}
 
-        public static void SelectionClear () {
+		public static void SelectionRequest () {
 
-        }
+		}
 
-        public static void SelectionRequest () {
+		public static void SelectionNotify () {
 
-        }
+		}
 
-        public static void SelectionNotify () {
+		public static void ProximityIn () {
 
-        }
+		}
 
-        public static void ProximityIn () {
+		public static void ProximityOut () {
 
-        }
+		}
 
-        public static void ProximityOut () {
+		public static void VisibilityNotify () {
 
-        }
+		}
 
-        public static void VisibilityNotify () {
+		public static void Client () {
 
-        }
+		}
 
-        public static void Client () {
+		public static void NoExpose () {
 
-        }
+		}
 
-        public static void NoExpose () {
+		public static void WindowState () {
 
-        }
-
-        public static void WindowState () {
-
-        }
-
-    }
-
+		}
+	}
 }
 

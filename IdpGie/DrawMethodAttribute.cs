@@ -26,52 +26,51 @@ using System.Reflection;
 using IdpGie.Utils;
 using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Draws {
+	[AttributeUsage (AttributeTargets.Method)]
+	public class DrawMethodAttribute : MethodBaseAttribute, IMethodPredicateGenerator {
+		private readonly bool nameDependent;
+		private readonly bool timeDependent;
 
-    [AttributeUsage(AttributeTargets.Method)]
-    public class DrawMethodAttribute : MethodBaseAttribute, IMethodPredicateGenerator {
+		public bool NameDependent {
+			get {
+				return this.nameDependent;
+			}
+		}
 
-        private readonly bool nameDependent;
-        private readonly bool timeDependent;
+		public bool TimeDependent {
+			get {
+				return this.timeDependent;
+			}
+		}
 
-        public bool NameDependent {
-            get {
-                return this.nameDependent;
-            }
-        }
+		public DrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, double priority = 1.0d, params TermType[] types) : base (name, priority, types) {
+			this.nameDependent = nameDepedent;
+			this.timeDependent = timeDependent;
+		}
 
-        public bool TimeDependent {
-            get {
-                return this.timeDependent;
-            }
-        }
+		public DrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this (name, nameDepedent, timeDependent, 1.0d, types) {
+		}
 
-        public DrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
-            this.nameDependent = nameDepedent;
-            this.timeDependent = timeDependent;
-        }
+		#region IMethodPredicateGenerator implementation
 
-        public DrawMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this(name,nameDepedent,timeDependent,1.0d,types) {
-        }
+		public IEnumerable<IPredicate> Predicates (MethodInfo mi) {
+			double pr = this.Priority;
+			string stem = "idpd_" + this.Name;
+			List<TermType> tt = this.Types.ToList ();
+			if (this.nameDependent) {
+				tt.Insert (0x00, TermType.String);
+			}
+			yield return new TypedMethodPredicate (stem, tt, mi, pr);
+			if (this.TimeDependent) {
+				tt.Add (TermType.Float);
+				yield return new TypedMethodPredicate (stem, tt, mi, pr);
+				stem += "_t";
+				yield return new TypedMethodPredicate (stem, tt, mi, pr);
+			}
+		}
 
-        #region IMethodPredicateGenerator implementation
-        public IEnumerable<IPredicate> Predicates (MethodInfo mi) {
-            double pr = this.Priority;
-            string stem = "idpd_" + this.Name;
-            List<TermType> tt = this.Types.ToList ();
-            if (this.nameDependent) {
-                tt.Insert (0x00, TermType.String);
-            }
-            yield return new TypedMethodPredicate (stem, tt, mi, pr);
-            if (this.TimeDependent) {
-                tt.Add (TermType.Float);
-                yield return new TypedMethodPredicate (stem, tt, mi, pr);
-                stem += "_t";
-                yield return new TypedMethodPredicate (stem, tt, mi, pr);
-            }
-        }
-        #endregion
+		#endregion
 
-    }
-
+	}
 }
