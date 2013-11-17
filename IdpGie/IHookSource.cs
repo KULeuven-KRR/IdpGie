@@ -19,48 +19,81 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gdk;
 
 namespace IdpGie {
-
-    public interface IHookSource {
-
-        event EventHandler DeleteHook;
-        event EventHandler DestroyHook;
-        event EventHandler ExposeHook;
-        event EventHandler MotionNotifyHook;
-        event EventHandler ButtonPressHook;
-        event EventHandler TwoButtonPressHook;
-        event EventHandler ThreeButtonPressHook;
-        event EventHandler ButtonReleaseHook;
-        event EventHandler KeyPressHook;
-        event EventHandler KeyReleaseHook;
-        event EventHandler EnterNotifyHook;
-        event EventHandler LeaveNotifyHook;
-        event EventHandler FocusChangeHook;
-        event EventHandler ConfigureHook;
-        event EventHandler MapHook;
-        event EventHandler UnmapHook;
-        event EventHandler PropertyNotifyHook;
-        event EventHandler SelectionClearHook;
-        event EventHandler SelectionRequestHook;
-        event EventHandler SelectionNotifyHook;
-        event EventHandler ProximityInHook;
-        event EventHandler ProximityOutHook;
-        event EventHandler DragEnterHook;
-        event EventHandler DragLeaveHook;
-        event EventHandler DragMotionHook;
-        event EventHandler DragStatusHook;
-        event EventHandler DropStartHook;
-        event EventHandler DropFinishedHook;
-        event EventHandler ClientEventHook;
-        event EventHandler VisibilityNotifyHook;
-        event EventHandler NoExposeHook;
-        event EventHandler ScrollHook;
-        event EventHandler WindowStateHook;
-        event EventHandler SettingHook;
-        event EventHandler OwnerChangeHook;
-        event EventHandler GrabBrokenHook;
-
-    }
-
+	public interface IHookSource {
+		[HookType (EventType.Delete)]
+		event EventHandler DeleteHook;
+		[HookType (EventType.Destroy)]
+		event EventHandler DestroyHook;
+		[HookType (EventType.Expose)]
+		event EventHandler ExposeHook;
+		[HookType (EventType.MotionNotify)]
+		event EventHandler MotionNotifyHook;
+		[HookType (EventType.ButtonPress)]
+		event EventHandler ButtonPressHook;
+		[HookType (EventType.TwoButtonPress)]
+		event EventHandler TwoButtonPressHook;
+		[HookType (EventType.ThreeButtonPress)]
+		event EventHandler ThreeButtonPressHook;
+		[HookType (EventType.ButtonRelease)]
+		event EventHandler ButtonReleaseHook;
+		[HookType (EventType.KeyPress)]
+		event EventHandler KeyPressHook;
+		[HookType (EventType.KeyRelease)]
+		event EventHandler KeyReleaseHook;
+		[HookType (EventType.EnterNotify)]
+		event EventHandler EnterNotifyHook;
+		[HookType (EventType.LeaveNotify)]
+		event EventHandler LeaveNotifyHook;
+		[HookType (EventType.FocusChange)]
+		event EventHandler FocusChangeHook;
+		[HookType (EventType.Configure)]
+		event EventHandler ConfigureHook;
+		[HookType (EventType.Map)]
+		event EventHandler MapHook;
+		[HookType (EventType.Unmap)]
+		event EventHandler UnmapHook;
+		[HookType (EventType.PropertyNotify)]
+		event EventHandler PropertyNotifyHook;
+		[HookType (EventType.SelectionClear)]
+		event EventHandler SelectionClearHook;
+		[HookType (EventType.SelectionRequest)]
+		event EventHandler SelectionRequestHook;
+		[HookType (EventType.SelectionNotify)]
+		event EventHandler SelectionNotifyHook;
+		[HookType (EventType.ProximityIn)]
+		event EventHandler ProximityInHook;
+		[HookType (EventType.ProximityOut)]
+		event EventHandler ProximityOutHook;
+		[HookType (EventType.DragEnter)]
+		event EventHandler DragEnterHook;
+		[HookType (EventType.DragLeave)]
+		event EventHandler DragLeaveHook;
+		[HookType (EventType.DragMotion)]
+		event EventHandler DragMotionHook;
+		[HookType (EventType.DragStatus)]
+		event EventHandler DragStatusHook;
+		[HookType (EventType.DropStart)]
+		event EventHandler DropStartHook;
+		[HookType (EventType.DropFinished)]
+		event EventHandler DropFinishedHook;
+		[HookType (EventType.ClientEvent)]
+		event EventHandler ClientEventHook;
+		[HookType (EventType.VisibilityNotify)]
+		event EventHandler VisibilityNotifyHook;
+		[HookType (EventType.NoExpose)]
+		event EventHandler NoExposeHook;
+		[HookType (EventType.Scroll)]
+		event EventHandler ScrollHook;
+		[HookType (EventType.WindowState)]
+		event EventHandler WindowStateHook;
+		[HookType (EventType.Setting)]
+		event EventHandler SettingHook;
+		[HookType (EventType.OwnerChange)]
+		event EventHandler OwnerChangeHook;
+		[HookType (EventType.GrabBroken)]
+		event EventHandler GrabBrokenHook;
+	}
 }

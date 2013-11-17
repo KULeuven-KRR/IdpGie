@@ -1,47 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Variable.cs">
-    <Files>
-      <File FileName="IHookSource.cs" Line="66" Column="2" />
-      <File FileName="CairoMediaWidget.cs" Line="71" Column="50" />
-      <File FileName="VariableCache.cs" Line="24" Column="23" />
-      <File FileName="Variable.cs" Line="26" Column="18" />
-      <File FileName="IVariable.cs" Line="25" Column="58" />
-      <File FileName="lex.ll" Line="37" Column="6" />
-      <File FileName="parse.yy" Line="29" Column="73" />
-      <File FileName="Parser.cs" Line="217" Column="28" />
-      <File FileName="LocalInputContext.cs" Line="38" Column="44" />
-      <File FileName="IInputContext.cs" Line="32" Column="44" />
-      <File FileName="ITerm.cs" Line="1" Column="1" />
-      <File FileName="GlobalInputContext.cs" Line="147" Column="25" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="IdpGie" expanded="True">
-            <Node name="UserInterface" expanded="True" />
-            <Node name="Variable.cs" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State expanded="True" selected="True">
-          <Node name="IdpGie" expanded="True">
-            <Node name="IdpGie" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-      <Pad Id="ConnectionManagerPad">
-        <State selected="True" />
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
