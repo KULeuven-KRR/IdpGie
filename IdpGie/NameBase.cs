@@ -20,32 +20,29 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public abstract class NameBase : IName {
+		private string name;
 
-    public abstract class NameBase : IName {
+		public virtual string Name {
+			get {
+				return this.name;
+			}
+			protected set {
+				this.name = value;
+			}
+		}
 
-        private string name;
+		protected NameBase () {
+		}
 
-        public virtual string Name {
-            get {
-                return this.name;
-            }
-            protected set {
-                this.name = value;
-            }
-        }
+		protected NameBase (string name) {
+			this.Name = name;
+		}
 
-        protected NameBase () {
-        }
-
-        protected NameBase (string name) {
-            this.Name = name;
-        }
-
-        public override string ToString () {
-            return this.Name;
-        }
-
-    }
+		public override string ToString () {
+			return this.Name;
+		}
+	}
 }
 

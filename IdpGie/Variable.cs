@@ -20,157 +20,173 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+	public class Variable : NameBase, IVariable {
+		private object value;
 
-    public class Variable : NameBase, IVariable {
+		#region IFunction implementation
 
-        private object value;
+		public TermType OutputType {
+			get {
+				return TermType.All;
+			}
+		}
 
-        #region IFunction implementation
-        public TermType OutputType {
-            get {
-                return TermType.All;
-            }
-        }
+		public bool HasInstance {
+			get {
+				return false;
+			}
+		}
 
-        public bool HasInstance {
-            get {
-                return false;
-            }
-        }
-        #endregion
+		#endregion
 
+		#region IFunctionInstance implementation
 
-        #region IFunctionInstance implementation
-        public TermType Type {
-            get {
-                return TermType.All;
-            }
-        }
+		public TermType Type {
+			get {
+				return TermType.All;
+			}
+		}
 
-        public IFunction Function {
-            get {
-                return this;
-            }
-        }
+		public IFunction Function {
+			get {
+				return this;
+			}
+		}
 
-        public object Value {
-            get {
-                return this.value;
-            }
-            set {
-                this.value = value;
-            }
-        }
+		public object Value {
+			get {
+				return this.value;
+			}
+			set {
+				this.value = value;
+			}
+		}
 
-        public bool IsConstant {
-            get {
-                return false;
-            }
-        }
+		public bool IsConstant {
+			get {
+				return false;
+			}
+		}
 
-        public bool ContainsVariables {
-            get {
-                return true;
-            }
-        }
-        #endregion
+		public bool ContainsVariables {
+			get {
+				return true;
+			}
+		}
 
-        #region IPriority implementation
-        public double Priority {
-            get {
-                return double.PositiveInfinity;
-            }
-        }
-        #endregion
+		#endregion
 
-        #region IArity implementation
-        public int Arity {
-            get {
-                return 0x00;
-            }
-        }
-        #endregion
+		#region IPriority implementation
 
-        #region ITermHeader implementation
-        public Tuple<string, int> Signature {
-            get {
-                return new Tuple<string, int> (this.Name, this.Arity);
-            }
-        }
-        #endregion
+		public double Priority {
+			get {
+				return double.PositiveInfinity;
+			}
+		}
 
-        #region ITerm implementation
-        public IFunctionInstance this [int index] {
-            get {
-                throw new IndexOutOfRangeException ("A variable does not contain parameters.");
-            }
-        }
+		#endregion
 
-        public ITermHeader Header {
-            get {
-                return this;
-            }
-        }
+		#region IArity implementation
 
-        public IEnumerable<IFunctionInstance> Terms {
-            get {
-                yield break;
-            }
-        }
-        #endregion
+		public int Arity {
+			get {
+				return 0x00;
+			}
+		}
 
+		#endregion
 
-        internal Variable (string name) : base(name) {
-        }
+		#region ITermHeader implementation
 
-        #region ITerm implementation
-        public bool Equals (ITerm other) {
-            return Object.ReferenceEquals (this, other);
-        }
-        #endregion
+		public Tuple<string, int> Signature {
+			get {
+				return new Tuple<string, int> (this.Name, this.Arity);
+			}
+		}
 
-        #region ITermHeader implementation
-        public string TermString (IEnumerable<IFunctionInstance> terms) {
-            return this.Name;
-        }
+		#endregion
 
-        public ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return this;
-        }
-        #endregion
+		#region ITerm implementation
 
-        #region IFunctionInstance implementation
-        public bool CanConvert (TermType target) {
-            return true;
-        }
+		public IFunctionInstance this [int index] {
+			get {
+				throw new IndexOutOfRangeException ("A variable does not contain parameters.");
+			}
+		}
 
-        public object ConvertedValue (TermType target) {
-            return this.Value;
-        }
-        #endregion
+		public ITermHeader Header {
+			get {
+				return this;
+			}
+		}
 
-        #region IFunction implementation
-        public TermType InputType (int index) {
-            throw new IndexOutOfRangeException ();
-        }
+		public IEnumerable<IFunctionInstance> Terms {
+			get {
+				yield break;
+			}
+		}
 
-        public void WidenInput (TermType[] types, int termOffset, int inputOffset) {
-        }
+		#endregion
 
-        public void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
-        }
+		internal Variable (string name) : base (name) {
+		}
 
-        public void WidenInput (IEnumerable<IFunctionInstance> terms) {
-        }
+		#region ITerm implementation
 
-        IFunctionInstance IFunction.CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return this;
-        }
-        #endregion
+		public bool Equals (ITerm other) {
+			return Object.ReferenceEquals (this, other);
+		}
 
-    }
+		#endregion
 
+		#region ITermHeader implementation
+
+		public string TermString (IEnumerable<IFunctionInstance> terms) {
+			return this.Name;
+		}
+
+		public ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			return this;
+		}
+
+		#endregion
+
+		#region IFunctionInstance implementation
+
+		public bool CanConvert (TermType target) {
+			return true;
+		}
+
+		public object ConvertedValue (TermType target) {
+			return this.Value;
+		}
+
+		#endregion
+
+		#region IFunction implementation
+
+		public TermType InputType (int index) {
+			throw new IndexOutOfRangeException ();
+		}
+
+		public void WidenInput (TermType[] types, int termOffset, int inputOffset) {
+		}
+
+		public void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
+		}
+
+		public void WidenInput (IEnumerable<IFunctionInstance> terms) {
+		}
+
+		IFunctionInstance IFunction.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			return this;
+		}
+
+		#endregion
+
+	}
 }
 

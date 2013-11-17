@@ -20,15 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public interface IZIndex {
-
-        double ZIndex {
-            get;
-        }
-
-    }
-
+namespace IdpGie.Utils {
+	public interface IZIndex {
+		double ZIndex {
+			get;
+		}
+	}
 }
 

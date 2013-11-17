@@ -20,15 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public interface ITagable<T> {
-
-        T Tag {
-            get;
-        }
-
-    }
-
+namespace IdpGie.Utils {
+	public interface ITagable<T> {
+		T Tag {
+			get;
+		}
+	}
 }
 

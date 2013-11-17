@@ -20,14 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public interface ITimesensitive : IComparable<ITimesensitive> {
-
-        double Time {
-            get;
-        }
-
-    }
+namespace IdpGie.Utils {
+	public interface ITimesensitive : IComparable<ITimesensitive> {
+		double Time {
+			get;
+		}
+	}
 }
 

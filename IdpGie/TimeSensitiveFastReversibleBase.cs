@@ -20,33 +20,34 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public abstract class TimeSensitiveFastReversibleBase : TimeSensitiveReversibleBase, ITimeSensitiveFastReversible {
+		private double checkpoint;
 
-    public abstract class TimeSensitiveFastReversibleBase : TimeSensitiveReversibleBase, ITimeSensitiveFastReversible {
+		#region ITimeSensitiveFastReversible implementation
 
-        private double checkpoint;
+		public virtual double Checkpoint {
+			get {
+				return this.checkpoint;
+			}
+			protected set {
+				this.checkpoint = value;
+			}
+		}
 
-        #region ITimeSensitiveFastReversible implementation
-        public virtual double Checkpoint {
-            get {
-                return this.checkpoint;
-            }
-            protected set {
-                this.checkpoint = value;
-            }
-        }
-        #endregion
+		#endregion
 
-        protected TimeSensitiveFastReversibleBase (double time = 0.0d, double checkpoint = double.NegativeInfinity) : base(time) {
-            this.Checkpoint = checkpoint;
-        }
+		protected TimeSensitiveFastReversibleBase (double time = 0.0d, double checkpoint = double.NegativeInfinity) : base (time) {
+			this.Checkpoint = checkpoint;
+		}
 
-        #region ITimeSensitiveFastReversible implementation
-        public virtual bool CanFastReverse (double time) {
-            return time >= this.checkpoint && time <= this.Time;
-        }
-        #endregion
+		#region ITimeSensitiveFastReversible implementation
 
-    }
+		public virtual bool CanFastReverse (double time) {
+			return time >= this.checkpoint && time <= this.Time;
+		}
 
+		#endregion
+
+	}
 }

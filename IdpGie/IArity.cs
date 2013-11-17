@@ -20,14 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public interface IArity {
-
-        int Arity {
-            get;
-        }
-
-    }
+namespace IdpGie.Utils {
+	public interface IArity {
+		int Arity {
+			get;
+		}
+	}
 }
 

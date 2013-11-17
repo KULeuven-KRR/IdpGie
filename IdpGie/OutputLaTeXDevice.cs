@@ -20,17 +20,19 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Output {
+	public class OutputLaTeXDevice : OutputDevice {
+		public OutputLaTeXDevice (DrawTheory theory) : base (theory) {
+		}
 
-    public class OutputLaTeXDevice : OutputDevice {
-        public OutputLaTeXDevice (DrawTheory theory) : base(theory) {
-        }
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run (ProgramManager manager) {
-            throw new System.NotImplementedException ();
-        }
-        #endregion
+		#region implemented abstract members of IdpGie.IdpdOutputDevice
 
-    }
+		public override void Run (ProgramManager manager) {
+			throw new System.NotImplementedException ();
+		}
+
+		#endregion
+
+	}
 }
 

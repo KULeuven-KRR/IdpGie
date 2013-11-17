@@ -19,63 +19,62 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using IdpGie.Utils;
 
-namespace IdpGie.Shapes {
+namespace IdpGie.Shapes.Modifier {
+	public class ShapeStateModifier : TimeSensitiveBase, IShapeStateModifier {
+		private readonly Action<ShapeState> action, reverseAction;
 
-    public class ShapeStateModifier : TimeSensitiveBase, IShapeStateModifier {
+		#region IShapeStateModifier implementation
 
-        private readonly Action<ShapeState> action, reverseAction;
+		public bool Reversible {
+			get {
+				return this.reverseAction != null;
+			}
+		}
 
-        #region IShapeStateModifier implementation
-        public bool Reversible {
-            get {
-                return this.reverseAction != null;
-            }
-        }
+		public Action<ShapeState> Action {
+			get {
+				return this.action;
+			}
+		}
 
-        public Action<ShapeState> Action {
-            get {
-                return this.action;
-            }
-        }
+		public Action<ShapeState> ReverseAction {
+			get {
+				return this.reverseAction;
+			}
+		}
 
-        public Action<ShapeState> ReverseAction {
-            get {
-                return this.reverseAction;
-            }
-        }
-        #endregion
+		#endregion
 
-        public ShapeStateModifier (double time, Action<ShapeState> action, Action<ShapeState> reverseAction = null) : base(time) {
-            if (action != null) {
-                this.action = action;
-            } else {
-                throw new ArgumentNullException ("action", "Action must be effective.");
-            }
-            this.reverseAction = reverseAction;
-        }
+		public ShapeStateModifier (double time, Action<ShapeState> action, Action<ShapeState> reverseAction = null) : base (time) {
+			if (action != null) {
+				this.action = action;
+			} else {
+				throw new ArgumentNullException ("action", "Action must be effective.");
+			}
+			this.reverseAction = reverseAction;
+		}
 
-        public override string ToString () {
-            return string.Format ("<{0}:{1}:{2}>", this.Time, Action, this.reverseAction);
-        }
+		public override string ToString () {
+			return string.Format ("<{0}:{1}:{2}>", this.Time, Action, this.reverseAction);
+		}
 
-        public override int CompareTo (ITimesensitive other) {
-            int comp = base.CompareTo (other);
-            if (comp != 0x00) {
-                return comp;
-            } else if (other is ShapeStateModifier) {
-                ShapeStateModifier mod = (ShapeStateModifier)other;
-                comp = this.action.GetHashCode ().CompareTo (mod.action.GetHashCode ());
-                if (comp != 0x00) {
-                    return comp;
-                } else if (this.reverseAction != null && mod.reverseAction != null) {
-                    return this.reverseAction.GetHashCode ().CompareTo (mod.reverseAction.GetHashCode ());
-                }
-            }
-            return 0x00;
-        }
-
-    }
-
+		public override int CompareTo (ITimesensitive other) {
+			int comp = base.CompareTo (other);
+			if (comp != 0x00) {
+				return comp;
+			} else if (other is ShapeStateModifier) {
+				ShapeStateModifier mod = (ShapeStateModifier)other;
+				comp = this.action.GetHashCode ().CompareTo (mod.action.GetHashCode ());
+				if (comp != 0x00) {
+					return comp;
+				} else if (this.reverseAction != null && mod.reverseAction != null) {
+					return this.reverseAction.GetHashCode ().CompareTo (mod.reverseAction.GetHashCode ());
+				}
+			}
+			return 0x00;
+		}
+	}
 }
 

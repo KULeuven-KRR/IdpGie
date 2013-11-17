@@ -20,15 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public interface IName {
-
-        string Name {
-            get;
-        }
-
-    }
-
+namespace IdpGie.Utils {
+	public interface IName {
+		string Name {
+			get;
+		}
+	}
 }
 

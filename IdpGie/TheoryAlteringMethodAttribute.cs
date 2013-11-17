@@ -21,14 +21,11 @@
 using System;
 using IdpGie.Logic;
 
-namespace IdpGie {
-
-    [AttributeUsage(AttributeTargets.Method)]
-    public class TheoryAlteringMethodAttribute : MethodBaseAttribute {
-
-        public TheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
-        }
-
-    }
+namespace IdpGie.Theory {
+	[AttributeUsage (AttributeTargets.Method)]
+	public class TheoryAlteringMethodAttribute : MethodBaseAttribute {
+		public TheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base (name, priority, types) {
+		}
+	}
 }
 

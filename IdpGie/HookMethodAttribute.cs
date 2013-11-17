@@ -24,23 +24,23 @@ using System.Linq;
 using System.Reflection;
 using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Hooks {
+	[AttributeUsage (AttributeTargets.Method)]
+	public class HookMethodAttribute : MethodBaseAttribute, IMethodPredicateGenerator {
+		public HookMethodAttribute (string name, double priority = 1000.0d, params TermType[] types) : base (name, priority, types) {
+		}
 
-    [AttributeUsage(AttributeTargets.Method)]
-    public class HookMethodAttribute : MethodBaseAttribute, IMethodPredicateGenerator {
+		#region IMethodPredicateGenerator implementation
 
-        public HookMethodAttribute (string name, double priority = 1000.0d, params TermType[] types) : base(name,priority,types) {
-        }
+		public IEnumerable<IPredicate> Predicates (MethodInfo mi) {
+			double pr = this.Priority;
+			string stem = "idph_" + this.Name;
+			List<TermType> tt = this.Types.ToList ();
+			yield return new TypedMethodPredicate (stem, tt, mi, pr);
+		}
 
-        #region IMethodPredicateGenerator implementation
-        public IEnumerable<IPredicate> Predicates (MethodInfo mi) {
-            double pr = this.Priority;
-            string stem = "idph_" + this.Name;
-            List<TermType> tt = this.Types.ToList ();
-            yield return new TypedMethodPredicate (stem, tt, mi, pr);
-        }
-        #endregion
+		#endregion
 
-    }
+	}
 }
 

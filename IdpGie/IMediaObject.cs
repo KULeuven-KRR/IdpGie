@@ -21,79 +21,64 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.GUI {
+	public interface IMediaObject {
+		MediaButtons SupportedMedia {
+			get;
+		}
 
-    public interface IMediaObject {
+		double MinTime {
+			get;
+		}
 
-        MediaButtons SupportedMedia {
-            get;
-        }
+		double MaxTime {
+			get;
+		}
 
-        double MinTime {
-            get;
-        }
+		double TimeSpan {
+			get;
+		}
 
-        double MaxTime {
-            get;
-        }
+		event EventHandler OnPlay;
+		event EventHandler OnPause;
+		event EventHandler OnRewind;
+		event EventHandler OnForward;
+		event EventHandler OnPreviousChapter;
+		event EventHandler OnNextChapter;
+		event EventHandler OnShuffle;
+		event EventHandler OnRepeat;
+		event EventHandler OnEject;
+		event EventHandler OnRecord;
+		event EventHandler OnStop;
+		event EventHandler OnSeek;
 
-        double TimeSpan {
-            get;
-        }
+		IEnumerable<double> Chapters {
+			get;
+		}
 
-        event EventHandler OnPlay;
+		void Play ();
 
-        event EventHandler OnPause;
+		void Pause ();
 
-        event EventHandler OnRewind;
+		void Rewind ();
 
-        event EventHandler OnForward;
+		void Forward ();
 
-        event EventHandler OnPreviousChapter;
+		void PreviousChapter ();
 
-        event EventHandler OnNextChapter;
+		void NextChapter ();
 
-        event EventHandler OnShuffle;
+		void Shuffle ();
 
-        event EventHandler OnRepeat;
+		void Repeat ();
 
-        event EventHandler OnEject;
+		void Eject ();
 
-        event EventHandler OnRecord;
+		void Record ();
 
-        event EventHandler OnStop;
+		void Stop ();
 
-        event EventHandler OnSeek;
-
-        IEnumerable<double> Chapters {
-            get;
-        }
-
-        void Play ();
-
-        void Pause ();
-
-        void Rewind ();
-
-        void Forward ();
-
-        void PreviousChapter ();
-
-        void NextChapter ();
-
-        void Shuffle ();
-
-        void Repeat ();
-
-        void Eject ();
-
-        void Record ();
-
-        void Stop ();
-
-        void Seek (double time);
-
-    }
-
+		void Seek (double time);
+	}
 }
 

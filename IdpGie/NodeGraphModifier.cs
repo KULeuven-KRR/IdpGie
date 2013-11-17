@@ -21,13 +21,9 @@
 using System;
 using IdpGie.Logic;
 
-namespace IdpGie {
-
-    public abstract class NodeGraphModifier : GraphModifier {
-
-        public NodeGraphModifier (double time, IFunctionInstance name) : base(time) {
-        }
-
-    }
-
+namespace IdpGie.Shapes.Modifier {
+	public abstract class NodeGraphModifier : GraphModifier {
+		public NodeGraphModifier (double time, IFunctionInstance name) : base (time) {
+		}
+	}
 }

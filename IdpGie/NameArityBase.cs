@@ -20,33 +20,36 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-    public abstract class NameArityBase : NameBase, INameArity {
+namespace IdpGie.Utils {
+	public abstract class NameArityBase : NameBase, INameArity {
+		private int arity;
 
-        private int arity;
+		#region IArity implementation
 
-        #region IArity implementation
-        public virtual int Arity {
-            get {
-                return this.arity;
-            }
-            protected set {
-                this.arity = value;
-            }
-        }
-        #endregion
+		public virtual int Arity {
+			get {
+				return this.arity;
+			}
+			protected set {
+				this.arity = value;
+			}
+		}
 
-        #region INameArity implementation
-        public virtual Tuple<string, int> Signature {
-            get {
-                return new Tuple<string, int> (this.Name, this.Arity);
-            }
-        }
-        #endregion
+		#endregion
 
-        protected NameArityBase (string name, int arity = 0x00) : base(name) {
-            this.Arity = arity;
-        }
-    }
+		#region INameArity implementation
+
+		public virtual Tuple<string, int> Signature {
+			get {
+				return new Tuple<string, int> (this.Name, this.Arity);
+			}
+		}
+
+		#endregion
+
+		protected NameArityBase (string name, int arity = 0x00) : base (name) {
+			this.Arity = arity;
+		}
+	}
 }
 

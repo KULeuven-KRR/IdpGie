@@ -23,124 +23,132 @@ using System.Text;
 using Cairo;
 using OpenTK;
 using IdpGie.Logic;
+using IdpGie.Shapes.Modifier;
 
 namespace IdpGie.Shapes {
+	public abstract class Shape : IShape {
+		private readonly IFunctionInstance name;
+		private readonly ShapeState state = new ShapeState ();
 
-    public abstract class Shape : IShape {
+		#region IIdpdObject implementation
 
-        private readonly IFunctionInstance name;
-        private readonly ShapeState state = new ShapeState ();
+		public IFunctionInstance Name {
+			get {
+				return this.name;
+			}
+		}
 
-        #region IIdpdObject implementation
-        public IFunctionInstance Name {
-            get {
-                return this.name;
-            }
-        }
+		public double Time {
+			get {
+				return this.state.Time;
+			}
+			set {
+				this.state.SetTime (value);
+			}
+		}
 
-        public double Time {
-            get {
-                return this.state.Time;
-            }
-            set {
-                this.state.SetTime (value);
-            }
-        }
-        #endregion
+		#endregion
 
-        #region IZIndix implementation
-        public double ZIndex {
-            get {
-                return this.state.Zpos;
-            }
-        }
-        #endregion
+		#region IZIndix implementation
 
-        #region IIdpdObject implementation
-        public ShapeState State {
-            get {
-                return this.state;
-            }
-        }
-        #endregion
+		public double ZIndex {
+			get {
+				return this.state.Zpos;
+			}
+		}
 
-        protected Shape (IFunctionInstance name) {
-            this.name = name;
-        }
+		#endregion
 
-        protected virtual void InnerPaintObject (Context ctx) {
-            cairoFillStroke (ctx);
-            cairoShowText (ctx);
-        }
+		#region IIdpdObject implementation
 
-        protected virtual void InnerWriteTikz (StringBuilder sb) {
+		public ShapeState State {
+			get {
+				return this.state;
+			}
+		}
 
-        }
+		#endregion
 
-        #region IIdpdObject implementation
-        public virtual void PaintObject (Context ctx) {
-            if (this.state.Visible) {
-                ctx.Save ();
-                ctx.Transform (this.state.CairoTransformations);
-                this.InnerPaintObject (ctx);
-                ctx.Restore ();
-            }
-        }
+		protected Shape (IFunctionInstance name) {
+			this.name = name;
+		}
 
-        public virtual void WriteTikz (StringBuilder builder) {
-            builder.AppendFormat ("\\begin{scope}[xshift={0} cm,yshift={1} cm]", this.State.Xpos, this.State.Ypos);
-            this.InnerWriteTikz (builder);
-            builder.Append (@"\end{scope}");
-        }
+		protected virtual void InnerPaintObject (Context ctx) {
+			cairoFillStroke (ctx);
+			cairoShowText (ctx);
+		}
 
-        public virtual void Render (FrameEventArgs e) {
+		protected virtual void InnerWriteTikz (StringBuilder sb) {
 
-        }
+		}
 
-        public void AddModifier (ShapeStateModifier modifier) {
-            this.State.AddModifier (modifier);
-        }
+		#region IIdpdObject implementation
 
-        public void AddModifier (double time, Action<ShapeState> modifier) {
-            this.State.AddModifier (time, modifier);
-        }
-        #endregion
+		public virtual void PaintObject (Context ctx) {
+			if (this.state.Visible) {
+				ctx.Save ();
+				ctx.Transform (this.state.CairoTransformations);
+				this.InnerPaintObject (ctx);
+				ctx.Restore ();
+			}
+		}
 
-        private void cairoFillStroke (Context ctx) {
-            ctx.Color = this.state.InnerColor;
-            ctx.FillPreserve ();
-            ctx.Color = this.state.EdgeColor;
-            ctx.Stroke ();
-        }
+		public virtual void WriteTikz (StringBuilder builder) {
+			builder.AppendFormat ("\\begin{scope}[xshift={0} cm,yshift={1} cm]", this.State.Xpos, this.State.Ypos);
+			this.InnerWriteTikz (builder);
+			builder.Append (@"\end{scope}");
+		}
 
-        private void cairoShowText (Context ctx) {
-            string text = this.state.Text;
-            if (text != null && text != string.Empty) {
-                TextExtents te = ctx.TextExtents (text);
-                ctx.MoveTo (-0.5d * te.XAdvance, 0.5d * (te.Height + 0.5d * te.YBearing));
-                ctx.ShowText (text);
-            }
-        }
+		public virtual void Render (FrameEventArgs e) {
 
-        public override string ToString () {
-            return string.Format ("{0}[{1}]", this.GetType ().Name, this.Name);
-        }
+		}
 
-        #region IIdpdTransformable implementation
-        public void SetXPos (double xpos) {
-            this.state.SetXPos (xpos);
-        }
+		public void AddModifier (ShapeStateModifier modifier) {
+			this.State.AddModifier (modifier);
+		}
 
-        public void SetYPos (double ypos) {
-            this.state.SetYPos (ypos);
-        }
+		public void AddModifier (double time, Action<ShapeState> modifier) {
+			this.State.AddModifier (time, modifier);
+		}
 
-        public void SetZPos (double zpos) {
-            this.state.SetZPos (zpos);
-        }
-        #endregion
+		#endregion
 
-    }
+		private void cairoFillStroke (Context ctx) {
+			ctx.Color = this.state.InnerColor;
+			ctx.FillPreserve ();
+			ctx.Color = this.state.EdgeColor;
+			ctx.Stroke ();
+		}
 
+		private void cairoShowText (Context ctx) {
+			string text = this.state.Text;
+			if (text != null && text != string.Empty) {
+				TextExtents te = ctx.TextExtents (text);
+				ctx.MoveTo (-0.5d * te.XAdvance, 0.5d * (te.Height + 0.5d * te.YBearing));
+				ctx.ShowText (text);
+			}
+		}
+
+		public override string ToString () {
+			return string.Format ("{0}[{1}]", this.GetType ().Name, this.Name);
+		}
+
+		#region IIdpdTransformable implementation
+
+		public void SetXPos (double xpos) {
+			this.state.SetXPos (xpos);
+		}
+
+		public void SetYPos (double ypos) {
+			this.state.SetYPos (ypos);
+		}
+
+		public void SetZPos (double zpos) {
+			this.state.SetZPos (zpos);
+		}
+
+		#endregion
+
+	}
 }
 

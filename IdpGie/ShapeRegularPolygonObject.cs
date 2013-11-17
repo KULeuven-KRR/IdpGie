@@ -22,68 +22,66 @@ using System;
 using System.Collections.Generic;
 using Cairo;
 using IdpGie.Logic;
+using IdpGie.Utils;
 
 namespace IdpGie.Shapes {
+	public class ShapeRegularPolygonObject : ShapePolygon {
+		private int nbOfEdges;
+		private double sizeOfEdges;
+		private double alpha;
 
-    public class ShapeRegularPolygonObject : ShapePolygon {
+		public int NumberOfEdges {
+			get {
+				return this.nbOfEdges;
+			}
+			set {
+				this.nbOfEdges = Math.Max (0x00, value);
+			}
+		}
 
-        private int nbOfEdges;
-        private double sizeOfEdges;
-        private double alpha;
+		public double Alpha {
+			get {
+				return this.alpha;
+			}
+			set {
+				this.alpha = value;
+			}
+		}
 
-        public int NumberOfEdges {
-            get {
-                return this.nbOfEdges;
-            }
-            set {
-                this.nbOfEdges = Math.Max (0x00, value);
-            }
-        }
+		public double Beta {
+			get {
+				return MathExtra.Theta / this.nbOfEdges;
+			}
+			set {
+				this.NumberOfEdges = (int)Math.Round (MathExtra.InvTheta / value);
+			}
+		}
 
-        public double Alpha {
-            get {
-                return this.alpha;
-            }
-            set {
-                this.alpha = value;
-            }
-        }
+		public double SizeOfEdges {
+			get {
+				return this.sizeOfEdges;
+			}
+			set {
+				this.sizeOfEdges = Math.Abs (value);
+			}
+		}
 
-        public double Beta {
-            get {
-                return MathExtra.Theta / this.nbOfEdges;
-            }
-            set {
-                this.NumberOfEdges = (int)Math.Round (MathExtra.InvTheta / value);
-            }
-        }
+		public ShapeRegularPolygonObject (IFunctionInstance name, int nbOfEdges, double sizeOfEdges, double alpha = 0.0d) : base (name) {
+			this.NumberOfEdges = nbOfEdges;
+			this.SizeOfEdges = sizeOfEdges;
+			this.alpha = alpha;
+		}
 
-        public double SizeOfEdges {
-            get {
-                return this.sizeOfEdges;
-            }
-            set {
-                this.sizeOfEdges = Math.Abs (value);
-            }
-        }
-
-        public ShapeRegularPolygonObject (IFunctionInstance name, int nbOfEdges, double sizeOfEdges, double alpha = 0.0d) : base(name) {
-            this.NumberOfEdges = nbOfEdges;
-            this.SizeOfEdges = sizeOfEdges;
-            this.alpha = alpha;
-        }
-
-        public override IEnumerable<PointD> GetPoints () {
-            int n = this.NumberOfEdges;
-            double e = this.sizeOfEdges;
-            double alpha = this.Alpha;
-            double beta = this.Beta;
-            for (int i = n-0x01; i >= 0x00; i--) {
-                yield return new PointD (e * Math.Cos (alpha), e * Math.Sin (alpha));
-                alpha += beta;
-            }
-        }
-
-    }
+		public override IEnumerable<PointD> GetPoints () {
+			int n = this.NumberOfEdges;
+			double e = this.sizeOfEdges;
+			double alpha = this.Alpha;
+			double beta = this.Beta;
+			for (int i = n - 0x01; i >= 0x00; i--) {
+				yield return new PointD (e * Math.Cos (alpha), e * Math.Sin (alpha));
+				alpha += beta;
+			}
+		}
+	}
 }
 

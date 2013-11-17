@@ -21,61 +21,62 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+	public class Term : ITerm {
+		private readonly ITermHeader header;
+		private readonly List<IFunctionInstance> terms;
 
-    public class Term : ITerm {
+		public ITermHeader Header {
+			get {
+				return this.header;
+			}
+		}
 
-        private readonly ITermHeader header;
-        private readonly List<IFunctionInstance> terms;
+		IEnumerable<IFunctionInstance> ITerm.Terms {
+			get {
+				return this.Terms;
+			}
+		}
 
-        public ITermHeader Header {
-            get {
-                return this.header;
-            }
-        }
+		public List<IFunctionInstance> Terms {
+			get {
+				return this.terms;
+			}
+		}
 
-        IEnumerable<IFunctionInstance> ITerm.Terms {
-            get {
-                return this.Terms;
-            }
-        }
+		public IFunctionInstance this [int index] {
+			get {
+				return this.terms [index];
+			}
+		}
 
-        public List<IFunctionInstance> Terms {
-            get {
-                return this.terms;
-            }
-        }
+		public Term (ITermHeader header, List<IFunctionInstance> terms) {
+			if (header == null) {
+				throw new ArgumentNullException ("The header of a term always must be effective.", "header");
+			} else if (terms == null) {
+				throw new ArgumentNullException ("The list of terms must be effective.", "terms");
+			} else if (terms.Any (x => x == null)) {
+				throw new ArgumentException ("All subterms must be effective.", "terms");
+			} else {
+				this.header = header;
+				this.terms = terms;
+			}
+		}
 
-        public IFunctionInstance this [int index] {
-            get {
-                return this.terms [index];
-            }
-        }
+		public override string ToString () {
+			return this.header.TermString (this.terms);
+		}
 
-        public Term (ITermHeader header, List<IFunctionInstance> terms) {
-            if (header == null) {
-                throw new ArgumentNullException ("The header of a term always must be effective.", "header");
-            } else if (terms == null) {
-                throw new ArgumentNullException ("The list of terms must be effective.", "terms");
-            } else if (terms.Any (x => x == null)) {
-                throw new ArgumentException ("All subterms must be effective.", "terms");
-            } else {
-                this.header = header;
-                this.terms = terms;
-            }
-        }
+		#region ITerm implementation
 
-        public override string ToString () {
-            return this.header.TermString (this.terms);
-        }
+		public bool Equals (ITerm other) {
+			return Object.Equals (this.Header, other.Header) && this.Terms.AllDual (other.Terms, (x, y) => x.Equals (y));
+		}
 
-        #region ITerm implementation
-        public bool Equals (ITerm other) {
-            return Object.Equals (this.Header, other.Header) && this.Terms.AllDual (other.Terms, (x,y) => x.Equals (y));
-        }
-        #endregion
+		#endregion
 
-    }
+	}
 }
 

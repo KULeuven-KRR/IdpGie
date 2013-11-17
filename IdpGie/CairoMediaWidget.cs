@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using Gtk;
 using Cairo;
+using IdpGie.Hooks;
 
 namespace IdpGie.GUI {
 	public abstract class CairoMediaWidget : DrawingArea, IMediaObject, IHookSource {

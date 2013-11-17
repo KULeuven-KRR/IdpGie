@@ -20,28 +20,27 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public class PriorityComparator : IComparer<IPriority> {
+		public static readonly PriorityComparator Instance = new PriorityComparator ();
 
-    public class PriorityComparator : IComparer<IPriority> {
+		private PriorityComparator () {
+		}
 
-        public static readonly PriorityComparator Instance = new PriorityComparator ();
+		#region IComparer implementation
 
-        private PriorityComparator () {
-        }
+		public int Compare (IPriority x, IPriority y) {
+			if (y == null) {
+				return -0x01;
+			} else if (x == null) {
+				return 0x01;
+			} else {
+				return x.Priority.CompareTo (y.Priority);
+			}
+		}
 
-        #region IComparer implementation
-        public int Compare (IPriority x, IPriority y) {
-            if (y == null) {
-                return -0x01;
-            } else if (x == null) {
-                return 0x01;
-            } else {
-                return x.Priority.CompareTo (y.Priority);
-            }
-        }
-        #endregion
+		#endregion
 
-
-    }
+	}
 }
 

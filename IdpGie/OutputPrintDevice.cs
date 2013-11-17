@@ -20,16 +20,19 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-    public class OutputPrintDevice : OutputDevice {
-        public OutputPrintDevice (DrawTheory theory) : base(theory) {
-        }
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run (ProgramManager manager) {
-            throw new System.NotImplementedException ();
-        }
-        #endregion
+namespace IdpGie.Output {
+	public class OutputPrintDevice : OutputDevice {
+		public OutputPrintDevice (DrawTheory theory) : base (theory) {
+		}
 
-    }
+		#region implemented abstract members of IdpGie.IdpdOutputDevice
+
+		public override void Run (ProgramManager manager) {
+			throw new System.NotImplementedException ();
+		}
+
+		#endregion
+
+	}
 }
 

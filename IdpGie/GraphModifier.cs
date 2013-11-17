@@ -19,14 +19,11 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using IdpGie.Utils;
 
-namespace IdpGie {
-
-    public abstract class GraphModifier : TimeSensitiveBase {
-
-        public GraphModifier (double time) : base(time) {
-        }
-
-    }
-
+namespace IdpGie.Shapes.Modifier {
+	public abstract class GraphModifier : TimeSensitiveBase {
+		public GraphModifier (double time) : base (time) {
+		}
+	}
 }

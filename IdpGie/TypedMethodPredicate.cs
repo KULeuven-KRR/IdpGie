@@ -22,36 +22,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+	public class TypedMethodPredicate : TypedPredicate {
+		private MethodInfo method;
 
-    public class TypedMethodPredicate : TypedPredicate {
+		public MethodInfo Method {
+			get {
+				return this.method;
+			}
+			protected set {
+				this.method = value;
+			}
+		}
 
-        private MethodInfo method;
+		public TypedMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base (name, termTypes, priority) {
+			this.method = method;
+		}
 
-        public MethodInfo Method {
-            get {
-                return this.method;
-            }
-            protected set {
-                this.method = value;
-            }
-        }
-
-        public TypedMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base(name,termTypes,priority) {
-            this.method = method;
-        }
-
-        public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
-            object[] val = EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.method.GetParameters ().Skip (0x01).Select (x => x.ParameterType))).ToArray ();
-            try {
-                this.method.Invoke (null, val);
-                base.Execute (theory, arguments);
-            } catch (Exception) {
-                Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
-            }
-        }
-
-    }
+		public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
+			object[] val = EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.method.GetParameters ().Skip (0x01).Select (x => x.ParameterType))).ToArray ();
+			try {
+				this.method.Invoke (null, val);
+				base.Execute (theory, arguments);
+			} catch (Exception) {
+				Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
+			}
+		}
+	}
 }
 

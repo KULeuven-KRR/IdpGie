@@ -21,7 +21,7 @@
 using System;
 using Gdk;
 
-namespace IdpGie {
+namespace IdpGie.Hooks {
 	public class HookTypeAttribute : Attribute {
 		private readonly EventType eventType;
 

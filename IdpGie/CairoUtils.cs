@@ -22,6 +22,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cairo;
+using IdpGie.Utils;
 
 namespace IdpGie.Draws {
 	public static class CairoUtils {

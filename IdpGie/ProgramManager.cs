@@ -23,67 +23,68 @@ using IdpGie.Parser;
 using Mono.Unix;
 using System.IO;
 using Gtk;
+using IdpGie.GUI;
+using IdpGie.Hooks;
 
 namespace IdpGie {
+	public class ProgramManager : IDisposable {
+		private TopWindow tw;
 
-    public class ProgramManager : IDisposable {
+		public ProgramManager () {
+		}
 
-        private TopWindow tw;
+		public void CreateWindow () {
+			tw = new TopWindow ();
+		}
 
-        public ProgramManager () {
-        }
+		public void ShowWindow () {
+			Application.Run ();
+		}
 
-        public void CreateWindow () {
-            tw = new TopWindow ();
-        }
-
-        public void ShowWindow () {
-            Application.Run ();
-        }
-
-        public void OpenFile () {
+		public void OpenFile () {
         
-        }
+		}
 
-        #region IDisposable implementation
-        public void Dispose () {
-            tw.Dispose ();
-        }
-        #endregion
+		#region IDisposable implementation
 
-        public void OpenTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject, IHookSource {
-            this.tw.CreateTab<T> (dt, widget);
-        }
+		public void Dispose () {
+			tw.Dispose ();
+		}
 
-        public static int Main (string[] args) {
-            Catalog.Init ("IdpGie", "./locale");
-            Application.Init ("IdpGie", ref args);
-            Gdk.Threads.Init ();
-            using (ProgramManager manager = new ProgramManager ()) {
-                manager.CreateWindow ();
-                DirectoryInfo dirInfo = new DirectoryInfo (".");
-                foreach (string name in args) {
-                    FileInfo[] fInfo = dirInfo.GetFiles (name);
-                    foreach (FileInfo info in fInfo) {
-                        try {
-                            using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
-                                Lexer scnr = new Lexer (file);
-                                IdpParser pars = new IdpParser (info.Name, scnr);
-                                pars.Parse ();
-                                if (pars.Result != null) {
-                                    pars.Result.Execute (manager);
-                                }
-                            }
-                        } catch (IOException) {
-                            Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
-                        }
-                    }
-                }
-                manager.ShowWindow ();
-            }
-            return 0x00;
-        }
+		#endregion
 
-    }
+		public void OpenTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject, IHookSource {
+			this.tw.CreateTab<T> (dt, widget);
+		}
+
+		public static int Main (string[] args) {
+			Catalog.Init ("IdpGie", "./locale");
+			Application.Init ("IdpGie", ref args);
+			Gdk.Threads.Init ();
+			using (ProgramManager manager = new ProgramManager ()) {
+				manager.CreateWindow ();
+				DirectoryInfo dirInfo = new DirectoryInfo (".");
+				foreach (string name in args) {
+					FileInfo[] fInfo = dirInfo.GetFiles (name);
+					foreach (FileInfo info in fInfo) {
+						try {
+							using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
+								Lexer scnr = new Lexer (file);
+								IdpParser pars = new IdpParser (info.Name, scnr);
+								pars.Parse ();
+								if (pars.Result != null) {
+									pars.Result.Execute (manager);
+								}
+							}
+						} catch (IOException) {
+							Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
+						}
+					}
+				}
+				manager.ShowWindow ();
+			}
+			return 0x00;
+		}
+	}
 }
 

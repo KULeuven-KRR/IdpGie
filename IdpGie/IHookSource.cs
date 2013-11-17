@@ -21,7 +21,7 @@
 using System;
 using Gdk;
 
-namespace IdpGie {
+namespace IdpGie.Hooks {
 	public interface IHookSource {
 		[HookType (EventType.Delete)]
 		event EventHandler DeleteHook;

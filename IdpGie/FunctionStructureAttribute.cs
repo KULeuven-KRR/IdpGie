@@ -19,24 +19,22 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+	[AttributeUsage (AttributeTargets.Struct)]
+	public class FunctionStructureAttribute : NamedAttributeBase {
+		private readonly TermType outputType;
 
-    [AttributeUsage(AttributeTargets.Struct)]
-    public class FunctionStructureAttribute : NamedAttributeBase {
+		public TermType OutputType {
+			get {
+				return this.outputType;
+			}
+		}
 
-        private readonly TermType outputType;
-
-        public TermType OutputType {
-            get {
-                return this.outputType;
-            }
-        }
-
-        public FunctionStructureAttribute (string name, TermType outputType) : base(name) {
-            this.outputType = outputType;
-        }
-
-    }
+		public FunctionStructureAttribute (string name, TermType outputType) : base (name) {
+			this.outputType = outputType;
+		}
+	}
 }
 

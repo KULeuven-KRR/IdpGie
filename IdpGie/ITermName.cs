@@ -21,14 +21,10 @@
 using System;
 using IdpGie.Logic;
 
-namespace IdpGie {
-
-    public interface ITermName {
-
-        IFunctionInstance Name {
-            get;
-        }
-
-    }
-
+namespace IdpGie.Logic {
+	public interface ITermName {
+		IFunctionInstance Name {
+			get;
+		}
+	}
 }

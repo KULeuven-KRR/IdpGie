@@ -21,18 +21,14 @@
 using System;
 using Gdk;
 
-namespace IdpGie {
+namespace IdpGie.Hooks {
+	public interface IHook {
+		EventType EventType {
+			get;
+		}
 
-    public interface IHook {
+		void Fire ();
 
-        EventType EventType {
-            get;
-        }
-
-        void Fire ();
-
-        void RegisterSource (IHookSource source);
-
-    }
-
+		void RegisterSource (IHookSource source);
+	}
 }

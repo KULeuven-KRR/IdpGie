@@ -20,22 +20,18 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public class EventArgs<T> : EventArgs, ITagable<T> {
+		private readonly T tag;
 
-    public class EventArgs<T> : EventArgs, ITagable<T> {
+		public T Tag {
+			get {
+				return this.tag;
+			}
+		}
 
-        private readonly T tag;
-
-        public T Tag {
-            get {
-                return this.tag;
-            }
-        }
-
-        public EventArgs (T tag) {
-            this.tag = tag;
-        }
-
-    }
-
+		public EventArgs (T tag) {
+			this.tag = tag;
+		}
+	}
 }

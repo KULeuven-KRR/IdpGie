@@ -20,13 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-    public static class MathExtra {
-
-        public const double Theta = 2.0d * Math.PI;
-        public const double InvTheta = 0.5d / Math.PI;
-        public const double Inv255 = 1.0d / 255.0d;
-
-    }
+namespace IdpGie.Utils {
+	public static class MathExtra {
+		public const double Theta = 2.0d * Math.PI;
+		public const double InvTheta = 0.5d / Math.PI;
+		public const double Inv255 = 1.0d / 255.0d;
+	}
 }
 

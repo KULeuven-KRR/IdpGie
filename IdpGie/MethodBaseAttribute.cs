@@ -20,40 +20,40 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using IdpGie.Utils;
 using IdpGie.Logic;
 
 namespace IdpGie {
+	public abstract class MethodBaseAttribute : NamedAttributeBase, IPriority {
+		private readonly double priority;
+		private readonly IList<TermType> types;
 
-    public abstract class MethodBaseAttribute : NamedAttributeBase, IPriority {
+		#region IPriority implementation
 
-        private readonly double priority;
-        private readonly IList<TermType> types;
+		public virtual double Priority {
+			get {
+				return this.priority;
+			}
+		}
 
-        #region IPriority implementation
-        public virtual double Priority {
-            get {
-                return this.priority;
-            }
-        }
-        #endregion
+		#endregion
 
-        public virtual IList<TermType> Types {
-            get {
-                return this.types;
-            }
-        }
+		public virtual IList<TermType> Types {
+			get {
+				return this.types;
+			}
+		}
 
-        public virtual Tuple<string, int> Signature {
-            get {
-                return new Tuple<string,int> ("idpd_" + this.Name, this.Types.Count);
-            }
-        }
+		public virtual Tuple<string, int> Signature {
+			get {
+				return new Tuple<string,int> ("idpd_" + this.Name, this.Types.Count);
+			}
+		}
 
-        protected MethodBaseAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name) {
-            this.priority = priority;
-            this.types = types;
-        }
-
-    }
+		protected MethodBaseAttribute (string name, double priority = 1.0d, params TermType[] types) : base (name) {
+			this.priority = priority;
+			this.types = types;
+		}
+	}
 }
 

@@ -23,13 +23,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using IdpGie.Logic;
 
-namespace IdpGie {
-
-    public interface IMethodPredicateGenerator {
-
-        IEnumerable<IPredicate> Predicates (MethodInfo method);
-
-    }
-
+namespace IdpGie.Logic {
+	public interface IMethodPredicateGenerator {
+		IEnumerable<IPredicate> Predicates (MethodInfo method);
+	}
 }
 

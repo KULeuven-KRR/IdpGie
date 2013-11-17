@@ -21,17 +21,13 @@
 using System;
 using IdpGie.Logic.Structures;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
+	public interface IGeometry2d {
+		Box2d SurroundingBox {
+			get;
+		}
 
-    public interface IGeometry2d {
-
-        Box2d SurroundingBox {
-            get;
-        }
-
-        bool Contains (Point pt);
-
-    }
-
+		bool Contains (Point pt);
+	}
 }
 

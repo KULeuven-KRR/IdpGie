@@ -20,12 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    [AttributeUsage(AttributeTargets.Class)]
-    public class MapperAttribute : Attribute {
-
-    }
-
+namespace IdpGie.Utils {
+	[AttributeUsage (AttributeTargets.Class)]
+	public class MapperAttribute : Attribute {
+	}
 }
 

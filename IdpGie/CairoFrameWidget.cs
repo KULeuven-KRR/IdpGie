@@ -19,10 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Linq;
-using Gtk;
 using Cairo;
 using IdpGie.Shapes;
+using IdpGie.Utils;
 
 namespace IdpGie.GUI {
 	public class CairoFrameWidget : CairoMediaWidget {

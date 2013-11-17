@@ -20,27 +20,27 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public class TimeSensitiveComparer : IComparer<ITimesensitive> {
+		public static readonly TimeSensitiveComparer Instance = new TimeSensitiveComparer ();
 
-    public class TimeSensitiveComparer : IComparer<ITimesensitive> {
+		private TimeSensitiveComparer () {
+		}
 
-        public static readonly TimeSensitiveComparer Instance = new TimeSensitiveComparer ();
+		#region IComparer implementation
 
-        private TimeSensitiveComparer () {
-        }
+		public int Compare (ITimesensitive x, ITimesensitive y) {
+			if (x == null) {
+				return 0x01;
+			} else if (y == null) {
+				return -0x01;
+			} else {
+				return x.Time.CompareTo (y.Time);
+			}
+		}
 
-        #region IComparer implementation
-        public int Compare (ITimesensitive x, ITimesensitive y) {
-            if (x == null) {
-                return 0x01;
-            } else if (y == null) {
-                return -0x01;
-            } else {
-                return x.Time.CompareTo (y.Time);
-            }
-        }
-        #endregion
+		#endregion
 
-    }
+	}
 }
 

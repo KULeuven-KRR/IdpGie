@@ -21,17 +21,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie {
-
-    public static class CollectionUtils {
-
-        public static void AddAll<T,Q> (this ICollection<T> collection, IEnumerable<Q> source) where Q : T {
-            foreach (Q q in source) {
-                collection.Add (q);
-            }
-        }
-
-    }
-
+namespace IdpGie.Utils {
+	public static class CollectionUtils {
+		public static void AddAll<T,Q> (this ICollection<T> collection, IEnumerable<Q> source) where Q : T {
+			foreach (Q q in source) {
+				collection.Add (q);
+			}
+		}
+	}
 }
 

@@ -20,39 +20,38 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public abstract class TimeSensitiveBase : ITimesensitive {
+		private double time;
 
-    public abstract class TimeSensitiveBase : ITimesensitive {
+		public virtual double Time {
+			get {
+				return this.time;
+			}
+			protected set {
+				if (!double.IsNaN (value)) {
+					this.time = value;
+				} else {
+					throw new ArgumentException ("Time must be a number different from NaN.", "time");
+				}
+			}
+		}
 
-        private double time;
+		protected TimeSensitiveBase (double time = 0.0d) {
+			this.Time = time;
+		}
 
-        public virtual double Time {
-            get {
-                return this.time;
-            }
-            protected set {
-                if (!double.IsNaN (value)) {
-                    this.time = value;
-                } else {
-                    throw new ArgumentException ("Time must be a number different from NaN.", "time");
-                }
-            }
-        }
+		#region IComparable implementation
 
-        protected TimeSensitiveBase (double time = 0.0d) {
-            this.Time = time;
-        }
+		public virtual int CompareTo (ITimesensitive other) {
+			if (other != null) {
+				return this.time.CompareTo (other.Time);
+			} else {
+				return -0x01;
+			}
+		}
 
-        #region IComparable implementation
-        public virtual int CompareTo (ITimesensitive other) {
-            if (other != null) {
-                return this.time.CompareTo (other.Time);
-            } else {
-                return -0x01;
-            }
-        }
-        #endregion
+		#endregion
 
-    }
-
+	}
 }

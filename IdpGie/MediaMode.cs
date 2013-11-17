@@ -20,11 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public enum MediaMode : byte {
-        Pause = 0x00,
-        Play = 0x01,
-        Seek = 0x02
-    }
+namespace IdpGie.GUI {
+	public enum MediaMode : byte {
+		Pause = 0x00,
+		Play = 0x01,
+		Seek = 0x02
+	}
 }

@@ -20,15 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public interface ITimeSensitiveReversible : ITimesensitive {
+		bool CanReverse (double time);
 
-    public interface ITimeSensitiveReversible : ITimesensitive {
-
-        bool CanReverse (double time);
-
-        void Reverse (double time);
-
-    }
-
+		void Reverse (double time);
+	}
 }
 

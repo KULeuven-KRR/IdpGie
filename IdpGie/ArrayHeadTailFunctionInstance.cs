@@ -21,190 +21,210 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+	public class ArrayHeadTailFunctionInstance : IArrayFunctionInstance {
+		private readonly IFunctionInstance term;
+		private readonly IArrayFunctionInstance tail;
 
-    public class ArrayHeadTailFunctionInstance : IArrayFunctionInstance {
+		#region ICollection implementation
 
-        private readonly IFunctionInstance term;
-        private readonly IArrayFunctionInstance tail;
+		public int Count {
+			get {
+				return 0x01 + this.tail.Count;
+			}
+		}
 
-        #region ICollection implementation
-        public int Count {
-            get {
-                return 0x01 + this.tail.Count;
-            }
-        }
+		public bool IsReadOnly {
+			get {
+				return true;
+			}
+		}
 
-        public bool IsReadOnly {
-            get {
-                return true;
-            }
-        }
+		public bool ContainsVariables {
+			get {
+				return this.term.ContainsVariables || this.tail.ContainsVariables;
+			}
+		}
 
-        public bool ContainsVariables {
-            get {
-                return this.term.ContainsVariables || this.tail.ContainsVariables;
-            }
-        }
-        #endregion
+		#endregion
 
-        #region IFunctionInstance implementation
-        public IFunctionInstance this [int index] {
-            get {
-                switch (index) {
-                case 0x00:
-                    return this.term;
-                case 0x01:
-                    return this.tail;
-                default :
-                    throw new IndexOutOfRangeException ("An array head-tail function has only two arguments.");
-                }
-            }
-        }
+		#region IFunctionInstance implementation
 
-        public bool IsConstant {
-            get {
-                return false;
-            }
-        }
+		public IFunctionInstance this [int index] {
+			get {
+				switch (index) {
+				case 0x00:
+					return this.term;
+				case 0x01:
+					return this.tail;
+				default :
+					throw new IndexOutOfRangeException ("An array head-tail function has only two arguments.");
+				}
+			}
+		}
 
-        public ITermHeader Header {
-            get {
-                return ArrayFunction.Instance;
-            }
-        }
+		public bool IsConstant {
+			get {
+				return false;
+			}
+		}
 
-        public object Value {
-            get {
-                return this;
-            }
-        }
-        #endregion
+		public ITermHeader Header {
+			get {
+				return ArrayFunction.Instance;
+			}
+		}
 
-        public IFunctionInstance Term {
-            get {
-                return this.term;
-            }
-        }
+		public object Value {
+			get {
+				return this;
+			}
+		}
 
-        public IArrayFunctionInstance Tail {
-            get {
-                return this.tail;
-            }
-        }
+		#endregion
 
-        #region IFunctionInstance implementation
-        public TermType Type {
-            get {
-                return TermType.All;
-            }
-        }
+		public IFunctionInstance Term {
+			get {
+				return this.term;
+			}
+		}
 
-        public IFunction Function {
-            get {
-                return ArrayFunction.Instance;
-            }
-        }
-        #endregion
+		public IArrayFunctionInstance Tail {
+			get {
+				return this.tail;
+			}
+		}
 
-        #region ITerm implementation
-        public IEnumerable<IFunctionInstance> Terms {
-            get {
-                yield return this.Term;
-                yield return this.Tail;
-            }
-        }
-        #endregion
+		#region IFunctionInstance implementation
 
-        public ArrayHeadTailFunctionInstance (IFunctionInstance term, IArrayFunctionInstance tail) {
-            this.term = term;
-            this.tail = tail;
-        }
+		public TermType Type {
+			get {
+				return TermType.All;
+			}
+		}
 
-        public override string ToString () {
-            //return String.Format ("[{0}|{1}]", this.term, this.tail);
-            return ArrayFunction.Instance.TermString (this);
-        }
+		public IFunction Function {
+			get {
+				return ArrayFunction.Instance;
+			}
+		}
 
-        #region ITerm implementation
-        public bool Equals (ITerm other) {
-            return Object.Equals (other.Header, ArrayFunction.Instance) && this.Terms.AllDual (other.Terms, (x,y) => x.Equals (y));
-        }
-        #endregion
+		#endregion
 
-        #region IFunctionInstance implementation
-        public bool CanConvert (TermType type) {
-            return TypeSystem.CanConvert (this.Type, type);
-        }
-        #endregion
+		#region ITerm implementation
 
-        #region implemented abstract members of IdpGie.IdpVirtualFunctionInstance
-        public object ConvertedValue (TermType target) {
-            return this;
-        }
-        #endregion
+		public IEnumerable<IFunctionInstance> Terms {
+			get {
+				yield return this.Term;
+				yield return this.Tail;
+			}
+		}
 
-        public override int GetHashCode () {
-            return 0x122de704 ^ (this.term.GetHashCode () << 0x03) ^ (this.tail.GetHashCode () << 0x06);
-        }
+		#endregion
 
-        #region IEnumerable implementation
-        IEnumerator IEnumerable.GetEnumerator () {
-            return this.GetEnumerator ();
-        }
-        #endregion
+		public ArrayHeadTailFunctionInstance (IFunctionInstance term, IArrayFunctionInstance tail) {
+			this.term = term;
+			this.tail = tail;
+		}
 
-        #region IEnumerable implementation
-        public IEnumerator<IFunctionInstance> GetEnumerator () {
-            yield return this.term;
-            IArrayFunctionInstance afi = this.tail;
-            while (afi is ArrayHeadTailFunctionInstance) {
-                ArrayHeadTailFunctionInstance ahfi = (ArrayHeadTailFunctionInstance)afi;
-                yield return ahfi.term;
-                afi = ahfi.tail;
-            }
-        }
-        #endregion
+		public override string ToString () {
+			//return String.Format ("[{0}|{1}]", this.term, this.tail);
+			return ArrayFunction.Instance.TermString (this);
+		}
 
-        #region ICollection implementation
-        public void Add (IFunctionInstance item) {
-            throw new InvalidOperationException ("Collection is readonly.");
-        }
+		#region ITerm implementation
 
-        public void Clear () {
-            throw new InvalidOperationException ("Collection is readonly.");
-        }
+		public bool Equals (ITerm other) {
+			return Object.Equals (other.Header, ArrayFunction.Instance) && this.Terms.AllDual (other.Terms, (x, y) => x.Equals (y));
+		}
 
-        public bool Contains (IFunctionInstance item) {
-            return Object.Equals (this.term, item) || this.tail.Contains (item);
-        }
+		#endregion
 
-        public void CopyTo (IFunctionInstance[] array, int arrayIndex) {
-            IEnumerator<IFunctionInstance> enumerator = this.GetEnumerator ();
-            int n = array.Length;
-            for (int i = arrayIndex; i < n && enumerator.MoveNext(); i++) {
-                array [i] = enumerator.Current;
-            }
-        }
+		#region IFunctionInstance implementation
 
-        public bool Remove (IFunctionInstance item) {
-            throw new InvalidOperationException ("Collection is readonly.");
-        }
-        #endregion
+		public bool CanConvert (TermType type) {
+			return TypeSystem.CanConvert (this.Type, type);
+		}
 
-        #region IArrayFunctionInstance implementation
-        public IEnumerable<T> ValueEnumerable<T> (TermType target) {
-            yield return (T)this.term.ConvertedValue (target);
-            IArrayFunctionInstance afi = this.tail;
-            while (afi is ArrayHeadTailFunctionInstance) {
-                ArrayHeadTailFunctionInstance ahfi = (ArrayHeadTailFunctionInstance)afi;
-                yield return (T)ahfi.term.ConvertedValue (target);
-                afi = ahfi.tail;
-            }
-        }
-        #endregion
+		#endregion
 
-    }
+		#region implemented abstract members of IdpGie.IdpVirtualFunctionInstance
 
+		public object ConvertedValue (TermType target) {
+			return this;
+		}
+
+		#endregion
+
+		public override int GetHashCode () {
+			return 0x122de704 ^ (this.term.GetHashCode () << 0x03) ^ (this.tail.GetHashCode () << 0x06);
+		}
+
+		#region IEnumerable implementation
+
+		IEnumerator IEnumerable.GetEnumerator () {
+			return this.GetEnumerator ();
+		}
+
+		#endregion
+
+		#region IEnumerable implementation
+
+		public IEnumerator<IFunctionInstance> GetEnumerator () {
+			yield return this.term;
+			IArrayFunctionInstance afi = this.tail;
+			while (afi is ArrayHeadTailFunctionInstance) {
+				ArrayHeadTailFunctionInstance ahfi = (ArrayHeadTailFunctionInstance)afi;
+				yield return ahfi.term;
+				afi = ahfi.tail;
+			}
+		}
+
+		#endregion
+
+		#region ICollection implementation
+
+		public void Add (IFunctionInstance item) {
+			throw new InvalidOperationException ("Collection is readonly.");
+		}
+
+		public void Clear () {
+			throw new InvalidOperationException ("Collection is readonly.");
+		}
+
+		public bool Contains (IFunctionInstance item) {
+			return Object.Equals (this.term, item) || this.tail.Contains (item);
+		}
+
+		public void CopyTo (IFunctionInstance[] array, int arrayIndex) {
+			IEnumerator<IFunctionInstance> enumerator = this.GetEnumerator ();
+			int n = array.Length;
+			for (int i = arrayIndex; i < n && enumerator.MoveNext (); i++) {
+				array [i] = enumerator.Current;
+			}
+		}
+
+		public bool Remove (IFunctionInstance item) {
+			throw new InvalidOperationException ("Collection is readonly.");
+		}
+
+		#endregion
+
+		#region IArrayFunctionInstance implementation
+
+		public IEnumerable<T> ValueEnumerable<T> (TermType target) {
+			yield return (T)this.term.ConvertedValue (target);
+			IArrayFunctionInstance afi = this.tail;
+			while (afi is ArrayHeadTailFunctionInstance) {
+				ArrayHeadTailFunctionInstance ahfi = (ArrayHeadTailFunctionInstance)afi;
+				yield return (T)ahfi.term.ConvertedValue (target);
+				afi = ahfi.tail;
+			}
+		}
+
+		#endregion
+
+	}
 }

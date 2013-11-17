@@ -20,29 +20,28 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Output {
+	public abstract class OutputDevice : IDisposable {
+		private readonly DrawTheory theory;
 
-    public abstract class OutputDevice : IDisposable {
+		public DrawTheory Theory {
+			get {
+				return this.theory;
+			}
+		}
 
-        private readonly DrawTheory theory;
+		protected OutputDevice (DrawTheory theory) {
+			this.theory = theory;
+		}
 
-        public DrawTheory Theory {
-            get {
-                return this.theory;
-            }
-        }
+		public abstract void Run (ProgramManager manager);
 
-        protected OutputDevice (DrawTheory theory) {
-            this.theory = theory;
-        }
+		#region IDisposable implementation
 
-        public abstract void Run (ProgramManager manager);
+		public virtual void Dispose () {
+		}
 
-        #region IDisposable implementation
-        public virtual void Dispose () {
-        }
-        #endregion
+		#endregion
 
-
-    }
+	}
 }

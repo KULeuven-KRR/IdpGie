@@ -20,26 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public class NamedAttributeBase : Attribute, IName {
+		private readonly string name;
 
-    public class NamedAttributeBase : Attribute, IName {
+		public string Name {
+			get {
+				return this.name;
+			}
+		}
 
-        private readonly string name;
+		protected NamedAttributeBase (string name) {
+			this.name = name;
+		}
 
-        public string Name {
-           get {
-               return this.name;
-           }
-        }
-
-        protected NamedAttributeBase (string name) {
-            this.name = name;
-        }
-
-        public override string ToString () {
-            return this.name;
-        }
-
-    }
+		public override string ToString () {
+			return this.name;
+		}
+	}
 }
 

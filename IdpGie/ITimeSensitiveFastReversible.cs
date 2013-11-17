@@ -20,17 +20,13 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public interface ITimeSensitiveFastReversible : ITimeSensitiveReversible {
+		double Checkpoint {
+			get;
+		}
 
-    public interface ITimeSensitiveFastReversible : ITimeSensitiveReversible {
-
-        double Checkpoint {
-            get;
-        }
-
-        bool CanFastReverse (double time);
-
-    }
-
+		bool CanFastReverse (double time);
+	}
 }
 

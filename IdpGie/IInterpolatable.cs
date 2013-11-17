@@ -20,15 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public interface IInterpolatable {
-
-        bool CanInterpolate {
-            get;
-        }
-
-    }
-
+namespace IdpGie.Utils {
+	public interface IInterpolatable {
+		bool CanInterpolate {
+			get;
+		}
+	}
 }
 

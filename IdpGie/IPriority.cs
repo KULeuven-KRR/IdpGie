@@ -20,14 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public interface IPriority {
-
-        double Priority {
-            get;
-        }
-
-    }
+namespace IdpGie.Utils {
+	public interface IPriority {
+		double Priority {
+			get;
+		}
+	}
 }
 

@@ -20,27 +20,25 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public abstract class TimeSensitiveReversibleBase : TimeSensitiveBase, ITimeSensitiveReversible {
+		protected TimeSensitiveReversibleBase (double time = 0.0d) : base (time) {
+		}
 
-    public abstract class TimeSensitiveReversibleBase : TimeSensitiveBase, ITimeSensitiveReversible {
+		#region ITimeSensitiveReverseable implementation
 
-        protected TimeSensitiveReversibleBase (double time = 0.0d) : base(time) {
-        }
+		public virtual bool CanReverse (double time) {
+			return false;
+		}
 
-        #region ITimeSensitiveReverseable implementation
-        public virtual bool CanReverse (double time) {
-            return false;
-        }
+		public virtual void Reverse (double time) {
+			if (!this.CanReverse (time)) {
+				throw new ArgumentException ("time", "Cannot reverse to the given time point.");
+			}
+		}
 
-        public virtual void Reverse (double time) {
-            if (!this.CanReverse (time)) {
-                throw new ArgumentException ("time", "Cannot reverse to the given time point.");
-            }
-        }
-        #endregion
+		#endregion
 
-
-    }
-
+	}
 }
 

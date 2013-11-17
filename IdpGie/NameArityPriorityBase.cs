@@ -20,26 +20,26 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public abstract class NameArityPriorityBase : NameArityBase, INameArity, IPriority {
+		private double priority;
 
-    public abstract class NameArityPriorityBase : NameArityBase, INameArity, IPriority {
+		#region IPriority implementation
 
-        private double priority;
+		public virtual double Priority {
+			get {
+				return this.priority;
+			}
+			protected set {
+				this.priority = value;
+			}
+		}
 
-        #region IPriority implementation
-        public virtual double Priority {
-            get {
-                return this.priority;
-            }
-            protected set {
-                this.priority = value;
-            }
-        }
-        #endregion
+		#endregion
 
-        protected NameArityPriorityBase (string name, int arity = 0x00, double priority = 1.0d) : base(name,arity) {
-            this.Priority = priority;
-        }
-    }
+		protected NameArityPriorityBase (string name, int arity = 0x00, double priority = 1.0d) : base (name, arity) {
+			this.Priority = priority;
+		}
+	}
 }
 

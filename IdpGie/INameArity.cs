@@ -20,14 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
-
-    public interface INameArity : IName, IArity {
-
-        Tuple<string, int> Signature {
-            get;
-        }
-
-    }
-
+namespace IdpGie.Utils {
+	public interface INameArity : IName, IArity {
+		Tuple<string, int> Signature {
+			get;
+		}
+	}
 }

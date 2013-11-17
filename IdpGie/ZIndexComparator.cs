@@ -21,28 +21,26 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
+	public class ZIndexComparator : IComparer<IZIndex> {
+		public static readonly ZIndexComparator Instance = new ZIndexComparator ();
 
-    public class ZIndexComparator : IComparer<IZIndex> {
+		private ZIndexComparator () {
+		}
 
-        public static readonly ZIndexComparator Instance = new ZIndexComparator ();
+		#region IComparer implementation
 
-        private ZIndexComparator () {
-        }
+		public int Compare (IZIndex x, IZIndex y) {
+			if (x == null) {
+				return 0x01;
+			} else if (y == null) {
+				return -0x01;
+			} else {
+				return x.ZIndex.CompareTo (y.ZIndex);
+			}
+		}
 
-        #region IComparer implementation
-        public int Compare (IZIndex x, IZIndex y) {
-            if (x == null) {
-                return 0x01;
-            } else if (y == null) {
-                return -0x01;
-            } else {
-                return x.ZIndex.CompareTo (y.ZIndex);
-            }
-        }
-        #endregion
+		#endregion
 
-
-    }
-
+	}
 }

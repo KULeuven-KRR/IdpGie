@@ -24,6 +24,8 @@ using System.Text;
 using IdpGie.Logic;
 using IdpGie.Shapes;
 using IdpGie.Output;
+using IdpGie.Hooks;
+using IdpGie.Utils;
 
 namespace IdpGie {
 	public class DrawTheory : NameBase, ITimesensitive {

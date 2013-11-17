@@ -19,24 +19,21 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using IdpGie.Utils;
 
-namespace IdpGie.Shapes {
+namespace IdpGie.Shapes.Modifier {
+	public interface IShapeStateModifier : ITimesensitive {
+		bool Reversible {
+			get;
+		}
 
-    public interface IShapeStateModifier : ITimesensitive {
+		Action<ShapeState> Action {
+			get;
+		}
 
-        bool Reversible {
-            get;
-        }
-
-        Action<ShapeState> Action {
-            get;
-        }
-
-        Action<ShapeState> ReverseAction {
-            get;
-        }
-
-    }
-
+		Action<ShapeState> ReverseAction {
+			get;
+		}
+	}
 }
 

@@ -20,20 +20,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+	public interface ITermHeader : IName, IPriority, IArity {
+		Tuple<string,int> Signature {
+			get;
+		}
 
-    public interface ITermHeader : IName, IPriority, IArity {
+		string TermString (IEnumerable<IFunctionInstance> terms);
 
-        Tuple<string,int> Signature {
-            get;
-        }
-
-        string TermString (IEnumerable<IFunctionInstance> terms);
-
-        ITerm CreateInstance (IEnumerable<IFunctionInstance> terms);
-
-    }
-
+		ITerm CreateInstance (IEnumerable<IFunctionInstance> terms);
+	}
 }
 

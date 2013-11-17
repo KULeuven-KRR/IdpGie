@@ -23,35 +23,33 @@ using System.Text;
 using Cairo;
 using OpenTK;
 using IdpGie.Logic;
+using IdpGie.Utils;
+using IdpGie.Shapes.Modifier;
 
 namespace IdpGie.Shapes {
+	public interface IShape : IZIndex, IShapeTransformable {
+		IFunctionInstance Name {
+			get;
+		}
 
-    public interface IShape : IZIndex, IShapeTransformable {
+		ShapeState State {
+			get;
+		}
 
-        IFunctionInstance Name {
-            get;
-        }
+		double Time {
+			get;
+			set;
+		}
 
-        ShapeState State {
-            get;
-        }
+		void PaintObject (Context ctx);
 
-        double Time {
-            get;
-            set;
-        }
+		void WriteTikz (StringBuilder builder);
 
-        void PaintObject (Context ctx);
+		void Render (FrameEventArgs e);
 
-        void WriteTikz (StringBuilder builder);
+		void AddModifier (ShapeStateModifier modifier);
 
-        void Render (FrameEventArgs e);
-
-        void AddModifier (ShapeStateModifier modifier);
-
-        void AddModifier (double time, Action<ShapeState> modifier);
-
-    }
-
+		void AddModifier (double time, Action<ShapeState> modifier);
+	}
 }
 

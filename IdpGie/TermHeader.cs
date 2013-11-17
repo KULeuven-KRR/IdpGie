@@ -20,70 +20,72 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic {
+	public abstract class TermHeader : NameBase, ITermHeader {
+		private int arity;
+		private double priority;
 
-    public abstract class TermHeader : NameBase, ITermHeader {
+		#region ITermHeader implementation
 
-        private int arity;
-        private double priority;
+		public int Arity {
+			get {
+				return this.arity;
+			}
+			protected set {
+				this.arity = value;
+			}
+		}
 
-        #region ITermHeader implementation
-        public int Arity {
-            get {
-                return this.arity;
-            }
-            protected set {
-                this.arity = value;
-            }
-        }
+		public Tuple<string, int> Signature {
+			get {
+				return new Tuple<string, int> (this.Name, this.Arity);
+			}
+		}
 
-        public Tuple<string, int> Signature {
-            get {
-                return new Tuple<string, int> (this.Name, this.Arity);
-            }
-        }
-        #endregion
+		#endregion
 
-        #region IPriority implementation
-        public double Priority {
-            get {
-                return this.priority;
-            }
-            protected set {
-                this.priority = value;
-            }
-        }
-        #endregion
+		#region IPriority implementation
 
-        protected TermHeader (string name, int arity, double priority = 1.0d) : base(name) {
-            if (name == null || name == string.Empty) {
-                throw new ArgumentNullException ("The name of a function or predicate must be effective.", "name");
-            } else if (arity < 0x00 || arity > 0xff) {
-                throw new ArgumentException ("The arity of a function must be larger or equal to zero and lower than 256.", "arity");
-            }
-            this.Arity = arity;
-            this.Priority = priority;
-        }
+		public double Priority {
+			get {
+				return this.priority;
+			}
+			protected set {
+				this.priority = value;
+			}
+		}
 
-        public override string ToString () {
-            return string.Format ("{0}/{1}", this.Name, this.Arity);
-        }
+		#endregion
 
-        public static string TermString (string name, IEnumerable<IFunctionInstance> terms) {
-            if (!terms.Empty ()) {
-                return string.Format ("{0}({1})", name, string.Join (",", terms));
-            } else {
-                return name;
-            }
-        }
+		protected TermHeader (string name, int arity, double priority = 1.0d) : base (name) {
+			if (name == null || name == string.Empty) {
+				throw new ArgumentNullException ("The name of a function or predicate must be effective.", "name");
+			} else if (arity < 0x00 || arity > 0xff) {
+				throw new ArgumentException ("The arity of a function must be larger or equal to zero and lower than 256.", "arity");
+			}
+			this.Arity = arity;
+			this.Priority = priority;
+		}
 
-        public virtual string TermString (IEnumerable<IFunctionInstance> terms) {
-            return TermHeader.TermString (this.Name, terms);
-        }
+		public override string ToString () {
+			return string.Format ("{0}/{1}", this.Name, this.Arity);
+		}
 
-        public abstract ITerm CreateInstance (IEnumerable<IFunctionInstance> terms);
+		public static string TermString (string name, IEnumerable<IFunctionInstance> terms) {
+			if (!terms.Empty ()) {
+				return string.Format ("{0}({1})", name, string.Join (",", terms));
+			} else {
+				return name;
+			}
+		}
 
-    }
+		public virtual string TermString (IEnumerable<IFunctionInstance> terms) {
+			return TermHeader.TermString (this.Name, terms);
+		}
+
+		public abstract ITerm CreateInstance (IEnumerable<IFunctionInstance> terms);
+	}
 }
 

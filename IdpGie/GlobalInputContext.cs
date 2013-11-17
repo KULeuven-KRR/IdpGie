@@ -24,6 +24,8 @@ using System.Linq;
 using System.Reflection;
 using IdpGie.Logic;
 using IdpGie.Draws;
+using IdpGie.Utils;
+using IdpGie.Hooks;
 
 namespace IdpGie.Parser {
 	public class GlobalInputContext : IInputContext {
