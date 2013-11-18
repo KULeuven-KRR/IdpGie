@@ -23,6 +23,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
+using Gtk;
 
 namespace IdpGie.Utils {
 
@@ -51,8 +52,12 @@ namespace IdpGie.Utils {
 
 		public static IEnumerable<Tuple<TItem2,TItem1>> Swap<TItem1,TItem2> (IEnumerable<Tuple<TItem1,TItem2>> tuples) {
 			foreach (Tuple<TItem1,TItem2> tuple in tuples) {
-				yield return new Tuple<TItem2,TItem1>>(tuple.Item2,tuple.Item1);
+				yield return new Tuple<TItem2,TItem1> (tuple.Item2, tuple.Item1);
 			}
+		}
+
+		public static LazyDictionary<TKey,TValue> ToLazyDictionary<TKey,TValue> (this IEnumerable<Tuple<TKey,TValue>> tuples) {
+			return new LazyDictionary<TKey, TValue> (tuples);
 		}
 
 		public static IEnumerable<T> ToEnumerable<T> (this T val) {

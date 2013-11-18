@@ -96,9 +96,11 @@ namespace IdpGie.Logic {
 		}
 
 		public void Replace (IEnumerable<Tuple<IVariable, ITerm>> replacement) {
-			for (int i = 0x00; i < this.terms; i++) {
+			Replace (replacement.ToLazyDictionary ());
+		}
 
-			}
+		public void Replace (IDictionary<IVariable, ITerm> replacement) {
+			//TODO
 		}
 
 		#endregion

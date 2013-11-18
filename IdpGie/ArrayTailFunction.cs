@@ -191,6 +191,11 @@ namespace IdpGie.Logic {
 
 		#endregion
 
+		public void Replace (IEnumerable<Tuple<IVariable, ITerm>> replacement) {
+		}
+
+		public void Replace (IDictionary<IVariable, ITerm> replacement) {
+		}
 	}
 }
 

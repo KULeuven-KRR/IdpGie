@@ -209,6 +209,8 @@
     <Compile Include="IUnificationAlgorithm.cs" />
     <Compile Include="UnificationException.cs" />
     <Compile Include="LazyDictionary.cs" />
+    <Compile Include="MartelliMontanariUnification.cs" />
+    <Compile Include="TermConcept.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -1,5 +1,5 @@
 //
-//  UnificationAlgorithm.cs
+//  TermConcept.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -20,15 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using IdpGie.Logic;
-using System.Collections.Generic;
 
-namespace IdpGie.Logic.Altering {
+namespace IdpGie.Logic {
 
-	public interface IUnificationAlgorithm {
-		IEnumerable<Tuple<IVariable,ITerm>> Unify (IEnumerable<ITerm> terms);
-
-		IEnumerable<Tuple<IVariable,ITerm>> Unify (ITerm term1, ITerm term2);
+	public enum TermConcept {
+		Predicate = 0x01,
+		Functor = 0x02,
+		Constant = 0x06,
+		Variable = 0x08
 	}
 }
 

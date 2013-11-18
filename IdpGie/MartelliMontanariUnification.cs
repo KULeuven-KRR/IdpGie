@@ -1,5 +1,5 @@
 //
-//  UnificationAlgorithm.cs
+//  MartelliMontanariUnification.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -20,15 +20,31 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using IdpGie.Logic;
 using System.Collections.Generic;
+using System.Collections;
+using Mono.Posix;
 
 namespace IdpGie.Logic.Altering {
 
-	public interface IUnificationAlgorithm {
-		IEnumerable<Tuple<IVariable,ITerm>> Unify (IEnumerable<ITerm> terms);
+	public class MartelliMontanariUnification : IUnificationAlgorithm {
+		public MartelliMontanariUnification () {
+		}
 
-		IEnumerable<Tuple<IVariable,ITerm>> Unify (ITerm term1, ITerm term2);
+		#region IUnificationAlgorithm implementation
+
+		public IEnumerable<Tuple<IVariable, ITerm>> Unify (IEnumerable<ITerm> terms) {
+			Stack<IEnumerable<ITerm>> state = new Stack<IEnumerable<ITerm>> ();
+			state.Push (terms);
+			IEnumerable<ITerm> top;
+			while (state.Count > 0x00) {
+				top = state.Pop ();
+
+			}
+			yield break;
+		}
+
+		#endregion
+
 	}
 }
 
