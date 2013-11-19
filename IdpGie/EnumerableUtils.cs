@@ -33,42 +33,10 @@ namespace IdpGie.Utils {
 			return source.FirstOrDefault ();
 		}
 
-		public static bool TryGetCastValue<T,Q,R> (this IDictionary<T,Q> dictionary, T key, out R value) where R : Q {
-			Q qval;
-			if (dictionary.TryGetValue (key, out qval) && qval is R) {
-				value = (R)qval;
-				return true;
-			} else {
-				value = default(R);
-				return false;
-			}
-		}
-
-		public static IEnumerable<T> Tail<T> (this IEnumerable<T> source) {
-			IEnumerator<T> tor = source.GetEnumerator ();
-			if (tor.MoveNext ()) {
-				while (tor.MoveNext ()) {
-					yield return tor.Current;
-				}
-			}
-		}
-
-		public static Dictionary<TKey,TValue> ToDictionary<TKey,TValue> (IEnumerable<Tuple<TKey,TValue>> tuples) {
-			Dictionary<TKey,TValue> result = new Dictionary<TKey, TValue> ();
-			foreach (Tuple<TKey,TValue> tuple in tuples) {
-				result.Add (tuple.Item1, tuple.Item2);
-			}
-			return result;
-		}
-
 		public static IEnumerable<Tuple<TItem2,TItem1>> Swap<TItem1,TItem2> (IEnumerable<Tuple<TItem1,TItem2>> tuples) {
 			foreach (Tuple<TItem1,TItem2> tuple in tuples) {
 				yield return new Tuple<TItem2,TItem1> (tuple.Item2, tuple.Item1);
 			}
-		}
-
-		public static LazyDictionary<TKey,TValue> ToLazyDictionary<TKey,TValue> (this IEnumerable<Tuple<TKey,TValue>> tuples) {
-			return new LazyDictionary<TKey, TValue> (tuples);
 		}
 
 		public static IEnumerable<T> ToEnumerable<T> (this T val) {

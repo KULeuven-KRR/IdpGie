@@ -211,6 +211,7 @@
     <Compile Include="LazyDictionary.cs" />
     <Compile Include="MartelliMontanariUnification.cs" />
     <Compile Include="TermConcept.cs" />
+    <Compile Include="DictionaryUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

@@ -18,14 +18,23 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace IdpGie.Utils {
+
 	public static class CollectionUtils {
 		public static void AddAll<T,Q> (this ICollection<T> collection, IEnumerable<Q> source) where Q : T {
 			foreach (Q q in source) {
 				collection.Add (q);
+			}
+		}
+
+		public static void PushAll<T,Q> (this Stack<T> stack, IEnumerable<Q> source) where Q : T {
+			foreach (Q q in source) {
+				stack.Push (q);
 			}
 		}
 	}

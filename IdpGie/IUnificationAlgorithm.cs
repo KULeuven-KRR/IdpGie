@@ -26,9 +26,9 @@ using System.Collections.Generic;
 namespace IdpGie.Logic.Altering {
 
 	public interface IUnificationAlgorithm {
-		IEnumerable<Tuple<IVariable,ITerm>> Unify (IEnumerable<ITerm> terms);
+		IEnumerable<Tuple<IVariable,IFunctionInstance>> Unify (IEnumerable<ITerm> terms);
 
-		IEnumerable<Tuple<IVariable,ITerm>> Unify (ITerm term1, ITerm term2);
+		IEnumerable<Tuple<IVariable,IFunctionInstance>> Unify (ITerm term1, ITerm term2);
 	}
 }
 
