@@ -50,7 +50,7 @@ namespace IdpGie.Utils {
 			return false;
 		}
 
-		private bool YieldAll () {
+		private void YieldAll () {
 			if (this.generator != null) {
 				Tuple<TKey,TValue> current;
 				while (generator.MoveNext ()) {
@@ -150,7 +150,7 @@ namespace IdpGie.Utils {
 			while (this.generator != null && this.generator.MoveNext ()) {
 				Tuple<TKey,TValue> current = this.generator.Current;
 				this.innerDictionary.Add (current.Item1, current.Item2);
-				yield return current;
+				yield return new KeyValuePair<TKey,TValue> (current.Item1, current.Item2);
 			}
 		}
 

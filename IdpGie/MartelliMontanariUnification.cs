@@ -43,6 +43,17 @@ namespace IdpGie.Logic.Altering {
 			yield break;
 		}
 
+		public IEnumerable<Tuple<IVariable, ITerm>> Unify (ITerm term1, ITerm term2) {
+			Stack<Tuple<ITerm,ITerm>> state = new Stack<Tuple<ITerm,ITerm>> ();
+			state.Push (new Tuple<ITerm,ITerm> (term1, term2));
+			Tuple<ITerm,ITerm> top;
+			while (state.Count > 0x00) {
+				top = state.Pop ();
+
+			}
+			yield break;
+		}
+
 		#endregion
 
 	}

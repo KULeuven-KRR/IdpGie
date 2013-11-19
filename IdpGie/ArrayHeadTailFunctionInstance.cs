@@ -27,8 +27,8 @@ using IdpGie.Utils;
 namespace IdpGie.Logic {
 
 	public class ArrayHeadTailFunctionInstance : IArrayFunctionInstance {
-		private readonly IFunctionInstance term;
-		private readonly IArrayFunctionInstance tail;
+		private IFunctionInstance term;
+		private IArrayFunctionInstance tail;
 
 		#region ICollection implementation
 
@@ -229,6 +229,19 @@ namespace IdpGie.Logic {
 				yield return (T)ahfi.term.ConvertedValue (target);
 				afi = ahfi.tail;
 			}
+		}
+
+		#endregion
+
+		#region ITerm implementation
+
+		public void Replace (IEnumerable<Tuple<IVariable, IFunctionInstance>> replacement) {
+			Replace (replacement.ToLazyDictionary ());
+		}
+
+		public void Replace (IDictionary<IVariable, IFunctionInstance> replacement) {
+			IdpGie.Logic.Term.ReplaceReference (replacement, ref this.term);
+			IdpGie.Logic.Term.ReplaceReference (replacement, ref this.tail);
 		}
 
 		#endregion

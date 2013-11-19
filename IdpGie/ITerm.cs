@@ -53,9 +53,9 @@ namespace IdpGie.Logic {
 
 		bool Equals (ITerm other);
 
-		void Replace (IEnumerable<Tuple<IVariable,ITerm>> replacement);
+		void Replace (IEnumerable<Tuple<IVariable,IFunctionInstance>> replacement);
 
-		void Replace (IDictionary<IVariable,ITerm> replacement);
+		void Replace (IDictionary<IVariable,IFunctionInstance> replacement);
 	}
 }
 

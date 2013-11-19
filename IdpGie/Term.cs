@@ -89,18 +89,38 @@ namespace IdpGie.Logic {
 			return this.header.TermString (this.terms);
 		}
 
+		public static bool ReplaceReference<T> (IDictionary<IVariable, IFunctionInstance> replacement, ref T value) where T : IFunctionInstance {
+			T outp;
+			if (value is IVariable && replacement.TryGetCastValue<IVariable,IFunctionInstance,T> ((IVariable)value, out outp)) {
+				value = outp;
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		#region ITerm implementation
 
 		public bool Equals (ITerm other) {
 			return Object.Equals (this.Header, other.Header) && this.Terms.AllDual (other.Terms, (x, y) => x.Equals (y));
 		}
 
-		public void Replace (IEnumerable<Tuple<IVariable, ITerm>> replacement) {
+		public void Replace (IEnumerable<Tuple<IVariable, IFunctionInstance>> replacement) {
 			Replace (replacement.ToLazyDictionary ());
 		}
 
-		public void Replace (IDictionary<IVariable, ITerm> replacement) {
-			//TODO
+		public void Replace (IDictionary<IVariable, IFunctionInstance> replacement) {
+			int n = this.terms.Count;
+			for (int i = 0x00; i < n; i++) {
+				IFunctionInstance term = this.terms [i];
+				if (term != null) {
+					if (term is IVariable && replacement.TryGetValue ((IVariable)term, out term)) {
+						terms [i] = term;
+					} else {
+						term.Replace (replacement);
+					}
+				}
+			}
 		}
 
 		#endregion

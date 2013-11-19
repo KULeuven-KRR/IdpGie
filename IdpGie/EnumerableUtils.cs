@@ -33,6 +33,17 @@ namespace IdpGie.Utils {
 			return source.FirstOrDefault ();
 		}
 
+		public static bool TryGetCastValue<T,Q,R> (this IDictionary<T,Q> dictionary, T key, out R value) where R : Q {
+			Q qval;
+			if (dictionary.TryGetValue (key, out qval) && qval is R) {
+				value = (R)qval;
+				return true;
+			} else {
+				value = default(R);
+				return false;
+			}
+		}
+
 		public static IEnumerable<T> Tail<T> (this IEnumerable<T> source) {
 			IEnumerator<T> tor = source.GetEnumerator ();
 			if (tor.MoveNext ()) {
