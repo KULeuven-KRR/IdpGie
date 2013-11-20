@@ -26,6 +26,8 @@ using IdpGie.Utils;
 namespace IdpGie.Logic {
 
 	public class Variable : NameBase, IVariable {
+		private static uint idDispatcher = 0x00;
+		private readonly uint id;
 		private object value;
 
 		#region IFunction implementation
@@ -140,6 +142,7 @@ namespace IdpGie.Logic {
 		#endregion
 
 		internal Variable (string name) : base (name) {
+			this.id = idDispatcher++;
 		}
 
 		#region ITerm implementation
@@ -205,6 +208,17 @@ namespace IdpGie.Logic {
 
 		#endregion
 
+		public override string ToString () {
+			return this.Name;
+		}
+
+		public override int GetHashCode () {
+			return this.id.GetHashCode ();
+		}
+
+		public override bool Equals (object obj) {
+			return Object.ReferenceEquals (this, obj);
+		}
 	}
 }
 

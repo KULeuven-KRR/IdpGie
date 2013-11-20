@@ -32,9 +32,9 @@ namespace IdpGie.Utils {
 			}
 		}
 
-		public static void PushAll<T,Q> (this Stack<T> stack, IEnumerable<Q> source) where Q : T {
-			foreach (Q q in source) {
-				stack.Push (q);
+		public static void PushAll<T> (this Stack<T> stack, IEnumerable<T> source) {
+			foreach (T t in source) {
+				stack.Push (t);
 			}
 		}
 	}

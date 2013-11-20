@@ -39,6 +39,10 @@ namespace IdpGie.Utils {
 			}
 		}
 
+		public static IEnumerable<Tuple<TItem1,TItem2>> TupleWith<TItem1,TItem2> (this IEnumerable<TItem1> xs, IEnumerable<TItem2> ys) {
+			return xs.SelectDual (ys, (x, y) => new Tuple<TItem1,TItem2> (x, y));
+		}
+
 		public static IEnumerable<T> ToEnumerable<T> (this T val) {
 			yield return val;
 		}

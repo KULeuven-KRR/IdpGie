@@ -21,8 +21,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using Mono.Posix;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic.Altering {
 
@@ -51,7 +50,7 @@ namespace IdpGie.Logic.Altering {
 			if (a.Header != b.Header) {
 				throw new UnificationException ("Both headers of the term/atom must have the same name and arity.");
 			} else {
-				//stack.PushAll ();
+				stack.PushAll (a.Terms.TupleWith<ITerm,ITerm> (b.Terms));
 			}
 		}
 
@@ -71,7 +70,7 @@ namespace IdpGie.Logic.Altering {
 						yield return new Tuple<IVariable,IFunctionInstance> ((IVariable)topb, (IFunctionInstance)topa);
 					}
 				} else if (topa is IAtom && topb is IAtom) {
-
+					this.Peel (state, topa, topb);
 				} else {
 					throw new UnificationException ("An atom and term cannot be unified.");
 				}
