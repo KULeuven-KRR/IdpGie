@@ -1,13 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="TermConcept.cs">
     <Files>
-      <File FileName="MartelliMontanariUnification.cs" Line="58" Column="56" />
-      <File FileName="EnumerableUtils.cs" Line="42" Column="48" />
-      <File FileName="DictionaryUtils.cs" Line="1" Column="1" />
-      <File FileName="CollectionUtils.cs" Line="37" Column="18" />
-      <File FileName="IVariable.cs" Line="1" Column="1" />
-      <File FileName="Variable.cs" Line="220" Column="46" />
+      <File FileName="Variable.cs" Line="200" Column="3" />
+      <File FileName="Term.cs" Line="29" Column="24" />
+      <File FileName="TermConcept.cs" Line="31" Column="18" />
+      <File FileName="NamedFunctionInstance.cs" Line="27" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

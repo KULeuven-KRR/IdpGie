@@ -23,12 +23,21 @@ using System;
 
 namespace IdpGie.Logic {
 
+	/// <summary>
+	/// Thy concept embodied by a specific term. This TermConcept denotes some properties of concepts (like peelable) as well.
+	/// </summary>
+	/// <remarks>
+	/// The root properties are:
+	/// <list type="">
+	/// </remarks>
+	[Flags]
 	public enum TermConcept {
-		Predicate =	0x11,
-		Functor =	0x12,
-		Constant =	0x06,
-		Variable =	0x08,
-		Peelable =	0x10
+		Predicate	= 0x11,
+		Functor = 0x04,
+		ArFunctor	= 0x14,
+		Constant	= 0x06,
+		Variable	= 0x08,
+		Peelable	= 0x10
 	}
 }
 

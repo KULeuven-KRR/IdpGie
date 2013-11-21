@@ -30,6 +30,22 @@ namespace IdpGie.Logic {
 		private readonly uint id;
 		private object value;
 
+		#region ITerm implementation
+
+		public TermConcept Concept {
+			get {
+				return TermConcept.Variable;
+			}
+		}
+
+		public TermConcept ContainingConcepts {
+			get {
+				return TermConcept.Variable;
+			}
+		}
+
+		#endregion
+
 		#region IFunction implementation
 
 		public TermType OutputType {
@@ -186,6 +202,18 @@ namespace IdpGie.Logic {
 		}
 
 		public void Replace (IDictionary<IVariable, IFunctionInstance> replacement) {
+		}
+
+		#endregion
+
+		#region ITerm implementation
+
+		public bool ContainsConcepts (TermConcept concept) {
+			return (concept & this.ContainsConcepts) == concept;
+		}
+
+		public bool IsConcept (TermConcept concept) {
+			return (concept & this.Concept) == concept;
 		}
 
 		#endregion
