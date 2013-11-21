@@ -1,10 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TermConcept.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NamedFunctionInstance.cs">
     <Files>
       <File FileName="Variable.cs" Line="200" Column="3" />
       <File FileName="Term.cs" Line="29" Column="24" />
-      <File FileName="TermConcept.cs" Line="31" Column="18" />
+      <File FileName="TermConcept.cs" Line="40" Column="27" />
       <File FileName="NamedFunctionInstance.cs" Line="27" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>

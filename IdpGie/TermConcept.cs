@@ -28,7 +28,13 @@ namespace IdpGie.Logic {
 	/// </summary>
 	/// <remarks>
 	/// The root properties are:
-	/// <list type="">
+	/// <list type="bullet">
+	/// <item>Predicate (1)</item>
+	/// <item>Constant (2)</item>
+	/// <item>Functor (4)</item>
+	/// <item>Variable (8)</item>
+	/// <item>Peelable (16)</item>
+	/// </list>
 	/// </remarks>
 	[Flags]
 	public enum TermConcept {
