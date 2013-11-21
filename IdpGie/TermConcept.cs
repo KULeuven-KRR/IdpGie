@@ -24,10 +24,11 @@ using System;
 namespace IdpGie.Logic {
 
 	public enum TermConcept {
-		Predicate = 0x01,
-		Functor = 0x02,
-		Constant = 0x06,
-		Variable = 0x08
+		Predicate =	0x11,
+		Functor =	0x12,
+		Constant =	0x06,
+		Variable =	0x08,
+		Peelable =	0x10
 	}
 }
 

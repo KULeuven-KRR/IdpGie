@@ -18,11 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.ComponentModel;
 using Cairo;
+using IdpGie.Draws;
 
 namespace IdpGie.GUI {
+
 	[ToolboxItem (true)]
 	public class BlueprintMediabar : CairoMediaWidget {
 		public const double Offset = 10.0d;
@@ -183,7 +186,7 @@ namespace IdpGie.GUI {
 
 		protected override void PaintWidget (Context ctx, int w, int h) {
 			ctx.Rectangle (0.0d, 0.0d, w, h);
-			ctx.Color = BlueprintStyle.BluePrint;
+			ctx.SetSourceRGBA (BlueprintStyle.BluePrint);
 			double xb = 2 * Offset + 36.0d;
 			double wb = w - Offset - xb - 4.0d;
 			double xbt = wb * (current - min) / (max - min) - 4.0d;
@@ -204,9 +207,9 @@ namespace IdpGie.GUI {
 			ctx.Rectangle (xb + xbt, 1.0d, 8.0d, 32.0d);
 			this.xtickS = xb + xbt;
 			this.xtickE = xtickS + 8.0d;
-			ctx.Pattern = BlueprintStyle.FillPattern;
+			ctx.SetSource (BlueprintStyle.FillPattern);
 			ctx.FillPreserve ();
-			ctx.Color = BlueprintStyle.HardWhite;
+			ctx.SetSourceRGBA (BlueprintStyle.HardWhite);
 			if (xbt > 0.0d) {
 				ctx.MoveTo (xb, 16.0d);
 				ctx.RelLineTo (xbt, 0.0d);

@@ -18,10 +18,13 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using Cairo;
+using IdpGie.Draws;
 
 namespace IdpGie.GUI {
+
 	public static class BlueprintStyle {
 		public static readonly Color BluePrint = new Color (0.0d, 0.3647d, 0.5882d);
 		public static readonly Color BluePrintShadow = new Color (0.0d, 0.273525d, 0.44115d);
@@ -41,7 +44,7 @@ namespace IdpGie.GUI {
 						using (Context ctx = new Context (imsu)) {
 							ctx.MoveTo (2.0d * SkewDelta, -SkewDelta);
 							ctx.LineTo (-SkewDelta, 2.0d * SkewDelta);
-							ctx.Color = HardWhite;
+							ctx.SetSourceRGBA (HardWhite);
 							ctx.LineWidth = 1.0d;
 							ctx.Stroke ();
 							((IDisposable)ctx).Dispose ();

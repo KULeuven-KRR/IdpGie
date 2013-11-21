@@ -1,11 +1,13 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MartelliMontanariUnification.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="MartelliMontanariUnification.cs" Line="54" Column="7" />
-      <File FileName="EnumerableUtils.cs" Line="1" Column="1" />
+      <File FileName="MartelliMontanariUnification.cs" Line="58" Column="56" />
+      <File FileName="EnumerableUtils.cs" Line="42" Column="48" />
       <File FileName="DictionaryUtils.cs" Line="1" Column="1" />
-      <File FileName="CollectionUtils.cs" Line="1" Column="1" />
+      <File FileName="CollectionUtils.cs" Line="37" Column="18" />
+      <File FileName="IVariable.cs" Line="1" Column="1" />
+      <File FileName="Variable.cs" Line="220" Column="46" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

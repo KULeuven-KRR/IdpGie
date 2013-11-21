@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ using Cairo;
 using IdpGie.Utils;
 
 namespace IdpGie.Draws {
+
 	public static class CairoUtils {
 		public static void LineTo (this Context ctx, params double[] vals) {
 			if (vals != null && vals.Length > 0x00) {
@@ -45,6 +47,14 @@ namespace IdpGie.Draws {
 			foreach (PointD pt in tail) {
 				ctx.LineTo (pt);
 			}
+		}
+
+		public static void SetSourceRGB (this Context ctx, Cairo.Color color) {
+			ctx.SetSourceRGB (color.R, color.G, color.B);
+		}
+
+		public static void SetSourceRGBA (this Context ctx, Cairo.Color color) {
+			ctx.SetSourceRGBA (color.R, color.G, color.B, color.A);
 		}
 
 		public static void LineTo (this Context ctx, params PointD[] vals) {

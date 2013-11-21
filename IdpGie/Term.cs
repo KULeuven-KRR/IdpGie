@@ -54,24 +54,6 @@ namespace IdpGie.Logic {
 			}
 		}
 
-		public virtual bool IsConstant {
-			get {
-				return this.Header.Arity <= 0x00;
-			}
-		}
-
-		public virtual bool ContainsVariables {
-			get {
-				return this.Terms.Any (x => x.ContainsVariables);
-			}
-		}
-
-		public virtual bool IsVariable {
-			get {
-				return false;
-			}
-		}
-
 		protected Term (ITermHeader header, List<IFunctionInstance> terms) {
 			if (header == null) {
 				throw new ArgumentNullException ("The header of a term always must be effective.", "header");

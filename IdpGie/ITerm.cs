@@ -35,19 +35,15 @@ namespace IdpGie.Logic {
 			get;
 		}
 
+		TermConcept Concept {
+			get;
+		}
+
+		TermConcept ContainingConcepts {
+			get;
+		}
+
 		IEnumerable<IFunctionInstance> Terms {
-			get;
-		}
-
-		bool IsConstant {
-			get;
-		}
-
-		bool ContainsVariables {
-			get;
-		}
-
-		bool IsVariable {
 			get;
 		}
 
@@ -56,6 +52,10 @@ namespace IdpGie.Logic {
 		void Replace (IEnumerable<Tuple<IVariable,IFunctionInstance>> replacement);
 
 		void Replace (IDictionary<IVariable,IFunctionInstance> replacement);
+
+		bool ContainsConcepts (TermConcept concept);
+
+		bool IsConcept (TermConcept concept);
 	}
 }
 
