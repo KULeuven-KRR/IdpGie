@@ -44,12 +44,6 @@ namespace IdpGie.Logic {
 			}
 		}
 
-		public bool ContainsVariables {
-			get {
-				return this.term.ContainsVariables || this.tail.ContainsVariables;
-			}
-		}
-
 		#endregion
 
 		#region IFunctionInstance implementation
@@ -64,18 +58,6 @@ namespace IdpGie.Logic {
 				default :
 					throw new IndexOutOfRangeException ("An array head-tail function has only two arguments.");
 				}
-			}
-		}
-
-		public bool IsConstant {
-			get {
-				return false;
-			}
-		}
-
-		public bool IsVariable {
-			get {
-				return false;
 			}
 		}
 

@@ -64,24 +64,6 @@ namespace IdpGie.Logic {
 			}
 		}
 
-		public bool IsConstant {
-			get {
-				return true;
-			}
-		}
-
-		public bool IsVariable {
-			get {
-				return false;
-			}
-		}
-
-		public bool ContainsVariables {
-			get {
-				return false;
-			}
-		}
-
 		#endregion
 
 		#region IFunctionInstance implementation

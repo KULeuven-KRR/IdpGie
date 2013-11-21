@@ -18,12 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cairo;
+using IdpGie.Draws;
 
 namespace IdpGie.GUI {
+
 	[System.ComponentModel.ToolboxItem (true)]
 	public class BlueprintTabControl : CairoMediaWidget {
 		public const double Offset = 10;
@@ -169,10 +172,10 @@ namespace IdpGie.GUI {
 		}
 
 		protected override void PaintWidget (Cairo.Context ctx, int w, int h) {
-			ctx.Color = new Color (0.0d, 0.0d, 0.0d);
+			ctx.SetSourceRGBA (0.0d, 0.0d, 0.0d);
 			ctx.Rectangle (0.0d, Offset, w, h - Offset);
 			ctx.Fill ();
-			ctx.Color = BlueprintStyle.BluePrint;
+			ctx.SetSourceRGBA (BlueprintStyle.BluePrint);
 			ctx.Rectangle (0.0d, 0.0d, w, Offset);
 			ctx.Fill ();
 			double wr = w - 2.0d * Offset;
@@ -192,13 +195,13 @@ namespace IdpGie.GUI {
 				p.AddColorStopRgb (y, new Color (fctr * BlueprintStyle.BluePrintShadow.R, fctr * BlueprintStyle.BluePrintShadow.G, fctr * BlueprintStyle.BluePrintShadow.B));
 				fctr += 0.05d;
 			}
-			ctx.Pattern = p;
+			ctx.SetSource (p);
 			ctx.Fill ();
 			ctx.Rectangle (Offset + (1.0d + shaft) * ew * (current - min), Offset, ew, h - 2.0d * Offset);
-			ctx.Color = BlueprintStyle.BluePrint;
+			ctx.SetSourceRGBA (BlueprintStyle.BluePrint);
 			ctx.Fill ();
 			xc = Offset;
-			ctx.Color = BlueprintStyle.HardWhite;
+			ctx.SetSourceRGBA (BlueprintStyle.HardWhite);
 			ctx.MoveTo (0.0d, Offset);
 			ctx.LineTo (Offset, Offset);
 			for (int i = min; i <= max; i++) {

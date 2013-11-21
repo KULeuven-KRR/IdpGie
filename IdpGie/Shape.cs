@@ -18,14 +18,17 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Text;
 using Cairo;
 using OpenTK;
 using IdpGie.Logic;
 using IdpGie.Shapes.Modifier;
+using IdpGie.Draws;
 
 namespace IdpGie.Shapes {
+
 	public abstract class Shape : IShape {
 		private readonly IFunctionInstance name;
 		private readonly ShapeState state = new ShapeState ();
@@ -114,9 +117,9 @@ namespace IdpGie.Shapes {
 		#endregion
 
 		private void cairoFillStroke (Context ctx) {
-			ctx.Color = this.state.InnerColor;
+			ctx.SetSourceRGBA (this.state.InnerColor);
 			ctx.FillPreserve ();
-			ctx.Color = this.state.EdgeColor;
+			ctx.SetSourceRGBA (this.state.EdgeColor);
 			ctx.Stroke ();
 		}
 

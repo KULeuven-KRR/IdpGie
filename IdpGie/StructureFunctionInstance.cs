@@ -52,24 +52,6 @@ namespace IdpGie.Logic {
 
 		#region IFunctionInstance implementation
 
-		public virtual bool IsConstant {
-			get {
-				return this.Function.Arity <= 0x00;
-			}
-		}
-
-		public bool IsVariable {
-			get {
-				return false;
-			}
-		}
-
-		public bool ContainsVariables {
-			get {
-				return true;
-			}
-		}
-
 		public TermType Type {
 			get {
 				return TermType.None;//TODO

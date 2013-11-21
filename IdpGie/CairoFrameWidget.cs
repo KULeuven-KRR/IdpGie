@@ -18,12 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using Cairo;
 using IdpGie.Shapes;
 using IdpGie.Utils;
+using IdpGie.Draws;
 
 namespace IdpGie.GUI {
+
 	public class CairoFrameWidget : CairoMediaWidget {
 		private DrawTheory theory;
 		public const double Offset = 10.0d;
@@ -50,7 +53,7 @@ namespace IdpGie.GUI {
 			this.paintBackground (ctx, w, h);
 			ctx.Translate (Offset2, Offset2);
 			ctx.Save ();
-			ctx.Color = new Color (0.0d, 0.0d, 0.0d);
+			ctx.SetSourceRGB (0.0d, 0.0d, 0.0d);
 			foreach (IShape obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
 				obj.PaintObject (ctx);
 			}
@@ -58,10 +61,10 @@ namespace IdpGie.GUI {
 		}
 
 		private void paintBackground (Context ctx, int w, int h) {
-			ctx.Color = BlueprintStyle.BluePrint;
+			ctx.SetSourceRGBA (BlueprintStyle.BluePrint);
 			ctx.Rectangle (0.0d, 0.0d, w, h);
 			ctx.Fill ();
-			ctx.Color = BlueprintStyle.SoftWhite;
+			ctx.SetSourceRGBA (BlueprintStyle.SoftWhite);
 			ctx.Rectangle (Offset, Offset, w - 2 * Offset, h - 2 * Offset);
 			ctx.ClosePath ();
 			ctx.Rectangle (Offset2, Offset2, w - 2 * Offset2, h - 2 * Offset2);

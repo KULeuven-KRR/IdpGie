@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using Gtk;
@@ -25,6 +26,7 @@ using Cairo;
 using IdpGie.Hooks;
 
 namespace IdpGie.GUI {
+
 	public abstract class CairoMediaWidget : DrawingArea, IMediaObject, IHookSource {
 		protected event EventHandler _OnPlay, _OnPause, _OnRewind, _OnForward, _OnPreviousChapter, _OnNextChapter,
             _OnShuffle, _OnRepeat, _OnEject, _OnRecord, _OnStop, _OnSeek;
@@ -516,7 +518,7 @@ namespace IdpGie.GUI {
 			int w, h;
 			this.GdkWindow.GetSize (out w, out h);
 			this.PaintWidget (ctx, w, h);
-			((IDisposable)ctx.Target).Dispose ();
+			((IDisposable)ctx.GetTarget ()).Dispose ();
 			((IDisposable)ctx).Dispose ();
 			return true;
 		}

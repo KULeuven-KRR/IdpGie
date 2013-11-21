@@ -69,24 +69,6 @@ namespace IdpGie.Logic {
 			}
 		}
 
-		public bool IsConstant {
-			get {
-				return false;
-			}
-		}
-
-		public bool IsVariable {
-			get {
-				return true;
-			}
-		}
-
-		public bool ContainsVariables {
-			get {
-				return true;
-			}
-		}
-
 		#endregion
 
 		#region IPriority implementation
