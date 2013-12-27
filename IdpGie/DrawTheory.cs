@@ -23,156 +23,165 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace IdpGie {
+	public class DrawTheory : NameBase, ITimesensitive {
+		private readonly List<ITheoryItem> elements;
+		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
+		private readonly Dictionary<HookType,LinkedList<IHook>> hooks = new Dictionary<HookType, LinkedList<IHook>> ();
+		private DrawTheoryMode mode = DrawTheoryMode.Cairo;
+		private double minTime = 0.0d;
+		private double maxTime = 0.0d;
 
-    public class DrawTheory : NameBase, ITimesensitive {
+		public DrawTheoryMode Mode {
+			get {
+				return this.mode;
+			}
+			set {
+				this.mode = value;
+			}
+		}
 
-        private readonly List<ITheoryItem> elements;
-        private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
+		public IShape this [IFunctionInstance key] {
+			get {
+				return this.objects [key];
+			}
+		}
 
-        private DrawTheoryMode mode = DrawTheoryMode.Cairo;
-        private double minTime = 0.0d;
-        private double maxTime = 0.0d;
+		public List<ITheoryItem> Elements {
+			get {
+				return this.elements;
+			}
+		}
 
-        public DrawTheoryMode Mode {
-            get {
-                return this.mode;
-            }
-            set {
-                this.mode = value;
-            }
-        }
+		public double MinTime {
+			get {
+				return this.minTime;
+			}
+		}
 
-        public IShape this [IFunctionInstance key] {
-            get {
-                return this.objects [key];
-            }
-        }
+		public double MaxTime {
+			get {
+				return this.maxTime;
+			}
+		}
 
-        public List<ITheoryItem> Elements {
-            get {
-                return this.elements;
-            }
-        }
+		public double TimeSpan {
+			get {
+				return this.maxTime - minTime;
+			}
+		}
 
-        public double MinTime {
-            get {
-                return this.minTime;
-            }
-        }
+		#region ITimesensitive implementation
 
-        public double MaxTime {
-            get {
-                return this.maxTime;
-            }
-        }
+		public double Time {
+			get {
+				IEnumerable<IShape> tail;
+				IShape head = this.objects.Values.SplitHead (out tail);
+				if (head != null) {
+					double time = head.Time;
+					foreach (IShape obj in tail) {
+						if (obj.Time != time) {
+							return double.NaN;
+						}
+					}
+					return time;
+				} else {
+					return double.NaN;
+				}
+			}
+			set {
+				foreach (IShape obj in this.objects.Values) {
+					obj.Time = value;
+				}
+			}
+		}
 
-        public double TimeSpan {
-            get {
-                return this.maxTime - minTime;
-            }
-        }
-        
+		#endregion
 
-        #region ITimesensitive implementation
-        public double Time {
-            get {
-                IEnumerable<IShape> tail;
-                IShape head = this.objects.Values.SplitHead (out tail);
-                if (head != null) {
-                    double time = head.Time;
-                    foreach (IShape obj in tail) {
-                        if (obj.Time != time) {
-                            return double.NaN;
-                        }
-                    }
-                    return time;
-                } else {
-                    return double.NaN;
-                }
-            }
-            set {
-                foreach (IShape obj in this.objects.Values) {
-                    obj.Time = value;
-                }
-            }
-        }
-        #endregion
+		public DrawTheory (string name, List<ITheoryItem> elements) : base (name) {
+			if (elements != null) {
+				this.elements = elements;
+			} else {
+				this.elements = new List<ITheoryItem> ();
+			}
+		}
 
-        public DrawTheory (string name, List<ITheoryItem> elements) : base(name) {
-            if (elements != null) {
-                this.elements = elements;
-            } else {
-                this.elements = new List<ITheoryItem> ();
-            }
-        }
+		public void RegisterTime (double time) {
+			if (this.minTime > time) {
+				this.minTime = time;
+			} else if (this.maxTime < time) {
+				this.maxTime = time;
+			}
+		}
 
-        public void RegisterTime (double time) {
-            if (this.minTime > time) {
-                this.minTime = time;
-            } else if (this.maxTime < time) {
-                this.maxTime = time;
-            }
-        }
+		public string ToFullString () {
+			StringBuilder sb = new StringBuilder ();
+			foreach (ITheoryItem atm in elements) {
+				sb.AppendFormat ("{0}.", atm);
+				sb.AppendLine ();
+			}
+			return sb.ToString ();
+		}
 
-        public string ToFullString () {
-            StringBuilder sb = new StringBuilder ();
-            foreach (ITheoryItem atm in elements) {
-                sb.AppendFormat ("{0}.", atm);
-                sb.AppendLine ();
-            }
-            return sb.ToString ();
-        }
+		internal void AddIdpdObject (IShape obj) {
+			this.objects.Add (obj.Name, obj);
+		}
 
-        internal void AddIdpdObject (IShape obj) {
-            this.objects.Add (obj.Name, obj);
-        }
+		public IEnumerable<IShape> Objects () {
+			return this.objects.Values;
+		}
 
-        public IEnumerable<IShape> Objects () {
-            return this.objects.Values;
-        }
+		public void Execute (ProgramManager manager) {
+			//TODO: Tp operator
+			elements.Sort (PriorityComparator.Instance);
+			foreach (ITheoryItem item in elements) {
+				item.Execute (this);
+			}
+			this.Time = minTime;
+			switch (this.Mode) {
+			case DrawTheoryMode.Cairo:
+				using (OutputDevice device = new OutputCairoDevice (this)) {
+					device.Run (manager);
+				}
+				break;
+			case DrawTheoryMode.OpenGL:
+				using (OutputDevice device = new OutputOpenGLDevice (this)) {
+					device.Run (manager);
+				}
+				break;
+			case DrawTheoryMode.LaTeX:
+				using (OutputDevice device = new OutputLaTeXDevice (this)) {
+					device.Run (manager);
+				}
+				break;
+			case DrawTheoryMode.Print:
+				using (OutputDevice device = new OutputPrintDevice (this)) {
+					device.Run (manager);
+				}
+				break;
+			}
+		}
 
-        public void Execute (ProgramManager manager) {
-            //TODO: Tp operator
-            elements.Sort (PriorityComparator.Instance);
-            foreach (ITheoryItem item in elements) {
-                item.Execute (this);
-            }
-            this.Time = minTime;
-            switch (this.Mode) {
-            case DrawTheoryMode.Cairo:
-                using (OutputDevice device = new OutputCairoDevice(this)) {
-                    device.Run (manager);
-                }
-                break;
-            case DrawTheoryMode.OpenGL:
-                using (OutputDevice device = new OutputOpenGLDevice(this)) {
-                    device.Run (manager);
-                }
-                break;
-            case DrawTheoryMode.LaTeX:
-                using (OutputDevice device = new OutputLaTeXDevice(this)) {
-                    device.Run (manager);
-                }
-                break;
-            case DrawTheoryMode.Print:
-                using (OutputDevice device = new OutputPrintDevice(this)) {
-                    device.Run (manager);
-                }
-                break;
-            }
-        }
+		public void FireHook (HookType type, IList<ITerm> parameters) {
+			LinkedList<IHook> firelist;
+			if (hooks.TryGetValue (type, out firelist)) {
+				foreach (IHook hook in firelist) {
+					hook.Fire (parameters);
+				}
+			}
+		}
 
-        #region IComparable implementation
-        public int CompareTo (ITimesensitive other) {
-            if (other != null) {
-                return this.Time.CompareTo (other.Time);
-            } else {
-                return -0x01;
-            }
-        }
-        #endregion
+		#region IComparable implementation
 
+		public int CompareTo (ITimesensitive other) {
+			if (other != null) {
+				return this.Time.CompareTo (other.Time);
+			} else {
+				return -0x01;
+			}
+		}
 
-    }
+		#endregion
+
+	}
 }
 
