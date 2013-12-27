@@ -71,9 +71,9 @@ terms       : /* empty */                                   { $$ = null;}
 term        : identifier OBR terms CBR                      { $$ = this.Context.GetFunctionInstance($1,$3);}
             | identifier                                    { $$ = this.Context.GetFunctionInstance($1);}
             | list                                          { $$ = $1;}
-            | INT                                           { $$ = new IdpdIntegerFunctionInstance(@1.ToString());}
-            | FLT                                           { $$ = new IdpdFloatFunctionInstance(@1.ToString());}
-            | STRING                                        { $$ = new IdpdStringFunctionInstance(@1.LiteralString());}
+            | INT                                           { $$ = new FunctionIntegerInstance(@1.ToString());}
+            | FLT                                           { $$ = new FunctionFloatInstance(@1.ToString());}
+            | STRING                                        { $$ = new FunctionStringInstance(@1.LiteralString());}
             ;
 
 list        : OFB terms CFB                                 { $$ = ArrayFunction.ToInstance($2);}

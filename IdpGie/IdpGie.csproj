@@ -196,6 +196,7 @@
     <Compile Include="CollectionUtils.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
+    <Compile Include="ScanBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -205,15 +206,5 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="gplex\GPLEXv1.csproj">
-      <Project>{440C9EA8-409C-4B1D-88B7-A2B5FFF87700}</Project>
-      <Name>GPLEXv1</Name>
-    </ProjectReference>
-    <ProjectReference Include="gppg\GPPG.csproj">
-      <Project>{AF1F8BCF-34FC-4A5E-9D45-BCC6031720BC}</Project>
-      <Name>GPPG</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>
