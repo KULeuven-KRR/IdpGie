@@ -23,6 +23,11 @@
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
     <Commandlineparameters>../../testinput/test1.idpd</Commandlineparameters>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="source llyy.sh" workingdir="${SolutionDir}" externalConsole="True" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>

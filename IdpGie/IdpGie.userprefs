@@ -1,10 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Lexer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="parse.yy">
     <Files>
-      <File FileName="Box2d.cs" Line="72" Column="14" />
-      <File FileName="TopWindow.cs" Line="28" Column="3" />
-      <File FileName="Lexer.cs" Line="94" Column="23" />
+      <File FileName="Box2d.cs" Line="1" Column="1" />
+      <File FileName="TopWindow.cs" Line="1" Column="1" />
+      <File FileName="Lexer.cs" Line="104" Column="42" />
+      <File FileName="parse.yy" Line="74" Column="72" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
