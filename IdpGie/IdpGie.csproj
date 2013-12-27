@@ -206,6 +206,8 @@
     <Compile Include="ITheoryAlteringMethod.cs" />
     <Compile Include="IAlteringStreamMethod.cs" />
     <Compile Include="AlteringStreamMethodUtils.cs" />
+    <Compile Include="RemoveTheoryAlteringMethod.cs" />
+    <Compile Include="TermTheoryAlteringMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

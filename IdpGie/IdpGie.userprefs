@@ -4,8 +4,8 @@
     <Files>
       <File FileName="Box2d.cs" Line="1" Column="1" />
       <File FileName="TopWindow.cs" Line="1" Column="1" />
-      <File FileName="Lexer.cs" Line="104" Column="42" />
-      <File FileName="parse.yy" Line="98" Column="2" />
+      <File FileName="Lexer.cs" Line="1" Column="1" />
+      <File FileName="parse.yy" Line="1" Column="1" />
       <File FileName="ScanBase.cs" Line="27" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
