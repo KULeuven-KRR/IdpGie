@@ -35,12 +35,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cairo" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,6 +54,12 @@
     </Reference>
     <Reference Include="QUT.ShiftReduceParser">
       <HintPath>libs\QUT.ShiftReduceParser.dll</HintPath>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -76,9 +81,7 @@
     <Compile Include="BlueprintMediabar.cs" />
     <Compile Include="MediaMode.cs" />
     <Compile Include="BlueprintStyle.cs" />
-    <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="TopWindow.cs" />
-    <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
     <Compile Include="MediaButtons.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
@@ -191,6 +194,12 @@
     <Compile Include="TimeSensitiveFastReversibleBase.cs" />
     <Compile Include="ITimeSensitiveReversible.cs" />
     <Compile Include="CollectionUtils.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lex.ll" />
+    <None Include="parse.yy" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -198,7 +207,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="lex.ll" />
-    <None Include="parse.yy" />
+    <ProjectReference Include="gplex\GPLEXv1.csproj">
+      <Project>{440C9EA8-409C-4B1D-88B7-A2B5FFF87700}</Project>
+      <Name>GPLEXv1</Name>
+    </ProjectReference>
+    <ProjectReference Include="gppg\GPPG.csproj">
+      <Project>{AF1F8BCF-34FC-4A5E-9D45-BCC6031720BC}</Project>
+      <Name>GPPG</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

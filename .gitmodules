@@ -1,0 +1,6 @@
+[submodule "IdpGie/gppg"]
+	path = IdpGie/gppg
+	url = https://github.com/KommuSoft/Gardens-Point-Parser-Generator.git
+[submodule "IdpGie/gplex"]
+	path = IdpGie/gplex
+	url = https://github.com/KommuSoft/Gardens-Point-LEX.git
