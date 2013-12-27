@@ -22,13 +22,10 @@ using System;
 using QUT.Gppg;
 
 namespace IdpGie.Parser {
-
-    public abstract class ScanBase : AbstractScanner<string,LexSpan> {
-
-        protected virtual bool yywrap () {
-            return true;
-        }
-
-    }
+	public abstract class ScanBase : AbstractScanner<Parser.StateStructure,LexSpan> {
+		protected virtual bool yywrap () {
+			return true;
+		}
+	}
 }
 
