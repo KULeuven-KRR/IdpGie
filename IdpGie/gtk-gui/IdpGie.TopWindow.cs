@@ -84,14 +84,23 @@ namespace IdpGie
 			this.mainhierarchy = new global::Gtk.VBox ();
 			this.mainhierarchy.Name = "mainhierarchy";
 			// Container child mainhierarchy.Gtk.Box+BoxChild
-			this.mediabar = null;
+			this.mediabar = new global::IdpGie.BlueprintMediabar ();
+			this.mediabar.Name = "mediabar";
+			this.mediabar.Min = 0;
+			this.mediabar.Max = 0;
+			this.mediabar.Current = 0;
+			this.mediabar.Speed = 1;
 			this.mainhierarchy.Add (this.mediabar);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [this.mediabar]));
 			w3.Position = 1;
 			w3.Expand = false;
 			w3.Fill = false;
 			// Container child mainhierarchy.Gtk.Box+BoxChild
-			this.tabcontrol = null;
+			this.tabcontrol = new global::IdpGie.BlueprintTabControl ();
+			this.tabcontrol.Name = "tabcontrol";
+			this.tabcontrol.Min = 0;
+			this.tabcontrol.Max = -1;
+			this.tabcontrol.Current = 0;
 			this.mainhierarchy.Add (this.tabcontrol);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [this.tabcontrol]));
 			w4.Position = 2;

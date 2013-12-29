@@ -1,5 +1,5 @@
 
-EXTRA_DIST = IdpGie.make rules.make configure Makefile.include libs/OpenTK.dll libs/OpenTK.GLControl.dll libs/QUT.ShiftReduceParser.dll
+EXTRA_DIST = IdpGie.make rules.make configure Makefile.include libs/OpenTK.dll libs/OpenTK.GLControl.dll libs/QUT.ShiftReduceParser.dll libs/NDesk.Options.dll
 
 all: all-recursive
 
@@ -12,10 +12,10 @@ include $(top_srcdir)/rules.make
 
 #Warning: This is an automatically generated file, do not edit!
 ifeq ($(CONFIG),DEBUG_X86)
- SUBDIRS =  . 
+ SUBDIRS =  .  IdpGieTest
 endif
 ifeq ($(CONFIG),RELEASE_X86)
- SUBDIRS =  . 
+ SUBDIRS =  .  IdpGieTest
 endif
 
 # Include project specific makefile

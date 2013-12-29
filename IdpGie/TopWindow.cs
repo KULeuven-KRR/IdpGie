@@ -24,58 +24,54 @@ using System.Collections.Generic;
 using Gtk;
 
 namespace IdpGie {
-    public partial class TopWindow : Gtk.Window {
+	public partial class TopWindow : Gtk.Window {
+		private readonly Dictionary<Widget,DrawTheory> sheets = new Dictionary<Widget,DrawTheory> ();
+		private Widget current = null;
 
-        private readonly Dictionary<Widget,DrawTheory> sheets = new Dictionary<Widget,DrawTheory> ();
-        private Widget current = null;
+		public TopWindow () : base (WindowType.Toplevel) {
+			this.Build ();
+			this.Show ();
+		}
 
-        public TopWindow () : base(WindowType.Toplevel) {
-            this.Build ();
-            this.Show ();
-        }
+		private void SetCurrent<T> (T current) where T : Widget, IMediaObject {
+			if (this.current != null) {
+				this.current.Hide ();
+				this.mediabar.CurrentChanged -= (x, y) => current.Seek (y);
+			}
+			this.current = current;
+			if (this.current != null) {
+				DrawTheory dt = this.sheets [this.current];
+				this.mediabar.Min = dt.MinTime;
+				this.mediabar.Max = dt.MaxTime + 1.0d;
+				this.mediabar.CurrentChanged += (x, y) => current.Seek (y);
+				this.current.Show ();
+			} else {
+				this.mediabar.Mode = MediaMode.Pause;
+				this.mediabar.SetMinCurrentMax (0.0d, 0.0d, 0.0d);
+			}
+		}
 
-        private void SetCurrent<T> (T current) where T : Widget, IMediaObject {
-            if (this.current != null) {
-                this.current.Hide ();
-                this.mediabar.CurrentChanged -= (x,y) => current.Seek (y);
-            }
-            this.current = current;
-            if (this.current != null) {
-                DrawTheory dt = this.sheets [this.current];
-                this.mediabar.Min = dt.MinTime;
-                this.mediabar.Max = dt.MaxTime + 1.0d;
-                this.mediabar.CurrentChanged += (x,y) => current.Seek (y);
-                this.current.Show ();
-            } else {
-                this.mediabar.Mode = MediaMode.Pause;
-                this.mediabar.SetMinCurrentMax (0.0d, 0.0d, 0.0d);
-            }
-        }
+		public void CreateTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject {
+			string name = dt.Name;
+			this.mainhierarchy.Add (widget);
+			global::Gtk.Box.BoxChild w = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [widget]));
+			w.Position = 0;
+			w.Expand = true;
+			w.Fill = true;
+			this.sheets.Add (widget, dt);
+			this.SetCurrent (widget);
+			this.tabcontrol.Open (name);
+		}
 
-        public void CreateTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject {
-            string name = dt.Name;
-            this.mainhierarchy.Add (widget);
-            global::Gtk.Box.BoxChild w = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [widget]));
-            w.Position = 0;
-            w.Expand = true;
-            w.Fill = true;
-            this.sheets.Add (widget, dt);
-            this.SetCurrent (widget);
-            this.tabcontrol.Open (name);
-        }
+		protected override bool OnDeleteEvent (Gdk.Event evnt) {
+			Application.Quit ();
+			return base.OnDeleteEvent (evnt);
+		}
 
-
-
-        protected override bool OnDeleteEvent (Gdk.Event evnt) {
-            Application.Quit ();
-            return base.OnDeleteEvent (evnt);
-        }
-
-        protected void Quit (object sender, EventArgs e) {
-            this.Destroy ();
-            Application.Quit ();
-        }
-
-    }
+		protected void Quit (object sender, EventArgs e) {
+			this.Destroy ();
+			Application.Quit ();
+		}
+	}
 }
 

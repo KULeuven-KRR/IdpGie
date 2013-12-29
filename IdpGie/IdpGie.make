@@ -9,7 +9,7 @@ include $(top_srcdir)/config.make
 
 ifeq ($(CONFIG),DEBUG_X86)
 ASSEMBLY_COMPILER_COMMAND = dmcs
-ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:4 -optimize- -debug "-define:DEBUG;"
+ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:4 -optimize- -debug "-define:DEBUG;" "-keyfile:../../../keypair.snk"
 ASSEMBLY = bin/Debug/IdpGie.exe
 ASSEMBLY_MDB = $(ASSEMBLY).mdb
 COMPILE_TARGET = exe
@@ -22,12 +22,13 @@ OPENTK_DLL_SOURCE=libs/OpenTK.dll
 OPENTK_DLL_CONFIG_SOURCE=libs/OpenTK.dll.config
 OPENTK_GLCONTROL_DLL_SOURCE=libs/OpenTK.GLControl.dll
 QUT_SHIFTREDUCEPARSER_DLL_SOURCE=libs/QUT.ShiftReduceParser.dll
+NDESK_OPTIONS_DLL_SOURCE=libs/NDesk.Options.dll
 
 endif
 
 ifeq ($(CONFIG),RELEASE_X86)
 ASSEMBLY_COMPILER_COMMAND = dmcs
-ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:4 -optimize+
+ASSEMBLY_COMPILER_FLAGS =  -noconfig -codepage:utf8 -warn:4 -optimize+ "-keyfile:../../../keypair.snk"
 ASSEMBLY = bin/Release/IdpGie.exe
 ASSEMBLY_MDB = 
 COMPILE_TARGET = exe
@@ -39,6 +40,7 @@ OPENTK_DLL_SOURCE=libs/OpenTK.dll
 OPENTK_DLL_CONFIG_SOURCE=libs/OpenTK.dll.config
 OPENTK_GLCONTROL_DLL_SOURCE=libs/OpenTK.GLControl.dll
 QUT_SHIFTREDUCEPARSER_DLL_SOURCE=libs/QUT.ShiftReduceParser.dll
+NDESK_OPTIONS_DLL_SOURCE=libs/NDesk.Options.dll
 
 endif
 
@@ -50,7 +52,8 @@ PROGRAMFILES = \
 	$(OPENTK_DLL) \
 	$(OPENTK_DLL_CONFIG) \
 	$(OPENTK_GLCONTROL_DLL) \
-	$(QUT_SHIFTREDUCEPARSER_DLL)  
+	$(QUT_SHIFTREDUCEPARSER_DLL) \
+	$(NDESK_OPTIONS_DLL)  
 
 BINARIES = \
 	$(IDP_GIE)  
@@ -62,37 +65,146 @@ OPENTK_DLL = $(BUILD_DIR)/OpenTK.dll
 OPENTK_DLL_CONFIG = $(BUILD_DIR)/OpenTK.dll.config
 OPENTK_GLCONTROL_DLL = $(BUILD_DIR)/OpenTK.GLControl.dll
 QUT_SHIFTREDUCEPARSER_DLL = $(BUILD_DIR)/QUT.ShiftReduceParser.dll
+NDESK_OPTIONS_DLL = $(BUILD_DIR)/NDesk.Options.dll
 IDP_GIE = $(BUILD_DIR)/idp-gie
 
 FILES = \
-	IdpdMethodAttribute.cs \
-	IdpCairoMapping.cs \
 	Point.cs \
-	IdpdStructureAttribute.cs \
 	IName.cs \
 	NameBase.cs \
 	GtkTimeWidget.cs \
-	CairoWidget.cs \
-	IdpdObject.cs \
 	BlueprintMediabar.cs \
 	MediaMode.cs \
 	BlueprintStyle.cs \
-	gtk-gui/generated.cs \
 	TopWindow.cs \
-	gtk-gui/IdpGie.TopWindow.cs \
 	MediaButtons.cs \
-	IdpdPolygonObject.cs \
-	IdpEllipseObject.cs \
-	IdpObjectModificationType.cs \
-	IdpdObjectTimeState.cs \
-	IZIndix.cs \
-	IdpdOutputDevice.cs \
-	IdpdCairoOutputDevice.cs \
-	IdpdLaTeXOutputDevice.cs \
-	OpenGLIdpOutputDevice.cs \
-	IdpdPrintOutputDevice.cs \
 	Lexer.cs \
-	LexSpan.cs 
+	LexSpan.cs \
+	FunctionInstance.cs \
+	Predicate.cs \
+	Function.cs \
+	Parser.cs \
+	HeadTail.cs \
+	Term.cs \
+	Atom.cs \
+	DrawTheory.cs \
+	TermType.cs \
+	ArrayFunction.cs \
+	ArrayTailFunction.cs \
+	MathExtra.cs \
+	ITimesensitive.cs \
+	TimeSensitiveBase.cs \
+	TypedPredicate.cs \
+	IValidate.cs \
+	TypedMethodPredicate.cs \
+	LocalInputContext.cs \
+	GlobalInputContext.cs \
+	IInputContext.cs \
+	TermHeader.cs \
+	AssemblyInfo.cs \
+	ITermHeader.cs \
+	ArrayHeadTailFunctionInstance.cs \
+	IArrayFunctionInstance.cs \
+	EnumerableUtils.cs \
+	NamedObject.cs \
+	DrawTheoryMode.cs \
+	IPriority.cs \
+	PriorityComparator.cs \
+	ITerm.cs \
+	IAtom.cs \
+	IFunctionInstance.cs \
+	IFunction.cs \
+	IPredicate.cs \
+	NamedFunctionInstance.cs \
+	ITheoryItem.cs \
+	IPositiveClause.cs \
+	PositiveClause.cs \
+	NamedAttributeBase.cs \
+	Interval.cs \
+	TypeSystem.cs \
+	IZIndex.cs \
+	StructureFunctionInstance.cs \
+	StructureFunction.cs \
+	IArity.cs \
+	NameArityPriorityBase.cs \
+	INameArity.cs \
+	NameArityBase.cs \
+	EnhancedTermCollection.cs \
+	CairoFrameWidget.cs \
+	ZIndexComparator.cs \
+	IMediaObject.cs \
+	CairoMediaWidget.cs \
+	OpenGLFrameWidget.cs \
+	IInterpolatable.cs \
+	TimeSensitiveComparer.cs \
+	BlueprintTabControl.cs \
+	CairoUtils.cs \
+	ShapePolygon.cs \
+	ShapeEllipse.cs \
+	ShapeIrregularPolygonObject.cs \
+	ShapeRegularPolygonObject.cs \
+	ShapeGraph.cs \
+	GraphModifier.cs \
+	AddNodeGraphModifier.cs \
+	NodeGraphModifier.cs \
+	ITermName.cs \
+	ShapeImage.cs \
+	CairoImageStore.cs \
+	IFlyWeight.cs \
+	HardFlyweight.cs \
+	WeakFlyweight.cs \
+	ProgramManager.cs \
+	OutputDevice.cs \
+	OutputCairoDevice.cs \
+	OutputOpenGLDevice.cs \
+	OutputPrintDevice.cs \
+	OutputLaTeXDevice.cs \
+	PaintMapping.cs \
+	EventArgs.cs \
+	ITagable.cs \
+	Box2d.cs \
+	IGeometry2d.cs \
+	Shape.cs \
+	IShape.cs \
+	IShapeTransformable.cs \
+	DrawMethodAttribute.cs \
+	MapperAttribute.cs \
+	ShapeState.cs \
+	NamedObjectAttribute.cs \
+	MethodBaseAttribute.cs \
+	NamedObjectEnumAttribute.cs \
+	HookMethodAttribute.cs \
+	ShapeStateModifier.cs \
+	IShapeStateModifier.cs \
+	TheoryAlteringMethodAttribute.cs \
+	FunctionFloatInstance.cs \
+	FunctionStructureAttribute.cs \
+	FunctionStructureConstructorAttribute.cs \
+	FunctionIntegerInstance.cs \
+	FunctionStringInstance.cs \
+	ColorStructure.cs \
+	FunctionVirtualInstance.cs \
+	ITimeSensitiveFastReversible.cs \
+	TimeSensitiveReversibleBase.cs \
+	TimeSensitiveFastReversibleBase.cs \
+	ITimeSensitiveReversible.cs \
+	CollectionUtils.cs \
+	gtk-gui/generated.cs \
+	gtk-gui/IdpGie.TopWindow.cs \
+	AddTheoryAlteringMethod.cs \
+	ITheoryAlteringMethod.cs \
+	IAlteringStreamMethod.cs \
+	AlteringStreamMethodUtils.cs \
+	RemoveTheoryAlteringMethod.cs \
+	TermTheoryAlteringMethod.cs \
+	IHook.cs \
+	HookType.cs \
+	Keys.cs \
+	KeyHook.cs \
+	IdpGieException.cs \
+	ShapeSvgPath.cs \
+	Scanner.cs \
+	PushbackTextReader.cs 
 
 DATA_FILES = 
 
@@ -102,6 +214,7 @@ RESOURCES = \
 EXTRAS = \
 	lex.ll \
 	parse.yy \
+	../../../keypair.snk \
 	idp-gie.in 
 
 REFERENCES =  \
@@ -111,12 +224,14 @@ REFERENCES =  \
 	System.Core \
 	System.Data \
 	System.Data.Linq \
-	Mono.Posix
+	Mono.Posix \
+	-pkg:glib-sharp-2.0
 
 DLL_REFERENCES =  \
 	libs/OpenTK.dll \
 	libs/OpenTK.GLControl.dll \
-	libs/QUT.ShiftReduceParser.dll
+	libs/QUT.ShiftReduceParser.dll \
+	libs/NDesk.Options.dll
 
 CLEANFILES = $(PROGRAMFILES) $(BINARIES) 
 
@@ -129,12 +244,17 @@ $(eval $(call emit-deploy-target,OPENTK_DLL))
 $(eval $(call emit-deploy-target,OPENTK_DLL_CONFIG))
 $(eval $(call emit-deploy-target,OPENTK_GLCONTROL_DLL))
 $(eval $(call emit-deploy-target,QUT_SHIFTREDUCEPARSER_DLL))
+$(eval $(call emit-deploy-target,NDESK_OPTIONS_DLL))
 $(eval $(call emit-deploy-wrapper,IDP_GIE,idp-gie,x))
 
 
 $(eval $(call emit_resgen_targets))
 $(build_xamlg_list): %.xaml.g.cs: %.xaml
 	xamlg '$<'
+
+# Targets for Custom commands
+DEBUG|X86_BeforeBuild:
+	(cd ${SolutionDir} && bash buildparser.sh)
 
 
 $(ASSEMBLY_MDB): $(ASSEMBLY)
@@ -157,6 +277,7 @@ install-local: $(ASSEMBLY) $(ASSEMBLY_MDB)
 	$(call cp,$(OPENTK_DLL_CONFIG),$(DESTDIR)$(libdir)/$(PACKAGE))
 	$(call cp,$(OPENTK_GLCONTROL_DLL),$(DESTDIR)$(libdir)/$(PACKAGE))
 	$(call cp,$(QUT_SHIFTREDUCEPARSER_DLL),$(DESTDIR)$(libdir)/$(PACKAGE))
+	$(call cp,$(NDESK_OPTIONS_DLL),$(DESTDIR)$(libdir)/$(PACKAGE))
 	mkdir -p '$(DESTDIR)$(bindir)'
 	$(call cp,$(IDP_GIE),$(DESTDIR)$(bindir))
 	make post-install-local-hook prefix=$(prefix)
@@ -171,5 +292,6 @@ uninstall-local: $(ASSEMBLY) $(ASSEMBLY_MDB)
 	$(call rm,$(OPENTK_DLL_CONFIG),$(DESTDIR)$(libdir)/$(PACKAGE))
 	$(call rm,$(OPENTK_GLCONTROL_DLL),$(DESTDIR)$(libdir)/$(PACKAGE))
 	$(call rm,$(QUT_SHIFTREDUCEPARSER_DLL),$(DESTDIR)$(libdir)/$(PACKAGE))
+	$(call rm,$(NDESK_OPTIONS_DLL),$(DESTDIR)$(libdir)/$(PACKAGE))
 	$(call rm,$(IDP_GIE),$(DESTDIR)$(bindir))
 	make post-uninstall-local-hook prefix=$(prefix)
