@@ -7,7 +7,12 @@ namespace IdpGie {
 		private readonly LinkedList<SvgInstruction> instructions = new LinkedList<SvgInstruction> ();
 
 		public ShapeSvgPath (IFunctionInstance name, string instructions) : base (name) {
+			this.instructions.AddAll (this.parseInstructions (instructions));
+		}
 
+		private IEnumerable<SvgInstruction> parseInstructions (string instructions) {
+			Point curPoint = new Point ();
+			yield break;
 		}
 
 		protected override void InnerPaintObject (Context ctx) {
@@ -54,30 +59,17 @@ namespace IdpGie {
 			}
 		}
 
-		private sealed class SvgZInstruction : SvgInstruction {
-
-			#region SvgInstruction implementation
-
-			public override void Execute (Context ctx) {
-				ctx.ClosePath ();
-				ctx.NewPath ();
+		private sealed class SvgCInstruction : SvgInstruction3P {
+			public SvgCInstruction (Point p0, Point p1, Point p2) : base (p0, p1, p2) {
 			}
 
-			#endregion
-
-		}
-
-		private sealed class SvgMInstruction : SvgInstructionP {
-			public SvgMInstruction (double x, double y) : base (x, y) {
-			}
-
-			public SvgMInstruction (Point p0) : base (p0) {
+			public SvgCInstruction (double x, double y, double x1, double y1, double x2, double y2) : base (x, y, x1, y1, x2, y2) {
 			}
 
 			#region SvgInstruction implementation
 
 			public override void Execute (Context ctx) {
-				ctx.MoveTo (this.P0);
+				ctx.CurveTo (this.P0, this.P1, this.P2);
 			}
 
 			#endregion
@@ -101,17 +93,30 @@ namespace IdpGie {
 
 		}
 
-		private sealed class SvgCInstruction : SvgInstruction3P {
-			public SvgCInstruction (Point p0, Point p1, Point p2) : base (p0, p1, p2) {
+		private sealed class SvgMInstruction : SvgInstructionP {
+			public SvgMInstruction (double x, double y) : base (x, y) {
 			}
 
-			public SvgCInstruction (double x, double y, double x1, double y1, double x2, double y2) : base (x, y, x1, y1, x2, y2) {
+			public SvgMInstruction (Point p0) : base (p0) {
 			}
 
 			#region SvgInstruction implementation
 
 			public override void Execute (Context ctx) {
-				ctx.CurveTo (this.P0, this.P1, this.P2);
+				ctx.MoveTo (this.P0);
+			}
+
+			#endregion
+
+		}
+
+		private sealed class SvgZInstruction : SvgInstruction {
+
+			#region SvgInstruction implementation
+
+			public override void Execute (Context ctx) {
+				ctx.ClosePath ();
+				ctx.NewPath ();
 			}
 
 			#endregion
