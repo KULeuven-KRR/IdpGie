@@ -1,12 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ScanBase.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ShapeSvgPath.cs">
     <Files>
-      <File FileName="Box2d.cs" Line="1" Column="1" />
-      <File FileName="TopWindow.cs" Line="1" Column="1" />
-      <File FileName="Lexer.cs" Line="1" Column="1" />
-      <File FileName="parse.yy" Line="1" Column="1" />
-      <File FileName="ScanBase.cs" Line="27" Column="16" />
+      <File FileName="ProgramManager.cs" Line="1" Column="1" />
+      <File FileName="ShapeSvgPath.cs" Line="41" Column="12" />
+      <File FileName="ShapePolygon.cs" Line="35" Column="10" />
+      <File FileName="CairoUtils.cs" Line="41" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

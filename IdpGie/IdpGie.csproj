@@ -66,8 +66,8 @@
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Mono.Options">
-      <HintPath>libs\Mono.Options.dll</HintPath>
+    <Reference Include="NDesk.Options">
+      <HintPath>libs\NDesk.Options.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -216,6 +216,7 @@
     <Compile Include="Keys.cs" />
     <Compile Include="KeyHook.cs" />
     <Compile Include="IdpGieException.cs" />
+    <Compile Include="ShapeSvgPath.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

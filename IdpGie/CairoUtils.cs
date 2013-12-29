@@ -38,6 +38,18 @@ namespace IdpGie {
 			}
 		}
 
+		public static void MoveTo (this Context ctx, IdpGie.Point p) {
+			ctx.MoveTo (p.X, p.Y);
+		}
+
+		public static void LineTo (this Context ctx, IdpGie.Point p) {
+			ctx.LineTo (p.X, p.Y);
+		}
+
+		public static void CurveTo (this Context ctx, IdpGie.Point p1, IdpGie.Point p2, IdpGie.Point p3) {
+			ctx.CurveTo (p1.X, p1.Y, p2.X, p2.Y, p3.X, p3.Y);
+		}
+
 		public static void SetFill (this Context ctx, Color c) {
 			ctx.SetSourceRGBA (c.R, c.G, c.B, c.A);
 		}
