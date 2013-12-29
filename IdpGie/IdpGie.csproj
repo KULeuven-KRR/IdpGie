@@ -218,6 +218,7 @@
     <Compile Include="IdpGieException.cs" />
     <Compile Include="ShapeSvgPath.cs" />
     <Compile Include="Scanner.cs" />
+    <Compile Include="PushbackTextReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

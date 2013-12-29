@@ -59,6 +59,28 @@ namespace IdpGie {
 			}
 		}
 
+		private sealed class SvgAInstruction : SvgInstruction2P {
+			public readonly double XAxisRotation;
+			public readonly bool LargeArc, Sweep;
+
+			public SvgAInstruction (Point p0, double xAxisRotation, bool largeArc, bool sweep, Point p1) : base (p0, p1) {
+				this.XAxisRotation = xAxisRotation;
+				this.LargeArc = largeArc;
+				this.Sweep = sweep;
+			}
+
+			public SvgAInstruction (double x, double y, double xAxisRotation, bool largeArc, bool sweep, double x1, double y1) : this (new Point (x, y), xAxisRotation, largeArc, sweep, new Point (x1, y1)) {
+			}
+
+			#region SvgInstruction implementation
+
+			public override void Execute (Context ctx) {
+			}
+
+			#endregion
+
+		}
+
 		private sealed class SvgCInstruction : SvgInstruction3P {
 			public SvgCInstruction (Point p0, Point p1, Point p2) : base (p0, p1, p2) {
 			}
