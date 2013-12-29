@@ -79,7 +79,7 @@ term        : identifier OBR terms CBR                      { $$ = this.Context.
 list        : OFB terms CFB                                 { $$ = ArrayFunction.ToInstance($2);}
             ;
 
-identifier  : IDENTIFIER                                    { Console.WriteLine("A1={0}",@1); $$ = @1.ToString();}
+identifier  : IDENTIFIER                                    { $$ = @1.ToString();}
             ;
 
 %%

@@ -25,7 +25,7 @@
     <Commandlineparameters>../../testinput/test1.idpd</Commandlineparameters>
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeBuild" command="source llyy.sh" workingdir="${SolutionDir}" externalConsole="True" />
+        <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
