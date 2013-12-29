@@ -204,7 +204,6 @@
     <Compile Include="CollectionUtils.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
-    <Compile Include="ScanBase.cs" />
     <Compile Include="AddTheoryAlteringMethod.cs" />
     <Compile Include="ITheoryAlteringMethod.cs" />
     <Compile Include="IAlteringStreamMethod.cs" />
