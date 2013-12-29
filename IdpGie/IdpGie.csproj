@@ -180,7 +180,6 @@
     <Compile Include="Shape.cs" />
     <Compile Include="IShape.cs" />
     <Compile Include="IShapeTransformable.cs" />
-    <Compile Include="DrawMethodAttribute.cs" />
     <Compile Include="MapperAttribute.cs" />
     <Compile Include="ShapeState.cs" />
     <Compile Include="NamedObjectAttribute.cs" />
@@ -218,6 +217,8 @@
     <Compile Include="ShapeSvgPath.cs" />
     <Compile Include="Scanner.cs" />
     <Compile Include="PushbackTextReader.cs" />
+    <Compile Include="HookMapping.cs" />
+    <Compile Include="PaintMethodAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

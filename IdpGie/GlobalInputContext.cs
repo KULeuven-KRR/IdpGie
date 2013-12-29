@@ -24,122 +24,123 @@ using System.Linq;
 using System.Reflection;
 
 namespace IdpGie {
+	public class GlobalInputContext : IInputContext {
+		private readonly Dictionary<Tuple<string,int>,IPredicate> predicates = new Dictionary<Tuple<string, int>, IPredicate> ();
+		private readonly Dictionary<Tuple<string,int>,IFunction> functions = new Dictionary<Tuple<string, int>, IFunction> ();
+		public static readonly GlobalInputContext Instance = new GlobalInputContext ();
 
-    public class GlobalInputContext : IInputContext {
+		private GlobalInputContext () {
+			this.LoadAssembly (Assembly.GetExecutingAssembly ());
+		}
 
-        private readonly Dictionary<Tuple<string,int>,IPredicate> predicates = new Dictionary<Tuple<string, int>, IPredicate> ();
-        private readonly Dictionary<Tuple<string,int>,IFunction> functions = new Dictionary<Tuple<string, int>, IFunction> ();
-        public static readonly GlobalInputContext Instance = new GlobalInputContext ();
+		private void addPredicate (IPredicate pred) {
+			this.predicates.Add (pred.Signature, pred);
+		}
 
-        private GlobalInputContext () {
-            this.LoadAssembly (Assembly.GetExecutingAssembly ());
-        }
+		private void addFunction (IFunction func) {
+			this.functions.Add (func.Signature, func);
+		}
 
-        private void addPredicate (IPredicate pred) {
-            this.predicates.Add (pred.Signature, pred);
-        }
+		public void LoadAssembly (Assembly assembly) {
+			foreach (Type type in assembly.GetTypes()) {
+				if (type.IsClass) {
+					analyzeClass (type);
+				}
+				if (type.IsValueType) {
+					this.analyzeStruct (type);
+				}
+				if (type.IsEnum) {
+					analyzeEnum (type);
+				}
+			}
+		}
 
-        private void addFunction (IFunction func) {
-            this.functions.Add (func.Signature, func);
-        }
+		private void analyzeEnum (Type type) {
+			if (type.GetCustomAttributes (typeof(NamedObjectEnumAttribute), false).Length > 0x00) {
+				foreach (FieldInfo field in type.GetFields()) {
+					analyzeField (field);
+				}
+			}
+		}
 
-        public void LoadAssembly (Assembly assembly) {
-            foreach (Type type in assembly.GetTypes()) {
-                if (type.IsClass) {
-                    analyzeClass (type);
-                }
-                if (type.IsValueType) {
-                    this.analyzeStruct (type);
-                }
-                if (type.IsEnum) {
-                    analyzeEnum (type);
-                }
-            }
-        }
+		private void analyzeField (FieldInfo field) {
+			foreach (NamedObjectAttribute noa in field.GetCustomAttributes(typeof(NamedObjectAttribute),false)) {
+				NamedFunctionInstance nfi = new NamedFunctionInstance (field.GetValue (null));
+				this.functions.Add (nfi.Signature, nfi);
+			}
+		}
 
-        private void analyzeEnum (Type type) {
-            if (type.GetCustomAttributes (typeof(NamedObjectEnumAttribute), false).Length > 0x00) {
-                foreach (FieldInfo field in type.GetFields()) {
-                    analyzeField (field);
-                }
-            }
-        }
+		private void analyzeClass (Type type) {
+			if (type.GetCustomAttributes (typeof(MapperAttribute), false).Length > 0x00) {
+				this.analyzeMapperClass (type);
+			}
+		}
 
-        private void analyzeField (FieldInfo field) {
-            foreach (NamedObjectAttribute noa in field.GetCustomAttributes(typeof(NamedObjectAttribute),false)) {
-                NamedFunctionInstance nfi = new NamedFunctionInstance (field.GetValue (null));
-                this.functions.Add (nfi.Signature, nfi);
-            }
-        }
+		private void analyzeStruct (Type type) {
+			foreach (FunctionStructureAttribute fsa in type.GetCustomAttributes(typeof(FunctionStructureAttribute),false).Cast<FunctionStructureAttribute>()) {
+				analyzeFunctionStruct (type, fsa);
+			}
+		}
 
-        private void analyzeClass (Type type) {
-            if (type.GetCustomAttributes (typeof(MapperAttribute), false).Length > 0x00) {
-                this.analyzeMapperClass (type);
-            }
-        }
+		private void analyzeFunctionStruct (Type type, FunctionStructureAttribute fsa) {
+			foreach (ConstructorInfo ci in type.GetConstructors()) {
+				foreach (FunctionStructureConstructorAttribute fsca in ci.GetCustomAttributes(typeof(FunctionStructureConstructorAttribute),false).Cast<FunctionStructureConstructorAttribute>()) {
+					foreach (StructureFunction f in fsca.StructureFunctions(fsa,ci)) {
+						this.addFunction (f);
+					}
+				}
+			}
+		}
 
-        private void analyzeStruct (Type type) {
-            foreach (FunctionStructureAttribute fsa in type.GetCustomAttributes(typeof(FunctionStructureAttribute),false).Cast<FunctionStructureAttribute>()) {
-                analyzeFunctionStruct (type, fsa);
-            }
-        }
+		private void analyzeMapperClass (Type type) {
+			foreach (MethodInfo method in type.GetMethods()) {
+				analyzeMethod (type, method);
+			}
+		}
 
-        private void analyzeFunctionStruct (Type type, FunctionStructureAttribute fsa) {
-            foreach (ConstructorInfo ci in type.GetConstructors()) {
-                foreach (FunctionStructureConstructorAttribute fsca in ci.GetCustomAttributes(typeof(FunctionStructureConstructorAttribute),false).Cast<FunctionStructureConstructorAttribute>()) {
-                    foreach (StructureFunction f in fsca.StructureFunctions(fsa,ci)) {
-                        this.addFunction (f);
-                    }
-                }
-            }
-        }
+		private void analyzeMethod (Type type, MethodInfo method) {
+			if (method.IsStatic) {
+				ParameterInfo[] pis = method.GetParameters ();
+				if (pis.Length > 0x00) {
+					ParameterInfo pi0 = pis [0x00];
+					if (!pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
+						foreach (PaintMethodAttribute ma in method.GetCustomAttributes(typeof(PaintMethodAttribute),false).Cast<PaintMethodAttribute>()) {
+							foreach (TypedMethodPredicate p in ma.Predicates(method)) {
+								this.addPredicate (p);
+							}
+						}
+						foreach (HookMethodAttribute ma in method.GetCustomAttributes(typeof(HookMethodAttribute),false).Cast<HookMethodAttribute>()) {
 
-        private void analyzeMapperClass (Type type) {
-            foreach (MethodInfo method in type.GetMethods()) {
-                analyzeMethod (type, method);
-            }
-        }
+						}
+					}
+				}
+			}
+		}
 
-        private void analyzeMethod (Type type, MethodInfo method) {
-            if (method.IsStatic) {
-                ParameterInfo[] pis = method.GetParameters ();
-                if (pis.Length > 0x00) {
-                    ParameterInfo pi0 = pis [0x00];
-                    if (!pi0.IsRetval && pi0.ParameterType.IsAssignableFrom (typeof(DrawTheory))) {
-                        foreach (DrawMethodAttribute ma in method.GetCustomAttributes(typeof(DrawMethodAttribute),false).Cast<DrawMethodAttribute>()) {
-                            foreach (TypedMethodPredicate p in ma.Predicates(method)) {
-                                this.addPredicate (p);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+		#region IInputContext implementation
 
-        #region IInputContext implementation
-        public IPredicate GetPredicate (string name, int arity) {
-            IPredicate p;
-            Tuple<string,int> key = new Tuple<string, int> (name, arity);
-            if (predicates.TryGetValue (key, out p)) {
-                return p;
-            } else {
-                return null;
-            }
-        }
+		public IPredicate GetPredicate (string name, int arity) {
+			IPredicate p;
+			Tuple<string,int> key = new Tuple<string, int> (name, arity);
+			if (predicates.TryGetValue (key, out p)) {
+				return p;
+			} else {
+				return null;
+			}
+		}
 
-        public IFunction GetFunction (string name, int arity) {
-            IFunction f;
-            Tuple<string,int> key = new Tuple<string, int> (name, arity);
-            if (functions.TryGetValue (key, out f)) {
-                return f;
-            } else {
-                return null;
-            }
-        }
-        #endregion
+		public IFunction GetFunction (string name, int arity) {
+			IFunction f;
+			Tuple<string,int> key = new Tuple<string, int> (name, arity);
+			if (functions.TryGetValue (key, out f)) {
+				return f;
+			} else {
+				return null;
+			}
+		}
 
+		#endregion
 
-    }
-
+	}
 }
 

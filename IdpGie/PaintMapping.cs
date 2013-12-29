@@ -21,168 +21,162 @@
 using System;
 
 namespace IdpGie {
+	[Mapper]
+	public static class PaintMapping {
+		[PaintMethod ("rendering", false, false, -1.0d, TermType.Named)]
+		public static void Rendering (DrawTheory dt, NamedObject nobj) {
+			dt.Mode = (DrawTheoryMode)(byte)(((ulong)nobj) & 0xff);
+		}
 
-    [Mapper]
-    public static class PaintMapping {
+		[PaintMethod ("polygon", true, false, 0.0d, TermType.PointList)]
+		public static void Polygon (DrawTheory dt, IFunctionInstance name, EnhancedTermCollection points) {
+			dt.AddIdpdObject (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<Point> (TermType.Point)));
+		}
 
-        [DrawMethod("rendering",false,false,-1.0d,TermType.Named)]
-        public static void Rendering (DrawTheory dt, NamedObject nobj) {
-            dt.Mode = (DrawTheoryMode)(byte)(((ulong)nobj) & 0xff);
-        }
+		[PaintMethod ("polygon", true, false, 0.0d, TermType.Int, TermType.Float)]
+		public static void Polygon (DrawTheory dt, IFunctionInstance name, int nbOfEdges, double sizeOfEdges) {
+			dt.AddIdpdObject (new ShapeRegularPolygonObject (name, nbOfEdges, sizeOfEdges));
+		}
 
-        [DrawMethod("polygon",true,false,0.0d,TermType.PointList)]
-        public static void Polygon (DrawTheory dt, IFunctionInstance name, EnhancedTermCollection points) {
-            dt.AddIdpdObject (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<Point> (TermType.Point)));
-        }
+		[PaintMethod ("ellipse", true, false, 0.0d, TermType.Float, TermType.Float)]
+		public static void Ellipse (DrawTheory dt, IFunctionInstance name, double width, double height) {
+			dt.AddIdpdObject (new ShapeRegularPolygonObject (name, 4, width));
+		}
 
-        [DrawMethod("polygon",true,false,0.0d,TermType.Int,TermType.Float)]
-        public static void Polygon (DrawTheory dt, IFunctionInstance name, int nbOfEdges, double sizeOfEdges) {
-            dt.AddIdpdObject (new ShapeRegularPolygonObject (name, nbOfEdges, sizeOfEdges));
-        }
+		[PaintMethod ("graph", true, false, 0.0d, TermType.Float, TermType.Float)]
+		public static void Graph (DrawTheory dt, IFunctionInstance name, double width, double height) {
 
-        [DrawMethod("ellipse",true,false,0.0d,TermType.Float,TermType.Float)]
-        public static void Ellipse (DrawTheory dt, IFunctionInstance name, double width, double height) {
-            dt.AddIdpdObject (new ShapeRegularPolygonObject (name, 4, width));
-        }
+		}
 
-        [DrawMethod("graph",true,false,0.0d,TermType.Float,TermType.Float)]
-        public static void Graph (DrawTheory dt, IFunctionInstance name, double width, double height) {
+		[PaintMethod ("node", true, true, 0.5d, TermType.String)]
+		public static void Node (DrawTheory dt, IFunctionInstance name, string graph, double time = double.NaN) {
 
-        }
+		}
 
-        [DrawMethod("node",true,true,0.5d,TermType.String)]
-        public static void Node (DrawTheory dt, IFunctionInstance name, string graph, double time = double.NaN) {
+		[PaintMethod ("text", true, true, TermType.String)]
+		public static void Text (DrawTheory dt, IFunctionInstance name, string text, double time = double.NaN) {
+			dt.RegisterTime (time);
+			dt [name].AddModifier (time, x => x.SetText (text));
+		}
 
-        }
+		[PaintMethod ("edge", false, false, 0.75d, TermType.String, TermType.String, TermType.String)]
+		public static void Edge (DrawTheory dt, string node1, string node2, string graph) {
 
-        [DrawMethod("text",true,true,TermType.String)]
-        public static void Text (DrawTheory dt, IFunctionInstance name, string text, double time = double.NaN) {
-            dt.RegisterTime (time);
-            dt [name].AddModifier (time, x => x.SetText (text));
-        }
+		}
 
-        [DrawMethod("edge",false,false,0.75d,TermType.String,TermType.String,TermType.String)]
-        public static void Edge (DrawTheory dt, string node1, string node2, string graph) {
+		[PaintMethod ("image", true, true, 0.0d, TermType.Float, TermType.Float, TermType.String)]
+		public static void Image (DrawTheory dt, IFunctionInstance name, double width, double height, string filepath, double time = double.NaN) {
 
-        }
+		}
 
-        [DrawMethod("image",true,true,0.0d,TermType.Float,TermType.Float,TermType.String)]
-        public static void Image (DrawTheory dt, IFunctionInstance name, double width, double height, string filepath, double time = double.NaN) {
+		[PaintMethod ("xpos", true, true, TermType.Float)]
+		public static void Xpos (DrawTheory dt, IFunctionInstance name, double xpos, double time = double.NaN) {
+			dt.RegisterTime (time);
+			dt [name].AddModifier (time, x => x.SetXPos (xpos));
+		}
 
-        }
+		[PaintMethod ("ypos", true, true, TermType.Float)]
+		public static void Ypos (DrawTheory dt, IFunctionInstance name, double ypos, double time = double.NaN) {
+			dt.RegisterTime (time);
+			dt [name].AddModifier (time, x => x.SetYPos (ypos));
+		}
 
-        [DrawMethod("xpos",true,true,TermType.Float)]
-        public static void Xpos (DrawTheory dt, IFunctionInstance name, double xpos, double time = double.NaN) {
-            dt.RegisterTime (time);
-            dt [name].AddModifier (time, x => x.SetXPos (xpos));
-        }
+		[PaintMethod ("zpos", true, true, TermType.Float)]
+		public static void Zpos (DrawTheory dt, IFunctionInstance name, double zpos, double time = double.NaN) {
+			dt.RegisterTime (time);
+			dt [name].AddModifier (time, x => x.SetZPos (zpos));
+		}
 
-        [DrawMethod("ypos",true,true,TermType.Float)]
-        public static void Ypos (DrawTheory dt, IFunctionInstance name, double ypos, double time = double.NaN) {
-            dt.RegisterTime (time);
-            dt [name].AddModifier (time, x => x.SetYPos (ypos));
-        }
+		[PaintMethod ("pos", true, true, TermType.Float, TermType.Float, TermType.Float)]
+		public static void Pos (DrawTheory dt, IFunctionInstance name, double xpos, double ypos, double zpos, double time = double.NaN) {
+			Xpos (dt, name, xpos, time);
+			Ypos (dt, name, ypos, time);
+			Zpos (dt, name, zpos, time);
+		}
 
-        [DrawMethod("zpos",true,true,TermType.Float)]
-        public static void Zpos (DrawTheory dt, IFunctionInstance name, double zpos, double time = double.NaN) {
-            dt.RegisterTime (time);
-            dt [name].AddModifier (time, x => x.SetZPos (zpos));
-        }
+		[PaintMethod ("xshift", true, true, TermType.Float)]
+		public static void Xshift (DrawTheory dt, IFunctionInstance name, double xpos, double time = double.NaN) {
 
-        [DrawMethod("pos",true,true,TermType.Float,TermType.Float,TermType.Float)]
-        public static void Pos (DrawTheory dt, IFunctionInstance name, double xpos, double ypos, double zpos, double time = double.NaN) {
-            Xpos (dt, name, xpos, time);
-            Ypos (dt, name, ypos, time);
-            Zpos (dt, name, zpos, time);
-        }
+		}
 
-        
+		[PaintMethod ("yshift", true, true, TermType.Float)]
+		public static void Yshift (DrawTheory dt, IFunctionInstance name, double ypos, double time = double.NaN) {
 
-        [DrawMethod("xshift",true,true,TermType.Float)]
-        public static void Xshift (DrawTheory dt, IFunctionInstance name, double xpos, double time = double.NaN) {
+		}
 
-        }
+		[PaintMethod ("zshift", true, true, TermType.Float)]
+		public static void Zshift (DrawTheory dt, IFunctionInstance name, double zpos, double time = double.NaN) {
 
-        [DrawMethod("yshift",true,true,TermType.Float)]
-        public static void Yshift (DrawTheory dt, IFunctionInstance name, double ypos, double time = double.NaN) {
+		}
 
-        }
+		[PaintMethod ("shift", true, true, TermType.Float, TermType.Float, TermType.Float)]
+		public static void Shift (DrawTheory dt, IFunctionInstance name, double xpos, double ypos, double zpos, double time = double.NaN) {
+			Xshift (dt, name, xpos, time);
+			Yshift (dt, name, ypos, time);
+			Zshift (dt, name, zpos, time);
+		}
 
-        [DrawMethod("zshift",true,true,TermType.Float)]
-        public static void Zshift (DrawTheory dt, IFunctionInstance name, double zpos, double time = double.NaN) {
+		[PaintMethod ("xscale", true, true, TermType.Float)]
+		public static void Xscale (DrawTheory dt, IFunctionInstance name, double xscale, double time = double.NaN) {
 
-        }
+		}
 
-        [DrawMethod("shift",true,true,TermType.Float,TermType.Float,TermType.Float)]
-        public static void Shift (DrawTheory dt, IFunctionInstance name, double xpos, double ypos, double zpos, double time = double.NaN) {
-            Xshift (dt, name, xpos, time);
-            Yshift (dt, name, ypos, time);
-            Zshift (dt, name, zpos, time);
-        }
+		[PaintMethod ("yscale", true, true, TermType.Float)]
+		public static void Yscale (DrawTheory dt, IFunctionInstance name, double yscale, double time = double.NaN) {
 
-        [DrawMethod("xscale",true,true,TermType.Float)]
-        public static void Xscale (DrawTheory dt, IFunctionInstance name, double xscale, double time = double.NaN) {
+		}
 
-        }
+		[PaintMethod ("zscale", true, true, TermType.Float)]
+		public static void Zscale (DrawTheory dt, IFunctionInstance name, double zscale, double time = double.NaN) {
 
-        [DrawMethod("yscale",true,true,TermType.Float)]
-        public static void Yscale (DrawTheory dt, IFunctionInstance name, double yscale, double time = double.NaN) {
+		}
 
-        }
+		[PaintMethod ("scale", true, true, TermType.Float, TermType.Float, TermType.Float)]
+		public static void Scale (DrawTheory dt, IFunctionInstance name, double xscale, double yscale, double zscale, double time = double.NaN) {
+			Xscale (dt, name, xscale, time);
+			Yscale (dt, name, yscale, time);
+			Zscale (dt, name, zscale, time);
+		}
 
-        [DrawMethod("zscale",true,true,TermType.Float)]
-        public static void Zscale (DrawTheory dt, IFunctionInstance name, double zscale, double time = double.NaN) {
+		[PaintMethod ("rotate", true, true, TermType.Float, TermType.Float, TermType.Float, TermType.Float)]
+		public static void Rotate (DrawTheory dt, IFunctionInstance name, double ex, double ey, double ez, double alpha, double time = double.NaN) {
+		}
 
-        }
+		[PaintMethod ("rotateX", true, true, TermType.Float)]
+		public static void RotateX (DrawTheory dt, IFunctionInstance name, double alpha, double time = double.NaN) {
+		}
 
-        [DrawMethod("scale",true,true,TermType.Float,TermType.Float,TermType.Float)]
-        public static void Scale (DrawTheory dt, IFunctionInstance name, double xscale, double yscale, double zscale, double time = double.NaN) {
-            Xscale (dt, name, xscale, time);
-            Yscale (dt, name, yscale, time);
-            Zscale (dt, name, zscale, time);
-        }
+		[PaintMethod ("rotateY", true, true, TermType.Float)]
+		public static void RotateY (DrawTheory dt, IFunctionInstance name, double alpha, double time = double.NaN) {
+		}
 
-        [DrawMethod("rotate",true,true,TermType.Float,TermType.Float,TermType.Float,TermType.Float)]
-        public static void Rotate (DrawTheory dt, IFunctionInstance name, double ex, double ey, double ez, double alpha, double time = double.NaN) {
-        }
+		[PaintMethod ("rotateZ", true, true, TermType.Float)]
+		public static void RotateZ (DrawTheory dt, IFunctionInstance name, double alpha, double time = double.NaN) {
+		}
 
-        [DrawMethod("rotateX",true,true,TermType.Float)]
-        public static void RotateX (DrawTheory dt, IFunctionInstance name, double alpha, double time = double.NaN) {
-        }
+		[PaintMethod ("edgecolor", true, true, TermType.Int, TermType.Int, TermType.Int)]
+		public static void EdgeColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
+			dt [name].AddModifier (time, x => x.SetEdgeColor (r, g, b));
+		}
 
-        [DrawMethod("rotateY",true,true,TermType.Float)]
-        public static void RotateY (DrawTheory dt, IFunctionInstance name, double alpha, double time = double.NaN) {
-        }
+		[PaintMethod ("innercolor", true, true, TermType.Int, TermType.Int, TermType.Int)]
+		public static void InnerColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
+			dt [name].AddModifier (time, x => x.SetInnerColor (r, g, b));
+		}
 
-        [DrawMethod("rotateZ",true,true,TermType.Float)]
-        public static void RotateZ (DrawTheory dt, IFunctionInstance name, double alpha, double time = double.NaN) {
-        }
+		[PaintMethod ("depth", true, true, TermType.Float)]
+		public static void Depth (DrawTheory dt, IFunctionInstance name, double index, double time = double.NaN) {
+			dt [name].AddModifier (time, x => x.SetZPos (index));
+		}
 
-        [DrawMethod("edgecolor",true,true,TermType.Int,TermType.Int,TermType.Int)]
-        public static void EdgeColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
-            dt [name].AddModifier (time, x => x.SetEdgeColor (r, g, b));
-        }
+		[PaintMethod ("show", true, true)]
+		public static void Show (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
+			dt [name].AddModifier (time, x => x.Show ());
+		}
 
-        [DrawMethod("innercolor",true,true,TermType.Int,TermType.Int,TermType.Int)]
-        public static void InnerColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
-            dt [name].AddModifier (time, x => x.SetInnerColor (r, g, b));
-        }
-
-        [DrawMethod("depth",true,true,TermType.Float)]
-        public static void Depth (DrawTheory dt, IFunctionInstance name, double index, double time = double.NaN) {
-            dt [name].AddModifier (time, x => x.SetZPos (index));
-        }
-
-        [DrawMethod("show",true,true)]
-        public static void Show (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
-            dt [name].AddModifier (time, x => x.Show ());
-        }
-
-        [DrawMethod("hide",true,true)]
-        public static void Hide (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
-            dt [name].AddModifier (time, x => x.Hide ());
-        }
-
-    }
-
+		[PaintMethod ("hide", true, true)]
+		public static void Hide (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
+			dt [name].AddModifier (time, x => x.Hide ());
+		}
+	}
 }
