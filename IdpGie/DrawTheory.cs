@@ -160,9 +160,11 @@ namespace IdpGie {
 				break;
 			}
 		}
-		/*public void AddHook () {
 
-		}*/
+		public void AddHook (IHook hook) {
+			this.hooks.AddListDictionary (hook.HookType, hook);
+		}
+
 		public void FireHook (HookType type, IList<ITerm> parameters) {
 			LinkedList<IHook> firelist;
 			if (hooks.TryGetValue (type, out firelist)) {
