@@ -5,6 +5,12 @@ namespace IdpGie {
 	public class KeyHook : IHook {
 		private readonly Keys Key;
 
+		public HookType HookType {
+			get {
+				return HookType.KeyDown;
+			}
+		}
+
 		public KeyHook (Keys key) {
 			this.Key = key;
 		}

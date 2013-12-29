@@ -219,6 +219,7 @@
     <Compile Include="PushbackTextReader.cs" />
     <Compile Include="HookMapping.cs" />
     <Compile Include="PaintMethodAttribute.cs" />
+    <Compile Include="DictionaryUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

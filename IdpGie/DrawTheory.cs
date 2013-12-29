@@ -160,7 +160,9 @@ namespace IdpGie {
 				break;
 			}
 		}
+		/*public void AddHook () {
 
+		}*/
 		public void FireHook (HookType type, IList<ITerm> parameters) {
 			LinkedList<IHook> firelist;
 			if (hooks.TryGetValue (type, out firelist)) {
