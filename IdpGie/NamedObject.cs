@@ -21,43 +21,36 @@
 using System;
 
 namespace IdpGie {
+	[NamedObjectEnum]
+	public enum NamedObject : ulong {
 
-    [NamedObjectEnum]
-    public enum NamedObject : long {
-        #region Generic   (0x000000 family)
-        [NamedObject]
-        Unknown = 0x000000,
-        #endregion
-        #region Keys      (0x010000 family)
-        KeyA     = 0x010000,
-        KeyB     = 0x010001,
-        KeyC     = 0x010002,
-        KeyD     = 0x010003,
-        KeyE     = 0x010004,
-        KeyF     = 0x010005,
-        KeyG     = 0x010006,
-        KeyH     = 0x010007,
-        KeyI     = 0x010008,
-        KeyJ     = 0x010009,
-        KeyK     = 0x01000a,
-        KeyUp    = 0x01000b,
-        KeyLeft  = 0x01000c,
-        KeyRight = 0x01000d,
-        KeyDown  = 0x01000e,
-        #endregion
-        #region Mouse
-        #endregion
-        #region ModeNames (0x030000 family)
-        [NamedObject]
-        Opengl  = 0x030001,
-        [NamedObject]
-        Cairo   = 0x030002,
-        [NamedObject]
-        Latex   = 0x030003,
-        [NamedObject]
-        Print   = 0x030004
-        #endregion
-    }
+		#region Generic   (0x0000000000000000 family)
 
+		[NamedObject]
+		Unknown = 0x0000000000000000,
+		#endregion
+
+		#region Keys      (0x0100000000000000 family)
+
+		#endregion
+
+		#region Mouse
+
+		#endregion
+
+		#region ModeNames (0x0300000000000000 family)
+
+		[NamedObject]
+		Opengl = 0x0300000000000001,
+		[NamedObject]
+		Cairo = 0x0300000000000002,
+		[NamedObject]
+		Latex = 0x0000000000000003,
+		[NamedObject]
+		Print = 0x0000000000000004
+
+		#endregion
+
+	}
 }
 
