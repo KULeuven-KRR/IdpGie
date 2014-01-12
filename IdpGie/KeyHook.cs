@@ -1,3 +1,4 @@
+using Gdk;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -5,9 +6,9 @@ namespace IdpGie {
 	public class KeyHook : IHook {
 		private readonly Keys Key;
 
-		public HookType HookType {
+		public EventType HookType {
 			get {
-				return HookType.KeyDown;
+				return EventType.KeyPress;
 			}
 		}
 

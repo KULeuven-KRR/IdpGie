@@ -61,6 +61,7 @@ namespace IdpGie {
 			this.sheets.Add (widget, dt);
 			this.SetCurrent (widget);
 			this.tabcontrol.Open (name);
+			widget.HasFocus = true;
 		}
 
 		protected override bool OnDeleteEvent (Gdk.Event evnt) {

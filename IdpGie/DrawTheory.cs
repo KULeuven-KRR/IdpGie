@@ -21,12 +21,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Gdk;
 
 namespace IdpGie {
 	public class DrawTheory : NameBase, ITimesensitive {
 		private readonly List<ITheoryItem> elements;
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
-		private readonly Dictionary<HookType,LinkedList<IHook>> hooks = new Dictionary<HookType, LinkedList<IHook>> ();
+		private readonly Dictionary<EventType,LinkedList<IHook>> hooks = new Dictionary<EventType, LinkedList<IHook>> ();
 		private DrawTheoryMode mode = DrawTheoryMode.Cairo;
 		private double minTime = 0.0d;
 		private double maxTime = 0.0d;
@@ -165,13 +166,17 @@ namespace IdpGie {
 			this.hooks.AddListDictionary (hook.HookType, hook);
 		}
 
-		public void FireHook (HookType type, IList<ITerm> parameters) {
+		public void FireHook (EventType type, IList<ITerm> parameters) {
 			LinkedList<IHook> firelist;
 			if (hooks.TryGetValue (type, out firelist)) {
 				foreach (IHook hook in firelist) {
 					hook.Fire (parameters);
 				}
 			}
+		}
+
+		public IEnumerable<EventType> GetHookTypes () {
+			return this.hooks.Keys;
 		}
 
 		#region IComparable implementation

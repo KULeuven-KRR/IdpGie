@@ -1,9 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NamedObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CairoFrameWidget.cs">
     <Files>
       <File FileName="Keys.cs" Line="5" Column="3" />
-      <File FileName="NamedObject.cs" Line="31" Column="26" />
+      <File FileName="NamedObject.cs" Line="49" Column="16" />
+      <File FileName="CairoFrameWidget.cs" Line="47" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Gdk;
 
 namespace IdpGie {
 	public interface IHook {
-		HookType HookType {
+		EventType HookType {
 			get;
 		}
 

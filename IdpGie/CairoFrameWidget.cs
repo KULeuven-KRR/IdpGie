@@ -22,6 +22,7 @@ using System;
 using System.Linq;
 using Gtk;
 using Cairo;
+using Gdk;
 
 namespace IdpGie {
 	public class CairoFrameWidget : CairoMediaWidget {
@@ -43,7 +44,17 @@ namespace IdpGie {
 
 		public CairoFrameWidget (DrawTheory theory) {
 			this.Theory = theory;
-			this.AddEvents ((int)(Gdk.EventMask.PointerMotionMask | Gdk.EventMask.ButtonPressMask | Gdk.EventMask.ButtonReleaseMask));
+			this.CanFocus = true;
+			this.Activate ();
+			foreach (EventType type in theory.GetHookTypes ()) {
+				this.AddEvents ((int)type);
+			}
+		}
+
+		[GLib.ConnectBefore]
+		protected override bool OnKeyPressEvent (Gdk.EventKey evnt) {
+			Console.WriteLine (evnt.Key);
+			return base.OnKeyPressEvent (evnt);
 		}
 
 		protected override void PaintWidget (Context ctx, int w, int h) {
