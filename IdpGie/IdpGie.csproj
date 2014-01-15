@@ -222,6 +222,7 @@
     <Compile Include="IdpInteraction.cs" />
     <Compile Include="NamedFunctionItime.cs" />
     <Compile Include="NamedFunctionDtime.cs" />
+    <Compile Include="TypedClauseMethodPredicate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

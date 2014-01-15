@@ -1,14 +1,14 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CairoFrameWidget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="lex.ll">
     <Files>
-      <File FileName="Keys.cs" Line="1" Column="1" />
-      <File FileName="NamedObject.cs" Line="49" Column="16" />
-      <File FileName="CairoFrameWidget.cs" Line="38" Column="19" />
-      <File FileName="TopWindow.cs" Line="64" Column="27" />
-      <File FileName="DrawTheory.cs" Line="178" Column="31" />
-      <File FileName="KeyHook.cs" Line="7" Column="23" />
-      <File FileName="IHook.cs" Line="7" Column="12" />
+      <File FileName="PaintMethodAttribute.cs" Line="30" Column="59" />
+      <File FileName="Lexer.cs" Line="1452" Column="36" />
+      <File FileName="CairoFrameWidget.cs" Line="56" Column="39" />
+      <File FileName="DrawTheory.cs" Line="149" Column="24" />
+      <File FileName="PositiveClause.cs" Line="50" Column="31" />
+      <File FileName="parse.yy" Line="51" Column="94" />
+      <File FileName="lex.ll" Line="56" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

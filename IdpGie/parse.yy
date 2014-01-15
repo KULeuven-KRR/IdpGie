@@ -51,7 +51,7 @@ element     : clause                                        {$$ = $1;}
 clause      : atom IMPLY body                               {$$ = new PositiveClause($1,$3);}
             ;
 
-body        : /* empty */                                   {$$ = null;}
+body        : atom                                          {$$ = new HeadTail<IAtom>($1,null);}
             | atom COMMA body                               {$$ = new HeadTail<IAtom>($1,$3);}
             ;
 

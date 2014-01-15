@@ -53,7 +53,6 @@ namespace IdpGie {
 
 		[GLib.ConnectBefore]
 		protected override bool OnKeyPressEvent (Gdk.EventKey evnt) {
-			Console.WriteLine (evnt.Key);
 			return base.OnKeyPressEvent (evnt);
 		}
 

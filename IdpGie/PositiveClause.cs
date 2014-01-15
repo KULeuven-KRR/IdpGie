@@ -20,49 +20,51 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System;
 
 namespace IdpGie {
+	public class PositiveClause : IPositiveClause {
+		private IAtom head;
+		private IEnumerable<IAtom> body;
 
-    public class PositiveClause : IPositiveClause {
+		#region IPositiveClause implementation
 
-        private IAtom head;
-        private IEnumerable<IAtom> body;
+		public IAtom Head {
+			get {
+				return this.head;
+			}
+		}
 
-        #region IPositiveClause implementation
-        public IAtom Head {
-            get {
-                return this.head;
-            }
-        }
+		public IEnumerable<IAtom> Body {
+			get {
+				return this.body;
+			}
+		}
 
-        public IEnumerable<IAtom> Body {
-            get {
-                return this.body;
-            }
-        }
-        #endregion
+		#endregion
 
-        #region IPriority implementation
-        public double Priority {
-            get {
-                return this.head.Priority;
-            }
-        }
-        #endregion
+		#region IPriority implementation
 
-        public PositiveClause (IAtom head, IEnumerable<IAtom> body) {
-            this.head = head;
-            this.body = body;
-        }
+		public double Priority {
+			get {
+				return this.head.Priority;
+			}
+		}
 
-        public override string ToString () {
-            return string.Format ("{0} :- {1}", this.head, string.Join (", ", this.body));
-        }
+		#endregion
 
-        public virtual void Execute (DrawTheory theory) {
+		public PositiveClause (IAtom head, IEnumerable<IAtom> body) {
+			this.head = head;
+			this.body = body;
+		}
 
-        }
+		public override string ToString () {
+			return string.Format ("{0} :- {1}", this.head, string.Join (", ", this.body));
+		}
 
-    }
+		public virtual void Execute (DrawTheory theory) {
+			Console.WriteLine ("Hook");
+		}
+	}
 }
 

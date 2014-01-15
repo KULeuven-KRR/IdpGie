@@ -29,9 +29,9 @@ IMPLY           \:\-
 %%
 
 {COMMENT}       {}
+{IMPLY}         {return (int) Token.IMPLY;}
 {FLT}           {return (int) Token.FLT;}
 {INT}           {return (int) Token.INT;}
-{IMPLY}         {return (int) Token.IMPLY;}
 {ID}            {return (int) Token.IDENTIFIER;}
 {STR}           {return (int) Token.STRING;}
 {OBR}           {return (int) Token.OBR;}
