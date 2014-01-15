@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
-	public class NamedFunctionItime : IFunction, IFunctionInstance {
-		public static readonly NamedFunctionItime Instance = new NamedFunctionItime ();
-		private int itime = 0x00;
+	public class NamedFunctionDtime : IFunction, IFunctionInstance {
+		public static readonly NamedFunctionDtime Instance = new NamedFunctionDtime ();
+		private double time = 0.0d;
 
 		#region IName implementation
 
 		public string Name {
 			get {
-				return "itime";
+				return "dtime";
 			}
 		}
 
@@ -68,7 +68,7 @@ namespace IdpGie {
 
 		public TermType Type {
 			get {
-				return TermType.Int;
+				return TermType.Float;
 			}
 		}
 
@@ -96,18 +96,18 @@ namespace IdpGie {
 
 		public object Value {
 			get {
-				return this.itime;
+				return this.time;
 			}
 			set {
 				if (value is int) {
-					this.itime = (int)value;
+					this.time = (int)value;
 				}
 			}
 		}
 
 		#endregion
 
-		private NamedFunctionItime () {
+		private NamedFunctionDtime () {
 		}
 
 		#region ITermHeader implementation
@@ -183,7 +183,7 @@ namespace IdpGie {
 		#endregion
 
 		public void SetValue (BlueprintMediabar sender, double value) {
-			this.itime = (int)Math.Floor (value);
+			this.time = value;
 		}
 	}
 }

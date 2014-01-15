@@ -221,6 +221,7 @@
     <Compile Include="DictionaryUtils.cs" />
     <Compile Include="IdpInteraction.cs" />
     <Compile Include="NamedFunctionItime.cs" />
+    <Compile Include="NamedFunctionDtime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

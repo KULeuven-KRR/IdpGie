@@ -30,6 +30,8 @@ namespace IdpGie {
 		public static readonly GlobalInputContext Instance = new GlobalInputContext ();
 
 		private GlobalInputContext () {
+			this.addFunction (NamedFunctionItime.Instance);
+			this.addFunction (NamedFunctionDtime.Instance);
 			this.LoadAssembly (Assembly.GetExecutingAssembly ());
 		}
 

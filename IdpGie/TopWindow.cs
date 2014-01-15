@@ -30,6 +30,7 @@ namespace IdpGie {
 
 		public TopWindow () : base (WindowType.Toplevel) {
 			this.Build ();
+			this.mediabar.CurrentChanged += NamedFunctionItime.Instance.SetValue;
 			this.Show ();
 		}
 
