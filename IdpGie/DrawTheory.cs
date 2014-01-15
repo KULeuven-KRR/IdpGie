@@ -32,12 +32,23 @@ namespace IdpGie {
 		private double minTime = 0.0d;
 		private double maxTime = 0.0d;
 
+		private event EventHandler changed;
+
 		public DrawTheoryMode Mode {
 			get {
 				return this.mode;
 			}
 			set {
 				this.mode = value;
+			}
+		}
+
+		public event EventHandler Changed {
+			add {
+				this.changed += value;
+			}
+			remove {
+				this.changed -= value;
 			}
 		}
 
