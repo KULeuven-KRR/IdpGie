@@ -3,20 +3,21 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace IdpGie {
-	public class KeyHook : IHook {
+	public class KeyHook : HookBase {
 		private readonly Keys Key;
 
-		public EventType HookType {
+		public override EventType HookType {
 			get {
 				return EventType.KeyPress;
 			}
 		}
 
-		public KeyHook (Keys key) {
+		public KeyHook (Body body, Keys key) : base (body) {
 			this.Key = key;
 		}
 
 		protected virtual void FilteredFire (DrawTheory theory, IList<ITerm> terms) {
+			base.Execute (theory, terms);
 		}
 
 		#region IHook implementation
