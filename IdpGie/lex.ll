@@ -23,7 +23,7 @@ OFB             \[
 CFB             \]
 OPA             =
 COMMENT         \/\/[^\n]*\n
-IMPLY           \:\-
+IMPLY           \-\:
 
 
 %%
