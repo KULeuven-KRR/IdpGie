@@ -19,11 +19,32 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
 
 namespace IdpGie {
 	[AttributeUsage (AttributeTargets.Method)]
 	public class HookMethodAttribute : MethodBaseAttribute {
+
+		#region implemented abstract members of MethodBaseAttribute
+
+		public override string Stem {
+			get {
+				return "idph_";
+			}
+		}
+
+		#endregion
+
 		public HookMethodAttribute (string name, double priority = 1000.0d, params TermType[] types) : base (name, priority, types) {
+		}
+
+		public IEnumerable<IPredicate> Predicates (MethodInfo mi) {
+			double pr = this.Priority;
+			string stem = this.StemName;
+			List<TermType> tt = this.Types.ToList ();
+			yield return new TypedMethodPredicate (stem, tt, mi, pr);
 		}
 	}
 }

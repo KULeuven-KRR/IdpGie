@@ -32,6 +32,7 @@ namespace IdpGie {
 
 		#region Keys      (0x0100000000000000 family)
 
+		Keya = 0x0100000000000000,
 		#endregion
 
 		#region Mouse

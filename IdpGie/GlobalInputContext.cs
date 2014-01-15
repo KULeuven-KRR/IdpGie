@@ -112,7 +112,9 @@ namespace IdpGie {
 							}
 						}
 						foreach (HookMethodAttribute ma in method.GetCustomAttributes(typeof(HookMethodAttribute),false).Cast<HookMethodAttribute>()) {
-
+							foreach (TypedMethodPredicate p in ma.Predicates(method)) {
+								this.addPredicate (p);
+							}
 						}
 					}
 				}

@@ -21,13 +21,21 @@
 using System;
 
 namespace IdpGie {
+	[AttributeUsage (AttributeTargets.Method)]
+	public class TheoryAlteringMethodAttribute : MethodBaseAttribute {
 
-    [AttributeUsage(AttributeTargets.Method)]
-    public class TheoryAlteringMethodAttribute : MethodBaseAttribute {
+		#region implemented abstract members of MethodBaseAttribute
 
-        public TheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name,priority,types) {
-        }
+		public override string Stem {
+			get {
+				return "idpa_";
+			}
+		}
 
-    }
+		#endregion
+
+		public TheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base (name, priority, types) {
+		}
+	}
 }
 

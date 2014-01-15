@@ -22,37 +22,46 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public abstract class MethodBaseAttribute : NamedAttributeBase, IPriority {
+		private readonly double priority;
+		private readonly IList<TermType> types;
 
-    public abstract class MethodBaseAttribute : NamedAttributeBase, IPriority {
+		public abstract string Stem {
+			get;
+		}
 
-        private readonly double priority;
-        private readonly IList<TermType> types;
+		public string StemName {
+			get {
+				return this.Stem + this.Name;
+			}
+		}
 
-        #region IPriority implementation
-        public virtual double Priority {
-            get {
-                return this.priority;
-            }
-        }
-        #endregion
+		#region IPriority implementation
 
-        public virtual IList<TermType> Types {
-            get {
-                return this.types;
-            }
-        }
+		public virtual double Priority {
+			get {
+				return this.priority;
+			}
+		}
 
-        public virtual Tuple<string, int> Signature {
-            get {
-                return new Tuple<string,int> ("idpd_" + this.Name, this.Types.Count);
-            }
-        }
+		#endregion
 
-        protected MethodBaseAttribute (string name, double priority = 1.0d, params TermType[] types) : base(name) {
-            this.priority = priority;
-            this.types = types;
-        }
+		public virtual IList<TermType> Types {
+			get {
+				return this.types;
+			}
+		}
 
-    }
+		public virtual Tuple<string, int> Signature {
+			get {
+				return new Tuple<string,int> (this.StemName, this.Types.Count);
+			}
+		}
+
+		protected MethodBaseAttribute (string name, double priority = 1.0d, params TermType[] types) : base (name) {
+			this.priority = priority;
+			this.types = types;
+		}
+	}
 }
 

@@ -31,6 +31,16 @@ namespace IdpGie {
 		private readonly bool nameDependent;
 		private readonly bool timeDependent;
 
+		#region implemented abstract members of MethodBaseAttribute
+
+		public override string Stem {
+			get {
+				return "idpd_";
+			}
+		}
+
+		#endregion
+
 		public bool NameDependent {
 			get {
 				return this.nameDependent;
@@ -53,7 +63,7 @@ namespace IdpGie {
 
 		public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {
 			double pr = this.Priority;
-			string stem = "idpd_" + this.Name;
+			string stem = this.StemName;
 			List<TermType> tt = this.Types.ToList ();
 			if (this.nameDependent) {
 				tt.Insert (0x00, TermType.String);

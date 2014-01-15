@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace IdpGie {
 	public class NamedFunctionItime : IFunction, IFunctionInstance {
 		public static readonly NamedFunctionItime Instance = new NamedFunctionItime ();
-		private int itime = 0x00;
+		private int time = 0x00;
 
 		#region IName implementation
 
@@ -96,11 +96,11 @@ namespace IdpGie {
 
 		public object Value {
 			get {
-				return this.itime;
+				return this.time;
 			}
 			set {
 				if (value is int) {
-					this.itime = (int)value;
+					this.time = (int)value;
 				}
 			}
 		}
@@ -183,7 +183,7 @@ namespace IdpGie {
 		#endregion
 
 		public void SetValue (BlueprintMediabar sender, double value) {
-			this.itime = (int)Math.Floor (value);
+			this.time = (int)Math.Floor (value);
 		}
 	}
 }
