@@ -8,7 +8,7 @@ namespace IdpGie {
 			get;
 		}
 
-		void Fire (IList<ITerm> parameters);
+		void Execute (DrawTheory dt, IList<ITerm> parameters);
 	}
 }
 

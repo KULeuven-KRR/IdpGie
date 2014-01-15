@@ -181,7 +181,7 @@ namespace IdpGie {
 			LinkedList<IHook> firelist;
 			if (hooks.TryGetValue (type, out firelist)) {
 				foreach (IHook hook in firelist) {
-					hook.Fire (parameters);
+					hook.Execute (this, parameters);
 				}
 			}
 		}

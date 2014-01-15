@@ -223,6 +223,7 @@
     <Compile Include="NamedFunctionItime.cs" />
     <Compile Include="NamedFunctionDtime.cs" />
     <Compile Include="TypedClauseMethodPredicate.cs" />
+    <Compile Include="Body.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

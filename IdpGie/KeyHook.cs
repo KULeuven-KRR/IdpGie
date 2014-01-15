@@ -16,15 +16,15 @@ namespace IdpGie {
 			this.Key = key;
 		}
 
-		protected virtual void FilteredFire (IList<ITerm> terms) {
+		protected virtual void FilteredFire (DrawTheory theory, IList<ITerm> terms) {
 		}
 
 		#region IHook implementation
 
-		public void Fire (IList<ITerm> parameters) {
+		public void Execute (DrawTheory theory, IList<ITerm> parameters) {
 			NamedFunctionInstance term = parameters.FirstOrDefault () as NamedFunctionInstance;
 			if (term != null && term.Name == Key.ToString ()) {
-				this.FilteredFire (parameters);
+				this.FilteredFire (theory, parameters);
 			}
 		}
 
