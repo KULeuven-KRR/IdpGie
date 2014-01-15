@@ -219,6 +219,8 @@
     <Compile Include="HookMapping.cs" />
     <Compile Include="PaintMethodAttribute.cs" />
     <Compile Include="DictionaryUtils.cs" />
+    <Compile Include="IdpInteraction.cs" />
+    <Compile Include="NamedFunctionItime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
