@@ -63,7 +63,7 @@ namespace IdpGie {
 		}
 
 		public virtual void Execute (DrawTheory theory) {
-			Console.WriteLine ("Hook");
+			this.head.Predicate.Execute (theory, this.head.Terms, this.Body);
 		}
 	}
 }

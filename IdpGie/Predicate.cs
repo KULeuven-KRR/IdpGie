@@ -22,55 +22,64 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public class Predicate : TermHeader, IPredicate {
 
-    public class Predicate : TermHeader, IPredicate {
+		#region IPredicate implementation
 
-        #region IPredicate implementation
-        public virtual bool IsDrawCommand {
-            get {
-                return false;
-            }
-        }
+		public virtual bool IsDrawCommand {
+			get {
+				return false;
+			}
+		}
 
-        public virtual bool IsHook {
-            get {
-                return false;
-            }
-        }
-        #endregion
-        public Predicate (string name, int arity, double priority = 1.0d) : base(name,arity,priority) {
-        }
+		public virtual bool IsHook {
+			get {
+				return false;
+			}
+		}
 
-        public bool ValidateAtom (Atom atom) {
-            return (atom != null && atom.Header == this && atom.Terms.Count == this.Arity);
-        }
+		#endregion
 
-        public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
-        }
+		public Predicate (string name, int arity, double priority = 1.0d) : base (name, arity, priority) {
+		}
 
-        IAtom IPredicate.CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return (IAtom)this.CreateInstance (terms);
-        }
+		public bool ValidateAtom (Atom atom) {
+			return (atom != null && atom.Header == this && atom.Terms.Count == this.Arity);
+		}
 
-        #region IPredicate implementation
-        public override ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            List<IFunctionInstance> list;
-            if (terms != null) {
-                list = terms.ToList ();
-            } else {
-                list = new List<IFunctionInstance> ();
-            }
-            return new Atom (this, list);
-        }
-        #endregion
+		public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments) {
+			this.Execute (theory, arguments, EnumerableUtils.Zero<IAtom> ());
+		}
 
-        #region IPredicate implementation
-        public IAtom GetInstance (IEnumerable<IFunctionInstance> terms) {
-            throw new System.NotImplementedException ();
-        }
-        #endregion
+		public virtual void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
+		}
 
+		IAtom IPredicate.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			return (IAtom)this.CreateInstance (terms);
+		}
 
-    }
+		#region IPredicate implementation
+
+		public override ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			List<IFunctionInstance> list;
+			if (terms != null) {
+				list = terms.ToList ();
+			} else {
+				list = new List<IFunctionInstance> ();
+			}
+			return new Atom (this, list);
+		}
+
+		#endregion
+
+		#region IPredicate implementation
+
+		public IAtom GetInstance (IEnumerable<IFunctionInstance> terms) {
+			throw new System.NotImplementedException ();
+		}
+
+		#endregion
+
+	}
 }
 

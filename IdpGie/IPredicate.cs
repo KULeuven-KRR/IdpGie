@@ -21,22 +21,20 @@
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public interface IPredicate : ITermHeader {
+		bool IsDrawCommand {
+			get;
+		}
 
-    public interface IPredicate : ITermHeader {
+		bool IsHook {
+			get;
+		}
 
-        bool IsDrawCommand {
-            get;
-        }
+		void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments);
 
-        bool IsHook {
-            get;
-        }
+		void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body);
 
-        void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments);
-
-        IAtom CreateInstance (IEnumerable<IFunctionInstance> terms);
-
-    }
-
+		IAtom CreateInstance (IEnumerable<IFunctionInstance> terms);
+	}
 }
 
