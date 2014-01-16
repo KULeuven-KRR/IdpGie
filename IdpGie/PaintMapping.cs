@@ -43,6 +43,11 @@ namespace IdpGie {
 			dt.AddIdpdObject (new ShapeRegularPolygonObject (name, 4, width));
 		}
 
+		[PaintMethod ("console", false, false, 0.0d, TermType.String)]
+		public static void Ellipse (DrawTheory dt, string text) {
+			Console.WriteLine (text);
+		}
+
 		[PaintMethod ("graph", true, false, 0.0d, TermType.Float, TermType.Float)]
 		public static void Graph (DrawTheory dt, IFunctionInstance name, double width, double height) {
 

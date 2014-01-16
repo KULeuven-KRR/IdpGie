@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Gdk;
 
 namespace IdpGie {
-	public class HookBase : IHook {
+	public abstract class HookBase : IHook {
 		private readonly Body body;
 
 		#region IHook implementation
@@ -20,13 +20,16 @@ namespace IdpGie {
 			}
 		}
 
-		public HookBase (Body body) {
+		protected HookBase (Body body) {
 			this.body = body;
+		}
+
+		protected HookBase (IEnumerable<IAtom> body) : this (new Body (body)) {
 		}
 
 		#region IHook implementation
 
-		public void Execute (DrawTheory theory, IList<ITerm> parameters) {
+		public virtual void Execute (DrawTheory theory, IList<ITerm> parameters) {
 			this.body.Execute (theory);
 		}
 

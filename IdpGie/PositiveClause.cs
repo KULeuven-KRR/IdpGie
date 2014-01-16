@@ -24,8 +24,8 @@ using System;
 
 namespace IdpGie {
 	public class PositiveClause : IPositiveClause {
-		private IAtom head;
-		private IEnumerable<IAtom> body;
+		private readonly IAtom head;
+		private readonly Body body;
 
 		#region IPositiveClause implementation
 
@@ -35,13 +35,19 @@ namespace IdpGie {
 			}
 		}
 
-		public IEnumerable<IAtom> Body {
+		IEnumerable<IAtom> IPositiveClause.Body {
 			get {
-				return this.body;
+				return this.body.Elements;
 			}
 		}
 
 		#endregion
+
+		public Body Body {
+			get {
+				return this.body;
+			}
+		}
 
 		#region IPriority implementation
 
@@ -53,7 +59,10 @@ namespace IdpGie {
 
 		#endregion
 
-		public PositiveClause (IAtom head, IEnumerable<IAtom> body) {
+		public PositiveClause (IAtom head, IEnumerable<IAtom> body) : this (head, new Body (body)) {
+		}
+
+		public PositiveClause (IAtom head, Body body) {
 			this.head = head;
 			this.body = body;
 		}
@@ -63,8 +72,7 @@ namespace IdpGie {
 		}
 
 		public virtual void Execute (DrawTheory theory) {
-			this.head.Predicate.Execute (theory, this.head.Terms, this.Body);
+			this.head.Predicate.Execute (theory, this.head.Terms, this.Body.Elements);
 		}
 	}
 }
-

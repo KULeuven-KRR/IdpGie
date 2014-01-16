@@ -8,15 +8,15 @@ namespace IdpGie {
 		public TypedClauseMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base (name, termTypes, method, priority) {
 		}
 
-		public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
-			Console.WriteLine ("whee");
-			object[] val = EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.Method.GetParameters ().Skip (0x01).Select (x => x.ParameterType))).ToArray ();
+		public override object ExecuteResult (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
+			object[] val = EnumerableUtils.FirstsLast (EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.Method.GetParameters ().Skip (0x01).SkipLast (0x01).Select (x => x.ParameterType))), body).ToArray ();
 			try {
-				this.Method.Invoke (null, val);
-				base.Execute (theory, arguments);
-			} catch (Exception) {
+				return this.Method.Invoke (null, val);
+			} catch (Exception e) {
 				Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
-				//Console.WriteLine (e);
+				Console.WriteLine (string.Join (" ; ", val.Select (x => x.GetType ())));
+				Console.WriteLine (e);
+				return null;
 			}
 		}
 	}

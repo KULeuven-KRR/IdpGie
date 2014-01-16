@@ -40,15 +40,21 @@ namespace IdpGie {
 			this.method = method;
 		}
 
-		public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
+		public virtual object ExecuteResult (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
 			object[] val = EnumerableUtils.HeadTail (theory, TypeSystem.GetArguments (arguments, this.TermTypes, this.method.GetParameters ().Skip (0x01).Select (x => x.ParameterType))).ToArray ();
 			try {
-				this.method.Invoke (null, val);
+				object result = this.method.Invoke (null, val);
 				base.Execute (theory, arguments, body);
+				return result;
 			} catch (Exception) {
 				Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
 				//Console.WriteLine (e);
+				return null;
 			}
+		}
+
+		public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
+			ExecuteResult (theory, arguments, body);
 		}
 	}
 }

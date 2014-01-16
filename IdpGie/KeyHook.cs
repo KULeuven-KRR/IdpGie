@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace IdpGie {
 	public class KeyHook : HookBase {
-		private readonly Keys Key;
+		private readonly Key Key;
 
 		public override EventType HookType {
 			get {
@@ -12,8 +12,11 @@ namespace IdpGie {
 			}
 		}
 
-		public KeyHook (Body body, Keys key) : base (body) {
+		public KeyHook (Body body, Key key) : base (body) {
 			this.Key = key;
+		}
+
+		public KeyHook (IEnumerable<IAtom> body, Key key) : this (new Body (body), key) {
 		}
 
 		protected virtual void FilteredFire (DrawTheory theory, IList<ITerm> terms) {
@@ -22,11 +25,8 @@ namespace IdpGie {
 
 		#region IHook implementation
 
-		public void Execute (DrawTheory theory, IList<ITerm> parameters) {
-			NamedFunctionInstance term = parameters.FirstOrDefault () as NamedFunctionInstance;
-			if (term != null && term.Name == Key.ToString ()) {
-				this.FilteredFire (theory, parameters);
-			}
+		public override void Execute (DrawTheory theory, IList<ITerm> parameters) {
+			this.FilteredFire (theory, parameters);
 		}
 
 		#endregion

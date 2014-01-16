@@ -23,6 +23,7 @@ using System.Linq;
 using Gtk;
 using Cairo;
 using Gdk;
+using System.Collections.Generic;
 
 namespace IdpGie {
 	public class CairoFrameWidget : CairoMediaWidget {
@@ -53,6 +54,7 @@ namespace IdpGie {
 
 		[GLib.ConnectBefore]
 		protected override bool OnKeyPressEvent (Gdk.EventKey evnt) {
+			this.Theory.FireHook (EventType.KeyPress, new List<ITerm> ());
 			return base.OnKeyPressEvent (evnt);
 		}
 

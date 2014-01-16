@@ -4,20 +4,20 @@ using System.Reflection;
 
 namespace IdpGie {
 	public class Body {
-		private readonly IEnumerable<IAtom> body;
+		private readonly IEnumerable<IAtom> elements;
 
 		public IEnumerable<IAtom> Elements {
 			get {
-				return body;
+				return elements;
 			}
 		}
 
 		public Body (IEnumerable<IAtom> elements) {
-			this.body = elements;
+			this.elements = elements;
 		}
 
 		public void Execute (DrawTheory theory) {
-			foreach (IAtom atom in this.body) {
+			foreach (IAtom atom in this.elements) {
 				atom.Execute (theory);
 			}
 		}

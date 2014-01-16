@@ -154,8 +154,29 @@ namespace IdpGie {
 			}
 		}
 
+		public static IEnumerable<T> FirstsLast<T> (IEnumerable<T> firsts, T last) {
+			foreach (T val in firsts) {
+				yield return val;
+			}
+			yield return last;
+		}
+
 		public static IEnumerable<T> Zero<T> () {
 			yield break;
+		}
+
+		public static IEnumerable<T> SkipLast<T> (this IEnumerable<T> source, int count) {
+			T[] cache = new T[count];
+			IEnumerator<T> enumer = source.GetEnumerator ();
+			for (int i = 0x00; i < count && enumer.MoveNext (); i++) {
+				cache [i] = enumer.Current;
+			}
+			int teller = 0x00;
+			while (enumer.MoveNext ()) {
+				yield return cache [teller];
+				cache [teller++] = enumer.Current;
+				teller %= count;
+			}
 		}
 	}
 }
