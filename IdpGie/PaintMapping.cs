@@ -60,8 +60,7 @@ namespace IdpGie {
 
 		[PaintMethod ("text", true, true, TermType.String)]
 		public static void Text (DrawTheory dt, IFunctionInstance name, string text, double time = double.NaN) {
-			dt.RegisterTime (time);
-			dt [name].AddModifier (time, x => x.SetText (text));
+			dt.AddModifier (name, time, x => x.SetText (text));
 		}
 
 		[PaintMethod ("edge", false, false, 0.75d, TermType.String, TermType.String, TermType.String)]
@@ -76,20 +75,17 @@ namespace IdpGie {
 
 		[PaintMethod ("xpos", true, true, TermType.Float)]
 		public static void Xpos (DrawTheory dt, IFunctionInstance name, double xpos, double time = double.NaN) {
-			dt.RegisterTime (time);
-			dt [name].AddModifier (time, x => x.SetXPos (xpos));
+			dt.AddModifier (name, time, x => x.SetXPos (xpos));
 		}
 
 		[PaintMethod ("ypos", true, true, TermType.Float)]
 		public static void Ypos (DrawTheory dt, IFunctionInstance name, double ypos, double time = double.NaN) {
-			dt.RegisterTime (time);
-			dt [name].AddModifier (time, x => x.SetYPos (ypos));
+			dt.AddModifier (name, time, x => x.SetYPos (ypos));
 		}
 
 		[PaintMethod ("zpos", true, true, TermType.Float)]
 		public static void Zpos (DrawTheory dt, IFunctionInstance name, double zpos, double time = double.NaN) {
-			dt.RegisterTime (time);
-			dt [name].AddModifier (time, x => x.SetZPos (zpos));
+			dt.AddModifier (name, time, x => x.SetZPos (zpos));
 		}
 
 		[PaintMethod ("pos", true, true, TermType.Float, TermType.Float, TermType.Float)]
@@ -161,27 +157,27 @@ namespace IdpGie {
 
 		[PaintMethod ("edgecolor", true, true, TermType.Int, TermType.Int, TermType.Int)]
 		public static void EdgeColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
-			dt [name].AddModifier (time, x => x.SetEdgeColor (r, g, b));
+			dt.AddModifier (name, time, x => x.SetEdgeColor (r, g, b));
 		}
 
 		[PaintMethod ("innercolor", true, true, TermType.Int, TermType.Int, TermType.Int)]
 		public static void InnerColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
-			dt [name].AddModifier (time, x => x.SetInnerColor (r, g, b));
+			dt.AddModifier (name, time, x => x.SetInnerColor (r, g, b));
 		}
 
 		[PaintMethod ("depth", true, true, TermType.Float)]
 		public static void Depth (DrawTheory dt, IFunctionInstance name, double index, double time = double.NaN) {
-			dt [name].AddModifier (time, x => x.SetZPos (index));
+			dt.AddModifier (name, time, x => x.SetZPos (index));
 		}
 
 		[PaintMethod ("show", true, true)]
 		public static void Show (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
-			dt [name].AddModifier (time, x => x.Show ());
+			dt.AddModifier (name, time, x => x.Show ());
 		}
 
 		[PaintMethod ("hide", true, true)]
 		public static void Hide (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
-			dt [name].AddModifier (time, x => x.Hide ());
+			dt.AddModifier (name, time, x => x.Hide ());
 		}
 	}
 }

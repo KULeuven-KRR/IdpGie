@@ -125,6 +125,24 @@ namespace IdpGie {
 			}
 		}
 
+		public void AddModifier (IFunctionInstance name, double time, Action<ShapeState> modifier) {
+			this [name].State.AddModifier (time, modifier);
+			this.RegisterTime (time);
+			this.trigger_changed ();
+		}
+
+		private void trigger_changed () {
+			EventArgs e = new EventArgs ();
+			this.OnChanged (e);
+			if (this.changed != null) {
+				this.changed (this, e);
+			}
+		}
+
+		protected virtual void OnChanged (EventArgs e) {
+
+		}
+
 		public string ToFullString () {
 			StringBuilder sb = new StringBuilder ();
 			foreach (ITheoryItem atm in elements) {

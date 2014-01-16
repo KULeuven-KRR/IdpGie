@@ -45,11 +45,16 @@ namespace IdpGie {
 
 		public CairoFrameWidget (DrawTheory theory) {
 			this.Theory = theory;
+			this.Theory.Changed += HandleChanged;
 			this.CanFocus = true;
 			this.Activate ();
 			foreach (EventType type in theory.GetHookTypes ()) {
 				this.AddEvents ((int)type);
 			}
+		}
+
+		void HandleChanged (object sender, EventArgs e) {
+			this.QueueDraw ();
 		}
 
 		[GLib.ConnectBefore]
