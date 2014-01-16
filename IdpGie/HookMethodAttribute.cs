@@ -40,11 +40,11 @@ namespace IdpGie {
 		public HookMethodAttribute (string name, double priority = 1000.0d, params TermType[] types) : base (name, priority, types) {
 		}
 
-		public IEnumerable<TypedClauseMethodPredicate> Predicates (MethodInfo mi) {
+		public IEnumerable<HookMethodPredicate> Predicates (MethodInfo mi) {
 			double pr = this.Priority;
 			string stem = this.StemName;
 			List<TermType> tt = this.Types.ToList ();
-			yield return new TypedClauseMethodPredicate (stem, tt, mi, pr);
+			yield return new HookMethodPredicate (stem, tt, mi, pr);
 		}
 	}
 }
