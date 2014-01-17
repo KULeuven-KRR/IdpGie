@@ -235,4 +235,10 @@
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="glsharp\GLSharp\GLSharp.csproj">
+      <Project>{30B60C25-D36D-41C9-8724-8691FB1AE16D}</Project>
+      <Name>GLSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
