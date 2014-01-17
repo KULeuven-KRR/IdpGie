@@ -4,6 +4,7 @@ using System.Diagnostics;
 namespace IdpGie {
 	public class IdpInteraction {
 		public const string IDP_EXECUTABLE = @"/home/kommusoft/idp/bin/idp";
+		public const string GRINGO_EXECUTABLE = @"gringo";
 
 		public IdpInteraction () {
 		}

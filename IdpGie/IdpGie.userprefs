@@ -1,14 +1,17 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="lex.ll">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IdpInteraction.cs">
     <Files>
-      <File FileName="PaintMethodAttribute.cs" Line="30" Column="59" />
-      <File FileName="Lexer.cs" Line="1452" Column="36" />
-      <File FileName="CairoFrameWidget.cs" Line="56" Column="39" />
-      <File FileName="DrawTheory.cs" Line="149" Column="24" />
-      <File FileName="PositiveClause.cs" Line="50" Column="31" />
-      <File FileName="parse.yy" Line="51" Column="94" />
-      <File FileName="lex.ll" Line="56" Column="23" />
+      <File FileName="HookMethodPredicate.cs" Line="6" Column="34" />
+      <File FileName="TypedClauseMethodPredicate.cs" Line="17" Column="23" />
+      <File FileName="HookMethodAttribute.cs" Line="43" Column="41" />
+      <File FileName="GlobalInputContext.cs" Line="115" Column="36" />
+      <File FileName="DrawTheory.cs" Line="136" Column="23" />
+      <File FileName="PaintMapping.cs" Line="27" Column="11" />
+      <File FileName="Shape.cs" Line="105" Column="16" />
+      <File FileName="CairoFrameWidget.cs" Line="57" Column="22" />
+      <File FileName="ShapeState.cs" Line="254" Column="4" />
+      <File FileName="IdpInteraction.cs" Line="8" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
