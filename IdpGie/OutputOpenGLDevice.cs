@@ -22,18 +22,18 @@ using System;
 using Gtk;
 
 namespace IdpGie {
+	public class OutputOpenGLDevice : OutputDevice {
+		public OutputOpenGLDevice (DrawTheory theory) : base (theory) {
+		}
 
-    public class OutputOpenGLDevice : OutputDevice {
+		#region implemented abstract members of IdpGie.OutputDevice
 
-        public OutputOpenGLDevice (DrawTheory theory) : base(theory) {
-        }
+		public override void Run (ProgramManager manager) {
+			manager.OpenTab (this.Theory, new GLFrameWidget (this.Theory));
+		}
 
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run (ProgramManager manager) {
-            manager.OpenTab (this.Theory, new OpenGLFrameWidget ());
-        }
-        #endregion
+		#endregion
 
-    }
+	}
 }
 

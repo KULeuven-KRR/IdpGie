@@ -36,6 +36,18 @@ namespace IdpGie {
 			set;
 		}
 
+		public override double MinTime {
+			get {
+				return this.Theory.MinTime;
+			}
+		}
+
+		public override double MaxTime {
+			get {
+				return this.Theory.MaxTime;
+			}
+		}
+
 		public CairoFrameWidget (DrawTheory theory) {
 			this.Theory = theory;
 			this.Theory.Changed += HandleChanged;

@@ -1,17 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IdpInteraction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GlFrameWidget.cs">
     <Files>
-      <File FileName="HookMethodPredicate.cs" Line="6" Column="34" />
-      <File FileName="TypedClauseMethodPredicate.cs" Line="17" Column="23" />
-      <File FileName="HookMethodAttribute.cs" Line="43" Column="41" />
-      <File FileName="GlobalInputContext.cs" Line="115" Column="36" />
-      <File FileName="DrawTheory.cs" Line="136" Column="23" />
-      <File FileName="PaintMapping.cs" Line="27" Column="11" />
-      <File FileName="Shape.cs" Line="105" Column="16" />
-      <File FileName="CairoFrameWidget.cs" Line="57" Column="22" />
-      <File FileName="ShapeState.cs" Line="254" Column="4" />
-      <File FileName="IdpInteraction.cs" Line="8" Column="1" />
+      <File FileName="GlFrameWidget.cs" Line="39" Column="28" />
+      <File FileName="CairoFrameWidget.cs" Line="43" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

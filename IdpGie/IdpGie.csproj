@@ -147,7 +147,6 @@
     <Compile Include="ZIndexComparator.cs" />
     <Compile Include="IMediaObject.cs" />
     <Compile Include="CairoMediaWidget.cs" />
-    <Compile Include="OpenGLFrameWidget.cs" />
     <Compile Include="IInterpolatable.cs" />
     <Compile Include="TimeSensitiveComparer.cs" />
     <Compile Include="BlueprintTabControl.cs" />

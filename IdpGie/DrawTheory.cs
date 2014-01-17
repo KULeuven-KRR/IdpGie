@@ -167,27 +167,24 @@ namespace IdpGie {
 				item.Execute (this);
 			}
 			this.Time = minTime;
+			OutputDevice device = null;
 			switch (this.Mode) {
 			case DrawTheoryMode.Cairo:
-				using (OutputDevice device = new OutputCairoDevice (this)) {
-					device.Run (manager);
-				}
+				device = new OutputCairoDevice (this);
 				break;
 			case DrawTheoryMode.OpenGL:
-				using (OutputDevice device = new OutputOpenGLDevice (this)) {
-					device.Run (manager);
-				}
+				device = new OutputOpenGLDevice (this);
 				break;
 			case DrawTheoryMode.LaTeX:
-				using (OutputDevice device = new OutputLaTeXDevice (this)) {
-					device.Run (manager);
-				}
+				device = new OutputLaTeXDevice (this);
 				break;
 			case DrawTheoryMode.Print:
-				using (OutputDevice device = new OutputPrintDevice (this)) {
-					device.Run (manager);
-				}
+				device = new OutputPrintDevice (this);
 				break;
+			}
+			if (device != null) {
+				device.Run (manager);
+				device.Dispose ();
 			}
 		}
 

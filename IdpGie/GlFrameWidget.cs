@@ -3,6 +3,7 @@ using Cairo;
 using Gdk;
 using System.Collections.Generic;
 using GLSharp;
+using OpenTK.Graphics.ES20;
 
 namespace IdpGie {
 	public class GLFrameWidget : GLWidget, IDrawTheorySensitive, IMediaObject {
@@ -16,6 +17,16 @@ namespace IdpGie {
 			this.Theory.Changed += HandleChanged;
 			this.CanFocus = true;
 			this.Activate ();
+			this.Name = "glwidget1";
+			this.SingleBuffer = false;
+			this.ColorBPP = 0;
+			this.AccumulatorBPP = 0;
+			this.DepthBPP = 0;
+			this.StencilBPP = 0;
+			this.Samples = 0;
+			this.Stereo = false;
+			this.GlVersionMajor = 0;
+			this.GlVersionMinor = 0;
 			foreach (EventType type in theory.GetHookTypes ()) {
 				this.AddEvents ((int)type);
 			}
@@ -35,9 +46,13 @@ namespace IdpGie {
 			requisition.Width = 100;
 		}
 
-		public override void Seek (double time) {
+		public void Seek (double time) {
 			this.Theory.Time = time;
-			base.Seek (time);
+		}
+
+		protected override void OnRenderFrame () {
+			GL.Clear (ClearBufferMask.ColorBufferBit);
+			base.OnRenderFrame ();
 		}
 
 		public event EventHandler OnPlay;
@@ -105,25 +120,26 @@ namespace IdpGie {
 
 		public double MinTime {
 			get {
-				throw new NotImplementedException ();
+				return this.Theory.MinTime;
 			}
 		}
 
 		public double MaxTime {
 			get {
-				throw new NotImplementedException ();
+				return this.Theory.MaxTime;
 			}
 		}
 
 		public double TimeSpan {
 			get {
-				throw new NotImplementedException ();
+				return this.Theory.TimeSpan;
 			}
 		}
 
 		public IEnumerable<double> Chapters {
 			get {
-				throw new NotImplementedException ();
+				yield return this.MinTime;
+				yield break;
 			}
 		}
 	}

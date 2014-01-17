@@ -1,4 +1,4 @@
-idpd_rendering(cairo).
+idpd_rendering(opengl).
 
 idpd_polygon(een,4,64).
 idpd_polygon(twee,4,64).
