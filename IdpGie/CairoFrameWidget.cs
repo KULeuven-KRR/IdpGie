@@ -19,15 +19,12 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Linq;
-using Gtk;
 using Cairo;
 using Gdk;
 using System.Collections.Generic;
 
 namespace IdpGie {
-	public class CairoFrameWidget : CairoMediaWidget {
-		private DrawTheory theory;
+	public class CairoFrameWidget : CairoMediaWidget, IDrawTheorySensitive {
 		public const double Offset = 10.0d;
 		public const double Offset2 = Offset + BlueprintStyle.Thickness;
 		public const double Offset3 = Offset2 + BlueprintStyle.Thickness;
@@ -35,12 +32,8 @@ namespace IdpGie {
 		public const double LineDelta = 10.0d;
 
 		public DrawTheory Theory {
-			get {
-				return this.theory;
-			}
-			set {
-				this.theory = value;
-			}
+			get;
+			set;
 		}
 
 		public CairoFrameWidget (DrawTheory theory) {
@@ -58,7 +51,7 @@ namespace IdpGie {
 		}
 
 		[GLib.ConnectBefore]
-		protected override bool OnKeyPressEvent (Gdk.EventKey evnt) {
+		protected override bool OnKeyPressEvent (EventKey evnt) {
 			this.Theory.FireHook (EventType.KeyPress, new List<ITerm> ());
 			return base.OnKeyPressEvent (evnt);
 		}
@@ -68,7 +61,7 @@ namespace IdpGie {
 			ctx.Translate (Offset2, Offset2);
 			ctx.Save ();
 			ctx.SetFill (0.0d, 0.0d, 0.0d);
-			foreach (IShape obj in this.theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
+			foreach (IShape obj in this.Theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
 				obj.PaintObject (ctx);
 			}
 			ctx.Restore ();
@@ -109,7 +102,7 @@ namespace IdpGie {
 		}
 
 		public override void Seek (double time) {
-			this.theory.Time = time;
+			this.Theory.Time = time;
 			this.QueueDraw ();
 			base.Seek (time);
 		}

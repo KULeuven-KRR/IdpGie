@@ -225,6 +225,8 @@
     <Compile Include="Body.cs" />
     <Compile Include="HookBase.cs" />
     <Compile Include="HookMethodPredicate.cs" />
+    <Compile Include="GlFrameWidget.cs" />
+    <Compile Include="IDrawTheorySensitive.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
