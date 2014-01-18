@@ -18,6 +18,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#define PANGO
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -222,10 +224,23 @@ namespace IdpGie {
 			IEnumerator<string> enume = namei.GetEnumerator ();
 			for (int i = min; i <= max && enume.MoveNext (); i++) {
 				string name = enume.Current;
-				TextExtents te = ctx.TextExtents (name);
-				ctx.MoveTo (xc - 0.5d * te.Width, 0.5d * (h + te.Height));
-				ctx.ShowText (name);
-				xc += (1.0d + shaft) * ew;
+				if (name != null) {
+					#if PANGO
+					Pango.Layout pglay = Pango.CairoHelper.CreateLayout (ctx);
+					pglay.SetText (name);
+					Pango.Rectangle ra, rb;
+					pglay.GetExtents (out ra, out rb);
+					double tew = rb.Width / 1024.0d;
+					double teh = rb.Height / 1024.0d;
+					#else
+					TextExtents te = ctx.TextExtents (name);
+					double tew = te.Width;
+					double teh = te.Height;
+					#endif
+					ctx.MoveTo (xc - 0.5d * tew, 0.5d * (h + teh));
+					ctx.ShowText (name);
+					xc += (1.0d + shaft) * ew;
+				}
 			}
 		}
 

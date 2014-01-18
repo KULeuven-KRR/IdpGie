@@ -5,6 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
+    <widget-library name="../glsharp/GLSharp/bin/Debug/GLSharp.dll" />
     <widget-library name="../bin/Debug/IdpGie.exe" internal="true" />
   </import>
   <icon-factory>

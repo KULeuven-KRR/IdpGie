@@ -1,9 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GlFrameWidget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TopWindow.cs">
     <Files>
-      <File FileName="GlFrameWidget.cs" Line="39" Column="28" />
-      <File FileName="CairoFrameWidget.cs" Line="43" Column="21" />
+      <File FileName="GlFrameWidget.cs" Line="34" Column="66" />
+      <File FileName="DrawTheory.cs" Line="185" Column="25" />
+      <File FileName="OutputOpenGLDevice.cs" Line="29" Column="50" />
+      <File FileName="glsharp/GLSharp/GLWidget.cs" Line="123" Column="31" />
+      <File FileName="BlueprintTabControl.cs" Line="232" Column="40" />
+      <File FileName="ProgramManager.cs" Line="88" Column="42" />
+      <File FileName="BlueprintStyle.cs" Line="26" Column="77" />
+      <File FileName="TopWindow.cs" Line="65" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

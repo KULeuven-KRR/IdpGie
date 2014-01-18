@@ -56,14 +56,14 @@ namespace IdpGie {
 		public void CreateTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject {
 			string name = dt.Name;
 			this.mainhierarchy.Add (widget);
-			global::Gtk.Box.BoxChild w = ((global::Gtk.Box.BoxChild)(this.mainhierarchy [widget]));
+			Box.BoxChild w = ((Box.BoxChild)(this.mainhierarchy [widget]));
 			w.Position = 0;
 			w.Expand = true;
 			w.Fill = true;
 			this.sheets.Add (widget, dt);
 			this.SetCurrent (widget);
-			this.tabcontrol.Open (name);
 			widget.HasFocus = true;
+			this.tabcontrol.Open (name);
 		}
 
 		protected override bool OnDeleteEvent (Gdk.Event evnt) {

@@ -23,6 +23,7 @@ using IdpGie.Parser;
 using Mono.Unix;
 using System.IO;
 using Gtk;
+using OpenTK.Graphics;
 
 namespace IdpGie {
 	public class ProgramManager : IDisposable {
@@ -84,6 +85,7 @@ namespace IdpGie {
 		}
 
 		public static int Main (string[] args) {
+			GraphicsContext.ShareContexts = false;
 			Catalog.Init ("IdpGie", "./locale");
 			Application.Init ("IdpGie", ref args);
 			Gdk.Threads.Init ();
