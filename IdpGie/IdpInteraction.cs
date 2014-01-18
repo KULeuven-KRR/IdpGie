@@ -20,7 +20,7 @@ namespace IdpGie {
 		[XmlAttribute ("Liftedunitpropagation")]
 		public bool Liftedunitpropagation = false;
 		[XmlAttribute ("Nbmodels")]
-		public int nbmodels = 0;
+		public int Nbmodels = 0;
 
 		public IdpInteraction () {
 		}
@@ -35,8 +35,14 @@ namespace IdpGie {
 			private readonly StreamReader stdout, stderr;
 
 			public IdpSession (IdpInteraction interaction, string filename) {
-				this.process = Process.Start (interaction.IdpExecutable, string.Format ("-i {0}", file));
+				this.process = Process.Start (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", file));
 				this.stdin = this.process.StandardInput;
+				this.stdin.AutoFlush = false;
+				this.stdin.WriteLine ("stdoptions.xsb={0}", interaction.Xsb.ToString ().ToLower ());
+				this.stdin.WriteLine ("stdoptions.groundwithbounds={0}", interaction.Groundwithbounds.ToString ().ToLower ());
+				this.stdin.WriteLine ("stdoptions.liftedunitpropagation={0}", interaction.Liftedunitpropagation.ToString ().ToLower ());
+				this.stdin.WriteLine ("stdoptions.nbmodels={0}", interaction.Nbmodels);
+				this.stdin.Flush ();
 				this.stdout = this.process.StandardOutput;
 				this.stderr = this.process.StandardError;
 			}
@@ -44,6 +50,13 @@ namespace IdpGie {
 			public void ReadIn (string text) {
 				stdin.Write (text);
 				stdin.Flush ();
+			}
+
+			public string EchoModel () {
+				this.stdin.WriteLine ("stdoptions.language=\"asp\"");
+				this.stdin.WriteLine ("tostring (struc)");
+				this.stdin.Flush ();
+				return stdout.ReadToEnd ();
 			}
 		}
 	}
