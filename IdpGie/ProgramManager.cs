@@ -177,7 +177,7 @@ namespace IdpGie {
 					{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
 				};
 				try {
-					List<string> extra = options.Parse (args);
+					options.Parse (args);
 					manager.CheckConsistency ();
 
 					if (manager.ShowHelp) {
@@ -186,6 +186,9 @@ namespace IdpGie {
 						Console.WriteLine ();
 						Console.WriteLine ("Options:");
 						options.WriteOptionDescriptions (Console.Out);
+					} else if (manager.Interactive) {
+						IdpGie.IdpInteraction.IdpSession ses = new IdpInteraction ().RunIdpfile (manager.IdpFile, "T", "S1");
+						Console.WriteLine (ses.EchoModel ());
 					} else {
 						Application.Init ("IdpGie", ref args);
 						Gdk.Threads.Init ();

@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
+using IdpGie.Parser;
+using System.Text;
 
 namespace IdpGie {
 	[XmlType ("Interaction")]
@@ -13,6 +15,8 @@ namespace IdpGie {
 		public string GringoExecutable = @"gringo";
 		[XmlAttribute ("Clang")]
 		public string ClangExecutable = @"clang";
+		[XmlAttribute ("Clingo")]
+		public string ClingoExecutable = @"clingo";
 		[XmlAttribute ("Xsb")]
 		public bool Xsb = false;
 		[XmlAttribute ("Groundwithbounds")]
@@ -21,6 +25,8 @@ namespace IdpGie {
 		public bool Liftedunitpropagation = false;
 		[XmlAttribute ("Nbmodels")]
 		public int Nbmodels = 0;
+		[XmlAttribute ("Timeout")]
+		public int Timeout = 0x1000;
 
 		public IdpInteraction () {
 		}
@@ -36,7 +42,15 @@ namespace IdpGie {
 			private readonly string theory, structure;
 
 			public IdpSession (IdpInteraction interaction, string filename, string theory, string structure) {
-				this.process = Process.Start (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", filename));
+				this.process = new Process ();
+				this.process.StartInfo.FileName = interaction.IdpExecutable;
+				this.process.StartInfo.Arguments = string.Format ("--nowarnings -i {0}", filename);
+				this.process.StartInfo.UseShellExecute = false;
+				this.process.StartInfo.RedirectStandardInput = true;
+				this.process.StartInfo.RedirectStandardOutput = true;
+				this.process.StartInfo.RedirectStandardError = true;
+				this.process.StartInfo.CreateNoWindow = true;
+				this.process.Start ();
 				this.stdin = this.process.StandardInput;
 				this.stdin.AutoFlush = false;
 				this.stdin.WriteLine ("stdoptions.xsb={0}", interaction.Xsb.ToString ().ToLower ());
@@ -50,19 +64,20 @@ namespace IdpGie {
 				this.structure = structure;
 			}
 
-			public void ReadIn (string text) {
-				stdin.Write (text);
-				stdin.Flush ();
-			}
-
 			public string EchoModel () {
 				this.stdin.WriteLine ("stdoptions.language=\"asp\"");
 				this.stdin.WriteLine ("cs = calculatedefinitions({0},{1})", this.theory, this.structure);
 				this.stdin.WriteLine ("ps, a, b, iv = initialise({0},cs)", this.theory);
 				this.stdin.WriteLine ("struc = ps[1]");
-				this.stdin.WriteLine ("tostring (struc)");
+				this.stdin.WriteLine (@"print(string.format(""\a%s\n\a"",tostring (struc)))");
 				this.stdin.Flush ();
-				return stdout.ReadToEnd ();
+				while (this.stdout.Read () != 0x07)
+					;
+				StringBuilder sb = new StringBuilder ();
+				while (this.stdout.Peek () != 0x07) {
+					sb.AppendLine (this.stdout.ReadLine ());
+				}
+				return sb.ToString ();
 			}
 		}
 	}

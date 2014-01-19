@@ -1,8 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IdpInteraction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProgramManager.cs">
     <Files>
-      <File FileName="IdpInteraction.cs" Line="46" Column="35" />
+      <File FileName="ProgramManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

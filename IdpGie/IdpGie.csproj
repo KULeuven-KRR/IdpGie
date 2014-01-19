@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
-    <Commandlineparameters>../../testinput/test1.idpd</Commandlineparameters>
+    <Commandlineparameters>-i ../../testinput/pacman_interactive_progression.idp -a ../../testinput/vispacman.asp</Commandlineparameters>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />
@@ -231,7 +231,8 @@
     <Compile Include="IDrawTheorySensitive.cs" />
     <Compile Include="HookKey.cs" />
     <Compile Include="StringUtils.cs" />
-    <Compile Include="DrawStreamProvider.cs" />
+    <Compile Include="IDrawStreamProvider.cs" />
+    <Compile Include="FileDrawStreamProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
