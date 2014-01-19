@@ -2,10 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="IdpInteraction.cs">
     <Files>
-      <File FileName="ProgramManager.cs" Line="191" Column="44" />
+      <File FileName="ProgramManager.cs" Line="202" Column="9" />
       <File FileName="IDrawStreamProvider.cs" Line="21" Column="4" />
       <File FileName="FileDrawStreamProvider.cs" Line="17" Column="12" />
-      <File FileName="IdpInteraction.cs" Line="80" Column="27" />
+      <File FileName="IdpInteraction.cs" Line="52" Column="18" />
+      <File FileName="ProcessSession.cs" Line="31" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

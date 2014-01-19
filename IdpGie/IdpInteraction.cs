@@ -35,8 +35,8 @@ namespace IdpGie {
 			return new IdpSession (this, file, theory, structure);
 		}
 
-		public string TranslateClingo (string original, string aspFile) {
-			using (ClingoSession cs = new ClingoSession (this, aspFile, original)) {
+		public string TranslateClingo (string original, string aspContent) {
+			using (ClingoSession cs = new ClingoSession (this, aspContent, original)) {
 				return cs.Output;
 			}
 		}
@@ -48,7 +48,8 @@ namespace IdpGie {
 				}
 			}
 
-			public ClingoSession (IdpInteraction interaction, string aspFile, string inp) : base (interaction.ClingoExecutable, string.Format ("-n 1 --verbose=0 {0}", aspFile)) {
+			public ClingoSession (IdpInteraction interaction, string aspContent, string inp) : base (interaction.ClingoExecutable, string.Format ("-n 1 --verbose=0")) {
+				this.Stdin.Write (aspContent);
 				this.Stdin.Write (inp);
 				this.Stdin.Close ();
 			}

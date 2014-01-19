@@ -27,6 +27,7 @@ using Gtk;
 using OpenTK.Graphics;
 using Mono.Options;
 using IdpGie.Utils;
+using System.Text;
 
 namespace IdpGie {
 	public class ProgramManager : IDisposable {
@@ -36,6 +37,7 @@ namespace IdpGie {
 		private string aspFile = null;
 		private string theory = "T";
 		private string structure = "S";
+		private string aspContent = null;
 
 		public bool Interactive {
 			get {
@@ -98,10 +100,32 @@ namespace IdpGie {
 			}
 			set {
 				this.aspFile = StringUtils.NonEmptyOrNull (value);
+				this.aspContent = null;
+			}
+		}
+
+		public string AspContent {
+			get {
+				if (this.aspContent != null) {
+					return this.aspContent;
+				} else {
+					return this.generateAspContent ();
+				}
 			}
 		}
 
 		public ProgramManager () {
+		}
+
+		private string generateAspContent () {
+			if (this.aspFile != null) {
+				using (FileStream fs = File.Open (this.aspFile, FileMode.Open, FileAccess.Read)) {
+					using (TextReader tr = new StreamReader (fs)) {
+						this.aspContent = tr.ReadToEnd ();
+					}
+				}
+			}
+			return this.aspContent;
 		}
 
 		public void CreateWindow () {
@@ -189,7 +213,7 @@ namespace IdpGie {
 					} else if (manager.Interactive) {
 						var inter = new IdpInteraction ();
 						IdpGie.IdpInteraction.IdpSession ses = inter.RunIdpfile (manager.IdpFile, "T", "S1");
-						Console.WriteLine (inter.TranslateClingo (ses.EchoModel (), manager.AspFile).Replace (" ", ". "));
+						Console.WriteLine (inter.TranslateClingo (ses.EchoModel (), manager.AspContent).Replace (" ", ". "));
 					} else {
 						Application.Init ("IdpGie", ref args);
 						Gdk.Threads.Init ();
