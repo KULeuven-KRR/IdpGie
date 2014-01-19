@@ -35,7 +35,7 @@ namespace IdpGie {
 			private readonly StreamReader stdout, stderr;
 
 			public IdpSession (IdpInteraction interaction, string filename) {
-				this.process = Process.Start (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", file));
+				this.process = Process.Start (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", filename));
 				this.stdin = this.process.StandardInput;
 				this.stdin.AutoFlush = false;
 				this.stdin.WriteLine ("stdoptions.xsb={0}", interaction.Xsb.ToString ().ToLower ());

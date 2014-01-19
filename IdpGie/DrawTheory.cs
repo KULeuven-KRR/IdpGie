@@ -192,7 +192,7 @@ namespace IdpGie {
 			this.hooks.AddListDictionary (hook.HookType, hook);
 		}
 
-		public void FireHook (EventType type, IList<ITerm> parameters) {
+		public void FireHook (EventType type, params object[] parameters) {
 			LinkedList<IHook> firelist;
 			if (hooks.TryGetValue (type, out firelist)) {
 				foreach (IHook hook in firelist) {

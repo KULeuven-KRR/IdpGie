@@ -27,10 +27,14 @@ namespace IdpGie {
 		protected HookBase (IEnumerable<IAtom> body) : this (new Body (body)) {
 		}
 
+		public virtual void FilteredExecute (DrawTheory theory) {
+			this.body.Execute (theory);
+		}
+
 		#region IHook implementation
 
-		public virtual void Execute (DrawTheory theory, IList<ITerm> parameters) {
-			this.body.Execute (theory);
+		public virtual void Execute (DrawTheory theory, params object[] parameters) {
+			this.FilteredExecute (theory);
 		}
 
 		#endregion

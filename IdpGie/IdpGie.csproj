@@ -213,7 +213,6 @@
     <Compile Include="RemoveTheoryAlteringMethod.cs" />
     <Compile Include="TermTheoryAlteringMethod.cs" />
     <Compile Include="IHook.cs" />
-    <Compile Include="KeyHook.cs" />
     <Compile Include="IdpGieException.cs" />
     <Compile Include="ShapeSvgPath.cs" />
     <Compile Include="Scanner.cs" />
@@ -230,6 +229,7 @@
     <Compile Include="HookMethodPredicate.cs" />
     <Compile Include="GlFrameWidget.cs" />
     <Compile Include="IDrawTheorySensitive.cs" />
+    <Compile Include="HookKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

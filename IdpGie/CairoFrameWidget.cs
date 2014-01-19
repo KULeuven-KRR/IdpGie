@@ -64,7 +64,7 @@ namespace IdpGie {
 
 		[GLib.ConnectBefore]
 		protected override bool OnKeyPressEvent (EventKey evnt) {
-			this.Theory.FireHook (EventType.KeyPress, new List<ITerm> ());
+			this.Theory.FireHook (EventType.KeyPress, evnt);
 			return base.OnKeyPressEvent (evnt);
 		}
 
