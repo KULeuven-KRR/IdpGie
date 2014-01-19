@@ -35,47 +35,50 @@ namespace IdpGie {
 			return new IdpSession (this, file, theory, structure);
 		}
 
-		public class IdpSession {
-			private readonly Process process;
-			private readonly StreamWriter stdin;
-			private readonly StreamReader stdout, stderr;
+		public string TranslateClingo (string original, string aspFile) {
+			using (ClingoSession cs = new ClingoSession (this, aspFile, original)) {
+				return cs.Output;
+			}
+		}
+
+		public class ClingoSession : ProcessSession {
+			public string Output {
+				get {
+					return this.Stdout.ReadToEnd ();
+				}
+			}
+
+			public ClingoSession (IdpInteraction interaction, string aspFile, string inp) : base (interaction.ClingoExecutable, string.Format ("-n 1 --verbose=0 {0}", aspFile)) {
+				this.Stdin.Write (inp);
+				this.Stdin.Close ();
+			}
+		}
+
+		public class IdpSession : ProcessSession {
 			private readonly string theory, structure;
 
-			public IdpSession (IdpInteraction interaction, string filename, string theory, string structure) {
-				this.process = new Process ();
-				this.process.StartInfo.FileName = interaction.IdpExecutable;
-				this.process.StartInfo.Arguments = string.Format ("--nowarnings -i {0}", filename);
-				this.process.StartInfo.UseShellExecute = false;
-				this.process.StartInfo.RedirectStandardInput = true;
-				this.process.StartInfo.RedirectStandardOutput = true;
-				this.process.StartInfo.RedirectStandardError = true;
-				this.process.StartInfo.CreateNoWindow = true;
-				this.process.Start ();
-				this.stdin = this.process.StandardInput;
-				this.stdin.AutoFlush = false;
-				this.stdin.WriteLine ("stdoptions.xsb={0}", interaction.Xsb.ToString ().ToLower ());
-				this.stdin.WriteLine ("stdoptions.groundwithbounds={0}", interaction.Groundwithbounds.ToString ().ToLower ());
-				this.stdin.WriteLine ("stdoptions.liftedunitpropagation={0}", interaction.Liftedunitpropagation.ToString ().ToLower ());
-				this.stdin.WriteLine ("stdoptions.nbmodels={0}", interaction.Nbmodels);
-				this.stdin.Flush ();
-				this.stdout = this.process.StandardOutput;
-				this.stderr = this.process.StandardError;
+			public IdpSession (IdpInteraction interaction, string filename, string theory, string structure) : base (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", filename)) {
+				this.Stdin.WriteLine ("stdoptions.xsb={0}", interaction.Xsb.ToString ().ToLower ());
+				this.Stdin.WriteLine ("stdoptions.groundwithbounds={0}", interaction.Groundwithbounds.ToString ().ToLower ());
+				this.Stdin.WriteLine ("stdoptions.liftedunitpropagation={0}", interaction.Liftedunitpropagation.ToString ().ToLower ());
+				this.Stdin.WriteLine ("stdoptions.nbmodels={0}", interaction.Nbmodels);
+				this.Stdin.Flush ();
 				this.theory = theory;
 				this.structure = structure;
 			}
 
 			public string EchoModel () {
-				this.stdin.WriteLine ("stdoptions.language=\"asp\"");
-				this.stdin.WriteLine ("cs = calculatedefinitions({0},{1})", this.theory, this.structure);
-				this.stdin.WriteLine ("ps, a, b, iv = initialise({0},cs)", this.theory);
-				this.stdin.WriteLine ("struc = ps[1]");
-				this.stdin.WriteLine (@"print(string.format(""\a%s\n\a"",tostring (struc)))");
-				this.stdin.Flush ();
-				while (this.stdout.Read () != 0x07)
+				this.Stdin.WriteLine ("stdoptions.language=\"asp\"");
+				this.Stdin.WriteLine ("cs = calculatedefinitions({0},{1})", this.theory, this.structure);
+				this.Stdin.WriteLine ("ps, a, b, iv = initialise({0},cs)", this.theory);
+				this.Stdin.WriteLine ("struc = ps[1]");
+				this.Stdin.WriteLine (@"print(string.format(""\a%s\n\a"",tostring (struc)))");
+				this.Stdin.Flush ();
+				while (this.Stdout.Read () != 0x07)
 					;
 				StringBuilder sb = new StringBuilder ();
-				while (this.stdout.Peek () != 0x07) {
-					sb.AppendLine (this.stdout.ReadLine ());
+				while (this.Stdout.Peek () != 0x07) {
+					sb.AppendLine (this.Stdout.ReadLine ());
 				}
 				return sb.ToString ();
 			}

@@ -187,8 +187,9 @@ namespace IdpGie {
 						Console.WriteLine ("Options:");
 						options.WriteOptionDescriptions (Console.Out);
 					} else if (manager.Interactive) {
-						IdpGie.IdpInteraction.IdpSession ses = new IdpInteraction ().RunIdpfile (manager.IdpFile, "T", "S1");
-						Console.WriteLine (ses.EchoModel ());
+						var inter = new IdpInteraction ();
+						IdpGie.IdpInteraction.IdpSession ses = inter.RunIdpfile (manager.IdpFile, "T", "S1");
+						Console.WriteLine (inter.TranslateClingo (ses.EchoModel (), manager.AspFile).Replace (" ", ". "));
 					} else {
 						Application.Init ("IdpGie", ref args);
 						Gdk.Threads.Init ();
