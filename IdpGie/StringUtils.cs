@@ -1,7 +1,7 @@
 using System;
 
-namespace IdpGie {
-	public static class Utils {
+namespace IdpGie.Utils {
+	public static class StringUtils {
 		public static string NonEmptyOrNull (string x) {
 			if (x == string.Empty) {
 				return null;

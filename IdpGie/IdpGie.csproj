@@ -230,7 +230,7 @@
     <Compile Include="GlFrameWidget.cs" />
     <Compile Include="IDrawTheorySensitive.cs" />
     <Compile Include="HookKey.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

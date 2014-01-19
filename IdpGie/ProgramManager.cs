@@ -26,6 +26,7 @@ using System.IO;
 using Gtk;
 using OpenTK.Graphics;
 using Mono.Options;
+using IdpGie.Utils;
 
 namespace IdpGie {
 	public class ProgramManager : IDisposable {
@@ -40,16 +41,20 @@ namespace IdpGie {
 			}
 		}
 
+		public IEnumerable<string> Files {
+			get {
+				yield return this.idpFile;
+				yield return this.idpdFile;
+				yield return this.aspFile;
+			}
+		}
+
 		public string IdpFile {
 			get {
 				return this.idpFile;
 			}
 			set {
-				if (value == string.Empty) {
-					this.idpFile = null;
-				} else {
-					this.idpFile = value;
-				}
+				this.idpFile = StringUtils.NonEmptyOrNull (value);
 			}
 		}
 
@@ -58,11 +63,7 @@ namespace IdpGie {
 				return this.idpdFile;
 			}
 			set {
-				if (value == string.Empty) {
-					this.idpdFile = null;
-				} else {
-					this.idpdFile = value;
-				}
+				this.idpdFile = StringUtils.NonEmptyOrNull (value);
 			}
 		}
 
@@ -76,11 +77,7 @@ namespace IdpGie {
 				return this.aspFile;
 			}
 			set {
-				if (value == string.Empty) {
-					this.aspFile = null;
-				} else {
-					this.aspFile = value;
-				}
+				this.aspFile = StringUtils.NonEmptyOrNull (value);
 			}
 		}
 
@@ -103,6 +100,11 @@ namespace IdpGie {
 					throw new IdpGieException ("Interactive mode but the .idp file is missing.");
 				} else if (this.aspFile == null) {
 					throw new IdpGieException ("Interactive mode but the .asp file is missing.");
+				}
+			}
+			foreach (string file in this.Files) {
+				if (file != null && !File.Exists (file)) {
+					throw new IdpGieException ("Cannot find file \"{0}\".", file);
 				}
 			}
 		}
