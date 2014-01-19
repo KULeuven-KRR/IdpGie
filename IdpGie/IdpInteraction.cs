@@ -25,16 +25,17 @@ namespace IdpGie {
 		public IdpInteraction () {
 		}
 
-		public IdpSession Runfile (string file) {
-			return new IdpSession (this, file);
+		public IdpSession RunIdpfile (string file, string theory, string structure) {
+			return new IdpSession (this, file, theory, structure);
 		}
 
 		public class IdpSession {
 			private readonly Process process;
 			private readonly StreamWriter stdin;
 			private readonly StreamReader stdout, stderr;
+			private readonly string theory, structure;
 
-			public IdpSession (IdpInteraction interaction, string filename) {
+			public IdpSession (IdpInteraction interaction, string filename, string theory, string structure) {
 				this.process = Process.Start (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", filename));
 				this.stdin = this.process.StandardInput;
 				this.stdin.AutoFlush = false;
@@ -45,6 +46,8 @@ namespace IdpGie {
 				this.stdin.Flush ();
 				this.stdout = this.process.StandardOutput;
 				this.stderr = this.process.StandardError;
+				this.theory = theory;
+				this.structure = structure;
 			}
 
 			public void ReadIn (string text) {
@@ -54,6 +57,9 @@ namespace IdpGie {
 
 			public string EchoModel () {
 				this.stdin.WriteLine ("stdoptions.language=\"asp\"");
+				this.stdin.WriteLine ("cs = calculatedefinitions({0},{1})", this.theory, this.structure);
+				this.stdin.WriteLine ("ps, a, b, iv = initialise({0},cs)", this.theory);
+				this.stdin.WriteLine ("struc = ps[1]");
 				this.stdin.WriteLine ("tostring (struc)");
 				this.stdin.Flush ();
 				return stdout.ReadToEnd ();
