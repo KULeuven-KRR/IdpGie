@@ -11,8 +11,12 @@ namespace IdpGie.Utils {
 		}
 
 		public static string AlwaysEffective (string x) {
+			return EffectiveOrDefault (x);
+		}
+
+		public static string EffectiveOrDefault (string x, string dflt = "") {
 			if (x == null) {
-				return string.Empty;
+				return dflt;
 			} else {
 				return x;
 			}

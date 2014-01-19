@@ -231,6 +231,7 @@
     <Compile Include="IDrawTheorySensitive.cs" />
     <Compile Include="HookKey.cs" />
     <Compile Include="StringUtils.cs" />
+    <Compile Include="DrawStreamProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

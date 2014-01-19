@@ -34,6 +34,8 @@ namespace IdpGie {
 		private string idpFile = null;
 		private string idpdFile = null;
 		private string aspFile = null;
+		private string theory = "T";
+		private string structure = "S";
 
 		public bool Interactive {
 			get {
@@ -55,6 +57,24 @@ namespace IdpGie {
 			}
 			set {
 				this.idpFile = StringUtils.NonEmptyOrNull (value);
+			}
+		}
+
+		public string Theory {
+			get {
+				return this.theory;
+			}
+			set {
+				this.theory = StringUtils.EffectiveOrDefault (value, this.theory);
+			}
+		}
+
+		public string Structure {
+			get {
+				return this.structure;
+			}
+			set {
+				this.structure = StringUtils.EffectiveOrDefault (value, this.structure);
 			}
 		}
 
@@ -93,6 +113,9 @@ namespace IdpGie {
 		}
 
 		public void CheckConsistency () {
+			if (this.ShowHelp) {
+				return;
+			}
 			if (this.idpFile == null && this.aspFile == null && this.idpdFile == null) {
 				throw new IdpGieException ("No files are given.");
 			} else if (this.idpdFile == null) {
@@ -149,6 +172,8 @@ namespace IdpGie {
 						x => manager.IdpFile = x
 					},
 					{ "d|idpd=",  "Feed the system a .idpd file. Limited interactive mode is enabled.", x => manager.IdpdFile = x },
+					{ "t|theory=",  "The theory to use in the .idp file, only for interactive mode.", x => manager.Theory = x },
+					{ "s|structure=","The structure to use in the .idp file, only for interactive mode.",x => manager.Structure = x },
 					{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
 				};
 				try {
