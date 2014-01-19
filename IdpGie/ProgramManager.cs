@@ -19,20 +19,24 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 using IdpGie.Parser;
 using Mono.Unix;
 using System.IO;
 using Gtk;
 using OpenTK.Graphics;
+using Mono.Options;
 
 namespace IdpGie {
 	public class ProgramManager : IDisposable {
 		private TopWindow tw;
-		private string idpFile;
+		private string idpFile = null;
+		private string idpdFile = null;
+		private string aspFile = null;
 
 		public bool Interactive {
 			get {
-				return this.idpFile != null;
+				return this.IdpFile != null && this.AspFile != null;
 			}
 		}
 
@@ -49,6 +53,37 @@ namespace IdpGie {
 			}
 		}
 
+		public string IdpdFile {
+			get {
+				return this.idpdFile;
+			}
+			set {
+				if (value == string.Empty) {
+					this.idpdFile = null;
+				} else {
+					this.idpdFile = value;
+				}
+			}
+		}
+
+		public bool ShowHelp {
+			get;
+			set;
+		}
+
+		public string AspFile {
+			get {
+				return this.aspFile;
+			}
+			set {
+				if (value == string.Empty) {
+					this.aspFile = null;
+				} else {
+					this.aspFile = value;
+				}
+			}
+		}
+
 		public ProgramManager () {
 		}
 
@@ -60,6 +95,18 @@ namespace IdpGie {
 			Application.Run ();
 		}
 
+		public void CheckConsistency () {
+			if (this.idpFile == null && this.aspFile == null && this.idpdFile == null) {
+				throw new IdpGieException ("No files are given.");
+			} else if (this.idpdFile == null) {
+				if (this.idpFile == null) {
+					throw new IdpGieException ("Interactive mode but the .idp file is missing.");
+				} else if (this.aspFile == null) {
+					throw new IdpGieException ("Interactive mode but the .asp file is missing.");
+				}
+			}
+		}
+
 		public void OpenFile () {
         
 		}
@@ -67,7 +114,9 @@ namespace IdpGie {
 		#region IDisposable implementation
 
 		public void Dispose () {
-			tw.Dispose ();
+			if (tw != null) {
+				tw.Dispose ();
+			}
 		}
 
 		#endregion
@@ -87,29 +136,58 @@ namespace IdpGie {
 		public static int Main (string[] args) {
 			GraphicsContext.ShareContexts = false;
 			Catalog.Init ("IdpGie", "./locale");
-			Application.Init ("IdpGie", ref args);
-			Gdk.Threads.Init ();
 			using (ProgramManager manager = new ProgramManager ()) {
-				manager.CreateWindow ();
-				DirectoryInfo dirInfo = new DirectoryInfo (".");
-				foreach (string name in args) {
-					FileInfo[] fInfo = dirInfo.GetFiles (name);
-					foreach (FileInfo info in fInfo) {
-						try {
-							using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
-								Lexer scnr = new Lexer (file);
-								IdpParser pars = new IdpParser (info.Name, scnr);
-								pars.Parse ();
-								if (pars.Result != null) {
-									pars.Result.Execute (manager);
+				OptionSet options = new OptionSet () { {
+						"a|asp=",
+						"Feed the system an .asp file in order to convert an idp model into drawing instructions.",
+						x => manager.AspFile = x
+					}, {
+						"i|idp=",
+						"Feed the system an .idp file. The program must be given an .asp file as well in order to paint something.",
+						x => manager.IdpFile = x
+					},
+					{ "d|idpd=",  "Feed the system a .idpd file. Limited interactive mode is enabled.", x => manager.IdpdFile = x },
+					{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
+				};
+				try {
+					List<string> extra = options.Parse (args);
+					manager.CheckConsistency ();
+
+					if (manager.ShowHelp) {
+						Console.WriteLine ("Usage: idpgie [OPTIONS]+");
+						Console.WriteLine ("IDP-GIE is a Graphical Interactive Environment for the IDP system.");
+						Console.WriteLine ();
+						Console.WriteLine ("Options:");
+						options.WriteOptionDescriptions (Console.Out);
+					} else {
+						Application.Init ("IdpGie", ref args);
+						Gdk.Threads.Init ();
+						manager.CreateWindow ();
+						DirectoryInfo dirInfo = new DirectoryInfo (".");
+						if (!manager.Interactive) {
+							FileInfo[] fInfo = dirInfo.GetFiles (manager.IdpdFile);
+							foreach (FileInfo info in fInfo) {
+								try {
+									using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
+										Lexer scnr = new Lexer (file);
+										IdpParser pars = new IdpParser (info.Name, scnr);
+										pars.Parse ();
+										if (pars.Result != null) {
+											pars.Result.Execute (manager);
+										}
+									}
+								} catch (IOException) {
+									Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
 								}
 							}
-						} catch (IOException) {
-							Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
 						}
+						manager.ShowWindow ();
 					}
+				} catch (Exception e) {
+					Console.Write ("idpgie: ");
+					Console.WriteLine (e.Message);
+					Console.WriteLine ("Try `idpgie --help' for more information.");
 				}
-				manager.ShowWindow ();
 			}
 			return 0x00;
 		}
