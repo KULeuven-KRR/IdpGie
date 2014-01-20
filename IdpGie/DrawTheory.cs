@@ -109,12 +109,22 @@ namespace IdpGie {
 
 		#endregion
 
-		public DrawTheory (string name, List<ITheoryItem> elements) : base (name) {
-			if (elements != null) {
-				this.elements = elements;
-			} else {
-				this.elements = new List<ITheoryItem> ();
-			}
+		public DrawTheory (string name) : base (name) {
+		}
+
+		protected void Clear () {
+			this.elements.Clear ();
+			this.objects.Clear ();
+			this.hooks.Clear ();
+			this.mode = DrawTheoryMode.Cairo;
+			this.minTime = 0.0d;
+			this.maxTime = 0.0d;
+		}
+
+		public void Reinitialize (IEnumerable<ITheoryItem> elements) {
+			this.Clear ();
+			this.elements.AddRange (elements);
+			this.Execute ();
 		}
 
 		public void RegisterTime (double time) {
@@ -160,12 +170,7 @@ namespace IdpGie {
 			return this.objects.Values;
 		}
 
-		public void Execute (ProgramManager manager) {
-			//TODO: Tp operator
-			elements.Sort (PriorityComparator.Instance);
-			foreach (ITheoryItem item in elements) {
-				item.Execute (this);
-			}
+		public OutputDevice GetOutputDevice () {
 			this.Time = minTime;
 			OutputDevice device = null;
 			switch (this.Mode) {
@@ -182,9 +187,14 @@ namespace IdpGie {
 				device = new OutputPrintDevice (this);
 				break;
 			}
-			if (device != null) {
-				device.Run (manager);
-				device.Dispose ();
+			return device;
+		}
+
+		public void Execute () {
+			//TODO: Tp operator
+			elements.Sort (PriorityComparator.Instance);
+			foreach (ITheoryItem item in elements) {
+				item.Execute (this);
 			}
 		}
 

@@ -234,6 +234,7 @@
     <Compile Include="IDrawStreamProvider.cs" />
     <Compile Include="FileDrawStreamProvider.cs" />
     <Compile Include="ProcessSession.cs" />
+    <Compile Include="AlteringMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

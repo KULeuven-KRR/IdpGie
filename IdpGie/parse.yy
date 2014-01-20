@@ -36,7 +36,7 @@
 
 %%
 
-idpdraw     : items                                         {this.result = new DrawTheory(this.filename,$1.ToList());}
+idpdraw     : items                                         {this.result.Reinitialize($1);}
             ;
 
 items       : /* empty */                                   {$$ = null;}
@@ -106,6 +106,7 @@ public DrawTheory Result {
 public IdpParser (ScanBase sb, string name) : base(sb) {
     this.context = new LocalInputContext();
     this.filename = name;
+    this.result = new DrawTheory(name);
 }
 
 public IdpParser (string name, ScanBase sb) : this(sb,name) {
