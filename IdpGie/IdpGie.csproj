@@ -206,11 +206,6 @@
     <Compile Include="CollectionUtils.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
-    <Compile Include="AddTheoryAlteringMethod.cs" />
-    <Compile Include="ITheoryAlteringMethod.cs" />
-    <Compile Include="IAlteringStreamMethod.cs" />
-    <Compile Include="AlteringStreamMethodUtils.cs" />
-    <Compile Include="RemoveTheoryAlteringMethod.cs" />
     <Compile Include="TermTheoryAlteringMethod.cs" />
     <Compile Include="IHook.cs" />
     <Compile Include="IdpGieException.cs" />
