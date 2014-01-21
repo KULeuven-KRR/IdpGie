@@ -31,8 +31,8 @@ namespace IdpGie {
 		public IdpInteraction () {
 		}
 
-		public IdpSession RunIdpfile (string file, string theory, string structure) {
-			return new IdpSession (this, file, theory, structure);
+		public IdpSession RunIdpfile (string file, string theory, string structure, string vocabulary) {
+			return new IdpSession (this, file, theory, structure, vocabulary);
 		}
 
 		public string TranslateClingo (string original, string aspContent) {

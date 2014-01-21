@@ -264,7 +264,7 @@ namespace IdpGie {
 						string filename;
 						manager.CreateWindow ();
 						if (manager.Interactive) {
-							strm = new IdpInteractiveStream (manager.IdpFile, manager.Theory, manager.Structure, manager.AspContent, manager.HookContent);
+							strm = new IdpInteractiveStream (manager.IdpFile, manager.Theory, manager.Structure, manager.Vocabulary, manager.AspContent, manager.HookContent);
 							filename = manager.IdpFile;
 						} else {
 							strm = new AlterableContentChangeableStreamBase<FileStream,string> (new FileStream (manager.IdpdFile, FileMode.Open));

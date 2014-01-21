@@ -11,9 +11,9 @@ namespace IdpGie {
 
 		#endregion
 
-		public IdpInteractiveStream (string idpFile, string theory, string structure, string aspContent, string hookContent) : base (null) {
+		public IdpInteractiveStream (string idpFile, string theory, string structure, string vocabulary, string aspContent, string hookContent) : base (null) {
 			inter = new IdpInteraction ();
-			this.ses = inter.RunIdpfile (idpFile, theory, structure);
+			this.ses = inter.RunIdpfile (idpFile, theory, structure, vocabulary);
 			this.aspContent = aspContent;
 			this.hookContent = hookContent;
 			this.regenerateModel ();

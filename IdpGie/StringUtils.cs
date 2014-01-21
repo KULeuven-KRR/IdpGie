@@ -20,7 +20,7 @@ namespace IdpGie.Utils {
 		}
 
 		public static string EffectiveOrDefault (ref string target, string x) {
-			EffectiveOrDefault (ref target, x, target);
+			return EffectiveOrDefault (ref target, x, target);
 		}
 
 		public static string EffectiveOrDefault (ref string target, string x, string dflt) {
@@ -29,6 +29,7 @@ namespace IdpGie.Utils {
 			} else {
 				target = dflt;
 			}
+			return target;
 		}
 
 		public static string ReplaceDollar (string source, params Tuple<string,string>[] tuples) {
