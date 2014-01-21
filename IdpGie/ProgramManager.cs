@@ -32,13 +32,7 @@ using System.Text;
 namespace IdpGie {
 	public class ProgramManager : IDisposable {
 		private TopWindow tw;
-		private string idpFile = null;
-		private string idpdFile = null;
-		private string aspFile = null;
-		private string hookFile = null;
-		private string theory = "T";
-		private string structure = "S";
-		private string aspContent = null, hookContent = null;
+		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null, theory = "T", structure = "S", aspContent = null, hookContent = null;
 
 		public bool Interactive {
 			get {
@@ -46,7 +40,7 @@ namespace IdpGie {
 			}
 		}
 
-		public IEnumerable<string> Files {
+		public IEnumerable<string> InputFiles {
 			get {
 				yield return this.idpFile;
 				yield return this.idpdFile;
@@ -61,6 +55,15 @@ namespace IdpGie {
 			}
 			set {
 				this.idpFile = StringUtils.NonEmptyOrNull (value);
+			}
+		}
+
+		public string OutputFile {
+			get {
+				return this.outputFile;
+			}
+			set {
+				this.outputFile = StringUtils.NonEmptyOrNull (value);
 			}
 		}
 
@@ -178,7 +181,7 @@ namespace IdpGie {
 					throw new IdpGieException ("Interactive mode but the .asp file is missing.");
 				}
 			}
-			foreach (string file in this.Files) {
+			foreach (string file in this.InputFiles) {
 				if (file != null && !File.Exists (file)) {
 					throw new IdpGieException ("Cannot find file \"{0}\".", file);
 				}
@@ -228,6 +231,7 @@ namespace IdpGie {
 					{ "H|idph=",  "Feed the system a .idph file that contains the defined hooks.", x => manager.HookFile = x },
 					{ "t|theory=",  "The theory to use in the .idp file, only for interactive mode.", x => manager.Theory = x },
 					{ "s|structure=","The structure to use in the .idp file, only for interactive mode.",x => manager.Structure = x },
+					{ "o|output", "The output file (to store for instance LaTeX files).",   x => manager.OutputFile = x },
 					{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
 				};
 				try {
@@ -243,14 +247,14 @@ namespace IdpGie {
 					} else {
 						Application.Init ("IdpGie", ref args);
 						Gdk.Threads.Init ();
-						IContentChangeableStream strm;
+						IAlterableContentChangeableStream<string> strm;
 						string filename;
 						manager.CreateWindow ();
 						if (manager.Interactive) {
 							strm = new IdpInteractiveStream (manager.IdpFile, manager.Theory, manager.Structure, manager.AspContent, manager.HookContent);
 							filename = manager.IdpFile;
 						} else {
-							strm = new ContentChangeableStreamBase<FileStream> (new FileStream (manager.IdpdFile, FileMode.Open));
+							strm = new AlterableContentChangeableStreamBase<FileStream,string> (new FileStream (manager.IdpdFile, FileMode.Open));
 							filename = manager.IdpdFile;
 						}
 						DrawTheory dt = new DrawTheory (filename, strm);

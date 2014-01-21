@@ -2,7 +2,7 @@ using System;
 using System.IO;
 
 namespace IdpGie {
-	public class IdpInteractiveStream : ContentChangeableStreamBase<MemoryStream> {
+	public class IdpInteractiveStream : AlterableContentChangeableStreamBase<MemoryStream,string> {
 		private readonly IdpInteraction inter;
 		private readonly IdpInteraction.IdpSession ses;
 		private readonly string aspContent, hookContent;
@@ -12,7 +12,6 @@ namespace IdpGie {
 		#endregion
 
 		public IdpInteractiveStream (string idpFile, string theory, string structure, string aspContent, string hookContent) : base (null) {
-			Console.WriteLine ("bla {0} {1} {2} {3} {4}", idpFile, theory, structure, aspContent, hookContent);
 			inter = new IdpInteraction ();
 			this.ses = inter.RunIdpfile (idpFile, theory, structure);
 			this.aspContent = aspContent;
@@ -20,11 +19,15 @@ namespace IdpGie {
 			this.regenerateModel ();
 		}
 
+		public override void Alter (string command) {
+			ses.Execute (command);
+			this.regenerateModel ();
+			base.Alter (command);
+		}
+
 		private void regenerateModel () {
 			string text = ses.EchoModel ();
-			Console.WriteLine ("EM\n" + text);
 			text = inter.TranslateClingo (text, aspContent).Replace (" ", ".\n") + hookContent;
-			Console.WriteLine (text);
 			MemoryStream tmp = new MemoryStream ();
 			StreamWriter sw = new StreamWriter (tmp);
 			sw.Write (text);

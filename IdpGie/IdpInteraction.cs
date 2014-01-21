@@ -68,6 +68,10 @@ namespace IdpGie {
 				this.structure = structure;
 			}
 
+			public void Execute (string command) {
+				this.Stdin.WriteLine (command);
+			}
+
 			public string EchoModel () {
 				this.Stdin.WriteLine ("stdoptions.language=\"asp\"");
 				this.Stdin.WriteLine ("cs = calculatedefinitions({0},{1})", this.theory, this.structure);

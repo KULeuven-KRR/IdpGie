@@ -235,6 +235,7 @@
     <Compile Include="ContentChangeableStreamBase.cs" />
     <Compile Include="IAlterable.cs" />
     <Compile Include="IAlterableContentChangeableStream.cs" />
+    <Compile Include="AlterableContentChangeableStreamBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
