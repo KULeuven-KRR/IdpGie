@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
-    <Commandlineparameters>-d ../../testinput/test1.idpd</Commandlineparameters>
+    <Commandlineparameters>-a ../../testinput/vispacman.asp -i ../../testinput/pacman_interactive_progression.idp</Commandlineparameters>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />
@@ -234,6 +234,7 @@
     <Compile Include="IContentChangeableStream.cs" />
     <Compile Include="LuaUtils.cs" />
     <Compile Include="IdpiSession.cs" />
+    <Compile Include="IdpInteractiveStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

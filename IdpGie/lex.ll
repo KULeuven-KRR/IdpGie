@@ -10,6 +10,7 @@
 
 %option codepage:raw
 
+SAT             SATISFIABLE
 WHITESPACE      [\r\t\n ]*
 COMMA           ,
 ID              [^ \[\]()=,\.\r\t\n\"]*
@@ -29,6 +30,7 @@ IMPLY           \-\:
 %%
 
 {COMMENT}       {}
+{SAT}           {}
 {IMPLY}         {return (int) Token.IMPLY;}
 {FLT}           {return (int) Token.FLT;}
 {INT}           {return (int) Token.INT;}

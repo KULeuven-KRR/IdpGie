@@ -42,6 +42,7 @@ idpdraw     : items                                         {this.result.Reiniti
 items       : /* empty */                                   {$$ = null;}
             | DOT                                           {$$ = null;}
             | element DOT items                             {$$ = new HeadTail<ITheoryItem>($1,$3);}
+            | error DOT items                               {$$ = $3;}
             ;
 
 element     : clause                                        {$$ = $1;}

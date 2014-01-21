@@ -38,7 +38,7 @@ namespace IdpGie {
 		private string hookFile = null;
 		private string theory = "T";
 		private string structure = "S";
-		private string aspContent = null;
+		private string aspContent = null, hookContent = null;
 
 		public bool Interactive {
 			get {
@@ -70,6 +70,7 @@ namespace IdpGie {
 			}
 			set {
 				this.HookFile = StringUtils.NonEmptyOrNull (value);
+				this.hookContent = null;
 			}
 		}
 
@@ -117,11 +118,13 @@ namespace IdpGie {
 
 		public string AspContent {
 			get {
-				if (this.aspContent != null) {
-					return this.aspContent;
-				} else {
-					return this.generateAspContent ();
-				}
+				return this.generateAspContent ();
+			}
+		}
+
+		public string HookContent {
+			get {
+				return this.generateHookContent ();
 			}
 		}
 
@@ -129,7 +132,7 @@ namespace IdpGie {
 		}
 
 		private string generateAspContent () {
-			if (this.aspFile != null) {
+			if (this.aspContent == null && this.aspFile != null) {
 				using (FileStream fs = File.Open (this.aspFile, FileMode.Open, FileAccess.Read)) {
 					using (TextReader tr = new StreamReader (fs)) {
 						this.aspContent = tr.ReadToEnd ();
@@ -137,6 +140,21 @@ namespace IdpGie {
 				}
 			}
 			return this.aspContent;
+		}
+
+		private string generateHookContent () {
+			if (this.hookContent == null) {
+				if (this.hookFile != null) {
+					using (FileStream fs = File.Open (this.hookFile, FileMode.Open, FileAccess.Read)) {
+						using (TextReader tr = new StreamReader (fs)) {
+							this.hookContent = tr.ReadToEnd ();
+						}
+					}
+				} else {
+					this.hookContent = string.Empty;
+				}
+			}
+			return this.hookContent;
 		}
 
 		public void CreateWindow () {
@@ -207,6 +225,7 @@ namespace IdpGie {
 						x => manager.IdpFile = x
 					},
 					{ "d|idpd=",  "Feed the system a .idpd file. Limited interactive mode is enabled.", x => manager.IdpdFile = x },
+					{ "H|idph=",  "Feed the system a .idph file that contains the defined hooks.", x => manager.HookFile = x },
 					{ "t|theory=",  "The theory to use in the .idp file, only for interactive mode.", x => manager.Theory = x },
 					{ "s|structure=","The structure to use in the .idp file, only for interactive mode.",x => manager.Structure = x },
 					{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
@@ -224,26 +243,17 @@ namespace IdpGie {
 					} else {
 						Application.Init ("IdpGie", ref args);
 						Gdk.Threads.Init ();
-						Stream strm;
+						IContentChangeableStream strm;
 						string filename;
 						manager.CreateWindow ();
 						if (manager.Interactive) {
-							IdpInteraction inter = new IdpInteraction ();
-							IdpInteraction.IdpSession ses = inter.RunIdpfile (manager.IdpFile, "T", "S1");
-							strm = new MemoryStream ();
-							StreamWriter sw = new StreamWriter (strm);
-							string text = inter.TranslateClingo (ses.EchoModel (), manager.AspContent).Replace (" ", ". ");
-							sw.Write (text);
-							Console.WriteLine (text);
-							strm.Position = 0x00;
+							strm = new IdpInteractiveStream (manager.IdpFile, manager.Theory, manager.Structure, manager.AspContent, manager.HookContent);
 							filename = manager.IdpFile;
 						} else {
-							strm = new FileStream (manager.IdpdFile, FileMode.Open);
+							strm = new ContentChangeableStream (new FileStream (manager.IdpdFile, FileMode.Open));
 							filename = manager.IdpdFile;
 						}
-						DrawTheory dt = new DrawTheory (filename, new ContentChangeableStream (strm));
-						strm.Close ();
-						strm.Dispose ();
+						DrawTheory dt = new DrawTheory (filename, strm);
 						//pars.Result.Execute ();
 						OutputDevice dev = dt.GetOutputDevice ();
 						dev.Run (manager);
