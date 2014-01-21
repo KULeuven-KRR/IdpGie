@@ -86,7 +86,6 @@ identifier  : IDENTIFIER                                    { $$ = @1.ToString()
 
 private LocalInputContext context;
 private DrawTheory result;
-private string filename;
 
 public LocalInputContext Context {
     get {
@@ -103,11 +102,7 @@ public DrawTheory Result {
     }
 }
   
-public IdpParser (ScanBase sb, string name) : base(sb) {
+public IdpParser (ScanBase sb, DrawTheory dt) : base(sb) {
     this.context = new LocalInputContext();
-    this.filename = name;
-    this.result = new DrawTheory(name);
-}
-
-public IdpParser (string name, ScanBase sb) : this(sb,name) {
+    this.result = dt;
 }

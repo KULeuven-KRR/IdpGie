@@ -210,37 +210,38 @@ namespace IdpGie {
 						Console.WriteLine ();
 						Console.WriteLine ("Options:");
 						options.WriteOptionDescriptions (Console.Out);
-					} else if (manager.Interactive) {
-						var inter = new IdpInteraction ();
-						IdpGie.IdpInteraction.IdpSession ses = inter.RunIdpfile (manager.IdpFile, "T", "S1");
-						Console.WriteLine (inter.TranslateClingo (ses.EchoModel (), manager.AspContent).Replace (" ", ". "));
 					} else {
 						Application.Init ("IdpGie", ref args);
 						Gdk.Threads.Init ();
+						Stream strm;
+						string filename;
 						manager.CreateWindow ();
-						DirectoryInfo dirInfo = new DirectoryInfo (".");
-						if (!manager.Interactive) {
-							FileInfo[] fInfo = dirInfo.GetFiles (manager.IdpdFile);
-							foreach (FileInfo info in fInfo) {
-								try {
-									using (FileStream file = new FileStream (info.FullName, FileMode.Open)) {
-										Lexer scnr = new Lexer (file);
-										IdpParser pars = new IdpParser (info.Name, scnr);
-										pars.Parse ();
-										if (pars.Result != null) {
-											pars.Result.Execute (manager);
-										}
-									}
-								} catch (IOException) {
-									Console.Error.WriteLine ("File \"{0}\" not found.", info.Name);
-								}
-							}
+						if (manager.Interactive) {
+							IdpInteraction inter = new IdpInteraction ();
+							IdpInteraction.IdpSession ses = inter.RunIdpfile (manager.IdpFile, "T", "S1");
+							strm = new MemoryStream ();
+							StreamWriter sw = new StreamWriter (strm);
+							string text = inter.TranslateClingo (ses.EchoModel (), manager.AspContent).Replace (" ", ". ");
+							sw.Write (text);
+							Console.WriteLine (text);
+							strm.Position = 0x00;
+							filename = manager.IdpFile;
+						} else {
+							strm = new FileStream (manager.IdpdFile, FileMode.Open);
+							filename = manager.IdpdFile;
 						}
+						DrawTheory dt = new DrawTheory (filename, new ContentChangeableStream (strm));
+						strm.Close ();
+						strm.Dispose ();
+						//pars.Result.Execute ();
+						OutputDevice dev = dt.GetOutputDevice ();
+						dev.Run (manager);
 						manager.ShowWindow ();
 					}
 				} catch (Exception e) {
 					Console.Write ("idpgie: ");
 					Console.WriteLine (e.Message);
+					Console.WriteLine (e.StackTrace);
 					Console.WriteLine ("Try `idpgie --help' for more information.");
 				}
 			}

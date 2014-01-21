@@ -22,17 +22,25 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Gdk;
+using IdpGie.Parser;
 
 namespace IdpGie {
 	public class DrawTheory : NameBase, ITimesensitive {
-		private readonly List<ITheoryItem> elements;
+		private readonly List<ITheoryItem> elements = new List<ITheoryItem> ();
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
 		private readonly Dictionary<EventType,LinkedList<IHook>> hooks = new Dictionary<EventType, LinkedList<IHook>> ();
+		private readonly IContentChangeableStream source;
 		private DrawTheoryMode mode = DrawTheoryMode.Cairo;
 		private double minTime = 0.0d;
 		private double maxTime = 0.0d;
 
 		private event EventHandler changed;
+
+		public IContentChangeableStream Source {
+			get {
+				return this.source;
+			}
+		}
 
 		public DrawTheoryMode Mode {
 			get {
@@ -109,7 +117,16 @@ namespace IdpGie {
 
 		#endregion
 
-		public DrawTheory (string name) : base (name) {
+		public DrawTheory (string name, IContentChangeableStream source) : base (name) {
+			this.source = source;
+			this.source.Changed += HandleChanged;
+			this.HandleChanged (null, null);
+		}
+
+		void HandleChanged (object sender, EventArgs e) {
+			Lexer scnr = new Lexer (this.Source.Stream);
+			IdpParser pars = new IdpParser (scnr, this);
+			pars.Parse ();
 		}
 
 		protected void Clear () {
@@ -121,9 +138,11 @@ namespace IdpGie {
 			this.maxTime = 0.0d;
 		}
 
-		public void Reinitialize (IEnumerable<ITheoryItem> elements) {
+		public void Reinitialize (IEnumerable<ITheoryItem> values) {
 			this.Clear ();
-			this.elements.AddRange (elements);
+			if (values != null) {
+				this.elements.AddRange (values);
+			}
 			this.Execute ();
 		}
 

@@ -230,6 +230,8 @@
     <Compile Include="FileDrawStreamProvider.cs" />
     <Compile Include="ProcessSession.cs" />
     <Compile Include="AlteringMapping.cs" />
+    <Compile Include="ContentChangeableStream.cs" />
+    <Compile Include="IContentChangeableStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
