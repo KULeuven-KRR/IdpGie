@@ -13,5 +13,3 @@ idpd_ypos(een,256,2).
 idpd_text(een,"ruit",4).
 idpd_hide(twee,0).
 idpd_hide(twee,3).
-
-idph_keydown("a") -: idpd_show(twee,1).

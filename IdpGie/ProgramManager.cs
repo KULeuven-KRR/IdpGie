@@ -35,6 +35,7 @@ namespace IdpGie {
 		private string idpFile = null;
 		private string idpdFile = null;
 		private string aspFile = null;
+		private string hookFile = null;
 		private string theory = "T";
 		private string structure = "S";
 		private string aspContent = null;
@@ -50,6 +51,7 @@ namespace IdpGie {
 				yield return this.idpFile;
 				yield return this.idpdFile;
 				yield return this.aspFile;
+				yield return this.hookFile;
 			}
 		}
 
@@ -59,6 +61,15 @@ namespace IdpGie {
 			}
 			set {
 				this.idpFile = StringUtils.NonEmptyOrNull (value);
+			}
+		}
+
+		public string HookFile {
+			get {
+				return this.hookFile;
+			}
+			set {
+				this.HookFile = StringUtils.NonEmptyOrNull (value);
 			}
 		}
 
@@ -183,7 +194,7 @@ namespace IdpGie {
 		}
 
 		public static int Main (string[] args) {
-			GraphicsContext.ShareContexts = false;
+			//GraphicsContext.ShareContexts = false;
 			Catalog.Init ("IdpGie", "./locale");
 			using (ProgramManager manager = new ProgramManager ()) {
 				OptionSet options = new OptionSet () { {
