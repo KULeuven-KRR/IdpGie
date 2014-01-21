@@ -2,16 +2,22 @@ using System;
 using System.IO;
 
 namespace IdpGie {
-	public class ContentChangeableStream : IContentChangeableStream {
-		private Stream stream;
+	public class ContentChangeableStreamBase<T> : IContentChangeableStream where T : Stream {
+		private T stream;
 
 		private event EventHandler changed;
 
-		public Stream Stream {
+		Stream IContentChangeableStream.Stream {
 			get {
 				return this.stream;
 			}
-			set {
+		}
+
+		public T Stream {
+			get {
+				return this.stream;
+			}
+			protected set {
 				if (value != null && value != this.stream) {
 					this.stream = value;
 					this.trigger_changed ();
@@ -28,7 +34,7 @@ namespace IdpGie {
 			}
 		}
 
-		public ContentChangeableStream (Stream stream) {
+		public ContentChangeableStreamBase (T stream) {
 			this.stream = stream;
 		}
 

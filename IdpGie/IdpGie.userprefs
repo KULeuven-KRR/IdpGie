@@ -1,16 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ProgramManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IDrawStreamProvider.cs">
     <Files>
-      <File FileName="ProgramManager.cs" Line="245" Column="76" />
-      <File FileName="ContentChangeableStream.cs" Line="5" Column="65" />
-      <File FileName="DrawTheory.cs" Line="142" Column="27" />
-      <File FileName="PaintMapping.cs" Line="1" Column="1" />
-      <File FileName="IContentChangeableStream.cs" Line="5" Column="43" />
-      <File FileName="parse.yy" Line="39" Column="78" />
-      <File FileName="LuaUtils.cs" Line="6" Column="1" />
-      <File FileName="IdpiSession.cs" Line="13" Column="25" />
-      <File FileName="lex.ll" Line="13" Column="15" />
+      <File FileName="IDrawStreamProvider.cs" Line="1" Column="1" />
+      <File FileName="IdpInteractiveStream.cs" Line="38" Column="38" />
+      <File FileName="FileDrawStreamProvider.cs" Line="5" Column="40" />
+      <File FileName="DrawTheory.cs" Line="143" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

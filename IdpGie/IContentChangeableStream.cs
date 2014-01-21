@@ -5,7 +5,6 @@ namespace IdpGie {
 	public interface IContentChangeableStream {
 		Stream Stream {
 			get;
-			set;
 		}
 
 		event EventHandler Changed;

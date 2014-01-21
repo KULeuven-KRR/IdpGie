@@ -250,7 +250,7 @@ namespace IdpGie {
 							strm = new IdpInteractiveStream (manager.IdpFile, manager.Theory, manager.Structure, manager.AspContent, manager.HookContent);
 							filename = manager.IdpFile;
 						} else {
-							strm = new ContentChangeableStream (new FileStream (manager.IdpdFile, FileMode.Open));
+							strm = new ContentChangeableStreamBase<FileStream> (new FileStream (manager.IdpdFile, FileMode.Open));
 							filename = manager.IdpdFile;
 						}
 						DrawTheory dt = new DrawTheory (filename, strm);

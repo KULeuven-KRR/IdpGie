@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
-    <Commandlineparameters>-a ../../testinput/vispacman.asp -i ../../testinput/pacman_interactive_progression.idp</Commandlineparameters>
+    <Commandlineparameters>-a ../../testinput/vispacman.asp -i ../../testinput/pacman_interactive_progression.idp -s S1</Commandlineparameters>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />
@@ -226,15 +226,15 @@
     <Compile Include="IDrawTheorySensitive.cs" />
     <Compile Include="HookKey.cs" />
     <Compile Include="StringUtils.cs" />
-    <Compile Include="IDrawStreamProvider.cs" />
-    <Compile Include="FileDrawStreamProvider.cs" />
     <Compile Include="ProcessSession.cs" />
     <Compile Include="AlteringMapping.cs" />
-    <Compile Include="ContentChangeableStream.cs" />
     <Compile Include="IContentChangeableStream.cs" />
     <Compile Include="LuaUtils.cs" />
     <Compile Include="IdpiSession.cs" />
     <Compile Include="IdpInteractiveStream.cs" />
+    <Compile Include="ContentChangeableStreamBase.cs" />
+    <Compile Include="IAlterable.cs" />
+    <Compile Include="IAlterableContentChangeableStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
