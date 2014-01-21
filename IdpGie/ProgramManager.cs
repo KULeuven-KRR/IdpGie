@@ -32,7 +32,7 @@ using System.Text;
 namespace IdpGie {
 	public class ProgramManager : IDisposable {
 		private TopWindow tw;
-		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null, theory = "T", structure = "S", aspContent = null, hookContent = null;
+		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null, theory = "T", structure = "S", vocabulary = "V", aspContent = null, hookContent = null;
 
 		public bool Interactive {
 			get {
@@ -92,6 +92,15 @@ namespace IdpGie {
 			}
 			set {
 				this.structure = StringUtils.EffectiveOrDefault (value, this.structure);
+			}
+		}
+
+		public string Vocabulary {
+			get {
+				return this.vocabulary;
+			}
+			set {
+				this.vocabulary = StringUtils.EffectiveOrDefault (value, this.vocabulary);
 			}
 		}
 
@@ -230,8 +239,12 @@ namespace IdpGie {
 					{ "d|idpd=",  "Feed the system a .idpd file. Limited interactive mode is enabled.", x => manager.IdpdFile = x },
 					{ "H|idph=",  "Feed the system a .idph file that contains the defined hooks.", x => manager.HookFile = x },
 					{ "t|theory=",  "The theory to use in the .idp file, only for interactive mode.", x => manager.Theory = x },
-					{ "s|structure=","The structure to use in the .idp file, only for interactive mode.",x => manager.Structure = x },
-					{ "o|output", "The output file (to store for instance LaTeX files).",   x => manager.OutputFile = x },
+					{ "s|structure=","The structure to use in the .idp file, only for interactive mode.",x => manager.Structure = x }, {
+						"v|vocabulary=",
+						"The vocabulary to use in the .idp file, only for interactive mode.",
+						x => manager.Vocabulary = x
+					},
+					{ "o|output=", "The output file (to store for instance LaTeX files).",   x => manager.OutputFile = x },
 					{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
 				};
 				try {

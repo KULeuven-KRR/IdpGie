@@ -140,7 +140,6 @@ namespace IdpGie {
 
 		public void Reinitialize (IEnumerable<ITheoryItem> values) {
 			if (values != null) {
-				Console.WriteLine ("EXE" + string.Join (",", values));
 				this.Clear ();
 				if (values != null) {
 					this.elements.AddRange (values);

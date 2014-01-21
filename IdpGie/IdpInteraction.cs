@@ -56,9 +56,9 @@ namespace IdpGie {
 		}
 
 		public class IdpSession : ProcessSession {
-			private readonly string theory, structure;
+			private readonly string theory, structure, vocabulary;
 
-			public IdpSession (IdpInteraction interaction, string filename, string theory, string structure) : base (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", filename)) {
+			public IdpSession (IdpInteraction interaction, string filename, string theory, string structure, string vocabulary) : base (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", filename)) {
 				this.Stdin.WriteLine ("stdoptions.xsb={0}", interaction.Xsb.ToString ().ToLower ());
 				this.Stdin.WriteLine ("stdoptions.groundwithbounds={0}", interaction.Groundwithbounds.ToString ().ToLower ());
 				this.Stdin.WriteLine ("stdoptions.liftedunitpropagation={0}", interaction.Liftedunitpropagation.ToString ().ToLower ());
@@ -66,6 +66,7 @@ namespace IdpGie {
 				this.Stdin.Flush ();
 				this.theory = theory;
 				this.structure = structure;
+				this.vocabulary = vocabulary;
 			}
 
 			public void Execute (string command) {
