@@ -24,6 +24,7 @@ namespace IdpGie {
 		#endregion
 
 		public IdpInteractiveStream (string idpFile, string theory, string structure, string aspContent, string hookContent) {
+			Console.WriteLine ("bla {0} {1} {2} {3} {4}", idpFile, theory, structure, aspContent, hookContent);
 			inter = new IdpInteraction ();
 			this.ses = inter.RunIdpfile (idpFile, theory, structure);
 			this.aspContent = aspContent;
@@ -35,7 +36,7 @@ namespace IdpGie {
 			MemoryStream tmp = new MemoryStream ();
 			StreamWriter sw = new StreamWriter (tmp);
 			string text = inter.TranslateClingo (ses.EchoModel (), aspContent).Replace (" ", ".\n") + hookContent;
-			text = text.Substring (0x00, text.Length);
+			Console.WriteLine (text);
 			sw.Write (text);
 			sw.Flush ();
 			tmp.Position = 0x00;
