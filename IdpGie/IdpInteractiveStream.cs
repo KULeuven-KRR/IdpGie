@@ -27,9 +27,12 @@ namespace IdpGie {
 			text = inter.TranslateClingo (text, aspContent).Replace (" ", ".\n") + hookContent;
 			MemoryStream tmp = new MemoryStream ();
 			StreamWriter sw = new StreamWriter (tmp);
-			if (this.hookContent != null) {
+			/*if (this.hookContent != null) {
 				text += this.hookContent;
-			}
+				Console.WriteLine ("BEGIN HOOKCONTENT");
+				Console.WriteLine (this.hookContent);
+				Console.WriteLine ("END HOOKCONTENT");
+			}*/
 			Console.WriteLine (text);
 			sw.WriteLine (text);
 			sw.Flush ();

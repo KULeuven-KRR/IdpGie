@@ -28,3 +28,21 @@ ps=goleft(ps);
 ps=goright(ps);
 struc = ps[1]
 print(string.format("\\a%s\\n\\a",tostring (struc)))
+stdoptions.xsb=fakse
+stdoptions.xsb=false
+stdoptions.groundwithbounds=false
+stdoptions.liftedunitpropagation=
+stdoptions.liftedunitpropagation=false
+stdoptions.nbmodels=0
+stdoptions.language=as
+stdoptions.language=asp
+stdoptions.language="asp"
+cs = calculatedefinitions(T,S1)
+ps, a, b, iv = initialise(T,cs)
+struc = ps[1]
+print(string.format(""\\a%s\\n\\a"",tostring (struc)))
+print(string.format("\\a%s\\n\\a",tostring (struc)))
+ps = goright(ps);
+struc = ps[1]
+print(string.format(""\\a%s\\n\\a"",tostring (struc)))
+print(string.format("\\a%s\\n\\a",tostring (struc)))

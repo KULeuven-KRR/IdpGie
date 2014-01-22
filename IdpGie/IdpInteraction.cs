@@ -70,19 +70,23 @@ namespace IdpGie {
 			}
 
 			public void Execute (string command) {
+				Console.WriteLine (StringUtils.ReplaceDollar (command, "the", this.theory, "str", this.structure, "voc", this.vocabulary));
 				this.Stdin.WriteLine (StringUtils.ReplaceDollar (command, "the", this.theory, "str", this.structure, "voc", this.vocabulary));
+				this.Stdin.Flush ();
 			}
 
 			public string EchoModel () {
-				this.Stdin.WriteLine ("struc = ps[1]");
-				this.Stdin.WriteLine (@"print(string.format(""\a%s\n\a"",tostring (struc)))");
+				this.Stdin.WriteLine ("struc = ps[1];");
+				this.Stdin.WriteLine (@"print(string.format(""\a%s\n\a"",tostring (struc)));");
 				this.Stdin.Flush ();
 				while (this.Stdout.Read () != 0x07)
 					;
+				this.Stdout.Read ();
 				StringBuilder sb = new StringBuilder ();
 				while (this.Stdout.Peek () != 0x07) {
 					sb.AppendLine (this.Stdout.ReadLine ());
 				}
+				this.Stdout.Read ();
 				return sb.ToString ();
 			}
 		}

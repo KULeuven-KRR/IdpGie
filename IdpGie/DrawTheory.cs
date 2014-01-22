@@ -24,6 +24,7 @@ using System.Text;
 using Gdk;
 using IdpGie.Parser;
 using Cairo;
+using System.Diagnostics;
 
 namespace IdpGie {
 	public class DrawTheory : NameBase, ITimesensitive {
@@ -147,6 +148,7 @@ namespace IdpGie {
 				}
 				this.Execute ();
 			}
+			this.Time = 0.0d;
 		}
 
 		public void RegisterTime (double time) {
@@ -222,6 +224,15 @@ namespace IdpGie {
 		}
 
 		public void AddHook (IHook hook) {
+			Console.WriteLine ("ADD HOOK");
+			StackTrace stackTrace = new StackTrace ();           // get call stack
+			/*Console.WriteLine (stackTrace)
+			StackFrame[] stackFrames = stackTrace.GetFrames ();  // get method calls (frames)
+
+			// write call stack method names
+			foreach (StackFrame stackFrame in stackFrames) {
+				Console.WriteLine (stackFrame. () + "." + stackFrame.GetMethod ());   // write method name
+			}*/
 			this.hooks.AddListDictionary (hook.HookType, hook);
 		}
 
