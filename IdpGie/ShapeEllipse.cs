@@ -19,43 +19,44 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Cairo;
+using System;
 
 namespace IdpGie {
+	public class ShapeEllipse : Shape {
+		private double width;
+		private double height;
 
-    public class ShapeEllipse : Shape {
+		public double Width {
+			get {
+				return width;
+			}
+			set {
+				width = value;
+			}
+		}
 
-        private double width;
-        private double height;
+		public double Height {
+			get {
+				return height;
+			}
+			set {
+				height = value;
+			}
+		}
 
-        public double Width {
-            get {
-                return width;
-            }
-            set {
-                width = value;
-            }
-        }
+		public ShapeEllipse (IFunctionInstance name, double width, double height) : base (name) {
+			this.width = width;
+			this.height = height;
+		}
 
-        public double Height {
-            get {
-                return height;
-            }
-            set {
-                height = value;
-            }
-        }
-
-        public ShapeEllipse (IFunctionInstance name) : base(name) {
-        }
-
-        protected override void InnerPaintObject (Context ctx) {
-            ctx.Save ();
-            ctx.Scale (this.Width, this.Height);
-            ctx.Arc (0.0d, 0.0d, 1.0d, 0.0d, MathExtra.Theta);
-            ctx.Restore ();
-            base.InnerPaintObject (ctx);
-        }
-
-    }
+		protected override void InnerPaintObject (Context ctx) {
+			ctx.Save ();
+			ctx.Translate (0.5d * this.Width, 0.5d * this.Height);
+			ctx.Scale (0.5d * this.Width, 0.5 * this.Height);
+			ctx.Arc (0.0d, 0.0d, 1.0d, 0.0d, MathExtra.Theta);
+			ctx.Restore ();
+			base.InnerPaintObject (ctx);
+		}
+	}
 }
 

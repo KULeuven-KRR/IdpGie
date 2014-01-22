@@ -40,7 +40,7 @@ namespace IdpGie {
 
 		[PaintMethod ("ellipse", true, false, 0.0d, TermType.Float, TermType.Float)]
 		public static void Ellipse (DrawTheory dt, IFunctionInstance name, double width, double height) {
-			dt.AddIdpdObject (new ShapeRegularPolygonObject (name, 4, width));
+			dt.AddIdpdObject (new ShapeEllipse (name, width, height));
 		}
 
 		[PaintMethod ("console", false, false, 0.0d, TermType.String)]

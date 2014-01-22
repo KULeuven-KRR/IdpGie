@@ -1,4 +1,4 @@
-sq(70).
+sq(68).
 idpd_polygon(field, array( point(0, 0),point(14*S, 0),point(14*S, 9*S), point(0, 9*S))) :- sq(S).
 idpd_show(field).
 idpd_xpos(field,S) :- sq(S).
@@ -30,7 +30,8 @@ idpd_depth(player, -7) :- player(X,Y).
 idpd_show(player).
 
 
-idpd_ellipse(gold(X, Y), S/5, S/2) :- gold(X,Y), sq(S).
+idpd_ellipse(gold(X,Y), S/5, S/2) :- gold(X,Y), sq(S).
+idpd_show(gold(X,Y)) :- gold(X,Y), sq(S).
 idpd_xpos(gold(X, Y), Y*S+S/3+2*S) :- gold(X,Y), sq(S).
 idpd_ypos(gold(X,Y), X*S+S/5+2*S) :- gold(X,Y), sq(S).
 idpd_color(gold(X,Y), 167, 136, 47) :- gold(X,Y).
