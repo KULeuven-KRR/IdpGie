@@ -33,8 +33,23 @@ namespace IdpGieTest {
 			IFunctionInstance fiaa = (IFunctionInstance)teleport.CreateInstance (new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"));
 			IFunctionInstance fiab = (IFunctionInstance)teleport.CreateInstance (new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"));
 			Assert.IsTrue (fiaa.Equals (fiab));
-			FunctionInstance fiba = new FunctionInstance (wall, new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"), l.CreateInstance ());
-			FunctionInstance fibb = new FunctionInstance (teleport, new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"));
+			Assert.IsTrue (fiab.Equals (fiaa));
+			Assert.AreEqual (fiaa.GetHashCode (), fiaa.GetHashCode ());
+			Assert.AreEqual (fiaa.GetHashCode (), fiab.GetHashCode ());
+			IFunctionInstance fiba = (IFunctionInstance)wall.CreateInstance (new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"), (IFunctionInstance)l.CreateInstance ());
+			IFunctionInstance fibb = (IFunctionInstance)wall.CreateInstance (new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"), (IFunctionInstance)l.CreateInstance ());
+			Assert.IsTrue (fiba.Equals (fibb));
+			Assert.IsTrue (fibb.Equals (fiba));
+			Assert.AreEqual (fiba.GetHashCode (), fiba.GetHashCode ());
+			Assert.AreEqual (fiba.GetHashCode (), fibb.GetHashCode ());
+			Assert.IsFalse (fiaa.Equals (fiba));
+			Assert.IsFalse (fiaa.Equals (fibb));
+			Assert.IsFalse (fiab.Equals (fiba));
+			Assert.IsFalse (fiab.Equals (fibb));
+			Assert.IsFalse (fiba.Equals (fiaa));
+			Assert.IsFalse (fiba.Equals (fiab));
+			Assert.IsFalse (fibb.Equals (fiaa));
+			Assert.IsFalse (fibb.Equals (fiab));
 		}
 	}
 }

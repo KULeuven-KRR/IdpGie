@@ -27,6 +27,7 @@ namespace IdpGie {
 			MemoryStream tmp = new MemoryStream ();
 			StreamWriter sw = new StreamWriter (tmp);
 			sw.WriteLine (text);
+			Console.WriteLine (text);
 			if (this.hookContent != null) {
 				sw.WriteLine (this.hookContent);
 			}

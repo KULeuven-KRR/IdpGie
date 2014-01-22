@@ -185,6 +185,7 @@ namespace IdpGie {
 		}
 
 		internal void AddIdpdObject (IShape obj) {
+			Console.WriteLine ("Added {0}", obj.Name);
 			this.objects.Add (obj.Name, obj);
 		}
 

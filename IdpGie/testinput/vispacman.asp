@@ -61,22 +61,22 @@ idpd_color(square(X, Y), 158, 210, 107) :- square(X, Y).
 idpd_depth(square(X, Y), -10) :- square(X, Y).
 idpd_show(square(X,Y)) :- square(X, Y).
 
+idpd_polygon(wall(X, Y, "l"), array(point(0,0),point(0,S))) :- walls(X, Y, "l"), sq(S).
+idpd_xpos(wall(X, Y, "l"), Y*S) :- walls(X, Y, "l"), sq(S).
+idpd_ypos(wall(X, Y, "l"), X*S) :- walls(X, Y, "l"), sq(S).
+
+idpd_polygon(wall(X, Y, "r"), array(point(0,0),point(0,S))) :- walls(X, Y, "r"), sq(S).
+idpd_xpos(wall(X, Y, "r"), (Y+1)*S) :- walls(X, Y, "r"), sq(S).
+idpd_ypos(wall(X, Y, "r"), X*S) :- walls(X, Y, "r"), sq(S).
+
+idpd_polygon(wall(X, Y, "d"), array(point(0,0),point(S,0))) :- walls(X, Y, "d"), sq(S).
+idpd_xpos(wall(X, Y, "d"), Y*S) :- walls(X, Y, "d"), sq(S).
+idpd_ypos(wall(X, Y, "d"), (X+1)*S) :- walls(X, Y, "d"), sq(S).
+
+idpd_polygon(wall(X, Y, "u"), array(point(0,0),point(S,0))) :- walls(X, Y, "u"), sq(S).
+idpd_xpos(wall(X, Y, "u"), Y*S) :- walls(X, Y, "u"), sq(S).
+idpd_ypos(wall(X, Y, "u"), X*S) :- walls(X, Y, "u"), sq(S).
 
 idpd_depth(wall(X, Y, D), -5):- walls(X, Y, D).
+idpd_show(wall(X, Y, D)):- walls(X, Y, D).
 idpd_color(wall(X, Y, D), 0, 0, 255):- walls(X, Y, D).
-
-idpd_polygon(wall(X, Y, l), array(point(0,0),point(0,S))) :- walls(X, Y, l), sq(S).
-idpd_xpos(wall(X, Y, l), Y*S) :- walls(X, Y, l), sq(S).
-idpd_ypos(wall(X, Y, l), X*S) :- walls(X, Y, l), sq(S).
-
-idpd_polygon(wall(X, Y, r), array(point(0,0),point(0,S))) :- walls(X, Y, r), sq(S).
-idpd_xpos(wall(X, Y, r), (Y+1)*S) :- walls(X, Y, r), sq(S).
-idpd_ypos(wall(X, Y, r), X*S) :- walls(X, Y, r), sq(S).
-
-idpd_polygon(wall(X, Y, d), array(point(0,0),point(S,0))) :- walls(X, Y, d), sq(S).
-idpd_xpos(wall(X, Y, d), Y*S) :- walls(X, Y, d), sq(S).
-idpd_ypos(wall(X, Y, d), (X+1)*S) :- walls(X, Y, d), sq(S).
-
-idpd_polygon(wall(X, Y, u), array(point(0,0),point(S,0))) :- walls(X, Y, u), sq(S).
-idpd_xpos(wall(X, Y, u), Y*S) :- walls(X, Y, u), sq(S).
-idpd_ypos(wall(X, Y, u), X*S) :- walls(X, Y, u), sq(S).
