@@ -1,0 +1,4 @@
+idph_keydown("up") -: idpa_execute("ps = goup(ps);").
+idph_keydown("down") -: idpa_execute("ps = goup(ps);").
+idph_keydown("left") -: idpa_execute("ps = goleft(ps);").
+idph_keydown("right") -: idpa_execute("ps = goright(ps);").

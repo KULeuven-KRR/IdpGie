@@ -30,14 +30,14 @@ namespace IdpGie {
 		private readonly List<ITheoryItem> elements = new List<ITheoryItem> ();
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
 		private readonly Dictionary<EventType,LinkedList<IHook>> hooks = new Dictionary<EventType, LinkedList<IHook>> ();
-		private readonly IAlterableContentChangeableStream<string> source;
+		private readonly IAlterableReloadableChangeableStream<string> source;
 		private DrawTheoryMode mode = DrawTheoryMode.Cairo;
 		private double minTime = 0.0d;
 		private double maxTime = 0.0d;
 
 		private event EventHandler changed;
 
-		public IAlterableContentChangeableStream<string> Source {
+		public IAlterableReloadableChangeableStream<string> Source {
 			get {
 				return this.source;
 			}
@@ -118,7 +118,7 @@ namespace IdpGie {
 
 		#endregion
 
-		public DrawTheory (string name, IAlterableContentChangeableStream<string> source) : base (name) {
+		public DrawTheory (string name, IAlterableReloadableChangeableStream<string> source) : base (name) {
 			this.source = source;
 			this.source.Changed += HandleChanged;
 			this.HandleChanged (null, null);

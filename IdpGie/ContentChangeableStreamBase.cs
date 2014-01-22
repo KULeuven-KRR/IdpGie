@@ -2,12 +2,12 @@ using System;
 using System.IO;
 
 namespace IdpGie {
-	public class ContentChangeableStreamBase<T> : IContentChangeableStream where T : Stream {
+	public class ContentChangeableStreamBase<T> : IChangeableStream where T : Stream {
 		private T stream;
 
 		private event EventHandler changed;
 
-		Stream IContentChangeableStream.Stream {
+		Stream IChangeableStream.Stream {
 			get {
 				return this.stream;
 			}

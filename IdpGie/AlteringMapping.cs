@@ -7,5 +7,10 @@ namespace IdpGie {
 		public static void Execute (DrawTheory dt, string command) {
 			dt.Source.Alter (command);
 		}
+
+		[AlterMethodAttribute ("reload")]
+		public static void Execute (DrawTheory dt) {
+			dt.Source.Reload ();
+		}
 	}
 }

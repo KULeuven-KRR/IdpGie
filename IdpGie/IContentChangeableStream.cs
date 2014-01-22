@@ -2,7 +2,7 @@ using System;
 using System.IO;
 
 namespace IdpGie {
-	public interface IContentChangeableStream {
+	public interface IChangeableStream {
 		Stream Stream {
 			get;
 		}
@@ -10,4 +10,3 @@ namespace IdpGie {
 		event EventHandler Changed;
 	}
 }
-

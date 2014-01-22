@@ -22,15 +22,16 @@ namespace IdpGie {
 		}
 
 		private void regenerateModel () {
+			Console.WriteLine ("HOOK RELOAD");
 			string text = ses.EchoModel ();
 			text = inter.TranslateClingo (text, aspContent).Replace (" ", ".\n") + hookContent;
 			MemoryStream tmp = new MemoryStream ();
 			StreamWriter sw = new StreamWriter (tmp);
-			sw.WriteLine (text);
-			Console.WriteLine (text);
 			if (this.hookContent != null) {
-				sw.WriteLine (this.hookContent);
+				text += this.hookContent;
 			}
+			Console.WriteLine (text);
+			sw.WriteLine (text);
 			sw.Flush ();
 			tmp.Position = 0x00;
 			MemoryStream old = this.Stream;

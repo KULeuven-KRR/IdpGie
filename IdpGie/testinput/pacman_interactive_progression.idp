@@ -117,10 +117,10 @@ structure S1 : V{
 }
 
 procedure valueofmove(input){
-	if input[initVoc::move]() == S1[V::d]() then return "d"	end
-	if input[initVoc::move]() == S1[V::r]() then return "r"	end
-	if input[initVoc::move]() == S1[V::u]() then return "u" end
-	if input[initVoc::move]() == S1[V::l]() then return "l"	end
+	if input[iv::move]() == S1[V::d]() then return "d"	end
+	if input[iv::move]() == S1[V::r]() then return "r"	end
+	if input[iv::move]() == S1[V::u]() then return "u" end
+	if input[iv::move]() == S1[V::l]() then return "l"	end
 }
 
 procedure draw(struc){
@@ -165,6 +165,27 @@ procedure message(m,lang){
 		end
 	end
 	print("Unknown message",m)
+}
+
+procedure goleft(possStrucs){
+	return go(possStrucs,"l")
+}
+procedure goright(possStrucs){
+	return go(possStrucs,"r")
+}
+procedure goup(possStrucs){
+	return go(possStrucs,"u")
+}
+procedure godown(possStrucs){
+	return go(possStrucs,"d")
+}
+procedure go(possStrucs,move){
+	result=-1;
+	for i=1,#possStrucs do
+		if valueofmove(possStrucs[i])==move then result=i end
+	end
+	selstruc = possStrucs[result];
+	return progress(T,selstruc)
 }
 
 procedure main(){

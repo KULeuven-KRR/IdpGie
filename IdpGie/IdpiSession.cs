@@ -2,7 +2,7 @@ using System;
 using System.IO;
 
 namespace IdpGie {
-	public class IdpiSession : IContentChangeableStream {
+	public class IdpiSession : IChangeableStream {
 		public IdpiSession () {
 		}
 

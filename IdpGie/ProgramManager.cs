@@ -72,7 +72,7 @@ namespace IdpGie {
 				return this.hookFile;
 			}
 			set {
-				this.HookFile = StringUtils.NonEmptyOrNull (value);
+				this.hookFile = StringUtils.NonEmptyOrNull (value);
 				this.hookContent = null;
 			}
 		}
@@ -260,7 +260,7 @@ namespace IdpGie {
 					} else {
 						Application.Init ("IdpGie", ref args);
 						Gdk.Threads.Init ();
-						IAlterableContentChangeableStream<string> strm;
+						IAlterableReloadableChangeableStream<string> strm;
 						string filename;
 						manager.CreateWindow ();
 						if (manager.Interactive) {
@@ -271,7 +271,6 @@ namespace IdpGie {
 							filename = manager.IdpdFile;
 						}
 						DrawTheory dt = new DrawTheory (filename, strm);
-						//pars.Result.Execute ();
 						OutputDevice dev = dt.GetOutputDevice ();
 						dev.Run (manager);
 						manager.ShowWindow ();

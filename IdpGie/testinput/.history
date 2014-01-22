@@ -1,0 +1,30 @@
+stdoptions.xsb=false
+stdoptions.groundwithbounds=false
+stdoptions.liftedunitpropagation=
+stdoptions.liftedunitpropagation=false
+stdoptions.nbmodels=false
+stdoptions.nbmodels=0
+stdoptions.language="asp"
+cs = calculatedefinitions(T,S1)
+ps, a, b, iv = initialise(T,cs)
+struc = ps[1]
+print(string.format(""\\a%s\\n\\a"",tostring (struc)))
+print(string.format("\\a%s\\n\\a",tostring (struc)))
+ps=goleft(ps)
+stdoptions.xsb=false
+answer(stdoptions.groundwithbounds=false
+answer(stdoptions.liftedunitpropagation=false
+answer(stdoptions.nbmodels=0
+stdoptions.xsb=false
+stdoptions.groundwithbounds=false
+stdoptions.liftedunitpropagation=false
+stdoptions.nbmodels=0
+cs = calculatedefinitions(T,S1)
+ps, a, b, iv = initialise(T,cs)
+struc = ps[1]
+stdoptions.language="asp"
+print(string.format("\\a%s\\n\\a",tostring (struc)))
+ps=goleft(ps);
+ps=goright(ps);
+struc = ps[1]
+print(string.format("\\a%s\\n\\a",tostring (struc)))
