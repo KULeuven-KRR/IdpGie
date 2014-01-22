@@ -165,6 +165,11 @@ namespace IdpGie {
 			dt.AddModifier (name, time, x => x.SetInnerColor (r, g, b));
 		}
 
+		[PaintMethod ("color", true, true, TermType.Int, TermType.Int, TermType.Int)]
+		public static void Color (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
+			InnerColor (dt, name, r, g, b, time);
+		}
+
 		[PaintMethod ("depth", true, true, TermType.Float)]
 		public static void Depth (DrawTheory dt, IFunctionInstance name, double index, double time = double.NaN) {
 			dt.AddModifier (name, time, x => x.SetZPos (index));

@@ -25,7 +25,7 @@
 %YYSTYPE StateStructure
 %YYLTYPE LexSpan
 
-%token IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA FLT INT IMPLY
+%token IDENTIFIER STRING OBR CBR DOT OFB CFB OPA COMMA FLT INT IMPLY ARRAY
 %type   <str>   identifier
 %type   <ter>   term list
 %type   <vter>  terms
@@ -69,8 +69,9 @@ terms       : /* empty */                                   { $$ = null;}
             | term COMMA terms                              { $$ = new HeadTail<IFunctionInstance>($1,$3);}
             ;
 
-term        : identifier OBR terms CBR                      { $$ = this.Context.GetFunctionInstance($1,$3);}
-            | identifier                                    { $$ = this.Context.GetFunctionInstance($1);}
+term        : ARRAY OBR terms CBR                           { $$ = ArrayFunction.ToInstance($3); }
+            | identifier OBR terms CBR                      { $$ = this.Context.GetFunctionInstance($1.Trim(),$3);}
+            | identifier                                    { $$ = this.Context.GetFunctionInstance($1.Trim());}
             | list                                          { $$ = $1;}
             | INT                                           { $$ = new FunctionIntegerInstance(@1.ToString());}
             | FLT                                           { $$ = new FunctionFloatInstance(@1.ToString());}

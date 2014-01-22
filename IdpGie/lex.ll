@@ -11,6 +11,7 @@
 %option codepage:raw
 
 SAT             SATISFIABLE
+ARR             array
 WHITESPACE      [\r\t\n ]*
 COMMA           ,
 ID              [^ \[\]()=,\.\r\t\n\"]*
@@ -31,6 +32,7 @@ IMPLY           \-\:
 
 {COMMENT}       {}
 {SAT}           {}
+{ARR}           {return (int) Token.ARRAY;}
 {IMPLY}         {return (int) Token.IMPLY;}
 {FLT}           {return (int) Token.FLT;}
 {INT}           {return (int) Token.INT;}

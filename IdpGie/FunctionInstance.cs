@@ -23,65 +23,66 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public class FunctionInstance : Term, IFunctionInstance {
 
-    public class FunctionInstance : Term, IFunctionInstance {
+		#region IFunctionInstance implementation
 
-        #region IFunctionInstance implementation
-        public TermType Type {
-            get {
-                return this.Function.OutputType;
-            }
-        }
+		public TermType Type {
+			get {
+				return this.Function.OutputType;
+			}
+		}
 
-        public IFunction Function {
-            get {
-                return (IFunction)this.Header;
-            }
-        }
+		public IFunction Function {
+			get {
+				return (IFunction)this.Header;
+			}
+		}
 
-        public virtual object Value {
-            get {
-                return this;
-            }
-        }
-        #endregion
+		public virtual object Value {
+			get {
+				return this;
+			}
+		}
 
-        public FunctionInstance (IFunction func, List<IFunctionInstance> terms) : base(func,terms) {
-        }
+		#endregion
 
-        public FunctionInstance (IFunction func, params IFunctionInstance[] terms) : base(func,terms.ToList()) {
-        }
+		public FunctionInstance (IFunction func, List<IFunctionInstance> terms) : base (func, terms) {
+		}
 
-        #region IFunctionInstance implementation
-        public bool CanConvert (TermType type) {
-            return TypeSystem.CanConvert (this.Type, type);
-        }
+		public FunctionInstance (IFunction func, params IFunctionInstance[] terms) : base (func, terms.ToList ()) {
+		}
 
-        public object ConvertedValue (TermType target) {
-            return this.Value;
-        }
-        #endregion
+		#region IFunctionInstance implementation
 
-        public override int GetHashCode () {
-            int hash = this.Header.GetHashCode (), spill;
-            foreach (IFunctionInstance ifi in this.Terms) {
-                spill = (hash >> 0x15) & 0x0fff;
-                hash <<= 0x0b;
-                hash |= spill;
-                hash ^= ifi.GetHashCode ();
-            }
-            return hash;
-        }
+		public bool CanConvert (TermType type) {
+			return TypeSystem.CanConvert (this.Type, type);
+		}
 
-        public override bool Equals (object obj) {
-            if (obj is IFunctionInstance) {
-                IFunctionInstance ifi = (IFunctionInstance)obj;
-                return Object.Equals (this.Function, ifi.Function) && this.Terms.AllDual (ifi.Terms, Object.Equals);
-            }
-            return false;
-        }
-    
-    }
+		public object ConvertedValue (TermType target) {
+			return this.Value;
+		}
 
+		#endregion
+
+		public override int GetHashCode () {
+			int hash = this.Header.GetHashCode (), spill;
+			foreach (IFunctionInstance ifi in this.Terms) {
+				spill = (hash >> 0x15) & 0x0fff;
+				hash <<= 0x0b;
+				hash |= spill;
+				hash ^= ifi.GetHashCode ();
+			}
+			return hash;
+		}
+
+		public override bool Equals (object obj) {
+			if (obj is IFunctionInstance) {
+				IFunctionInstance ifi = (IFunctionInstance)obj;
+				return Object.Equals (this.Function, ifi.Function) && this.Terms.AllDual (ifi.Terms, (x, y) => x.Equals (y));
+			}
+			return false;
+		}
+	}
 }
 

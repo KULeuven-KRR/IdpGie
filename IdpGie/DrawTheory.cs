@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Text;
 using Gdk;
 using IdpGie.Parser;
+using Cairo;
 
 namespace IdpGie {
 	public class DrawTheory : NameBase, ITimesensitive {

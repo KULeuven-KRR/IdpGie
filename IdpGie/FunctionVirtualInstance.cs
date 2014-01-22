@@ -22,149 +22,176 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public abstract class FunctionVirtualInstance : IFunction, IFunctionInstance {
+		private double priority;
 
-    public abstract class FunctionVirtualInstance : IFunction, IFunctionInstance {
+		#region IFunctionInstance implementation
 
-        private double priority;
+		public virtual ITermHeader Header {
+			get {
+				return this;
+			}
+		}
 
-        #region IFunctionInstance implementation
-        public virtual ITermHeader Header {
-            get {
-                return this;
-            }
-        }
+		public bool HasInstance {
+			get {
+				return true;
+			}
+		}
 
-        public bool HasInstance {
-            get {
-                return true;
-            }
-        }
+		public virtual IFunctionInstance this [int index] {
+			get {
+				throw new IndexOutOfRangeException ();
+			}
+		}
 
-        public virtual IFunctionInstance this [int index] {
-            get {
-                throw new IndexOutOfRangeException ();
-            }
-        }
+		public abstract object Value {
+			get;
+		}
 
-        public abstract object Value {
-            get;
-        }
-        #endregion
+		#endregion
 
-        #region IName implementation
-        public string Name {
-            get {
-                return this.ToString ();
-            }
-        }
-        #endregion
+		#region IName implementation
 
-        #region ITermHeader implementation
-        public int Arity {
-            get {
-                return 0x00;
-            }
-        }
+		public string Name {
+			get {
+				return this.ToString ();
+			}
+		}
 
-        public Tuple<string,int> Signature {
-            get {
-                return new Tuple<string, int> (this.Name, this.Arity);
-            }
-        }
-        #endregion
+		#endregion
 
-        #region IPriority implementation
-        public double Priority {
-            get {
-                return this.priority;
-            }
-            protected set {
-                this.priority = value;
-            }
-        }
-        #endregion
+		#region ITermHeader implementation
 
-        #region IFunctionInstance implementation
-        public abstract TermType Type {
-            get;
-        }
+		public int Arity {
+			get {
+				return 0x00;
+			}
+		}
 
-        public IFunction Function {
-            get {
-                return this;
-            }
-        }
-        #endregion
+		public Tuple<string,int> Signature {
+			get {
+				return new Tuple<string, int> (this.Name, this.Arity);
+			}
+		}
 
-        #region IFunction implementation
-        public virtual TermType OutputType {
-            get {
-                return this.Type;
-            }
-        }
-        #endregion
+		#endregion
 
-        #region ITerm implementation
-        public virtual IEnumerable<IFunctionInstance> Terms {
-            get {
-                yield break;
-            }
-        }
-        #endregion
+		#region IPriority implementation
 
-        protected FunctionVirtualInstance (double priority = 1.0d) {
-            this.Priority = priority;
-        }
+		public double Priority {
+			get {
+				return this.priority;
+			}
+			protected set {
+				this.priority = value;
+			}
+		}
 
-        #region IFunction implementation
-        public TermType InputType (int index) {
-            return TermType.None;
-        }
+		#endregion
 
-        public virtual void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00) {
-        }
+		#region IFunctionInstance implementation
 
-        public virtual void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
-        }
+		public abstract TermType Type {
+			get;
+		}
 
-        public virtual void WidenInput (IEnumerable<IFunctionInstance> terms) {
-        }
+		public IFunction Function {
+			get {
+				return this;
+			}
+		}
 
-        public bool CanConvert (TermType type) {
-            return TypeSystem.CanConvert (this.Type, type);
-        }
+		#endregion
 
-        public abstract object ConvertedValue (TermType target);
-        #endregion
+		#region IFunction implementation
 
-        #region ITermHeader implementation
-        public string TermString (IEnumerable<IFunctionInstance> terms) {
-            return this.ToString ();
-        }
-        #endregion
+		public virtual TermType OutputType {
+			get {
+				return this.Type;
+			}
+		}
 
-        #region ITerm implementation
-        public virtual bool Equals (ITerm other) {
-            return Object.Equals (this, other);
-        }
-        #endregion
+		#endregion
 
-        public override int GetHashCode () {
-            return this.Value.GetHashCode ();
-        }
+		#region ITerm implementation
 
-        #region IFunction implementation
-        public IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            throw new InvalidOperationException ("Virtual functions cannot be used for prototyping.");
-        }
-        #endregion
+		public virtual IEnumerable<IFunctionInstance> Terms {
+			get {
+				yield break;
+			}
+		}
 
-        #region ITermHeader implementation
-        ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return this.CreateInstance (terms);
-        }
-        #endregion
+		#endregion
 
-    }
+		protected FunctionVirtualInstance (double priority = 1.0d) {
+			this.Priority = priority;
+		}
+
+		#region IFunction implementation
+
+		public TermType InputType (int index) {
+			return TermType.None;
+		}
+
+		public virtual void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00) {
+		}
+
+		public virtual void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
+		}
+
+		public virtual void WidenInput (IEnumerable<IFunctionInstance> terms) {
+		}
+
+		public bool CanConvert (TermType type) {
+			return TypeSystem.CanConvert (this.Type, type);
+		}
+
+		public abstract object ConvertedValue (TermType target);
+
+		#endregion
+
+		#region ITermHeader implementation
+
+		public string TermString (IEnumerable<IFunctionInstance> terms) {
+			return this.ToString ();
+		}
+
+		#endregion
+
+		#region ITerm implementation
+
+		public virtual bool Equals (ITerm other) {
+			FunctionVirtualInstance fvi = other as FunctionVirtualInstance;
+			if (fvi != null) {
+				return Object.Equals (this.Value, fvi.Value);
+			} else {
+				return false;
+			}
+		}
+
+		#endregion
+
+		public override int GetHashCode () {
+			return this.Value.GetHashCode ();
+		}
+
+		#region IFunction implementation
+
+		public IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			throw new InvalidOperationException ("Virtual functions cannot be used for prototyping.");
+		}
+
+		#endregion
+
+		#region ITermHeader implementation
+
+		ITerm ITermHeader.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			return this.CreateInstance (terms);
+		}
+
+		#endregion
+
+	}
 }
 
