@@ -22,16 +22,14 @@ using System;
 using Cairo;
 
 namespace IdpGie {
+	public class CairoImageStore : WeakFlyweight<string,ImageSurface> {
+		public static readonly CairoImageStore Instance = new CairoImageStore ();
 
-    public class CairoImageStore : WeakFlyweight<string,ImageSurface> {
+		private CairoImageStore () : base (createImage) {
+		}
 
-        public CairoImageStore () : base(createImage) {
-        }
-
-        private static ImageSurface createImage (string name) {
-            return new ImageSurface (name);
-        }
-
-    }
-
+		private static ImageSurface createImage (string name) {
+			return new ImageSurface (name);
+		}
+	}
 }

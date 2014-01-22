@@ -1,4 +1,4 @@
-sq(50).
+sq(70).
 idpd_polygon(field, array( point(0, 0),point(14*S, 0),point(14*S, 9*S), point(0, 9*S))) :- sq(S).
 idpd_show(field).
 idpd_xpos(field,S) :- sq(S).
@@ -23,26 +23,18 @@ idpd_text_t(score2, "X", T) :- score(T, X).
 idpd_show(score2).
 
 
-idpd_image_t(T, player, "monddichtl", S, S) :- player(T,X, Y), (T #mod 2) == 0, sq(S).
-idpd_image_t(T, player, "monddichtl", S, S) :- player(T,X, Y), end(T2), T>T2, sq(S).
-idpd_image_t(T, player, "monddichtu", S, S) :- player(T,X, Y), (T #mod 2) == 0, sq(S), move(T-1, u).
-idpd_image_t(T, player, "mondopenu", S, S) :- player(T,X, Y), (T #mod 2) == 1, sq(S), move(T-1, u).
-idpd_image_t(T, player, "monddichtd", S, S) :- player(T,X, Y), (T #mod 2) == 0, sq(S), move(T-1, d).
-idpd_image_t(T, player, "mondopend", S, S) :- player(T,X, Y), (T #mod 2) == 1, sq(S), move(T-1, d).
-idpd_image_t(T, player, "monddichtr", S, S) :- player(T,X, Y), (T #mod 2) == 0, sq(S), move(T-1, r).
-idpd_image_t(T, player, "mondopenr", S, S) :- player(T,X, Y), (T #mod 2) == 1, sq(S), move(T-1, r).
-idpd_image_t(T, player, "monddichtl", S, S) :- player(T,X, Y), (T #mod 2) == 0, sq(S), move(T-1, l).
-idpd_image_t(T, player, "mondopenl", S, S) :- player(T,X, Y), (T #mod 2) == 1, sq(S), move(T-1, l).
-idpd_xpos(player, Y*S+1) :- player(T,X,Y), sq(S).
-idpd_ypos(player, X*S+1) :- player(T,X,Y), sq(S).
-idpd_depth(player, -7) :- player(T,X,Y).
+idpd_image(player, "mondopenr", S, S) :- player(X, Y), sq(S).
+idpd_xpos(player, Y*S+1+2*S) :- player(X,Y), sq(S).
+idpd_ypos(player, X*S+1+2*S) :- player(X,Y), sq(S).
+idpd_depth(player, -7) :- player(X,Y).
+idpd_show(player).
 
 
-idpd_ellipse_t(T, gold, X, Y, S/5, S/2) :- gold(T,X,Y), sq(S).
-idpd_xpos_t(T, gold, X, Y, Y*S+S/3) :- gold(T,X,Y), sq(S).
-idpd_ypos_t(T, gold, X, Y, X*S+S/5) :- gold(T,X,Y), sq(S).
-idpd_color_t(T, gold, X, Y, 167, 136, 47) :- gold(T,X,Y).
-idpd_depth_t(T, gold, X, Y, 9) :- gold(T,X,Y).
+idpd_ellipse(gold(X, Y), S/5, S/2) :- gold(X,Y), sq(S).
+idpd_xpos(gold(X, Y), Y*S+S/3+2*S) :- gold(X,Y), sq(S).
+idpd_ypos(gold(X,Y), X*S+S/5+2*S) :- gold(X,Y), sq(S).
+idpd_color(gold(X,Y), 167, 136, 47) :- gold(X,Y).
+idpd_depth(gold(X,Y), -9) :- gold(X,Y).
 
 idpd_polygon(teleport(X, Y), array(point(0, 0), point(0, S/2),point(S/2, S/2), point(S/2, 0))) :- teleport(X, Y), sq(S).
 idpd_show(teleport(X, Y)) :- teleport(X, Y).

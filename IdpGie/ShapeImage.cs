@@ -20,19 +20,33 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Cairo;
+using System.Runtime.CompilerServices;
 
 namespace IdpGie {
+	public class ShapeImage : Shape {
+		private readonly ImageSurface surface;
+		private readonly double width, height;
 
-    public class ShapeImage : Shape {
+		public ShapeImage (IFunctionInstance name, string filename, double width, double height) : base (name) {
+			this.surface = CairoImageStore.Instance.GetOrCreate (filename);
+			this.width = width;
+			this.height = height;
+		}
 
-        public ShapeImage (IFunctionInstance name) : base(name) {
-        }
-
-        protected override void InnerPaintObject (Context ctx) {
-
-            base.InnerPaintObject (ctx);
-        }
-
-    }
-
+		protected override void InnerPaintObject (Context ctx) {
+			ctx.Save ();
+			//ctx.SetFill (this.surface);
+			//ctx.SetSource (this.surface);
+			//ctx.SetSourceSurface (this.surface, 0x00, 0x00);
+			//ctx.SetFill (1.0d, 0.0d, 0.0d);
+			//Console.WriteLine ("{0}/{1}/{2}/{3}", 0.0d, 0.0d, this.width, this.height);
+			//ctx.Rectangle (0.0d, 0.0d, this.width, this.height);
+			ctx.Scale (this.width / this.surface.Width, this.height / this.surface.Height);
+			this.surface.Show (ctx, 0.0d, 0.0d);
+			//ctx.Paint ();
+			//ctx.Fill ();
+			ctx.Restore ();
+			base.InnerPaintObject (ctx);
+		}
+	}
 }

@@ -68,9 +68,9 @@ namespace IdpGie {
 
 		}
 
-		[PaintMethod ("image", true, true, 0.0d, TermType.Float, TermType.Float, TermType.String)]
-		public static void Image (DrawTheory dt, IFunctionInstance name, double width, double height, string filepath, double time = double.NaN) {
-
+		[PaintMethod ("image", true, false, 0.0d, TermType.String, TermType.Float, TermType.Float)]
+		public static void Image (DrawTheory dt, IFunctionInstance name, string filepath, double width, double height) {
+			dt.AddIdpdObject (new ShapeImage (name, filepath, width, height));
 		}
 
 		[PaintMethod ("xpos", true, true, TermType.Float)]
