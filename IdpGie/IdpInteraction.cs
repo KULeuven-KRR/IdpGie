@@ -1,10 +1,7 @@
 using System;
-using System.Diagnostics;
 using System.Xml.Serialization;
-using System.IO;
-using System.Xml;
-using IdpGie.Parser;
 using System.Text;
+using IdpGie.Utils;
 
 namespace IdpGie {
 	[XmlType ("Interaction")]
@@ -70,7 +67,7 @@ namespace IdpGie {
 			}
 
 			public void Execute (string command) {
-				this.Stdin.WriteLine (command);
+				this.Stdin.WriteLine (StringUtils.ReplaceDollar (command, EnumerableUtils.Zip2 ("the", this.theory, "str", this.structure, "voc", this.vocabulary)));
 			}
 
 			public string EchoModel () {

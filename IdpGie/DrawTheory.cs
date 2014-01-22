@@ -36,7 +36,7 @@ namespace IdpGie {
 
 		private event EventHandler changed;
 
-		public IContentChangeableStream Source {
+		public IAlterableContentChangeableStream<string> Source {
 			get {
 				return this.source;
 			}

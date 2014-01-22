@@ -21,6 +21,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace IdpGie {
 	public static class EnumerableUtils {
@@ -163,6 +164,27 @@ namespace IdpGie {
 
 		public static IEnumerable<T> Zero<T> () {
 			yield break;
+		}
+
+		public static IEnumerable<Tuple<T,T>> Zip2<T> (this IEnumerable<T> source) {
+			if (source != null) {
+				IEnumerator<T> enumerator = source.GetEnumerator ();
+				bool cont = enumerator.MoveNext ();
+				T ta, tb;
+				while (cont) {
+					ta = enumerator.Current;
+					cont = enumerator.MoveNext ();
+					if (cont) {
+						tb = enumerator.Current;
+						yield return new Tuple<T,T> (ta, tb);
+						cont = enumerator.MoveNext ();
+					}
+				}
+			}
+		}
+
+		public static IEnumerable<Tuple<T,T>> Zip2<T> (params T[] source) {
+			return Zip2 ((IEnumerable<T>)source);
 		}
 
 		public static IEnumerable<T> SkipLast<T> (this IEnumerable<T> source, int count) {

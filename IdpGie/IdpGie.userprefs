@@ -1,11 +1,14 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IDrawStreamProvider.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AlteringMapping.cs">
     <Files>
-      <File FileName="IDrawStreamProvider.cs" Line="1" Column="1" />
-      <File FileName="IdpInteractiveStream.cs" Line="38" Column="38" />
-      <File FileName="FileDrawStreamProvider.cs" Line="5" Column="40" />
-      <File FileName="DrawTheory.cs" Line="143" Column="22" />
+      <File FileName="IdpInteraction.cs" Line="67" Column="5" />
+      <File FileName="ProgramManager.cs" Line="264" Column="23" />
+      <File FileName="StringUtils.cs" Line="32" Column="18" />
+      <File FileName="IdpInteractiveStream.cs" Line="25" Column="25" />
+      <File FileName="EnumerableUtils.cs" Line="187" Column="11" />
+      <File FileName="AlteringMapping.cs" Line="6" Column="5" />
+      <File FileName="DrawTheory.cs" Line="39" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
