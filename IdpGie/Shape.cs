@@ -27,6 +27,7 @@ namespace IdpGie {
 	public abstract class Shape : IShape {
 		private readonly IFunctionInstance name;
 		private readonly ShapeState state = new ShapeState ();
+		private Point textOffset = new Point (0.0d, 0.0d);
 
 		#region IIdpdObject implementation
 
@@ -46,6 +47,15 @@ namespace IdpGie {
 		}
 
 		#endregion
+
+		public Point TextOffset {
+			get {
+				return this.textOffset;
+			}
+			protected set {
+				this.textOffset = value;
+			}
+		}
 
 		#region IZIndix implementation
 
@@ -122,7 +132,7 @@ namespace IdpGie {
 			string text = this.state.Text;
 			if (text != null && text != string.Empty) {
 				TextExtents te = ctx.TextExtents (text);
-				ctx.MoveTo (-0.5d * te.XAdvance, 0.5d * (te.Height + 0.5d * te.YBearing));
+				ctx.MoveTo (-0.5d * te.XAdvance + this.textOffset.X, 0.5d * (te.Height + 0.5d * te.YBearing) + this.textOffset.Y);
 				ctx.ShowText (text);
 			}
 		}

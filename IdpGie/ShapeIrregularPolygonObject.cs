@@ -24,19 +24,24 @@ using System.Collections.Generic;
 using Cairo;
 
 namespace IdpGie {
+	public class ShapeIrregularPolygonObject : ShapePolygon {
+		private readonly List<Point> points;
 
-    public class ShapeIrregularPolygonObject : ShapePolygon {
+		public ShapeIrregularPolygonObject (IFunctionInstance name, IEnumerable<Point> points) : base (name) {
+			this.points = points.ToList ();
+			double minx = double.PositiveInfinity, miny = double.PositiveInfinity, maxx = double.NegativeInfinity, maxy = double.NegativeInfinity;
+			foreach (Point p in this.points) {
+				minx = Math.Min (minx, p.X);
+				miny = Math.Min (miny, p.Y);
+				maxx = Math.Max (maxx, p.X);
+				maxy = Math.Max (maxy, p.Y);
+			}
+			this.TextOffset = new Point (0.5d * (minx + maxx), 0.5d * (miny + maxy));
+		}
 
-        private List<Point> points;
-
-        public ShapeIrregularPolygonObject (IFunctionInstance name, IEnumerable<Point> points) : base(name) {
-            this.points = points.ToList ();
-        }
-
-        public override IEnumerable<PointD> GetPoints () {
-            return points.Select (x => (PointD)x);
-        }
-
-    }
+		public override IEnumerable<PointD> GetPoints () {
+			return points.Select (x => (PointD)x);
+		}
+	}
 }
 
