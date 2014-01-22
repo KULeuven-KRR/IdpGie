@@ -22,26 +22,23 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public interface IFunction : ITermHeader {
+		TermType OutputType {
+			get;
+		}
 
-    public interface IFunction : ITermHeader {
+		bool HasInstance {
+			get;
+		}
 
-        TermType OutputType {
-            get;
-        }
+		TermType InputType (int index);
 
-        bool HasInstance {
-            get;
-        }
+		void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00);
 
-        TermType InputType (int index);
+		void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength);
 
-        void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00);
+		void WidenInput (IEnumerable<IFunctionInstance> terms);
 
-        void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength);
-
-        void WidenInput (IEnumerable<IFunctionInstance> terms);
-
-        IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms);
-    }
-
+		IFunctionInstance CreateInstance (IEnumerable<IFunctionInstance> terms);
+	}
 }

@@ -38,4 +38,10 @@
   <ItemGroup>
     <Compile Include="IFunctionInstanceTest.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IdpGie.csproj">
+      <Project>{CA468AA1-80E0-4BEF-A582-3E0CA721F4E9}</Project>
+      <Name>IdpGie</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

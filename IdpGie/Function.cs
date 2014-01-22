@@ -23,82 +23,88 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public class Function : TermHeader, IFunction {
+		private TermType outputType;
+		private readonly TermType[] inputTypes;
 
-    public class Function : TermHeader, IFunction {
+		#region IFunction implementation
 
-        private TermType outputType;
-        private readonly TermType[] inputTypes;
+		public TermType OutputType {
+			get {
+				return this.outputType;
+			}
+			protected set {
+				this.outputType = value;
+			}
+		}
 
+		public bool HasInstance {
+			get {
+				return true;
+			}
+		}
 
-        #region IFunction implementation
-        public TermType OutputType {
-            get {
-                return this.outputType;
-            }
-            protected set {
-                this.outputType = value;
-            }
-        }
+		#endregion
 
-        public bool HasInstance {
-            get {
-                return true;
-            }
-        }
-        #endregion
+		public Function (string name, int arity, TermType outputType = TermType.All, params TermType[] inputTypes) : base (name, arity) {
+			this.OutputType = outputType;
+			this.inputTypes = new TermType[arity];
+			for (int i = arity - 0x01; i >= 0x00; i--) {
+				this.inputTypes [i] = TermType.None;
+			}
+			this.WidenInput (inputTypes);
+		}
 
-        public Function (string name, int arity, TermType outputType = TermType.All, params TermType[] inputTypes) : base(name,arity) {
-            this.OutputType = outputType;
-            this.inputTypes = new TermType[arity];
-            for (int i = arity-0x01; i >= 0x00; i--) {
-                this.inputTypes [i] = TermType.None;
-            }
-            this.WidenInput (inputTypes);
-        }
+		#region IFunction implementation
 
-        #region IFunction implementation
-        public TermType InputType (int index) {
-            return this.inputTypes [index];
-        }
-        #endregion
+		public TermType InputType (int index) {
+			return this.inputTypes [index];
+		}
 
-        public void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00) {
-            this.WidenInput (types, termOffset, inputOffset, types.Length);
-        }
+		#endregion
 
-        public void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
-            int io = Math.Min (Math.Max (0x00, inputOffset), types.Length);
-            int n = io + Math.Min (Math.Min (inputLength, types.Length - io), this.inputTypes.Length - termOffset);
-            for (int i = io, j = termOffset; i < n; i++, j++) {
-                inputTypes [j] |= types [i];
-            }
-        }
+		public void WidenInput (TermType[] types, int termOffset = 0x00, int inputOffset = 0x00) {
+			this.WidenInput (types, termOffset, inputOffset, types.Length);
+		}
 
-        public void WidenInput (IEnumerable<IFunctionInstance> fis) {
-            IEnumerator<IFunctionInstance> fise = fis.GetEnumerator ();
-            int n = inputTypes.Length;
-            for (int i = 0x00; i < n && fise.MoveNext(); i++) {
-                inputTypes [i] |= fise.Current.Type;
-            }
-        }
+		public void WidenInput (TermType[] types, int termOffset, int inputOffset, int inputLength) {
+			int io = Math.Min (Math.Max (0x00, inputOffset), types.Length);
+			int n = io + Math.Min (Math.Min (inputLength, types.Length - io), this.inputTypes.Length - termOffset);
+			for (int i = io, j = termOffset; i < n; i++, j++) {
+				inputTypes [j] |= types [i];
+			}
+		}
 
-        IFunctionInstance IFunction.CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            return (IFunctionInstance)this.CreateInstance (terms);
-        }
+		public void WidenInput (IEnumerable<IFunctionInstance> fis) {
+			IEnumerator<IFunctionInstance> fise = fis.GetEnumerator ();
+			int n = inputTypes.Length;
+			for (int i = 0x00; i < n && fise.MoveNext (); i++) {
+				inputTypes [i] |= fise.Current.Type;
+			}
+		}
 
-        #region IFunction implementation
-        public override ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
-            List<IFunctionInstance> list;
-            if (terms != null) {
-                list = terms.ToList ();
-            } else {
-                list = new List<IFunctionInstance> ();
-            }
-            return new FunctionInstance (this, list);
-        }
-        #endregion
+		IFunctionInstance IFunction.CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			return (IFunctionInstance)this.CreateInstance (terms);
+		}
 
+		#region IFunction implementation
 
-    }
+		public override ITerm CreateInstance (IEnumerable<IFunctionInstance> terms) {
+			List<IFunctionInstance> list;
+			if (terms != null) {
+				list = terms.ToList ();
+			} else {
+				list = new List<IFunctionInstance> ();
+			}
+			return new FunctionInstance (this, list);
+		}
+
+		public ITerm CreateInstance (params IFunctionInstance[] terms) {
+			return this.CreateInstance ((IEnumerable<IFunctionInstance>)terms);
+		}
+
+		#endregion
+
+	}
 }
 

@@ -20,14 +20,22 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using NUnit.Framework;
+using IdpGie;
 
 namespace IdpGieTest {
-
-    [TestFixture()]
-    public class IFunctionInstanceTest {
-        [Test()]
-        public void TestCase () {
-        }
-    }
+	[TestFixture ()]
+	public class TermEqualityTest {
+		[Test ()]
+		public void TestCase () {
+			Function teleport = new Function ("teleport", 0x02);
+			Function wall = new Function ("wall", 0x03);
+			Function l = new Function ("l", 0x00);
+			IFunctionInstance fiaa = (IFunctionInstance)teleport.CreateInstance (new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"));
+			IFunctionInstance fiab = (IFunctionInstance)teleport.CreateInstance (new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"));
+			Assert.IsTrue (fiaa.Equals (fiab));
+			FunctionInstance fiba = new FunctionInstance (wall, new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"), l.CreateInstance ());
+			FunctionInstance fibb = new FunctionInstance (teleport, new FunctionIntegerInstance ("3"), new FunctionIntegerInstance ("3"));
+		}
+	}
 }
 

@@ -185,6 +185,10 @@ namespace IdpGie {
 		public void SetValue (BlueprintMediabar sender, double value) {
 			this.time = value;
 		}
+
+		public ITerm CreateInstance (params IFunctionInstance[] terms) {
+			return this.CreateInstance ((IEnumerable<IFunctionInstance>)terms);
+		}
 	}
 }
 

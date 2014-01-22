@@ -22,18 +22,16 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public interface ITermHeader : IName, IPriority, IArity {
+		Tuple<string,int> Signature {
+			get;
+		}
 
-    public interface ITermHeader : IName, IPriority, IArity {
+		string TermString (IEnumerable<IFunctionInstance> terms);
 
-        Tuple<string,int> Signature {
-            get;
-        }
+		ITerm CreateInstance (IEnumerable<IFunctionInstance> terms);
 
-        string TermString (IEnumerable<IFunctionInstance> terms);
-
-        ITerm CreateInstance (IEnumerable<IFunctionInstance> terms);
-
-    }
-
+		ITerm CreateInstance (params IFunctionInstance[] terms);
+	}
 }
 

@@ -190,6 +190,10 @@ namespace IdpGie {
 			return this.CreateInstance (terms);
 		}
 
+		public ITerm CreateInstance (params IFunctionInstance[] terms) {
+			return this.CreateInstance ((IEnumerable<IFunctionInstance>)terms);
+		}
+
 		#endregion
 
 	}
