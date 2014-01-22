@@ -7,10 +7,6 @@ namespace IdpGie {
 		private readonly IdpInteraction.IdpSession ses;
 		private readonly string aspContent, hookContent;
 
-		#region IContentChangeableStream implementation
-
-		#endregion
-
 		public IdpInteractiveStream (string idpFile, string theory, string structure, string vocabulary, string aspContent, string hookContent) : base (null) {
 			inter = new IdpInteraction ();
 			this.ses = inter.RunIdpfile (idpFile, theory, structure, vocabulary);
@@ -30,7 +26,10 @@ namespace IdpGie {
 			text = inter.TranslateClingo (text, aspContent).Replace (" ", ".\n") + hookContent;
 			MemoryStream tmp = new MemoryStream ();
 			StreamWriter sw = new StreamWriter (tmp);
-			sw.Write (text);
+			sw.WriteLine (text);
+			if (this.hookContent != null) {
+				sw.WriteLine (this.hookContent);
+			}
 			sw.Flush ();
 			tmp.Position = 0x00;
 			MemoryStream old = this.Stream;

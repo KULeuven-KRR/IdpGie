@@ -191,7 +191,6 @@
     <Compile Include="HookMethodAttribute.cs" />
     <Compile Include="ShapeStateModifier.cs" />
     <Compile Include="IShapeStateModifier.cs" />
-    <Compile Include="TheoryAlteringMethodAttribute.cs" />
     <Compile Include="FunctionFloatInstance.cs" />
     <Compile Include="FunctionStructureAttribute.cs" />
     <Compile Include="FunctionStructureConstructorAttribute.cs" />
@@ -236,6 +235,7 @@
     <Compile Include="IAlterable.cs" />
     <Compile Include="IAlterableContentChangeableStream.cs" />
     <Compile Include="AlterableContentChangeableStreamBase.cs" />
+    <Compile Include="AlterMethodAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

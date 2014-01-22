@@ -1,10 +1,11 @@
 using System;
 
 namespace IdpGie {
+	[Mapper]
 	public static class AlteringMapping {
+		[AlterMethodAttribute ("execute", TermType.String)]
 		public static void Execute (DrawTheory dt, string command) {
 			dt.Source.Alter (command);
 		}
 	}
 }
-

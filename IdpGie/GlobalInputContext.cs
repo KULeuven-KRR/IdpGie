@@ -111,6 +111,11 @@ namespace IdpGie {
 								this.addPredicate (p);
 							}
 						}
+						foreach (AlterMethodAttribute ma in method.GetCustomAttributes(typeof(AlterMethodAttribute),false).Cast<AlterMethodAttribute>()) {
+							foreach (TypedMethodPredicate p in ma.Predicates(method)) {
+								this.addPredicate (p);
+							}
+						}
 						foreach (HookMethodAttribute ma in method.GetCustomAttributes(typeof(HookMethodAttribute),false).Cast<HookMethodAttribute>()) {
 							foreach (HookMethodPredicate p in ma.Predicates(method)) {
 								this.addPredicate (p);

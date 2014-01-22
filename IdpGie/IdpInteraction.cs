@@ -67,7 +67,7 @@ namespace IdpGie {
 			}
 
 			public void Execute (string command) {
-				this.Stdin.WriteLine (StringUtils.ReplaceDollar (command, EnumerableUtils.Zip2 ("the", this.theory, "str", this.structure, "voc", this.vocabulary)));
+				this.Stdin.WriteLine (StringUtils.ReplaceDollar (command, "the", this.theory, "str", this.structure, "voc", this.vocabulary));
 			}
 
 			public string EchoModel () {

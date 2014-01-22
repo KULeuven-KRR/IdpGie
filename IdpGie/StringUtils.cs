@@ -36,6 +36,10 @@ namespace IdpGie.Utils {
 			return ReplaceDollar (source, (IEnumerable<Tuple<string,string>>)tuples);
 		}
 
+		public static string ReplaceDollar (string source, params string[] tuples) {
+			return ReplaceDollar (source, EnumerableUtils.Zip2 (tuples));
+		}
+
 		public static string ReplaceDollar (string source, IEnumerable<Tuple<string,string>> tuples) {
 			string copy = source;
 			foreach (Tuple<string,string> tuple in tuples) {
