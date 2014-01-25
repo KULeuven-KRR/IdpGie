@@ -235,6 +235,7 @@
     <Compile Include="OutputDeviceAttribute.cs" />
     <Compile Include="IOutputDevice.cs" />
     <Compile Include="OutputWindowDevice.cs" />
+    <Compile Include="OutputPdfDevice.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

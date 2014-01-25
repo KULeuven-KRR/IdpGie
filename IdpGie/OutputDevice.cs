@@ -50,7 +50,7 @@ namespace IdpGie {
 		public static void AnalyzeAssembly (Assembly assembly) {
 			foreach (Type type in assembly.GetTypes ()) {
 				if (!type.IsAbstract && typeof(IOutputDevice).IsAssignableFrom (type)) {
-					foreach (string name in type.GetCustomAttributes (typeof(OutputDeviceAttribute),false).Cast<OutputDeviceAttribute>().Select(x => x.Name)) {
+					foreach (string name in type.GetCustomAttributes (typeof(OutputDeviceAttribute),false).Cast<OutputDeviceAttribute>().Select(x => x.Name.Trim ().ToLower ())) {
 						constructors.Add (name, type.GetConstructor (new Type[] { typeof(DrawTheory) }));
 					}
 				}

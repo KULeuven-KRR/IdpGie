@@ -16,7 +16,7 @@ namespace IdpGie {
 		#endregion
 
 		public OutputDeviceAttribute (string name) {
-			this.name = name.Trim ().ToLower ();
+			this.name = name;
 		}
 	}
 }
