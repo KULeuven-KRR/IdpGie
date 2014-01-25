@@ -124,7 +124,6 @@
     <Compile Include="IArrayFunctionInstance.cs" />
     <Compile Include="EnumerableUtils.cs" />
     <Compile Include="NamedObject.cs" />
-    <Compile Include="DrawTheoryMode.cs" />
     <Compile Include="IPriority.cs" />
     <Compile Include="PriorityComparator.cs" />
     <Compile Include="ITerm.cs" />

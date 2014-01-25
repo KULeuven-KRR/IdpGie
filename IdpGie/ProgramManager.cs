@@ -28,11 +28,12 @@ using OpenTK.Graphics;
 using Mono.Options;
 using IdpGie.Utils;
 using System.Text;
+using System.Reflection;
 
 namespace IdpGie {
 	public class ProgramManager : IDisposable {
 		private TopWindow tw;
-		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null, theory = "T", structure = "S", vocabulary = "V", aspContent = null, hookContent = null;
+		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null, theory = "T", structure = "S", vocabulary = "V", aspContent = null, hookContent = null, outputMode = "cairo";
 
 		public bool Interactive {
 			get {
@@ -83,6 +84,15 @@ namespace IdpGie {
 			}
 			set {
 				this.theory = StringUtils.EffectiveOrDefault (value, this.theory);
+			}
+		}
+
+		public string OutputMode {
+			get {
+				return this.outputMode;
+			}
+			set {
+				StringUtils.EffectiveOrDefault (ref this.outputMode, value);
 			}
 		}
 
@@ -226,6 +236,7 @@ namespace IdpGie {
 		public static int Main (string[] args) {
 			//GraphicsContext.ShareContexts = false;
 			Catalog.Init ("IdpGie", "./locale");
+			OutputDevice.AnalyzeAssembly (Assembly.GetExecutingAssembly ());
 			using (ProgramManager manager = new ProgramManager ()) {
 				OptionSet options = new OptionSet () { {
 						"a|asp=",
@@ -245,6 +256,7 @@ namespace IdpGie {
 						x => manager.Vocabulary = x
 					},
 					{ "o|output=", "The output file (to store for instance LaTeX files).",   x => manager.OutputFile = x },
+					{ "m|mode=", "The output mode (cairo, latex, ...).",   x => manager.OutputMode = x },
 					{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
 				};
 				try {
@@ -271,7 +283,7 @@ namespace IdpGie {
 							filename = manager.IdpdFile;
 						}
 						DrawTheory dt = new DrawTheory (filename, strm);
-						OutputDevice dev = dt.GetOutputDevice ();
+						OutputDevice dev = OutputDevice.CreateDevice (manager.OutputMode, dt);
 						dev.Run (manager);
 						manager.ShowWindow ();
 					}
