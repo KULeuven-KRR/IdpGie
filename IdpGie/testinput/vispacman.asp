@@ -45,6 +45,8 @@ idpd_color(teleport(X,Y), 158, 210, 107) :- teleport(X,Y).
 idpd_depth(teleport(X,Y), -8) :- teleport(X,Y).
 idpd_text(teleport(X,Y), "T") :- teleport(X,Y).
 
+idpd_foo(bar).
+
 
 idpd_polygon(square(X, Y), array(point(0, 0), point(0, S), point(S, S),point(S, 0))) :- square(X, Y), sq(S).
 idpd_xpos(square(X, Y), Y*S+2*S) :- square(X, Y), sq(S).

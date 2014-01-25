@@ -1,22 +1,14 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IdpInteractiveStream.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PaintMapping.cs">
     <Files>
-      <File FileName="ShapeEllipse.cs" Line="1" Column="1" />
-      <File FileName="PaintMapping.cs" Line="1" Column="1" />
-      <File FileName="ShapeIrregularPolygonObject.cs" Line="1" Column="1" />
-      <File FileName="ShapePolygon.cs" Line="1" Column="1" />
-      <File FileName="AlterMethodAttribute.cs" Line="1" Column="1" />
-      <File FileName="AlteringMapping.cs" Line="1" Column="1" />
-      <File FileName="IReloadable.cs" Line="1" Column="1" />
-      <File FileName="IAlterableReloadableChangeableStream.cs" Line="1" Column="1" />
-      <File FileName="IContentChangeableStream.cs" Line="1" Column="1" />
-      <File FileName="AlterableContentChangeableStreamBase.cs" Line="1" Column="1" />
-      <File FileName="IdpInteraction.cs" Line="70" Column="4" />
-      <File FileName="DrawTheory.cs" Line="1" Column="1" />
-      <File FileName="ContentChangeableStreamBase.cs" Line="1" Column="1" />
-      <File FileName="ProgramManager.cs" Line="273" Column="55" />
-      <File FileName="IdpInteractiveStream.cs" Line="32" Column="37" />
+      <File FileName="IdpInteraction.cs" Line="43" Column="4" />
+      <File FileName="DrawTheory.cs" Line="127" Column="3" />
+      <File FileName="parse.yy" Line="1" Column="1" />
+      <File FileName="PaintMapping.cs" Line="39" Column="1" />
+      <File FileName="Point.cs" Line="62" Column="20" />
+      <File FileName="HookMapping.cs" Line="10" Column="19" />
+      <File FileName="HookKey.cs" Line="34" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

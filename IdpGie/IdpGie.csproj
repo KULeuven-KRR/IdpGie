@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
-    <Commandlineparameters>-a ../../testinput/vispacman.asp -i ../../testinput/pacman_interactive_progression.idp -s S1 -H ../../testinput/testhooks.idph</Commandlineparameters>
+    <Commandlineparameters>-d ../../testinput/test1.idpd</Commandlineparameters>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />
