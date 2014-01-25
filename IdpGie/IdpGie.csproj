@@ -238,6 +238,8 @@
     <Compile Include="IDescription.cs" />
     <Compile Include="INameDescription.cs" />
     <Compile Include="OutputPdfStripDevice.cs" />
+    <Compile Include="CairoEngine.cs" />
+    <Compile Include="IRenderEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

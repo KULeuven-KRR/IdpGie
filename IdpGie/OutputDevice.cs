@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
-using System.ComponentModel;
 
 namespace IdpGie {
 	public abstract class OutputDevice : IOutputDevice {
