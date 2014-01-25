@@ -14,6 +14,7 @@ namespace IdpGie {
 				using (Context ctx = new Context (surface)) {
 					this.Theory.Time = manager.Time;
 					CairoEngine engine = new CairoEngine (this.Theory);
+					engine.Context = ctx;
 					engine.Render ();
 				}
 			}
