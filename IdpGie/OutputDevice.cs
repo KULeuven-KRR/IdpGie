@@ -22,11 +22,12 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using System.ComponentModel;
 
 namespace IdpGie {
 	public abstract class OutputDevice : IOutputDevice {
 		private readonly DrawTheory theory;
-		private readonly static Dictionary<string,ConstructorInfo> constructors = new Dictionary<string, ConstructorInfo> ();
+		private readonly static Dictionary<string,Tuple<string,ConstructorInfo>> constructors = new Dictionary<string, Tuple<string,ConstructorInfo>> ();
 
 		public DrawTheory Theory {
 			get {
@@ -50,17 +51,22 @@ namespace IdpGie {
 		public static void AnalyzeAssembly (Assembly assembly) {
 			foreach (Type type in assembly.GetTypes ()) {
 				if (!type.IsAbstract && typeof(IOutputDevice).IsAssignableFrom (type)) {
-					foreach (string name in type.GetCustomAttributes (typeof(OutputDeviceAttribute),false).Cast<OutputDeviceAttribute>().Select(x => x.Name.Trim ().ToLower ())) {
-						constructors.Add (name, type.GetConstructor (new Type[] { typeof(DrawTheory) }));
+					ConstructorInfo ci = type.GetConstructor (new Type[] { typeof(DrawTheory) });
+					if (ci != null) {
+						foreach (OutputDeviceAttribute oda in type.GetCustomAttributes (typeof(OutputDeviceAttribute),false).Cast<OutputDeviceAttribute>()) {
+							string name = oda.Name.Trim ().ToLower ();
+							string desc = oda.Description;
+							constructors.Add (name, new Tuple<string,ConstructorInfo> (desc, ci));
+						}
 					}
 				}
 			}
 		}
 
 		public static OutputDevice CreateDevice (string name, DrawTheory theory) {
-			ConstructorInfo ci;
+			Tuple<string,ConstructorInfo> ci;
 			if (constructors.TryGetValue (name.Trim ().ToLower (), out ci)) {
-				return (OutputDevice)ci.Invoke (new object[] { theory });
+				return (OutputDevice)ci.Item2.Invoke (new object[] { theory });
 			} else {
 				throw new IdpGieException ("Cannot find the appropriate output device \"{0}\". Run `idp --list-devices' for a list of installed devices.", name);
 			}
