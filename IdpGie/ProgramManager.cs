@@ -136,9 +136,19 @@ namespace IdpGie {
 			set;
 		}
 
+		public bool ListPaints {
+			get;
+			set;
+		}
+
+		public bool ListHooks {
+			get;
+			set;
+		}
+
 		public bool HelpOrLists {
 			get {
-				return this.ShowHelp || this.ListDevices;
+				return this.ShowHelp || this.ListDevices || this.ListHooks || this.ListPaints;
 			}
 		}
 
@@ -250,7 +260,15 @@ namespace IdpGie {
 				},
 				{ "m|mode=", "The output mode (cairo, latex, ...).", x => manager.OutputMode = x },
 				{ "h|?|help", "Show this help manual and exit.",x => manager.ShowHelp = (x != null) },
-				{ "list-devices", "List the output devices together with a description.",x => manager.ListDevices = (x != null) }
+				{ "list-devices", "List the output devices together with a description.",x => manager.ListDevices = (x != null) }, {
+					"list-paints",
+					"List the paint predicates together with a description.",
+					x => manager.ListPaints = (x != null)
+				}, {
+					"list-hooks",
+					"List the hooks that can be handled together with a description.",
+					x => manager.ListHooks = (x != null)
+				}
 			};
 			try {
 				options.Parse (args);
