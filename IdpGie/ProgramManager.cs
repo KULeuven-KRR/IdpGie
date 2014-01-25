@@ -29,7 +29,9 @@ using System.Reflection;
 
 namespace IdpGie {
 	public class ProgramManager {
-		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null, theory = "T", structure = "S", vocabulary = "V", aspContent = null, hookContent = null, outputMode = "cairo";
+		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null,
+			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
+			hookContent = null, outputMode = "cairo";
 
 		public bool Interactive {
 			get {
@@ -53,6 +55,11 @@ namespace IdpGie {
 			set {
 				this.idpFile = StringUtils.NonEmptyOrNull (value);
 			}
+		}
+
+		public double Time {
+			get;
+			set;
 		}
 
 		public string OutputFile {
@@ -158,6 +165,7 @@ namespace IdpGie {
 		}
 
 		public ProgramManager () {
+			this.Time = Time;
 		}
 
 		private string generateAspContent () {
@@ -235,8 +243,12 @@ namespace IdpGie {
 					"The vocabulary to use in the .idp file, only for interactive mode.",
 					x => manager.Vocabulary = x
 				},
-				{ "o|output=", "The output file (to store for instance LaTeX files).",   x => manager.OutputFile = x },
-				{ "m|mode=", "The output mode (cairo, latex, ...).",   x => manager.OutputMode = x },
+				{ "o|output=", "The output file (to store for instance LaTeX files).", x => manager.OutputFile = x }, {
+					"T|time=",
+					"The timeframe of the model to plot (interactive sessions will ignore this argument).",
+					x => manager.Time = double.Parse (x)
+				},
+				{ "m|mode=", "The output mode (cairo, latex, ...).", x => manager.OutputMode = x },
 				{ "h|?|help", "Show this help manual and exit.",x => manager.ShowHelp = (x != null) },
 				{ "list-devices", "List the output devices together with a description.",x => manager.ListDevices = (x != null) }
 			};
@@ -245,11 +257,18 @@ namespace IdpGie {
 				manager.CheckConsistency ();
 
 				if (manager.ShowHelp) {
-					Console.Error.WriteLine ("Usage: idpgie [OPTIONS]+");
-					Console.Error.WriteLine ("IDP-GIE is a Graphical Interactive Environment for the IDP system.");
+					Console.Error.WriteLine ("Usage: idpgie [Options]+");
+					Console.Error.WriteLine ("IDP-GIE is a Graphical Interactive Environment (GIE) for the IDP system.");
 					Console.Error.WriteLine ();
 					Console.Error.WriteLine ("Options:");
 					options.WriteOptionDescriptions (Console.Error);
+					Console.Error.WriteLine ();
+					Console.Error.WriteLine ("Authors:");
+					Console.Error.WriteLine (" idpgie is maintained by Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>");
+					Console.Error.WriteLine (" idp is a program of the KRR Research Group of the KU Leuven <krr@cs.kuleuven.be>.");
+					Console.Error.WriteLine ();
+					Console.Error.WriteLine ("License:");
+					Console.Error.WriteLine (" Copyright (c) 2014 Willem Van Onsem\n\n This program is free software: you can redistribute it and/or modify\n it under the terms of the GNU General Public License as published by\n the Free Software Foundation, either version 3 of the License, or\n (at your option) any later version.");
 				} else {
 					Application.Init ("IdpGie", ref args);
 					Gdk.Threads.Init ();

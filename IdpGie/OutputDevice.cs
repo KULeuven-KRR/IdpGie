@@ -61,8 +61,9 @@ namespace IdpGie {
 			ConstructorInfo ci;
 			if (constructors.TryGetValue (name.Trim ().ToLower (), out ci)) {
 				return (OutputDevice)ci.Invoke (new object[] { theory });
+			} else {
+				throw new IdpGieException ("Cannot find the appropriate output device \"{0}\". Run `idp --list-devices' for a list of installed devices.", name);
 			}
-			return null;
 		}
 	}
 }
