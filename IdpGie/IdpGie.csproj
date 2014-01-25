@@ -208,7 +208,6 @@
     <Compile Include="IdpGieException.cs" />
     <Compile Include="ShapeSvgPath.cs" />
     <Compile Include="Scanner.cs" />
-    <Compile Include="PushbackTextReader.cs" />
     <Compile Include="HookMapping.cs" />
     <Compile Include="PaintMethodAttribute.cs" />
     <Compile Include="DictionaryUtils.cs" />
@@ -226,7 +225,6 @@
     <Compile Include="ProcessSession.cs" />
     <Compile Include="AlteringMapping.cs" />
     <Compile Include="IContentChangeableStream.cs" />
-    <Compile Include="LuaUtils.cs" />
     <Compile Include="IdpInteractiveStream.cs" />
     <Compile Include="ContentChangeableStreamBase.cs" />
     <Compile Include="IAlterable.cs" />

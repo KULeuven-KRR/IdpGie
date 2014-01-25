@@ -1,5 +1,3 @@
-idpd_rendering(cairo).
-
 idpd_polygon(een,4,64).
 idpd_polygon(twee,4,64).
 idpd_show(een,0).
