@@ -238,7 +238,7 @@ namespace IdpGie {
 				{ "o|output=", "The output file (to store for instance LaTeX files).",   x => manager.OutputFile = x },
 				{ "m|mode=", "The output mode (cairo, latex, ...).",   x => manager.OutputMode = x },
 				{ "h|?|help", "Show this help manual and exit.",x => manager.ShowHelp = (x != null) },
-				{ "list-devices", "Show this help manual and exit.",x => manager.ListDevices = (x != null) }
+				{ "list-devices", "List the output devices together with a description.",x => manager.ListDevices = (x != null) }
 			};
 			try {
 				options.Parse (args);
