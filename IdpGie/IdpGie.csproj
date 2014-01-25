@@ -204,7 +204,6 @@
     <Compile Include="CollectionUtils.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
-    <Compile Include="TermTheoryAlteringMethod.cs" />
     <Compile Include="IHook.cs" />
     <Compile Include="IdpGieException.cs" />
     <Compile Include="ShapeSvgPath.cs" />
