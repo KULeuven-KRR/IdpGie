@@ -124,6 +124,17 @@ namespace IdpGie {
 			set;
 		}
 
+		public bool ListDevices {
+			get;
+			set;
+		}
+
+		public bool HelpOrLists {
+			get {
+				return this.ShowHelp || this.ListDevices;
+			}
+		}
+
 		public string AspFile {
 			get {
 				return this.aspFile;
@@ -226,7 +237,8 @@ namespace IdpGie {
 				},
 				{ "o|output=", "The output file (to store for instance LaTeX files).",   x => manager.OutputFile = x },
 				{ "m|mode=", "The output mode (cairo, latex, ...).",   x => manager.OutputMode = x },
-				{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
+				{ "h|?|help", "Show this help manual and exit.",x => manager.ShowHelp = (x != null) },
+				{ "list-devices", "Show this help manual and exit.",x => manager.ListDevices = (x != null) }
 			};
 			try {
 				options.Parse (args);
