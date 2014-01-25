@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace IdpGie {
 	public abstract class OutputDevice : IDisposable {
@@ -47,10 +48,20 @@ namespace IdpGie {
 		#endregion
 
 		public static void AnalyzeAssembly (Assembly assembly) {
-
+			foreach (Type type in assembly.GetTypes ()) {
+				if (!type.IsAbstract && typeof(OutputDevice).IsAssignableFrom (type)) {
+					foreach (string name in type.GetCustomAttributes (typeof(OutputDeviceAttribute),false).Cast<OutputDeviceAttribute>().Select(x => x.Name)) {
+						constructors.Add (name, type.GetConstructor (new Type[] { typeof(DrawTheory) }));
+					}
+				}
+			}
 		}
 
-		public static OutputDevice CreateDevice () {
+		public static OutputDevice CreateDevice (string name, DrawTheory theory) {
+			ConstructorInfo ci;
+			if (constructors.TryGetValue (name.Trim ().ToLower (), out ci)) {
+				return (OutputDevice)ci.Invoke (new object[] { theory });
+			}
 			return null;
 		}
 	}
