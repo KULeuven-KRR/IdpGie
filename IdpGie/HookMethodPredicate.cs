@@ -9,7 +9,6 @@ namespace IdpGie {
 
 		public override void Execute (DrawTheory theory, IEnumerable<IFunctionInstance> arguments, IEnumerable<IAtom> body) {
 			IHook hook = this.ExecuteResult (theory, arguments, body) as IHook;
-			Console.WriteLine ("PRIOR HOOK " + string.Join (",", body));
 			theory.AddHook (hook);
 		}
 	}

@@ -252,11 +252,11 @@ namespace IdpGie {
 					manager.CheckConsistency ();
 
 					if (manager.ShowHelp) {
-						Console.WriteLine ("Usage: idpgie [OPTIONS]+");
-						Console.WriteLine ("IDP-GIE is a Graphical Interactive Environment for the IDP system.");
-						Console.WriteLine ();
-						Console.WriteLine ("Options:");
-						options.WriteOptionDescriptions (Console.Out);
+						Console.Error.WriteLine ("Usage: idpgie [OPTIONS]+");
+						Console.Error.WriteLine ("IDP-GIE is a Graphical Interactive Environment for the IDP system.");
+						Console.Error.WriteLine ();
+						Console.Error.WriteLine ("Options:");
+						options.WriteOptionDescriptions (Console.Error);
 					} else {
 						Application.Init ("IdpGie", ref args);
 						Gdk.Threads.Init ();
@@ -276,10 +276,10 @@ namespace IdpGie {
 						manager.ShowWindow ();
 					}
 				} catch (Exception e) {
-					Console.Write ("idpgie: ");
-					Console.WriteLine (e.Message);
-					Console.WriteLine (e.StackTrace);
-					Console.WriteLine ("Try `idpgie --help' for more information.");
+					Console.Error.Write ("idpgie: ");
+					Console.Error.WriteLine (e.Message);
+					Console.Error.WriteLine (e.StackTrace);
+					Console.Error.WriteLine ("Try `idpgie --help' for more information.");
 				}
 			}
 			return 0x00;

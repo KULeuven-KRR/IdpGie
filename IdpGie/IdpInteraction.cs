@@ -70,7 +70,7 @@ namespace IdpGie {
 			}
 
 			public void Execute (string command) {
-				Console.WriteLine (StringUtils.ReplaceDollar (command, "the", this.theory, "str", this.structure, "voc", this.vocabulary));
+				Console.Error.WriteLine (StringUtils.ReplaceDollar (command, "the", this.theory, "str", this.structure, "voc", this.vocabulary));
 				this.Stdin.WriteLine (StringUtils.ReplaceDollar (command, "the", this.theory, "str", this.structure, "voc", this.vocabulary));
 				this.Stdin.Flush ();
 			}

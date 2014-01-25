@@ -45,7 +45,7 @@ namespace IdpGie {
 
 		[PaintMethod ("console", false, false, 0.0d, TermType.String)]
 		public static void Ellipse (DrawTheory dt, string text) {
-			Console.WriteLine (text);
+			Console.Error.WriteLine (text);
 		}
 
 		[PaintMethod ("graph", true, false, 0.0d, TermType.Float, TermType.Float)]

@@ -22,18 +22,18 @@ namespace IdpGie {
 		}
 
 		private void regenerateModel () {
-			Console.WriteLine ("HOOK RELOAD");
+			Console.Error.WriteLine ("HOOK RELOAD");
 			string text = ses.EchoModel ();
 			text = inter.TranslateClingo (text, aspContent).Replace (" ", ".\n") + hookContent;
 			MemoryStream tmp = new MemoryStream ();
 			StreamWriter sw = new StreamWriter (tmp);
 			/*if (this.hookContent != null) {
 				text += this.hookContent;
-				Console.WriteLine ("BEGIN HOOKCONTENT");
-				Console.WriteLine (this.hookContent);
-				Console.WriteLine ("END HOOKCONTENT");
+				Console.Error.WriteLine ("BEGIN HOOKCONTENT");
+				Console.Error.WriteLine (this.hookContent);
+				Console.Error.WriteLine ("END HOOKCONTENT");
 			}*/
-			Console.WriteLine (text);
+			Console.Error.WriteLine (text);
 			sw.WriteLine (text);
 			sw.Flush ();
 			tmp.Position = 0x00;
