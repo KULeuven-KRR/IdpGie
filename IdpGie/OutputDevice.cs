@@ -19,30 +19,39 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace IdpGie {
+	public abstract class OutputDevice : IDisposable {
+		private readonly DrawTheory theory;
+		private readonly static Dictionary<string,ConstructorInfo> constructors = new Dictionary<string, ConstructorInfo> ();
 
-    public abstract class OutputDevice : IDisposable {
+		public DrawTheory Theory {
+			get {
+				return this.theory;
+			}
+		}
 
-        private readonly DrawTheory theory;
+		protected OutputDevice (DrawTheory theory) {
+			this.theory = theory;
+		}
 
-        public DrawTheory Theory {
-            get {
-                return this.theory;
-            }
-        }
+		public abstract void Run (ProgramManager manager);
 
-        protected OutputDevice (DrawTheory theory) {
-            this.theory = theory;
-        }
+		#region IDisposable implementation
 
-        public abstract void Run (ProgramManager manager);
+		public virtual void Dispose () {
+		}
 
-        #region IDisposable implementation
-        public virtual void Dispose () {
-        }
-        #endregion
+		#endregion
 
+		public static void AnalyzeAssembly (Assembly assembly) {
 
-    }
+		}
+
+		public static OutputDevice CreateDevice () {
+			return null;
+		}
+	}
 }
