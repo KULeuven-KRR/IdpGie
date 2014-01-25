@@ -63,6 +63,12 @@ namespace IdpGie {
 			}
 		}
 
+		public static IEnumerable<Tuple<string,string>> ListDevices () {
+			foreach (KeyValuePair<string,Tuple<string,ConstructorInfo>> kvp in constructors) {
+				yield return new Tuple<string,string> (kvp.Key, kvp.Value.Item1);
+			}
+		}
+
 		public static OutputDevice CreateDevice (string name, DrawTheory theory) {
 			Tuple<string,ConstructorInfo> ci;
 			if (constructors.TryGetValue (name.Trim ().ToLower (), out ci)) {

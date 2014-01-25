@@ -1,7 +1,7 @@
 using System;
 
 namespace IdpGie {
-	[OutputDevice ("pdf")]
+	[OutputDevice ("pdf", "Prints the content of a single timeframe as a pdf stream.")]
 	public class OutputPdfDevice : OutputDevice {
 		public OutputPdfDevice (DrawTheory dt) : base (dt) {
 		}
@@ -16,4 +16,3 @@ namespace IdpGie {
 
 	}
 }
-

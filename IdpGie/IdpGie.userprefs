@@ -2,10 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="OutputDevice.cs">
     <Files>
-      <File FileName="OutputPrintDevice.cs" Line="36" Column="13" />
-      <File FileName="OutputDevice.cs" Line="52" Column="23" />
-      <File FileName="GlobalInputContext.cs" Line="1" Column="1" />
-      <File FileName="OutputDeviceAttribute.cs" Line="19" Column="28" />
+      <File FileName="ProgramManager.cs" Line="305" Column="6" />
+      <File FileName="OutputDevice.cs" Line="68" Column="68" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
