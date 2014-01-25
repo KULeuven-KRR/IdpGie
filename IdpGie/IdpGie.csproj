@@ -233,6 +233,7 @@
     <Compile Include="IReloadable.cs" />
     <Compile Include="IAlterableReloadableChangeableStream.cs" />
     <Compile Include="OutputDeviceAttribute.cs" />
+    <Compile Include="IOutputDevice.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
