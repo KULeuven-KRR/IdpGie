@@ -24,14 +24,14 @@ using IdpGie;
 
 namespace IdpGie {
 	[OutputDevice ("opengl")]
-	public class OutputOpenGLDevice : OutputDevice {
+	public class OutputOpenGLDevice : OutputWindowDevice {
 		public OutputOpenGLDevice (DrawTheory theory) : base (theory) {
 		}
 
 		#region implemented abstract members of IdpGie.OutputDevice
 
 		public override void Run (ProgramManager manager) {
-			//manager.OpenTab (this.Theory, new GLFrameWidget (this.Theory));
+			this.OpenTab (this.Theory, new GLFrameWidget (this.Theory));
 		}
 
 		#endregion

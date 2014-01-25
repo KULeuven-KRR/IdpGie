@@ -25,19 +25,7 @@ using IdpGie;
 
 namespace IdpGie {
 	[OutputDevice ("cairo")]
-	public class OutputCairoDevice : OutputDevice {
-		private Context context;
-		private TopWindow tw;
-
-		public Context Context {
-			get {
-				return this.context;
-			}
-			set {
-				this.context = value;
-			}
-		}
-
+	public class OutputCairoDevice : OutputWindowDevice {
 		public OutputCairoDevice (DrawTheory theory) : base (theory) {
 		}
 
@@ -47,28 +35,6 @@ namespace IdpGie {
 			this.CreateWindow ();
 			OpenTab (this.Theory, new CairoFrameWidget (this.Theory));
 			this.ShowWindow ();
-		}
-
-		public void CreateWindow () {
-			tw = new TopWindow ();
-		}
-
-		public void ShowWindow () {
-			Application.Run ();
-		}
-
-		#region IDisposable implementation
-
-		public override void Dispose () {
-			if (tw != null) {
-				tw.Dispose ();
-			}
-		}
-
-		#endregion
-
-		public void OpenTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject {
-			this.tw.CreateTab<T> (dt, widget);
 		}
 
 		#endregion
