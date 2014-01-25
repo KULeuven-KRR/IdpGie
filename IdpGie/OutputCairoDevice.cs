@@ -27,6 +27,7 @@ namespace IdpGie {
 	[OutputDevice ("cairo")]
 	public class OutputCairoDevice : OutputDevice {
 		private Context context;
+		private TopWindow tw;
 
 		public Context Context {
 			get {
@@ -43,7 +44,31 @@ namespace IdpGie {
 		#region implemented abstract members of IdpGie.IdpdOutputDevice
 
 		public override void Run (ProgramManager manager) {
-			manager.OpenTab (this.Theory, new CairoFrameWidget (this.Theory));
+			this.CreateWindow ();
+			OpenTab (this.Theory, new CairoFrameWidget (this.Theory));
+			this.ShowWindow ();
+		}
+
+		public void CreateWindow () {
+			tw = new TopWindow ();
+		}
+
+		public void ShowWindow () {
+			Application.Run ();
+		}
+
+		#region IDisposable implementation
+
+		public override void Dispose () {
+			if (tw != null) {
+				tw.Dispose ();
+			}
+		}
+
+		#endregion
+
+		public void OpenTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject {
+			this.tw.CreateTab<T> (dt, widget);
 		}
 
 		#endregion
