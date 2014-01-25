@@ -22,7 +22,7 @@ using System;
 using IdpGie;
 
 namespace IdpGie {
-	[OutputDevice ("print")]
+	[OutputDevice ("printcairo", "The device sends a single timeframe to the default plotter. Graphics are rendered using the Cairo graphics engine.")]
 	public class OutputPrintDevice : OutputDevice {
 		public OutputPrintDevice (DrawTheory theory) : base (theory) {
 		}

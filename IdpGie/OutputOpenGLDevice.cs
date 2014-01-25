@@ -23,7 +23,7 @@ using Gtk;
 using IdpGie;
 
 namespace IdpGie {
-	[OutputDevice ("opengl")]
+	[OutputDevice ("openglwindow", "The content is plotted in an interactive window using OpenGL graphics as 3d raster graphics engine.")]
 	public class OutputOpenGLDevice : OutputWindowDevice {
 		public OutputOpenGLDevice (DrawTheory theory) : base (theory) {
 		}

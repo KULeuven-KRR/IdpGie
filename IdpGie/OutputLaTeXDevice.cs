@@ -22,7 +22,7 @@ using System;
 using IdpGie;
 
 namespace IdpGie {
-	[OutputDevice ("latex")]
+	[OutputDevice ("latexstream", "A latex stream that draws a single timeframe using the TikZ graphics package.")]
 	public class OutputLaTeXDevice : OutputDevice {
 		public OutputLaTeXDevice (DrawTheory theory) : base (theory) {
 		}

@@ -31,7 +31,7 @@ namespace IdpGie {
 	public class ProgramManager {
 		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null,
 			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
-			hookContent = null, outputMode = "cairo";
+			hookContent = null, outputMode = "cairowindow";
 		private readonly OptionSet options;
 
 		public bool Interactive {
