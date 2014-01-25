@@ -236,6 +236,7 @@
     <Compile Include="AlterMethodAttribute.cs" />
     <Compile Include="IReloadable.cs" />
     <Compile Include="IAlterableReloadableChangeableStream.cs" />
+    <Compile Include="OutputDeviceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
