@@ -32,7 +32,6 @@ namespace IdpGie {
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
 		private readonly Dictionary<EventType,LinkedList<IHook>> hooks = new Dictionary<EventType, LinkedList<IHook>> ();
 		private readonly IAlterableReloadableChangeableStream<string> source;
-		private DrawTheoryMode mode = DrawTheoryMode.Cairo;
 		private double minTime = 0.0d;
 		private double maxTime = 0.0d;
 
@@ -41,15 +40,6 @@ namespace IdpGie {
 		public IAlterableReloadableChangeableStream<string> Source {
 			get {
 				return this.source;
-			}
-		}
-
-		public DrawTheoryMode Mode {
-			get {
-				return this.mode;
-			}
-			set {
-				this.mode = value;
 			}
 		}
 
@@ -135,7 +125,6 @@ namespace IdpGie {
 			this.elements.Clear ();
 			this.objects.Clear ();
 			this.hooks.Clear ();
-			this.mode = DrawTheoryMode.Cairo;
 			this.minTime = 0.0d;
 			this.maxTime = 0.0d;
 		}
@@ -187,32 +176,11 @@ namespace IdpGie {
 		}
 
 		internal void AddIdpdObject (IShape obj) {
-			Console.WriteLine ("Added {0}", obj.Name);
 			this.objects.Add (obj.Name, obj);
 		}
 
 		public IEnumerable<IShape> Objects () {
 			return this.objects.Values;
-		}
-
-		public OutputDevice GetOutputDevice () {
-			this.Time = minTime;
-			OutputDevice device = null;
-			switch (this.Mode) {
-			case DrawTheoryMode.Cairo:
-				device = new OutputCairoDevice (this);
-				break;
-			case DrawTheoryMode.OpenGL:
-				device = new OutputOpenGLDevice (this);
-				break;
-			case DrawTheoryMode.LaTeX:
-				device = new OutputLaTeXDevice (this);
-				break;
-			case DrawTheoryMode.Print:
-				device = new OutputPrintDevice (this);
-				break;
-			}
-			return device;
 		}
 
 		public void Execute () {
@@ -224,15 +192,6 @@ namespace IdpGie {
 		}
 
 		public void AddHook (IHook hook) {
-			Console.WriteLine ("ADD HOOK");
-			StackTrace stackTrace = new StackTrace ();           // get call stack
-			/*Console.WriteLine (stackTrace)
-			StackFrame[] stackFrames = stackTrace.GetFrames ();  // get method calls (frames)
-
-			// write call stack method names
-			foreach (StackFrame stackFrame in stackFrames) {
-				Console.WriteLine (stackFrame. () + "." + stackFrame.GetMethod ());   // write method name
-			}*/
 			this.hooks.AddListDictionary (hook.HookType, hook);
 		}
 

@@ -30,25 +30,7 @@ namespace IdpGie {
 		Unknown = 0x0000000000000000,
 		#endregion
 
-		#region Keys      (0x0100000000000000 family)
-
-		Keya = 0x0100000000000000,
-		#endregion
-
 		#region Mouse
-
-		#endregion
-
-		#region ModeNames (0x0300000000000000 family)
-
-		[NamedObject]
-		Opengl = 0x0300000000000001,
-		[NamedObject]
-		Cairo = 0x0300000000000002,
-		[NamedObject]
-		Latex = 0x0000000000000003,
-		[NamedObject]
-		Print = 0x0000000000000004
 
 		#endregion
 

@@ -26,7 +26,7 @@ namespace IdpGie {
 			if (parameters.Length > 0x00) {
 				EventKey ek = parameters [0x00] as EventKey;
 				if (ek != null && ek.Key.ToString ().ToLower ().Equals (this.Key)) {
-					Console.WriteLine ("FIRE!");
+					Console.Error.WriteLine ("FIRE!");
 					base.Execute (theory, parameters);
 				} else {
 					//Console.Error.WriteLine (ek.Key.ToString ());

@@ -21,30 +21,23 @@
 using System;
 using Gtk;
 using Cairo;
+using IdpGie;
 
 namespace IdpGie {
+	[OutputDevice ("cairowindow", "The content is plotted in an interactive window using Cairo graphics as 2d vector graphics engine.")]
+	public class OutputCairoDevice : OutputWindowDevice {
+		public OutputCairoDevice (DrawTheory theory) : base (theory) {
+		}
 
-    public class OutputCairoDevice : OutputDevice {
+		#region implemented abstract members of IdpGie.IdpdOutputDevice
 
-        private Context context;
+		public override void Run (ProgramManager manager) {
+			this.CreateWindow ();
+			OpenTab (this.Theory, new CairoFrameWidget (this.Theory));
+			this.ShowWindow ();
+		}
 
-        public Context Context {
-            get {
-                return this.context;
-            }
-            set {
-                this.context = value;
-            }
-        }
+		#endregion
 
-        public OutputCairoDevice (DrawTheory theory) : base(theory) {
-        }
-
-        #region implemented abstract members of IdpGie.IdpdOutputDevice
-        public override void Run (ProgramManager manager) {
-            manager.OpenTab (this.Theory, new CairoFrameWidget (this.Theory));
-        }
-        #endregion
-
-    }
+	}
 }

@@ -30,6 +30,7 @@ namespace IdpGie {
 		public const double Offset3 = Offset2 + BlueprintStyle.Thickness;
 		public const double Offset4 = Offset3 + BlueprintStyle.Thickness;
 		public const double LineDelta = 10.0d;
+		private readonly CairoEngine engine;
 
 		public DrawTheory Theory {
 			get;
@@ -49,6 +50,7 @@ namespace IdpGie {
 		}
 
 		public CairoFrameWidget (DrawTheory theory) {
+			this.engine = new CairoEngine (theory);
 			this.Theory = theory;
 			this.Theory.Changed += HandleChanged;
 			this.CanFocus = true;
@@ -71,12 +73,8 @@ namespace IdpGie {
 		protected override void PaintWidget (Context ctx, int w, int h) {
 			this.paintBackground (ctx, w, h);
 			ctx.Translate (Offset2, Offset2);
-			ctx.Save ();
-			ctx.SetFill (0.0d, 0.0d, 0.0d);
-			foreach (IShape obj in this.Theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
-				obj.PaintObject (ctx);
-			}
-			ctx.Restore ();
+			this.engine.Context = ctx;
+			this.engine.Render ();
 		}
 
 		private void paintBackground (Context ctx, int w, int h) {

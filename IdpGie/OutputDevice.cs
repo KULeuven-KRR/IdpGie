@@ -19,30 +19,62 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
 
 namespace IdpGie {
+	public abstract class OutputDevice : IOutputDevice {
+		private readonly DrawTheory theory;
+		private readonly static Dictionary<string,Tuple<string,ConstructorInfo>> constructors = new Dictionary<string, Tuple<string,ConstructorInfo>> ();
 
-    public abstract class OutputDevice : IDisposable {
+		public DrawTheory Theory {
+			get {
+				return this.theory;
+			}
+		}
 
-        private readonly DrawTheory theory;
+		protected OutputDevice (DrawTheory theory) {
+			this.theory = theory;
+		}
 
-        public DrawTheory Theory {
-            get {
-                return this.theory;
-            }
-        }
+		public abstract void Run (ProgramManager manager);
 
-        protected OutputDevice (DrawTheory theory) {
-            this.theory = theory;
-        }
+		#region IDisposable implementation
 
-        public abstract void Run (ProgramManager manager);
+		public virtual void Dispose () {
+		}
 
-        #region IDisposable implementation
-        public virtual void Dispose () {
-        }
-        #endregion
+		#endregion
 
+		public static void AnalyzeAssembly (Assembly assembly) {
+			foreach (Type type in assembly.GetTypes ()) {
+				if (!type.IsAbstract && typeof(IOutputDevice).IsAssignableFrom (type)) {
+					ConstructorInfo ci = type.GetConstructor (new Type[] { typeof(DrawTheory) });
+					if (ci != null) {
+						foreach (OutputDeviceAttribute oda in type.GetCustomAttributes (typeof(OutputDeviceAttribute),false).Cast<OutputDeviceAttribute>()) {
+							string name = oda.Name.Trim ().ToLower ();
+							string desc = oda.Description;
+							constructors.Add (name, new Tuple<string,ConstructorInfo> (desc, ci));
+						}
+					}
+				}
+			}
+		}
 
-    }
+		public static IEnumerable<Tuple<string,string>> ListDevices () {
+			foreach (KeyValuePair<string,Tuple<string,ConstructorInfo>> kvp in constructors) {
+				yield return new Tuple<string,string> (kvp.Key, kvp.Value.Item1);
+			}
+		}
+
+		public static OutputDevice CreateDevice (string name, DrawTheory theory) {
+			Tuple<string,ConstructorInfo> ci;
+			if (constructors.TryGetValue (name.Trim ().ToLower (), out ci)) {
+				return (OutputDevice)ci.Item2.Invoke (new object[] { theory });
+			} else {
+				throw new IdpGieException ("Cannot find the appropriate output device \"{0}\". Run `idp --list-devices' for a list of installed devices.", name);
+			}
+		}
+	}
 }

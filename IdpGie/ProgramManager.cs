@@ -20,23 +20,33 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
-using IdpGie.Parser;
 using Mono.Unix;
 using System.IO;
 using Gtk;
-using OpenTK.Graphics;
 using Mono.Options;
 using IdpGie.Utils;
-using System.Text;
+using System.Reflection;
 
 namespace IdpGie {
-	public class ProgramManager : IDisposable {
-		private TopWindow tw;
-		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null, theory = "T", structure = "S", vocabulary = "V", aspContent = null, hookContent = null;
+	public class ProgramManager {
+		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null,
+			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
+			hookContent = null, outputMode = "cairowindow";
+		private readonly OptionSet options;
+		private DocumentSize documentSize = new DocumentSize (1000.0d, 1000.0d);
 
 		public bool Interactive {
 			get {
 				return this.IdpFile != null && this.AspFile != null;
+			}
+		}
+
+		public DocumentSize DocumentSize {
+			get {
+				return this.documentSize;
+			}
+			set {
+				this.documentSize = value;
 			}
 		}
 
@@ -56,6 +66,11 @@ namespace IdpGie {
 			set {
 				this.idpFile = StringUtils.NonEmptyOrNull (value);
 			}
+		}
+
+		public double Time {
+			get;
+			set;
 		}
 
 		public string OutputFile {
@@ -83,6 +98,15 @@ namespace IdpGie {
 			}
 			set {
 				this.theory = StringUtils.EffectiveOrDefault (value, this.theory);
+			}
+		}
+
+		public string OutputMode {
+			get {
+				return this.outputMode;
+			}
+			set {
+				StringUtils.EffectiveOrDefault (ref this.outputMode, value);
 			}
 		}
 
@@ -118,6 +142,27 @@ namespace IdpGie {
 			set;
 		}
 
+		public bool ListDevices {
+			get;
+			set;
+		}
+
+		public bool ListPaints {
+			get;
+			set;
+		}
+
+		public bool ListHooks {
+			get;
+			set;
+		}
+
+		public bool HelpOrLists {
+			get {
+				return this.ShowHelp || this.ListDevices || this.ListHooks || this.ListPaints;
+			}
+		}
+
 		public string AspFile {
 			get {
 				return this.aspFile;
@@ -141,6 +186,45 @@ namespace IdpGie {
 		}
 
 		public ProgramManager () {
+			this.Time = Time;
+			this.options = new OptionSet () { {
+					"a|asp=",
+					"Feed the system an .asp file in order to convert an idp model into drawing instructions.",
+					x => this.AspFile = x
+				}, {
+					"i|idp=",
+					"Feed the system an .idp file. The program must be given an .asp file as well in order to paint something.",
+					x => this.IdpFile = x
+				},
+				{ "d|idpd=",  "Feed the system a .idpd file. Limited interactive mode is enabled.", x => this.IdpdFile = x },
+				{ "H|idph=",  "Feed the system a .idph file that contains the defined hooks.", x => this.HookFile = x },
+				{ "t|theory=",  "The theory to use in the .idp file, only for interactive mode.", x => this.Theory = x },
+				{ "s|structure=","The structure to use in the .idp file, only for interactive mode.",x => this.Structure = x }, {
+					"v|vocabulary=",
+					"The vocabulary to use in the .idp file, only for interactive mode.",
+					x => this.Vocabulary = x
+				},
+				{ "o|output=", "The output file (to store for instance LaTeX files).", x => this.OutputFile = x }, {
+					"T|time=",
+					"The timeframe of the model to plot (interactive sessions will ignore this argument).",
+					x => this.Time = double.Parse (x)
+				},
+				{ "m|mode=", "The output mode (cairo, latex, ...).", x => this.OutputMode = x },
+				{ "h|?|help", "Show this help manual and exit.",x => this.ShowHelp = (x != null) },
+				{ "list-devices", "List the output devices together with a description.",x => this.ListDevices = (x != null) }, {
+					"list-paints",
+					"List the paint predicates together with a description.",
+					x => this.ListPaints = (x != null)
+				}, {
+					"list-hooks",
+					"List the hooks that can be handled together with a description.",
+					x => this.ListHooks = (x != null)
+				}, {
+					"document-size=",
+					"The size of the document (for instance the size of the resulting pdf).",
+					x => this.DocumentSize = DocumentSize.Parse (x)
+				}
+			};
 		}
 
 		private string generateAspContent () {
@@ -169,16 +253,8 @@ namespace IdpGie {
 			return this.hookContent;
 		}
 
-		public void CreateWindow () {
-			tw = new TopWindow ();
-		}
-
-		public void ShowWindow () {
-			Application.Run ();
-		}
-
 		public void CheckConsistency () {
-			if (this.ShowHelp) {
+			if (this.HelpOrLists) {
 				return;
 			}
 			if (this.idpFile == null && this.aspFile == null && this.idpdFile == null) {
@@ -197,24 +273,6 @@ namespace IdpGie {
 			}
 		}
 
-		public void OpenFile () {
-        
-		}
-
-		#region IDisposable implementation
-
-		public void Dispose () {
-			if (tw != null) {
-				tw.Dispose ();
-			}
-		}
-
-		#endregion
-
-		public void OpenTab<T> (DrawTheory dt, T widget) where T : Widget, IMediaObject {
-			this.tw.CreateTab<T> (dt, widget);
-		}
-
 		public Stream GetIdpStream () {
 			if (this.Interactive) {
 				return File.Open (this.idpFile, FileMode.Open, FileAccess.ReadWrite);
@@ -223,64 +281,60 @@ namespace IdpGie {
 			}
 		}
 
-		public static int Main (string[] args) {
-			//GraphicsContext.ShareContexts = false;
-			Catalog.Init ("IdpGie", "./locale");
-			using (ProgramManager manager = new ProgramManager ()) {
-				OptionSet options = new OptionSet () { {
-						"a|asp=",
-						"Feed the system an .asp file in order to convert an idp model into drawing instructions.",
-						x => manager.AspFile = x
-					}, {
-						"i|idp=",
-						"Feed the system an .idp file. The program must be given an .asp file as well in order to paint something.",
-						x => manager.IdpFile = x
-					},
-					{ "d|idpd=",  "Feed the system a .idpd file. Limited interactive mode is enabled.", x => manager.IdpdFile = x },
-					{ "H|idph=",  "Feed the system a .idph file that contains the defined hooks.", x => manager.HookFile = x },
-					{ "t|theory=",  "The theory to use in the .idp file, only for interactive mode.", x => manager.Theory = x },
-					{ "s|structure=","The structure to use in the .idp file, only for interactive mode.",x => manager.Structure = x }, {
-						"v|vocabulary=",
-						"The vocabulary to use in the .idp file, only for interactive mode.",
-						x => manager.Vocabulary = x
-					},
-					{ "o|output=", "The output file (to store for instance LaTeX files).",   x => manager.OutputFile = x },
-					{ "h|?|help", "Show this help manual and exit.",   x => manager.ShowHelp = (x != null) },
-				};
-				try {
-					options.Parse (args);
-					manager.CheckConsistency ();
+		public void Run (string[] args) {
+			options.Parse (args);
+			this.CheckConsistency ();
 
-					if (manager.ShowHelp) {
-						Console.WriteLine ("Usage: idpgie [OPTIONS]+");
-						Console.WriteLine ("IDP-GIE is a Graphical Interactive Environment for the IDP system.");
-						Console.WriteLine ();
-						Console.WriteLine ("Options:");
-						options.WriteOptionDescriptions (Console.Out);
-					} else {
-						Application.Init ("IdpGie", ref args);
-						Gdk.Threads.Init ();
-						IAlterableReloadableChangeableStream<string> strm;
-						string filename;
-						manager.CreateWindow ();
-						if (manager.Interactive) {
-							strm = new IdpInteractiveStream (manager.IdpFile, manager.Theory, manager.Structure, manager.Vocabulary, manager.AspContent, manager.HookContent);
-							filename = manager.IdpFile;
-						} else {
-							strm = new AlterableContentChangeableStreamBase<FileStream,string> (new FileStream (manager.IdpdFile, FileMode.Open));
-							filename = manager.IdpdFile;
-						}
-						DrawTheory dt = new DrawTheory (filename, strm);
-						OutputDevice dev = dt.GetOutputDevice ();
-						dev.Run (manager);
-						manager.ShowWindow ();
+			if (this.HelpOrLists) {
+				if (this.ShowHelp) {
+					Console.Error.WriteLine ("Usage: idpgie [Options]+");
+					Console.Error.WriteLine ("IDP-GIE is a Graphical Interactive Environment (GIE) for the IDP system.");
+					Console.Error.WriteLine ();
+					Console.Error.WriteLine ("Options:");
+					options.WriteOptionDescriptions (Console.Error);
+					Console.Error.WriteLine ();
+					Console.Error.WriteLine ("Authors:");
+					Console.Error.WriteLine (" idpgie is maintained by Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>");
+					Console.Error.WriteLine (" idp is a program of the KRR Research Group of the KU Leuven <krr@cs.kuleuven.be>.");
+					Console.Error.WriteLine ();
+					Console.Error.WriteLine ("License:");
+					Console.Error.WriteLine (" Copyright (c) 2014 Willem Van Onsem\n\n This program is free software: you can redistribute it and/or modify\n it under the terms of the GNU General Public License as published by\n the Free Software Foundation, either version 3 of the License, or\n (at your option) any later version.");
+				} else if (this.ListDevices) {
+					foreach (Tuple<string,string> ss in OutputDevice.ListDevices ()) {
+						Console.Error.WriteLine ("{0}\t{1}", ss.Item1, ss.Item2);
 					}
-				} catch (Exception e) {
-					Console.Write ("idpgie: ");
-					Console.WriteLine (e.Message);
-					Console.WriteLine (e.StackTrace);
-					Console.WriteLine ("Try `idpgie --help' for more information.");
 				}
+
+			} else {
+				Application.Init ("idpgie", ref args);
+				Gdk.Threads.Init ();
+				IAlterableReloadableChangeableStream<string> strm;
+				string filename;
+				if (this.Interactive) {
+					strm = new IdpInteractiveStream (this.IdpFile, this.Theory, this.Structure, this.Vocabulary, this.AspContent, this.HookContent);
+					filename = this.IdpFile;
+				} else {
+					strm = new AlterableContentChangeableStreamBase<FileStream,string> (new FileStream (this.IdpdFile, FileMode.Open));
+					filename = this.IdpdFile;
+				}
+				DrawTheory dt = new DrawTheory (filename, strm);
+				OutputDevice dev = OutputDevice.CreateDevice (this.OutputMode, dt);
+				dev.Run (this);
+			}
+		}
+
+		public static int Main (string[] args) {
+			Catalog.Init ("IdpGie", "./locale");
+			OutputDevice.AnalyzeAssembly (Assembly.GetExecutingAssembly ());
+			ProgramManager manager = new ProgramManager ();
+			try {
+				manager.Run (args);
+			} catch (Exception e) {
+				Console.Error.Write ("ERROR: ");
+				Console.Error.WriteLine (e.Message);
+				Console.Error.WriteLine (e.StackTrace);
+				Console.Error.WriteLine ("Try `idpgie --help' for more information.");
+				return 0x01;
 			}
 			return 0x00;
 		}

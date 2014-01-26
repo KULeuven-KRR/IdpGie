@@ -58,7 +58,15 @@ namespace IdpGie {
 			this.timeDependent = timeDependent;
 		}
 
+		public PaintMethodAttribute (string name, string description, bool nameDepedent = true, bool timeDependent = false, double priority = 1.0d, params TermType[] types) : base (name, description, priority, types) {
+			this.nameDependent = nameDepedent;
+			this.timeDependent = timeDependent;
+		}
+
 		public PaintMethodAttribute (string name, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this (name, nameDepedent, timeDependent, 1.0d, types) {
+		}
+
+		public PaintMethodAttribute (string name, string description, bool nameDepedent = true, bool timeDependent = false, params TermType[] types) : this (name, description, nameDepedent, timeDependent, 1.0d, types) {
 		}
 
 		public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {

@@ -20,16 +20,18 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Gtk;
+using IdpGie;
 
 namespace IdpGie {
-	public class OutputOpenGLDevice : OutputDevice {
+	[OutputDevice ("openglwindow", "The content is plotted in an interactive window using OpenGL graphics as 3d raster graphics engine.")]
+	public class OutputOpenGLDevice : OutputWindowDevice {
 		public OutputOpenGLDevice (DrawTheory theory) : base (theory) {
 		}
 
 		#region implemented abstract members of IdpGie.OutputDevice
 
 		public override void Run (ProgramManager manager) {
-			manager.OpenTab (this.Theory, new GLFrameWidget (this.Theory));
+			this.OpenTab (this.Theory, new GLFrameWidget (this.Theory));
 		}
 
 		#endregion

@@ -124,7 +124,6 @@
     <Compile Include="IArrayFunctionInstance.cs" />
     <Compile Include="EnumerableUtils.cs" />
     <Compile Include="NamedObject.cs" />
-    <Compile Include="DrawTheoryMode.cs" />
     <Compile Include="IPriority.cs" />
     <Compile Include="PriorityComparator.cs" />
     <Compile Include="ITerm.cs" />
@@ -205,12 +204,9 @@
     <Compile Include="CollectionUtils.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
-    <Compile Include="TermTheoryAlteringMethod.cs" />
     <Compile Include="IHook.cs" />
     <Compile Include="IdpGieException.cs" />
     <Compile Include="ShapeSvgPath.cs" />
-    <Compile Include="Scanner.cs" />
-    <Compile Include="PushbackTextReader.cs" />
     <Compile Include="HookMapping.cs" />
     <Compile Include="PaintMethodAttribute.cs" />
     <Compile Include="DictionaryUtils.cs" />
@@ -228,7 +224,6 @@
     <Compile Include="ProcessSession.cs" />
     <Compile Include="AlteringMapping.cs" />
     <Compile Include="IContentChangeableStream.cs" />
-    <Compile Include="LuaUtils.cs" />
     <Compile Include="IdpInteractiveStream.cs" />
     <Compile Include="ContentChangeableStreamBase.cs" />
     <Compile Include="IAlterable.cs" />
@@ -236,6 +231,18 @@
     <Compile Include="AlterMethodAttribute.cs" />
     <Compile Include="IReloadable.cs" />
     <Compile Include="IAlterableReloadableChangeableStream.cs" />
+    <Compile Include="OutputDeviceAttribute.cs" />
+    <Compile Include="IOutputDevice.cs" />
+    <Compile Include="OutputWindowDevice.cs" />
+    <Compile Include="OutputPdfDevice.cs" />
+    <Compile Include="IDescription.cs" />
+    <Compile Include="INameDescription.cs" />
+    <Compile Include="OutputPdfStripDevice.cs" />
+    <Compile Include="CairoEngine.cs" />
+    <Compile Include="IRenderEngine.cs" />
+    <Compile Include="DocumentSize.cs" />
+    <Compile Include="RegexUtils.cs" />
+    <Compile Include="NamedDescribedAttributeBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

@@ -23,11 +23,6 @@ using System;
 namespace IdpGie {
 	[Mapper]
 	public static class PaintMapping {
-		[PaintMethod ("rendering", false, false, -1.0d, TermType.Named)]
-		public static void Rendering (DrawTheory dt, NamedObject nobj) {
-			dt.Mode = (DrawTheoryMode)(byte)(((ulong)nobj) & 0xff);
-		}
-
 		[PaintMethod ("polygon", true, false, 0.0d, TermType.PointList)]
 		public static void Polygon (DrawTheory dt, IFunctionInstance name, EnhancedTermCollection points) {
 			dt.AddIdpdObject (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<Point> (TermType.Point)));

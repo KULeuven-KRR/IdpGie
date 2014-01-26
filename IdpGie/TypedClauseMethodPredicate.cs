@@ -13,9 +13,9 @@ namespace IdpGie {
 			try {
 				return this.Method.Invoke (null, val);
 			} catch (Exception e) {
-				Console.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
-				Console.WriteLine (string.Join (" ; ", val.Select (x => x.GetType ())));
-				Console.WriteLine (e);
+				Console.Error.WriteLine ("Could not execute the {0} atom.", this.TermString (arguments));
+				Console.Error.WriteLine (string.Join (" ; ", val.Select (x => x.GetType ())));
+				Console.Error.WriteLine (e);
 				return null;
 			}
 		}

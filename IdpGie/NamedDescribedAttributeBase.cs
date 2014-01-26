@@ -1,5 +1,5 @@
 //
-//  IdpdTheoryAlteringMethodAttribute.cs
+//  NamedDescribedAttributeBase.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,20 +21,17 @@
 using System;
 
 namespace IdpGie {
-	[AttributeUsage (AttributeTargets.Method)]
-	public class TheoryAlteringMethodAttribute : MethodBaseAttribute {
+	public class NamedDescribedAttributeBase : NamedAttributeBase, INameDescription {
+		private readonly string description;
 
-		#region implemented abstract members of MethodBaseAttribute
-
-		public override string Stem {
+		public string Description {
 			get {
-				return "idpa_";
+				return this.description;
 			}
 		}
 
-		#endregion
-
-		public TheoryAlteringMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base (name, priority, types) {
+		protected NamedDescribedAttributeBase (string name, string description = "No description available") : base (name) {
+			this.description = description;
 		}
 	}
 }

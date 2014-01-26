@@ -89,7 +89,7 @@ namespace IdpGie {
                 Tuple<string,int> key = new Tuple<string, int> (name, arity);
                 if (!this.predicates.TryGetValue (key, out p)) {
                     p = new Predicate (name, arity);
-                    Console.WriteLine ("CP {0}/{1}", name, arity);
+                    Console.Error.WriteLine ("CP {0}/{1}", name, arity);
                     this.predicates.Add (key, p);
                 }
             }

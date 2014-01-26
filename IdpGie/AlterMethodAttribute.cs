@@ -20,7 +20,13 @@ namespace IdpGie {
 		public AlterMethodAttribute (string name, params TermType[] types) : this (name, 1.0d, types) {
 		}
 
+		public AlterMethodAttribute (string name, string description, params TermType[] types) : this (name, description, 1.0d, types) {
+		}
+
 		public AlterMethodAttribute (string name, double priority = 1.0d, params TermType[] types) : base (name, priority, types) {
+		}
+
+		public AlterMethodAttribute (string name, string description, double priority = 1.0d, params TermType[] types) : base (name, description, priority, types) {
 		}
 
 		public IEnumerable<TypedMethodPredicate> Predicates (MethodInfo mi) {
