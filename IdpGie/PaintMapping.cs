@@ -33,6 +33,11 @@ namespace IdpGie {
 			dt.AddIdpdObject (new ShapeRegularPolygonObject (name, nbOfEdges, sizeOfEdges));
 		}
 
+		[PaintMethod ("chapter", false, true, 1000.0d)]
+		public static void Chapter (DrawTheory dt, double time = double.NaN) {
+			dt.AddChapter (time);
+		}
+
 		[PaintMethod ("ellipse", true, false, 0.0d, TermType.Float, TermType.Float)]
 		public static void Ellipse (DrawTheory dt, IFunctionInstance name, double width, double height) {
 			dt.AddIdpdObject (new ShapeEllipse (name, width, height));

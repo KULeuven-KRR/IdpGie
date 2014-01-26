@@ -34,6 +34,7 @@ namespace IdpGie {
 		private readonly IAlterableReloadableChangeableStream<string> source;
 		private double minTime = 0.0d;
 		private double maxTime = 0.0d;
+		private readonly SortedSet<double> chapters = new SortedSet<double> ();
 
 		private event EventHandler changed;
 
@@ -146,6 +147,10 @@ namespace IdpGie {
 			} else if (this.maxTime < time) {
 				this.maxTime = time;
 			}
+		}
+
+		public void AddChapter (double time) {
+			this.chapters.Add (time);
 		}
 
 		public void AddModifier (IFunctionInstance name, double time, Action<ShapeState> modifier) {
