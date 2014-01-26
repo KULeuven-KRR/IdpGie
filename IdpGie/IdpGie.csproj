@@ -242,6 +242,7 @@
     <Compile Include="IRenderEngine.cs" />
     <Compile Include="DocumentSize.cs" />
     <Compile Include="RegexUtils.cs" />
+    <Compile Include="NamedDescribedAttributeBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
