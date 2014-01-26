@@ -40,6 +40,9 @@ namespace IdpGie {
 		public HookMethodAttribute (string name, double priority = 1000.0d, params TermType[] types) : base (name, priority, types) {
 		}
 
+		public HookMethodAttribute (string name, string description, double priority = 1000.0d, params TermType[] types) : base (name, description, priority, types) {
+		}
+
 		public IEnumerable<HookMethodPredicate> Predicates (MethodInfo mi) {
 			double pr = this.Priority;
 			string stem = this.StemName;

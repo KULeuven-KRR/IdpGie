@@ -24,7 +24,7 @@ using System.Reflection;
 using System.Linq;
 
 namespace IdpGie {
-	public abstract class MethodBaseAttribute : NamedAttributeBase, IPriority {
+	public abstract class MethodBaseAttribute : NamedDescribedAttributeBase, IPriority {
 		private readonly double priority;
 		private readonly IList<TermType> types;
 
@@ -61,6 +61,11 @@ namespace IdpGie {
 		}
 
 		protected MethodBaseAttribute (string name, double priority = 1.0d, params TermType[] types) : base (name) {
+			this.priority = priority;
+			this.types = types;
+		}
+
+		protected MethodBaseAttribute (string name, string description, double priority = 1.0d, params TermType[] types) : base (name, description) {
 			this.priority = priority;
 			this.types = types;
 		}
