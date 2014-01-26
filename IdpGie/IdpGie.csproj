@@ -241,8 +241,8 @@
     <Compile Include="CairoEngine.cs" />
     <Compile Include="IRenderEngine.cs" />
     <Compile Include="DocumentSize.cs" />
-    <Compile Include="RegexUtils.cs" />
     <Compile Include="NamedDescribedAttributeBase.cs" />
+    <Compile Include="RegexDevelopment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

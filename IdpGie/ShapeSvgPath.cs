@@ -10,12 +10,10 @@ namespace IdpGie {
 		private static readonly Regex rgx = null;
 
 		public ShapeSvgPath (IFunctionInstance name, string instructions) : base (name) {
-			this.instructions.AddAll (this.parseInstructions (instructions));
 		}
 
 		private void parseInstructions (string instructions) {
 			Point curPoint = new Point ();
-			yield break;
 		}
 
 		private enum SvgInstruction : byte {

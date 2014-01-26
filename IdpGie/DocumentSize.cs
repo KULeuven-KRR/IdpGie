@@ -6,7 +6,7 @@ namespace IdpGie {
 		public const string identifier_width = @"w";
 		public const string identifier_heigh = @"h";
 		private double width = 100.0d, height = 100.0d;
-		public static readonly Regex regex = RegexUtils.GetRegex (RegexUtils.Concat (RegexUtils.NameRegex (identifier_width, RegexUtils.DoubleRegex), "[^0-9+-.]+", RegexUtils.NameRegex (identifier_heigh, RegexUtils.DoubleRegex)));
+		public static readonly Regex regex = RegexDevelopment.GetRegex (RegexDevelopment.Concat (RegexDevelopment.NameRegex (identifier_width, RegexDevelopment.DoubleRegex), "[^0-9+-.]+", RegexDevelopment.NameRegex (identifier_heigh, RegexDevelopment.DoubleRegex)));
 
 		public double Width {
 			get {
