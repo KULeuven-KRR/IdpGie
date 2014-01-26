@@ -14,6 +14,14 @@ namespace IdpGie {
 			return string.Join ("", regexes);
 		}
 
+		public static string Or (params string[] regexes) {
+			return string.Format ("({0})", string.Join ("|", regexes));
+		}
+
+		public static string Kleene (string regex) {
+			return string.Format ("({0})*", regex);
+		}
+
 		public static Regex GetRegex (string regex) {
 			return new Regex (regex, RegexOptions.Compiled);
 		}

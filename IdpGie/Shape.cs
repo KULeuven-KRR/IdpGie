@@ -102,7 +102,7 @@ namespace IdpGie {
 		}
 
 		public virtual void WriteTikz (StringBuilder builder) {
-			builder.AppendFormat ("\\begin{scope}[xshift={0} cm,yshift={1} cm]", this.State.Xpos, this.State.Ypos);
+			builder.AppendFormat (@"\begin{0}[xshift={1} cm,yshift={2} cm]", "{scope}", this.State.Xpos, this.State.Ypos);
 			this.InnerWriteTikz (builder);
 			builder.Append (@"\end{scope}");
 		}
