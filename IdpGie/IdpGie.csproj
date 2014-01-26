@@ -240,6 +240,8 @@
     <Compile Include="OutputPdfStripDevice.cs" />
     <Compile Include="CairoEngine.cs" />
     <Compile Include="IRenderEngine.cs" />
+    <Compile Include="DocumentSize.cs" />
+    <Compile Include="RegexUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

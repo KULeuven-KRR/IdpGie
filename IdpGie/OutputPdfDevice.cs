@@ -10,7 +10,7 @@ namespace IdpGie {
 		#region implemented abstract members of OutputDevice
 
 		public override void Run (ProgramManager manager) {
-			using (PdfSurface surface = new PdfSurface (manager.OutputFile, 1000.0d, 1000.0d)) {
+			using (PdfSurface surface = new PdfSurface (manager.OutputFile, manager.DocumentSize.Width, manager.DocumentSize.Height)) {
 				using (Context ctx = new Context (surface)) {
 					this.Theory.Time = manager.Time;
 					CairoEngine engine = new CairoEngine (this.Theory);
