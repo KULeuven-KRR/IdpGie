@@ -6,7 +6,7 @@ namespace IdpGie {
 		public const string identifier_width = @"w";
 		public const string identifier_heigh = @"h";
 		private double width = 100.0d, height = 100.0d;
-		public static readonly Regex regex = RegexDevelopment.GetRegex (RegexDevelopment.Concat (RegexDevelopment.NameRegex (identifier_width, RegexDevelopment.DoubleRegex), "[^0-9+-.]+", RegexDevelopment.NameRegex (identifier_heigh, RegexDevelopment.DoubleRegex)));
+		public static readonly Regex regex = RegexDevelopment.DoubleRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_heigh;
 
 		public double Width {
 			get {
@@ -36,8 +36,6 @@ namespace IdpGie {
 			if (match.Success) {
 				double w = double.Parse (match.Groups [identifier_width].Value);
 				double h = double.Parse (match.Groups [identifier_heigh].Value);
-				Console.WriteLine (w);
-				Console.WriteLine (h);
 				return new DocumentSize (w, h);
 			} else {
 				throw new FormatException (string.Format ("The document size \"{0}\" does not meet the format criteria.", text));

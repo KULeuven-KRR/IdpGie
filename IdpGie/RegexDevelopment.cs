@@ -22,12 +22,12 @@ namespace IdpGie {
 			this.regex = rd.regex;
 		}
 
-		public static string Name (string name) {
+		public void Name (string name) {
 			this.regex = string.Format ("(?<{0}>{1})", name, this.regex);
 		}
 
-		public static void Concat (params RegexDevelopment[] regexes) {
-			this.regex += string.Join ("", regexes);
+		public void Concat (RegexDevelopment regex) {
+			this.regex += regex.Regex;
 		}
 
 		public void Or (params RegexDevelopment[] regexes) {
@@ -40,6 +40,26 @@ namespace IdpGie {
 
 		public Regex GetRegex () {
 			return new Regex (this.regex, RegexOptions.Compiled);
+		}
+
+		public static implicit operator RegexDevelopment (string regex) {
+			return new RegexDevelopment (regex);
+		}
+
+		public static implicit operator Regex (RegexDevelopment regex) {
+			return new Regex (regex.Regex, RegexOptions.Compiled);
+		}
+
+		public static RegexDevelopment operator | (RegexDevelopment rd1, RegexDevelopment rd2) {
+			return new RegexDevelopment (string.Format ("({0}|{1})", rd1.Regex, rd2.Regex));
+		}
+
+		public static RegexDevelopment operator + (RegexDevelopment rd1, RegexDevelopment rd2) {
+			return new RegexDevelopment (string.Format ("{0}{1}", rd1.Regex, rd2.Regex));
+		}
+
+		public static RegexDevelopment operator / (RegexDevelopment rd, string name) {
+			return new RegexDevelopment (string.Format ("(?<{0}>{1})", name, rd.regex));
 		}
 	}
 }
