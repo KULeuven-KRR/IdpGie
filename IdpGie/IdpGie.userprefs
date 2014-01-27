@@ -1,16 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DrawTheory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PaintMapping.cs">
     <Files>
-      <File FileName="DrawTheory.cs" Line="36" Column="33" />
+      <File FileName="DrawTheory.cs" Line="153" Column="29" />
+      <File FileName="PaintMapping.cs" Line="37" Column="29" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True">
-          <Node name="IdpGieTest" expanded="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
