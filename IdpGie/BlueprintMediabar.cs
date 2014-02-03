@@ -61,7 +61,7 @@ namespace IdpGie {
 			}
 		}
 
-		public IEnumerable<double> Chapters {
+		public override IEnumerable<double> Chapters {
 			get {
 				return this.chapters;
 			}

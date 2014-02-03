@@ -33,7 +33,7 @@ namespace IdpGie {
 			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
 			hookContent = null, outputMode = "cairowindow";
 		private readonly OptionSet options;
-		private DocumentSize documentSize = new DocumentSize (1000.0d, 1000.0d);
+		public Geometry Geometry = new Geometry ();
 
 		public bool Interactive {
 			get {
@@ -41,14 +41,7 @@ namespace IdpGie {
 			}
 		}
 
-		public DocumentSize DocumentSize {
-			get {
-				return this.documentSize;
-			}
-			set {
-				this.documentSize = value;
-			}
-		}
+		public DocumentSize DocumentSize = new DocumentSize ();
 
 		public IEnumerable<string> InputFiles {
 			get {
@@ -223,6 +216,10 @@ namespace IdpGie {
 					"document-size=",
 					"The size of the document (for instance the size of the resulting pdf).",
 					x => this.DocumentSize = DocumentSize.Parse (x)
+				}, {
+					"g|geometry=",
+					"The geometry of the document (in case one works with chapters).",
+					x => this.Geometry = Geometry.Parse (x)
 				}
 			};
 		}

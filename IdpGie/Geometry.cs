@@ -3,9 +3,10 @@ using System.Text.RegularExpressions;
 
 namespace IdpGie {
 	public class Geometry {
-		public const string identifier_width = @"		w";
-		public const string identifier_heigh = @"		h";
-		private int width = 0x05, height = 0x05;
+		public const string identifier_width = @"w";
+		public const string identifier_heigh = @"h";
+		public const int DefaultWidth = 0x05, DefaultHeight = 0x05;
+		private int width = DefaultWidth, height = DefaultHeight;
 		public static readonly Regex regex = RegexDevelopment.IntegerRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.IntegerRegex / identifier_heigh;
 
 		public int Width {
@@ -26,19 +27,19 @@ namespace IdpGie {
 			}
 		}
 
-		public Geometry (int width, int height) {
+		public Geometry (int width = DefaultWidth, int height = DefaultHeight) {
 			this.Width = width;
 			this.Height = height;
 		}
 
-		public static DocumentSize Parse (string text) {
+		public static Geometry Parse (string text) {
 			Match match = regex.Match (text);
 			if (match.Success) {
-				double w = double.Parse (match.Groups [identifier_width].Value);
-				double h = double.Parse (match.Groups [identifier_heigh].Value);
-				return new DocumentSize (w, h);
+				int w = int.Parse (match.Groups [identifier_width].Value);
+				int h = int.Parse (match.Groups [identifier_heigh].Value);
+				return new Geometry (w, h);
 			} else {
-				throw new FormatException (string.Format ("The document size \"{0}\" does not meet the format criteria.", text));
+				throw new FormatException (string.Format ("The geometry \"{0}\" does not meet the format criteria.", text));
 			}
 		}
 

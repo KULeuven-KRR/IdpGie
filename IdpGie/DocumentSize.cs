@@ -5,7 +5,8 @@ namespace IdpGie {
 	public class DocumentSize {
 		public const string identifier_width = @"w";
 		public const string identifier_heigh = @"h";
-		private double width = 100.0d, height = 100.0d;
+		private double width = DefaultWidth, height = DefaultHeight;
+		public const double DefaultWidth = 640.0d, DefaultHeight = 480.0d;
 		public static readonly Regex regex = RegexDevelopment.DoubleRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_heigh;
 
 		public double Width {
@@ -26,7 +27,7 @@ namespace IdpGie {
 			}
 		}
 
-		public DocumentSize (double width, double height) {
+		public DocumentSize (double width = DefaultWidth, double height = DefaultHeight) {
 			this.Width = width;
 			this.Height = height;
 		}
