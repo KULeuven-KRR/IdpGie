@@ -26,6 +26,18 @@ namespace IdpGie {
 			}
 		}
 
+		public double StrideWidth {
+			get {
+				return this.Width + this.Margin;
+			}
+		}
+
+		public double StrideHeight {
+			get {
+				return this.Height + this.Margin;
+			}
+		}
+
 		public double Height {
 			get {
 				return height;
@@ -101,6 +113,9 @@ namespace IdpGie {
 
 		#endregion
 
+		public Point GetCanvasOffset (int index) {
+			return new Point (this.Margin, this.Margin);
+		}
 	}
 }
 

@@ -20,10 +20,20 @@ namespace IdpGie {
 			get;
 		}
 
+		double StrideWidth {
+			get;
+		}
+
+		double StrideHeight {
+			get;
+		}
+
 		double Margin {
 			get;
 			set;
 		}
+
+		Point GetCanvasOffset (int index);
 	}
 }
 
