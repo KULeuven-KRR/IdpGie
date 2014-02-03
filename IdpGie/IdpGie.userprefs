@@ -1,11 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BlueprintMediabar.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OutputPdfStripDevice.cs">
     <Files>
-      <File FileName="DrawTheory.cs" Line="1" Column="1" />
-      <File FileName="PaintMapping.cs" Line="1" Column="1" />
-      <File FileName="BlueprintMediabar.cs" Line="66" Column="5" />
+      <File FileName="OutputPdfStripDevice.cs" Line="27" Column="21" />
+      <File FileName="OutputPdfDevice.cs" Line="13" Column="65" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
