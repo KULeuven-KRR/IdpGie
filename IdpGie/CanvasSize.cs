@@ -2,7 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 
 namespace IdpGie {
-	public class CanvasSize {
+	public class CanvasSize : CloneableBase<CanvasSize> {
 		public const string identifier_width = @"w", identifier_heigh = @"h", identifier_margi = @"m";
 		private double width = DefaultWidth, height = DefaultHeight, margin = DefaultMargin;
 		public const double DefaultWidth = 640.0d, DefaultHeight = 480.0d, DefaultMargin = 5.0d;
@@ -62,6 +62,15 @@ namespace IdpGie {
 		public override string ToString () {
 			return string.Format ("{0} x {1} x {2}", this.Width, this.Height, this.Margin);
 		}
+
+		#region CloneableBase implementation
+
+		public override CanvasSize Clone () {
+			return new CanvasSize (this.width, this.height, this.margin);
+		}
+
+		#endregion
+
 	}
 }
 

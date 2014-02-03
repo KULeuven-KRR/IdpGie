@@ -244,6 +244,8 @@
     <Compile Include="RegexDevelopment.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="CanvasSize.cs" />
+    <Compile Include="ICloneable.cs" />
+    <Compile Include="CloneableBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

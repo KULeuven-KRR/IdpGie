@@ -2,7 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 
 namespace IdpGie {
-	public class Geometry {
+	public class Geometry : CloneableBase<Geometry> {
 		public const string identifier_width = @"w";
 		public const string identifier_heigh = @"h";
 		public const int DefaultWidth = 0x05, DefaultHeight = 0x05;
@@ -47,6 +47,19 @@ namespace IdpGie {
 		public override string ToString () {
 			return string.Format ("{0} x {1}", this.Width, this.Height);
 		}
+
+		public void Collapse () {
+
+		}
+
+		#region CloneableBase implementation
+
+		public override Geometry Clone () {
+			return new Geometry (this.width, this.height);
+		}
+
+		#endregion
+
 	}
 }
 

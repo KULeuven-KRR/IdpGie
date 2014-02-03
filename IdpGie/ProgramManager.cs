@@ -41,7 +41,7 @@ namespace IdpGie {
 			}
 		}
 
-		public DocumentSize DocumentSize = new DocumentSize ();
+		public CanvasSize DocumentSize = new CanvasSize ();
 
 		public IEnumerable<string> InputFiles {
 			get {
@@ -215,7 +215,7 @@ namespace IdpGie {
 				}, {
 					"document-size=",
 					"The size of the document (for instance the size of the resulting pdf).",
-					x => this.DocumentSize = DocumentSize.Parse (x)
+					x => this.DocumentSize = CanvasSize.Parse (x)
 				}, {
 					"g|geometry=",
 					"The geometry of the document (in case one works with chapters).",
