@@ -243,6 +243,7 @@
     <Compile Include="DocumentSize.cs" />
     <Compile Include="NamedDescribedAttributeBase.cs" />
     <Compile Include="RegexDevelopment.cs" />
+    <Compile Include="Geometry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

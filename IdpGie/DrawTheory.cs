@@ -83,6 +83,12 @@ namespace IdpGie {
 			}
 		}
 
+		public IEnumerable<double> Chapters {
+			get {
+				return this.chapters;
+			}
+		}
+
 		#region ITimesensitive implementation
 
 		public double Time {
