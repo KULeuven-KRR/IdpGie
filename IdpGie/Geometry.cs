@@ -6,15 +6,16 @@ namespace IdpGie {
 		public const string identifier_width = @"w";
 		public const string identifier_heigh = @"h";
 		public const int DefaultWidth = 0x05, DefaultHeight = 0x05;
+		public const int MinWidth = 0x01, MinHeight = 0x01;
 		private int width = DefaultWidth, height = DefaultHeight;
-		public static readonly Regex regex = RegexDevelopment.IntegerRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.IntegerRegex / identifier_heigh;
+		private static readonly Regex regex = RegexDevelopment.IntegerRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.IntegerRegex / identifier_heigh;
 
 		public int Width {
 			get {
 				return width;
 			}
 			set {
-				width = Math.Max (0x01, value);
+				width = Math.Max (MinWidth, value);
 			}
 		}
 
@@ -23,7 +24,7 @@ namespace IdpGie {
 				return height;
 			}
 			set {
-				height = Math.Max (0x01, value);
+				height = Math.Max (MinHeight, value);
 			}
 		}
 
