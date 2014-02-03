@@ -13,6 +13,8 @@ namespace IdpGie {
 		public override void Run (ProgramManager manager) {
 			ICollection<double> chapters = this.Theory.Chapters;
 			StripCanvasSize scs = manager.GenerateStripCanvasSize (chapters.Count);
+			double dw = scs.StrideWidth;
+			double dh = scs.StrideHeight;
 			using (PdfSurface surface = new PdfSurface (manager.OutputFile, scs.TotalWidth, scs.TotalHeight)) {
 				using (Context ctx = new Context (surface)) {
 					int index = 0x00;
@@ -21,6 +23,8 @@ namespace IdpGie {
 						p = scs.GetCanvasOffset (index);
 						ctx.Save ();
 						ctx.Translate (p.X, p.Y);
+						ctx.Rectangle (0.0d, 0.0d, dw, dh);
+						ctx.Stroke ();
 						this.Theory.Time = chapter;
 						CairoEngine engine = new CairoEngine (this.Theory);
 						engine.Context = ctx;
