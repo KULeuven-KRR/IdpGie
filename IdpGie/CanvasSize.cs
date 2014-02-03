@@ -18,12 +18,24 @@ namespace IdpGie {
 			}
 		}
 
+		public double TotalWidth {
+			get {
+				return this.Width + 2.0d * this.Margin;
+			}
+		}
+
 		public double Height {
 			get {
 				return height;
 			}
 			set {
 				height = Math.Max (MinHeight, value);
+			}
+		}
+
+		public double TotalHeight {
+			get {
+				return this.Width + 2.0d * this.Margin;
 			}
 		}
 
@@ -57,6 +69,20 @@ namespace IdpGie {
 			} else {
 				throw new FormatException (string.Format ("The document size \"{0}\" does not meet the format criteria.", text));
 			}
+		}
+
+		public void StripSequence (Geometry geometry) {
+			int w = geometry.Width;
+			double margin = this.Margin;
+			this.Width = this.Width * w + margin * (w - 0x01);
+			int h = geometry.Height;
+			this.Height = this.Height * h + margin * (h - 0x01);
+		}
+
+		public void StripSequenceClone (Geometry geometry) {
+			CanvasSize cs = this.Clone ();
+			cs.StripSequence (geometry);
+			return cs;
 		}
 
 		public override string ToString () {

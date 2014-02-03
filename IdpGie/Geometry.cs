@@ -48,8 +48,19 @@ namespace IdpGie {
 			return string.Format ("{0} x {1}", this.Width, this.Height);
 		}
 
-		public void Collapse () {
+		public void Collapse (int size) {
+			if (size < this.width) {
+				this.width = size;
+				this.height = 0x01;
+			} else {
+				this.height = (size + width - 0x01) / width;
+			}
+		}
 
+		public Geometry CollapseClone (int size) {
+			Geometry g = this.Clone ();
+			g.Collapse (size);
+			return g;
 		}
 
 		#region CloneableBase implementation
