@@ -79,7 +79,7 @@ namespace IdpGie {
 			this.Height = this.Height * h + margin * (h - 0x01);
 		}
 
-		public void StripSequenceClone (Geometry geometry) {
+		public CanvasSize StripSequenceClone (Geometry geometry) {
 			CanvasSize cs = this.Clone ();
 			cs.StripSequence (geometry);
 			return cs;
