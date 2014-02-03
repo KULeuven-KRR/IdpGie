@@ -2,7 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 
 namespace IdpGie {
-	public class DocumentSize {
+	public class CanvasSize {
 		public const string identifier_width = @"w", identifier_heigh = @"h", identifier_margi = @"m";
 		private double width = DefaultWidth, height = DefaultHeight, margin = DefaultMargin;
 		public const double DefaultWidth = 640.0d, DefaultHeight = 480.0d, DefaultMargin = 5.0d;
@@ -36,13 +36,13 @@ namespace IdpGie {
 			}
 		}
 
-		public DocumentSize (double width = DefaultWidth, double height = DefaultHeight, double margin = DefaultMargin) {
+		public CanvasSize (double width = DefaultWidth, double height = DefaultHeight, double margin = DefaultMargin) {
 			this.Width = width;
 			this.Height = height;
 			this.Margin = margin;
 		}
 
-		public static DocumentSize Parse (string text) {
+		public static CanvasSize Parse (string text) {
 			Match match = regex.Match (text);
 			if (match.Success) {
 				double w = double.Parse (match.Groups [identifier_width].Value);
@@ -50,9 +50,9 @@ namespace IdpGie {
 				Group gm = match.Groups [identifier_margi];
 				if (gm.Success) {
 					double m = double.Parse (gm.Value);
-					return new DocumentSize (w, h, m);
+					return new CanvasSize (w, h, m);
 				} else {
-					return new DocumentSize (w, h);
+					return new CanvasSize (w, h);
 				}
 			} else {
 				throw new FormatException (string.Format ("The document size \"{0}\" does not meet the format criteria.", text));
