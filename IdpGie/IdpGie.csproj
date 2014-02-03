@@ -242,11 +242,12 @@
     <Compile Include="IRenderEngine.cs" />
     <Compile Include="NamedDescribedAttributeBase.cs" />
     <Compile Include="RegexDevelopment.cs" />
-    <Compile Include="Geometry.cs" />
     <Compile Include="CanvasSize.cs" />
     <Compile Include="ICloneable.cs" />
     <Compile Include="CloneableBase.cs" />
     <Compile Include="ReadonlyCollection.cs" />
+    <Compile Include="StripCanvasSize.cs" />
+    <Compile Include="StripGeometry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

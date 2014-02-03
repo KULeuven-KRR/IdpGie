@@ -71,7 +71,7 @@ namespace IdpGie {
 			}
 		}
 
-		public void StripSequence (Geometry geometry) {
+		public void StripSequence (StripGeometry geometry) {
 			int w = geometry.Width;
 			double margin = this.Margin;
 			this.Width = this.Width * w + margin * (w - 0x01);
@@ -79,7 +79,7 @@ namespace IdpGie {
 			this.Height = this.Height * h + margin * (h - 0x01);
 		}
 
-		public CanvasSize StripSequenceClone (Geometry geometry) {
+		public CanvasSize StripSequenceClone (StripGeometry geometry) {
 			CanvasSize cs = this.Clone ();
 			cs.StripSequence (geometry);
 			return cs;

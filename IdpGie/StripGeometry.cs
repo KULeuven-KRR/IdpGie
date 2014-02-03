@@ -2,7 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 
 namespace IdpGie {
-	public class Geometry : CloneableBase<Geometry> {
+	public class StripGeometry : CloneableBase<StripGeometry> {
 		public const string identifier_width = @"w";
 		public const string identifier_heigh = @"h";
 		public const int DefaultWidth = 0x05, DefaultHeight = 0x05;
@@ -28,17 +28,17 @@ namespace IdpGie {
 			}
 		}
 
-		public Geometry (int width = DefaultWidth, int height = DefaultHeight) {
+		public StripGeometry (int width = DefaultWidth, int height = DefaultHeight) {
 			this.Width = width;
 			this.Height = height;
 		}
 
-		public static Geometry Parse (string text) {
+		public static StripGeometry Parse (string text) {
 			Match match = regex.Match (text);
 			if (match.Success) {
 				int w = int.Parse (match.Groups [identifier_width].Value);
 				int h = int.Parse (match.Groups [identifier_heigh].Value);
-				return new Geometry (w, h);
+				return new StripGeometry (w, h);
 			} else {
 				throw new FormatException (string.Format ("The geometry \"{0}\" does not meet the format criteria.", text));
 			}
@@ -57,16 +57,16 @@ namespace IdpGie {
 			}
 		}
 
-		public Geometry CollapseClone (int size) {
-			Geometry g = this.Clone ();
+		public StripGeometry CollapseClone (int size) {
+			StripGeometry g = this.Clone ();
 			g.Collapse (size);
 			return g;
 		}
 
 		#region CloneableBase implementation
 
-		public override Geometry Clone () {
-			return new Geometry (this.width, this.height);
+		public override StripGeometry Clone () {
+			return new StripGeometry (this.width, this.height);
 		}
 
 		#endregion
