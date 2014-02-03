@@ -61,6 +61,14 @@ namespace IdpGie {
 		public static RegexDevelopment operator / (RegexDevelopment rd, string name) {
 			return new RegexDevelopment (string.Format ("(?<{0}>{1})", name, rd.regex));
 		}
+
+		public static RegexDevelopment operator ~ (RegexDevelopment rd) {
+			return new RegexDevelopment (string.Format ("({0})?", rd.Regex));
+		}
+
+		public static RegexDevelopment operator ! (RegexDevelopment rd) {
+			return new RegexDevelopment (string.Format ("({0})*", rd.Regex));
+		}
 	}
 }
 

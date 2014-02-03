@@ -7,7 +7,7 @@ namespace IdpGie {
 		private double width = DefaultWidth, height = DefaultHeight, margin = DefaultMargin;
 		public const double DefaultWidth = 640.0d, DefaultHeight = 480.0d, DefaultMargin = 5.0d;
 		public const double MinWidth = 1.0d, MinHeight = 1.0d, MinMargin = 0.0d;
-		private static readonly Regex regex = RegexDevelopment.DoubleRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_heigh;
+		private static readonly Regex regex = RegexDevelopment.DoubleRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_heigh + ~("[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_margi);
 
 		public double Width {
 			get {
@@ -47,7 +47,13 @@ namespace IdpGie {
 			if (match.Success) {
 				double w = double.Parse (match.Groups [identifier_width].Value);
 				double h = double.Parse (match.Groups [identifier_heigh].Value);
-				return new DocumentSize (w, h);
+				Group gm = match.Groups [identifier_margi];
+				if (gm.Success) {
+					double m = double.Parse (gm.Value);
+					return new DocumentSize (w, h, m);
+				} else {
+					return new DocumentSize (w, h);
+				}
 			} else {
 				throw new FormatException (string.Format ("The document size \"{0}\" does not meet the format criteria.", text));
 			}
