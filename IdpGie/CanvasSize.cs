@@ -2,12 +2,14 @@ using System;
 using System.Text.RegularExpressions;
 
 namespace IdpGie {
-	public class CanvasSize : CloneableBase<CanvasSize> {
+	public class CanvasSize : CloneableBase<CanvasSize>, ICanvasSize {
 		public const string identifier_width = @"w", identifier_heigh = @"h", identifier_margi = @"m";
 		private double width = DefaultWidth, height = DefaultHeight, margin = DefaultMargin;
 		public const double DefaultWidth = 640.0d, DefaultHeight = 480.0d, DefaultMargin = 5.0d;
 		public const double MinWidth = 1.0d, MinHeight = 1.0d, MinMargin = 0.0d;
 		private static readonly Regex regex = RegexDevelopment.DoubleRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_heigh + ~("[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_margi);
+
+		#region ICanvasSize implementation
 
 		public double Width {
 			get {
@@ -47,6 +49,8 @@ namespace IdpGie {
 				margin = Math.Max (MinMargin, value);
 			}
 		}
+
+		#endregion
 
 		public CanvasSize (double width = DefaultWidth, double height = DefaultHeight, double margin = DefaultMargin) {
 			this.Width = width;

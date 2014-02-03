@@ -2,7 +2,7 @@ using System;
 using Gdk;
 
 namespace IdpGie {
-	public class StripCanvasSize {
+	public class StripCanvasSize : ICanvasSize {
 		public CanvasSize Size;
 		public StripGeometry Geometry;
 

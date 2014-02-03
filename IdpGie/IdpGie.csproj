@@ -248,6 +248,7 @@
     <Compile Include="ReadonlyCollection.cs" />
     <Compile Include="StripCanvasSize.cs" />
     <Compile Include="StripGeometry.cs" />
+    <Compile Include="ICanvasSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
