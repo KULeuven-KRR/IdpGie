@@ -41,7 +41,7 @@ namespace IdpGie {
 			}
 		}
 
-		public CanvasSize DocumentSize = new CanvasSize ();
+		public CanvasSize CanvasSize = new CanvasSize ();
 
 		public IEnumerable<string> InputFiles {
 			get {
@@ -213,15 +213,19 @@ namespace IdpGie {
 					"List the hooks that can be handled together with a description.",
 					x => this.ListHooks = (x != null)
 				}, {
-					"document-size=",
+					"canvas-size=",
 					"The size of the document (for instance the size of the resulting pdf).",
-					x => this.DocumentSize = CanvasSize.Parse (x)
+					x => this.CanvasSize = CanvasSize.Parse (x)
 				}, {
 					"g|geometry=",
 					"The geometry of the document (in case one works with chapters).",
 					x => this.Geometry = StripGeometry.Parse (x)
 				}
 			};
+		}
+
+		public StripCanvasSize GenerateStripCanvasSize (int size) {
+			return new StripCanvasSize (this.CanvasSize, this.Geometry, size);
 		}
 
 		private string generateAspContent () {

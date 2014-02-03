@@ -1,5 +1,6 @@
 using System;
 using Cairo;
+using System.Collections.Generic;
 
 namespace IdpGie {
 	[OutputDevice ("pdfstrip", "Prints the content of a all timeframes as a strip using a pdf stream.")]
@@ -10,16 +11,23 @@ namespace IdpGie {
 		#region implemented abstract members of OutputDevice
 
 		public override void Run (ProgramManager manager) {
-
-			using (PdfSurface surface = new PdfSurface (manager.OutputFile, manager.DocumentSize.TotalWidth, manager.DocumentSize.TotalHeight)) {
+			ICollection<double> chapters = this.Theory.Chapters;
+			StripCanvasSize scs = manager.GenerateStripCanvasSize (chapters.Count);
+			using (PdfSurface surface = new PdfSurface (manager.OutputFile, scs.TotalWidth, scs.TotalHeight)) {
 				using (Context ctx = new Context (surface)) {
-					ctx.Translate (manager.DocumentSize.Margin, manager.DocumentSize.Margin);
-					ctx.Save ();
-					this.Theory.Time = manager.Time;
-					CairoEngine engine = new CairoEngine (this.Theory);
-					engine.Context = ctx;
-					engine.Render ();
-					ctx.Restore ();
+					int index = 0x00;
+					Point p;
+					foreach (double chapter in chapters) {
+						p = scs.GetCanvasOffset (index);
+						ctx.Save ();
+						ctx.Translate (p.X, p.Y);
+						this.Theory.Time = chapter;
+						CairoEngine engine = new CairoEngine (this.Theory);
+						engine.Context = ctx;
+						engine.Render ();
+						ctx.Restore ();
+						index++;
+					}
 				}
 			}
 		}
