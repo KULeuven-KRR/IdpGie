@@ -1,5 +1,5 @@
 using System;
-using Gdk;
+using Cairo;
 
 namespace IdpGie {
 	public class StripCanvasSize : ICanvasSize {
@@ -69,7 +69,9 @@ namespace IdpGie {
 		}
 
 		public Point GetCanvasOffset (int index) {
-
+			int y = index / this.StripGeometry.Width;
+			int x = index - y;
+			return new Point (Margin + StrideWidth * x, Margin + StrideHeight * y);
 		}
 	}
 }
