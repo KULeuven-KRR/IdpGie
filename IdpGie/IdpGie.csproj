@@ -246,6 +246,7 @@
     <Compile Include="CanvasSize.cs" />
     <Compile Include="ICloneable.cs" />
     <Compile Include="CloneableBase.cs" />
+    <Compile Include="ReadonlyCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

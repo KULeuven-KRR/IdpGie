@@ -22,16 +22,16 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie {
+	public static class CollectionUtils {
+		public static void AddAll<T,Q> (this ICollection<T> collection, IEnumerable<Q> source) where Q : T {
+			foreach (Q q in source) {
+				collection.Add (q);
+			}
+		}
 
-    public static class CollectionUtils {
-
-        public static void AddAll<T,Q> (this ICollection<T> collection, IEnumerable<Q> source) where Q : T {
-            foreach (Q q in source) {
-                collection.Add (q);
-            }
-        }
-
-    }
-
+		public static ReadonlyCollection<T> AsReadonly<T> (this ICollection<T> collection) {
+			return new ReadonlyCollection<T> (collection);
+		}
+	}
 }
 

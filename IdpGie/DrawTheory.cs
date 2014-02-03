@@ -23,8 +23,7 @@ using System.Collections.Generic;
 using System.Text;
 using Gdk;
 using IdpGie.Parser;
-using Cairo;
-using System.Diagnostics;
+using System.Linq;
 
 namespace IdpGie {
 	public class DrawTheory : NameBase, ITimesensitive {
@@ -83,9 +82,9 @@ namespace IdpGie {
 			}
 		}
 
-		public IEnumerable<double> Chapters {
+		public ICollection<double> Chapters {
 			get {
-				return this.chapters;
+				return this.chapters.AsReadonly ();
 			}
 		}
 
