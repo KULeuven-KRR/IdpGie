@@ -37,6 +37,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="IFunctionInstanceTest.cs" />
+    <Compile Include="DocumentSizeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IdpGie.csproj">

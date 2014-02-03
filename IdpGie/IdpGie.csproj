@@ -240,9 +240,15 @@
     <Compile Include="OutputPdfStripDevice.cs" />
     <Compile Include="CairoEngine.cs" />
     <Compile Include="IRenderEngine.cs" />
-    <Compile Include="DocumentSize.cs" />
-    <Compile Include="RegexUtils.cs" />
     <Compile Include="NamedDescribedAttributeBase.cs" />
+    <Compile Include="RegexDevelopment.cs" />
+    <Compile Include="CanvasSize.cs" />
+    <Compile Include="ICloneable.cs" />
+    <Compile Include="CloneableBase.cs" />
+    <Compile Include="ReadonlyCollection.cs" />
+    <Compile Include="StripCanvasSize.cs" />
+    <Compile Include="StripGeometry.cs" />
+    <Compile Include="ICanvasSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

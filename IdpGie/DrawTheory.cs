@@ -23,8 +23,7 @@ using System.Collections.Generic;
 using System.Text;
 using Gdk;
 using IdpGie.Parser;
-using Cairo;
-using System.Diagnostics;
+using System.Linq;
 
 namespace IdpGie {
 	public class DrawTheory : NameBase, ITimesensitive {
@@ -34,6 +33,7 @@ namespace IdpGie {
 		private readonly IAlterableReloadableChangeableStream<string> source;
 		private double minTime = 0.0d;
 		private double maxTime = 0.0d;
+		private readonly SortedSet<double> chapters = new SortedSet<double> ();
 
 		private event EventHandler changed;
 
@@ -79,6 +79,12 @@ namespace IdpGie {
 		public double TimeSpan {
 			get {
 				return this.maxTime - minTime;
+			}
+		}
+
+		public ICollection<double> Chapters {
+			get {
+				return this.chapters.AsReadonly ();
 			}
 		}
 
@@ -146,6 +152,10 @@ namespace IdpGie {
 			} else if (this.maxTime < time) {
 				this.maxTime = time;
 			}
+		}
+
+		public void AddChapter (double time) {
+			this.chapters.Add (time);
 		}
 
 		public void AddModifier (IFunctionInstance name, double time, Action<ShapeState> modifier) {

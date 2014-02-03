@@ -33,7 +33,7 @@ namespace IdpGie {
 			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
 			hookContent = null, outputMode = "cairowindow";
 		private readonly OptionSet options;
-		private DocumentSize documentSize = new DocumentSize (1000.0d, 1000.0d);
+		public StripGeometry Geometry = new StripGeometry ();
 
 		public bool Interactive {
 			get {
@@ -41,14 +41,7 @@ namespace IdpGie {
 			}
 		}
 
-		public DocumentSize DocumentSize {
-			get {
-				return this.documentSize;
-			}
-			set {
-				this.documentSize = value;
-			}
-		}
+		public CanvasSize CanvasSize = new CanvasSize ();
 
 		public IEnumerable<string> InputFiles {
 			get {
@@ -220,11 +213,19 @@ namespace IdpGie {
 					"List the hooks that can be handled together with a description.",
 					x => this.ListHooks = (x != null)
 				}, {
-					"document-size=",
+					"canvas-size=",
 					"The size of the document (for instance the size of the resulting pdf).",
-					x => this.DocumentSize = DocumentSize.Parse (x)
+					x => this.CanvasSize = CanvasSize.Parse (x)
+				}, {
+					"g|geometry=",
+					"The geometry of the document (in case one works with chapters).",
+					x => this.Geometry = StripGeometry.Parse (x)
 				}
 			};
+		}
+
+		public StripCanvasSize GenerateStripCanvasSize (int size) {
+			return new StripCanvasSize (this.CanvasSize, this.Geometry, size);
 		}
 
 		private string generateAspContent () {
