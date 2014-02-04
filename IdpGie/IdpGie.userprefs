@@ -1,15 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OutputPdfStripDevice.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GlFrameWidget.cs">
     <Files>
       <File FileName="OutputPdfStripDevice.cs" Line="27" Column="21" />
-      <File FileName="OutputPdfDevice.cs" Line="13" Column="65" />
+      <File FileName="OutputPdfDevice.cs" Line="1" Column="1" />
+      <File FileName="glsharp/GLSharp/GLWidget.cs" Line="50" Column="31" />
+      <File FileName="glsharp/GLSharpTest/GLWidgetTest.cs" Line="35" Column="38" />
+      <File FileName="glsharp/GLSharpTest/Stetic.cs" Line="24" Column="3" />
+      <File FileName="GlFrameWidget.cs" Line="41" Column="41" />
+      <File FileName="OutputOpenGLDevice.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
@@ -18,4 +18,20 @@
   <MonoDevelop.Ide.BookmarkService.Bookmarks>
     <BookmarkCollection />
   </MonoDevelop.Ide.BookmarkService.Bookmarks>
+  <MonoDevelop.Ide.ItemProperties.IdpGie>
+    <MonoDevelop.Ide.CustomExecutionModes>
+      <Data Name="glwindowtest1" Id="173d99da-d4b2-4f6c-8e7d-f1b107954123" ModeId="Default">
+        <CommandData>
+          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
+            <Value Arguments="-d ../../testinput/test1.idpd -m openglwindow" ctype="CustomArgsExecutionModeData">
+              <EnvironmentVariables />
+            </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
+        </CommandData>
+      </Data>
+    </MonoDevelop.Ide.CustomExecutionModes>
+  </MonoDevelop.Ide.ItemProperties.IdpGie>
 </Properties>

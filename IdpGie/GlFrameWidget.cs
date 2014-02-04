@@ -15,34 +15,34 @@ namespace IdpGie {
 
 		public bool GLinit = false;
 
-		public GLFrameWidget (DrawTheory theory) : base (GraphicsMode.Default, 0x03, 0x00, GraphicsContextFlags.Debug) {
+		public GLFrameWidget (DrawTheory theory) : base () {
+			this.Name = "glwidget1";
+			this.SingleBuffer = false;
+			this.ColorBPP = 0;
+			this.AccumulatorBPP = 0;
+			this.DepthBPP = 0;
+			this.StencilBPP = 0;
+			this.Samples = 0;
+			this.Stereo = false;
+			this.GlVersionMajor = 0;
+			this.GlVersionMinor = 0;
 			this.Theory = theory;
 			this.Theory.Changed += HandleChanged;
-			this.CanFocus = true;
+			/*this.CanFocus = true;
 			this.Activate ();
 			foreach (EventType type in theory.GetHookTypes ()) {
 				this.AddEvents ((int)type);
 			}
 			this.SingleBuffer = true;
-			this.DoubleBuffered = true;
+			this.DoubleBuffered = true;*/
 		}
 
 		void HandleChanged (object sender, EventArgs e) {
-		}
-		//[GLib.ConnectBefore]
-		protected override bool OnKeyPressEvent (EventKey evnt) {
-			this.Theory.FireHook (EventType.KeyPress, new List<ITerm> ());
-			return base.OnKeyPressEvent (evnt);
+			throw new NotImplementedException ();
 		}
 
 		public void Seek (double time) {
 			this.Theory.Time = time;
-		}
-
-		protected override void OnRenderFrame () {
-			GL.ClearColor (0.0f, 0.3647f, 0.5882f, 0.0f);
-			GL.Clear (ClearBufferMask.ColorBufferBit);
-			base.OnRenderFrame ();
 		}
 
 		public event EventHandler OnPlay;

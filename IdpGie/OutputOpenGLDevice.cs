@@ -31,7 +31,9 @@ namespace IdpGie {
 		#region implemented abstract members of IdpGie.OutputDevice
 
 		public override void Run (ProgramManager manager) {
+			this.CreateWindow ();
 			this.OpenTab (this.Theory, new GLFrameWidget (this.Theory));
+			this.ShowWindow ();
 		}
 
 		#endregion
