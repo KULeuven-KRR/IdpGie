@@ -32,7 +32,6 @@ namespace IdpGie {
 			this.Build ();
 			this.mediabar.CurrentChanged += NamedFunctionItime.Instance.SetValue;
 			this.mediabar.CurrentChanged += NamedFunctionDtime.Instance.SetValue;
-			this.Show ();
 		}
 
 		private void SetCurrent<T> (T current) where T : Widget, IMediaObject {
@@ -72,8 +71,8 @@ namespace IdpGie {
 		}
 
 		protected void Quit (object sender, EventArgs e) {
-			this.Destroy ();
 			Application.Quit ();
+			this.Destroy ();
 		}
 	}
 }

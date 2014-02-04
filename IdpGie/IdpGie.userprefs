@@ -1,14 +1,17 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GlFrameWidget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="glsharp/GLSharp/GLWidget.cs">
     <Files>
-      <File FileName="OutputPdfStripDevice.cs" Line="27" Column="21" />
+      <File FileName="OutputPdfStripDevice.cs" Line="1" Column="1" />
       <File FileName="OutputPdfDevice.cs" Line="1" Column="1" />
-      <File FileName="glsharp/GLSharp/GLWidget.cs" Line="50" Column="31" />
-      <File FileName="glsharp/GLSharpTest/GLWidgetTest.cs" Line="35" Column="38" />
-      <File FileName="glsharp/GLSharpTest/Stetic.cs" Line="24" Column="3" />
-      <File FileName="GlFrameWidget.cs" Line="41" Column="41" />
+      <File FileName="glsharp/GLSharp/GLWidget.cs" Line="215" Column="43" />
+      <File FileName="glsharp/GLSharpTest/GLWidgetTest.cs" Line="1" Column="1" />
+      <File FileName="glsharp/GLSharpTest/Stetic.cs" Line="1" Column="1" />
+      <File FileName="GlFrameWidget.cs" Line="1" Column="1" />
       <File FileName="OutputOpenGLDevice.cs" Line="1" Column="1" />
+      <File FileName="OutputWindowDevice.cs" Line="1" Column="1" />
+      <File FileName="TopWindow.cs" Line="1" Column="1" />
+      <File FileName="ProgramManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

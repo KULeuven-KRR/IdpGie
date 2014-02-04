@@ -307,8 +307,7 @@ namespace IdpGie {
 				}
 
 			} else {
-				Application.Init ("idpgie", ref args);
-				Gdk.Threads.Init ();
+				//Application.Init ("idpgie", ref args);
 				IAlterableReloadableChangeableStream<string> strm;
 				string filename;
 				if (this.Interactive) {
@@ -321,6 +320,7 @@ namespace IdpGie {
 				DrawTheory dt = new DrawTheory (filename, strm);
 				OutputDevice dev = OutputDevice.CreateDevice (this.OutputMode, dt);
 				dev.Run (this);
+				Application.Quit ();
 			}
 		}
 

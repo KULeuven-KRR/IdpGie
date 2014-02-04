@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using OpenTK.Graphics;
 
 namespace IdpGie {
 	public abstract class OutputWindowDevice : OutputDevice {
@@ -9,10 +10,16 @@ namespace IdpGie {
 		}
 
 		protected void CreateWindow () {
+			string[] args = new string[0x00];
+			Application.Init ("idpgie", ref args);
+			GraphicsContext.ShareContexts = false;
+			GraphicsContext.DirectRendering = true;
+			Gdk.Threads.Init ();
 			tw = new TopWindow ();
 		}
 
 		protected void ShowWindow () {
+			this.tw.Show ();
 			Application.Run ();
 		}
 

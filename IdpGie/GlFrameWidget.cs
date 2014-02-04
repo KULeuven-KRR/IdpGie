@@ -38,7 +38,13 @@ namespace IdpGie {
 		}
 
 		void HandleChanged (object sender, EventArgs e) {
-			throw new NotImplementedException ();
+
+		}
+
+		protected override void OnRenderFrame () {
+			GL.ClearColor (0.0f, 0.0f, 1.0f, 0.0f);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
+			base.OnRenderFrame ();
 		}
 
 		public void Seek (double time) {
