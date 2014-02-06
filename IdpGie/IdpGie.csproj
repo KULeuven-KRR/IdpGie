@@ -250,6 +250,7 @@
     <Compile Include="StripGeometry.cs" />
     <Compile Include="ICanvasSize.cs" />
     <Compile Include="ShapeStateAttribute.cs" />
+    <Compile Include="ShapeBalloon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
