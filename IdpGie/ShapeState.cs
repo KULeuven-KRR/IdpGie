@@ -293,11 +293,31 @@ namespace IdpGie {
 		}
 
 		public T GetElement<T> (string key, T defaultValue = default(T)) {
-			return defaultValue;
+			Load ();
+			PropertyInfo pi;
+			object val;
+			if (hardProperties.TryGetValue (key, out pi)) {
+				val = pi.GetGetMethod ().Invoke (this, new object[0x00]);
+			} else {
+				data.TryGetValue (key, out val);
+			}
+			if (val is T) {
+				return (T)val;
+			} else {
+				return defaultValue;
+			}
 		}
 
-		public T SetElement<T> (string key, T value) {
-
+		public void SetElement<T> (string key, T value = default(T)) {
+			Load ();
+			PropertyInfo pi;
+			if (hardProperties.TryGetValue (key, out pi)) {
+				pi.GetSetMethod ().Invoke (this, new object[] { value });
+			} else if (data.ContainsKey (key)) {
+				data [key] = value;
+			} else {
+				data.Add (key, value);
+			}
 		}
 
 		public static void Load () {
