@@ -33,7 +33,9 @@ namespace IdpGie {
 		private Color edgeColor;
 		private readonly SortedSet<IShapeStateModifier> before = new SortedSet<IShapeStateModifier> ();
 		private readonly SortedSet<IShapeStateModifier> after = new SortedSet<IShapeStateModifier> ();
+		private readonly Dictionary<string,object> data = new Dictionary<string, object> ();
 
+		[ShapeState ("Visible")]
 		public bool Visible {
 			get {
 				return visible;
@@ -43,6 +45,7 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("Time")]
 		public override double Time {
 			get {
 				return base.Time;
@@ -55,6 +58,7 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("InnerColor")]
 		public Color InnerColor {
 			get {
 				return this.innerColor;
@@ -64,6 +68,7 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("EdgeColor")]
 		public Color EdgeColor {
 			get {
 				return this.edgeColor;
@@ -73,6 +78,7 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("Transformations")]
 		public Matrix4d Transformations {
 			get {
 				return this.transformations;
@@ -88,36 +94,37 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("Xpos")]
 		public double Xpos {
 			get {
 				return this.transformations.M14;
 			}
 			set {
-				this.transformations.M14 = value;
-				this.makeDirty ();
+				this.SetXPos (value);
 			}
 		}
 
+		[ShapeState ("Ypos")]
 		public double Ypos {
 			get {
 				return this.transformations.M24;
 			}
 			set {
-				this.transformations.M24 = value;
-				this.makeDirty ();
+				this.SetYPos (value);
 			}
 		}
 
+		[ShapeState ("Zpos")]
 		public double Zpos {
 			get {
 				return this.transformations.M34;
 			}
 			set {
-				this.transformations.M34 = value;
-				this.makeDirty ();
+				this.SetZPos (value);
 			}
 		}
 
+		[ShapeState ("Text")]
 		public string Text {
 			get {
 				return this.text;
@@ -276,6 +283,18 @@ namespace IdpGie {
 
 		public override bool CanFastReverse (double time) {
 			return time > this.Checkpoint;
+		}
+
+		public bool ContainsElement (string key) {
+			return false;
+		}
+
+		public T GetElement<T> (string key, T defaultValue = default(T)) {
+			return defaultValue;
+		}
+
+		public T SetElement<T> (string key, T value) {
+
 		}
 
 		public override void Reverse (double time) {
