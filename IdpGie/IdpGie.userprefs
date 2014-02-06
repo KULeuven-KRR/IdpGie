@@ -1,10 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ShapeBalloon.cs">
     <Files>
       <File FileName="OutputPdfStripDevice.cs" Line="1" Column="1" />
       <File FileName="OutputPdfDevice.cs" Line="1" Column="1" />
-      <File FileName="glsharp/GLSharp/GLWidget.cs" Line="205" Column="5" />
+      <File FileName="glsharp/GLSharp/GLWidget.cs" Line="1" Column="1" />
       <File FileName="glsharp/GLSharpTest/GLWidgetTest.cs" Line="1" Column="1" />
       <File FileName="glsharp/GLSharpTest/Stetic.cs" Line="1" Column="1" />
       <File FileName="GlFrameWidget.cs" Line="1" Column="1" />
@@ -12,7 +12,14 @@
       <File FileName="OutputWindowDevice.cs" Line="1" Column="1" />
       <File FileName="TopWindow.cs" Line="1" Column="1" />
       <File FileName="ProgramManager.cs" Line="1" Column="1" />
+      <File FileName="ShapeState.cs" Line="292" Column="23" />
+      <File FileName="ShapeBalloon.cs" Line="8" Column="3" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
