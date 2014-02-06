@@ -20,6 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using OpenTK;
 using Cairo;
 
@@ -34,6 +36,7 @@ namespace IdpGie {
 		private readonly SortedSet<IShapeStateModifier> before = new SortedSet<IShapeStateModifier> ();
 		private readonly SortedSet<IShapeStateModifier> after = new SortedSet<IShapeStateModifier> ();
 		private readonly Dictionary<string,object> data = new Dictionary<string, object> ();
+		private static Dictionary<string,PropertyInfo> hardProperties = null;
 
 		[ShapeState ("Visible")]
 		public bool Visible {
@@ -286,7 +289,7 @@ namespace IdpGie {
 		}
 
 		public bool ContainsElement (string key) {
-			return false;
+			return hardProperties.ContainsKey (key) || data.ContainsKey (key);
 		}
 
 		public T GetElement<T> (string key, T defaultValue = default(T)) {
@@ -295,6 +298,17 @@ namespace IdpGie {
 
 		public T SetElement<T> (string key, T value) {
 
+		}
+
+		public static void Load () {
+			if (hardProperties == null) {
+				hardProperties = new Dictionary<string, PropertyInfo> ();
+				foreach (PropertyInfo pi in typeof(ShapeState).GetProperties ()) {
+					foreach (ShapeStateAttribute ssa in pi.GetCustomAttributes (typeof(ShapeStateAttribute),false).Cast<ShapeStateAttribute> ()) {
+						hardProperties.Add (ssa.Name, pi);
+					}
+				}
+			}
 		}
 
 		public override void Reverse (double time) {
