@@ -12,14 +12,9 @@
       <File FileName="OutputWindowDevice.cs" Line="1" Column="1" />
       <File FileName="TopWindow.cs" Line="1" Column="1" />
       <File FileName="ProgramManager.cs" Line="1" Column="1" />
-      <File FileName="ShapeState.cs" Line="292" Column="23" />
-      <File FileName="ShapeBalloon.cs" Line="8" Column="3" />
+      <File FileName="ShapeState.cs" Line="1" Column="1" />
+      <File FileName="ShapeBalloon.cs" Line="4" Column="35" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

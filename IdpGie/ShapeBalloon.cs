@@ -1,7 +1,7 @@
 using System;
 
 namespace IdpGie {
-	public class ShapeBalloon {
+	public class ShapeBalloon : Shape {
 		public ShapeBalloon () {
 		}
 	}
