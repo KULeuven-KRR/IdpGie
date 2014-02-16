@@ -178,8 +178,14 @@ namespace IdpGie {
 			}
 		}
 
+		public int Port {
+			get;
+			set;
+		}
+
 		public ProgramManager () {
-			this.Time = Time;
+			this.Time = 0.0d;
+			this.Port = 8080;
 			this.options = new OptionSet () { {
 					"a|asp=",
 					"Feed the system an .asp file in order to convert an idp model into drawing instructions.",
@@ -220,6 +226,10 @@ namespace IdpGie {
 					"g|geometry=",
 					"The geometry of the document (in case one works with chapters).",
 					x => this.Geometry = StripGeometry.Parse (x)
+				}, {
+					"p|port=",
+					"The port of the server (if applicable, by default 8080).",
+					x => this.Port = int.Parse (x)
 				}
 			};
 		}

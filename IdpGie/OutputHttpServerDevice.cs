@@ -2,12 +2,13 @@ using System;
 using System.Web;
 using System.IO;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace IdpGie {
 	[OutputDevice ("httpserver", "A HTTP server that runs on a specified port and handle user request using AJAX.")]
 	public class OutputHttpServerDevice : OutputDevice, IHttpGieServer {
-		protected int port;
-		TcpListener listener;
+		private int port;
+		private TcpListener listener;
 
 		public OutputHttpServerDevice (DrawTheory dt) : base (dt) {
 		}
@@ -15,10 +16,23 @@ namespace IdpGie {
 		#region implemented abstract members of OutputDevice
 
 		public override void Run (ProgramManager manager) {
-			throw new NotImplementedException ();
+			this.port = manager.Port;
+			Thread thread = new Thread (this.Listen);
+			thread.Start ();
 		}
 
 		#endregion
+
+		public void Listen () {
+			this.listener = new TcpListener (this.port);
+			this.listener.Start ();
+			while (true) {
+				TcpClient s = listener.AcceptTcpClient ();
+				Thread thread = new Thread (new ThreadStart (ProcessRequest));
+				thread.Start ();
+				Thread.Sleep (1);
+			}
+		}
 
 		#region IHttpHandler implementation
 
@@ -38,7 +52,7 @@ namespace IdpGie {
 
 		public bool IsReusable {
 			get {
-				throw new NotImplementedException ();
+				return true;
 			}
 		}
 
