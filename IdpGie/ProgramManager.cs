@@ -41,6 +41,30 @@ namespace IdpGie {
 			}
 		}
 
+		public static string FullProgramName {
+			get {
+				return Assembly.GetExecutingAssembly ().GetName ().FullName;
+			}
+		}
+
+		public static string ProgramName {
+			get {
+				return Assembly.GetExecutingAssembly ().GetName ().Name;
+			}
+		}
+
+		public static Version ProgramVersion {
+			get {
+				return Assembly.GetExecutingAssembly ().GetName ().Version;
+			}
+		}
+
+		public static string ProgramNameVersion {
+			get {
+				return string.Format ("{0} {1}", ProgramManager.ProgramName, ProgramManager.ProgramVersion);
+			}
+		}
+
 		public CanvasSize CanvasSize = new CanvasSize ();
 
 		public IEnumerable<string> InputFiles {
@@ -298,6 +322,7 @@ namespace IdpGie {
 
 			if (this.HelpOrLists) {
 				if (this.ShowHelp) {
+					Console.Error.WriteLine (ProgramManager.ProgramNameVersion);
 					Console.Error.WriteLine ("Usage: idpgie [Options]+");
 					Console.Error.WriteLine ("IDP-GIE is a Graphical Interactive Environment (GIE) for the IDP system.");
 					Console.Error.WriteLine ();

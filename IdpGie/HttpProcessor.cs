@@ -40,6 +40,7 @@ namespace IdpGie {
 				sw.WriteLine ("<input type=text name=foo value=foovalue>");
 				sw.WriteLine ("<input type=submit name=bar value=barvalue>");
 				sw.WriteLine ("</form>");
+				sw.WriteLine ("<hr>This page is created with idpgie version 0.1.");
 				sw.Close ();
 				//HttpRequest rq = new HttpRequest (string.Empty, string.Empty, rest.ToString ());
 				//HttpResponse rp = new HttpResponse (new StreamWriter (client.GetStream ()));
