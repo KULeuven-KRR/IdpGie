@@ -61,7 +61,7 @@ namespace IdpGie {
 
 		public static string ProgramNameVersion {
 			get {
-				return string.Format ("{0} {1}", ProgramManager.ProgramName, ProgramManager.ProgramVersion);
+				return string.Format ("{0} version {1}", ProgramManager.ProgramName, ProgramManager.ProgramVersion);
 			}
 		}
 
