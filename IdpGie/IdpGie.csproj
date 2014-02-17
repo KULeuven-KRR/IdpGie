@@ -74,18 +74,6 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Web" />
-    <Reference Include="Mono.Http" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Web.Extensions.Design" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="Mono.Web" />
-    <Reference Include="Mono.WebBrowser" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

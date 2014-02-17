@@ -1,20 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ShapeBalloon.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OutputHttpServerDevice.cs">
     <Files>
-      <File FileName="OutputPdfStripDevice.cs" Line="1" Column="1" />
-      <File FileName="OutputPdfDevice.cs" Line="1" Column="1" />
-      <File FileName="glsharp/GLSharp/GLWidget.cs" Line="1" Column="1" />
-      <File FileName="glsharp/GLSharpTest/GLWidgetTest.cs" Line="1" Column="1" />
-      <File FileName="glsharp/GLSharpTest/Stetic.cs" Line="1" Column="1" />
-      <File FileName="GlFrameWidget.cs" Line="1" Column="1" />
-      <File FileName="OutputOpenGLDevice.cs" Line="1" Column="1" />
-      <File FileName="OutputWindowDevice.cs" Line="1" Column="1" />
-      <File FileName="TopWindow.cs" Line="1" Column="1" />
-      <File FileName="ProgramManager.cs" Line="1" Column="1" />
-      <File FileName="ShapeState.cs" Line="1" Column="1" />
-      <File FileName="ShapeBalloon.cs" Line="5" Column="61" />
-      <File FileName="ShapeIrregularPolygonObject.cs" Line="30" Column="61" />
+      <File FileName="OutputHttpServerDevice.cs" Line="28" Column="27" />
+      <File FileName="ProgramManager.cs" Line="188" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
