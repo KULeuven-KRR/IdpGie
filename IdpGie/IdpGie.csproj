@@ -254,6 +254,7 @@
     <Compile Include="ShapeBalloon.cs" />
     <Compile Include="OutputHttpServerDevice.cs" />
     <Compile Include="IHttpGieServer.cs" />
+    <Compile Include="HttpProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

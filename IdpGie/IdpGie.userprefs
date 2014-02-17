@@ -1,9 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OutputHttpServerDevice.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HttpProcessor.cs">
     <Files>
-      <File FileName="OutputHttpServerDevice.cs" Line="28" Column="27" />
-      <File FileName="ProgramManager.cs" Line="188" Column="21" />
+      <File FileName="OutputHttpServerDevice.cs" Line="1" Column="1" />
+      <File FileName="ProgramManager.cs" Line="1" Column="1" />
+      <File FileName="HttpProcessor.cs" Line="35" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -19,6 +20,18 @@
         <CommandData>
           <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
             <Value Arguments="-d ../../testinput/test1.idpd -m openglwindow" ctype="CustomArgsExecutionModeData">
+              <EnvironmentVariables />
+            </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
+        </CommandData>
+      </Data>
+      <Data Name="httpservertest1" Id="933792b8-0a46-41c3-91b2-20e9073cd4e4" ModeId="Default">
+        <CommandData>
+          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
+            <Value Arguments="-d ../../testinput/test1.idpd -m httpserver" ctype="CustomArgsExecutionModeData">
               <EnvironmentVariables />
             </Value>
           </Item>

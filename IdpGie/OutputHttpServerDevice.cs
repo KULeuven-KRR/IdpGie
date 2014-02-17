@@ -3,6 +3,7 @@ using System.Web;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
+using System.Net;
 
 namespace IdpGie {
 	[OutputDevice ("httpserver", "A HTTP server that runs on a specified port and handle user request using AJAX.")]
@@ -24,11 +25,12 @@ namespace IdpGie {
 		#endregion
 
 		public void Listen () {
-			this.listener = new TcpListener (this.port);
+			this.listener = new TcpListener (IPAddress.Loopback, this.port);
 			this.listener.Start ();
 			while (true) {
 				TcpClient s = listener.AcceptTcpClient ();
-				Thread thread = new Thread (new ThreadStart (ProcessRequest));
+				HttpProcessor pr = new HttpProcessor (s, this);
+				Thread thread = new Thread (new ThreadStart (pr.process));
 				thread.Start ();
 				Thread.Sleep (1);
 			}
