@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdpGieTest", "IdpGieTest\Id
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLSharp", "glsharp\GLSharp\GLSharp.csproj", "{30B60C25-D36D-41C9-8724-8691FB1AE16D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLSharpTest", "glsharp\GLSharpTest\GLSharpTest.csproj", "{C5F3DFB4-CEE1-4C21-B52D-4B07A5D6DBEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,6 +23,10 @@ Global
 		{68C46329-195C-4FD8-B810-F5D862F12251}.Debug|x86.Build.0 = Debug|Any CPU
 		{68C46329-195C-4FD8-B810-F5D862F12251}.Release|x86.ActiveCfg = Release|Any CPU
 		{68C46329-195C-4FD8-B810-F5D862F12251}.Release|x86.Build.0 = Release|Any CPU
+		{C5F3DFB4-CEE1-4C21-B52D-4B07A5D6DBEC}.Debug|x86.ActiveCfg = Debug|x86
+		{C5F3DFB4-CEE1-4C21-B52D-4B07A5D6DBEC}.Debug|x86.Build.0 = Debug|x86
+		{C5F3DFB4-CEE1-4C21-B52D-4B07A5D6DBEC}.Release|x86.ActiveCfg = Release|x86
+		{C5F3DFB4-CEE1-4C21-B52D-4B07A5D6DBEC}.Release|x86.Build.0 = Release|x86
 		{CA468AA1-80E0-4BEF-A582-3E0CA721F4E9}.Debug|x86.ActiveCfg = Debug|x86
 		{CA468AA1-80E0-4BEF-A582-3E0CA721F4E9}.Debug|x86.Build.0 = Debug|x86
 		{CA468AA1-80E0-4BEF-A582-3E0CA721F4E9}.Release|x86.ActiveCfg = Release|x86

@@ -20,6 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using OpenTK;
 using Cairo;
 
@@ -33,7 +35,10 @@ namespace IdpGie {
 		private Color edgeColor;
 		private readonly SortedSet<IShapeStateModifier> before = new SortedSet<IShapeStateModifier> ();
 		private readonly SortedSet<IShapeStateModifier> after = new SortedSet<IShapeStateModifier> ();
+		private readonly Dictionary<string,object> data = new Dictionary<string, object> ();
+		private static Dictionary<string,PropertyInfo> hardProperties = null;
 
+		[ShapeState ("Visible")]
 		public bool Visible {
 			get {
 				return visible;
@@ -43,6 +48,7 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("Time")]
 		public override double Time {
 			get {
 				return base.Time;
@@ -55,6 +61,7 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("InnerColor")]
 		public Color InnerColor {
 			get {
 				return this.innerColor;
@@ -64,6 +71,7 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("EdgeColor")]
 		public Color EdgeColor {
 			get {
 				return this.edgeColor;
@@ -73,6 +81,7 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("Transformations")]
 		public Matrix4d Transformations {
 			get {
 				return this.transformations;
@@ -88,36 +97,37 @@ namespace IdpGie {
 			}
 		}
 
+		[ShapeState ("Xpos")]
 		public double Xpos {
 			get {
 				return this.transformations.M14;
 			}
 			set {
-				this.transformations.M14 = value;
-				this.makeDirty ();
+				this.SetXPos (value);
 			}
 		}
 
+		[ShapeState ("Ypos")]
 		public double Ypos {
 			get {
 				return this.transformations.M24;
 			}
 			set {
-				this.transformations.M24 = value;
-				this.makeDirty ();
+				this.SetYPos (value);
 			}
 		}
 
+		[ShapeState ("Zpos")]
 		public double Zpos {
 			get {
 				return this.transformations.M34;
 			}
 			set {
-				this.transformations.M34 = value;
-				this.makeDirty ();
+				this.SetZPos (value);
 			}
 		}
 
+		[ShapeState ("Text")]
 		public string Text {
 			get {
 				return this.text;
@@ -276,6 +286,49 @@ namespace IdpGie {
 
 		public override bool CanFastReverse (double time) {
 			return time > this.Checkpoint;
+		}
+
+		public bool ContainsElement (string key) {
+			return hardProperties.ContainsKey (key) || data.ContainsKey (key);
+		}
+
+		public T GetElement<T> (string key, T defaultValue = default(T)) {
+			Load ();
+			PropertyInfo pi;
+			object val;
+			if (hardProperties.TryGetValue (key, out pi)) {
+				val = pi.GetGetMethod ().Invoke (this, new object[0x00]);
+			} else {
+				data.TryGetValue (key, out val);
+			}
+			if (val is T) {
+				return (T)val;
+			} else {
+				return defaultValue;
+			}
+		}
+
+		public void SetElement<T> (string key, T value = default(T)) {
+			Load ();
+			PropertyInfo pi;
+			if (hardProperties.TryGetValue (key, out pi)) {
+				pi.GetSetMethod ().Invoke (this, new object[] { value });
+			} else if (data.ContainsKey (key)) {
+				data [key] = value;
+			} else {
+				data.Add (key, value);
+			}
+		}
+
+		public static void Load () {
+			if (hardProperties == null) {
+				hardProperties = new Dictionary<string, PropertyInfo> ();
+				foreach (PropertyInfo pi in typeof(ShapeState).GetProperties ()) {
+					foreach (ShapeStateAttribute ssa in pi.GetCustomAttributes (typeof(ShapeStateAttribute),false).Cast<ShapeStateAttribute> ()) {
+						hardProperties.Add (ssa.Name, pi);
+					}
+				}
+			}
 		}
 
 		public override void Reverse (double time) {

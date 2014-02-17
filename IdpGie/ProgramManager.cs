@@ -41,6 +41,30 @@ namespace IdpGie {
 			}
 		}
 
+		public static string FullProgramName {
+			get {
+				return Assembly.GetExecutingAssembly ().GetName ().FullName;
+			}
+		}
+
+		public static string ProgramName {
+			get {
+				return Assembly.GetExecutingAssembly ().GetName ().Name;
+			}
+		}
+
+		public static Version ProgramVersion {
+			get {
+				return Assembly.GetExecutingAssembly ().GetName ().Version;
+			}
+		}
+
+		public static string ProgramNameVersion {
+			get {
+				return string.Format ("{0} version {1}", ProgramManager.ProgramName, ProgramManager.ProgramVersion);
+			}
+		}
+
 		public CanvasSize CanvasSize = new CanvasSize ();
 
 		public IEnumerable<string> InputFiles {
@@ -178,8 +202,14 @@ namespace IdpGie {
 			}
 		}
 
+		public int Port {
+			get;
+			set;
+		}
+
 		public ProgramManager () {
-			this.Time = Time;
+			this.Time = 0.0d;
+			this.Port = 8080;
 			this.options = new OptionSet () { {
 					"a|asp=",
 					"Feed the system an .asp file in order to convert an idp model into drawing instructions.",
@@ -220,6 +250,10 @@ namespace IdpGie {
 					"g|geometry=",
 					"The geometry of the document (in case one works with chapters).",
 					x => this.Geometry = StripGeometry.Parse (x)
+				}, {
+					"p|port=",
+					"The port of the server (if applicable, by default 8080).",
+					x => this.Port = int.Parse (x)
 				}
 			};
 		}
@@ -288,6 +322,7 @@ namespace IdpGie {
 
 			if (this.HelpOrLists) {
 				if (this.ShowHelp) {
+					Console.Error.WriteLine (ProgramManager.ProgramNameVersion);
 					Console.Error.WriteLine ("Usage: idpgie [Options]+");
 					Console.Error.WriteLine ("IDP-GIE is a Graphical Interactive Environment (GIE) for the IDP system.");
 					Console.Error.WriteLine ();
@@ -307,8 +342,7 @@ namespace IdpGie {
 				}
 
 			} else {
-				Application.Init ("idpgie", ref args);
-				Gdk.Threads.Init ();
+				//Application.Init ("idpgie", ref args);
 				IAlterableReloadableChangeableStream<string> strm;
 				string filename;
 				if (this.Interactive) {
@@ -321,6 +355,7 @@ namespace IdpGie {
 				DrawTheory dt = new DrawTheory (filename, strm);
 				OutputDevice dev = OutputDevice.CreateDevice (this.OutputMode, dt);
 				dev.Run (this);
+				Application.Quit ();
 			}
 		}
 
