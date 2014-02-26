@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Text;
+using System.Web.UI;
 using Cairo;
 using OpenTK;
 
@@ -77,6 +78,12 @@ namespace IdpGie {
 
 		#endregion
 
+		public virtual string XhtmlTag {
+			get {
+				return string.Empty;
+			}
+		}
+
 		protected Shape (IFunctionInstance name) {
 			this.name = name;
 		}
@@ -105,6 +112,9 @@ namespace IdpGie {
 			builder.AppendFormat (@"\begin{0}[xshift={1} cm,yshift={2} cm]", "{scope}", this.State.Xpos, this.State.Ypos);
 			this.InnerWriteTikz (builder);
 			builder.Append (@"\end{scope}");
+		}
+
+		public virtual void WriteXhtml (XhtmlTextWriter writer) {
 		}
 
 		public virtual void Render (FrameEventArgs e) {
