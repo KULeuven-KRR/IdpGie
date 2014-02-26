@@ -261,6 +261,7 @@
     <Compile Include="IHttpGieServer.cs" />
     <Compile Include="HttpProcessor.cs" />
     <Compile Include="KeyValueEntry.cs" />
+    <Compile Include="XhtmlActiveShape.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

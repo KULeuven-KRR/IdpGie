@@ -1,7 +1,7 @@
 using System;
 
-namespace IdpGie
-{
+namespace IdpGie {
+
 	[FunctionStructure("kv",TermType.KeyValue)]
 	public struct KeyValueEntry {
 

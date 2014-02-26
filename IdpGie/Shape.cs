@@ -85,7 +85,7 @@ namespace IdpGie {
 			}
 		}
 
-		public virtual IEnumerable<Tuple<string,string>> XhtmlAttributes {
+		public virtual IEnumerable<KeyValueEntry> XhtmlAttributes {
 			get {
 				yield break;
 			}
@@ -124,7 +124,9 @@ namespace IdpGie {
 		public virtual void WriteXhtml (XhtmlTextWriter writer) {
 			if(this.XhtmlTag != null && this.XhtmlTag != string.Empty) {
 				writer.WriteBeginTag(this.XhtmlTag);
-
+				foreach(KeyValueEntry kve in this.XhtmlAttributes) {
+					writer.AddAttribute(kve.Key,kve.Value);
+				}
 				writer.WriteEndTag();
 			}
 		}
