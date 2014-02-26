@@ -55,6 +55,9 @@ namespace IdpGie {
             this.reverseAction = reverseAction;
         }
 
+		public ShapeStateModifier (double time, string key, object value) : this(time,x => x.SetElement(key,value)) {
+		}
+
         public override string ToString () {
             return string.Format ("<{0}:{1}:{2}>", this.Time, Action, this.reverseAction);
         }

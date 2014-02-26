@@ -261,7 +261,6 @@
     <Compile Include="IHttpGieServer.cs" />
     <Compile Include="HttpProcessor.cs" />
     <Compile Include="KeyValueEntry.cs" />
-    <Compile Include="ShapeStateSetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
