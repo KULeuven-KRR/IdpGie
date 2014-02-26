@@ -181,7 +181,7 @@ namespace IdpGie {
 			int w, h;
 			this.GdkWindow.GetSize (out w, out h);
 			this.PaintWidget (ctx, w, h);
-			((IDisposable)ctx.GetTarget ()).Dispose ();
+			((IDisposable)ctx.Target).Dispose ();
 			((IDisposable)ctx).Dispose ();
 			return true;
 		}

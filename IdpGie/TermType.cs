@@ -32,7 +32,8 @@ namespace IdpGie {
         Named         = 0x0800000000000010UL,
         Point         = 0x0800000000000020UL,
         Color         = 0x0800000000000040UL,
-        All           = 0x080000000000007FUL
+		KeyValue	  = 0x0800000000000080UL,
+        All           = 0x08000000000000FFUL
     }
 }
 

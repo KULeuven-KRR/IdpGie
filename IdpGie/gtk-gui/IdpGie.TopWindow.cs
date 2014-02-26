@@ -22,7 +22,7 @@ namespace IdpGie
 		private global::IdpGie.BlueprintTabControl tabcontrol;
 		private global::Gtk.Statusbar statusbar;
 		private global::Gtk.Label statusLabel;
-
+		
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

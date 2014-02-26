@@ -71,7 +71,7 @@ namespace IdpGie {
 		}
 
 		public static void SetFill (this Context ctx, Pattern pattern) {
-			ctx.SetSource (pattern);
+			ctx.Pattern = pattern;
 		}
 
 		public static void MoveLineTo (this Context ctx, IEnumerable<PointD> pts) {
