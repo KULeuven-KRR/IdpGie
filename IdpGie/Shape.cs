@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web.UI;
 using Cairo;
@@ -80,7 +81,13 @@ namespace IdpGie {
 
 		public virtual string XhtmlTag {
 			get {
-				return string.Empty;
+				return null;
+			}
+		}
+
+		public virtual IEnumerable<Tuple<string,string>> XhtmlAttributes {
+			get {
+				yield break;
 			}
 		}
 
@@ -115,6 +122,11 @@ namespace IdpGie {
 		}
 
 		public virtual void WriteXhtml (XhtmlTextWriter writer) {
+			if(this.XhtmlTag != null && this.XhtmlTag != string.Empty) {
+				writer.WriteBeginTag(this.XhtmlTag);
+
+				writer.WriteEndTag();
+			}
 		}
 
 		public virtual void Render (FrameEventArgs e) {
