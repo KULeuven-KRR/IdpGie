@@ -262,6 +262,8 @@
     <Compile Include="HttpProcessor.cs" />
     <Compile Include="KeyValueEntry.cs" />
     <Compile Include="ShapeActiveHtml.cs" />
+    <Compile Include="ShapeHierarchical.cs" />
+    <Compile Include="IShapeHierarchical.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

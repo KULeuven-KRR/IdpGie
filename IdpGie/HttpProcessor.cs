@@ -33,11 +33,70 @@ namespace IdpGie {
 			htw.RenderEndTag();
 			htw.AddAttribute(HtmlTextWriterAttribute.Type,"text/css");
 			htw.RenderBeginTag(HtmlTextWriterTag.Style);
-			htw.WriteLine("body {\npadding-top: 20px;\npadding-bottom: 40px;\n}\n\n/* Custom container */\n.container-narrow {\nmargin: 0 auto;\nmax-width: 700px;\n}\n.container-narrow > hr {\nmargin: 30px 0;\n}\n\n/* Main marketing message and sign up button */\n.jumbotron {\nmargin: 60px 0;\ntext-align: center;\n}\n.jumbotron h1 {\nfont-size: 72px;\nline-height: 1;\n}\n.jumbotron .btn {\nfont-size: 21px;\npadding: 14px 24px;\n}\n\n/* Supporting marketing content */\n.marketing {\nmargin: 60px 0;\n}\n.marketing p + h4 {\nmargin-top: 28px;\n}");
+			htw.WriteLine("\nbody {\npadding-top: 20px;\npadding-bottom: 60px;\n}\n.container {\nmargin: 0 auto;\nmax-width: 1000px;\n}\n.container > hr {\nmargin: 60px 0;\n}\n.jumbotron {\nmargin: 80px 0;\ntext-align: center;\n}\n.jumbotron h1 {\nfont-size: 100px;\nline-height: 1;\n}\n.jumbotron .lead {\nfont-size: 24px;\nline-height: 1.25;\n}\n.jumbotron .btn {\nfont-size: 21px;\npadding: 14px 24px;\n}\n.marketing {\nmargin: 60px 0;\n}\n.marketing p + h4 {\nmargin-top: 28px;\n}\n.navbar .navbar-inner {\npadding: 0;\n}\n.navbar .nav {\nmargin: 0;\ndisplay: table;\nwidth: 100%;\n}\n.navbar .nav li {\ndisplay: table-cell;\nwidth: 1%;\nfloat: none;\n}\n.navbar .nav li a {\nfont-weight: bold;\ntext-align: center;\nborder-left: 1px solid rgba(255,255,255,.75);\nborder-right: 1px solid rgba(0,0,0,.1);\n}\n.navbar .nav li:first-child a {\nborder-left: 0;\nborder-radius: 3px 0 0 3px;\n}\n.navbar .nav li:last-child a {\nborder-right: 0;\nborder-radius: 0 3px 3px 0;\n}");
+			htw.RenderEndTag();
+			htw.WriteLine();
+		}
+
+		public void WriteMasthead (Html32TextWriter htw) {
+			htw.AddAttribute(HtmlTextWriterAttribute.Class,"masthead");
+			htw.RenderBeginTag(HtmlTextWriterTag.Div);
+			htw.AddAttribute(HtmlTextWriterAttribute.Class,"muted");
+			htw.RenderBeginTag(HtmlTextWriterTag.H3);
+			htw.Write(this.device.Theory.Name);
+			htw.RenderEndTag();
+			htw.AddAttribute(HtmlTextWriterAttribute.Class,"navbar");
+			htw.RenderBeginTag(HtmlTextWriterTag.Div);
+			htw.AddAttribute(HtmlTextWriterAttribute.Class,"navbar-inner");
+			htw.RenderBeginTag(HtmlTextWriterTag.Div);
+			htw.AddAttribute(HtmlTextWriterAttribute.Class,"container");
+			htw.RenderBeginTag(HtmlTextWriterTag.Div);
+			htw.AddAttribute(HtmlTextWriterAttribute.Class,"nav");
+			htw.RenderBeginTag(HtmlTextWriterTag.Ul);
+
+			htw.AddAttribute(HtmlTextWriterAttribute.Class,"active");
+			htw.RenderBeginTag(HtmlTextWriterTag.Li);
+			htw.AddAttribute(HtmlTextWriterAttribute.Href,"#");
+			htw.RenderBeginTag(HtmlTextWriterTag.A);
+			htw.Write("Home");
+			htw.RenderEndTag();
+			htw.RenderEndTag();
+
+			htw.RenderBeginTag(HtmlTextWriterTag.Li);
+			htw.AddAttribute(HtmlTextWriterAttribute.Href,"#");
+			htw.RenderBeginTag(HtmlTextWriterTag.A);
+			htw.Write("About");
+			htw.RenderEndTag();
+			htw.RenderEndTag();
+
+			htw.RenderBeginTag(HtmlTextWriterTag.Li);
+			htw.AddAttribute(HtmlTextWriterAttribute.Href,"#");
+			htw.RenderBeginTag(HtmlTextWriterTag.A);
+			htw.Write("Contact");
+			htw.RenderEndTag();
+			htw.RenderEndTag();
+			/*
+
+              <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Downloads</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+			*/
+			htw.RenderEndTag();
+			htw.RenderEndTag();
+			htw.RenderEndTag();
+			htw.RenderEndTag();
+			htw.RenderEndTag();
+			htw.RenderBeginTag(HtmlTextWriterTag.Hr);
 			htw.RenderEndTag();
 		}
 
 		public void WriteBody (Html32TextWriter htw) {
+			this.WriteMasthead(htw);
 		}
 
 		public void WriteFooter (Html32TextWriter htw) {
@@ -84,7 +143,7 @@ namespace IdpGie {
 						this.WriteHeader(tw);
 						tw.RenderEndTag();
 						tw.RenderBeginTag(HtmlTextWriterTag.Body);
-						tw.AddAttribute(HtmlTextWriterAttribute.Class,"container-narrow");
+						tw.AddAttribute(HtmlTextWriterAttribute.Class,"container");
 						tw.RenderBeginTag(HtmlTextWriterTag.Div);
 						this.WriteBody(tw);
 						this.WriteFooter(tw);
