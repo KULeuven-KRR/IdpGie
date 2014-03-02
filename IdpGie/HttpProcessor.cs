@@ -9,11 +9,9 @@ using System.Web.UI;
 namespace IdpGie {
 	public class HttpProcessor {
 		private readonly TcpClient client;
-		private readonly IHttpHandler handler;
 
 		public HttpProcessor (TcpClient client, IHttpHandler handler) {
 			this.client = client;
-			this.handler = handler;
 		}
 
 		public void WriteHeader (Html32TextWriter htw) {
@@ -27,7 +25,7 @@ namespace IdpGie {
 			htw.RenderBeginTag(HtmlTextWriterTag.Meta);
 			htw.RenderEndTag();
 			htw.WriteLine();
-			htw.AddAttribute(HtmlTextWriterAttribute.Href,"bootstrap.min.css");
+			htw.AddAttribute(HtmlTextWriterAttribute.Href,"//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
 			htw.AddAttribute(HtmlTextWriterAttribute.Rel,"stylesheet");
 			htw.RenderBeginTag(HtmlTextWriterTag.Link);
 			htw.RenderEndTag();
@@ -41,6 +39,15 @@ namespace IdpGie {
 			htw.RenderBeginTag(HtmlTextWriterTag.Hr);
 			htw.Write ("This page is created with {0}", ProgramManager.ProgramNameVersion);
 			htw.RenderEndTag();
+			htw.WriteLine();
+			htw.AddAttribute(HtmlTextWriterAttribute.Src,"//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
+			htw.RenderBeginTag(HtmlTextWriterTag.Script);
+			htw.RenderEndTag();
+			htw.WriteLine();
+			htw.AddAttribute(HtmlTextWriterAttribute.Src,"https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+			htw.RenderBeginTag(HtmlTextWriterTag.Script);
+			htw.RenderEndTag();
+			htw.WriteLine();
 		}
 
 		public void process ()
@@ -61,6 +68,7 @@ namespace IdpGie {
 				Console.WriteLine(http_filename);
 				using(StreamWriter sw = new StreamWriter (client.GetStream ())) {
 					using(Html32TextWriter tw = new Html32TextWriter (sw)) {
+						tw.WriteLine("<!DOCTYPE html>");
 						tw.RenderBeginTag(HtmlTextWriterTag.Html);
 						tw.RenderBeginTag(HtmlTextWriterTag.Head);
 						this.WriteHeader(tw);
