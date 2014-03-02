@@ -4,6 +4,7 @@ using System.Web;
 using System.IO;
 using System.Text;
 using System.Net;
+using System.Web.UI;
 
 namespace IdpGie {
 	public class HttpProcessor {
@@ -15,7 +16,22 @@ namespace IdpGie {
 			this.handler = handler;
 		}
 
-		public void process () {
+		public void WriteHeader (Html32TextWriter htw) {
+			htw.WriteLine();
+			htw.AddAttribute(HtmlTextWriterAttribute.Name,"generator");
+			htw.AddAttribute(HtmlTextWriterAttribute.Content,ProgramManager.ProgramNameVersion);
+			htw.RenderBeginTag(HtmlTextWriterTag.Meta);
+			htw.RenderEndTag();
+		}
+
+		public void WriteFooter (Html32TextWriter htw) {
+			htw.RenderBeginTag(HtmlTextWriterTag.Hr);
+			htw.Write ("This page is created with {0}", ProgramManager.ProgramNameVersion);
+			htw.RenderEndTag();
+		}
+
+		public void process ()
+		{
 			using (StreamReader inputStream = new StreamReader (client.GetStream ())) {
 				String request = inputStream.ReadLine (), line;
 				string[] tokens = request.Split (' ');
@@ -29,23 +45,23 @@ namespace IdpGie {
 				} while(line != string.Empty && line != null);
 				string http_url = tokens [1];
 				string http_filename = tokens [1];
-				/*Console.WriteLine (http_url);
-				HttpWebRequest hwr = (HttpWebRequest)WebRequest.Create (request);
-				Console.WriteLine (hwr);*/
-				StreamWriter sw = new StreamWriter (client.GetStream ());
-				sw.WriteLine ("<html><body><h1>test server</h1>");
-				sw.WriteLine ("Current Time: " + DateTime.Now.ToString ());
-				sw.WriteLine ("url : {0}", "HURAY");
-				sw.WriteLine ("<form method=post action=/form>");
-				sw.WriteLine ("<input type=text name=foo value=foovalue>");
-				sw.WriteLine ("<input type=submit name=bar value=barvalue>");
-				sw.WriteLine ("</form>");
-				sw.WriteLine ("<hr>This page is created with {0}", ProgramManager.ProgramNameVersion);
-				sw.Close ();
-				//HttpRequest rq = new HttpRequest (string.Empty, string.Empty, rest.ToString ());
-				//HttpResponse rp = new HttpResponse (new StreamWriter (client.GetStream ()));
-				//HttpContext ctx = new HttpContext (hwr, rp);
-				//this.handler.ProcessRequest (ctx);
+				using(StreamWriter sw = new StreamWriter (client.GetStream ())) {
+					using(Html32TextWriter tw = new Html32TextWriter (sw)) {
+
+						tw.AddAttribute("lang","en-US");
+						tw.RenderBeginTag(HtmlTextWriterTag.Html);
+						tw.RenderBeginTag(HtmlTextWriterTag.Head);
+						this.WriteHeader(tw);
+						tw.RenderEndTag();
+						tw.RenderBeginTag(HtmlTextWriterTag.Body);
+						tw.RenderBeginTag(HtmlTextWriterTag.B);
+						tw.Write("test");
+						tw.RenderEndTag();
+						this.WriteFooter(tw);
+						tw.RenderEndTag();
+						tw.RenderEndTag();
+					}
+				}
 			}
 		}
 	}

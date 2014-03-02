@@ -127,7 +127,7 @@ namespace IdpGie {
 				foreach(KeyValueEntry kve in this.XhtmlAttributes) {
 					writer.AddAttribute(kve.Key,kve.Value);
 				}
-				writer.WriteEndTag();
+				writer.WriteEndTag(this.XhtmlTag);
 			}
 		}
 
