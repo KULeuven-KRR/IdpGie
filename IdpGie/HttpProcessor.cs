@@ -17,11 +17,24 @@ namespace IdpGie {
 		}
 
 		public void WriteHeader (Html32TextWriter htw) {
-			htw.WriteLine();
 			htw.AddAttribute(HtmlTextWriterAttribute.Name,"generator");
 			htw.AddAttribute(HtmlTextWriterAttribute.Content,ProgramManager.ProgramNameVersion);
 			htw.RenderBeginTag(HtmlTextWriterTag.Meta);
 			htw.RenderEndTag();
+			htw.WriteLine();
+			htw.AddAttribute(HtmlTextWriterAttribute.Name,"viewport");
+			htw.AddAttribute(HtmlTextWriterAttribute.Content,"width=device-width, initial-scale=1.0");
+			htw.RenderBeginTag(HtmlTextWriterTag.Meta);
+			htw.RenderEndTag();
+			htw.WriteLine();
+			htw.AddAttribute(HtmlTextWriterAttribute.Href,"bootstrap.min.css");
+			htw.AddAttribute(HtmlTextWriterAttribute.Rel,"stylesheet");
+			htw.RenderBeginTag(HtmlTextWriterTag.Link);
+			htw.RenderEndTag();
+			htw.WriteLine();
+		}
+
+		public void WriteBody (Html32TextWriter htw) {
 		}
 
 		public void WriteFooter (Html32TextWriter htw) {
@@ -45,22 +58,21 @@ namespace IdpGie {
 				} while(line != string.Empty && line != null);
 				string http_url = tokens [1];
 				string http_filename = tokens [1];
+				Console.WriteLine(http_filename);
 				using(StreamWriter sw = new StreamWriter (client.GetStream ())) {
 					using(Html32TextWriter tw = new Html32TextWriter (sw)) {
-
-						tw.AddAttribute("lang","en-US");
 						tw.RenderBeginTag(HtmlTextWriterTag.Html);
 						tw.RenderBeginTag(HtmlTextWriterTag.Head);
 						this.WriteHeader(tw);
 						tw.RenderEndTag();
 						tw.RenderBeginTag(HtmlTextWriterTag.Body);
-						tw.RenderBeginTag(HtmlTextWriterTag.B);
-						tw.Write("test");
-						tw.RenderEndTag();
+						this.WriteBody(tw);
 						this.WriteFooter(tw);
 						tw.RenderEndTag();
 						tw.RenderEndTag();
+						tw.Close();
 					}
+					sw.Close();
 				}
 			}
 		}
