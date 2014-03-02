@@ -79,13 +79,13 @@ namespace IdpGie {
 
 		#endregion
 
-		public virtual string XhtmlTag {
+		public virtual string HtmlTag {
 			get {
 				return null;
 			}
 		}
 
-		public virtual IEnumerable<KeyValueEntry> XhtmlAttributes {
+		public virtual IEnumerable<KeyValueEntry> HtmlAttributes {
 			get {
 				yield break;
 			}
@@ -121,13 +121,13 @@ namespace IdpGie {
 			builder.Append (@"\end{scope}");
 		}
 
-		public virtual void WriteXhtml (XhtmlTextWriter writer) {
-			if(this.XhtmlTag != null && this.XhtmlTag != string.Empty) {
-				writer.WriteBeginTag(this.XhtmlTag);
-				foreach(KeyValueEntry kve in this.XhtmlAttributes) {
+		public virtual void WriteXhtml (Html32TextWriter writer) {
+			if(this.HtmlTag != null && this.HtmlTag != string.Empty) {
+				foreach(KeyValueEntry kve in this.HtmlAttributes) {
 					writer.AddAttribute(kve.Key,kve.Value);
 				}
-				writer.WriteEndTag(this.XhtmlTag);
+				writer.RenderBeginTag(this.HtmlTag);
+				writer.RenderEndTag();
 			}
 		}
 

@@ -121,6 +121,10 @@ namespace IdpGie {
 			this.HandleChanged (null, null);
 		}
 
+		public void SetName (string name) {
+			this.Name = name;
+		}
+
 		void HandleChanged (object sender, EventArgs e) {
 			Lexer scnr = new Lexer (this.Source.Stream);
 			IdpParser pars = new IdpParser (scnr, this);
