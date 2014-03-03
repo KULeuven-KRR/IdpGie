@@ -1,8 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HttpProcessor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IShapeHierarchical.cs">
     <Files>
-      <File FileName="HttpProcessor.cs" Line="25" Column="20" />
+      <File FileName="HttpProcessor.cs" Line="95" Column="23" />
+      <File FileName="DrawTheory.cs" Line="124" Column="16" />
+      <File FileName="PaintMapping.cs" Line="53" Column="22" />
+      <File FileName="OutputHttpServerDevice.cs" Line="10" Column="37" />
+      <File FileName="ShapeActiveHtml.cs" Line="6" Column="30" />
+      <File FileName="Shape.cs" Line="130" Column="19" />
+      <File FileName="IShapeHierarchical.cs" Line="6" Column="31" />
+      <File FileName="ShapeHierarchical.cs" Line="5" Column="62" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
