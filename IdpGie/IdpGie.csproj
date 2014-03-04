@@ -28,6 +28,7 @@
         <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
+    <GenerateDocumentation>true</GenerateDocumentation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -264,6 +265,9 @@
     <Compile Include="ShapeActiveHtml.cs" />
     <Compile Include="ShapeHierarchical.cs" />
     <Compile Include="IShapeHierarchical.cs" />
+    <Compile Include="IShapeModifiableHierarchical.cs" />
+    <Compile Include="HttpEngine.cs" />
+    <Compile Include="ShapePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
