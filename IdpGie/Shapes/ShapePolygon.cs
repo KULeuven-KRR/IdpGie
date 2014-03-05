@@ -25,19 +25,19 @@ using IdpGie.UserInterface;
 
 namespace IdpGie.Shapes {
 
-    public abstract class ShapePolygon : Shape {
+	public abstract class ShapePolygon : Shape<ShapeState> {
 
-        protected ShapePolygon (IFunctionInstance name) : base(name) {
-        }
+		protected ShapePolygon (IFunctionInstance name) : base(name) {
+		}
 
-        protected override void InnerPaintObject (Context ctx) {
-            ctx.MoveLineTo (this.GetPoints ());
-            ctx.ClosePath ();
-            base.InnerPaintObject (ctx);
-        }
+		protected override void InnerPaintObject (Context ctx) {
+			ctx.MoveLineTo (this.GetPoints ());
+			ctx.ClosePath ();
+			base.InnerPaintObject (ctx);
+		}
 
-        public abstract IEnumerable<PointD> GetPoints ();
+		public abstract IEnumerable<PointD> GetPoints ();
 
-    }
+	}
 }
 

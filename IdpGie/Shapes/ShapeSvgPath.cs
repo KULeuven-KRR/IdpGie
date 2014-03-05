@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using IdpGie.Logic;
 
 namespace IdpGie.Shapes {
-	public class ShapeSvgPath : Shape {
+	public class ShapeSvgPath : Shape<ShapeState> {
 		private readonly LinkedList<byte> instructions = new LinkedList<byte> ();
 		private readonly LinkedList<double> attributes;
 		private static readonly Regex rgx = null;

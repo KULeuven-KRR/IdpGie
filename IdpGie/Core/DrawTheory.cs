@@ -23,10 +23,8 @@ using System.Collections.Generic;
 using System.Text;
 using Gdk;
 using IdpGie.Parser;
-using System.Linq;
 using IdpGie.Abstract;
 using IdpGie.Logic;
-using IdpGie.Shapes;
 using IdpGie.Interaction;
 using IdpGie.Utils;
 using IdpGie.Shapes;
@@ -168,7 +166,7 @@ namespace IdpGie.Core {
 			this.chapters.Add (time);
 		}
 
-		public void AddModifier (IFunctionInstance name, double time, Action<ShapeState> modifier) {
+		public void AddModifier (IFunctionInstance name, double time, Action<IShapeState> modifier) {
 			this [name].State.AddModifier (time, modifier);
 			this.RegisterTime (time);
 			this.trigger_changed ();

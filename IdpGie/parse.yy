@@ -1,4 +1,4 @@
-%output=Parser.cs 
+%output=Parser/Parser.cs 
 %namespace IdpGie.Parser
 %parsertype IdpParser
 

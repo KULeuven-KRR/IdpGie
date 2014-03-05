@@ -1,10 +1,10 @@
 //
-//  ShapeGraph.cs
+//  IShapeState.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,15 +19,32 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using IdpGie.Logic;
+using IdpGie.Abstract;
+using IdpGie.Shapes.Modifiers;
 
 namespace IdpGie.Shapes {
 
-	public class ShapeGraph : Shape<ShapeState> {
+	public interface IShapeState : IShapeTransformable, ITimeSensitiveFastReversible, IVisible, IZIndex {
 
-		public ShapeGraph (IFunctionInstance name) : base(name) {
-		}
+		void Reset ();
+
+		void Reset (double time);
+
+		void Advance (double time);
+
+		void SetTime (double time);
+
+		void AddModifier (IShapeStateModifier modifier);
+
+		void AddModifier (double time, Action<IShapeState> modifier);
+
+		bool ContainsElement (string key);
+
+		T GetElement<T> (string key, T defaultValue = default(T));
+
+		void SetElement<T> (string key, T value = default(T));
 
 	}
 
 }
+

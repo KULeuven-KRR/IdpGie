@@ -27,12 +27,11 @@ using OpenTK;
 using IdpGie.Logic;
 using IdpGie.Shapes.Modifiers;
 using IdpGie.UserInterface;
-using IdpGie.Utils;
 
 namespace IdpGie.Shapes {
-	public abstract class Shape : IShape {
+	public abstract class Shape<TShapeState> : IShape where TShapeState : IShapeState, new() {
 		private readonly IFunctionInstance name;
-		private readonly ShapeState state = new ShapeState ();
+		private readonly TShapeState state = new TShapeState ();
 		private IdpGie.Geometry.Point textOffset = new IdpGie.Geometry.Point (0.0d, 0.0d);
 
 		#region IIdpdObject implementation
@@ -63,11 +62,20 @@ namespace IdpGie.Shapes {
 			}
 		}
 
+		#region IShape implementation
+
+		IShapeState IShape.State {
+			get {
+				return this.State;
+			}
+		}
+		#endregion
+
 		#region IZIndix implementation
 
 		public double ZIndex {
 			get {
-				return this.state.Zpos;
+				return this.state.ZIndex;
 			}
 		}
 
@@ -75,7 +83,7 @@ namespace IdpGie.Shapes {
 
 		#region IIdpdObject implementation
 
-		public ShapeState State {
+		public TShapeState State {
 			get {
 				return this.state;
 			}
@@ -113,25 +121,25 @@ namespace IdpGie.Shapes {
 		public virtual void PaintObject (Context ctx) {
 			if (this.state.Visible) {
 				ctx.Save ();
-				ctx.Transform (this.state.CairoTransformations);
+				ctx.Transform (this.state.GetElement<Matrix> ("CairoTransformations"));
 				this.InnerPaintObject (ctx);
 				ctx.Restore ();
 			}
 		}
 
 		public virtual void WriteTikz (StringBuilder builder) {
-			builder.AppendFormat (@"\begin{0}[xshift={1} cm,yshift={2} cm]", "{scope}", this.State.Xpos, this.State.Ypos);
+			builder.AppendFormat (@"\begin{0}[xshift={1} cm,yshift={2} cm]", "{scope}", this.State.GetElement<double> ("Xpos"), this.State.GetElement<double> ("Ypos"));
 			this.InnerWriteTikz (builder);
 			builder.Append (@"\end{scope}");
 		}
 
 		public virtual void WriteXhtml (Html32TextWriter writer) {
-			if(this.HtmlTag != null && this.HtmlTag != string.Empty) {
-				foreach(KeyValueEntry kve in this.HtmlAttributes) {
-					writer.AddAttribute(kve.Key,kve.Value);
+			if (this.HtmlTag != null && this.HtmlTag != string.Empty) {
+				foreach (KeyValueEntry kve in this.HtmlAttributes) {
+					writer.AddAttribute (kve.Key, kve.Value);
 				}
-				writer.RenderBeginTag(this.HtmlTag);
-				writer.RenderEndTag();
+				writer.RenderBeginTag (this.HtmlTag);
+				writer.RenderEndTag ();
 			}
 		}
 
@@ -143,21 +151,21 @@ namespace IdpGie.Shapes {
 			this.State.AddModifier (modifier);
 		}
 
-		public void AddModifier (double time, Action<ShapeState> modifier) {
+		public void AddModifier (double time, Action<IShapeState> modifier) {
 			this.State.AddModifier (time, modifier);
 		}
 
 		#endregion
 
 		private void cairoFillStroke (Context ctx) {
-			ctx.SetFill (this.state.InnerColor);
+			ctx.SetFill (this.state.GetElement<Color> ("InnerColor"));
 			ctx.FillPreserve ();
-			ctx.SetFill (this.state.EdgeColor);
+			ctx.SetFill (this.state.GetElement<Color> ("EdgeColor"));
 			ctx.Stroke ();
 		}
 
 		private void cairoShowText (Context ctx) {
-			string text = this.state.Text;
+			string text = this.state.GetElement<string> ("Text");
 			if (text != null && text != string.Empty) {
 				TextExtents te = ctx.TextExtents (text);
 				ctx.MoveTo (-0.5d * te.XAdvance + this.textOffset.X, 0.5d * (te.Height + 0.5d * te.YBearing) + this.textOffset.Y);

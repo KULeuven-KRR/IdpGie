@@ -25,7 +25,7 @@ using IdpGie.Logic;
 using IdpGie.UserInterface;
 
 namespace IdpGie.Shapes {
-	public class ShapeImage : Shape {
+	public class ShapeImage : Shape<ShapeState> {
 		private readonly ImageSurface surface;
 		private readonly double width, height;
 

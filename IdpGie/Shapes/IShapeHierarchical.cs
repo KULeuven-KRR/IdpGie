@@ -13,6 +13,10 @@ namespace IdpGie.Shapes {
 			get;
 		}
 
+		void RegisterChild (IShapeHierarchical child);
+
+		void UnregisterChild (IShapeHierarchical child);
+
 	}
 }
 

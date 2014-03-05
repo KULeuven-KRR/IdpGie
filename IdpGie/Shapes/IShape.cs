@@ -28,32 +28,32 @@ using IdpGie.Shapes.Modifiers;
 
 namespace IdpGie.Shapes {
 
-    public interface IShape : IZIndex, IShapeTransformable {
+	public interface IShape : IZIndex, IShapeTransformable {
 
-        IFunctionInstance Name {
-            get;
-        }
+		IFunctionInstance Name {
+			get;
+		}
 
-        ShapeState State {
-            get;
-        }
+		IShapeState State {
+			get;
+		}
 
-        double Time {
-            get;
-            set;
-        }
+		double Time {
+			get;
+			set;
+		}
 
-        void PaintObject (Context ctx);
+		void PaintObject (Context ctx);
 
-        void WriteTikz (StringBuilder builder);
+		void WriteTikz (StringBuilder builder);
 
-        void Render (FrameEventArgs e);
+		void Render (FrameEventArgs e);
 
-        void AddModifier (ShapeStateModifier modifier);
+		void AddModifier (ShapeStateModifier modifier);
 
-        void AddModifier (double time, Action<ShapeState> modifier);
+		void AddModifier (double time, Action<IShapeState> modifier);
 
-    }
+	}
 
 }
 

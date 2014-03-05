@@ -23,68 +23,68 @@ using System.Collections.Generic;
 
 namespace IdpGie.Abstract {
 
-    public class WeakFlyweight<TKey,TValue> : IFlyweight {
+	public class WeakFlyweight<TKey,TValue> : IFlyweight<TKey,TValue> {
 
-        private readonly Dictionary<TKey,WeakReference> cache = new Dictionary<TKey, WeakReference> ();
-        private readonly Func<TKey,TValue> generator;
-
-        #region IFlyWeight implementation
-        public Func<TKey, TValue> Generator {
-            get {
-                return this.generator;
-            }
-        }
-
-        public bool IsWeak {
-            get {
-                return true;
-            }
-        }
-
-        public bool DisposeSupport {
-            get {
-                return false;
-            }
-        }
-        #endregion
-        public WeakFlyweight (Func<TKey,TValue> generator) {
-            this.generator = generator;
-        }
+		private readonly Dictionary<TKey,WeakReference> cache = new Dictionary<TKey, WeakReference> ();
+		private readonly Func<TKey,TValue> generator;
 
         #region IFlyWeight implementation
-        public TValue GetOrCreate (TKey key) {
-            WeakReference wr;
-            TValue res;
-            if (!this.cache.TryGetValue (key, out wr)) {
-                res = generator (key);
-                this.cache.Add (key, new WeakReference (res));
-            } else if (!wr.IsAlive) {
-                res = generator (key);
-                wr.Target = res;
-            } else {
-                res = (TValue)wr.Target;
-            }
-            return res;
-        }
+		public Func<TKey, TValue> Generator {
+			get {
+				return this.generator;
+			}
+		}
 
-        public bool Contains (TKey key) {
-            WeakReference wr;
-            return (this.cache.TryGetValue (key, out wr) && wr.IsAlive);
-        }
+		public bool IsWeak {
+			get {
+				return true;
+			}
+		}
+
+		public bool DisposeSupport {
+			get {
+				return false;
+			}
+		}
+        #endregion
+		public WeakFlyweight (Func<TKey,TValue> generator) {
+			this.generator = generator;
+		}
+
+        #region IFlyWeight implementation
+		public TValue GetOrCreate (TKey key) {
+			WeakReference wr;
+			TValue res;
+			if (!this.cache.TryGetValue (key, out wr)) {
+				res = generator (key);
+				this.cache.Add (key, new WeakReference (res));
+			} else if (!wr.IsAlive) {
+				res = generator (key);
+				wr.Target = res;
+			} else {
+				res = (TValue)wr.Target;
+			}
+			return res;
+		}
+
+		public bool Contains (TKey key) {
+			WeakReference wr;
+			return (this.cache.TryGetValue (key, out wr) && wr.IsAlive);
+		}
         #endregion
 
-        public void Compact () {
-            Stack<TKey> toRemove = new Stack<TKey> ();
-            foreach (KeyValuePair<TKey,WeakReference> kvp in this.cache) {
-                if (!kvp.Value.IsAlive) {
-                    toRemove.Push (kvp.Key);
-                }
-            }
-            foreach (TKey key in toRemove) {
-                this.cache.Remove (key);
-            }
-        }
+		public void Compact () {
+			Stack<TKey> toRemove = new Stack<TKey> ();
+			foreach (KeyValuePair<TKey,WeakReference> kvp in this.cache) {
+				if (!kvp.Value.IsAlive) {
+					toRemove.Push (kvp.Key);
+				}
+			}
+			foreach (TKey key in toRemove) {
+				this.cache.Remove (key);
+			}
+		}
 
-    }
+	}
 
 }

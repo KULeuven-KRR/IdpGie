@@ -19,17 +19,19 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Cairo;
 using IdpGie.Core;
 using IdpGie.Geometry;
 using IdpGie.Logic;
 using IdpGie.Shapes;
+using IdpGie.Utils;
 
 namespace IdpGie.Mappers {
 	[Mapper]
 	public static class PaintMapping {
 		[PaintMethod ("polygon", true, false, 0.0d, TermType.PointList)]
 		public static void Polygon (DrawTheory dt, IFunctionInstance name, IEnhancedTermCollection points) {
-			dt.AddIdpdObject (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<Point> (TermType.Point)));
+			dt.AddIdpdObject (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<IdpGie.Geometry.Point> (TermType.Point)));
 		}
 
 		[PaintMethod ("polygon", true, false, 0.0d, TermType.Int, TermType.Float)]
@@ -54,7 +56,7 @@ namespace IdpGie.Mappers {
 
 		[PaintMethod ("title", false, false, 0.0d, TermType.String)]
 		public static void Title (DrawTheory dt, string title) {
-			dt.SetName(title);
+			dt.SetName (title);
 		}
 
 		[PaintMethod ("graph", true, false, 0.0d, TermType.Float, TermType.Float)]
@@ -69,7 +71,7 @@ namespace IdpGie.Mappers {
 
 		[PaintMethod ("text", true, true, TermType.String)]
 		public static void Text (DrawTheory dt, IFunctionInstance name, string text, double time = double.NaN) {
-			dt.AddModifier (name, time, x => x.SetText (text));
+			dt.AddModifier (name, time, x => x.SetElement ("Text", text));
 		}
 
 		[PaintMethod ("edge", false, false, 0.75d, TermType.String, TermType.String, TermType.String)]
@@ -166,12 +168,12 @@ namespace IdpGie.Mappers {
 
 		[PaintMethod ("edgecolor", true, true, TermType.Int, TermType.Int, TermType.Int)]
 		public static void EdgeColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
-			dt.AddModifier (name, time, x => x.SetEdgeColor (r, g, b));
+			dt.AddModifier (name, time, x => x.SetElement ("EdgeColor", new Color (r * MathExtra.Inv255, g * MathExtra.Inv255, b * MathExtra.Inv255)));
 		}
 
 		[PaintMethod ("innercolor", true, true, TermType.Int, TermType.Int, TermType.Int)]
 		public static void InnerColor (DrawTheory dt, IFunctionInstance name, double r, double g, double b, double time = double.NaN) {
-			dt.AddModifier (name, time, x => x.SetInnerColor (r, g, b));
+			dt.AddModifier (name, time, x => x.SetElement ("InnerColor", new Color (r * MathExtra.Inv255, g * MathExtra.Inv255, b * MathExtra.Inv255)));
 		}
 
 		[PaintMethod ("color", true, true, TermType.Int, TermType.Int, TermType.Int)]
@@ -186,12 +188,12 @@ namespace IdpGie.Mappers {
 
 		[PaintMethod ("show", true, true)]
 		public static void Show (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
-			dt.AddModifier (name, time, x => x.Show ());
+			dt.AddModifier (name, time, x => x.SetElement ("Visible", true));
 		}
 
 		[PaintMethod ("hide", true, true)]
 		public static void Hide (DrawTheory dt, IFunctionInstance name, double time = double.NaN) {
-			dt.AddModifier (name, time, x => x.Hide ());
+			dt.AddModifier (name, time, x => x.SetElement ("Visible", false));
 		}
 	}
 }
