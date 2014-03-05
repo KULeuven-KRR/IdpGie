@@ -1,19 +1,16 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Abstract/IFlyweight.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Shapes/ShapePage.cs">
     <Files>
-      <File FileName="IdpGieTest/IFunctionInstanceTest.cs" Line="24" Column="19" />
-      <File FileName="IdpGieTest/DocumentSizeTest.cs" Line="15" Column="41" />
-      <File FileName="AssemblyInfo.cs" Line="45" Column="1" />
-      <File FileName="Abstract/CloneableBase.cs" Line="29" Column="38" />
-      <File FileName="Abstract/EventArgs.cs" Line="33" Column="70" />
-      <File FileName="Abstract/IAlterable.cs" Line="22" Column="1" />
-      <File FileName="Abstract/HardFlyweight.cs" Line="34" Column="65" />
-      <File FileName="Abstract/IArity.cs" Line="41" Column="69" />
-      <File FileName="Abstract/ICloneable.cs" Line="22" Column="1" />
-      <File FileName="Abstract/IContentChangeableStream.cs" Line="44" Column="122" />
-      <File FileName="Abstract/IDescription.cs" Line="30" Column="50" />
-      <File FileName="Abstract/IFlyweight.cs" Line="94" Column="143" />
+      <File FileName="Core/DrawTheory.cs" Line="240" Column="29" />
+      <File FileName="Shapes/IShapeHierarchical.cs" Line="10" Column="8" />
+      <File FileName="Engines/HttpProcessor.cs" Line="132" Column="24" />
+      <File FileName="Engines/HttpEngine.cs" Line="15" Column="2" />
+      <File FileName="Engines/CairoEngine.cs" Line="14" Column="4" />
+      <File FileName="Engines/IEngine.cs" Line="21" Column="18" />
+      <File FileName="Engines/IRenderEngine.cs" Line="4" Column="42" />
+      <File FileName="Engines/Engine.cs" Line="29" Column="4" />
+      <File FileName="Shapes/ShapePage.cs" Line="23" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -23,32 +20,4 @@
   <MonoDevelop.Ide.BookmarkService.Bookmarks>
     <BookmarkCollection />
   </MonoDevelop.Ide.BookmarkService.Bookmarks>
-  <MonoDevelop.Ide.ItemProperties.IdpGie>
-    <MonoDevelop.Ide.CustomExecutionModes>
-      <Data Name="glwindowtest1" Id="173d99da-d4b2-4f6c-8e7d-f1b107954123" ModeId="Default">
-        <CommandData>
-          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
-            <Value Arguments="-d ../../testinput/test1.idpd -m openglwindow" ctype="CustomArgsExecutionModeData">
-              <EnvironmentVariables />
-            </Value>
-          </Item>
-          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
-            <Value ctype="MonoExecutionParameters" />
-          </Item>
-        </CommandData>
-      </Data>
-      <Data Name="httpservertest1" Id="933792b8-0a46-41c3-91b2-20e9073cd4e4" ModeId="Default">
-        <CommandData>
-          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
-            <Value Arguments="-d ../../testinput/test1.idpd -m httpserver" ctype="CustomArgsExecutionModeData">
-              <EnvironmentVariables />
-            </Value>
-          </Item>
-          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
-            <Value ctype="MonoExecutionParameters" />
-          </Item>
-        </CommandData>
-      </Data>
-    </MonoDevelop.Ide.CustomExecutionModes>
-  </MonoDevelop.Ide.ItemProperties.IdpGie>
 </Properties>
