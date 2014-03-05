@@ -22,6 +22,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using IdpGie.Core;
+using IdpGie.Mappers;
 
 namespace IdpGie.Logic {
 	public class GlobalInputContext : IInputContext {

@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Net;
 using System.Web.UI;
+using IdpGie.Core;
 using IdpGie.OutputDevices;
 
 namespace IdpGie.Engines {

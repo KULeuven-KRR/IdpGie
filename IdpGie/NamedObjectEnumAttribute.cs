@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie.Abstract {
+namespace IdpGie.Logic {
 
     [AttributeUsage(AttributeTargets.Enum)]
     public class NamedObjectEnumAttribute : Attribute {

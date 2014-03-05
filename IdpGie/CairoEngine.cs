@@ -1,6 +1,10 @@
 using System;
 using Cairo;
+using IdpGie.Abstract;
 using IdpGie.Core;
+using IdpGie.Shapes;
+using IdpGie.UserInterface;
+using IdpGie.Utils;
 
 namespace IdpGie.Engines {
 	public class CairoEngine : IRenderEngine {

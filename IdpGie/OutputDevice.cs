@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 using IdpGie.Core;
+using IdpGie.Utils;
 
 namespace IdpGie.OutputDevices {
 	public abstract class OutputDevice : IOutputDevice {

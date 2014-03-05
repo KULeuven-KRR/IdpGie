@@ -2,6 +2,8 @@ using System;
 using Cairo;
 using System.Collections.Generic;
 using IdpGie.Core;
+using IdpGie.Engines;
+using IdpGie.Geometry;
 
 namespace IdpGie.OutputDevices {
 	[OutputDevice ("pdfstrip", "Prints the content of a all timeframes as a strip using a pdf stream.")]
@@ -19,7 +21,7 @@ namespace IdpGie.OutputDevices {
 			using (PdfSurface surface = new PdfSurface (manager.OutputFile, scs.TotalWidth, scs.TotalHeight)) {
 				using (Context ctx = new Context (surface)) {
 					int index = 0x00;
-					Point p;
+					IdpGie.Geometry.Point p;
 					foreach (double chapter in chapters) {
 						p = scs.GetCanvasOffset (index);
 						ctx.Save ();

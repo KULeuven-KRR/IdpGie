@@ -20,7 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using IdpGie.Core;
+using IdpGie.Geometry;
 using IdpGie.Logic;
+using IdpGie.Shapes;
 
 namespace IdpGie.Mappers {
 	[Mapper]

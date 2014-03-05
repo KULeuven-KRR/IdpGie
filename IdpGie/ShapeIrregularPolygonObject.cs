@@ -23,21 +23,22 @@ using System.Linq;
 using System.Collections.Generic;
 using Cairo;
 using IdpGie.Logic;
+using IdpGie.Geometry;
 
 namespace IdpGie.Shapes {
 	public class ShapeIrregularPolygonObject : ShapePolygon {
-		private readonly List<Point> points;
+		private readonly List<IdpGie.Geometry.Point> points;
 
-		public ShapeIrregularPolygonObject (IFunctionInstance name, IEnumerable<Point> points) : base (name) {
+		public ShapeIrregularPolygonObject (IFunctionInstance name, IEnumerable<IdpGie.Geometry.Point> points) : base (name) {
 			this.points = points.ToList ();
 			double minx = double.PositiveInfinity, miny = double.PositiveInfinity, maxx = double.NegativeInfinity, maxy = double.NegativeInfinity;
-			foreach (Point p in this.points) {
+			foreach (IdpGie.Geometry.Point p in this.points) {
 				minx = Math.Min (minx, p.X);
 				miny = Math.Min (miny, p.Y);
 				maxx = Math.Max (maxx, p.X);
 				maxy = Math.Max (maxy, p.Y);
 			}
-			this.TextOffset = new Point (0.5d * (minx + maxx), 0.5d * (miny + maxy));
+			this.TextOffset = new IdpGie.Geometry.Point (0.5d * (minx + maxx), 0.5d * (miny + maxy));
 		}
 
 		public override IEnumerable<PointD> GetPoints () {

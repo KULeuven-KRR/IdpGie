@@ -27,6 +27,7 @@ using Cairo;
 using IdpGie.Abstract;
 using IdpGie.Shapes.Modifiers;
 using IdpGie.Logic;
+using IdpGie.Utils;
 
 namespace IdpGie.Shapes {
 	public class ShapeState : TimeSensitiveFastReversibleBase, IShapeTransformable {

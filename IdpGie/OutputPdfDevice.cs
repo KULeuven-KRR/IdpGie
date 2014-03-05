@@ -1,6 +1,8 @@
 using System;
 using Cairo;
 using IdpGie.Core;
+using IdpGie.Engines;
+using IdpGie.Geometry;
 
 namespace IdpGie.OutputDevices {
 	[OutputDevice ("pdfstream", "Prints the content of a single timeframe as a pdf stream.")]
@@ -14,7 +16,7 @@ namespace IdpGie.OutputDevices {
 			StripCanvasSize scs = manager.GenerateStripCanvasSize (0x01);
 			using (PdfSurface surface = new PdfSurface (manager.OutputFile, scs.TotalWidth, scs.TotalHeight)) {
 				using (Context ctx = new Context (surface)) {
-					Point p = scs.GetCanvasOffset (0x00);
+					IdpGie.Geometry.Point p = scs.GetCanvasOffset (0x00);
 					ctx.Save ();
 					ctx.Translate (p.X, p.Y);
 					this.Theory.Time = manager.Time;

@@ -26,12 +26,14 @@ using Cairo;
 using OpenTK;
 using IdpGie.Logic;
 using IdpGie.Shapes.Modifiers;
+using IdpGie.UserInterface;
+using IdpGie.Utils;
 
 namespace IdpGie.Shapes {
 	public abstract class Shape : IShape {
 		private readonly IFunctionInstance name;
 		private readonly ShapeState state = new ShapeState ();
-		private Point textOffset = new Point (0.0d, 0.0d);
+		private IdpGie.Geometry.Point textOffset = new IdpGie.Geometry.Point (0.0d, 0.0d);
 
 		#region IIdpdObject implementation
 
@@ -52,7 +54,7 @@ namespace IdpGie.Shapes {
 
 		#endregion
 
-		public Point TextOffset {
+		public IdpGie.Geometry.Point TextOffset {
 			get {
 				return this.textOffset;
 			}
