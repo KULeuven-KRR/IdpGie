@@ -271,6 +271,7 @@
     <Compile Include="Abstract\IArity.cs" />
     <Compile Include="Abstract\IContentChangeableStream.cs" />
     <Compile Include="Abstract\IFlyweight.cs" />
+    <Compile Include="Shapes\ShapeModifiableHierarchical.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

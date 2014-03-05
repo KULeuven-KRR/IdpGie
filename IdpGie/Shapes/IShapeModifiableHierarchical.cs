@@ -1,12 +1,11 @@
 using System;
 
-namespace IdpGie.Shapes
-{
+namespace IdpGie.Shapes {
 	public interface IShapeModifiableHierarchical : IShapeHierarchical {
 
-		void addChild (IShape child);
+		void AddChild (IShape child);
 
-		void removeChild (IShape child);
+		void RemoveChild (IShape child);
 
 	}
 }

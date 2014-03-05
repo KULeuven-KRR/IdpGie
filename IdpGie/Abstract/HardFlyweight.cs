@@ -33,7 +33,7 @@ namespace IdpGie.Abstract {
 	/// <typeparam name="TValue">
 	/// The type of objects generated and emitted by the flyweight.
 	/// </typeparam>
-	public class HardFlyweight<TKey,TValue> : IFlyweight {
+	public class HardFlyweight<TKey,TValue> : IFlyweight<TKey,TValue> {
 
 		private readonly Dictionary<TKey,TValue> cache = new Dictionary<TKey, TValue> ();
 		private readonly Func<TKey,TValue> generator;
