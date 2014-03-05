@@ -1,13 +1,19 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Abstract/HardFlyweight.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Abstract/IFlyweight.cs">
     <Files>
       <File FileName="IdpGieTest/IFunctionInstanceTest.cs" Line="24" Column="19" />
       <File FileName="IdpGieTest/DocumentSizeTest.cs" Line="15" Column="41" />
       <File FileName="AssemblyInfo.cs" Line="45" Column="1" />
-      <File FileName="Abstract/CloneableBase.cs" Line="13" Column="3" />
-      <File FileName="Abstract/EventArgs.cs" Line="61" Column="65" />
-      <File FileName="Abstract/HardFlyweight.cs" Line="1" Column="1" />
+      <File FileName="Abstract/CloneableBase.cs" Line="29" Column="38" />
+      <File FileName="Abstract/EventArgs.cs" Line="33" Column="70" />
+      <File FileName="Abstract/IAlterable.cs" Line="22" Column="1" />
+      <File FileName="Abstract/HardFlyweight.cs" Line="34" Column="65" />
+      <File FileName="Abstract/IArity.cs" Line="41" Column="69" />
+      <File FileName="Abstract/ICloneable.cs" Line="22" Column="1" />
+      <File FileName="Abstract/IContentChangeableStream.cs" Line="44" Column="122" />
+      <File FileName="Abstract/IDescription.cs" Line="30" Column="50" />
+      <File FileName="Abstract/IFlyweight.cs" Line="94" Column="143" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
