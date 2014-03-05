@@ -2,9 +2,9 @@
 //  IArity.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,16 +18,32 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 
 namespace IdpGie.Abstract {
 
-    public interface IArity {
+	/// <summary>
+	/// An interface specifying the given object has some type of arity.
+	/// </summary>
+	/// <remarks>
+	/// <para>Arity in the context of a function means the number of expected parameters.</para>
+	/// </remarks>
+	public interface IArity {
 
-        int Arity {
-            get;
-        }
+		/// <summary>
+		/// Gets the arity of the object.
+		/// </summary>
+		/// <value>
+		/// The arity of the object.
+		/// </value>
+		/// <remarks>
+		/// <para>In case the function is variadic, <c>-1</c> is returned.</para>
+		/// </remarks>
+		int Arity {
+			get;
+		}
 
-    }
+	}
 }
 

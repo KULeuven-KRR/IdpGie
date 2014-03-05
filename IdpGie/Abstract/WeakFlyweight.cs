@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace IdpGie.Abstract {
 
-    public class WeakFlyweight<TKey,TValue> : IFlyWeight<TKey,TValue> {
+    public class WeakFlyweight<TKey,TValue> : IFlyweight {
 
         private readonly Dictionary<TKey,WeakReference> cache = new Dictionary<TKey, WeakReference> ();
         private readonly Func<TKey,TValue> generator;
