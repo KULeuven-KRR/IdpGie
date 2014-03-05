@@ -87,6 +87,8 @@
       <Properties>
         <Policies>
           <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedFlat" ResourceNamePolicy="FileFormatDefault" />
+          <TextStylePolicy inheritsSet="null" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentSwitchBody="True" NamespaceBraceStyle="EndOfLine" ClassBraceStyle="EndOfLine" InterfaceBraceStyle="EndOfLine" StructBraceStyle="EndOfLine" EnumBraceStyle="EndOfLine" MethodBraceStyle="EndOfLine" ConstructorBraceStyle="EndOfLine" DestructorBraceStyle="EndOfLine" ElseIfNewLinePlacement="SameLine" BlankLinesBeforeUsings="1" BlankLinesBetweenEventFields="1" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
         </Policies>
         <Deployment.LinuxDeployData scriptName="idp-gie" />
       </Properties>
@@ -97,9 +99,7 @@
     <Compile Include="LexSpan.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="IArity.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="IContentChangeableStream.cs" />
     <Compile Include="gtk-gui\IdpGie.UserInterface.TopWindow.cs" />
     <Compile Include="Abstract\CloneableBase.cs" />
     <Compile Include="Abstract\EventArgs.cs" />
@@ -268,6 +268,8 @@
     <Compile Include="Utils\ReadonlyCollection.cs" />
     <Compile Include="Utils\RegexDevelopment.cs" />
     <Compile Include="Utils\StringUtils.cs" />
+    <Compile Include="Abstract\IArity.cs" />
+    <Compile Include="Abstract\IContentChangeableStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

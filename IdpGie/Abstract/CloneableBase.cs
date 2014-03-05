@@ -1,8 +1,11 @@
 using System;
 
-namespace IdpGie.Abstract {
-	public abstract class CloneableBase<TResult> : ICloneable<TResult> where TResult : class {
-		protected CloneableBase () {
+namespace IdpGie.Abstract
+{
+	public abstract class CloneableBase<TResult> : ICloneable<TResult> where TResult : class
+	{
+		protected CloneableBase ()
+		{
 		}
 
 		#region ICloneable implementation
@@ -13,7 +16,8 @@ namespace IdpGie.Abstract {
 
 		#region ICloneable implementation
 
-		object ICloneable.Clone () {
+		object ICloneable.Clone ()
+		{
 			return this.Clone ();
 		}
 
