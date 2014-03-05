@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Gdk;
 using IdpGie.Parser;
@@ -125,6 +126,15 @@ namespace IdpGie.Core {
 			this.HandleChanged (null, null);
 		}
 
+		public TShape GetShape<TShape> (IFunctionInstance key) where TShape : IShape {
+			IShape shp = this.objects [key];
+			if (shp is TShape) {
+				return (TShape)shp;
+			} else {
+				return default(TShape);
+			}
+		}
+
 		public void SetName (string name) {
 			this.Name = name;
 		}
@@ -197,8 +207,8 @@ namespace IdpGie.Core {
 			this.objects.Add (obj.Name, obj);
 		}
 
-		public IEnumerable<IShape> Objects () {
-			return this.objects.Values;
+		public IEnumerable<TShape> Objects<TShape> () where TShape : IShape {
+			return this.objects.Values.Where (x => x is TShape).Cast<TShape> ();
 		}
 
 		public void Execute () {

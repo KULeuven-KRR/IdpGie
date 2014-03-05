@@ -1,4 +1,3 @@
-using System;
 using Cairo;
 using IdpGie.Abstract;
 using IdpGie.Core;
@@ -24,7 +23,7 @@ namespace IdpGie.Engines {
 		public void Render () {
 			Context.Save ();
 			Context.SetFill (0.0d, 0.0d, 0.0d);
-			foreach (IShape obj in this.Theory.Objects ().OrderBy (ZIndexComparator.Instance)) {
+			foreach (IShape obj in this.Theory.Objects<IShape> ().OrderBy (ZIndexComparator.Instance)) {
 				obj.PaintObject (Context);
 			}
 			Context.Restore ();

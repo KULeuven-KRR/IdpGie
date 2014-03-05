@@ -274,6 +274,19 @@
     <Compile Include="Parser\LexSpan.cs" />
     <Compile Include="Parser\Lexer.cs" />
     <Compile Include="Parser\Parser.cs" />
+    <Compile Include="Abstract\NamespaceDoc.cs" />
+    <Compile Include="Core\NamespaceDoc.cs" />
+    <Compile Include="Engines\NamespaceDoc.cs" />
+    <Compile Include="Geometry\NamespaceDoc.cs" />
+    <Compile Include="Interaction\NamespaceDoc.cs" />
+    <Compile Include="Logic\NamespaceDoc.cs" />
+    <Compile Include="Mappers\NamespaceDoc.cs" />
+    <Compile Include="OutputDevices\NamespaceDoc.cs" />
+    <Compile Include="Parser\NamespaceDoc.cs" />
+    <Compile Include="Shapes\NamespaceDoc.cs" />
+    <Compile Include="Shapes\Modifiers\NamespaceDoc.cs" />
+    <Compile Include="UserInterface\NamespaceDoc.cs" />
+    <Compile Include="Utils\NamespaceDoc.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
