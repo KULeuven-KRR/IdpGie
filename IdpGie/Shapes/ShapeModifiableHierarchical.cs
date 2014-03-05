@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using IdpGie.Logic;
 
 namespace IdpGie.Shapes {
-	public class ShapeModifiableHierarchical : ShapeHierarchical, IShapeModifiableHierarchical {
+	public class ShapeModifiableHierarchical<TShapeState> : ShapeHierarchical<TShapeState>, IShapeModifiableHierarchical where TShapeState : IShapeState, new() {
 
 		private readonly LinkedList<IShape> children = new LinkedList<IShape> ();
 
@@ -51,6 +51,20 @@ namespace IdpGie.Shapes {
 		}
 		#endregion
 
+
+		public override void RegisterChild (IShapeHierarchical child) {
+			if (child != null && child.Parent == this) {
+				this.children.AddLast (child);
+			}
+			base.RegisterChild (child);
+		}
+
+		public override void UnregisterChild (IShapeHierarchical child) {
+			if (child != null && child.Parent == null) {
+				this.children.Remove (child);
+			}
+			base.RegisterChild (child);
+		}
 
 	}
 }
