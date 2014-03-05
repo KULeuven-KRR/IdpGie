@@ -21,7 +21,7 @@
 using System;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public static class BlueprintStyle {
 		public static readonly Color BluePrint = new Color (0.0d, 0.3647d, 0.5882d);
 		public static readonly Color BluePrintShadow = new Color (0.0d, 0.273525d, 0.44115d);

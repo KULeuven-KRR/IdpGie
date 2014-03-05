@@ -20,8 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Linq;
 using System.Collections.Generic;
+using IdpGie.Core;
+using IdpGie.Utils;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public class Predicate : TermHeader, IPredicate {
 
 		#region IPredicate implementation

@@ -22,7 +22,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public class Function : TermHeader, IFunction {
 		private TermType outputType;
 		private readonly TermType[] inputTypes;

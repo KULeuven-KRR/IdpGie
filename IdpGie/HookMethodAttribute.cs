@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
-namespace IdpGie {
+namespace IdpGie.Mappers {
 	[AttributeUsage (AttributeTargets.Method)]
 	public class HookMethodAttribute : MethodBaseAttribute {
 

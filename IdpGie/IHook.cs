@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Gdk;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public interface IHook {
 		EventType HookType {
 			get;

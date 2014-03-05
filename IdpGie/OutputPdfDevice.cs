@@ -1,7 +1,8 @@
 using System;
 using Cairo;
+using IdpGie.Core;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	[OutputDevice ("pdfstream", "Prints the content of a single timeframe as a pdf stream.")]
 	public class OutputPdfDevice : OutputDevice {
 		public OutputPdfDevice (DrawTheory dt) : base (dt) {

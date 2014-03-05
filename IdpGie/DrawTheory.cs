@@ -24,8 +24,9 @@ using System.Text;
 using Gdk;
 using IdpGie.Parser;
 using System.Linq;
+using IdpGie.Abstract;
 
-namespace IdpGie {
+namespace IdpGie.Core {
 	public class DrawTheory : NameBase, ITimesensitive {
 		private readonly List<ITheoryItem> elements = new List<ITheoryItem> ();
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();

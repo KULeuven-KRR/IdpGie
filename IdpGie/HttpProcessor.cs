@@ -6,7 +6,7 @@ using System.Text;
 using System.Net;
 using System.Web.UI;
 
-namespace IdpGie {
+namespace IdpGie.Engines {
 	public class HttpProcessor {
 		private readonly TcpClient client;
 		private readonly OutputHttpServerDevice device;

@@ -23,7 +23,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
 	public static class EnumerableUtils {
 		public static T SplitHead<T> (this IEnumerable<T> source, out IEnumerable<T> tail) {
 			tail = source.Tail ();

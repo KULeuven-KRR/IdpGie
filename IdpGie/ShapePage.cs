@@ -1,9 +1,10 @@
 using System;
+using IdpGie.Logic;
 
-namespace IdpGie
+namespace IdpGie.Shapes
 {
-	/*public class ShapePage : ShapeHierarchical {
+	public class ShapePage {
 
-	}*/
+	}
 }
 

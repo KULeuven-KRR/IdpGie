@@ -19,8 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using IdpGie.Abstract;
 
-namespace IdpGie {
+namespace IdpGie.Shapes.Modifiers {
 
     public class ShapeStateModifier : TimeSensitiveBase, IShapeStateModifier {
 

@@ -22,8 +22,9 @@ using System;
 using System.Text;
 using Cairo;
 using OpenTK;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public interface IShape : IZIndex, IShapeTransformable {
 

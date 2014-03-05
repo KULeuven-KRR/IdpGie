@@ -22,8 +22,9 @@
 using System;
 using System.Collections.Generic;
 using Gtk;
+using IdpGie.Core;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public partial class TopWindow : Gtk.Window {
 		private readonly Dictionary<Widget,DrawTheory> sheets = new Dictionary<Widget,DrawTheory> ();
 		private Widget current = null;

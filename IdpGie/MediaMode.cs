@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 
     public enum MediaMode : byte {
         Pause = 0x00,

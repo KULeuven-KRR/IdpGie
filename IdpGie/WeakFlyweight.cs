@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Abstract {
 
     public class WeakFlyweight<TKey,TValue> : IFlyWeight<TKey,TValue> {
 

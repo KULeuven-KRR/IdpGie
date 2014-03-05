@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace IdpGie {
+namespace IdpGie.Interaction {
 	public class ContentChangeableStreamBase<T> : IChangeableStream where T : Stream {
 		private T stream;
 

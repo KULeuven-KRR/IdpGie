@@ -23,7 +23,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	[ToolboxItem (true)]
 	public class BlueprintMediabar : CairoMediaWidget {
 		public const double Offset = 10.0d;

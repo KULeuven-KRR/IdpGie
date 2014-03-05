@@ -22,8 +22,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using IdpGie.Abstract;
 
-namespace IdpGie {
+namespace IdpGie.Mappers {
 	public abstract class MethodBaseAttribute : NamedDescribedAttributeBase, IPriority {
 		private readonly double priority;
 		private readonly IList<TermType> types;

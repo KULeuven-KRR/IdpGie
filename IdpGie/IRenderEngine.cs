@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Engines {
 	public interface IRenderEngine {
 		void Render ();
 	}

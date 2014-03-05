@@ -1,8 +1,9 @@
 using System;
 using Cairo;
 using System.Collections.Generic;
+using IdpGie.Core;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	[OutputDevice ("pdfstrip", "Prints the content of a all timeframes as a strip using a pdf stream.")]
 	public class OutputPdfStripDevice : OutputDevice {
 		public OutputPdfStripDevice (DrawTheory dt) : base (dt) {

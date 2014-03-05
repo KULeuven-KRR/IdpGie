@@ -22,8 +22,9 @@ using System;
 using Cairo;
 using Gdk;
 using System.Collections.Generic;
+using IdpGie.Engines;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public class CairoFrameWidget : CairoMediaWidget, IDrawTheorySensitive {
 		public const double Offset = 10.0d;
 		public const double Offset2 = Offset + BlueprintStyle.Thickness;

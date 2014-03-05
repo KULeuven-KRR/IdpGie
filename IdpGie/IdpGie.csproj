@@ -152,7 +152,6 @@
     <Compile Include="NameArityPriorityBase.cs" />
     <Compile Include="INameArity.cs" />
     <Compile Include="NameArityBase.cs" />
-    <Compile Include="EnhancedTermCollection.cs" />
     <Compile Include="CairoFrameWidget.cs" />
     <Compile Include="ZIndexComparator.cs" />
     <Compile Include="IMediaObject.cs" />
@@ -210,7 +209,6 @@
     <Compile Include="ITimeSensitiveReversible.cs" />
     <Compile Include="CollectionUtils.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
     <Compile Include="IHook.cs" />
     <Compile Include="IdpGieException.cs" />
     <Compile Include="ShapeSvgPath.cs" />
@@ -268,6 +266,8 @@
     <Compile Include="IShapeModifiableHierarchical.cs" />
     <Compile Include="HttpEngine.cs" />
     <Compile Include="ShapePage.cs" />
+    <Compile Include="IEnhancedTermCollection.cs" />
+    <Compile Include="gtk-gui\IdpGie.UserInterface.TopWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

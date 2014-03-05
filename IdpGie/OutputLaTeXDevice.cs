@@ -19,9 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using IdpGie;
+using IdpGie.Core;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	[OutputDevice ("latexstream", "A latex stream that draws a single timeframe using the TikZ graphics package.")]
 	public class OutputLaTeXDevice : OutputDevice {
 		public OutputLaTeXDevice (DrawTheory theory) : base (theory) {

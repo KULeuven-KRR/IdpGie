@@ -1,6 +1,7 @@
 using System;
+using IdpGie.Abstract;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	[AttributeUsage (AttributeTargets.Class)]
 	public class OutputDeviceAttribute : NamedDescribedAttributeBase {
 		public OutputDeviceAttribute (string name) : base (name) {

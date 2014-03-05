@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace IdpGie {
+namespace IdpGie.Mappers {
 	public class HookMethodPredicate : TypedClauseMethodPredicate {
 		public HookMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base (name, termTypes, method, priority) {
 		}

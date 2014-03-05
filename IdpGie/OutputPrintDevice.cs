@@ -20,8 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using IdpGie;
+using IdpGie.Core;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	[OutputDevice ("printcairo", "The device sends a single timeframe to the default plotter. Graphics are rendered using the Cairo graphics engine.")]
 	public class OutputPrintDevice : OutputDevice {
 		public OutputPrintDevice (DrawTheory theory) : base (theory) {

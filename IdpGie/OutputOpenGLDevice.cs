@@ -20,9 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Gtk;
-using IdpGie;
+using IdpGie.Core;
+using IdpGie.UserInterface;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	[OutputDevice ("openglwindow", "The content is plotted in an interactive window using OpenGL graphics as 3d raster graphics engine.")]
 	public class OutputOpenGLDevice : OutputWindowDevice {
 		public OutputOpenGLDevice (DrawTheory theory) : base (theory) {

@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace IdpGie {
+namespace IdpGie.Core {
 	public abstract class ProcessSession : IDisposable {
 		protected readonly Process Process;
 		protected readonly StreamWriter Stdin;

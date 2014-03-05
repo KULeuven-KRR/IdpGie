@@ -27,7 +27,7 @@ using Mono.Options;
 using IdpGie.Utils;
 using System.Reflection;
 
-namespace IdpGie {
+namespace IdpGie.Core {
 	public class ProgramManager {
 		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null,
 			theory = "T", structure = "S", vocabulary = "V", aspContent = null,

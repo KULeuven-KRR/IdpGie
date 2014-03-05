@@ -21,7 +21,7 @@
 using System;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public class CairoImageStore : WeakFlyweight<string,ImageSurface> {
 		public static readonly CairoImageStore Instance = new CairoImageStore ();
 

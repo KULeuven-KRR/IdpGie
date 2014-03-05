@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using IdpGie.Core;
+using IdpGie.Utils;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public class TypedClauseMethodPredicate : TypedMethodPredicate {
 		public TypedClauseMethodPredicate (string name, IList<TermType> termTypes, MethodInfo method, double priority = 1.0d) : base (name, termTypes, method, priority) {
 		}

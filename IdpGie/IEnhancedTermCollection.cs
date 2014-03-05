@@ -20,9 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
-    public interface EnhancedTermCollection : ICollection<IFunctionInstance> {
+    public interface IEnhancedTermCollection : ICollection<IFunctionInstance> {
 
         IEnumerable<T> ValueEnumerable<T> (TermType target);
 

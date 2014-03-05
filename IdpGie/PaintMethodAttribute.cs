@@ -25,7 +25,7 @@ using System.Linq;
 using System.Reflection;
 using IdpGie.Utils;
 
-namespace IdpGie {
+namespace IdpGie.Mappers {
 	[AttributeUsage (AttributeTargets.Method)]
 	public class PaintMethodAttribute : MethodBaseAttribute {
 		private readonly bool nameDependent;

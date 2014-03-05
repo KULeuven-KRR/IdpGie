@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public class HookKey : HookBase {
 		private readonly string Key;
 

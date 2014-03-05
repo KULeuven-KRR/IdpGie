@@ -22,7 +22,7 @@ using System;
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
     [AttributeUsage(AttributeTargets.Constructor)]
     public class FunctionStructureConstructorAttribute : Attribute {

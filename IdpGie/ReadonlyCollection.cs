@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
 	public class ReadonlyCollection<T> : ICollection<T> {
 		private readonly ICollection<T> collection;
 

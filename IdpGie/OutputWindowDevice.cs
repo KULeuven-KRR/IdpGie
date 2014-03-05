@@ -1,8 +1,9 @@
 using System;
 using Gtk;
 using OpenTK.Graphics;
+using IdpGie.Core;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	public abstract class OutputWindowDevice : OutputDevice {
 		private TopWindow tw;
 

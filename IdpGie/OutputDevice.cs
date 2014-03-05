@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	public abstract class OutputDevice : IOutputDevice {
 		private readonly DrawTheory theory;
 		private readonly static Dictionary<string,Tuple<string,ConstructorInfo>> constructors = new Dictionary<string, Tuple<string,ConstructorInfo>> ();

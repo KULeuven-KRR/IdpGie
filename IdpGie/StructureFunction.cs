@@ -22,8 +22,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using IdpGie.Abstract;
+using IdpGie.Utils;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public class StructureFunction : NameArityPriorityBase, IFunction {
 		private readonly TermType outputType;
 		private readonly IList<TermType> inputTypes;

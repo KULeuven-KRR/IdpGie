@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Abstract {
 
     public class ZIndexComparator : IComparer<IZIndex> {
 

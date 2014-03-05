@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
 	public class IdpGieException : Exception {
 		public IdpGieException () : base () {
 		}

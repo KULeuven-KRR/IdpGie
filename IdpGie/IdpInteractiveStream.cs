@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace IdpGie {
+namespace IdpGie.Interaction {
 	public class IdpInteractiveStream : AlterableContentChangeableStreamBase<MemoryStream,string> {
 		private readonly IdpInteraction inter;
 		private readonly IdpInteraction.IdpSession ses;

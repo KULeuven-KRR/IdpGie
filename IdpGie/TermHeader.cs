@@ -20,8 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using IdpGie.Abstract;
+using IdpGie.Utils;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public abstract class TermHeader : NameBase, ITermHeader {
 		private int arity;
 		private double priority;

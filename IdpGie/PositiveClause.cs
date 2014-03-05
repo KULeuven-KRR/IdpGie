@@ -21,8 +21,9 @@
 
 using System.Collections.Generic;
 using System;
+using IdpGie.Core;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public class PositiveClause : IPositiveClause {
 		private readonly IAtom head;
 		private readonly Body body;

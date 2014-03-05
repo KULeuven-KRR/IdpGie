@@ -45,7 +45,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="IdpGie.TopWindow" design-size="413 300">
+  <widget class="Gtk.Window" id="IdpGie.UserInterface.TopWindow" design-size="413 300">
     <action-group name="Default">
       <action id="ControlsAction">
         <property name="Type">Action</property>

@@ -1,7 +1,7 @@
 using System;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.Engines {
 	public class CairoEngine : IRenderEngine {
 		public readonly DrawTheory Theory;
 

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Gdk;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Mappers {
 	[Mapper]
 	public static class HookMapping {
 		[HookMethod ("keydown", 1000.0d, TermType.String)]

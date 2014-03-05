@@ -21,9 +21,10 @@
 using System;
 using Gtk;
 using Cairo;
-using IdpGie;
+using IdpGie.Core;
+using IdpGie.UserInterface;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	[OutputDevice ("cairowindow", "The content is plotted in an interactive window using Cairo graphics as 2d vector graphics engine.")]
 	public class OutputCairoDevice : OutputWindowDevice {
 		public OutputCairoDevice (DrawTheory theory) : base (theory) {

@@ -1,7 +1,7 @@
 using System;
 using System.Web;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	public interface IHttpGieServer : IHttpHandler {
 	}
 }

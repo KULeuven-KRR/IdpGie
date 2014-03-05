@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
 	public class ShapeActiveHtml : Shape {
 

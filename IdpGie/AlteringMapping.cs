@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Mappers {
 	[Mapper]
 	public static class AlteringMapping {
 		[AlterMethodAttribute ("execute", TermType.String)]

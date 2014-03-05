@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	[System.ComponentModel.ToolboxItem (true)]
 	public class BlueprintTabControl : CairoMediaWidget {
 		public const double Offset = 10;

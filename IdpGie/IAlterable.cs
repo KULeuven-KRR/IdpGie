@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Abstract {
 	public interface IAlterable<TCommand> {
 		void Alter (TCommand command);
 	}

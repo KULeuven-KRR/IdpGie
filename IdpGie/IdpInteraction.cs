@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using System.Text;
 using IdpGie.Utils;
 
-namespace IdpGie {
+namespace IdpGie.Interaction {
 	[XmlType ("Interaction")]
 	public class IdpInteraction {
 		[XmlAttribute ("Idp")]

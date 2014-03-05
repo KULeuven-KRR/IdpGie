@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Gdk;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public abstract class HookBase : IHook {
 		private readonly Body body;
 

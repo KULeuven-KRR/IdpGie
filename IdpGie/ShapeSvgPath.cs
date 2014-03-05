@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using Cairo;
 using System.Text.RegularExpressions;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 	public class ShapeSvgPath : Shape {
 		private readonly LinkedList<byte> instructions = new LinkedList<byte> ();
 		private readonly LinkedList<double> attributes;

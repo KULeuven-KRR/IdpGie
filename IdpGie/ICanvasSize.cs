@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public interface ICanvasSize {
 		double Width {
 			get;

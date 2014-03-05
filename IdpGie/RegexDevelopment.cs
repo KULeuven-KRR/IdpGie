@@ -2,7 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Linq;
 
-namespace IdpGie {
+namespace IdpGie.Utils {
 	public class RegexDevelopment {
 		public static readonly RegexDevelopment IntegerRegex = @"[+-]?[0-9]+";
 		public static readonly RegexDevelopment DoubleRegex = @"[+-]?[0-9]+(\.[0-9]*)?";

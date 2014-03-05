@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie
+namespace IdpGie.Shapes
 {
 	public interface IShapeModifiableHierarchical : IShapeHierarchical {
 

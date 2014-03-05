@@ -21,8 +21,10 @@
 using System;
 using Cairo;
 using System.Runtime.CompilerServices;
+using IdpGie.Logic;
+using IdpGie.UserInterface;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 	public class ShapeImage : Shape {
 		private readonly ImageSurface surface;
 		private readonly double width, height;

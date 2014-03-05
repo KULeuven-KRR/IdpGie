@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public class Body {
 		private readonly IEnumerable<IAtom> elements;
 

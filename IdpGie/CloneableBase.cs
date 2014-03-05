@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Abstract {
 	public abstract class CloneableBase<TResult> : ICloneable<TResult> where TResult : class {
 		protected CloneableBase () {
 		}

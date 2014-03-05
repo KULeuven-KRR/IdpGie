@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 
-namespace IdpGie {
+namespace IdpGie.OutputDevices {
 	[OutputDevice ("httpserver", "A HTTP server that runs on a specified port and handle user request using AJAX.")]
 	public class OutputHttpServerDevice : OutputDevice, IHttpGieServer {
 		private int port;

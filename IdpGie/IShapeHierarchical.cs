@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
 	public interface IShapeHierarchical : IShape {
 

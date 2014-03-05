@@ -21,8 +21,9 @@
 using System;
 using Cairo;
 using OpenTK;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Geometry {
 
     [FunctionStructure("point",TermType.Point)]
     public struct Point {

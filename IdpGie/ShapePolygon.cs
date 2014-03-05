@@ -20,8 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
 using Cairo;
+using IdpGie.Logic;
+using IdpGie.UserInterface;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public abstract class ShapePolygon : Shape {
 

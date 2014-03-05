@@ -22,8 +22,9 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Cairo;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 	public class ShapeIrregularPolygonObject : ShapePolygon {
 		private readonly List<Point> points;
 

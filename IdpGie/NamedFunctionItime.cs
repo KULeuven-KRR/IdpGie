@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 	public class NamedFunctionItime : IFunction, IFunctionInstance {
 		public static readonly NamedFunctionItime Instance = new NamedFunctionItime ();
 		private int time = 0x00;

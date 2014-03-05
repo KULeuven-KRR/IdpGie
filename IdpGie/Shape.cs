@@ -24,8 +24,9 @@ using System.Text;
 using System.Web.UI;
 using Cairo;
 using OpenTK;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 	public abstract class Shape : IShape {
 		private readonly IFunctionInstance name;
 		private readonly ShapeState state = new ShapeState ();

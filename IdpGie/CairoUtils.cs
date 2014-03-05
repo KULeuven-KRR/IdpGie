@@ -23,7 +23,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public static class CairoUtils {
 		public static void LineTo (this Context ctx, params double[] vals) {
 			if (vals != null && vals.Length > 0x00) {

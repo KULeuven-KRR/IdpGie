@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
     public interface IAtom : ITerm, ITheoryItem {
 
         IPredicate Predicate {

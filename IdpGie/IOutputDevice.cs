@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Core {
 	public interface IOutputDevice : IDisposable {
 		DrawTheory Theory {
 			get;

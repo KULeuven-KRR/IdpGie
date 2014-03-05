@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using IdpGie.Shapes;
 
-namespace IdpGie {
+namespace IdpGie.Engines {
 
 	public class HttpEngine {
 

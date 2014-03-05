@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace IdpGie {
+namespace IdpGie.Abstract {
 	public interface IChangeableStream {
 		Stream Stream {
 			get;

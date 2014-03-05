@@ -5,8 +5,9 @@ using GLSharp;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using IdpGie.Logic;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public class GLFrameWidget : GLWidget, IDrawTheorySensitive, IMediaObject {
 		public DrawTheory Theory {
 			get;

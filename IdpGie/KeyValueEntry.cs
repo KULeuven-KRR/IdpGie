@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie {
+namespace IdpGie.Logic {
 
 	[FunctionStructure("kv",TermType.KeyValue)]
 	public struct KeyValueEntry {

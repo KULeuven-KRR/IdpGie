@@ -1,7 +1,9 @@
 using System;
 using System.Text.RegularExpressions;
+using IdpGie.Abstract;
+using IdpGie.Utils;
 
-namespace IdpGie {
+namespace IdpGie.Geometry {
 	public class StripGeometry : CloneableBase<StripGeometry> {
 		public const string identifier_width = @"w";
 		public const string identifier_heigh = @"h";

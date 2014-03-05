@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using Gtk;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public abstract class CairoMediaWidget : DrawingArea, IMediaObject {
 		protected event EventHandler _OnPlay, _OnPause, _OnRewind, _OnForward, _OnPreviousChapter, _OnNextChapter, _OnShuffle, _OnRepeat, _OnEject, _OnRecord, _OnStop, _OnSeek;
 

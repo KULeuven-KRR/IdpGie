@@ -1,7 +1,7 @@
 using System;
 using Cairo;
 
-namespace IdpGie {
+namespace IdpGie.UserInterface {
 	public class StripCanvasSize : ICanvasSize {
 		public CanvasSize CanvasSize;
 		public StripGeometry StripGeometry;
