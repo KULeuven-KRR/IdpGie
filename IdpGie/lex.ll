@@ -6,7 +6,7 @@
 %scanbasetype ScanBase
 %tokentype Token
 
-%option stack, minimize, parser, verbose, codepage:raw, out:Lexer.cs
+%option stack, minimize, parser, verbose, codepage:raw, out:Parser/Lexer.cs
 
 %option codepage:raw
 

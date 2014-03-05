@@ -96,9 +96,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="Lexer.cs" />
-    <Compile Include="LexSpan.cs" />
-    <Compile Include="Parser.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\IdpGie.UserInterface.TopWindow.cs" />
@@ -274,6 +271,9 @@
     <Compile Include="Shapes\ShapeModifiableHierarchical.cs" />
     <Compile Include="Shapes\IShapeState.cs" />
     <Compile Include="Abstract\IVisible.cs" />
+    <Compile Include="Parser\LexSpan.cs" />
+    <Compile Include="Parser\Lexer.cs" />
+    <Compile Include="Parser\Parser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -302,5 +302,6 @@
     <Folder Include="Shapes\" />
     <Folder Include="UserInterface\" />
     <Folder Include="Utils\" />
+    <Folder Include="Parser\" />
   </ItemGroup>
 </Project>
