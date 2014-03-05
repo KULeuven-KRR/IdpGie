@@ -22,6 +22,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Cairo;
+using IdpGie.Utils;
 
 namespace IdpGie.UserInterface {
 	[ToolboxItem (true)]

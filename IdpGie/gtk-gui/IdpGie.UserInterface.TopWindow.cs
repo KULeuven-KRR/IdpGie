@@ -18,8 +18,8 @@ namespace IdpGie.UserInterface
 		private global::Gtk.VBox vhierarchy;
 		private global::Gtk.MenuBar menubar1;
 		private global::Gtk.VBox mainhierarchy;
-		private global::IdpGie.UserInterface.BlueprintMediabar mediabar;
-		private global::IdpGie.UserInterface.BlueprintTabControl tabcontrol;
+		private global::IdpGie.BlueprintMediabar mediabar;
+		private global::IdpGie.BlueprintTabControl tabcontrol;
 		private global::Gtk.Statusbar statusbar;
 		private global::Gtk.Label statusLabel;
 		

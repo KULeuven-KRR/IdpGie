@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using Gtk;
 using IdpGie.Core;
+using IdpGie.Logic;
 
 namespace IdpGie.UserInterface {
 	public partial class TopWindow : Gtk.Window {

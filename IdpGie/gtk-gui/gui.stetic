@@ -119,7 +119,7 @@
         <child>
           <widget class="Gtk.MenuBar" id="menubar1">
             <property name="MemberName" />
-            <node name="__gtksharp_147_Stetic_Editor_ActionMenuBar" type="Menubar">
+            <node name="menubar1" type="Menubar">
               <node type="Menu" action="FileAction">
                 <node type="Menuitem" action="OpenAction" />
                 <node type="Separator" />
@@ -149,7 +149,7 @@
               <placeholder />
             </child>
             <child>
-              <widget class="IdpGie.BlueprintMediabar" id="mediabar">
+              <widget class="IdpGie.UserInterface.BlueprintMediabar" id="mediabar">
                 <property name="MemberName" />
                 <property name="Min">0</property>
                 <property name="Max">0</property>
@@ -164,7 +164,7 @@
               </packing>
             </child>
             <child>
-              <widget class="IdpGie.BlueprintTabControl" id="tabcontrol">
+              <widget class="IdpGie.UserInterface.BlueprintTabControl" id="tabcontrol">
                 <property name="MemberName" />
                 <property name="Min">0</property>
                 <property name="Max">-1</property>

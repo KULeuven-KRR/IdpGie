@@ -21,6 +21,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using IdpGie.Utils;
 
 namespace IdpGie.Logic {
 	public class FunctionInstance : Term, IFunctionInstance {
