@@ -27,7 +27,6 @@ using OpenTK;
 using IdpGie.Logic;
 using IdpGie.Shapes.Modifiers;
 using IdpGie.UserInterface;
-using IdpGie.Utils;
 
 namespace IdpGie.Shapes {
 	public abstract class Shape<TShapeState> : IShape where TShapeState : IShapeState, new() {
