@@ -272,6 +272,7 @@
     <Compile Include="Abstract\IContentChangeableStream.cs" />
     <Compile Include="Abstract\IFlyweight.cs" />
     <Compile Include="Shapes\ShapeModifiableHierarchical.cs" />
+    <Compile Include="Shapes\IShapeState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

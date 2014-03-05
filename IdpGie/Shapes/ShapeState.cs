@@ -30,7 +30,7 @@ using IdpGie.Logic;
 using IdpGie.Utils;
 
 namespace IdpGie.Shapes {
-	public class ShapeState : TimeSensitiveFastReversibleBase, IShapeTransformable {
+	public class ShapeState : TimeSensitiveFastReversibleBase, IShapeState {
 		private bool visible;
 		private Matrix4d transformations;
 		private Matrix cairoTransformations;
@@ -272,7 +272,7 @@ namespace IdpGie.Shapes {
 			}
 		}
 
-		public void AddModifier (double time, Action<ShapeState> modifier) {
+		public void AddModifier (double time, Action<IShapeState> modifier) {
 			this.AddModifier (new ShapeStateModifier (time, modifier));
 		}
 

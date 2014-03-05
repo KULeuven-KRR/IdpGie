@@ -168,7 +168,7 @@ namespace IdpGie.Core {
 			this.chapters.Add (time);
 		}
 
-		public void AddModifier (IFunctionInstance name, double time, Action<ShapeState> modifier) {
+		public void AddModifier (IFunctionInstance name, double time, Action<IShapeState> modifier) {
 			this [name].State.AddModifier (time, modifier);
 			this.RegisterTime (time);
 			this.trigger_changed ();

@@ -1,10 +1,10 @@
 //
-//  IIdpdObject.cs
+//  IShapeState.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,39 +19,30 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Text;
-using Cairo;
-using OpenTK;
 using IdpGie.Abstract;
-using IdpGie.Logic;
 using IdpGie.Shapes.Modifiers;
 
 namespace IdpGie.Shapes {
 
-	public interface IShape : IZIndex, IShapeTransformable {
+	public interface IShapeState : ITimeSensitiveFastReversible, IShapeTransformable {
 
-		IFunctionInstance Name {
-			get;
-		}
+		void Reset ();
 
-		IShapeState State {
-			get;
-		}
+		void Reset (double time);
 
-		double Time {
-			get;
-			set;
-		}
+		void Advance (double time);
 
-		void PaintObject (Context ctx);
+		void SetTime (double time);
 
-		void WriteTikz (StringBuilder builder);
+		void AddModifier (IShapeStateModifier modifier);
 
-		void Render (FrameEventArgs e);
+		void AddModifier (double time, Action<IShapeState> modifier);
 
-		void AddModifier (ShapeStateModifier modifier);
+		bool ContainsElement (string key);
 
-		void AddModifier (double time, Action<ShapeState> modifier);
+		T GetElement<T> (string key, T defaultValue = default(T));
+
+		void SetElement<T> (string key, T value = default(T));
 
 	}
 

@@ -126,12 +126,12 @@ namespace IdpGie.Shapes {
 		}
 
 		public virtual void WriteXhtml (Html32TextWriter writer) {
-			if(this.HtmlTag != null && this.HtmlTag != string.Empty) {
-				foreach(KeyValueEntry kve in this.HtmlAttributes) {
-					writer.AddAttribute(kve.Key,kve.Value);
+			if (this.HtmlTag != null && this.HtmlTag != string.Empty) {
+				foreach (KeyValueEntry kve in this.HtmlAttributes) {
+					writer.AddAttribute (kve.Key, kve.Value);
 				}
-				writer.RenderBeginTag(this.HtmlTag);
-				writer.RenderEndTag();
+				writer.RenderBeginTag (this.HtmlTag);
+				writer.RenderEndTag ();
 			}
 		}
 
@@ -143,7 +143,7 @@ namespace IdpGie.Shapes {
 			this.State.AddModifier (modifier);
 		}
 
-		public void AddModifier (double time, Action<ShapeState> modifier) {
+		public void AddModifier (double time, Action<IShapeState> modifier) {
 			this.State.AddModifier (time, modifier);
 		}
 
