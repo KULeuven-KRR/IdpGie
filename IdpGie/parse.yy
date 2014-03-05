@@ -3,6 +3,8 @@
 %parsertype IdpParser
 
 %using System.Linq;
+%using IdpGie.Core;
+%using IdpGie.Logic;
 %using IdpGie.Utils;
 
 %tokentype Token

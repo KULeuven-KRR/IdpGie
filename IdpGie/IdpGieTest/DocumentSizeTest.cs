@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using System;
-using IdpGie;
+using IdpGie.Geometry;
 
 namespace IdpGieTest {
 	[TestFixture ()]

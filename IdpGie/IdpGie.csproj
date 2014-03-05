@@ -22,12 +22,13 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
-    <Commandlineparameters>-d ../../testinput/test1.idpd -m openglwindow</Commandlineparameters>
+    <Commandlineparameters>-d ../../testinput/test1.idpd -m httpserver</Commandlineparameters>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
+    <GenerateDocumentation>true</GenerateDocumentation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -41,10 +42,12 @@
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Cairo" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -62,15 +65,18 @@
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="NDesk.Options">
       <HintPath>libs\NDesk.Options.dll</HintPath>
     </Reference>
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Web" />
@@ -81,180 +87,190 @@
       <Properties>
         <Policies>
           <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedFlat" ResourceNamePolicy="FileFormatDefault" />
+          <TextStylePolicy inheritsSet="null" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentSwitchBody="True" NamespaceBraceStyle="EndOfLine" ClassBraceStyle="EndOfLine" InterfaceBraceStyle="EndOfLine" StructBraceStyle="EndOfLine" EnumBraceStyle="EndOfLine" MethodBraceStyle="EndOfLine" ConstructorBraceStyle="EndOfLine" DestructorBraceStyle="EndOfLine" ElseIfNewLinePlacement="SameLine" BlankLinesBeforeUsings="1" BlankLinesBetweenEventFields="1" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+          <StandardHeader Text=" &#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software: you can redistribute it and/or modify&#xA; it under the terms of the GNU General Public License as published by&#xA; the Free Software Foundation, either version 3 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xA; GNU General Public License for more details.&#xA;&#xA; You should have received a copy of the GNU General Public License&#xA; along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;." IncludeInNewFiles="True" />
         </Policies>
         <Deployment.LinuxDeployData scriptName="idp-gie" />
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="Point.cs" />
-    <Compile Include="IName.cs" />
-    <Compile Include="NameBase.cs" />
-    <Compile Include="GtkTimeWidget.cs" />
-    <Compile Include="BlueprintMediabar.cs" />
-    <Compile Include="MediaMode.cs" />
-    <Compile Include="BlueprintStyle.cs" />
-    <Compile Include="TopWindow.cs" />
-    <Compile Include="MediaButtons.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="LexSpan.cs" />
-    <Compile Include="FunctionInstance.cs" />
-    <Compile Include="Predicate.cs" />
-    <Compile Include="Function.cs" />
     <Compile Include="Parser.cs" />
-    <Compile Include="HeadTail.cs" />
-    <Compile Include="Term.cs" />
-    <Compile Include="Atom.cs" />
-    <Compile Include="DrawTheory.cs" />
-    <Compile Include="TermType.cs" />
-    <Compile Include="ArrayFunction.cs" />
-    <Compile Include="ArrayTailFunction.cs" />
-    <Compile Include="MathExtra.cs" />
-    <Compile Include="ITimesensitive.cs" />
-    <Compile Include="TimeSensitiveBase.cs" />
-    <Compile Include="TypedPredicate.cs" />
-    <Compile Include="IValidate.cs" />
-    <Compile Include="TypedMethodPredicate.cs" />
-    <Compile Include="LocalInputContext.cs" />
-    <Compile Include="GlobalInputContext.cs" />
-    <Compile Include="IInputContext.cs" />
-    <Compile Include="TermHeader.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="ITermHeader.cs" />
-    <Compile Include="ArrayHeadTailFunctionInstance.cs" />
-    <Compile Include="IArrayFunctionInstance.cs" />
-    <Compile Include="EnumerableUtils.cs" />
-    <Compile Include="NamedObject.cs" />
-    <Compile Include="IPriority.cs" />
-    <Compile Include="PriorityComparator.cs" />
-    <Compile Include="ITerm.cs" />
-    <Compile Include="IAtom.cs" />
-    <Compile Include="IFunctionInstance.cs" />
-    <Compile Include="IFunction.cs" />
-    <Compile Include="IPredicate.cs" />
-    <Compile Include="NamedFunctionInstance.cs" />
-    <Compile Include="ITheoryItem.cs" />
-    <Compile Include="IPositiveClause.cs" />
-    <Compile Include="PositiveClause.cs" />
-    <Compile Include="NamedAttributeBase.cs" />
-    <Compile Include="Interval.cs" />
-    <Compile Include="TypeSystem.cs" />
-    <Compile Include="IZIndex.cs" />
-    <Compile Include="StructureFunctionInstance.cs" />
-    <Compile Include="StructureFunction.cs" />
-    <Compile Include="IArity.cs" />
-    <Compile Include="NameArityPriorityBase.cs" />
-    <Compile Include="INameArity.cs" />
-    <Compile Include="NameArityBase.cs" />
-    <Compile Include="EnhancedTermCollection.cs" />
-    <Compile Include="CairoFrameWidget.cs" />
-    <Compile Include="ZIndexComparator.cs" />
-    <Compile Include="IMediaObject.cs" />
-    <Compile Include="CairoMediaWidget.cs" />
-    <Compile Include="IInterpolatable.cs" />
-    <Compile Include="TimeSensitiveComparer.cs" />
-    <Compile Include="BlueprintTabControl.cs" />
-    <Compile Include="CairoUtils.cs" />
-    <Compile Include="ShapePolygon.cs" />
-    <Compile Include="ShapeEllipse.cs" />
-    <Compile Include="ShapeIrregularPolygonObject.cs" />
-    <Compile Include="ShapeRegularPolygonObject.cs" />
-    <Compile Include="ShapeGraph.cs" />
-    <Compile Include="GraphModifier.cs" />
-    <Compile Include="AddNodeGraphModifier.cs" />
-    <Compile Include="NodeGraphModifier.cs" />
-    <Compile Include="ITermName.cs" />
-    <Compile Include="ShapeImage.cs" />
-    <Compile Include="CairoImageStore.cs" />
-    <Compile Include="IFlyWeight.cs" />
-    <Compile Include="HardFlyweight.cs" />
-    <Compile Include="WeakFlyweight.cs" />
-    <Compile Include="ProgramManager.cs" />
-    <Compile Include="OutputDevice.cs" />
-    <Compile Include="OutputCairoDevice.cs" />
-    <Compile Include="OutputOpenGLDevice.cs" />
-    <Compile Include="OutputPrintDevice.cs" />
-    <Compile Include="OutputLaTeXDevice.cs" />
-    <Compile Include="PaintMapping.cs" />
-    <Compile Include="EventArgs.cs" />
-    <Compile Include="ITagable.cs" />
-    <Compile Include="Box2d.cs" />
-    <Compile Include="IGeometry2d.cs" />
-    <Compile Include="Shape.cs" />
-    <Compile Include="IShape.cs" />
-    <Compile Include="IShapeTransformable.cs" />
-    <Compile Include="MapperAttribute.cs" />
-    <Compile Include="ShapeState.cs" />
-    <Compile Include="NamedObjectAttribute.cs" />
-    <Compile Include="MethodBaseAttribute.cs" />
-    <Compile Include="NamedObjectEnumAttribute.cs" />
-    <Compile Include="HookMethodAttribute.cs" />
-    <Compile Include="ShapeStateModifier.cs" />
-    <Compile Include="IShapeStateModifier.cs" />
-    <Compile Include="FunctionFloatInstance.cs" />
-    <Compile Include="FunctionStructureAttribute.cs" />
-    <Compile Include="FunctionStructureConstructorAttribute.cs" />
-    <Compile Include="FunctionIntegerInstance.cs" />
-    <Compile Include="FunctionStringInstance.cs" />
-    <Compile Include="ColorStructure.cs" />
-    <Compile Include="FunctionVirtualInstance.cs" />
-    <Compile Include="ITimeSensitiveFastReversible.cs" />
-    <Compile Include="TimeSensitiveReversibleBase.cs" />
-    <Compile Include="TimeSensitiveFastReversibleBase.cs" />
-    <Compile Include="ITimeSensitiveReversible.cs" />
-    <Compile Include="CollectionUtils.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="gtk-gui\IdpGie.TopWindow.cs" />
-    <Compile Include="IHook.cs" />
-    <Compile Include="IdpGieException.cs" />
-    <Compile Include="ShapeSvgPath.cs" />
-    <Compile Include="HookMapping.cs" />
-    <Compile Include="PaintMethodAttribute.cs" />
-    <Compile Include="DictionaryUtils.cs" />
-    <Compile Include="IdpInteraction.cs" />
-    <Compile Include="NamedFunctionItime.cs" />
-    <Compile Include="NamedFunctionDtime.cs" />
-    <Compile Include="TypedClauseMethodPredicate.cs" />
-    <Compile Include="Body.cs" />
-    <Compile Include="HookBase.cs" />
-    <Compile Include="HookMethodPredicate.cs" />
-    <Compile Include="GlFrameWidget.cs" />
-    <Compile Include="IDrawTheorySensitive.cs" />
-    <Compile Include="HookKey.cs" />
-    <Compile Include="StringUtils.cs" />
-    <Compile Include="ProcessSession.cs" />
-    <Compile Include="AlteringMapping.cs" />
-    <Compile Include="IContentChangeableStream.cs" />
-    <Compile Include="IdpInteractiveStream.cs" />
-    <Compile Include="ContentChangeableStreamBase.cs" />
-    <Compile Include="IAlterable.cs" />
-    <Compile Include="AlterableContentChangeableStreamBase.cs" />
-    <Compile Include="AlterMethodAttribute.cs" />
-    <Compile Include="IReloadable.cs" />
-    <Compile Include="IAlterableReloadableChangeableStream.cs" />
-    <Compile Include="OutputDeviceAttribute.cs" />
-    <Compile Include="IOutputDevice.cs" />
-    <Compile Include="OutputWindowDevice.cs" />
-    <Compile Include="OutputPdfDevice.cs" />
-    <Compile Include="IDescription.cs" />
-    <Compile Include="INameDescription.cs" />
-    <Compile Include="OutputPdfStripDevice.cs" />
-    <Compile Include="CairoEngine.cs" />
-    <Compile Include="IRenderEngine.cs" />
-    <Compile Include="NamedDescribedAttributeBase.cs" />
-    <Compile Include="RegexDevelopment.cs" />
-    <Compile Include="CanvasSize.cs" />
-    <Compile Include="ICloneable.cs" />
-    <Compile Include="CloneableBase.cs" />
-    <Compile Include="ReadonlyCollection.cs" />
-    <Compile Include="StripCanvasSize.cs" />
-    <Compile Include="StripGeometry.cs" />
-    <Compile Include="ICanvasSize.cs" />
-    <Compile Include="ShapeStateAttribute.cs" />
-    <Compile Include="ShapeBalloon.cs" />
-    <Compile Include="OutputHttpServerDevice.cs" />
-    <Compile Include="IHttpGieServer.cs" />
-    <Compile Include="HttpProcessor.cs" />
+    <Compile Include="gtk-gui\IdpGie.UserInterface.TopWindow.cs" />
+    <Compile Include="Abstract\CloneableBase.cs" />
+    <Compile Include="Abstract\EventArgs.cs" />
+    <Compile Include="Abstract\HardFlyweight.cs" />
+    <Compile Include="Abstract\IAlterable.cs" />
+    <Compile Include="Abstract\ICloneable.cs" />
+    <Compile Include="Abstract\IDescription.cs" />
+    <Compile Include="Abstract\IInterpolatable.cs" />
+    <Compile Include="Abstract\IName.cs" />
+    <Compile Include="Abstract\INameArity.cs" />
+    <Compile Include="Abstract\INameDescription.cs" />
+    <Compile Include="Abstract\IPriority.cs" />
+    <Compile Include="Abstract\IReloadable.cs" />
+    <Compile Include="Abstract\ITagable.cs" />
+    <Compile Include="Abstract\ITimeSensitiveFastReversible.cs" />
+    <Compile Include="Abstract\ITimeSensitiveReversible.cs" />
+    <Compile Include="Abstract\ITimesensitive.cs" />
+    <Compile Include="Abstract\IValidate.cs" />
+    <Compile Include="Abstract\IZIndex.cs" />
+    <Compile Include="Abstract\Interval.cs" />
+    <Compile Include="Abstract\NameArityBase.cs" />
+    <Compile Include="Abstract\NameArityPriorityBase.cs" />
+    <Compile Include="Abstract\NameBase.cs" />
+    <Compile Include="Abstract\NamedAttributeBase.cs" />
+    <Compile Include="Abstract\NamedDescribedAttributeBase.cs" />
+    <Compile Include="Abstract\PriorityComparator.cs" />
+    <Compile Include="Abstract\TimeSensitiveBase.cs" />
+    <Compile Include="Abstract\TimeSensitiveComparer.cs" />
+    <Compile Include="Abstract\TimeSensitiveFastReversibleBase.cs" />
+    <Compile Include="Abstract\TimeSensitiveReversibleBase.cs" />
+    <Compile Include="Abstract\WeakFlyweight.cs" />
+    <Compile Include="Abstract\ZIndexComparator.cs" />
+    <Compile Include="Core\DrawTheory.cs" />
+    <Compile Include="Core\IDrawTheorySensitive.cs" />
+    <Compile Include="Core\ProcessSession.cs" />
+    <Compile Include="Core\ProgramManager.cs" />
+    <Compile Include="Engines\CairoEngine.cs" />
+    <Compile Include="Engines\HttpEngine.cs" />
+    <Compile Include="Engines\HttpProcessor.cs" />
+    <Compile Include="Engines\IRenderEngine.cs" />
+    <Compile Include="Geometry\Box2d.cs" />
+    <Compile Include="Geometry\CanvasSize.cs" />
+    <Compile Include="Geometry\ICanvasSize.cs" />
+    <Compile Include="Geometry\IGeometry2d.cs" />
+    <Compile Include="Geometry\Point.cs" />
+    <Compile Include="Geometry\StripCanvasSize.cs" />
+    <Compile Include="Geometry\StripGeometry.cs" />
+    <Compile Include="Interaction\AlterableContentChangeableStreamBase.cs" />
+    <Compile Include="Interaction\ContentChangeableStreamBase.cs" />
+    <Compile Include="Interaction\IAlterableReloadableChangeableStream.cs" />
+    <Compile Include="Interaction\IdpInteraction.cs" />
+    <Compile Include="Interaction\IdpInteractiveStream.cs" />
+    <Compile Include="Logic\ArrayFunction.cs" />
+    <Compile Include="Logic\ArrayHeadTailFunctionInstance.cs" />
+    <Compile Include="Logic\ArrayTailFunction.cs" />
+    <Compile Include="Logic\Atom.cs" />
+    <Compile Include="Logic\Body.cs" />
+    <Compile Include="Logic\Function.cs" />
+    <Compile Include="Logic\FunctionFloatInstance.cs" />
+    <Compile Include="Logic\FunctionInstance.cs" />
+    <Compile Include="Logic\FunctionIntegerInstance.cs" />
+    <Compile Include="Logic\FunctionStringInstance.cs" />
+    <Compile Include="Logic\FunctionStructureAttribute.cs" />
+    <Compile Include="Logic\FunctionStructureConstructorAttribute.cs" />
+    <Compile Include="Logic\FunctionVirtualInstance.cs" />
+    <Compile Include="Logic\GlobalInputContext.cs" />
+    <Compile Include="Logic\HookBase.cs" />
+    <Compile Include="Logic\HookKey.cs" />
+    <Compile Include="Logic\IArrayFunctionInstance.cs" />
+    <Compile Include="Logic\IAtom.cs" />
+    <Compile Include="Logic\IEnhancedTermCollection.cs" />
+    <Compile Include="Logic\IFunction.cs" />
+    <Compile Include="Logic\IFunctionInstance.cs" />
+    <Compile Include="Logic\IHook.cs" />
+    <Compile Include="Logic\IInputContext.cs" />
+    <Compile Include="Logic\IPositiveClause.cs" />
+    <Compile Include="Logic\IPredicate.cs" />
+    <Compile Include="Logic\ITerm.cs" />
+    <Compile Include="Logic\ITermHeader.cs" />
+    <Compile Include="Logic\ITermName.cs" />
+    <Compile Include="Logic\ITheoryItem.cs" />
+    <Compile Include="Logic\KeyValueEntry.cs" />
+    <Compile Include="Logic\LocalInputContext.cs" />
+    <Compile Include="Logic\NamedFunctionDtime.cs" />
+    <Compile Include="Logic\NamedFunctionInstance.cs" />
+    <Compile Include="Logic\NamedFunctionItime.cs" />
+    <Compile Include="Logic\NamedObject.cs" />
+    <Compile Include="Logic\NamedObjectAttribute.cs" />
+    <Compile Include="Logic\NamedObjectEnumAttribute.cs" />
+    <Compile Include="Logic\PositiveClause.cs" />
+    <Compile Include="Logic\Predicate.cs" />
+    <Compile Include="Logic\StructureFunction.cs" />
+    <Compile Include="Logic\StructureFunctionInstance.cs" />
+    <Compile Include="Logic\Term.cs" />
+    <Compile Include="Logic\TermHeader.cs" />
+    <Compile Include="Logic\TermType.cs" />
+    <Compile Include="Logic\TypeSystem.cs" />
+    <Compile Include="Logic\TypedClauseMethodPredicate.cs" />
+    <Compile Include="Logic\TypedMethodPredicate.cs" />
+    <Compile Include="Logic\TypedPredicate.cs" />
+    <Compile Include="Mappers\AlterMethodAttribute.cs" />
+    <Compile Include="Mappers\AlteringMapping.cs" />
+    <Compile Include="Mappers\HookMapping.cs" />
+    <Compile Include="Mappers\HookMethodAttribute.cs" />
+    <Compile Include="Mappers\HookMethodPredicate.cs" />
+    <Compile Include="Mappers\MapperAttribute.cs" />
+    <Compile Include="Mappers\MethodBaseAttribute.cs" />
+    <Compile Include="Mappers\PaintMapping.cs" />
+    <Compile Include="Mappers\PaintMethodAttribute.cs" />
+    <Compile Include="OutputDevices\IHttpGieServer.cs" />
+    <Compile Include="OutputDevices\IOutputDevice.cs" />
+    <Compile Include="OutputDevices\OutputCairoDevice.cs" />
+    <Compile Include="OutputDevices\OutputDevice.cs" />
+    <Compile Include="OutputDevices\OutputDeviceAttribute.cs" />
+    <Compile Include="OutputDevices\OutputHttpServerDevice.cs" />
+    <Compile Include="OutputDevices\OutputLaTeXDevice.cs" />
+    <Compile Include="OutputDevices\OutputOpenGLDevice.cs" />
+    <Compile Include="OutputDevices\OutputPdfDevice.cs" />
+    <Compile Include="OutputDevices\OutputPdfStripDevice.cs" />
+    <Compile Include="OutputDevices\OutputPrintDevice.cs" />
+    <Compile Include="OutputDevices\OutputWindowDevice.cs" />
+    <Compile Include="Shapes\IShape.cs" />
+    <Compile Include="Shapes\IShapeHierarchical.cs" />
+    <Compile Include="Shapes\IShapeModifiableHierarchical.cs" />
+    <Compile Include="Shapes\Shape.cs" />
+    <Compile Include="Shapes\ShapeActiveHtml.cs" />
+    <Compile Include="Shapes\ShapeBalloon.cs" />
+    <Compile Include="Shapes\ShapeEllipse.cs" />
+    <Compile Include="Shapes\ShapeGraph.cs" />
+    <Compile Include="Shapes\ShapeHierarchical.cs" />
+    <Compile Include="Shapes\ShapeImage.cs" />
+    <Compile Include="Shapes\ShapeIrregularPolygonObject.cs" />
+    <Compile Include="Shapes\ShapePage.cs" />
+    <Compile Include="Shapes\ShapePolygon.cs" />
+    <Compile Include="Shapes\ShapeRegularPolygonObject.cs" />
+    <Compile Include="Shapes\ShapeState.cs" />
+    <Compile Include="Shapes\ShapeStateAttribute.cs" />
+    <Compile Include="Shapes\ShapeSvgPath.cs" />
+    <Compile Include="Shapes\Modifiers\AddNodeGraphModifier.cs" />
+    <Compile Include="Shapes\Modifiers\GraphModifier.cs" />
+    <Compile Include="Shapes\Modifiers\IShapeStateModifier.cs" />
+    <Compile Include="Shapes\Modifiers\IShapeTransformable.cs" />
+    <Compile Include="Shapes\Modifiers\NodeGraphModifier.cs" />
+    <Compile Include="Shapes\Modifiers\ShapeStateModifier.cs" />
+    <Compile Include="UserInterface\BlueprintMediabar.cs" />
+    <Compile Include="UserInterface\BlueprintStyle.cs" />
+    <Compile Include="UserInterface\BlueprintTabControl.cs" />
+    <Compile Include="UserInterface\CairoFrameWidget.cs" />
+    <Compile Include="UserInterface\CairoImageStore.cs" />
+    <Compile Include="UserInterface\CairoMediaWidget.cs" />
+    <Compile Include="UserInterface\CairoUtils.cs" />
+    <Compile Include="UserInterface\ColorStructure.cs" />
+    <Compile Include="UserInterface\GlFrameWidget.cs" />
+    <Compile Include="UserInterface\GtkTimeWidget.cs" />
+    <Compile Include="UserInterface\IMediaObject.cs" />
+    <Compile Include="UserInterface\MediaButtons.cs" />
+    <Compile Include="UserInterface\MediaMode.cs" />
+    <Compile Include="UserInterface\TopWindow.cs" />
+    <Compile Include="Utils\CollectionUtils.cs" />
+    <Compile Include="Utils\DictionaryUtils.cs" />
+    <Compile Include="Utils\EnumerableUtils.cs" />
+    <Compile Include="Utils\HeadTail.cs" />
+    <Compile Include="Utils\IdpGieException.cs" />
+    <Compile Include="Utils\MathExtra.cs" />
+    <Compile Include="Utils\ReadonlyCollection.cs" />
+    <Compile Include="Utils\RegexDevelopment.cs" />
+    <Compile Include="Utils\StringUtils.cs" />
+    <Compile Include="Abstract\IArity.cs" />
+    <Compile Include="Abstract\IContentChangeableStream.cs" />
+    <Compile Include="Abstract\IFlyweight.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -270,5 +286,18 @@
       <Project>{30B60C25-D36D-41C9-8724-8691FB1AE16D}</Project>
       <Name>GLSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+    <Folder Include="Core\" />
+    <Folder Include="Engines\" />
+    <Folder Include="Geometry\" />
+    <Folder Include="Interaction\" />
+    <Folder Include="Logic\" />
+    <Folder Include="Mappers\" />
+    <Folder Include="OutputDevices\" />
+    <Folder Include="Shapes\" />
+    <Folder Include="UserInterface\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>

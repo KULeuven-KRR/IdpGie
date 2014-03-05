@@ -21,6 +21,7 @@
 using System;
 using NUnit.Framework;
 using IdpGie;
+using IdpGie.Logic;
 
 namespace IdpGieTest {
 	[TestFixture ()]
