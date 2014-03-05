@@ -6,16 +6,14 @@ using IdpGie.UserInterface;
 using IdpGie.Utils;
 
 namespace IdpGie.Engines {
-	public class CairoEngine : IRenderEngine {
-		public readonly DrawTheory Theory;
+	public class CairoEngine : Engine, IRenderEngine {
 
 		public Context Context {
 			get;
 			set;
 		}
 
-		public CairoEngine (DrawTheory theory) {
-			this.Theory = theory;
+		public CairoEngine (DrawTheory theory) : base(theory) {
 		}
 
 		#region IRenderEngine implementation

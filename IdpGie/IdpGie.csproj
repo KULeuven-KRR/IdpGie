@@ -288,6 +288,8 @@
     <Compile Include="UserInterface\NamespaceDoc.cs" />
     <Compile Include="Utils\NamespaceDoc.cs" />
     <Compile Include="Abstract\ITitle.cs" />
+    <Compile Include="Engines\IEngine.cs" />
+    <Compile Include="Engines\Engine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
