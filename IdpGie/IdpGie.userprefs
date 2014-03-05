@@ -1,20 +1,24 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="gtk-gui/IdpGie.UserInterface.TopWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AssemblyInfo.cs">
     <Files>
-      <File FileName="OutputWindowDevice.cs" Line="38" Column="87" />
-      <File FileName="HookMethodAttribute.cs" Line="44" Column="112" />
-      <File FileName="NamedFunctionItime.cs" Line="3" Column="28" />
-      <File FileName="NamedFunctionDtime.cs" Line="3" Column="28" />
-      <File FileName="HookKey.cs" Line="5" Column="18" />
-      <File FileName="HttpProcessor.cs" Line="8" Column="28" />
-      <File FileName="ColorStructure.cs" Line="27" Column="6" />
-      <File FileName="BlueprintMediabar.cs" Line="25" Column="19" />
-      <File FileName="TopWindow.cs" Line="26" Column="20" />
-      <File FileName="gtk-gui/IdpGie.UserInterface.TopWindow.cs" Line="21" Column="25" />
-      <File FileName="FunctionInstance.cs" Line="24" Column="19" />
-      <File FileName="GlobalInputContext.cs" Line="61" Column="34" />
-      <File FileName="NamedObjectAttribute.cs" Line="23" Column="23" />
+      <File FileName="GlobalInputContext.cs" Line="25" Column="18" />
+      <File FileName="NamedObjectEnumAttribute.cs" Line="23" Column="23" />
+      <File FileName="ArrayHeadTailFunctionInstance.cs" Line="24" Column="19" />
+      <File FileName="ShapeIrregularPolygonObject.cs" Line="35" Column="28" />
+      <File FileName="Shape.cs" Line="29" Column="27" />
+      <File FileName="ShapeState.cs" Line="30" Column="20" />
+      <File FileName="HttpProcessor.cs" Line="8" Column="18" />
+      <File FileName="OutputHttpServerDevice.cs" Line="34" Column="33" />
+      <File FileName="CairoEngine.cs" Line="7" Column="20" />
+      <File FileName="ProgramManager.cs" Line="29" Column="22" />
+      <File FileName="OutputPdfDevice.cs" Line="19" Column="21" />
+      <File FileName="OutputPdfStripDevice.cs" Line="24" Column="22" />
+      <File FileName="OutputDevice.cs" Line="26" Column="14" />
+      <File FileName="PaintMapping.cs" Line="32" Column="28" />
+      <File FileName="IdpGieTest/IFunctionInstanceTest.cs" Line="24" Column="19" />
+      <File FileName="IdpGieTest/DocumentSizeTest.cs" Line="6" Column="2" />
+      <File FileName="AssemblyInfo.cs" Line="45" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
