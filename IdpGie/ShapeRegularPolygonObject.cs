@@ -21,8 +21,10 @@
 using System;
 using System.Collections.Generic;
 using Cairo;
+using IdpGie.Logic;
+using IdpGie.Utils;
 
-namespace IdpGie {
+namespace IdpGie.Shapes {
 
     public class ShapeRegularPolygonObject : ShapePolygon {
 

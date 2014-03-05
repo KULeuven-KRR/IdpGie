@@ -22,6 +22,7 @@ using System;
 using Cairo;
 using Gdk;
 using System.Collections.Generic;
+using IdpGie.Core;
 using IdpGie.Engines;
 
 namespace IdpGie.UserInterface {

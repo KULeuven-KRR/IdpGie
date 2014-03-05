@@ -2,6 +2,7 @@ using System;
 using System.Xml.Serialization;
 using System.Text;
 using IdpGie.Utils;
+using IdpGie.Core;
 
 namespace IdpGie.Interaction {
 	[XmlType ("Interaction")]

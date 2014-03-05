@@ -22,7 +22,9 @@ using System;
 using System.Text;
 using Cairo;
 using OpenTK;
+using IdpGie.Abstract;
 using IdpGie.Logic;
+using IdpGie.Shapes.Modifiers;
 
 namespace IdpGie.Shapes {
 

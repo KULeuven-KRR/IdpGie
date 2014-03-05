@@ -1,6 +1,6 @@
 using System;
 
-namespace IdpGie.Logic {
+namespace IdpGie.Core {
 	public interface IDrawTheorySensitive {
 		DrawTheory Theory {
 			get;

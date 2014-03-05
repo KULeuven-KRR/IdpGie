@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Cairo;
+using IdpGie.Abstract;
 
 namespace IdpGie.UserInterface {
 	public class CairoImageStore : WeakFlyweight<string,ImageSurface> {

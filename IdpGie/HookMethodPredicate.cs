@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using IdpGie.Logic;
+using IdpGie.Core;
 
 namespace IdpGie.Mappers {
 	public class HookMethodPredicate : TypedClauseMethodPredicate {
