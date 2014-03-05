@@ -76,7 +76,7 @@ namespace IdpGie.Shapes {
 
 		public double ZIndex {
 			get {
-				return this.state.Zpos;
+				return this.state.ZIndex;
 			}
 		}
 
@@ -122,14 +122,14 @@ namespace IdpGie.Shapes {
 		public virtual void PaintObject (Context ctx) {
 			if (this.state.Visible) {
 				ctx.Save ();
-				ctx.Transform (this.state.CairoTransformations);
+				ctx.Transform (this.state.GetElement<Matrix> ("CairoTransformations"));
 				this.InnerPaintObject (ctx);
 				ctx.Restore ();
 			}
 		}
 
 		public virtual void WriteTikz (StringBuilder builder) {
-			builder.AppendFormat (@"\begin{0}[xshift={1} cm,yshift={2} cm]", "{scope}", this.State.Xpos, this.State.Ypos);
+			builder.AppendFormat (@"\begin{0}[xshift={1} cm,yshift={2} cm]", "{scope}", this.State.GetElement<double> ("Xpos"), this.State.GetElement<double> ("Ypos"));
 			this.InnerWriteTikz (builder);
 			builder.Append (@"\end{scope}");
 		}
@@ -159,14 +159,14 @@ namespace IdpGie.Shapes {
 		#endregion
 
 		private void cairoFillStroke (Context ctx) {
-			ctx.SetFill (this.state.InnerColor);
+			ctx.SetFill (this.state.GetElement<Color> ("InnerColor"));
 			ctx.FillPreserve ();
-			ctx.SetFill (this.state.EdgeColor);
+			ctx.SetFill (this.state.GetElement<Color> ("EdgeColor"));
 			ctx.Stroke ();
 		}
 
 		private void cairoShowText (Context ctx) {
-			string text = this.state.Text;
+			string text = this.state.GetElement<string> ("Text");
 			if (text != null && text != string.Empty) {
 				TextExtents te = ctx.TextExtents (text);
 				ctx.MoveTo (-0.5d * te.XAdvance + this.textOffset.X, 0.5d * (te.Height + 0.5d * te.YBearing) + this.textOffset.Y);

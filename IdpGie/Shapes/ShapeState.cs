@@ -131,6 +131,12 @@ namespace IdpGie.Shapes {
 			}
 		}
 
+		public double ZIndex {
+			get {
+				return this.Zpos;
+			}
+		}
+
 		[ShapeState ("Text")]
 		public string Text {
 			get {

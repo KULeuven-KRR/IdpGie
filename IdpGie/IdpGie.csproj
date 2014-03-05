@@ -273,6 +273,7 @@
     <Compile Include="Abstract\IFlyweight.cs" />
     <Compile Include="Shapes\ShapeModifiableHierarchical.cs" />
     <Compile Include="Shapes\IShapeState.cs" />
+    <Compile Include="Abstract\IVisible.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
