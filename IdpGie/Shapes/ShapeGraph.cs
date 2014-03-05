@@ -23,11 +23,11 @@ using IdpGie.Logic;
 
 namespace IdpGie.Shapes {
 
-    public class ShapeGraph : Shape {
+	public class ShapeGraph : Shape<ShapeState> {
 
-        public ShapeGraph (IFunctionInstance name) : base(name) {
-        }
+		public ShapeGraph (IFunctionInstance name) : base(name) {
+		}
 
-    }
+	}
 
 }

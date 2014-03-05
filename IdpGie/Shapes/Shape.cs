@@ -30,9 +30,9 @@ using IdpGie.UserInterface;
 using IdpGie.Utils;
 
 namespace IdpGie.Shapes {
-	public abstract class Shape : IShape {
-		private readonly IFunctionInstance name;
-		private readonly ShapeState state = new ShapeState ();
+	public abstract class Shape<TShapeState> : IShape where TShapeState : IShapeState, new() {
+		private readonly IFunctionInstance name = new TShapeState ();
+		private readonly TShapeState state;
 		private IdpGie.Geometry.Point textOffset = new IdpGie.Geometry.Point (0.0d, 0.0d);
 
 		#region IIdpdObject implementation
@@ -63,6 +63,15 @@ namespace IdpGie.Shapes {
 			}
 		}
 
+		#region IShape implementation
+
+		IShapeState IShape.State {
+			get {
+				return this.State;
+			}
+		}
+		#endregion
+
 		#region IZIndix implementation
 
 		public double ZIndex {
@@ -75,7 +84,7 @@ namespace IdpGie.Shapes {
 
 		#region IIdpdObject implementation
 
-		public ShapeState State {
+		public TShapeState State {
 			get {
 				return this.state;
 			}

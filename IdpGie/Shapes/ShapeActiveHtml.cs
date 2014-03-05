@@ -4,7 +4,7 @@ using IdpGie.Logic;
 
 namespace IdpGie.Shapes {
 
-	public class ShapeActiveHtml : Shape {
+	public class ShapeActiveHtml : Shape<ShapeState> {
 
 		public override IEnumerable<KeyValueEntry> HtmlAttributes {
 			get {
@@ -12,7 +12,7 @@ namespace IdpGie.Shapes {
 			}
 		}
 
-		private readonly List<ShapeActiveHtml> children = new List<ShapeActiveHtml>();
+		private readonly List<ShapeActiveHtml> children = new List<ShapeActiveHtml> ();
 
 		public List<ShapeActiveHtml> Children {
 			get {

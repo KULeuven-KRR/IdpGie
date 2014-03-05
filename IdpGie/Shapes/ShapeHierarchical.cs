@@ -4,7 +4,7 @@ using IdpGie.Logic;
 
 namespace IdpGie.Shapes {
 
-	public abstract class ShapeHierarchical : Shape, IShapeHierarchical {
+	public abstract class ShapeHierarchical : Shape<ShapeState>, IShapeHierarchical {
 
 		#region IShapeHierarchical implementation
 		public IShapeHierarchical Parent {

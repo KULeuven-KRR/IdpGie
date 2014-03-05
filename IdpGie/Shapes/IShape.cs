@@ -51,7 +51,7 @@ namespace IdpGie.Shapes {
 
 		void AddModifier (ShapeStateModifier modifier);
 
-		void AddModifier (double time, Action<ShapeState> modifier);
+		void AddModifier (double time, Action<IShapeState> modifier);
 
 	}
 

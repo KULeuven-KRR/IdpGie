@@ -24,7 +24,7 @@ using IdpGie.Logic;
 using IdpGie.Utils;
 
 namespace IdpGie.Shapes {
-	public class ShapeEllipse : Shape {
+	public class ShapeEllipse : Shape<ShapeState> {
 		private double width;
 		private double height;
 
