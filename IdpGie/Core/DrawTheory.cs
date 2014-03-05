@@ -232,6 +232,16 @@ namespace IdpGie.Core {
 			}
 		}
 
+		public void BuildHierarchy (IFunctionInstance parent, IFunctionInstance child) {
+			IShapeHierarchical schild = this.GetShape<IShapeHierarchical> (child);
+			if (schild != null) {
+				IShapeHierarchical sparnt = this.GetShape<IShapeHierarchical> (parent);
+				if (sparnt != null) {
+					schild.Parent = sparnt;
+				}
+			}
+		}
+
 		public IEnumerable<EventType> GetHookTypes () {
 			return this.hooks.Keys;
 		}
