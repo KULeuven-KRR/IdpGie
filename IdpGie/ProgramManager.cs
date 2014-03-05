@@ -26,6 +26,7 @@ using Gtk;
 using Mono.Options;
 using IdpGie.Utils;
 using System.Reflection;
+using IdpGie.Geometry;
 
 namespace IdpGie.Core {
 	public class ProgramManager {

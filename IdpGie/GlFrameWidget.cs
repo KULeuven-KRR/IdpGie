@@ -5,6 +5,7 @@ using GLSharp;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using IdpGie.Core;
 using IdpGie.Logic;
 
 namespace IdpGie.UserInterface {

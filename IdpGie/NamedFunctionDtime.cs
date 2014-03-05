@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using IdpGie.UserInterface;
 
 namespace IdpGie.Logic {
 	public class NamedFunctionDtime : IFunction, IFunctionInstance {

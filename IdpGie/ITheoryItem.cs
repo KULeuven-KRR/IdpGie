@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using IdpGie.Abstract;
+using IdpGie.Core;
 
 namespace IdpGie.Logic {
     public interface ITheoryItem : IPriority {

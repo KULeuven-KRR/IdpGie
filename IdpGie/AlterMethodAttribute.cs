@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using IdpGie.Core;
+using IdpGie.Logic;
 
 namespace IdpGie.Mappers {
 	[AttributeUsage (AttributeTargets.Method)]

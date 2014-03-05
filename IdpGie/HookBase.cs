@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gdk;
+using IdpGie.Core;
 
 namespace IdpGie.Logic {
 	public abstract class HookBase : IHook {

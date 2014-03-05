@@ -25,6 +25,11 @@ using Gdk;
 using IdpGie.Parser;
 using System.Linq;
 using IdpGie.Abstract;
+using IdpGie.Logic;
+using IdpGie.Shapes;
+using IdpGie.Interaction;
+using IdpGie.Utils;
+using IdpGie.Shapes;
 
 namespace IdpGie.Core {
 	public class DrawTheory : NameBase, ITimesensitive {

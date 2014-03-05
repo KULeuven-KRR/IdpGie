@@ -25,6 +25,7 @@ using System.Web.UI;
 using Cairo;
 using OpenTK;
 using IdpGie.Logic;
+using IdpGie.Shapes.Modifiers;
 
 namespace IdpGie.Shapes {
 	public abstract class Shape : IShape {

@@ -1,7 +1,9 @@
 using System;
 using System.Text.RegularExpressions;
+using IdpGie.Abstract;
+using IdpGie.Utils;
 
-namespace IdpGie.UserInterface {
+namespace IdpGie.Geometry {
 	public class CanvasSize : CloneableBase<CanvasSize>, ICanvasSize {
 		public const string identifier_width = @"w", identifier_heigh = @"h", identifier_margi = @"m";
 		private double width = DefaultWidth, height = DefaultHeight, margin = DefaultMargin;

@@ -1,5 +1,6 @@
 using System;
 using Cairo;
+using IdpGie.Core;
 
 namespace IdpGie.Engines {
 	public class CairoEngine : IRenderEngine {

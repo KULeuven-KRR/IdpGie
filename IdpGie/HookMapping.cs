@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gdk;
+using IdpGie.Core;
 using IdpGie.Logic;
 
 namespace IdpGie.Mappers {

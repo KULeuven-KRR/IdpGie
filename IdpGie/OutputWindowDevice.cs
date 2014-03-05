@@ -2,6 +2,7 @@ using System;
 using Gtk;
 using OpenTK.Graphics;
 using IdpGie.Core;
+using IdpGie.UserInterface;
 
 namespace IdpGie.OutputDevices {
 	public abstract class OutputWindowDevice : OutputDevice {

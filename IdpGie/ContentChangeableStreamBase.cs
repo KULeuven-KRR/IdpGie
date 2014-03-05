@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using IdpGie.Abstract;
 
 namespace IdpGie.Interaction {
 	public class ContentChangeableStreamBase<T> : IChangeableStream where T : Stream {

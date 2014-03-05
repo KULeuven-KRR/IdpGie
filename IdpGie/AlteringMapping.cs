@@ -1,4 +1,6 @@
 using System;
+using IdpGie.Core;
+using IdpGie.Logic;
 
 namespace IdpGie.Mappers {
 	[Mapper]
