@@ -31,6 +31,8 @@ using IdpGie.Utils;
 using IdpGie.Shapes;
 
 namespace IdpGie.Core {
+
+
 	public class DrawTheory : NameBase, ITimeSensitive {
 		private readonly List<ITheoryItem> elements = new List<ITheoryItem> ();
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();

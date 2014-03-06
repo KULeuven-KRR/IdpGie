@@ -291,6 +291,7 @@
     <Compile Include="Engines\Engine.cs" />
     <Compile Include="Abstract\IInterval.cs" />
     <Compile Include="Abstract\DoubleInterval.cs" />
+    <Compile Include="Core\IDrawTheory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
