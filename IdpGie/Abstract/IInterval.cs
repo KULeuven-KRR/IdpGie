@@ -1,5 +1,5 @@
 //
-//  ITimeSensitiveFastReversible.cs
+//  IInterval.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,39 +18,52 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
 namespace IdpGie.Abstract {
 
 	/// <summary>
-	/// An interface that states that besides being time sensitive and reversible, there is a checkpoint on which the object can be reversed fast.
+	/// An interface to specify an interval.
 	/// </summary>
-	public interface ITimeSensitiveFastReversible : ITimeSensitiveReversible {
+	/// <typeparam name="T"> the type objects described by the interval.
+	/// <remarks>
+	/// <para>A interval contains a <see cref="IInterval{T}.Min"/>, <see cref="IInterval{T}.Max"/> and <see cref="IInterval{T}.Contains(T)"/>.</para>
+	/// </remarks>
+	public interface IInterval<T> {
 
 		/// <summary>
-		/// The time of the first checkpoint on which fast reverse can be guaranteed.
+		/// Gets or sets the minimum of the interval.
 		/// </summary>
 		/// <value>
-		/// The first checkpoint on which fast reverse can be guaranteed.
+		/// The minimum of the interval.
 		/// </value>
-		/// <remarks>
-		/// <para>In case no such checkpoint exists, the value ise <see cref="Double.NegativeInfinity"/> or <see cref="Double.NaN"/>.</para>
-		/// </remarks>
-		double Checkpoint {
+		T Min {
 			get;
+			set;
 		}
 
 		/// <summary>
-		/// Determines whether this instance can be fast reversed to the specified time.
+		/// Gets or sets the maximum of the interval.
 		/// </summary>
-		/// <returns>
-		/// <c>true</c> if this instance can be fast reversed to the specified time; otherwise, <c>false</c>.
-		/// </returns>
-		/// <param name='time'>
-		/// The time to which the object should be reversed.
+		/// <value>
+		/// The maximum of the interval.
+		/// </value>
+		T Max {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Checks if the interval contains the specified value.
+		/// </summary>
+		/// <param name='value'>
+		/// The given item to check if it is an element of this interval.
 		/// </param>
-		bool CanFastReverse (double time);
+		/// <returns>
+		/// <c>true</c> if the <see cref="IInterval{T}"/> contains the given <paramref name="value"/>, <c>false</c> otherwise.
+		/// </returns>
+		bool Contains (T value);
 
 	}
-
 }
 

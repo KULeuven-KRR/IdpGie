@@ -2,9 +2,9 @@
 //  IPriority.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,16 +18,24 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
 
-    public interface IPriority {
+	/// <summary>
+	/// An interface that specifies the objects have a certain priority.
+	/// </summary>
+	public interface IPriority {
 
-        double Priority {
-            get;
-        }
+		/// <summary>
+		/// Gets the priority of this object.
+		/// </summary>
+		/// <value>
+		/// The priority of this object.
+		/// </value>
+		double Priority {
+			get;
+		}
 
-    }
+	}
 }
 

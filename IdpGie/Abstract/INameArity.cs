@@ -1,10 +1,10 @@
 //
-//  INameSignature.cs
+//  INameArity.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,16 +18,32 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 
 namespace IdpGie.Abstract {
 
-    public interface INameArity : IName, IArity {
+	/// <summary>
+	/// An interface combining the <see cref="IName"/> and <see cref="IArity"/>.
+	/// </summary>
+	/// <remarks>
+	/// <para>This interface is popular in mathematics where a function has a name and an arity</para>
+	/// </remarks>
+	public interface INameArity : IName, IArity {
 
-        Tuple<string, int> Signature {
-            get;
-        }
+		/// <summary>
+		/// Gets the signature of this object.
+		/// </summary>
+		/// <value>
+		/// The signature of this object.
+		/// </value>
+		/// <remarks>
+		/// <para>The signature of a method is a tuple that contains the name and the arity of that method.</para>
+		/// </remarks>
+		Tuple<string, int> Signature {
+			get;
+		}
 
-    }
+	}
 
 }

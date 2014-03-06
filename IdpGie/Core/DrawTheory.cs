@@ -31,7 +31,7 @@ using IdpGie.Utils;
 using IdpGie.Shapes;
 
 namespace IdpGie.Core {
-	public class DrawTheory : NameBase, ITimesensitive {
+	public class DrawTheory : NameBase, ITimeSensitive {
 		private readonly List<ITheoryItem> elements = new List<ITheoryItem> ();
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
 		private readonly Dictionary<EventType,LinkedList<IHook>> hooks = new Dictionary<EventType, LinkedList<IHook>> ();
@@ -248,7 +248,7 @@ namespace IdpGie.Core {
 
 		#region IComparable implementation
 
-		public int CompareTo (ITimesensitive other) {
+		public int CompareTo (ITimeSensitive other) {
 			if (other != null) {
 				return this.Time.CompareTo (other.Time);
 			} else {

@@ -22,7 +22,7 @@ using System;
 
 namespace IdpGie.Abstract {
 
-    public abstract class TimeSensitiveBase : ITimesensitive {
+    public abstract class TimeSensitiveBase : ITimeSensitive {
 
         private double time;
 
@@ -44,7 +44,7 @@ namespace IdpGie.Abstract {
         }
 
         #region IComparable implementation
-        public virtual int CompareTo (ITimesensitive other) {
+        public virtual int CompareTo (ITimeSensitive other) {
             if (other != null) {
                 return this.time.CompareTo (other.Time);
             } else {

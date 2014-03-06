@@ -1,10 +1,10 @@
 //
-//  IFastReverse.cs
+//  ITimeSensitiveReversible.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,17 +18,34 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
 
-    public interface ITimeSensitiveReversible : ITimesensitive {
+	/// <summary>
+	/// An interface that specifies that besides being time sensitive, the action can be reversed.
+	/// </summary>
+	public interface ITimeSensitiveReversible : ITimeSensitive {
 
-        bool CanReverse (double time);
+		/// <summary>
+		/// Determines whether this instance can be reversed to the specified time.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if this instance can be reversed to the specified time; otherwise, <c>false</c>.
+		/// </returns>
+		/// <param name='time'>
+		/// The time to which we should reverse.
+		/// </param>
+		bool CanReverse (double time);
 
-        void Reverse (double time);
+		/// <summary>
+		/// Reverses the instance to the specified time.
+		/// </summary>
+		/// <param name='time'>
+		/// The time to which we should reverse.
+		/// </param>
+		void Reverse (double time);
 
-    }
+	}
 
 }
 

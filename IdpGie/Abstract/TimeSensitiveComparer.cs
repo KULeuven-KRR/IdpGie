@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 namespace IdpGie.Abstract {
 
-    public class TimeSensitiveComparer : IComparer<ITimesensitive> {
+    public class TimeSensitiveComparer : IComparer<ITimeSensitive> {
 
         public static readonly TimeSensitiveComparer Instance = new TimeSensitiveComparer ();
 
@@ -30,7 +30,7 @@ namespace IdpGie.Abstract {
         }
 
         #region IComparer implementation
-        public int Compare (ITimesensitive x, ITimesensitive y) {
+        public int Compare (ITimeSensitive x, ITimeSensitive y) {
             if (x == null) {
                 return 0x01;
             } else if (y == null) {

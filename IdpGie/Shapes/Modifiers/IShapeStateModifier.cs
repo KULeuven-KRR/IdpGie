@@ -23,7 +23,7 @@ using IdpGie.Abstract;
 
 namespace IdpGie.Shapes.Modifiers {
 
-    public interface IShapeStateModifier : ITimesensitive {
+    public interface IShapeStateModifier : ITimeSensitive {
 
         bool Reversible {
             get;

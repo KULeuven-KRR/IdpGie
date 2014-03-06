@@ -18,11 +18,24 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
+
+	/// <summary>
+	/// An interface that specifies the object has a <see cref="ITitle.Title"/>.
+	/// </summary>
+	/// <remarks>
+	/// <para>This interface is strongly related to, but not the same as <see cref="IName"/>. A name is associated to the element while a title is more a property.
+	/// In general for each name, there is only one <see cref="IName"/> object while for a title, several <see cref="ITitle"/> objects might exist.</para>
+	/// </remarks>
 	public interface ITitle {
 
+		/// <summary>
+		/// Gets the title of this object.
+		/// </summary>
+		/// <value>
+		/// The title of this object.
+		/// </value>
 		string Title {
 			get;
 		}

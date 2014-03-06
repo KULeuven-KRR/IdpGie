@@ -18,12 +18,20 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
 
+	/// <summary>
+	/// Specifies that this object might be visible.
+	/// </summary>
 	public interface IVisible {
 
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="IdpGie.Abstract.IVisible"/> is visible.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if this instance is visible; otherwise, <c>false</c>.
+		/// </value>
 		bool Visible {
 			get;
 		}

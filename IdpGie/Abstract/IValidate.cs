@@ -2,9 +2,9 @@
 //  IValidate.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,14 +18,22 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
 
-    public interface IValidate {
+	/// <summary>
+	/// An interface specifying that the state of this object can be validated.
+	/// </summary>
+	public interface IValidate {
 
-        bool Validate ();
+		/// <summary>
+		/// Validates the state of this instance.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if the state of this instance is valid, <c>false</c> otherwise.
+		/// </returns>
+		bool Validate ();
 
-    }
+	}
 
 }
