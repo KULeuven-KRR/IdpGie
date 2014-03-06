@@ -1,10 +1,10 @@
 //
-//  NamePriorityArityBase.cs
+//  NameArityPriorityBase.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,28 +18,49 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
 
-    public abstract class NameArityPriorityBase : NameArityBase, INameArity, IPriority {
+	/// <summary>
+	/// An implementation of the <see cref="INameArity"/> and <see cref="IPriority"/> interfaces. This class
+	/// is provided as a convinient basic implementation.
+	/// </summary>
+	public abstract class NameArityPriorityBase : NameArityBase, INameArity, IPriority {
 
-        private double priority;
+		private double priority;
 
         #region IPriority implementation
-        public virtual double Priority {
-            get {
-                return this.priority;
-            }
-            protected set {
-                this.priority = value;
-            }
-        }
+		/// <summary>
+		///  Gets the priority of this object.
+		/// </summary>
+		/// <value>
+		///  The priority of this object.
+		/// </value>
+		public virtual double Priority {
+			get {
+				return this.priority;
+			}
+			protected set {
+				this.priority = value;
+			}
+		}
         #endregion
 
-        protected NameArityPriorityBase (string name, int arity = 0x00, double priority = 1.0d) : base(name,arity) {
-            this.Priority = priority;
-        }
-    }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameArityPriorityBase"/> class with a given name, arity and priority.
+		/// </summary>
+		/// <param name='name'>
+		/// The name of the object.
+		/// </param>
+		/// <param name='arity'>
+		/// The arity of the object.
+		/// </param>
+		/// <param name='priority'>
+		/// The priority of the object.
+		/// </param>
+		protected NameArityPriorityBase (string name, int arity = 0x00, double priority = 1.0d) : base(name,arity) {
+			this.Priority = priority;
+		}
+	}
 }
 

@@ -43,6 +43,7 @@ namespace IdpGie.Abstract {
 		/// <param name='time'>
 		/// The time to which we should reverse.
 		/// </param>
+		/// <exception cref="ArgumentException">If the instance cannot be reversed to the given <paramref name="time"/>.</exception>
 		void Reverse (double time);
 
 	}

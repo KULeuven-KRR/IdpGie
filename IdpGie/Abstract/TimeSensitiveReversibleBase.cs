@@ -2,9 +2,9 @@
 //  TimeSensitiveReversibleBase.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,29 +18,54 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 
 namespace IdpGie.Abstract {
 
-    public abstract class TimeSensitiveReversibleBase : TimeSensitiveBase, ITimeSensitiveReversible {
+	/// <summary>
+	/// An implementation of the <see cref="ITimeSensitiveReversible"/> interface.
+	/// </summary>
+	public abstract class TimeSensitiveReversibleBase : TimeSensitiveBase, ITimeSensitiveReversible {
 
-        protected TimeSensitiveReversibleBase (double time = 0.0d) : base(time) {
-        }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Abstract.TimeSensitiveReversibleBase"/> class with a given time.
+		/// </summary>
+		/// <param name='time'>
+		/// The time when the instance will occur.
+		/// </param>
+		protected TimeSensitiveReversibleBase (double time = 0.0d) : base(time) {
+		}
 
         #region ITimeSensitiveReverseable implementation
-        public virtual bool CanReverse (double time) {
-            return false;
-        }
+		/// <summary>
+		///  Determines whether this instance can be reversed to the specified time. 
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if this instance can reverse the specified time; otherwise, <c>false</c>.
+		/// </returns>
+		/// <param name='time'>
+		/// The given time to check for.
+		/// </param>
+		public virtual bool CanReverse (double time) {
+			return false;
+		}
 
-        public virtual void Reverse (double time) {
-            if (!this.CanReverse (time)) {
-                throw new ArgumentException ("time", "Cannot reverse to the given time point.");
-            }
-        }
+		/// <summary>
+		///  Reverses the instance to the specified time. 
+		/// </summary>
+		/// <param name='time'>
+		///  The time to which we should reverse. 
+		/// </param>
+		/// <exception cref="ArgumentException">If the instance cannot be reversed to the given <paramref name="time"/>.</exception>
+		public virtual void Reverse (double time) {
+			if (!this.CanReverse (time)) {
+				throw new ArgumentException ("time", "Cannot reverse to the given time point.");
+			}
+		}
         #endregion
 
 
-    }
+	}
 
 }
-
