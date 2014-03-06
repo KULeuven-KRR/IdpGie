@@ -1,16 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Shapes/ShapePage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Abstract/IZIndex.cs">
     <Files>
-      <File FileName="Core/DrawTheory.cs" Line="240" Column="29" />
-      <File FileName="Shapes/IShapeHierarchical.cs" Line="10" Column="8" />
-      <File FileName="Engines/HttpProcessor.cs" Line="132" Column="24" />
-      <File FileName="Engines/HttpEngine.cs" Line="15" Column="2" />
-      <File FileName="Engines/CairoEngine.cs" Line="14" Column="4" />
-      <File FileName="Engines/IEngine.cs" Line="21" Column="18" />
-      <File FileName="Engines/IRenderEngine.cs" Line="4" Column="42" />
-      <File FileName="Engines/Engine.cs" Line="29" Column="4" />
-      <File FileName="Shapes/ShapePage.cs" Line="23" Column="23" />
+      <File FileName="Abstract/IVisible.cs" Line="33" Column="38" />
+      <File FileName="Abstract/IZIndex.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
