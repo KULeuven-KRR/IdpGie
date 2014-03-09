@@ -24,6 +24,7 @@ using IdpGie.Abstract;
 using IdpGie.Logic;
 using IdpGie.Interaction;
 using IdpGie.Shapes;
+using Gdk;
 
 namespace IdpGie.Core {
 	/// <summary>
@@ -115,6 +116,114 @@ namespace IdpGie.Core {
 		ICollection<double> Chapters {
 			get;
 		}
+
+		/// <summary>
+		/// Reinitializes the theory with the specified set of theory items.
+		/// </summary>
+		/// <param name='values'>
+		/// The enumerable of <see cref="ITheoryItem"/> instances.
+		/// </param>
+		/// <remarks>
+		/// <para>
+		/// This method is mainly used as a callback for the parser. But can be used by any class that can feed the <see cref="IDrawTheory"/> with <see cref="ITheoryItem"/> instances.
+		/// </para>
+		/// </remarks>
+		void Reinitialize (IEnumerable<ITheoryItem> values);
+
+		/// <summary>
+		/// Registers the time when a certain event will occur.
+		/// </summary>
+		/// <param name='time'>
+		/// The time when an event will occur.
+		/// </param>
+		/// <remarks>
+		/// <para>This method is used to set the timebounds: <see cref="IDrawTheory.MinTime"/> and <see cref="IDrawTheory.MaxTime"/>.</para>
+		/// </remarks>
+		void RegisterTime (double time);
+
+		/// <summary>
+		/// Register a certain point in time as a new chapter.
+		/// </summary>
+		/// <param name='time'>
+		/// The time when the theory enters a new chapter.
+		/// </param>
+		/// <remarks>
+		/// <para>This method is used to generate chapters in order to make seeking more convenient.</para>
+		/// </remarks>
+		void AddChapter (double time);
+
+		/// <summary>
+		/// Adds the given modifier to the shape associated with the given name. The modifier will be fired at the given time moment.
+		/// </summary>
+		/// <param name='name'>
+		/// The given name of the <see cref="IShape"/> to search for.
+		/// </param>
+		/// <param name='time'>
+		/// The given time when the modifier will fire.
+		/// </param>
+		/// <param name='modifier'>
+		/// The modifier that describes how the given <see cref="IShape"/> should be modified.
+		/// </param>
+		/// <remarks>
+		/// <para>The time event is registered as well: the timebounds <see cref="IDrawTheory.MinTime"/> and <see cref="IDrawTheory.MaxTime"/> are updated accordingly.</para>
+		/// </remarks>
+		void AddModifier (IFunctionInstance name, double time, Action<IShapeState> modifier);
+
+		/// <summary>
+		/// Adds the given <see cref="IShape"/> to the <see cref="IDrawTheory"/>.
+		/// </summary>
+		/// <param name='obj'>
+		/// The given shape to be added.
+		/// </param>
+		void AddShape (IShape obj);
+
+		/// <summary>
+		/// Generates a <see cref="IEnumerable`1"/> of all the <see cref="IShapes"/> who are a <paramref name="TShape"/> as well.
+		/// </summary>
+		/// <typeparam name='TShape'>
+		/// The type of the desired <see cref="IShape"/> instances.
+		/// </typeparam>
+		IEnumerable<TShape> Objects<TShape> () where TShape : IShape;
+
+		/// <summary>
+		/// Converts the list of stored <see cref="ITheoryItems"/> into a set of <see cref="IShape"/> instances.
+		/// </summary>
+		void Execute ();
+
+		/// <summary>
+		/// Adds the given hook to the theory.
+		/// </summary>
+		/// <param name='hook'>
+		/// The given hook to be added.
+		/// </param>
+		/// <remarks>
+		/// <para>A <see cref="IHook"/> described how the theory should be modified when the <see cref="IHook"/> fires.</para>
+		/// </remarks>
+		void AddHook (IHook hook);
+
+		/// <summary>
+		/// Fires all the <see cref="IHook"/> instances associated with the given <see cref="EventType"/>.
+		/// </summary>
+		/// <param name='type'>
+		/// The given <see cref="EventType"/>.
+		/// </param>
+		/// <param name='parameters'>
+		/// Parameters to be passed to all the <see cref="IHook"/> instances that will fire.
+		/// </param>
+		void FireHook (EventType type, params object[] parameters);
+
+		/// <summary>
+		/// Generate an <see cref="IShape"/> hierarchy by stating that the <paramref name="parent"/> is the parent of the <paramref name="child"/>.
+		/// </summary>
+		/// <param name='parent'>
+		/// The associated name of the <see cref="IShape"/> that will become a parent of the <paramref name="child"/>.
+		/// </param>
+		/// <param name='child'>
+		/// The associated name of the <see cref="IShape"/> that will become a child of the <paramref name="parent"/>.
+		/// </param>
+		void BuildHierarchy (IFunctionInstance parent, IFunctionInstance child);
+
+		IEnumerable<EventType> GetHookTypes ();
 
 	}
 }
