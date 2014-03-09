@@ -292,6 +292,8 @@
     <Compile Include="Abstract\IInterval.cs" />
     <Compile Include="Abstract\DoubleInterval.cs" />
     <Compile Include="Core\IDrawTheory.cs" />
+    <Compile Include="Core\IProcessSession.cs" />
+    <Compile Include="Core\IProgramManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
