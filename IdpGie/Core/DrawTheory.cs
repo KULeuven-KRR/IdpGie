@@ -2,9 +2,9 @@
 //  DrawTheory.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,10 @@ using IdpGie.Shapes;
 
 namespace IdpGie.Core {
 
-
-	public class DrawTheory : NameBase, ITimeSensitive {
+	/// <summary>
+	/// A basic implementation of the <see cref="IDrawTheory"/> interface used to translate logic into drawing objects.
+	/// </summary>
+	public class DrawTheory : NameBase, IDrawTheory {
 		private readonly List<ITheoryItem> elements = new List<ITheoryItem> ();
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
 		private readonly Dictionary<EventType,LinkedList<IHook>> hooks = new Dictionary<EventType, LinkedList<IHook>> ();
@@ -43,13 +46,27 @@ namespace IdpGie.Core {
 		private readonly SortedSet<double> chapters = new SortedSet<double> ();
 
 		private event EventHandler changed;
+		
 
+		#region IDrawTheory implementation
+		/// <summary>
+		/// Gets the source of the logical statements.
+		/// </summary>
+		/// <value>
+		/// The source of the logical statements.
+		/// </value>
+		/// <remarks>
+		/// <para>The source is feeded to the parser and then converted to shape objects.</para>
+		/// </remarks>
 		public IAlterableReloadableChangeableStream<string> Source {
 			get {
 				return this.source;
 			}
 		}
 
+		/// <summary>
+		/// Occurs when a part of the <see cref="IDrawTheory"/> changes.
+		/// </summary>
 		public event EventHandler Changed {
 			add {
 				this.changed += value;
@@ -59,41 +76,82 @@ namespace IdpGie.Core {
 			}
 		}
 
-		public IShape this [IFunctionInstance key] {
+		/// <summary>
+		/// Gets the <see cref="IShape"/> associated with the given name.
+		/// </summary>
+		/// <param name='name'>
+		/// The given name of the shape.
+		/// </param>
+		/// <value>The <see cref="IShape"/> associated with the given name.</value>
+		public IShape this [IFunctionInstance name] {
 			get {
-				return this.objects [key];
+				return this.objects [name];
 			}
 		}
 
-		public List<ITheoryItem> Elements {
+		/// <summary>
+		/// Gets the list of <see cref="ITheoryItem"/> instances stored in this <see cref="IDrawTheory"/>.
+		/// </summary>
+		/// <value>
+		/// The <see cref="ITheoryItem"/> instances stored in this <see cref="IDrawTheory"/>.
+		/// </value>
+		public IList<ITheoryItem> Elements {
 			get {
 				return this.elements;
 			}
 		}
 
+		/// <summary>
+		/// Gets the time when the first event occurs.
+		/// </summary>
+		/// <value>
+		/// The time when the first event occurs.
+		/// </value>
 		public double MinTime {
 			get {
 				return this.minTime;
 			}
 		}
 
+		/// <summary>
+		/// Gets the time when the latest event occurs.
+		/// </summary>
+		/// <value>
+		/// The time when the latest event occurs.
+		/// </value>
 		public double MaxTime {
 			get {
 				return this.maxTime;
 			}
 		}
 
+		/// <summary>
+		/// Gets the time span between the first and the last event.
+		/// </summary>
+		/// <value>
+		/// The time span between the first and the last event.
+		/// </value>
 		public double TimeSpan {
 			get {
 				return this.maxTime - minTime;
 			}
 		}
 
+		/// <summary>
+		/// Gets the <see cref="ICollection`1"/> of chapters.
+		/// </summary>
+		/// <value>
+		/// The <see cref="ICollection`1"/> of chapters.
+		/// </value>
+		/// <remarks>
+		/// <para>Chapters are time events where a significant change occurs. They are used for more convinient seeking.</para>
+		/// </remarks>
 		public ICollection<double> Chapters {
 			get {
 				return this.chapters.AsReadonly ();
 			}
 		}
+		#endregion
 
 		#region ITimesensitive implementation
 

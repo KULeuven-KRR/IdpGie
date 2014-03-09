@@ -2,12 +2,6 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Core/IDrawTheory.cs">
     <Files>
-      <File FileName="Abstract/WeakFlyweight.cs" Line="102" Column="145" />
-      <File FileName="Abstract/IFlyweight.cs" Line="58" Column="15" />
-      <File FileName="Abstract/HardFlyweight.cs" Line="122" Column="49" />
-      <File FileName="Abstract/ZIndexComparator.cs" Line="70" Column="16" />
-      <File FileName="Abstract/PriorityComparator.cs" Line="70" Column="17" />
-      <File FileName="Core/DrawTheory.cs" Line="35" Column="2" />
       <File FileName="Core/IDrawTheory.cs" Line="23" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
