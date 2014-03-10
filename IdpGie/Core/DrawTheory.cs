@@ -186,6 +186,7 @@ namespace IdpGie.Core {
 			this.HandleChanged (null, null);
 		}
 
+		#region IDrawTheory implementation
 		public TShape GetShape<TShape> (IFunctionInstance key) where TShape : IShape {
 			IShape shp = this.objects [key];
 			if (shp is TShape) {
@@ -213,6 +214,17 @@ namespace IdpGie.Core {
 			this.maxTime = 0.0d;
 		}
 
+		/// <summary>
+		/// Reinitializes the theory with the specified set of theory items.
+		/// </summary>
+		/// <param name='values'>
+		/// The enumerable of <see cref="ITheoryItem"/> instances.
+		/// </param>
+		/// <remarks>
+		/// <para>
+		/// This method is mainly used as a callback for the parser. But can be used by any class that can feed the <see cref="IDrawTheory"/> with <see cref="ITheoryItem"/> instances.
+		/// </para>
+		/// </remarks>
 		public void Reinitialize (IEnumerable<ITheoryItem> values) {
 			if (values != null) {
 				this.Clear ();
@@ -224,6 +236,15 @@ namespace IdpGie.Core {
 			this.Time = 0.0d;
 		}
 
+		/// <summary>
+		/// Registers the time when a certain event will occur.
+		/// </summary>
+		/// <param name='time'>
+		/// The time when an event will occur.
+		/// </param>
+		/// <remarks>
+		/// <para>This method is used to set the timebounds: <see cref="IDrawTheory.MinTime"/> and <see cref="IDrawTheory.MaxTime"/>.</para>
+		/// </remarks>
 		public void RegisterTime (double time) {
 			if (this.minTime > time) {
 				this.minTime = time;
@@ -232,10 +253,34 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		/// Register a certain point in time as a new chapter.
+		/// </summary>
+		/// <param name='time'>
+		/// The time when the theory enters a new chapter.
+		/// </param>
+		/// <remarks>
+		/// <para>This method is used to generate chapters in order to make seeking more convenient.</para>
+		/// </remarks>
 		public void AddChapter (double time) {
 			this.chapters.Add (time);
 		}
 
+		/// <summary>
+		/// Adds the given modifier to the shape associated with the given name. The modifier will be fired at the given time moment.
+		/// </summary>
+		/// <param name='name'>
+		/// The given name of the <see cref="IShape"/> to search for.
+		/// </param>
+		/// <param name='time'>
+		/// The given time when the modifier will fire.
+		/// </param>
+		/// <param name='modifier'>
+		/// The modifier that describes how the given <see cref="IShape"/> should be modified.
+		/// </param>
+		/// <remarks>
+		/// <para>The time event is registered as well: the timebounds <see cref="IDrawTheory.MinTime"/> and <see cref="IDrawTheory.MaxTime"/> are updated accordingly.</para>
+		/// </remarks>
 		public void AddModifier (IFunctionInstance name, double time, Action<IShapeState> modifier) {
 			this [name].State.AddModifier (time, modifier);
 			this.RegisterTime (time);
@@ -263,14 +308,29 @@ namespace IdpGie.Core {
 			return sb.ToString ();
 		}
 
+		/// <summary>
+		/// Adds the given <see cref="IShape"/> to the <see cref="IDrawTheory"/>.
+		/// </summary>
+		/// <param name='obj'>
+		/// The given shape to be added.
+		/// </param>
 		public void AddShape (IShape obj) {
 			this.objects.Add (obj.Name, obj);
 		}
 
+		/// <summary>
+		/// Generates a <see cref="IEnumerable`1"/> of all the <see cref="IShapes"/> who are a <paramref name="TShape"/> as well.
+		/// </summary>
+		/// <typeparam name='TShape'>
+		/// The type of the desired <see cref="IShape"/> instances.
+		/// </typeparam>
 		public IEnumerable<TShape> Objects<TShape> () where TShape : IShape {
 			return this.objects.Values.Where (x => x is TShape).Cast<TShape> ();
 		}
 
+		/// <summary>
+		/// Converts the list of stored <see cref="ITheoryItems"/> into a set of <see cref="IShape"/> instances.
+		/// </summary>
 		public void Execute () {
 			//TODO: Tp operator
 			elements.Sort (PriorityComparator.Instance);
@@ -279,10 +339,28 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		/// Adds the given hook to the theory.
+		/// </summary>
+		/// <param name='hook'>
+		/// The given hook to be added.
+		/// </param>
+		/// <remarks>
+		/// <para>A <see cref="IHook"/> described how the theory should be modified when the <see cref="IHook"/> fires.</para>
+		/// </remarks>
 		public void AddHook (IHook hook) {
 			this.hooks.AddListDictionary (hook.HookType, hook);
 		}
 
+		/// <summary>
+		/// Fires all the <see cref="IHook"/> instances associated with the given <see cref="EventType"/>.
+		/// </summary>
+		/// <param name='type'>
+		/// The given <see cref="EventType"/>.
+		/// </param>
+		/// <param name='parameters'>
+		/// Parameters to be passed to all the <see cref="IHook"/> instances that will fire.
+		/// </param>
 		public void FireHook (EventType type, params object[] parameters) {
 			LinkedList<IHook> firelist;
 			if (hooks.TryGetValue (type, out firelist)) {
@@ -292,6 +370,15 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		/// Generate an <see cref="IShape"/> hierarchy by stating that the <paramref name="parent"/> is the parent of the <paramref name="child"/>.
+		/// </summary>
+		/// <param name='parent'>
+		/// The associated name of the <see cref="IShape"/> that will become a parent of the <paramref name="child"/>.
+		/// </param>
+		/// <param name='child'>
+		/// The associated name of the <see cref="IShape"/> that will become a child of the <paramref name="parent"/>.
+		/// </param>
 		public void BuildHierarchy (IFunctionInstance parent, IFunctionInstance child) {
 			IShapeHierarchical schild = this.GetShape<IShapeHierarchical> (child);
 			if (schild != null) {
@@ -302,9 +389,16 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		/// Gets the type of the registered <see cref="IHook"/> instances thus far.
+		/// </summary>
+		/// <returns>
+		/// The type of the registered <see cref="IHook"/> instances thus far.
+		/// </returns>
 		public IEnumerable<EventType> GetHookTypes () {
 			return this.hooks.Keys;
 		}
+		#endregion
 
 		#region IComparable implementation
 
