@@ -294,6 +294,7 @@
     <Compile Include="Core\IDrawTheory.cs" />
     <Compile Include="Core\IProcessSession.cs" />
     <Compile Include="Core\IProgramManager.cs" />
+    <Compile Include="Abstract\IClearable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

@@ -153,6 +153,19 @@ namespace IdpGie.Core {
 		}
 		#endregion
 
+		#region IClearable implementation
+		/// <summary>
+		///  Sets the state of the object again in its original state. 
+		/// </summary>
+		public void Clear () {
+			this.elements.Clear ();
+			this.objects.Clear ();
+			this.hooks.Clear ();
+			this.minTime = 0.0d;
+			this.maxTime = 0.0d;
+		}
+		#endregion
+
 		#region ITimesensitive implementation
 
 		public double Time {
@@ -204,14 +217,6 @@ namespace IdpGie.Core {
 			Lexer scnr = new Lexer (this.Source.Stream);
 			IdpParser pars = new IdpParser (scnr, this);
 			pars.Parse ();
-		}
-
-		protected void Clear () {
-			this.elements.Clear ();
-			this.objects.Clear ();
-			this.hooks.Clear ();
-			this.minTime = 0.0d;
-			this.maxTime = 0.0d;
 		}
 
 		/// <summary>
@@ -295,6 +300,15 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		/// Raises the changed event.
+		/// </summary>
+		/// <param name='e'>
+		/// The corresponding <see cref="EventArgs"/> parameter.
+		/// </param>
+		/// <remarks>
+		/// <para>This method can be used to generate a metacompiler based on the original <see cref="DrawTheory"/> implementation.</para>
+		/// </remarks>
 		protected virtual void OnChanged (EventArgs e) {
 
 		}
@@ -401,7 +415,19 @@ namespace IdpGie.Core {
 		#endregion
 
 		#region IComparable implementation
-
+		/// <summary>
+		/// Compares this <see cref="ITimeSensitive"/> instance with the given one.
+		/// </summary>
+		/// <returns>
+		/// A value smaller than zero if this instance will take place before the given one, a value larger than zero if this event
+		/// will take place after the given one, zero if both events will be triggered at the same time.
+		/// </returns>
+		/// <param name='other'>
+		/// The <see cref="ITimeSensitive"/> instance to compare with.
+		/// </param>
+		/// <remarks>
+		/// <para>In case the given <see cref="ITimeSensitive"/> is not effective, a negative value is returned.</para>
+		/// </remarks>
 		public int CompareTo (ITimeSensitive other) {
 			if (other != null) {
 				return this.Time.CompareTo (other.Time);
@@ -409,7 +435,6 @@ namespace IdpGie.Core {
 				return -0x01;
 			}
 		}
-
 		#endregion
 
 	}

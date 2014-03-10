@@ -62,7 +62,7 @@ namespace IdpGie.Abstract {
 			this.Time = time;
 		}
 
-        #region IComparable implementation
+		#region IComparable implementation
 		/// <summary>
 		/// Compares this <see cref="ITimeSensitive"/> instance with the given one.
 		/// </summary>
@@ -83,7 +83,7 @@ namespace IdpGie.Abstract {
 				return -0x01;
 			}
 		}
-        #endregion
+		#endregion
 
 	}
 

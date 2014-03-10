@@ -33,7 +33,7 @@ namespace IdpGie.Core {
 	/// <remarks>
 	/// <para>The most important task of a <see cref="IDrawTheory"/> is to form a bridge between the logic space and the render space.</para>
 	/// </remarks>
-	public interface IDrawTheory : IName, ITimeSensitive {
+	public interface IDrawTheory : IName, ITimeSensitive, IClearable {
 
 		/// <summary>
 		/// Gets the source of the logical statements.
