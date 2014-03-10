@@ -263,7 +263,7 @@ namespace IdpGie.Core {
 			return sb.ToString ();
 		}
 
-		internal void AddIdpdObject (IShape obj) {
+		public void AddShape (IShape obj) {
 			this.objects.Add (obj.Name, obj);
 		}
 

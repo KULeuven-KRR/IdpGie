@@ -1,8 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core/IDrawTheory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Core/DrawTheory.cs">
     <Files>
-      <File FileName="Core/IDrawTheory.cs" Line="23" Column="22" />
+      <File FileName="Core/DrawTheory.cs" Line="266" Column="9" />
+      <File FileName="Core/IDrawTheory.cs" Line="230" Column="73" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

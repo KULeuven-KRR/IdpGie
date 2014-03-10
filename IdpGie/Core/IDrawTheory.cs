@@ -223,6 +223,12 @@ namespace IdpGie.Core {
 		/// </param>
 		void BuildHierarchy (IFunctionInstance parent, IFunctionInstance child);
 
+		/// <summary>
+		/// Gets the type of the registered <see cref="IHook"/> instances thus far.
+		/// </summary>
+		/// <returns>
+		/// The type of the registered <see cref="IHook"/> instances thus far.
+		/// </returns>
 		IEnumerable<EventType> GetHookTypes ();
 
 	}
