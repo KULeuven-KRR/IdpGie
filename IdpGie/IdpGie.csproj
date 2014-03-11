@@ -117,7 +117,6 @@
     <Compile Include="Abstract\ITimesensitive.cs" />
     <Compile Include="Abstract\IValidate.cs" />
     <Compile Include="Abstract\IZIndex.cs" />
-    <Compile Include="Abstract\Interval.cs" />
     <Compile Include="Abstract\NameArityBase.cs" />
     <Compile Include="Abstract\NameArityPriorityBase.cs" />
     <Compile Include="Abstract\NameBase.cs" />
@@ -274,6 +273,32 @@
     <Compile Include="Parser\LexSpan.cs" />
     <Compile Include="Parser\Lexer.cs" />
     <Compile Include="Parser\Parser.cs" />
+    <Compile Include="Abstract\NamespaceDoc.cs" />
+    <Compile Include="Core\NamespaceDoc.cs" />
+    <Compile Include="Engines\NamespaceDoc.cs" />
+    <Compile Include="Geometry\NamespaceDoc.cs" />
+    <Compile Include="Interaction\NamespaceDoc.cs" />
+    <Compile Include="Logic\NamespaceDoc.cs" />
+    <Compile Include="Mappers\NamespaceDoc.cs" />
+    <Compile Include="OutputDevices\NamespaceDoc.cs" />
+    <Compile Include="Parser\NamespaceDoc.cs" />
+    <Compile Include="Shapes\NamespaceDoc.cs" />
+    <Compile Include="Shapes\Modifiers\NamespaceDoc.cs" />
+    <Compile Include="UserInterface\NamespaceDoc.cs" />
+    <Compile Include="Utils\NamespaceDoc.cs" />
+    <Compile Include="Abstract\ITitle.cs" />
+    <Compile Include="Engines\IEngine.cs" />
+    <Compile Include="Engines\Engine.cs" />
+    <Compile Include="Abstract\IInterval.cs" />
+    <Compile Include="Abstract\DoubleInterval.cs" />
+    <Compile Include="Core\IDrawTheory.cs" />
+    <Compile Include="Core\IProcessSession.cs" />
+    <Compile Include="Core\IProgramManager.cs" />
+    <Compile Include="Abstract\IClearable.cs" />
+    <Compile Include="Abstract\INameSet.cs" />
+    <Compile Include="Abstract\IWriteable.cs" />
+    <Compile Include="Abstract\WriteableExtensions.cs" />
+    <Compile Include="Abstract\ITimeSensitiveSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

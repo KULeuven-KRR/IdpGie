@@ -1,19 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Abstract/IFlyweight.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Core/DrawTheory.cs">
     <Files>
-      <File FileName="IdpGieTest/IFunctionInstanceTest.cs" Line="24" Column="19" />
-      <File FileName="IdpGieTest/DocumentSizeTest.cs" Line="15" Column="41" />
-      <File FileName="AssemblyInfo.cs" Line="45" Column="1" />
-      <File FileName="Abstract/CloneableBase.cs" Line="29" Column="38" />
-      <File FileName="Abstract/EventArgs.cs" Line="33" Column="70" />
-      <File FileName="Abstract/IAlterable.cs" Line="22" Column="1" />
-      <File FileName="Abstract/HardFlyweight.cs" Line="34" Column="65" />
-      <File FileName="Abstract/IArity.cs" Line="41" Column="69" />
-      <File FileName="Abstract/ICloneable.cs" Line="22" Column="1" />
-      <File FileName="Abstract/IContentChangeableStream.cs" Line="44" Column="122" />
-      <File FileName="Abstract/IDescription.cs" Line="30" Column="50" />
-      <File FileName="Abstract/IFlyweight.cs" Line="94" Column="143" />
+      <File FileName="Core/IDrawTheory.cs" Line="36" Column="66" />
+      <File FileName="Core/DrawTheory.cs" Line="197" Column="84" />
+      <File FileName="Abstract/TimeSensitiveBase.cs" Line="78" Column="17" />
+      <File FileName="Abstract/IClearable.cs" Line="31" Column="63" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -23,32 +15,4 @@
   <MonoDevelop.Ide.BookmarkService.Bookmarks>
     <BookmarkCollection />
   </MonoDevelop.Ide.BookmarkService.Bookmarks>
-  <MonoDevelop.Ide.ItemProperties.IdpGie>
-    <MonoDevelop.Ide.CustomExecutionModes>
-      <Data Name="glwindowtest1" Id="173d99da-d4b2-4f6c-8e7d-f1b107954123" ModeId="Default">
-        <CommandData>
-          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
-            <Value Arguments="-d ../../testinput/test1.idpd -m openglwindow" ctype="CustomArgsExecutionModeData">
-              <EnvironmentVariables />
-            </Value>
-          </Item>
-          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
-            <Value ctype="MonoExecutionParameters" />
-          </Item>
-        </CommandData>
-      </Data>
-      <Data Name="httpservertest1" Id="933792b8-0a46-41c3-91b2-20e9073cd4e4" ModeId="Default">
-        <CommandData>
-          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
-            <Value Arguments="-d ../../testinput/test1.idpd -m httpserver" ctype="CustomArgsExecutionModeData">
-              <EnvironmentVariables />
-            </Value>
-          </Item>
-          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
-            <Value ctype="MonoExecutionParameters" />
-          </Item>
-        </CommandData>
-      </Data>
-    </MonoDevelop.Ide.CustomExecutionModes>
-  </MonoDevelop.Ide.ItemProperties.IdpGie>
 </Properties>

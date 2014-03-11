@@ -7,6 +7,7 @@ namespace IdpGie.Shapes {
 
 		IShapeHierarchical Parent {
 			get;
+			set;
 		}
 
 		IEnumerable<IShape> Children {

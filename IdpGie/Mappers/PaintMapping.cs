@@ -31,12 +31,12 @@ namespace IdpGie.Mappers {
 	public static class PaintMapping {
 		[PaintMethod ("polygon", true, false, 0.0d, TermType.PointList)]
 		public static void Polygon (DrawTheory dt, IFunctionInstance name, IEnhancedTermCollection points) {
-			dt.AddIdpdObject (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<IdpGie.Geometry.Point> (TermType.Point)));
+			dt.AddShape (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<IdpGie.Geometry.Point> (TermType.Point)));
 		}
 
 		[PaintMethod ("polygon", true, false, 0.0d, TermType.Int, TermType.Float)]
 		public static void Polygon (DrawTheory dt, IFunctionInstance name, int nbOfEdges, double sizeOfEdges) {
-			dt.AddIdpdObject (new ShapeRegularPolygonObject (name, nbOfEdges, sizeOfEdges));
+			dt.AddShape (new ShapeRegularPolygonObject (name, nbOfEdges, sizeOfEdges));
 		}
 
 		[PaintMethod ("chapter", false, true, 1000.0d)]
@@ -46,7 +46,7 @@ namespace IdpGie.Mappers {
 
 		[PaintMethod ("ellipse", true, false, 0.0d, TermType.Float, TermType.Float)]
 		public static void Ellipse (DrawTheory dt, IFunctionInstance name, double width, double height) {
-			dt.AddIdpdObject (new ShapeEllipse (name, width, height));
+			dt.AddShape (new ShapeEllipse (name, width, height));
 		}
 
 		[PaintMethod ("console", false, false, 0.0d, TermType.String)]
@@ -81,7 +81,7 @@ namespace IdpGie.Mappers {
 
 		[PaintMethod ("image", true, false, 0.0d, TermType.String, TermType.Float, TermType.Float)]
 		public static void Image (DrawTheory dt, IFunctionInstance name, string filepath, double width, double height) {
-			dt.AddIdpdObject (new ShapeImage (name, filepath, width, height));
+			dt.AddShape (new ShapeImage (name, filepath, width, height));
 		}
 
 		[PaintMethod ("xpos", true, true, TermType.Float)]

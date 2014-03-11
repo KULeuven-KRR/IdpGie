@@ -1,10 +1,10 @@
 //
-//  Interval.cs
+//  IEngine.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,24 +18,10 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using IdpGie.Core;
 
-namespace IdpGie.Abstract {
-
-    public struct Interval {
-
-        private double min;
-        private double max;
-
-        public Interval (double min, double max) {
-            this.min = min;
-            this.max = max;
-        }
-
-        public bool Contains (double x) {
-            return (min <= x && x <= max);
-        }
-
-    }
+namespace IdpGie.Engines {
+	public interface IEngine : IDrawTheorySensitive {
+	}
 }
 

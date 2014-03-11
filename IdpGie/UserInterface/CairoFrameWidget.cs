@@ -34,7 +34,7 @@ namespace IdpGie.UserInterface {
 		public const double LineDelta = 10.0d;
 		private readonly CairoEngine engine;
 
-		public DrawTheory Theory {
+		public IDrawTheory Theory {
 			get;
 			set;
 		}
@@ -51,7 +51,7 @@ namespace IdpGie.UserInterface {
 			}
 		}
 
-		public CairoFrameWidget (DrawTheory theory) {
+		public CairoFrameWidget (IDrawTheory theory) {
 			this.engine = new CairoEngine (theory);
 			this.Theory = theory;
 			this.Theory.Changed += HandleChanged;
@@ -114,7 +114,7 @@ namespace IdpGie.UserInterface {
 		}
 
 		public override void Seek (double time) {
-			this.Theory.Time = time;
+			this.Theory.SetTime (time);
 			this.QueueDraw ();
 			base.Seek (time);
 		}

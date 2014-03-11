@@ -1,10 +1,10 @@
 //
-//  ITimeFastReversible.cs
+//  ITimeSensitiveFastReversible.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,19 +18,39 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
 
-    public interface ITimeSensitiveFastReversible : ITimeSensitiveReversible {
+	/// <summary>
+	/// An interface that states that besides being time sensitive and reversible, there is a checkpoint on which the object can be reversed fast.
+	/// </summary>
+	public interface ITimeSensitiveFastReversible : ITimeSensitiveReversible {
 
-        double Checkpoint {
-            get;
-        }
+		/// <summary>
+		/// The time of the first checkpoint on which fast reverse can be guaranteed.
+		/// </summary>
+		/// <value>
+		/// The first checkpoint on which fast reverse can be guaranteed.
+		/// </value>
+		/// <remarks>
+		/// <para>In case no such checkpoint exists, the value ise <see cref="Double.NegativeInfinity"/> or <see cref="Double.NaN"/>.</para>
+		/// </remarks>
+		double Checkpoint {
+			get;
+		}
 
-        bool CanFastReverse (double time);
+		/// <summary>
+		/// Determines whether this instance can be fast reversed to the specified time.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if this instance can be fast reversed to the specified time; otherwise, <c>false</c>.
+		/// </returns>
+		/// <param name='time'>
+		/// The time to which the object should be reversed.
+		/// </param>
+		bool CanFastReverse (double time);
 
-    }
+	}
 
 }
 

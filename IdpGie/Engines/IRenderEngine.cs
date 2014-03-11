@@ -1,7 +1,7 @@
 using System;
 
 namespace IdpGie.Engines {
-	public interface IRenderEngine {
+	public interface IRenderEngine : IEngine {
 		void Render ();
 	}
 }

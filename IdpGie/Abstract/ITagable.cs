@@ -2,9 +2,9 @@
 //  ITagable.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,17 +18,28 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
 
-    public interface ITagable<T> {
+	/// <summary>
+	/// An interface that specifies that this object comes with additional data (a so called "tag").
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of the tag.
+	/// </typeparam>
+	public interface ITagable<T> {
 
-        T Tag {
-            get;
-        }
+		/// <summary>
+		/// Gets the tag that comes with this object.
+		/// </summary>
+		/// <value>
+		/// The tag that comes with this object.
+		/// </value>
+		T Tag {
+			get;
+		}
 
-    }
+	}
 
 }
 

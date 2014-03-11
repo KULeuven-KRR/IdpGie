@@ -32,7 +32,7 @@ namespace IdpGie.OutputDevices {
 			while (true) {
 				TcpClient s = listener.AcceptTcpClient ();
 				HttpProcessor pr = new HttpProcessor (s, this);
-				Thread thread = new Thread (new ThreadStart (pr.process));
+				Thread thread = new Thread (new ThreadStart (pr.Process));
 				thread.Start ();
 				Thread.Sleep (1);
 			}

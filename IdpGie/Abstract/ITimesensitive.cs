@@ -2,9 +2,9 @@
 //  ITimesensitive.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,16 +18,33 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 
 namespace IdpGie.Abstract {
 
-    public interface ITimesensitive : IComparable<ITimesensitive> {
+	/// <summary>
+	/// An interface specifying that the object is sensitive to time.
+	/// </summary>
+	/// <remarks>
+	/// <para>This interface inherits the <see cref="IComparable{ITimeSensitive}"/> so that the objects can be
+	/// ranked according to the time events.</para>
+	/// </remarks>
+	public interface ITimeSensitive : IComparable<ITimeSensitive> {
 
-        double Time {
-            get;
-        }
+		/// <summary>
+		/// Gets the tick when the event will take place.
+		/// </summary>
+		/// <value>
+		/// The tick when the event will take place.
+		/// </value>
+		/// <remarks>
+		/// <para>The unit of this interface is arbitrary, although we advise to use seconds.</para>
+		/// </remarks>
+		double Time {
+			get;
+		}
 
-    }
+	}
 }
 

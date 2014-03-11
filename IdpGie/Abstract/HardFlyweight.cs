@@ -73,7 +73,7 @@ namespace IdpGie.Abstract {
 		/// <c>true</c> if this flyweight supports <see cref="IDispose"/>; otherwise, <c>false</c>.
 		/// </value>
 		/// <remarks>
-		/// <para>This implementation of the <see cref="IFlyweight"/> pattern does not support <see cref="IDispose"/>, the value is always <c>False</c>.</para>
+		/// <para>This implementation of the <see cref="IFlyweight`2"/> pattern does not support <see cref="IDispose"/>, the value is always <c>false</c>.</para>
 		/// </remarks>
 		public bool DisposeSupport {
 			get {
@@ -119,7 +119,7 @@ namespace IdpGie.Abstract {
 		/// The given parameter.
 		/// </param>
 		/// <returns>
-		/// <c>true</c> if the <see cref="IFlyweight"/> already contains an object associated with the given <paramref name="key"/>, <c>false</c> otherwise.
+		/// <c>true</c> if the <see cref="IFlyweight`2"/> already contains an object associated with the given <paramref name="key"/>, <c>false</c> otherwise.
 		/// </returns>
 		/// <remarks>
 		/// <para>In case of a hard flyweight, once an object is generated based on the given <paramref name="key"/>, this method will always return <c>true</c> for this key.</para>

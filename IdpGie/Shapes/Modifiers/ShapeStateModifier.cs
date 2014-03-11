@@ -63,7 +63,7 @@ namespace IdpGie.Shapes.Modifiers {
             return string.Format ("<{0}:{1}:{2}>", this.Time, Action, this.reverseAction);
         }
 
-        public override int CompareTo (ITimesensitive other) {
+        public override int CompareTo (ITimeSensitive other) {
             int comp = base.CompareTo (other);
             if (comp != 0x00) {
                 return comp;

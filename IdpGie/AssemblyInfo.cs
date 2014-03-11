@@ -25,13 +25,13 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 [assembly: AssemblyTitle ("IDP-GIE")]
 [assembly: AssemblyDescription ("A Graphical Interactive Environment for the IDP system." +
-"An artificial intelligence tool that uses first order logic on finite domains in order" +
-"to solve a constraint based theory.")]
+	"An artificial intelligence tool that uses first order logic on finite domains in order" +
+	"to solve a constraint based theory.")]
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>, KU Leuven")]
 [assembly: AssemblyProduct ("IDP-GIE")]
 [assembly: AssemblyCopyright ("2013 KU Leuven, Celestijnenlaan 200A, 3001 Heverlee, Belgium")]
-[assembly: AssemblyTrademark ("IDP")]
+[assembly: AssemblyTrademark ("Declarative Languages and Artificial Intelligence (DTAI)")]
 [assembly: AssemblyCulture ("")]
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,

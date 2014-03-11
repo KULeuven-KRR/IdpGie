@@ -1,10 +1,10 @@
 //
-//  IZIndix.cs
+//  IZIndex.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,17 +18,28 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
 
-    public interface IZIndex {
+	/// <summary>
+	/// An interface specifying that this object has a Z-Index specifying in which order, object should be painted.
+	/// </summary>
+	public interface IZIndex {
 
-        double ZIndex {
-            get;
-        }
+		/// <summary>
+		/// Gets the z-index of this instance.
+		/// </summary>
+		/// <value>
+		/// The z-index of this instance.
+		/// </value>
+		/// <remarks>
+		/// <para>As the value increases, the object is painted more on the background.</para>
+		/// </remarks>
+		double ZIndex {
+			get;
+		}
 
-    }
+	}
 
 }
 
