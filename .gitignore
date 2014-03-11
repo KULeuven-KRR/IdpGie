@@ -44,6 +44,8 @@ x64/
 *.vspscc
 *.vssscc
 .builds
+*.xml
+*.html
 
 # Visual C++ cache files
 ipch/

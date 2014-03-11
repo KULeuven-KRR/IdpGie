@@ -1,11 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core/DrawTheory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Core/IProgramManager.cs">
     <Files>
-      <File FileName="Core/IDrawTheory.cs" Line="36" Column="66" />
-      <File FileName="Core/DrawTheory.cs" Line="197" Column="84" />
-      <File FileName="Abstract/TimeSensitiveBase.cs" Line="78" Column="17" />
-      <File FileName="Abstract/IClearable.cs" Line="31" Column="63" />
+      <File FileName="Core/ProgramManager.cs" Line="35" Column="22" />
+      <File FileName="Core/IProgramManager.cs" Line="138" Column="54" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
