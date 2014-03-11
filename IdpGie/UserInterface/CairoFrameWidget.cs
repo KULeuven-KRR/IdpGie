@@ -114,7 +114,7 @@ namespace IdpGie.UserInterface {
 		}
 
 		public override void Seek (double time) {
-			this.Theory.Time = time;
+			this.Theory.SetTime (time);
 			this.QueueDraw ();
 			base.Seek (time);
 		}

@@ -50,7 +50,7 @@ namespace IdpGie.UserInterface {
 		}
 
 		public void Seek (double time) {
-			this.Theory.Time = time;
+			this.Theory.SetTime (time);
 		}
 
 		public event EventHandler OnPlay;
