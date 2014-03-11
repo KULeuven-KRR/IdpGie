@@ -295,6 +295,9 @@
     <Compile Include="Core\IProcessSession.cs" />
     <Compile Include="Core\IProgramManager.cs" />
     <Compile Include="Abstract\IClearable.cs" />
+    <Compile Include="Abstract\INameSet.cs" />
+    <Compile Include="Abstract\IWriteable.cs" />
+    <Compile Include="Abstract\WriteableExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

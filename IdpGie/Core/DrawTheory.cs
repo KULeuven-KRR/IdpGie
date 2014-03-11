@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Gdk;
@@ -167,7 +168,12 @@ namespace IdpGie.Core {
 		#endregion
 
 		#region ITimesensitive implementation
-
+		/// <summary>
+		///  Gets the tick when the event will take place. 
+		/// </summary>
+		/// <value>
+		///  The tick when the event will take place. 
+		/// </value>
 		public double Time {
 			get {
 				IEnumerable<IShape> tail;
@@ -193,13 +199,65 @@ namespace IdpGie.Core {
 
 		#endregion
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Core.DrawTheory"/> class .
+		/// </summary>
+		/// <param name='name'>
+		/// Name.
+		/// </param>
+		/// <param name='source'>
+		/// Source.
+		/// </param>
 		public DrawTheory (string name, IAlterableReloadableChangeableStream<string> source) : base (name) {
 			this.source = source;
 			this.source.Changed += HandleChanged;
 			this.HandleChanged (null, null);
 		}
 
+		#region INameSet implementation
+
+		/// <summary>
+		/// Sets the name of this instance.
+		/// </summary>
+		/// <param name='name'>
+		/// The new name of the instance.
+		/// </param>
+		public void SetName (string name) {
+			this.Name = name;
+		}
+
+		#endregion
+
+		#region IWriteable implementation
+
+		/// <summary>
+		/// Write the data of the instance to the specified <see cref="TextWriter"/>.
+		/// </summary>
+		/// <param name='stream'>
+		/// The <see cref="TextWriter"/> to write the data to.
+		/// </param>
+		public void Write (TextWriter writer) {
+			foreach (ITheoryItem atm in elements) {
+				writer.Write ("{0}.", atm);
+				writer.WriteLine ();
+			}
+		}
+
+		#endregion
+
 		#region IDrawTheory implementation
+		/// <summary>
+		/// Gets the shape associated with the given name if the shape is of the type <typeparamref name="TShape"/>, otherwise the default value associated with <typeparamref name="TShape"/> is returned.
+		/// </summary>
+		/// <returns>
+		/// The shape associated with the given name if the shape is of the type <typeparamref name="TShape"/>, otherwise the default value associated with <typeparamref name="TShape"/> is returned.
+		/// </returns>
+		/// <param name='name'>
+		/// The name of the shape to look for.
+		/// </param>
+		/// <typeparam name='TShape'>
+		/// The type of the shape to look for, needs to be a subtype of <see cref="IShape"/>.
+		/// </typeparam>
 		public TShape GetShape<TShape> (IFunctionInstance key) where TShape : IShape {
 			IShape shp = this.objects [key];
 			if (shp is TShape) {
@@ -207,10 +265,6 @@ namespace IdpGie.Core {
 			} else {
 				return default(TShape);
 			}
-		}
-
-		public void SetName (string name) {
-			this.Name = name;
 		}
 
 		void HandleChanged (object sender, EventArgs e) {
@@ -311,15 +365,6 @@ namespace IdpGie.Core {
 		/// </remarks>
 		protected virtual void OnChanged (EventArgs e) {
 
-		}
-
-		public string ToFullString () {
-			StringBuilder sb = new StringBuilder ();
-			foreach (ITheoryItem atm in elements) {
-				sb.AppendFormat ("{0}.", atm);
-				sb.AppendLine ();
-			}
-			return sb.ToString ();
 		}
 
 		/// <summary>

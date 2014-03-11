@@ -33,7 +33,7 @@ namespace IdpGie.Core {
 	/// <remarks>
 	/// <para>The most important task of a <see cref="IDrawTheory"/> is to form a bridge between the logic space and the render space.</para>
 	/// </remarks>
-	public interface IDrawTheory : IName, ITimeSensitive, IClearable {
+	public interface IDrawTheory : INameSet, ITimeSensitive, IClearable, IWriteable {
 
 		/// <summary>
 		/// Gets the source of the logical statements.
@@ -116,6 +116,20 @@ namespace IdpGie.Core {
 		ICollection<double> Chapters {
 			get;
 		}
+
+		/// <summary>
+		/// Gets the shape associated with the given name if the shape is of the type <typeparamref name="TShape"/>, otherwise the default value associated with <typeparamref name="TShape"/> is returned.
+		/// </summary>
+		/// <returns>
+		/// The shape associated with the given name if the shape is of the type <typeparamref name="TShape"/>, otherwise the default value associated with <typeparamref name="TShape"/> is returned.
+		/// </returns>
+		/// <param name='name'>
+		/// The name of the shape to look for.
+		/// </param>
+		/// <typeparam name='TShape'>
+		/// The type of the shape to look for, needs to be a subtype of <see cref="IShape"/>.
+		/// </typeparam>
+		TShape GetShape<TShape> (IFunctionInstance name) where TShape : IShape;
 
 		/// <summary>
 		/// Reinitializes the theory with the specified set of theory items.
