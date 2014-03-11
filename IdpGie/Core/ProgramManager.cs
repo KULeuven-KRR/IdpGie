@@ -2,9 +2,9 @@
 //  ProgramManager.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using Mono.Unix;
@@ -26,7 +27,6 @@ using Gtk;
 using Mono.Options;
 using IdpGie.Utils;
 using System.Reflection;
-using IdpGie.Abstract;
 using IdpGie.Geometry;
 using IdpGie.Interaction;
 using IdpGie.OutputDevices;
@@ -37,13 +37,8 @@ namespace IdpGie.Core {
 			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
 			hookContent = null, outputMode = "cairowindow";
 		private readonly OptionSet options;
-		public StripGeometry Geometry = new StripGeometry ();
-
-		public bool Interactive {
-			get {
-				return this.IdpFile != null && this.AspFile != null;
-			}
-		}
+		private StripGeometry geometry = new StripGeometry ();
+		private CanvasSize canvasSize = new CanvasSize ();
 
 		public static string FullProgramName {
 			get {
@@ -69,7 +64,31 @@ namespace IdpGie.Core {
 			}
 		}
 
-		public CanvasSize CanvasSize = new CanvasSize ();
+		#region IProgramManager implementation
+
+		public StripGeometry Geometry {
+			get {
+				return this.geometry;
+			}
+			set {
+				this.geometry = value;
+			}
+		}
+
+		public bool Interactive {
+			get {
+				return this.IdpFile != null && this.AspFile != null;
+			}
+		}
+
+		public CanvasSize CanvasSize {
+			get {
+				return this.canvasSize;
+			}
+			set {
+				this.canvasSize = value;
+			}
+		}
 
 		public IEnumerable<string> InputFiles {
 			get {
@@ -211,6 +230,8 @@ namespace IdpGie.Core {
 			set;
 		}
 
+		#endregion
+
 		public ProgramManager () {
 			this.Time = 0.0d;
 			this.Port = 8080;
@@ -262,6 +283,8 @@ namespace IdpGie.Core {
 			};
 		}
 
+		#region IProgramManager implementation
+
 		public StripCanvasSize GenerateStripCanvasSize (int size) {
 			return new StripCanvasSize (this.CanvasSize, this.Geometry, size);
 		}
@@ -292,9 +315,9 @@ namespace IdpGie.Core {
 			return this.hookContent;
 		}
 
-		public void CheckConsistency () {
+		public bool Validate () {
 			if (this.HelpOrLists) {
-				return;
+				return true;
 			}
 			if (this.idpFile == null && this.aspFile == null && this.idpdFile == null) {
 				throw new IdpGieException ("No files are given.");
@@ -310,6 +333,7 @@ namespace IdpGie.Core {
 					throw new IdpGieException ("Cannot find file \"{0}\".", file);
 				}
 			}
+			return true;
 		}
 
 		public Stream GetIdpStream () {
@@ -322,7 +346,7 @@ namespace IdpGie.Core {
 
 		public void Run (string[] args) {
 			options.Parse (args);
-			this.CheckConsistency ();
+			this.Validate ();
 
 			if (this.HelpOrLists) {
 				if (this.ShowHelp) {
@@ -362,6 +386,8 @@ namespace IdpGie.Core {
 				Application.Quit ();
 			}
 		}
+
+		#endregion
 
 		public static int Main (string[] args) {
 			Catalog.Init ("IdpGie", "./locale");
