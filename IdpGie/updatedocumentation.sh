@@ -1,4 +1,4 @@
 git checkout master
-cd bin/Debug
+cd IdpGie/bin/Debug
 monodocer -assembly:IdpGie.exe -path:en -pretty
 
