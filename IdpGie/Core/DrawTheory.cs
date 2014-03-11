@@ -228,6 +228,20 @@ namespace IdpGie.Core {
 
 		#endregion
 
+		#region ITimesensitive implementation
+
+		/// <summary>
+		///  Sets the time of the event to the given time. 
+		/// </summary>
+		/// <param name='time'>
+		///  The given time. 
+		/// </param>
+		public void SetTime (double time) {
+			this.Time = time;
+		}
+
+		#endregion
+
 		#region IWriteable implementation
 
 		/// <summary>

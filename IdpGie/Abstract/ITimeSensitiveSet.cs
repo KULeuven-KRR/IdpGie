@@ -1,5 +1,5 @@
 //
-//  IDrawTheorySensitive.cs
+//  ITimeSensitiveSet.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,22 +19,24 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace IdpGie.Core {
+namespace IdpGie.Abstract {
+
 	/// <summary>
-	/// An interface specifying that the instance is sensitive to modifications of the <see cref="IDrawTheory"/> and therefore contains a reference to it.
+	/// An interface specifing that the instance is an <see cref="ITimeSensitive"/>, but that the <see cref="ITimeSensitive.Time"/> can be set as well.
 	/// </summary>
-	public interface IDrawTheorySensitive {
+	/// <remarks>
+	/// <para>One can of course implement a setter for the <see cref="ITimeSensitive.Time"/> property. However the specifications of .NET state that interfaces cannot add a setter to an already existing property.</para>
+	/// </remarks>
+	public interface ITimeSensitiveSet : ITimeSensitive {
 
 		/// <summary>
-		/// Gets or sets the theory to which the <see cref="IDrawTheorySensitive"/> is sensitive to.
+		/// Sets the time of the event to the given time.
 		/// </summary>
-		/// <value>
-		/// The theory to which the <see cref="IDrawTheorySensitive"/> is sensitive to.
-		/// </value>
-		IDrawTheory Theory {
-			get;
-			set;
-		}
+		/// <param name='time'>
+		/// The given time.
+		/// </param>
+		void SetTime (double time);
+
 	}
 }
 

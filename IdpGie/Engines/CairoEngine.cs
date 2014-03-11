@@ -13,7 +13,7 @@ namespace IdpGie.Engines {
 			set;
 		}
 
-		public CairoEngine (DrawTheory theory) : base(theory) {
+		public CairoEngine (IDrawTheory theory) : base(theory) {
 		}
 
 		#region IRenderEngine implementation

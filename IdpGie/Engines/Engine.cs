@@ -24,7 +24,7 @@ using IdpGie.Core;
 namespace IdpGie.Engines {
 	public abstract class Engine : IEngine {
 
-		public DrawTheory Theory {
+		public IDrawTheory Theory {
 			get;
 			set;
 		}
@@ -32,7 +32,7 @@ namespace IdpGie.Engines {
 		protected Engine () : this(null) {
 		}
 
-		protected Engine (DrawTheory theory) {
+		protected Engine (IDrawTheory theory) {
 			this.Theory = theory;
 		}
 	}

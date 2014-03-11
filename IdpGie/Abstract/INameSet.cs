@@ -25,8 +25,7 @@ namespace IdpGie.Abstract {
 	/// An interface that specifies that besides having a name, the name of the instance can be modified as well.
 	/// </summary>
 	/// <remarks>
-	/// <para>One can of course implement a setter for the name. However the specifications of .NET state that interfaces cannot add a setter to
-	/// an already existing property.</para>
+	/// <para>One can of course implement a setter for the <see cref="IName.Name"/> property. However the specifications of .NET state that interfaces cannot add a setter to an already existing property.</para>
 	/// </remarks>
 	public interface INameSet : IName {
 

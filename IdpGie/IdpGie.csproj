@@ -298,6 +298,7 @@
     <Compile Include="Abstract\INameSet.cs" />
     <Compile Include="Abstract\IWriteable.cs" />
     <Compile Include="Abstract\WriteableExtensions.cs" />
+    <Compile Include="Abstract\ITimeSensitiveSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

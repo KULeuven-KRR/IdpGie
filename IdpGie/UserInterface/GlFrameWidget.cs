@@ -10,14 +10,14 @@ using IdpGie.Logic;
 
 namespace IdpGie.UserInterface {
 	public class GLFrameWidget : GLWidget, IDrawTheorySensitive, IMediaObject {
-		public DrawTheory Theory {
+		public IDrawTheory Theory {
 			get;
 			set;
 		}
 
 		public bool GLinit = false;
 
-		public GLFrameWidget (DrawTheory theory) : base () {
+		public GLFrameWidget (IDrawTheory theory) : base () {
 			this.Name = "glwidget1";
 			this.SingleBuffer = false;
 			this.ColorBPP = 0;
