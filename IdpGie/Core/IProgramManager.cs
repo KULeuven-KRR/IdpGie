@@ -21,7 +21,14 @@
 using System;
 
 namespace IdpGie.Core {
+
+	/// <summary>
+	/// An interface defining the program manager, a manager that stores the arguments of the program and interacts with the user.
+	/// </summary>
 	public interface IProgramManager {
+
+
+
 	}
 }
 

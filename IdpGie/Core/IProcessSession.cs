@@ -21,7 +21,11 @@
 using System;
 
 namespace IdpGie.Core {
-	public interface IProcessSession {
+
+	/// <summary>
+	/// An interface that represents a session of a process. Several classes can interact with the process by writing to the <c>stdin</c> and reading from the <c>stdout</c> and <c>stderr</c>.
+	/// </summary>
+	public interface IProcessSession : IDisposable {
 	}
 }
 

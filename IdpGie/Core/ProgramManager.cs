@@ -32,7 +32,7 @@ using IdpGie.Interaction;
 using IdpGie.OutputDevices;
 
 namespace IdpGie.Core {
-	public class ProgramManager {
+	public class ProgramManager : IProgramManager {
 		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null,
 			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
 			hookContent = null, outputMode = "cairowindow";
