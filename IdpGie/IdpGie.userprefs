@@ -1,9 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core/IProgramManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Geometry/Point.cs">
     <Files>
       <File FileName="Core/ProgramManager.cs" Line="35" Column="22" />
       <File FileName="Core/IProgramManager.cs" Line="138" Column="54" />
+      <File FileName="Geometry/Point.cs" Line="119" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
