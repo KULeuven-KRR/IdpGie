@@ -48,66 +48,79 @@ namespace IdpGie.Core {
 			get;
 		}
 
+		[RuntimeFlag("i|idp","Feed the system an .idp file. The program must be given an .asp file as well in order to paint something.")]
 		string IdpFile {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("T|time","The timeframe of the model to plot (interactive sessions will ignore this argument).")]
 		double Time {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("o|output", "The output file (to store for instance LaTeX files).")]
 		string OutputFile {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("H|idph",  "Feed the system a .idph file that contains the defined hooks.")]
 		string HookFile {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("t|theory",  "The theory to use in the .idp file, only for interactive mode.")]
 		string Theory {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("m|mode", "The output mode (cairo, latex, ...).")]
 		string OutputMode {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("s|structure","The structure to use in the .idp file, only for interactive mode.")]
 		string Structure {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("v|vocabulary","The vocabulary to use in the .idp file, only for interactive mode.")]
 		string Vocabulary {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("d|idpd","Feed the system a .idpd file. Limited interactive mode is enabled.")]
 		string IdpdFile {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("h|?|help", "Show this help manual and exit.")]
 		bool ShowHelp {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("list-devices", "List the output devices together with a description.")]
 		bool ListDevices {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("list-paints","List the paint predicates together with a description.")]
 		bool ListPaints {
 			get;
 			set;
 		}
 
+		[RuntimeFlag("list-hooks","List the hooks that can be handled together with a description.")]
 		bool ListHooks {
 			get;
 			set;
@@ -117,6 +130,7 @@ namespace IdpGie.Core {
 			get;
 		}
 
+		[RuntimeFlag("a|asp","Feed the system an .asp file in order to convert an idp model into drawing instructions.")]
 		string AspFile {
 			get;
 			set;
@@ -130,6 +144,7 @@ namespace IdpGie.Core {
 			get;
 		}
 
+		[RuntimeFlag("p|port","The port of the server (if applicable, by default 8080).")]
 		int Port {
 			get;
 			set;
