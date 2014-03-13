@@ -299,6 +299,7 @@
     <Compile Include="Abstract\IWriteable.cs" />
     <Compile Include="Abstract\WriteableExtensions.cs" />
     <Compile Include="Abstract\ITimeSensitiveSet.cs" />
+    <Compile Include="Abstract\RuntimeFlagAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
