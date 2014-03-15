@@ -134,8 +134,6 @@
     <Compile Include="Core\ProcessSession.cs" />
     <Compile Include="Core\ProgramManager.cs" />
     <Compile Include="Engines\CairoEngine.cs" />
-    <Compile Include="Engines\HttpEngine.cs" />
-    <Compile Include="Engines\HttpProcessor.cs" />
     <Compile Include="Engines\IRenderEngine.cs" />
     <Compile Include="Geometry\Box2d.cs" />
     <Compile Include="Geometry\CanvasSize.cs" />
@@ -300,6 +298,7 @@
     <Compile Include="Abstract\WriteableExtensions.cs" />
     <Compile Include="Abstract\ITimeSensitiveSet.cs" />
     <Compile Include="Abstract\RuntimeFlagAttribute.cs" />
+    <Compile Include="Engines\HttpEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

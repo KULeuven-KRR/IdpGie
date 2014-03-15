@@ -32,10 +32,22 @@ namespace IdpGie.Engines {
 		public CairoEngine (IDrawTheory theory) : this(theory,null) {
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Engines.CairoEngine"/> class with a specified initial <see cref="IDrawTheory"/> and <see cref="Context"/>.
+		/// </summary>
+		/// <param name='theory'>
+		/// The initial <see cref="IDrawTheory"/> instance.
+		/// </param>
+		/// <param name='context'>
+		/// The initial <see cref="Context"/> to render <see cref="IdpGie.Shapes.IShape"/> instances to.
+		/// </param>
 		public CairoEngine (IDrawTheory theory, Context context) : base(theory) {
 		}
 
 		#region IRenderEngine implementation
+		/// <summary>
+		/// A method that specifies that the engine should convert the set of <see cref="IdpGie.Shapes.IShape"/> instances to graphical output.
+		/// </summary>
 		public void Render () {
 			Context.Save ();
 			Context.SetFill (0.0d, 0.0d, 0.0d);
@@ -44,7 +56,6 @@ namespace IdpGie.Engines {
 			}
 			Context.Restore ();
 		}
-
 		#endregion
 
 	}
