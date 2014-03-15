@@ -18,20 +18,39 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+
 using IdpGie.Core;
 
 namespace IdpGie.Engines {
+
+	/// <summary>
+	/// A basic implementation of a <see cref="IEngine"/> that stores the <see cref="IDrawTheory"/> that feeds the <see cref="IEngine"/> with the set of <see cref="IdpGie.Shapes.IShape"/> instances.
+	/// </summary>
 	public abstract class Engine : IEngine {
 
+		/// <summary>
+		/// Gets or sets the involved theory that feeds the engine with <see cref="IdpGie.Shapes.IShape"/> instances.
+		/// </summary>
+		/// <value>
+		/// The involved theory that feeds the engine with <see cref="IdpGie.Shapes.IShape"/> instances.
+		/// </value>
 		public IDrawTheory Theory {
 			get;
 			set;
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Engines.Engine"/> class without an intial <see cref="IDrawTheory"/>.
+		/// </summary>
 		protected Engine () : this(null) {
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Engines.Engine"/> class with a given initial <see cref="IDrawTheory"/>.
+		/// </summary>
+		/// <param name='theory'>
+		/// The given initial <see cref="IDrawTheory"/> that feeds the <see cref="IEngine"/> with <see cref="IdpGie.Shapes.IShape"/> instances.
+		/// </param>
 		protected Engine (IDrawTheory theory) {
 			this.Theory = theory;
 		}

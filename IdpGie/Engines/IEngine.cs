@@ -21,6 +21,10 @@
 using IdpGie.Core;
 
 namespace IdpGie.Engines {
+
+	/// <summary>
+	/// An interface representing an engine: an algorithm that converts the <see cref="IdpGie.Shapes.IShape"/> instances into a readable format, for instance HTML or Cairo graphics.
+	/// </summary>
 	public interface IEngine : IDrawTheorySensitive {
 	}
 }
