@@ -9,13 +9,21 @@ using IdpGie.Core;
 using IdpGie.OutputDevices;
 
 namespace IdpGie.Engines {
-	public class HttpEngine {
+	public class HttpEngine : IWebEngine {
 		private readonly TcpClient client;
 		private readonly OutputHttpServerDevice device;
+
+		#region IEngine implementation
+		public IDrawTheory Theory {
+			get;
+			set;
+		}
+		#endregion
 
 		public HttpEngine (TcpClient client, OutputHttpServerDevice device) {
 			this.client = client;
 			this.device = device;
+			this.Theory = device.Theory;
 		}
 
 		public void Process () {
@@ -54,7 +62,7 @@ namespace IdpGie.Engines {
 
 		public void WriteHeader (Html32TextWriter htw) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Title);
-			htw.Write (this.device.Theory.Name);
+			htw.Write (this.Theory.Name);
 			htw.RenderEndTag ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Name, "generator");
 			htw.AddAttribute (HtmlTextWriterAttribute.Content, ProgramManager.ProgramNameVersion);
@@ -89,7 +97,7 @@ namespace IdpGie.Engines {
 						htw.AddAttribute (HtmlTextWriterAttribute.Href, "#");
 						htw.RenderBeginTag (HtmlTextWriterTag.A);
 						{
-							htw.Write (this.device.Theory.Name);
+							htw.Write (this.Theory.Name);
 						}
 						htw.RenderEndTag ();
 					}

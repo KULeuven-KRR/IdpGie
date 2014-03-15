@@ -1,9 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core/IProgramManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engines/HttpEngine.cs">
     <Files>
-      <File FileName="Core/ProgramManager.cs" Line="264" Column="61" />
-      <File FileName="Core/IProgramManager.cs" Line="295" Column="30" />
+      <File FileName="Engines/CairoEngine.cs" Line="58" Column="4" />
+      <File FileName="Engines/IEngine.cs" Line="26" Column="1" />
+      <File FileName="Engines/NamespaceDoc.cs" Line="25" Column="1" />
+      <File FileName="Engines/Engine.cs" Line="52" Column="1" />
+      <File FileName="Engines/IRenderEngine.cs" Line="30" Column="138" />
+      <File FileName="Engines/HttpEngine.cs" Line="21" Column="13" />
+      <File FileName="Engines/HttpEngine.cs" Line="56" Column="19" />
+      <File FileName="Engines/IWebEngine.cs" Line="24" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -299,6 +299,7 @@
     <Compile Include="Abstract\ITimeSensitiveSet.cs" />
     <Compile Include="Abstract\RuntimeFlagAttribute.cs" />
     <Compile Include="Engines\HttpEngine.cs" />
+    <Compile Include="Engines\IWebEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
