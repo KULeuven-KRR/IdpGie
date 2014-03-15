@@ -32,6 +32,10 @@ using IdpGie.Interaction;
 using IdpGie.OutputDevices;
 
 namespace IdpGie.Core {
+
+	/// <summary>
+	/// The program manager that parses the input arguments and interacts with the domain space in the specified way.
+	/// </summary>
 	public class ProgramManager : IProgramManager {
 		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null,
 			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
@@ -40,24 +44,48 @@ namespace IdpGie.Core {
 		private StripGeometry geometry = new StripGeometry ();
 		private CanvasSize canvasSize = new CanvasSize ();
 
+		/// <summary>
+		/// Gets the full name of the program.
+		/// </summary>
+		/// <value>
+		/// The full name of the program.
+		/// </value>
 		public static string FullProgramName {
 			get {
 				return Assembly.GetExecutingAssembly ().GetName ().FullName;
 			}
 		}
 
+		/// <summary>
+		/// Gets the name of the program.
+		/// </summary>
+		/// <value>
+		/// The name of the program.
+		/// </value>
 		public static string ProgramName {
 			get {
 				return Assembly.GetExecutingAssembly ().GetName ().Name;
 			}
 		}
 
+		/// <summary>
+		/// Gets the version of the program.
+		/// </summary>
+		/// <value>
+		/// The version of the program.
+		/// </value>
 		public static Version ProgramVersion {
 			get {
 				return Assembly.GetExecutingAssembly ().GetName ().Version;
 			}
 		}
 
+		/// <summary>
+		/// Gets the name and version of the program.
+		/// </summary>
+		/// <value>
+		/// The name and version of the program.
+		/// </value>
 		public static string ProgramNameVersion {
 			get {
 				return string.Format ("{0} version {1}", ProgramManager.ProgramName, ProgramManager.ProgramVersion);
@@ -65,7 +93,12 @@ namespace IdpGie.Core {
 		}
 
 		#region IProgramManager implementation
-
+		/// <summary>
+		///  Gets or sets the geometry of the output. 
+		/// </summary>
+		/// <value>
+		///  The geometry of the output. 
+		/// </value>
 		public StripGeometry Geometry {
 			get {
 				return this.geometry;
@@ -75,12 +108,24 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets a value indicating whether the program runs an interactive session. 
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if interactive; otherwise, <c>false</c>.
+		/// </value>
 		public bool Interactive {
 			get {
 				return this.IdpFile != null && this.AspFile != null;
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets a the size of the canvas.
+		/// </summary>
+		/// <value>
+		/// The <see cref="CanvasSize"/> with which the program runs, for instance the size of the window.
+		/// </value>
 		public CanvasSize CanvasSize {
 			get {
 				return this.canvasSize;
@@ -90,6 +135,12 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets an enumerable with the name of all input files. 
+		/// </summary>
+		/// <value>
+		///  An enumerable containing all input files. 
+		/// </value>
 		public IEnumerable<string> InputFiles {
 			get {
 				yield return this.idpFile;
@@ -99,6 +150,12 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the idp file that is used to generate models and modify in an interactive session. 
+		/// </summary>
+		/// <value>
+		///  The idp file that is used to generate models and modify in an interactive session. 
+		/// </value>
 		public string IdpFile {
 			get {
 				return this.idpFile;
@@ -108,11 +165,25 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the time in theory space that should be drawn or the initial time of which the corresponding state
+		/// should be painted. 
+		/// </summary>
+		/// <value>
+		///  The time in theory space that should be drawn or the initial time of which the corresponding state should be
+		/// painted. 
+		/// </value>
 		public double Time {
 			get;
 			set;
 		}
 
+		/// <summary>
+		///  Gets or sets the specified output file to store output to. For instance the LaTeX file. 
+		/// </summary>
+		/// <value>
+		///  The output file to store output to. For instance the LaTeX file. 
+		/// </value>
 		public string OutputFile {
 			get {
 				return this.outputFile;
@@ -122,6 +193,12 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the name of the hook file. 
+		/// </summary>
+		/// <value>
+		///  The name of the hook file. 
+		/// </value>
 		public string HookFile {
 			get {
 				return this.hookFile;
@@ -132,6 +209,12 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the name of the theory. 
+		/// </summary>
+		/// <value>
+		///  The name of the theory. 
+		/// </value>
 		public string Theory {
 			get {
 				return this.theory;
@@ -141,6 +224,12 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the output mode of the program: the device that should handle the theory and draw file. 
+		/// </summary>
+		/// <value>
+		///  The output mode of the program: the device that should handle the theory and draw file. 
+		/// </value>
 		public string OutputMode {
 			get {
 				return this.outputMode;
@@ -150,6 +239,12 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the name of the structure to process. 
+		/// </summary>
+		/// <value>
+		///  The name of the structure to process. 
+		/// </value>
 		public string Structure {
 			get {
 				return this.structure;
@@ -159,6 +254,12 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the name of the vocabulary to process. 
+		/// </summary>
+		/// <value>
+		///  The name of the vocabulary to process. 
+		/// </value>
 		public string Vocabulary {
 			get {
 				return this.vocabulary;
@@ -168,6 +269,13 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the name of the idpd file to process. In case such file is given, only limited interactive mode is
+		/// enabled. 
+		/// </summary>
+		/// <value>
+		///  The name of the idpd file. 
+		/// </value>
 		public string IdpdFile {
 			get {
 				return this.idpdFile;
@@ -177,32 +285,68 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets a value indicating whether the program should show help. 
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if show help; otherwise, <c>false</c>.
+		/// </value>
 		public bool ShowHelp {
 			get;
 			set;
 		}
 
+		/// <summary>
+		///  Gets or sets a value indicating whether the program must list all the devices. 
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if list devices; otherwise, <c>false</c>.
+		/// </value>
 		public bool ListDevices {
 			get;
 			set;
 		}
 
+		/// <summary>
+		///  Gets or sets a value indicating whether the program should list all paint predicates. 
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if list paints; otherwise, <c>false</c>.
+		/// </value>
 		public bool ListPaints {
 			get;
 			set;
 		}
 
+		/// <summary>
+		///  Gets or sets a value indicating whether the program should list all hook predicates. 
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if list hooks; otherwise, <c>false</c>.
+		/// </value>/
 		public bool ListHooks {
 			get;
 			set;
 		}
 
+		/// <summary>
+		///  Gets a value indicating whether the program should only output info about the program. 
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if help or lists; otherwise, <c>false</c>.
+		/// </value>
 		public bool HelpOrLists {
 			get {
 				return this.ShowHelp || this.ListDevices || this.ListHooks || this.ListPaints;
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the asp file to process. 
+		/// </summary>
+		/// <value>
+		///  The asp file to process. 
+		/// </value>
 		public string AspFile {
 			get {
 				return this.aspFile;
@@ -213,25 +357,45 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Gets the content of the asp file. 
+		/// </summary>
+		/// <value>
+		///  The content of the asp file. 
+		/// </value>
 		public string AspContent {
 			get {
 				return this.generateAspContent ();
 			}
 		}
 
+		/// <summary>
+		///  Gets the content of the hook file. 
+		/// </summary>
+		/// <value>
+		///  The content of the hook file. 
+		/// </value>
 		public string HookContent {
 			get {
 				return this.generateHookContent ();
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the port on which the webserver should run. 
+		/// </summary>
+		/// <value>
+		///  The port on which the webserver should run. 
+		/// </value>
 		public int Port {
 			get;
 			set;
 		}
 
 		#endregion
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Core.ProgramManager"/> class.
+		/// </summary>
 		public ProgramManager () {
 			this.Time = 0.0d;
 			this.Port = 8080;
@@ -284,7 +448,15 @@ namespace IdpGie.Core {
 		}
 
 		#region IProgramManager implementation
-
+		/// <summary>
+		/// Generates a <see cref="StripCanvasSize"/> with the given number of windows.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="StripCanvasSize"/> based on the given number of windows.
+		/// </returns>
+		/// <param name='size'>
+		/// The given number of windows.
+		/// </param>
 		public StripCanvasSize GenerateStripCanvasSize (int size) {
 			return new StripCanvasSize (this.CanvasSize, this.Geometry, size);
 		}
@@ -315,6 +487,9 @@ namespace IdpGie.Core {
 			return this.hookContent;
 		}
 
+		/// <summary>
+		///  Validates the state of this instance.  This means that no two conficting flags can be active at the same time.
+		/// </summary>
 		public bool Validate () {
 			if (this.HelpOrLists) {
 				return true;
@@ -336,6 +511,12 @@ namespace IdpGie.Core {
 			return true;
 		}
 
+		/// <summary>
+		///  Gets the stream of the idp file. 
+		/// </summary>
+		/// <returns>
+		///  The idp file stream. 
+		/// </returns>
 		public Stream GetIdpStream () {
 			if (this.Interactive) {
 				return File.Open (this.idpFile, FileMode.Open, FileAccess.ReadWrite);
@@ -344,6 +525,12 @@ namespace IdpGie.Core {
 			}
 		}
 
+		/// <summary>
+		///  Run the program with the specified args. 
+		/// </summary>
+		/// <param name='args'>
+		///  The specified arguments to run the program with. 
+		/// </param>
 		public void Run (string[] args) {
 			options.Parse (args);
 			this.Validate ();
@@ -388,7 +575,15 @@ namespace IdpGie.Core {
 		}
 
 		#endregion
-
+		/// <summary>
+		/// The entry point of the program, where the program control starts and ends.
+		/// </summary>
+		/// <param name='args'>
+		/// The command-line arguments.
+		/// </param>
+		/// <returns>
+		/// The exit code that is given to the operating system after the program ends.
+		/// </returns>
 		public static int Main (string[] args) {
 			Catalog.Init ("IdpGie", "./locale");
 			OutputDevice.AnalyzeAssembly (Assembly.GetExecutingAssembly ());
