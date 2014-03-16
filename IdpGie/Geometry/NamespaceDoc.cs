@@ -21,6 +21,10 @@
 using System;
 
 namespace IdpGie.Geometry {
+
+	/// <summary>
+	/// A namespace that contains a collection of classes to represent geometrical data, mainly used for graphical rendering purposes.
+	/// </summary>
 	public static class NamespaceDoc {
 	}
 }
