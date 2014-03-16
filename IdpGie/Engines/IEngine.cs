@@ -26,6 +26,12 @@ namespace IdpGie.Engines {
 	/// An interface representing an engine: an algorithm that converts the <see cref="IdpGie.Shapes.IShape"/> instances into a readable format, for instance HTML or Cairo graphics.
 	/// </summary>
 	public interface IEngine : IDrawTheorySensitive {
+
+		/// <summary>
+		/// Converts the set of <see cref="IdpGie.Shapes.IShape"/> by converting it into a readable format.
+		/// </summary>
+		void Process ();
+
 	}
 }
 

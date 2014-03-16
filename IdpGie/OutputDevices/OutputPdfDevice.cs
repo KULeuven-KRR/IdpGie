@@ -22,7 +22,7 @@ namespace IdpGie.OutputDevices {
 					this.Theory.Time = manager.Time;
 					CairoEngine engine = new CairoEngine (this.Theory);
 					engine.Context = ctx;
-					engine.Render ();
+					engine.Process ();
 					ctx.Restore ();
 				}
 			}

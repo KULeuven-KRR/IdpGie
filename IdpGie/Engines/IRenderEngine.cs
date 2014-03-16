@@ -25,11 +25,6 @@ namespace IdpGie.Engines {
 	/// An interface specifying that the engine provides graphical output.
 	/// </summary>
 	public interface IRenderEngine : IEngine {
-
-		/// <summary>
-		/// A method that specifies that the engine should convert the set of <see cref="IdpGie.Shapes.IShape"/> instances to graphical output.
-		/// </summary>
-		void Render ();
 	}
 }
 

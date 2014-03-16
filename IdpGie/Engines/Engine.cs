@@ -54,6 +54,15 @@ namespace IdpGie.Engines {
 		protected Engine (IDrawTheory theory) {
 			this.Theory = theory;
 		}
+
+		#region IEngine implementation
+		/// <summary>
+		/// Converts the set of <see cref="IdpGie.Shapes.IShape"/> by converting it into a readable format.
+		/// </summary>
+		public abstract void Process ();
+		#endregion
+
+
 	}
 }
 

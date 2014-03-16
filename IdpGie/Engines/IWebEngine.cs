@@ -18,10 +18,27 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+
+using System.Net.Sockets;
 
 namespace IdpGie.Engines {
+
+	/// <summary>
+	/// The interface of a <see cref="IEngine"/> that converts a set of a <see cref="IdpGie.Shapes.IShape"/> into a webpage.
+	/// </summary>
 	public interface IWebEngine : IEngine {
+
+		/// <summary>
+		/// Gets the <see cref="TcpClient"/> that contains data about the requested page and a stream to send a response.
+		/// </summary>
+		/// <value>
+		/// The <see cref="TcpClient"/> that contains data about the requested page and a stream to send a response.
+		/// </value>
+		TcpClient Client {
+			get;
+		}
+
 	}
+
 }
 

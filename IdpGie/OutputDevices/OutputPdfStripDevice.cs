@@ -31,7 +31,7 @@ namespace IdpGie.OutputDevices {
 						this.Theory.Time = chapter;
 						CairoEngine engine = new CairoEngine (this.Theory);
 						engine.Context = ctx;
-						engine.Render ();
+						engine.Process ();
 						ctx.Restore ();
 						index++;
 					}
