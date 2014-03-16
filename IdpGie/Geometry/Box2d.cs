@@ -22,70 +22,75 @@ using System;
 
 namespace IdpGie.Geometry {
 
-    public class Box2d : IGeometry2d {
+	/// <summary>
+	/// A two dimensional box that contains all the points with an X-coordinate between <see cref="Box2d.Xmin"/> and <see cref="Box2d.Xmax"/> and an Y-coordinate between <see cref="Box2d.Ymin"/> and <see cref="Box2d.Ymax"/>.
+	/// </summary>
+	public class Box2d : IBox2d {
 
-        private double xmin;
-        private double xmax;
-        private double ymin;
-        private double ymax;
+		private double xmin;
+		private double xmax;
+		private double ymin;
+		private double ymax;
 
-        public double Xmin {
-            get {
-                return this.xmin;
-            }
-            set {
-                this.xmin = value;
-            }
-        }
+		#region IBox2d implementation
+		public double Xmin {
+			get {
+				return this.xmin;
+			}
+			set {
+				this.xmin = value;
+			}
+		}
 
-        public double Xmax {
-            get {
-                return this.xmax;
-            }
-            set {
-                this.xmax = value;
-            }
-        }
+		public double Xmax {
+			get {
+				return this.xmax;
+			}
+			set {
+				this.xmax = value;
+			}
+		}
 
-        public double Ymin {
-            get {
-                return this.ymin;
-            }
-            set {
-                this.ymin = value;
-            }
-        }
+		public double Ymin {
+			get {
+				return this.ymin;
+			}
+			set {
+				this.ymin = value;
+			}
+		}
 
-        public double Ymax {
-            get {
-                return this.ymax;
-            }
-            set {
-                this.ymax = value;
-            }
-        }
-
-        #region IGeometry2d implementation
-        public Box2d SurroundingBox {
-            get {
-                return this;
-            }
-        }
-        #endregion
-
-        public Box2d (double xmin, double xmax, double ymin, double ymax) {
-            this.Xmin = xmin;
-            this.Xmax = xmax;
-            this.Ymin = ymin;
-            this.Ymax = ymax;
-        }
+		public double Ymax {
+			get {
+				return this.ymax;
+			}
+			set {
+				this.ymax = value;
+			}
+		}
+		#endregion
 
         #region IGeometry2d implementation
-        public bool Contains (Point pt) {
-            return xmin <= pt.X && pt.X <= xmax && ymin <= pt.Y && pt.Y <= ymax;
-        }
+		public Box2d SurroundingBox {
+			get {
+				return this;
+			}
+		}
         #endregion
 
-    }
+		public Box2d (double xmin, double xmax, double ymin, double ymax) {
+			this.Xmin = xmin;
+			this.Xmax = xmax;
+			this.Ymin = ymin;
+			this.Ymax = ymax;
+		}
+
+        #region IGeometry2d implementation
+		public bool Contains (Point pt) {
+			return xmin <= pt.X && pt.X <= xmax && ymin <= pt.Y && pt.Y <= ymax;
+		}
+        #endregion
+
+	}
 }
 

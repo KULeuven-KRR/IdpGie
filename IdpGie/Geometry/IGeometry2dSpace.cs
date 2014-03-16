@@ -22,15 +22,33 @@ using System;
 
 namespace IdpGie.Geometry {
 
-    public interface IGeometry2d {
+	/// <summary>
+	/// A geometrical object that is a somehow constrained set of 2d-points.
+	/// </summary>
+	public interface IGeometry2dSpace {
 
-        Box2d SurroundingBox {
-            get;
-        }
+		/// <summary>
+		/// Gets the surrounding box of the space.
+		/// </summary>
+		/// <value>
+		/// The surrounding box of the space.
+		/// </value>
+		Box2d SurroundingBox {
+			get;
+		}
 
-        bool Contains (Point pt);
+		/// <summary>
+		/// Checks if the given space contains the given point.
+		/// </summary>
+		/// <param name='pt'>
+		/// The point to check for.
+		/// </param>
+		/// <returns>
+		/// <c>true</c> if the given point is part of the <see cref="IGeometry2dSpace"/>, <c>false</c> otherwise.
+		/// </returns>
+		bool Contains (Point pt);
 
-    }
+	}
 
 }
 
