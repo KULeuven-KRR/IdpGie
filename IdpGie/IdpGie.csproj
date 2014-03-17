@@ -301,6 +301,7 @@
     <Compile Include="Engines\IWebEngine.cs" />
     <Compile Include="Geometry\IGeometry2dSpace.cs" />
     <Compile Include="Geometry\IBox2d.cs" />
+    <Compile Include="Geometry\IStripGeometry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

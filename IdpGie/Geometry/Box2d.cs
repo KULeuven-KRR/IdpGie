@@ -33,6 +33,12 @@ namespace IdpGie.Geometry {
 		private double ymax;
 
 		#region IBox2d implementation
+		/// <summary>
+		///  Gets or sets the minimum value for the X-coordinate a point should have to belong to the box. 
+		/// </summary>
+		/// <value>
+		///  The minimum value for the X-coordinate a point should have to belong to the box. 
+		/// </value>
 		public double Xmin {
 			get {
 				return this.xmin;
@@ -42,6 +48,12 @@ namespace IdpGie.Geometry {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the maximum value for the X-coordinate a point should have to belong to the box. 
+		/// </summary>
+		/// <value>
+		///  The maximum value for the X-coordinate a point should have to belong to the box. 
+		/// </value>
 		public double Xmax {
 			get {
 				return this.xmax;
@@ -51,6 +63,12 @@ namespace IdpGie.Geometry {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the minimum value for the Y-coordinate a point should have to belong to the box. 
+		/// </summary>
+		/// <value>
+		///  The minimum value for the Y-coordinate a point should have to belong to the box. 
+		/// </value>
 		public double Ymin {
 			get {
 				return this.ymin;
@@ -60,6 +78,12 @@ namespace IdpGie.Geometry {
 			}
 		}
 
+		/// <summary>
+		///  Gets or sets the maximum value for the Y-coordinate a point should have to belong to the box. 
+		/// </summary>
+		/// <value>
+		///  The maximum value for the Y-coordinate a point should have to belong to the box. 
+		/// </value>
 		public double Ymax {
 			get {
 				return this.ymax;
@@ -71,6 +95,12 @@ namespace IdpGie.Geometry {
 		#endregion
 
         #region IGeometry2d implementation
+		/// <summary>
+		///  Gets the surrounding box of the space. 
+		/// </summary>
+		/// <value>
+		///  The surrounding box of the space. 
+		/// </value>
 		public Box2d SurroundingBox {
 			get {
 				return this;
@@ -78,6 +108,21 @@ namespace IdpGie.Geometry {
 		}
         #endregion
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Geometry.Box2d"/> class with a given minimum x, maximum x, minimum y and maximum y.
+		/// </summary>
+		/// <param name='xmin'>
+		/// The minimum value for the X-coordinate a point should have to belong to the box.
+		/// </param>
+		/// <param name='xmax'>
+		/// The maximum value for the X-coordinate a point should have to belong to the box.
+		/// </param>
+		/// <param name='ymin'>
+		/// The minimum value for the Y-coordinate a point should have to belong to the box.
+		/// </param>
+		/// <param name='ymax'>
+		/// The maximum value for the Y-coordinate a point should have to belong to the box.
+		/// </param>
 		public Box2d (double xmin, double xmax, double ymin, double ymax) {
 			this.Xmin = xmin;
 			this.Xmax = xmax;
@@ -86,6 +131,12 @@ namespace IdpGie.Geometry {
 		}
 
         #region IGeometry2d implementation
+		/// <summary>
+		///  Checks if the given space contains the given point. 
+		/// </summary>
+		/// <param name='pt'>
+		///  The point to check for. 
+		/// </param>
 		public bool Contains (Point pt) {
 			return xmin <= pt.X && pt.X <= xmax && ymin <= pt.Y && pt.Y <= ymax;
 		}
