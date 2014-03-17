@@ -1,10 +1,10 @@
 //
-//  IGeometry2d.cs
+//  IWebEngine.cs
 //
 //  Author:
-//       Willem Van Onsem <vanonsem.willem@gmail.com>
+//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
 //
-//  Copyright (c) 2013 Willem Van Onsem
+//  Copyright (c) 2014 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,19 +18,27 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
-namespace IdpGie.Geometry {
+using System.Net.Sockets;
 
-    public interface IGeometry2d {
+namespace IdpGie.Engines {
 
-        Box2d SurroundingBox {
-            get;
-        }
+	/// <summary>
+	/// The interface of a <see cref="IEngine"/> that converts a set of a <see cref="IdpGie.Shapes.IShape"/> into a webpage.
+	/// </summary>
+	public interface IWebEngine : IEngine {
 
-        bool Contains (Point pt);
+		/// <summary>
+		/// Gets the <see cref="TcpClient"/> that contains data about the requested page and a stream to send a response.
+		/// </summary>
+		/// <value>
+		/// The <see cref="TcpClient"/> that contains data about the requested page and a stream to send a response.
+		/// </value>
+		TcpClient Client {
+			get;
+		}
 
-    }
+	}
 
 }
 

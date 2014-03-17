@@ -21,7 +21,7 @@ namespace IdpGie.OutputDevices {
 			using (PdfSurface surface = new PdfSurface (manager.OutputFile, scs.TotalWidth, scs.TotalHeight)) {
 				using (Context ctx = new Context (surface)) {
 					int index = 0x00;
-					IdpGie.Geometry.Point p;
+					IdpGie.Geometry.Point3 p;
 					foreach (double chapter in chapters) {
 						p = scs.GetCanvasOffset (index);
 						ctx.Save ();
@@ -31,7 +31,7 @@ namespace IdpGie.OutputDevices {
 						this.Theory.Time = chapter;
 						CairoEngine engine = new CairoEngine (this.Theory);
 						engine.Context = ctx;
-						engine.Render ();
+						engine.Process ();
 						ctx.Restore ();
 						index++;
 					}

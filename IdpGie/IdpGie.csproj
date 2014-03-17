@@ -134,14 +134,10 @@
     <Compile Include="Core\ProcessSession.cs" />
     <Compile Include="Core\ProgramManager.cs" />
     <Compile Include="Engines\CairoEngine.cs" />
-    <Compile Include="Engines\HttpEngine.cs" />
-    <Compile Include="Engines\HttpProcessor.cs" />
     <Compile Include="Engines\IRenderEngine.cs" />
     <Compile Include="Geometry\Box2d.cs" />
     <Compile Include="Geometry\CanvasSize.cs" />
     <Compile Include="Geometry\ICanvasSize.cs" />
-    <Compile Include="Geometry\IGeometry2d.cs" />
-    <Compile Include="Geometry\Point.cs" />
     <Compile Include="Geometry\StripCanvasSize.cs" />
     <Compile Include="Geometry\StripGeometry.cs" />
     <Compile Include="Interaction\AlterableContentChangeableStreamBase.cs" />
@@ -299,6 +295,14 @@
     <Compile Include="Abstract\IWriteable.cs" />
     <Compile Include="Abstract\WriteableExtensions.cs" />
     <Compile Include="Abstract\ITimeSensitiveSet.cs" />
+    <Compile Include="Abstract\RuntimeFlagAttribute.cs" />
+    <Compile Include="Engines\HttpEngine.cs" />
+    <Compile Include="Engines\IWebEngine.cs" />
+    <Compile Include="Geometry\IGeometry2dSpace.cs" />
+    <Compile Include="Geometry\IBox2d.cs" />
+    <Compile Include="Geometry\IStripGeometry.cs" />
+    <Compile Include="Geometry\Point3.cs" />
+    <Compile Include="Geometry\IPoint3.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

@@ -18,9 +18,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-
 namespace IdpGie.Geometry {
+
+	/// <summary>
+	/// A namespace that contains a collection of classes to represent geometrical data, mainly used for graphical rendering purposes.
+	/// </summary>
 	public static class NamespaceDoc {
 	}
 }

@@ -32,7 +32,7 @@ namespace IdpGie.Shapes {
 	public abstract class Shape<TShapeState> : IShape where TShapeState : IShapeState, new() {
 		private readonly IFunctionInstance name;
 		private readonly TShapeState state = new TShapeState ();
-		private IdpGie.Geometry.Point textOffset = new IdpGie.Geometry.Point (0.0d, 0.0d);
+		private IdpGie.Geometry.Point3 textOffset = new IdpGie.Geometry.Point3 (0.0d, 0.0d);
 
 		#region IIdpdObject implementation
 
@@ -53,7 +53,7 @@ namespace IdpGie.Shapes {
 
 		#endregion
 
-		public IdpGie.Geometry.Point TextOffset {
+		public IdpGie.Geometry.Point3 TextOffset {
 			get {
 				return this.textOffset;
 			}

@@ -76,7 +76,7 @@ namespace IdpGie.UserInterface {
 			this.paintBackground (ctx, w, h);
 			ctx.Translate (Offset2, Offset2);
 			this.engine.Context = ctx;
-			this.engine.Render ();
+			this.engine.Process ();
 		}
 
 		private void paintBackground (Context ctx, int w, int h) {

@@ -4,7 +4,7 @@ using IdpGie.Abstract;
 using IdpGie.Utils;
 
 namespace IdpGie.Geometry {
-	public class StripGeometry : CloneableBase<StripGeometry> {
+	public class StripGeometry : CloneableBase<IStripGeometry>, IStripGeometry {
 		public const string identifier_width = @"w";
 		public const string identifier_heigh = @"h";
 		public const int DefaultWidth = 0x05, DefaultHeight = 0x05;
@@ -59,15 +59,15 @@ namespace IdpGie.Geometry {
 			}
 		}
 
-		public StripGeometry CollapseClone (int size) {
-			StripGeometry g = this.Clone ();
+		public IStripGeometry CollapseClone (int size) {
+			IStripGeometry g = this.Clone ();
 			g.Collapse (size);
 			return g;
 		}
 
 		#region CloneableBase implementation
 
-		public override StripGeometry Clone () {
+		public override IStripGeometry Clone () {
 			return new StripGeometry (this.width, this.height);
 		}
 

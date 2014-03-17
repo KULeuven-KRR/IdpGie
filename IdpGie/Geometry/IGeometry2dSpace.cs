@@ -1,10 +1,10 @@
 //
-//  IEngine.cs
+//  IGeometry2d.cs
 //
 //  Author:
-//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
+//       Willem Van Onsem <vanonsem.willem@gmail.com>
 //
-//  Copyright (c) 2014 Willem Van Onsem
+//  Copyright (c) 2013 Willem Van Onsem
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,20 +18,36 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using IdpGie.Core;
 
-namespace IdpGie.Engines {
+namespace IdpGie.Geometry {
 
 	/// <summary>
-	/// An interface representing an engine: an algorithm that converts the <see cref="IdpGie.Shapes.IShape"/> instances into a readable format, for instance HTML or Cairo graphics.
+	/// A geometrical object that is a somehow constrained set of 2d-points.
 	/// </summary>
-	public interface IEngine : IDrawTheorySensitive {
+	public interface IGeometry2dSpace {
 
 		/// <summary>
-		/// Converts the set of <see cref="IdpGie.Shapes.IShape"/> by converting it into a readable format.
+		/// Gets the surrounding box of the space.
 		/// </summary>
-		void Process ();
+		/// <value>
+		/// The surrounding box of the space.
+		/// </value>
+		Box2d SurroundingBox {
+			get;
+		}
+
+		/// <summary>
+		/// Checks if the given space contains the given point.
+		/// </summary>
+		/// <param name='pt'>
+		/// The point to check for.
+		/// </param>
+		/// <returns>
+		/// <c>true</c> if the given point is part of the <see cref="IGeometry2dSpace"/>, <c>false</c> otherwise.
+		/// </returns>
+		bool Contains (Point3 pt);
 
 	}
+
 }
 

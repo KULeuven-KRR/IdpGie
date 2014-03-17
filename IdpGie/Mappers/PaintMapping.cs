@@ -31,7 +31,7 @@ namespace IdpGie.Mappers {
 	public static class PaintMapping {
 		[PaintMethod ("polygon", true, false, 0.0d, TermType.PointList)]
 		public static void Polygon (DrawTheory dt, IFunctionInstance name, IEnhancedTermCollection points) {
-			dt.AddShape (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<IdpGie.Geometry.Point> (TermType.Point)));
+			dt.AddShape (new ShapeIrregularPolygonObject (name, points.ValueEnumerable<IdpGie.Geometry.Point3> (TermType.Point)));
 		}
 
 		[PaintMethod ("polygon", true, false, 0.0d, TermType.Int, TermType.Float)]

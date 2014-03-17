@@ -16,13 +16,13 @@ namespace IdpGie.OutputDevices {
 			StripCanvasSize scs = manager.GenerateStripCanvasSize (0x01);
 			using (PdfSurface surface = new PdfSurface (manager.OutputFile, scs.TotalWidth, scs.TotalHeight)) {
 				using (Context ctx = new Context (surface)) {
-					IdpGie.Geometry.Point p = scs.GetCanvasOffset (0x00);
+					IdpGie.Geometry.Point3 p = scs.GetCanvasOffset (0x00);
 					ctx.Save ();
 					ctx.Translate (p.X, p.Y);
 					this.Theory.Time = manager.Time;
 					CairoEngine engine = new CairoEngine (this.Theory);
 					engine.Context = ctx;
-					engine.Render ();
+					engine.Process ();
 					ctx.Restore ();
 				}
 			}
