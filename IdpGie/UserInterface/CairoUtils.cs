@@ -39,15 +39,15 @@ namespace IdpGie.UserInterface {
 			}
 		}
 
-		public static void MoveTo (this Context ctx, IdpGie.Geometry.Point p) {
+		public static void MoveTo (this Context ctx, IdpGie.Geometry.Point3 p) {
 			ctx.MoveTo (p.X, p.Y);
 		}
 
-		public static void LineTo (this Context ctx, IdpGie.Geometry.Point p) {
+		public static void LineTo (this Context ctx, IdpGie.Geometry.Point3 p) {
 			ctx.LineTo (p.X, p.Y);
 		}
 
-		public static void CurveTo (this Context ctx, IdpGie.Geometry.Point p1, IdpGie.Geometry.Point p2, IdpGie.Geometry.Point p3) {
+		public static void CurveTo (this Context ctx, IdpGie.Geometry.Point3 p1, IdpGie.Geometry.Point3 p2, IdpGie.Geometry.Point3 p3) {
 			ctx.CurveTo (p1.X, p1.Y, p2.X, p2.Y, p3.X, p3.Y);
 		}
 

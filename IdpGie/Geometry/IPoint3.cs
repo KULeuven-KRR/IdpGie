@@ -1,5 +1,5 @@
 //
-//  IStripGeometry.cs
+//  IPoint.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,57 +18,74 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using IdpGie.Abstract;
+
+using Cairo;
+using OpenTK;
 
 namespace IdpGie.Geometry {
 
 	/// <summary>
-	/// An interface that specifies how the different frames should be aligned.
+	/// An interface that specifies a point in a given - at most - 3-dimensional space.
 	/// </summary>
-	public interface IStripGeometry : ICloneable<IStripGeometry> {
+	public interface IPoint3 {
 
 		/// <summary>
-		/// Gets or sets the number of frames in the X-direction.
+		/// Gets or sets the x-coordinate of this point.
 		/// </summary>
 		/// <value>
-		/// The number of frames in the X-direction.
+		/// The x-coordinate of this point.
 		/// </value>
-		int Width {
+		double X {
 			get;
 			set;
 		}
 
 		/// <summary>
-		/// Gets or sets the number of frames in the Y-direction.
+		/// Gets or sets the y-coordinate of this point.
 		/// </summary>
 		/// <value>
-		/// The number of frames in the Y-direction.
+		/// The y-coordinate of this point.
 		/// </value>
-		int Height {
+		double Y {
 			get;
 			set;
 		}
 
 		/// <summary>
-		/// Collapse this <see cref="IStripGeometry"/> with the given number of required frames.
+		/// Gets or sets the z-coordinate of this point.
 		/// </summary>
-		/// <param name='size'>
-		/// The required number of frames.
-		/// </param>
-		void Collapse (int size);
+		/// <value>
+		/// The z-coordinate of this point.
+		/// </value>
+		double Z {
+			get;
+			set;
+		}
 
 		/// <summary>
-		/// Collapses a clone of this <see cref="IStripGeometry"/>.
+		/// Transform this point with the given <see cref="Matrix4d"/>.
 		/// </summary>
-		/// <returns>
-		/// A clone of this <see cref="IStripGeometry"/> that is collapsed with the given <paramref name="size"/>.
-		/// </returns>
-		/// <param name='size'>
-		/// The required number of frames.
+		/// <param name='m'>
+		/// The given transformation matrix.
 		/// </param>
-		IStripGeometry CollapseClone (int size);
+		void Transform (Matrix4d m);
+
+		/// <summary>
+		/// Transform this point with the given <see cref="Matrix4"/>.
+		/// </summary>
+		/// <param name='m'>
+		/// The given transformation matrix.
+		/// </param>
+		void Transform (Matrix4 m);
+
+		/// <summary>
+		/// Transform this point with the given <see cref="Matrix"/>.
+		/// </summary>
+		/// <param name='m'>
+		/// The given transformation matrix.
+		/// </param>
+		void Transform (Matrix m);
 
 	}
-
 }
 

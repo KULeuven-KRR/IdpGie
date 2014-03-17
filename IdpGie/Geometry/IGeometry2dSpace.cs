@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Geometry {
 
@@ -46,7 +45,7 @@ namespace IdpGie.Geometry {
 		/// <returns>
 		/// <c>true</c> if the given point is part of the <see cref="IGeometry2dSpace"/>, <c>false</c> otherwise.
 		/// </returns>
-		bool Contains (Point pt);
+		bool Contains (Point3 pt);
 
 	}
 

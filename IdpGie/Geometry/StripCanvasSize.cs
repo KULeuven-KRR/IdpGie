@@ -96,10 +96,10 @@ namespace IdpGie.Geometry {
 		public StripCanvasSize (ICanvasSize canvasSize, IStripGeometry geometry, int size) : this(canvasSize,geometry.CollapseClone (size)) {
 		}
 
-		public Point GetCanvasOffset (int index) {
+		public Point3 GetCanvasOffset (int index) {
 			int y = index / this.StripGeometry.Width;
 			int x = index - y;
-			return new Point (Margin + StrideWidth * x, Margin + StrideHeight * y);
+			return new Point3 (Margin + StrideWidth * x, Margin + StrideHeight * y);
 		}
 
 		#region ICanvasSize implementation

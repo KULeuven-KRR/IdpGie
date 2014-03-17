@@ -109,7 +109,7 @@ namespace IdpGie.Geometry {
 		/// <param name='index'>
 		/// The index of the specified frame.
 		/// </param>
-		Point GetCanvasOffset (int index);
+		Point3 GetCanvasOffset (int index);
 
 		/// <summary>
 		/// Widen the <see cref="ICanvasSize"/> such that the geometry of frames specified by <paramref name="geometry"/> is contained.

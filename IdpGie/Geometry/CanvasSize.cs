@@ -211,8 +211,8 @@ namespace IdpGie.Geometry {
 		/// <param name='index'>
 		///  The index of the specified frame. 
 		/// </param>
-		public Point GetCanvasOffset (int index) {
-			return new Point (this.Margin, this.Margin);
+		public Point3 GetCanvasOffset (int index) {
+			return new Point3 (this.Margin, this.Margin);
 		}
 
 		/// <summary>

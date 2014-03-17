@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Geometry {
 
@@ -137,7 +136,7 @@ namespace IdpGie.Geometry {
 		/// <param name='pt'>
 		///  The point to check for. 
 		/// </param>
-		public bool Contains (Point pt) {
+		public bool Contains (Point3 pt) {
 			return xmin <= pt.X && pt.X <= xmax && ymin <= pt.Y && pt.Y <= ymax;
 		}
         #endregion
