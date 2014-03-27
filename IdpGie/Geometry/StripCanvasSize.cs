@@ -98,7 +98,7 @@ namespace IdpGie.Geometry {
 
 		public Point3 GetCanvasOffset (int index) {
 			int y = index / this.StripGeometry.Width;
-			int x = index - y;
+			int x = index - this.StripGeometry.Width * y;
 			return new Point3 (Margin + StrideWidth * x, Margin + StrideHeight * y);
 		}
 

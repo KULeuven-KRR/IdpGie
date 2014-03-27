@@ -15,4 +15,10 @@ idpd_hide(twee,3).
 idpd_color(een,255,255,0).
 idpd_color(twee,255,0,255).
 
+idpd_chapter(0).
+idpd_chapter(1).
+idpd_chapter(2).
+idpd_chapter(3).
+idpd_chapter(4).
+
 idph_keydown("a") -: idpd_show(twee,1).
