@@ -160,6 +160,18 @@ namespace IdpGie.Core {
 		}
 
 		/// <summary>
+		/// Gets or sets the root of the folder of the web server.
+		/// </summary>
+		/// <value>
+		/// The root of the folder of the web server.
+		/// </value>
+		[RuntimeFlag("serverfolder","The root of the folder of the web server.")]
+		string ServerFolder {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the name of the vocabulary to process.
 		/// </summary>
 		/// <value>

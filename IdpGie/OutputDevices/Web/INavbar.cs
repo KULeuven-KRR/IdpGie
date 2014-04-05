@@ -1,5 +1,5 @@
 //
-//  IName.cs
+//  INavbarContent.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,27 +19,26 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Xml.Serialization;
+using IdpGie.Abstract;
+using System.Collections.Generic;
 
-namespace IdpGie.Abstract {
+namespace IdpGie.OutputDevices.Web {
 
 	/// <summary>
-	/// An interface that specifies that the object has a name.
+	/// An interface that represents the navbar: a bar on top of every webpage.
 	/// </summary>
-	public interface IName {
+	public interface INavbar : IName {
 
 		/// <summary>
-		/// Gets the name of this instance.
+		/// Gets the list of pages that should be listed in the navbar.
 		/// </summary>
 		/// <value>
-		/// The name of this instance.
+		/// The list of pages that should be listed in the navbar.
 		/// </value>
-		[XmlAttribute("name")]
-		string Name {
+		IList<IWebPage> Pages {
 			get;
 		}
 
 	}
-
 }
 

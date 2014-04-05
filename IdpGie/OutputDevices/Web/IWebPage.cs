@@ -1,5 +1,5 @@
 //
-//  IName.cs
+//  INavbarPage.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,26 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using IdpGie.Abstract;
 
-using System.Xml.Serialization;
-
-namespace IdpGie.Abstract {
+namespace IdpGie.OutputDevices.Web {
 
 	/// <summary>
-	/// An interface that specifies that the object has a name.
+	/// An interface that specified a web page. A web page has a name, reference and constructive content.
 	/// </summary>
-	public interface IName {
-
-		/// <summary>
-		/// Gets the name of this instance.
-		/// </summary>
-		/// <value>
-		/// The name of this instance.
-		/// </value>
-		[XmlAttribute("name")]
-		string Name {
-			get;
-		}
+	public interface IWebPage : INameHref {
 
 	}
 

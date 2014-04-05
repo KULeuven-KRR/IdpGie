@@ -303,6 +303,13 @@
     <Compile Include="Geometry\IStripGeometry.cs" />
     <Compile Include="Geometry\Point3.cs" />
     <Compile Include="Geometry\IPoint3.cs" />
+    <Compile Include="Abstract\IHref.cs" />
+    <Compile Include="Abstract\INameHref.cs" />
+    <Compile Include="Abstract\NameHrefBase.cs" />
+    <Compile Include="OutputDevices\Web\INavbar.cs" />
+    <Compile Include="OutputDevices\Web\Navbar.cs" />
+    <Compile Include="OutputDevices\Web\WebPage.cs" />
+    <Compile Include="OutputDevices\Web\IWebPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -332,5 +339,6 @@
     <Folder Include="UserInterface\" />
     <Folder Include="Utils\" />
     <Folder Include="Parser\" />
+    <Folder Include="OutputDevices\Web\" />
   </ItemGroup>
 </Project>

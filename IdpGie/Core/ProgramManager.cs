@@ -38,7 +38,7 @@ namespace IdpGie.Core {
 	/// </summary>
 	public class ProgramManager : IProgramManager {
 		private string idpFile = null, idpdFile = null, aspFile = null, hookFile = null, outputFile = null,
-			theory = "T", structure = "S", vocabulary = "V", aspContent = null,
+			theory = "T", structure = "S", vocabulary = "V", serverFolder = ".", aspContent = null,
 			hookContent = null, outputMode = "cairowindow";
 		private readonly OptionSet options;
 		private StripGeometry geometry = new StripGeometry ();
@@ -392,6 +392,20 @@ namespace IdpGie.Core {
 			set;
 		}
 
+		/// <summary>
+		/// Gets or sets the root of the folder of the web server.
+		/// </summary>
+		/// <value>
+		/// The root of the folder of the web server.
+		/// </value>
+		public string ServerFolder {
+			get {
+				return this.serverFolder;
+			}
+			set {
+				this.serverFolder = value;
+			}
+		}
 		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Core.ProgramManager"/> class.
@@ -443,7 +457,7 @@ namespace IdpGie.Core {
 					"p|port=",
 					"The port of the server (if applicable, by default 8080).",
 					x => this.Port = int.Parse (x)
-				}
+				}, {"serverfolder","The root of the folder of the web server.", x => this.ServerFolder = x}
 			};
 		}
 

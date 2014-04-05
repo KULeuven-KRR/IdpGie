@@ -1,22 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="OutputDevices/OutputPdfStripDevice.cs">
-    <Files>
-      <File FileName="Geometry/Point3.cs" Line="208" Column="33" />
-      <File FileName="Geometry/IPoint3.cs" Line="65" Column="3" />
-      <File FileName="Mappers/MapperAttribute.cs" Line="27" Column="3" />
-      <File FileName="Mappers/HookMapping.cs" Line="18" Column="4" />
-      <File FileName="OutputDevices/OutputDevice.cs" Line="32" Column="3" />
-      <File FileName="OutputDevices/OutputPdfStripDevice.cs" Line="22" Column="37" />
-      <File FileName="Shapes/Shape.cs" Line="124" Column="72" />
-      <File FileName="Shapes/ShapeState.cs" Line="98" Column="37" />
-      <File FileName="Mappers/PaintMapping.cs" Line="44" Column="12" />
-      <File FileName="Core/DrawTheory.cs" Line="339" Column="14" />
-      <File FileName="Core/ProgramManager.cs" Line="65" Column="15" />
-      <File FileName="Geometry/StripCanvasSize.cs" Line="101" Column="47" />
-      <File FileName="Geometry/StripGeometry.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -24,4 +8,32 @@
   <MonoDevelop.Ide.BookmarkService.Bookmarks>
     <BookmarkCollection />
   </MonoDevelop.Ide.BookmarkService.Bookmarks>
+  <MonoDevelop.Ide.ItemProperties.IdpGie>
+    <MonoDevelop.Ide.CustomExecutionModes>
+      <Data Name="pdfstrip" Id="4c9367ce-e620-4402-9ad6-f8cd54a2df24" ModeId="Default">
+        <CommandData>
+          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
+            <Value Arguments="-d ../../testinput/test1.idpd -m pdfstrip -g 2x20 -o thefile.pdf" ctype="CustomArgsExecutionModeData">
+              <EnvironmentVariables />
+            </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
+        </CommandData>
+      </Data>
+      <Data Name="customserver" Id="ca7f9220-fd3d-4f26-938d-166cb31f223c" ModeId="Default">
+        <CommandData>
+          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
+            <Value Arguments="--serverfolder=serverfolder --m httpserver -d ../../testinput/test1.idpd" ctype="CustomArgsExecutionModeData">
+              <EnvironmentVariables />
+            </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
+        </CommandData>
+      </Data>
+    </MonoDevelop.Ide.CustomExecutionModes>
+  </MonoDevelop.Ide.ItemProperties.IdpGie>
 </Properties>

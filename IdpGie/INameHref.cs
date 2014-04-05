@@ -1,5 +1,5 @@
 //
-//  IName.cs
+//  INameHref.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,28 +18,10 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
-using System.Xml.Serialization;
-
-namespace IdpGie.Abstract {
-
-	/// <summary>
-	/// An interface that specifies that the object has a name.
-	/// </summary>
-	public interface IName {
-
-		/// <summary>
-		/// Gets the name of this instance.
-		/// </summary>
-		/// <value>
-		/// The name of this instance.
-		/// </value>
-		[XmlAttribute("name")]
-		string Name {
-			get;
-		}
-
+namespace IdpGie {
+	public interface INameHref {
 	}
-
 }
 

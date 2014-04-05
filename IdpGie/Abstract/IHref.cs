@@ -1,5 +1,5 @@
 //
-//  IName.cs
+//  IHref.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -24,22 +24,21 @@ using System.Xml.Serialization;
 namespace IdpGie.Abstract {
 
 	/// <summary>
-	/// An interface that specifies that the object has a name.
+	/// An interface that stores a reference to a resource.
 	/// </summary>
-	public interface IName {
+	public interface IHref {
 
 		/// <summary>
-		/// Gets the name of this instance.
+		/// Gets the reference to the resource to store.
 		/// </summary>
 		/// <value>
-		/// The name of this instance.
+		/// The reference to the resource to store.
 		/// </value>
-		[XmlAttribute("name")]
-		string Name {
+		[XmlAttribute("href")]
+		string Href {
 			get;
 		}
 
 	}
-
 }
 
