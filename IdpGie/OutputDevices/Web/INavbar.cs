@@ -39,6 +39,37 @@ namespace IdpGie.OutputDevices.Web {
 			get;
 		}
 
+		/// <summary>
+		/// Gets the default web page.
+		/// </summary>
+		/// <value>
+		/// The default web page.
+		/// </value>
+		/// <remarks>
+		/// <para>
+		/// If no default web page is provided, <c>null</c> is returned.
+		/// </para>
+		/// </remarks>
+		IWebPage DefaultPage {
+			get;
+		}
+
+		/// <summary>
+		/// Gets the web page associated with the given reference.
+		/// </summary>
+		/// <returns>
+		/// The web page associated with the given reference.
+		/// </returns>
+		/// <param name='href'>
+		/// The given reference.
+		/// </param>
+		/// <remarks>
+		/// <para>
+		/// If null is provided, or the root, the default page element is returned.
+		/// </para>
+		/// </remarks>
+		IWebPage GetPage (string href);
+
 	}
 }
 

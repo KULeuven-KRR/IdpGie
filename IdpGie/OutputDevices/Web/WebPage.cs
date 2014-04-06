@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace IdpGie.OutputDevices.Web {
@@ -28,6 +29,20 @@ namespace IdpGie.OutputDevices.Web {
 	/// </summary>
 	[XmlType("WebPage")]
 	public class WebPage : NameHrefBase, IWebPage {
+
+		private string content = null;
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="IdpGie.OutputDevices.Web.WebPage"/> is the default page.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if this page is the default web page; otherwise, <c>false</c>.
+		/// </value>
+		[XmlAttribute("default")]
+		public bool Default {
+			get;
+			set;
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.WebPage"/> class.
@@ -53,8 +68,39 @@ namespace IdpGie.OutputDevices.Web {
 		/// <param name='href'>
 		/// The reference to the resource file of the navbar page.
 		/// </param>
-		public WebPage (string name, string href) : base(name,href) {
+		/// <param name='defaultPage'>
+		/// A value indicating that the page is the default one to show.
+		/// </param>
+		public WebPage (string name, string href, bool defaultPage = false) : base(name,href) {
 		}
+
+		#region IWebPage implementation
+		/// <summary>
+		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
+		/// </summary>
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
+		/// <returns>
+		/// A <see cref="TextReader"/> that reads the content of the web page.
+		/// </returns>
+		public TextReader GetReader (string serverFolder) {
+			if (this.content == null) {
+				string filename = Path.Combine (serverFolder, this.Href);
+				if (File.Exists (filename)) {
+					using (FileStream fs = File.Open(filename,FileMode.Open,FileAccess.Read,FileShare.Read)) {
+						using (TextReader tr = new StreamReader(fs)) {
+							this.content = tr.ReadToEnd ();
+						}
+					}
+				} else {
+					throw new IOException (string.Format ("Server folder does not contain a file for \"{0}\".", this.Href));
+				}
+			}
+			return new StringReader (this.content);
+		}
+		#endregion
+
 
 	}
 }

@@ -35,6 +35,7 @@ namespace IdpGie.OutputDevices.Web {
 
 		private List<WebPage> pages = null;
 
+		#region INavbar implementation
 		/// <summary>
 		/// Gets the list of pages that should be listed in the navbar.
 		/// </summary>
@@ -47,6 +48,19 @@ namespace IdpGie.OutputDevices.Web {
 				return this.pages.Cast<IWebPage> ().ToList ();
 			}
 		}
+
+		/// <summary>
+		///  Gets the default web page. 
+		/// </summary>
+		/// <value>
+		///  The default web page. 
+		/// </value>
+		public IWebPage DefaultPage {
+			get {
+				return this.pages.FirstOrDefault (x => x.Default);
+			}
+		}
+		#endregion
 
 		/// <summary>
 		/// Gets or sets the pages for the XML serialization.
@@ -172,6 +186,26 @@ namespace IdpGie.OutputDevices.Web {
 				ToStream (stream);
 			}
 		}
+
+		#region INavbar implementation
+		/// <summary>
+		///  Gets the web page associated with the given reference. 
+		/// </summary>
+		/// <returns>
+		///  The web page associated with the given reference. 
+		/// </returns>
+		/// <param name='href'>
+		///  The given reference. 
+		/// </param>
+		public IWebPage GetPage (string href) {
+			if (href != null) {
+				return this.pages.FirstOrDefault (x => x.Href == href);
+			} else {
+				return this.DefaultPage;
+			}
+		}
+		#endregion
+
 
 	}
 

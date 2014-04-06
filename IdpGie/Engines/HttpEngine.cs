@@ -120,7 +120,7 @@ namespace IdpGie.Engines {
 
 		private void WriteHeader (Html32TextWriter htw, string http_filename) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Title);
-			htw.Write (this.Theory.Name);
+			htw.Write (this.device.Navigationbar.Name);
 			htw.RenderEndTag ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Name, "generator");
 			htw.AddAttribute (HtmlTextWriterAttribute.Content, ProgramManager.ProgramNameVersion);
@@ -194,6 +194,15 @@ namespace IdpGie.Engines {
 			htw.RenderBeginTag (HtmlTextWriterTag.Div);
 			htw.RenderBeginTag (HtmlTextWriterTag.Hr);
 			htw.RenderEndTag ();
+			
+			IWebPage page = this.device.Navigationbar.DefaultPage;
+			TextReader tr = page.GetReader (this.device.Manager.ServerFolder);
+			string line = tr.ReadLine ();
+			while (line != null) {
+				htw.WriteLine (line);
+				line = tr.ReadLine ();
+			}
+
 			this.WriteFooter (htw);
 			htw.RenderEndTag ();
 		}
