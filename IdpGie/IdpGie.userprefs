@@ -1,6 +1,19 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Core/ProgramManager.cs">
+    <Files>
+      <File FileName="OutputDevices/OutputDevice.cs" Line="88" Column="14" />
+      <File FileName="OutputDevices/Web/Navbar.cs" Line="69" Column="37" />
+      <File FileName="OutputDevices/OutputHttpServerDevice.cs" Line="40" Column="28" />
+      <File FileName="Engines/HttpEngine.cs" Line="171" Column="45" />
+      <File FileName="Core/ProgramManager.cs" Line="602" Column="43" />
+      <File FileName="Abstract/NameBase.cs" Line="22" Column="32" />
+      <File FileName="Abstract/IName.cs" Line="37" Column="3" />
+      <File FileName="Abstract/NamedAttributeBase.cs" Line="23" Column="32" />
+      <File FileName="Abstract/IHref.cs" Line="37" Column="3" />
+      <File FileName="Abstract/NameHrefBase.cs" Line="22" Column="32" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

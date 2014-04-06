@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
-    <Commandlineparameters>-d ../../testinput/test1.idpd -m pdfstrip -g 2x20 -o thefile.pdf</Commandlineparameters>
+    <Commandlineparameters>--serverfolder=serverfolder --m httpserver -d ../../testinput/test1.idpd</Commandlineparameters>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />

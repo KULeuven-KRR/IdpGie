@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Xml.Serialization;
 
 namespace IdpGie.Abstract {
 
@@ -36,6 +37,7 @@ namespace IdpGie.Abstract {
 		/// <value>
 		///  The name associated with the attribute. 
 		/// </value>
+		[XmlAttribute("name")]
 		public string Name {
 			get {
 				return this.name;

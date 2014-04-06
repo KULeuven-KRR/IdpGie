@@ -25,12 +25,12 @@ using IdpGie.Core;
 namespace IdpGie.OutputDevices {
 	[OutputDevice ("printcairo", "The device sends a single timeframe to the default plotter. Graphics are rendered using the Cairo graphics engine.")]
 	public class OutputPrintDevice : OutputDevice {
-		public OutputPrintDevice (DrawTheory theory) : base (theory) {
+		public OutputPrintDevice (DrawTheory theory, IProgramManager manager) : base (theory,manager) {
 		}
 
 		#region implemented abstract members of IdpGie.IdpdOutputDevice
 
-		public override void Run (ProgramManager manager) {
+		public override void Run () {
 			throw new System.NotImplementedException ();
 		}
 

@@ -7,7 +7,11 @@ namespace IdpGie.OutputDevices {
 			get;
 		}
 
-		void Run (ProgramManager manager);
+		IProgramManager Manager {
+			get;
+		}
+
+		void Run ();
 	}
 }
 

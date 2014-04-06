@@ -27,12 +27,12 @@ using IdpGie.UserInterface;
 namespace IdpGie.OutputDevices {
 	[OutputDevice ("cairowindow", "The content is plotted in an interactive window using Cairo graphics as 2d vector graphics engine.")]
 	public class OutputCairoDevice : OutputWindowDevice {
-		public OutputCairoDevice (DrawTheory theory) : base (theory) {
+		public OutputCairoDevice (DrawTheory theory, IProgramManager manager) : base (theory,manager) {
 		}
 
 		#region implemented abstract members of IdpGie.IdpdOutputDevice
 
-		public override void Run (ProgramManager manager) {
+		public override void Run () {
 			this.CreateWindow ();
 			OpenTab (this.Theory, new CairoFrameWidget (this.Theory));
 			this.ShowWindow ();

@@ -28,6 +28,7 @@ using IdpGie.Utils;
 namespace IdpGie.OutputDevices {
 	public abstract class OutputDevice : IOutputDevice {
 		private readonly DrawTheory theory;
+		private readonly IProgramManager manager;
 		private readonly static Dictionary<string,Tuple<string,ConstructorInfo>> constructors = new Dictionary<string, Tuple<string,ConstructorInfo>> ();
 
 		public DrawTheory Theory {
@@ -36,11 +37,18 @@ namespace IdpGie.OutputDevices {
 			}
 		}
 
-		protected OutputDevice (DrawTheory theory) {
-			this.theory = theory;
+		public IProgramManager Manager {
+			get {
+				return this.manager;
+			}
 		}
 
-		public abstract void Run (ProgramManager manager);
+		protected OutputDevice (DrawTheory theory, IProgramManager manager) {
+			this.theory = theory;
+			this.manager = manager;
+		}
+
+		public abstract void Run ();
 
 		#region IDisposable implementation
 
@@ -52,7 +60,7 @@ namespace IdpGie.OutputDevices {
 		public static void AnalyzeAssembly (Assembly assembly) {
 			foreach (Type type in assembly.GetTypes ()) {
 				if (!type.IsAbstract && typeof(IOutputDevice).IsAssignableFrom (type)) {
-					ConstructorInfo ci = type.GetConstructor (new Type[] { typeof(DrawTheory) });
+					ConstructorInfo ci = type.GetConstructor (new Type[] { typeof(DrawTheory),typeof(IProgramManager) });
 					if (ci != null) {
 						foreach (OutputDeviceAttribute oda in type.GetCustomAttributes (typeof(OutputDeviceAttribute),false).Cast<OutputDeviceAttribute>()) {
 							string name = oda.Name.Trim ().ToLower ();
@@ -70,10 +78,15 @@ namespace IdpGie.OutputDevices {
 			}
 		}
 
-		public static OutputDevice CreateDevice (string name, DrawTheory theory) {
+		public static OutputDevice CreateDevice (string name, DrawTheory theory, ProgramManager pm) {
 			Tuple<string,ConstructorInfo> ci;
 			if (constructors.TryGetValue (name.Trim ().ToLower (), out ci)) {
-				return (OutputDevice)ci.Item2.Invoke (new object[] { theory });
+				try {
+					return (OutputDevice)ci.Item2.Invoke (new object[] { theory, pm });
+				} catch (Exception e) {
+					Console.WriteLine (e.InnerException);
+					throw e;
+				}
 			} else {
 				throw new IdpGieException ("Cannot find the appropriate output device \"{0}\". Run `idp --list-devices' for a list of installed devices.", name);
 			}

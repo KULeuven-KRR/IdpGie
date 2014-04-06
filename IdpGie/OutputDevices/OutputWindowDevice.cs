@@ -8,7 +8,7 @@ namespace IdpGie.OutputDevices {
 	public abstract class OutputWindowDevice : OutputDevice {
 		private TopWindow tw;
 
-		protected OutputWindowDevice (DrawTheory theory) : base (theory) {
+		protected OutputWindowDevice (DrawTheory theory, IProgramManager manager) : base (theory,manager) {
 		}
 
 		protected void CreateWindow () {

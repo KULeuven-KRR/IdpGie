@@ -30,6 +30,7 @@ using System.Reflection;
 using IdpGie.Geometry;
 using IdpGie.Interaction;
 using IdpGie.OutputDevices;
+using IdpGie.OutputDevices.Web;
 
 namespace IdpGie.Core {
 
@@ -582,8 +583,8 @@ namespace IdpGie.Core {
 					filename = this.IdpdFile;
 				}
 				DrawTheory dt = new DrawTheory (filename, strm);
-				OutputDevice dev = OutputDevice.CreateDevice (this.OutputMode, dt);
-				dev.Run (this);
+				OutputDevice dev = OutputDevice.CreateDevice (this.OutputMode, dt, this);
+				dev.Run ();
 				Application.Quit ();
 			}
 		}

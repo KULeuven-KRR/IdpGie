@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Xml.Serialization;
+
 namespace IdpGie.Abstract {
 
 	/// <summary>
@@ -35,6 +37,7 @@ namespace IdpGie.Abstract {
 		/// <value>
 		///  The reference to the resource to store. 
 		/// </value>
+		[XmlAttribute("href")]
 		public virtual string Href {
 			get {
 				return this.href;

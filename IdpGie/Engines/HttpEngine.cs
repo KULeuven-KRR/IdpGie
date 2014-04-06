@@ -20,12 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Net.Sockets;
+using System.Linq;
 using System.IO;
+using System.Net.Sockets;
 using System.Text;
 using System.Web.UI;
 using IdpGie.Core;
 using IdpGie.OutputDevices;
+using IdpGie.OutputDevices.Web;
 
 namespace IdpGie.Engines {
 
@@ -34,6 +36,7 @@ namespace IdpGie.Engines {
 	/// </summary>
 	public class HttpEngine : Engine, IWebEngine {
 		private readonly TcpClient client;
+		private readonly OutputHttpServerDevice device;
 
 		#region IWebEngine implementation
 		/// <summary>
@@ -59,6 +62,7 @@ namespace IdpGie.Engines {
 		/// A <see cref="OutputHttpServerDevice"/> instance that contains the <see cref="IDrawTheory"/>.
 		/// </param>
 		public HttpEngine (TcpClient client, OutputHttpServerDevice device) : this(client,device.Theory) {
+			this.device = device;
 		}
 
 		/// <summary>
@@ -137,6 +141,7 @@ namespace IdpGie.Engines {
 		}
 
 		private void WriteMasthead (Html32TextWriter htw) {
+			INavbar navbar = this.device.Navigationbar;
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "navbar navbar-default navbar-fixed-top");
 			htw.AddAttribute ("role", "navigation");
 			htw.RenderBeginTag (HtmlTextWriterTag.Div);
@@ -151,7 +156,7 @@ namespace IdpGie.Engines {
 						htw.AddAttribute (HtmlTextWriterAttribute.Href, "#");
 						htw.RenderBeginTag (HtmlTextWriterTag.A);
 						{
-							htw.Write (this.Theory.Name);
+							htw.Write (navbar.Name);
 						}
 						htw.RenderEndTag ();
 					}
@@ -162,9 +167,8 @@ namespace IdpGie.Engines {
 						htw.AddAttribute (HtmlTextWriterAttribute.Class, "nav navbar-nav");
 						htw.RenderBeginTag (HtmlTextWriterTag.Ul);
 						{
-							bool active = true;
-							string[] ss = {"Foo","Bar","Baz"};
-							foreach (string s in ss) {
+							bool active = false;
+							foreach (string s in navbar.Pages.Select(x => x.Name)) {
 								if (active) {
 									htw.AddAttribute (HtmlTextWriterAttribute.Class, "active");
 								}

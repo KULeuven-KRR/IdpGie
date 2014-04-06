@@ -24,12 +24,12 @@ using IdpGie.Core;
 namespace IdpGie.OutputDevices {
 	[OutputDevice ("latexstream", "A latex stream that draws a single timeframe using the TikZ graphics package.")]
 	public class OutputLaTeXDevice : OutputDevice {
-		public OutputLaTeXDevice (DrawTheory theory) : base (theory) {
+		public OutputLaTeXDevice (DrawTheory theory, IProgramManager manager) : base (theory,manager) {
 		}
 
 		#region implemented abstract members of IdpGie.IdpdOutputDevice
 
-		public override void Run (ProgramManager manager) {
+		public override void Run () {
 			throw new System.NotImplementedException ();
 		}
 
