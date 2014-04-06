@@ -102,10 +102,10 @@ namespace IdpGie.Engines {
 						tw.WriteLine ("<!DOCTYPE html>");
 						tw.RenderBeginTag (HtmlTextWriterTag.Html);
 						tw.RenderBeginTag (HtmlTextWriterTag.Head);
-						this.WriteHeader (tw);
+						this.WriteHeader (tw, http_filename);
 						tw.RenderEndTag ();
 						tw.RenderBeginTag (HtmlTextWriterTag.Body);
-						this.WriteBody (tw);
+						this.WriteBody (tw, http_filename);
 						this.WriteJavascript (tw);
 						tw.RenderEndTag ();
 						tw.RenderEndTag ();
@@ -118,7 +118,7 @@ namespace IdpGie.Engines {
 
 		#endregion
 
-		private void WriteHeader (Html32TextWriter htw) {
+		private void WriteHeader (Html32TextWriter htw, string http_filename) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Title);
 			htw.Write (this.Theory.Name);
 			htw.RenderEndTag ();
@@ -140,7 +140,7 @@ namespace IdpGie.Engines {
 			htw.WriteLine ();
 		}
 
-		private void WriteMasthead (Html32TextWriter htw) {
+		private void WriteMasthead (Html32TextWriter htw, string http_filename) {
 			INavbar navbar = this.device.Navigationbar;
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "navbar navbar-default navbar-fixed-top");
 			htw.AddAttribute ("role", "navigation");
@@ -167,18 +167,16 @@ namespace IdpGie.Engines {
 						htw.AddAttribute (HtmlTextWriterAttribute.Class, "nav navbar-nav");
 						htw.RenderBeginTag (HtmlTextWriterTag.Ul);
 						{
-							bool active = false;
-							foreach (string s in navbar.Pages.Select(x => x.Name)) {
-								if (active) {
+							foreach (WebPage wp in navbar.Pages) {
+								if ("/" + wp.Href == http_filename) {
 									htw.AddAttribute (HtmlTextWriterAttribute.Class, "active");
 								}
 								htw.RenderBeginTag (HtmlTextWriterTag.Li);
-								htw.AddAttribute (HtmlTextWriterAttribute.Href, "#");
+								htw.AddAttribute (HtmlTextWriterAttribute.Href, wp.Href);
 								htw.RenderBeginTag (HtmlTextWriterTag.A);
-								htw.Write (s);
+								htw.Write (wp.Name);
 								htw.RenderEndTag ();
 								htw.RenderEndTag ();
-								active = false;
 							}
 						}
 						htw.RenderEndTag ();
@@ -190,8 +188,8 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 		}
 
-		private void WriteBody (Html32TextWriter htw) {
-			this.WriteMasthead (htw);
+		private void WriteBody (Html32TextWriter htw, string http_filename) {
+			this.WriteMasthead (htw, http_filename);
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "container");
 			htw.RenderBeginTag (HtmlTextWriterTag.Div);
 			htw.RenderBeginTag (HtmlTextWriterTag.Hr);
