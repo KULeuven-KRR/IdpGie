@@ -1,17 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core/ProgramManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Engines/HttpEngine.cs">
     <Files>
       <File FileName="OutputDevices/OutputDevice.cs" Line="88" Column="14" />
-      <File FileName="OutputDevices/Web/Navbar.cs" Line="69" Column="37" />
+      <File FileName="OutputDevices/Web/Navbar.cs" Line="204" Column="29" />
       <File FileName="OutputDevices/OutputHttpServerDevice.cs" Line="40" Column="28" />
-      <File FileName="Engines/HttpEngine.cs" Line="171" Column="45" />
+      <File FileName="Engines/HttpEngine.cs" Line="186" Column="25" />
       <File FileName="Core/ProgramManager.cs" Line="602" Column="43" />
-      <File FileName="Abstract/NameBase.cs" Line="22" Column="32" />
-      <File FileName="Abstract/IName.cs" Line="37" Column="3" />
-      <File FileName="Abstract/NamedAttributeBase.cs" Line="23" Column="32" />
-      <File FileName="Abstract/IHref.cs" Line="37" Column="3" />
-      <File FileName="Abstract/NameHrefBase.cs" Line="22" Column="32" />
+      <File FileName="OutputDevices/Web/IWebPage.cs" Line="32" Column="35" />
+      <File FileName="OutputDevices/Web/WebPage.cs" Line="41" Column="28" />
+      <File FileName="OutputDevices/Web/INavbar.cs" Line="50" Column="67" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
