@@ -65,13 +65,19 @@ namespace IdpGie.OutputDevices.Web {
 		}
 
 		/// <summary>
-		///  Render the webpage onto the give specified engine. 
+		///  Render the webpage icon onto the give specified engine. 
 		/// </summary>
 		/// <param name='engine'>
 		///  The given specified engine. 
 		/// </param>
-		public override void Render (HttpEngine engine) {
-			base.Render (engine);
+		/// <param name='stream'>
+		/// The stream to write the content to.
+		/// </param>
+		public void RenderIcon (HttpEngine engine, Stream stream) {
+			this.GetReader (null);
+			using (BinaryWriter bw = new BinaryWriter (stream)) {
+				bw.Write (this.data);
+			}
 		}
 
 	}

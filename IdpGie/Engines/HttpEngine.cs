@@ -35,6 +35,11 @@ namespace IdpGie.Engines {
 	/// An engine that generates webpages based on the logical descripiton.
 	/// </summary>
 	public class HttpEngine : Engine, IWebEngine {
+
+		/// <summary>
+		/// The file name of the icon.
+		/// </summary>
+		public const string IconName = @"favicon.ico";
 		private readonly TcpClient client;
 		private readonly OutputHttpServerDevice device;
 
@@ -96,22 +101,26 @@ namespace IdpGie.Engines {
 				} while(line != string.Empty && line != null);
 				//string http_url = tokens [1];
 				string http_filename = tokens [1];
-				Console.WriteLine (http_filename);
-				using (StreamWriter sw = new StreamWriter (client.GetStream ())) {
-					using (Html32TextWriter tw = new Html32TextWriter (sw)) {
-						tw.WriteLine ("<!DOCTYPE html>");
-						tw.RenderBeginTag (HtmlTextWriterTag.Html);
-						tw.RenderBeginTag (HtmlTextWriterTag.Head);
-						this.WriteHeader (tw, http_filename);
-						tw.RenderEndTag ();
-						tw.RenderBeginTag (HtmlTextWriterTag.Body);
-						this.WriteBody (tw, http_filename);
-						this.WriteJavascript (tw);
-						tw.RenderEndTag ();
-						tw.RenderEndTag ();
-						tw.Close ();
+				Console.WriteLine ("\"{0}\"", http_filename);
+				
+				if (http_filename == "/" + IconName) {
+					this.device.Navigationbar.FavIcon.RenderIcon (this, client.GetStream ());
+				} else {
+					using (StreamWriter sw = new StreamWriter (client.GetStream ())) {
+						using (Html32TextWriter tw = new Html32TextWriter (sw)) {
+						
+							tw.WriteLine ("<!DOCTYPE html>");
+							tw.RenderBeginTag (HtmlTextWriterTag.Html);
+							tw.RenderBeginTag (HtmlTextWriterTag.Head);
+							this.WriteHeader (tw, http_filename);
+							tw.RenderEndTag ();
+							tw.RenderBeginTag (HtmlTextWriterTag.Body);
+							this.WriteBody (tw, http_filename);
+							this.WriteJavascript (tw);
+							tw.RenderEndTag ();
+							tw.RenderEndTag ();
+						}
 					}
-					sw.Close ();
 				}
 			}
 		}
@@ -137,7 +146,7 @@ namespace IdpGie.Engines {
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
 			htw.RenderEndTag ();
 			htw.WriteLine ();
-			htw.AddAttribute (HtmlTextWriterAttribute.Href, "favicon.ico");
+			htw.AddAttribute (HtmlTextWriterAttribute.Href, IconName);
 			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "icon");
 			htw.AddAttribute (HtmlTextWriterAttribute.Type, "image/x-icon");
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
@@ -196,7 +205,7 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 		}
 
-		private void WriteBody (Html32TextWriter htw, string http_filename) {
+		private void WriteBody (Html32TextWriter htw, string http_filename, IWebPage webpage) {
 			this.WriteMasthead (htw, http_filename);
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "container");
 			htw.RenderBeginTag (HtmlTextWriterTag.Div);

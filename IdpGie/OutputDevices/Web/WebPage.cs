@@ -21,6 +21,7 @@
 using IdpGie.Abstract;
 using IdpGie.Engines;
 using System.IO;
+using System.Web.UI;
 using System.Xml.Serialization;
 
 namespace IdpGie.OutputDevices.Web {
@@ -107,7 +108,10 @@ namespace IdpGie.OutputDevices.Web {
 		/// <param name='engine'>
 		///  The given specified engine. 
 		/// </param>
-		public virtual void Render (HttpEngine engine) {
+		/// <param name='writer'>
+		/// The html writer to write content to.
+		/// </param>
+		public virtual void Render (HttpEngine engine, Html32TextWriter writer) {
 
 		}
 		#endregion

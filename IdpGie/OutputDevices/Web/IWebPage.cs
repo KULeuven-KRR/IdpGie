@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
 using System.IO;
+using System.Web.UI;
 using IdpGie.Engines;
 
 namespace IdpGie.OutputDevices.Web {
@@ -46,7 +47,10 @@ namespace IdpGie.OutputDevices.Web {
 		/// <param name='engine'>
 		/// The given specified engine.
 		/// </param>
-		void Render (HttpEngine engine);
+		/// <param name='writer'>
+		/// The html writer to write content to.
+		/// </param>
+		void Render (HttpEngine engine, Html32TextWriter writer);
 
 	}
 

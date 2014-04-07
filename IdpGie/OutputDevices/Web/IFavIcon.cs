@@ -19,6 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using IdpGie.Engines;
+using System.IO;
+
 namespace IdpGie.OutputDevices.Web {
 
 
@@ -26,6 +29,17 @@ namespace IdpGie.OutputDevices.Web {
 	/// The web page that provides the favicon of the web server.
 	/// </summary>
 	public interface IFavIcon : IWebPage {
+
+		/// <summary>
+		///  Render the webpage icon onto the give specified engine. 
+		/// </summary>
+		/// <param name='engine'>
+		///  The given specified engine. 
+		/// </param>
+		/// <param name='stream'>
+		/// The stream to write the content to.
+		/// </param>
+		void RenderIcon (HttpEngine engine, Stream stream);
 
 	}
 }
