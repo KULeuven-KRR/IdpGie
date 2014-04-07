@@ -106,16 +106,16 @@ namespace IdpGie.Engines {
 				if (http_filename == "/" + IconName) {
 					this.device.Navigationbar.FavIcon.RenderIcon (this, client.GetStream ());
 				} else {
+					IWebPage wp = this.device.Navigationbar.GetPage (http_filename.Substring (0x01));
 					using (StreamWriter sw = new StreamWriter (client.GetStream ())) {
 						using (Html32TextWriter tw = new Html32TextWriter (sw)) {
-						
 							tw.WriteLine ("<!DOCTYPE html>");
 							tw.RenderBeginTag (HtmlTextWriterTag.Html);
 							tw.RenderBeginTag (HtmlTextWriterTag.Head);
-							this.WriteHeader (tw, http_filename);
+							this.WriteHeader (tw);
 							tw.RenderEndTag ();
 							tw.RenderBeginTag (HtmlTextWriterTag.Body);
-							this.WriteBody (tw, http_filename);
+							this.WriteBody (tw, wp);
 							this.WriteJavascript (tw);
 							tw.RenderEndTag ();
 							tw.RenderEndTag ();
@@ -127,7 +127,7 @@ namespace IdpGie.Engines {
 
 		#endregion
 
-		private void WriteHeader (Html32TextWriter htw, string http_filename) {
+		private void WriteHeader (Html32TextWriter htw) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Title);
 			htw.Write (this.device.Navigationbar.Name);
 			htw.RenderEndTag ();
@@ -157,7 +157,7 @@ namespace IdpGie.Engines {
 			htw.WriteLine ();
 		}
 
-		private void WriteMasthead (Html32TextWriter htw, string http_filename) {
+		private void WriteMasthead (Html32TextWriter htw, IWebPage webpage) {
 			INavbar navbar = this.device.Navigationbar;
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "navbar navbar-default navbar-fixed-top");
 			htw.AddAttribute ("role", "navigation");
@@ -185,7 +185,7 @@ namespace IdpGie.Engines {
 						htw.RenderBeginTag (HtmlTextWriterTag.Ul);
 						{
 							foreach (IWebPage wp in navbar.Pages) {
-								if ("/" + wp.Href == http_filename) {
+								if (wp == webpage) {
 									htw.AddAttribute (HtmlTextWriterAttribute.Class, "active");
 								}
 								htw.RenderBeginTag (HtmlTextWriterTag.Li);
@@ -205,20 +205,14 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 		}
 
-		private void WriteBody (Html32TextWriter htw, string http_filename, IWebPage webpage) {
-			this.WriteMasthead (htw, http_filename);
+		private void WriteBody (Html32TextWriter htw, IWebPage webpage) {
+			this.WriteMasthead (htw, webpage);
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "container");
 			htw.RenderBeginTag (HtmlTextWriterTag.Div);
 			htw.RenderBeginTag (HtmlTextWriterTag.Hr);
 			htw.RenderEndTag ();
-			
-			IWebPage page = this.device.Navigationbar.DefaultPage;
-			TextReader tr = page.GetReader (this.device.Manager.ServerFolder);
-			string line = tr.ReadLine ();
-			while (line != null) {
-				htw.WriteLine (line);
-				line = tr.ReadLine ();
-			}
+
+			webpage.Render (this.device.Manager.ServerFolder, this, htw);
 
 			this.WriteFooter (htw);
 			htw.RenderEndTag ();

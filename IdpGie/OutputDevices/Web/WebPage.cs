@@ -105,14 +105,22 @@ namespace IdpGie.OutputDevices.Web {
 		/// <summary>
 		///  Render the webpage onto the give specified engine. 
 		/// </summary>
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
 		/// <param name='engine'>
 		///  The given specified engine. 
 		/// </param>
 		/// <param name='writer'>
 		/// The html writer to write content to.
 		/// </param>
-		public virtual void Render (HttpEngine engine, Html32TextWriter writer) {
-
+		public virtual void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
+			TextReader tr = GetReader (serverFolder);
+			string line = tr.ReadLine ();
+			while (line != null) {
+				writer.WriteLine (line);
+				line = tr.ReadLine ();
+			}
 		}
 		#endregion
 
