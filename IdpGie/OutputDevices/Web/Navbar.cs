@@ -34,6 +34,8 @@ namespace IdpGie.OutputDevices.Web {
 	public class Navbar : NameBase, INavbar {
 
 		private List<WebPage> pages = null;
+		private string serverFolder;
+		private FavIcon favIcon;
 
 		#region INavbar implementation
 		/// <summary>
@@ -46,6 +48,50 @@ namespace IdpGie.OutputDevices.Web {
 		public IList<IWebPage> Pages {
 			get {
 				return this.pages.Cast<IWebPage> ().ToList ();
+			}
+		}
+
+		/// <summary>
+		///  Gets the fav icon of the web server. 
+		/// </summary>
+		/// <value>
+		///  The fav icon of the web server. 
+		/// </value>
+		[XmlIgnore]
+		public IFavIcon FavIcon {
+			get {
+				if (this.favIcon == null) {
+					this.favIcon = new FavIcon ();
+				}
+				return this.favIcon;
+			}
+		}
+
+		/// <summary>
+		/// Gets the fav icon of the web server in xml serialization.
+		/// </summary>
+		/// <value>
+		/// The fav icon of the web server in xml serialization.
+		/// </value>
+		public FavIcon FavIconXml {
+			get {
+				return this.favIcon;
+			}
+		}
+
+		/// <summary>
+		///  Gets the root of the web server folder. 
+		/// </summary>
+		/// <value>
+		///  The root of the web server folder. 
+		/// </value>
+		[XmlIgnore]
+		public string ServerFolder {
+			get {
+				return this.serverFolder;
+			}
+			protected set {
+				this.serverFolder = value;
 			}
 		}
 
@@ -114,12 +160,17 @@ namespace IdpGie.OutputDevices.Web {
 		/// <returns>
 		/// A <see cref="Navbar"/> that corresponds to the content of the given <see cref="TextReader"/>.
 		/// </returns>
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
 		/// <param name='textReader'>
 		/// The <see cref="TextReader"/> where the textual representation is read from.
 		/// </param>
-		public static Navbar FromStream (TextReader textReader) {
+		public static Navbar FromStream (string serverFolder, TextReader textReader) {
 			XmlSerializer xs = new XmlSerializer (typeof(Navbar));
-			return (Navbar)xs.Deserialize (textReader);
+			Navbar nb = (Navbar)xs.Deserialize (textReader);
+			nb.ServerFolder = serverFolder;
+			return nb;
 		}
 
 		/// <summary>
@@ -128,12 +179,15 @@ namespace IdpGie.OutputDevices.Web {
 		/// <returns>
 		/// A <see cref="Navbar"/> that corresponds to the content of the given <see cref="Stream"/>.
 		/// </returns>
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
 		/// <param name='stream'>
 		/// The <see cref="Stream"/> that contains the textual representation.
 		/// </param>
-		public static Navbar FromStream (Stream stream) {
+		public static Navbar FromStream (string serverFolder, Stream stream) {
 			using (TextReader textReader = new StreamReader(stream)) {
-				return FromStream (textReader);
+				return FromStream (serverFolder, textReader);
 			}
 		}
 
@@ -143,12 +197,15 @@ namespace IdpGie.OutputDevices.Web {
 		/// <returns>
 		/// A <see cref="Navbar"/> that corresponds to the content of the given file.
 		/// </returns>
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
 		/// <param name='filename'>
 		/// The name of the file that contains the textual representation.
 		/// </param>
-		public static Navbar FromStream (string filename) {
+		public static Navbar FromStream (string serverFolder, string filename) {
 			using (FileStream stream = File.Open(filename,FileMode.Open,FileAccess.Read,FileShare.Read)) {
-				return FromStream (stream);
+				return FromStream (serverFolder, stream);
 			}
 		}
 
@@ -198,8 +255,9 @@ namespace IdpGie.OutputDevices.Web {
 		///  The given reference. 
 		/// </param>
 		public IWebPage GetPage (string href) {
-			if (href != null) {
-				return this.pages.FirstOrDefault (x => x.Href == href);
+			if (href != null && href != string.Empty) {
+				string path = Path.Combine (this.serverFolder, href);
+				return this.pages.FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == href);
 			} else {
 				return this.DefaultPage;
 			}

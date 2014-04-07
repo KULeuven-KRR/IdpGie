@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
+using IdpGie.Engines;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -84,7 +85,7 @@ namespace IdpGie.OutputDevices.Web {
 		/// <returns>
 		/// A <see cref="TextReader"/> that reads the content of the web page.
 		/// </returns>
-		public TextReader GetReader (string serverFolder) {
+		public virtual TextReader GetReader (string serverFolder) {
 			if (this.content == null) {
 				string filename = Path.Combine (serverFolder, this.Href);
 				if (File.Exists (filename)) {
@@ -98,6 +99,16 @@ namespace IdpGie.OutputDevices.Web {
 				}
 			}
 			return new StringReader (this.content);
+		}
+
+		/// <summary>
+		///  Render the webpage onto the give specified engine. 
+		/// </summary>
+		/// <param name='engine'>
+		///  The given specified engine. 
+		/// </param>
+		public virtual void Render (HttpEngine engine) {
+
 		}
 		#endregion
 

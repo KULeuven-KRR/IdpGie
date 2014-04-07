@@ -310,6 +310,8 @@
     <Compile Include="OutputDevices\Web\Navbar.cs" />
     <Compile Include="OutputDevices\Web\WebPage.cs" />
     <Compile Include="OutputDevices\Web\IWebPage.cs" />
+    <Compile Include="OutputDevices\Web\IFavIcon.cs" />
+    <Compile Include="OutputDevices\Web\FavIcon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -319,6 +321,7 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="glsharp\GLSharp\GLSharp.csproj">
@@ -340,5 +343,6 @@
     <Folder Include="Utils\" />
     <Folder Include="Parser\" />
     <Folder Include="OutputDevices\Web\" />
+    <Folder Include="resources\" />
   </ItemGroup>
 </Project>

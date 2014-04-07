@@ -1,5 +1,5 @@
 //
-//  INavbarPage.cs
+//  IFavIcon.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,37 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using IdpGie.Abstract;
-using System.IO;
-using IdpGie.Engines;
 
 namespace IdpGie.OutputDevices.Web {
 
+
 	/// <summary>
-	/// An interface that specified a web page. A web page has a name, reference and constructive content.
+	/// The web page that provides the favicon of the web server.
 	/// </summary>
-	public interface IWebPage : INameHref {
-
-		/// <summary>
-		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
-		/// </summary>
-		/// <param name='serverFolder'>
-		/// The root of the folder of the web server.
-		/// </param>
-		/// <returns>
-		/// A <see cref="TextReader"/> that reads the content of the web page.
-		/// </returns>
-		TextReader GetReader (string serverFolder);
-
-		/// <summary>
-		/// Render the webpage onto the give specified engine.
-		/// </summary>
-		/// <param name='engine'>
-		/// The given specified engine.
-		/// </param>
-		void Render (HttpEngine engine);
+	public interface IFavIcon : IWebPage {
 
 	}
-
 }
 

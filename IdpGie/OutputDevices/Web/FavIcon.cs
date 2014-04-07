@@ -1,5 +1,5 @@
 //
-//  INavbarPage.cs
+//  FavIcon.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,16 +18,26 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using IdpGie.Abstract;
-using System.IO;
 using IdpGie.Engines;
+using System.IO;
+using System.Reflection;
+using System.Xml.Serialization;
 
 namespace IdpGie.OutputDevices.Web {
 
 	/// <summary>
-	/// An interface that specified a web page. A web page has a name, reference and constructive content.
+	/// An implementation of a favicon, an icon that represents the website.
 	/// </summary>
-	public interface IWebPage : INameHref {
+	[XmlType("FavIcon")]
+	public class FavIcon : WebPage, IFavIcon {
+
+		byte[] data;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.FavIcon"/> class.
+		/// </summary>
+		public FavIcon () {
+		}
 
 		/// <summary>
 		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
@@ -38,17 +48,32 @@ namespace IdpGie.OutputDevices.Web {
 		/// <returns>
 		/// A <see cref="TextReader"/> that reads the content of the web page.
 		/// </returns>
-		TextReader GetReader (string serverFolder);
+		public override TextReader GetReader (string serverFolder) {
+			if (data == null) {
+				if (this.Href == null) {
+					Stream s = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("IdpGie.resources.favicon.ico");
+					int l = (int)s.Length;
+					byte[] buffer = new byte[l];
+					s.Read (buffer, 0x00, l);
+					this.data = buffer;
+				} else {
+					//TODO: implement customly specified favicon
+				}
+			}
+			MemoryStream ms = new MemoryStream (this.data);
+			return new StreamReader (ms);
+		}
 
 		/// <summary>
-		/// Render the webpage onto the give specified engine.
+		///  Render the webpage onto the give specified engine. 
 		/// </summary>
 		/// <param name='engine'>
-		/// The given specified engine.
+		///  The given specified engine. 
 		/// </param>
-		void Render (HttpEngine engine);
+		public override void Render (HttpEngine engine) {
+			base.Render (engine);
+		}
 
 	}
-
 }
 

@@ -135,6 +135,14 @@ namespace IdpGie.Engines {
 			htw.AddAttribute (HtmlTextWriterAttribute.Href, "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
 			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "stylesheet");
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
+			htw.RenderEndTag ();
+			htw.WriteLine ();
+			htw.AddAttribute (HtmlTextWriterAttribute.Href, "favicon.ico");
+			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "icon");
+			htw.AddAttribute (HtmlTextWriterAttribute.Type, "image/x-icon");
+			htw.RenderBeginTag (HtmlTextWriterTag.Link);
+			htw.WriteLine ();
+			htw.RenderBeginTag (HtmlTextWriterTag.Style);
 			htw.Write ("body {min-height: 2000px;padding-top: 70px;}");
 			htw.RenderEndTag ();
 			htw.WriteLine ();
@@ -167,7 +175,7 @@ namespace IdpGie.Engines {
 						htw.AddAttribute (HtmlTextWriterAttribute.Class, "nav navbar-nav");
 						htw.RenderBeginTag (HtmlTextWriterTag.Ul);
 						{
-							foreach (WebPage wp in navbar.Pages) {
+							foreach (IWebPage wp in navbar.Pages) {
 								if ("/" + wp.Href == http_filename) {
 									htw.AddAttribute (HtmlTextWriterAttribute.Class, "active");
 								}

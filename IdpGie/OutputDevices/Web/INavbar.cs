@@ -40,6 +40,16 @@ namespace IdpGie.OutputDevices.Web {
 		}
 
 		/// <summary>
+		/// Gets the fav icon of the web server.
+		/// </summary>
+		/// <value>
+		/// The fav icon of the web server.
+		/// </value>
+		IFavIcon FavIcon {
+			get;
+		}
+
+		/// <summary>
 		/// Gets the default web page.
 		/// </summary>
 		/// <value>
@@ -51,6 +61,16 @@ namespace IdpGie.OutputDevices.Web {
 		/// </para>
 		/// </remarks>
 		IWebPage DefaultPage {
+			get;
+		}
+
+		/// <summary>
+		/// Gets the root of the web server folder.
+		/// </summary>
+		/// <value>
+		/// The root of the web server folder.
+		/// </value>
+		string ServerFolder {
 			get;
 		}
 

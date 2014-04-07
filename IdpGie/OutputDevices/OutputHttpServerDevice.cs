@@ -44,9 +44,10 @@ namespace IdpGie.OutputDevices {
 		}
 
 		public OutputHttpServerDevice (DrawTheory dt, IProgramManager manager) : base (dt,manager) {
-			string navbarfile = Path.Combine (manager.ServerFolder, "navbar.idpml");
+			string serverFolder = manager.ServerFolder;
+			string navbarfile = Path.Combine (serverFolder, "navbar.idpml");
 			if (File.Exists (navbarfile)) {
-				this.navbar = Navbar.FromStream (navbarfile);
+				this.navbar = Navbar.FromStream (serverFolder, navbarfile);
 			} else {
 				throw new ArgumentException ("The navbar file does not exists!");
 			}
