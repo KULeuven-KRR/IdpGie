@@ -1,17 +1,29 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engines/HttpEngine.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/IIdpInference.cs">
     <Files>
       <File FileName="OutputDevices/OutputHttpServerDevice.cs" Line="50" Column="52" />
-      <File FileName="OutputDevices/Web/Navbar.cs" Line="64" Column="36" />
+      <File FileName="OutputDevices/Web/Navbar.cs" Line="261" Column="58" />
       <File FileName="OutputDevices/Web/INavbar.cs" Line="50" Column="4" />
       <File FileName="OutputDevices/Web/IWebPage.cs" Line="49" Column="15" />
       <File FileName="OutputDevices/Web/IFavIcon.cs" Line="36" Column="2" />
-      <File FileName="OutputDevices/Web/WebPage.cs" Line="121" Column="11" />
+      <File FileName="OutputDevices/Web/WebPage.cs" Line="99" Column="154" />
       <File FileName="OutputDevices/Web/FavIcon.cs" Line="23" Column="25" />
-      <File FileName="Engines/HttpEngine.cs" Line="109" Column="84" />
+      <File FileName="Engines/HttpEngine.cs" Line="109" Column="50" />
       <File FileName="Core/ProgramManager.cs" Line="602" Column="43" />
       <File FileName="Engines/IWebEngine.cs" Line="1" Column="1" />
+      <File FileName="OutputDevices/Web/Shapes/IWebShape.cs" Line="23" Column="35" />
+      <File FileName="OutputDevices/Web/Shapes/WebShape.cs" Line="32" Column="3" />
+      <File FileName="OutputDevices/Web/Shapes/WebPredicateTable.cs" Line="35" Column="4" />
+      <File FileName="Core/ProcessSession.cs" Line="30" Column="34" />
+      <File FileName="Interaction/IdpInteraction.cs" Line="78" Column="61" />
+      <File FileName="Interaction/IdpTable.cs" Line="1" Column="1" />
+      <File FileName="Interaction/IIDpTable.cs" Line="24" Column="28" />
+      <File FileName="Interaction/IIdpStructure.cs" Line="83" Column="88" />
+      <File FileName="Interaction/IIdpPredicate.cs" Line="1" Column="1" />
+      <File FileName="Interaction/IIdpTuple.cs" Line="1" Column="1" />
+      <File FileName="Interaction/IIdpInference.cs" Line="30" Column="16" />
+      <File FileName="Interaction/IIdpTheory.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

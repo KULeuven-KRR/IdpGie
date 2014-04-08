@@ -320,6 +320,8 @@
     <Compile Include="Interaction\IIdpStructure.cs" />
     <Compile Include="Interaction\IIdpPredicate.cs" />
     <Compile Include="Interaction\IIdpTuple.cs" />
+    <Compile Include="Interaction\IIdpInference.cs" />
+    <Compile Include="Interaction\IIdpTheory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
