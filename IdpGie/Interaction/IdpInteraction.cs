@@ -85,15 +85,6 @@ namespace IdpGie.Interaction {
 				this.Stdin.Flush ();
 			}
 
-			public bool IsConsistent () {
-				//TODO
-				return false;
-			}
-
-			public void MakeFalse (string predicate_interpretation, string table) {
-				//TODO
-			}
-
 			public string EchoModel () {
 				this.Stdin.WriteLine ("struc = ps[1];");
 				this.Stdin.WriteLine (@"print(string.format(""\a%s\n\a"",tostring (struc)));");
