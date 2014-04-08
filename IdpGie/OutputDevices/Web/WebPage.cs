@@ -96,7 +96,7 @@ namespace IdpGie.OutputDevices.Web {
 						}
 					}
 				} else {
-					throw new IOException (string.Format ("Server folder does not contain a file for \"{0}\".", this.Href));
+					this.content = string.Format ("<div class=\"alert alert-danger\"><strong>Error:</strong> cannot find \"{0}\". Please contact the site administrator.</div>", this.Href);
 				}
 			}
 			return new StringReader (this.content);

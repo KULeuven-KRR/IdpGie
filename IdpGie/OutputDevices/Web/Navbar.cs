@@ -255,12 +255,16 @@ namespace IdpGie.OutputDevices.Web {
 		///  The given reference. 
 		/// </param>
 		public IWebPage GetPage (string href) {
+			Console.WriteLine (href);
+			IWebPage result = null;
 			if (href != null && href != string.Empty) {
 				string path = Path.Combine (this.serverFolder, href);
-				return this.pages.FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == href);
-			} else {
-				return this.DefaultPage;
+				result = this.pages.FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == path);
 			}
+			if (result == null) {
+				result = this.DefaultPage;
+			}
+			return result;
 		}
 		#endregion
 
