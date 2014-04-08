@@ -312,6 +312,14 @@
     <Compile Include="OutputDevices\Web\IWebPage.cs" />
     <Compile Include="OutputDevices\Web\IFavIcon.cs" />
     <Compile Include="OutputDevices\Web\FavIcon.cs" />
+    <Compile Include="OutputDevices\Web\Shapes\IWebShape.cs" />
+    <Compile Include="OutputDevices\Web\Shapes\WebShape.cs" />
+    <Compile Include="OutputDevices\Web\Shapes\WebPredicateTable.cs" />
+    <Compile Include="Interaction\IdpTable.cs" />
+    <Compile Include="Interaction\IIDpTable.cs" />
+    <Compile Include="Interaction\IIdpStructure.cs" />
+    <Compile Include="Interaction\IIdpPredicate.cs" />
+    <Compile Include="Interaction\IIdpTuple.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -344,5 +352,6 @@
     <Folder Include="Parser\" />
     <Folder Include="OutputDevices\Web\" />
     <Folder Include="resources\" />
+    <Folder Include="OutputDevices\Web\Shapes\" />
   </ItemGroup>
 </Project>
