@@ -8,23 +8,32 @@ namespace IdpGie.Interaction {
 	[XmlType ("Interaction")]
 	public class IdpInteraction {
 		[XmlAttribute ("Idp")]
-		public string IdpExecutable = @"/home/kommusoft/idp/bin/idp";
+		public string
+			IdpExecutable = @"/home/kommusoft/idp/bin/idp";
 		[XmlAttribute ("Gringo")]
-		public string GringoExecutable = @"gringo";
+		public string
+			GringoExecutable = @"gringo";
 		[XmlAttribute ("Clang")]
-		public string ClangExecutable = @"clang";
+		public string
+			ClangExecutable = @"clang";
 		[XmlAttribute ("Clingo")]
-		public string ClingoExecutable = @"clingo";
+		public string
+			ClingoExecutable = @"clingo";
 		[XmlAttribute ("Xsb")]
-		public bool Xsb = false;
+		public bool
+			Xsb = false;
 		[XmlAttribute ("Groundwithbounds")]
-		public bool Groundwithbounds = false;
+		public bool
+			Groundwithbounds = false;
 		[XmlAttribute ("Liftedunitpropagation")]
-		public bool Liftedunitpropagation = false;
+		public bool
+			Liftedunitpropagation = false;
 		[XmlAttribute ("Nbmodels")]
-		public int Nbmodels = 0;
+		public int
+			Nbmodels = 0;
 		[XmlAttribute ("Timeout")]
-		public int Timeout = 0x1000;
+		public int
+			Timeout = 0x1000;
 
 		public IdpInteraction () {
 		}

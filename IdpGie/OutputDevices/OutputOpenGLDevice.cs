@@ -26,12 +26,12 @@ using IdpGie.UserInterface;
 namespace IdpGie.OutputDevices {
 	[OutputDevice ("openglwindow", "The content is plotted in an interactive window using OpenGL graphics as 3d raster graphics engine.")]
 	public class OutputOpenGLDevice : OutputWindowDevice {
-		public OutputOpenGLDevice (DrawTheory theory) : base (theory) {
+		public OutputOpenGLDevice (DrawTheory theory, IProgramManager manager) : base (theory,manager) {
 		}
 
 		#region implemented abstract members of IdpGie.OutputDevice
 
-		public override void Run (ProgramManager manager) {
+		public override void Run () {
 			this.CreateWindow ();
 			this.OpenTab (this.Theory, new GLFrameWidget (this.Theory));
 			this.ShowWindow ();

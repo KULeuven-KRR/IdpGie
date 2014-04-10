@@ -1,5 +1,5 @@
 //
-//  NameBase.cs
+//  NameHrefBase.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -24,60 +24,61 @@ using System.Xml.Serialization;
 namespace IdpGie.Abstract {
 
 	/// <summary>
-	/// A basic implementation of the <see cref="IName"/> interface. This class is used as a coninient basic implementation.
+	/// An implementation of the <see cref="INameHref"/> interface that contains both the name of the instance and a (possibly related)
+	/// reference to a resource.
 	/// </summary>
-	public abstract class NameBase : IName {
+	public class NameHrefBase : NameBase, INameHref {
 
-		private string name;
+		private string href;
 
 		/// <summary>
-		///  Gets the name of this instance. 
+		///  Gets the reference to the resource to store. 
 		/// </summary>
 		/// <value>
-		///  The name of this instance. 
+		///  The reference to the resource to store. 
 		/// </value>
-		[XmlAttribute("name")]
-		public virtual string Name {
+		[XmlAttribute("href")]
+		public virtual string Href {
 			get {
-				return this.name;
+				return this.href;
 			}
 			protected set {
-				this.name = value;
+				this.href = value;
 			}
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameBase"/> class.
+		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameHrefBase"/> class.
 		/// </summary>
 		/// <remarks>
 		/// <para>The name of the object is set to <c>null</c>.</para>
 		/// </remarks>
-		protected NameBase () {
+		protected NameHrefBase () : base() {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameBase"/> class with a given name.
+		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameHrefBase"/> class with a given name.
 		/// </summary>
 		/// <param name='name'>
 		/// The name of the object.
 		/// </param>
-		protected NameBase (string name) {
-			this.Name = name;
+		protected NameHrefBase (string name) : base(name) {
 		}
 
 		/// <summary>
-		/// Returns a <see cref="System.String"/> that represents the current <see cref="IdpGie.Abstract.NameBase"/>.
+		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameHrefBase"/> class with a given name.
 		/// </summary>
-		/// <returns>
-		/// A <see cref="System.String"/> that represents the current <see cref="IdpGie.Abstract.NameBase"/>.
-		/// </returns>
-		/// <remarks>
-		/// <para>The textual representation of a <see cref="IName"/> object is by default its name.</para>
-		/// <c/remarks>
-		public override string ToString () {
-			return this.Name;
+		/// <param name='name'>
+		/// The name of the object.
+		/// </param>
+		/// <param name='href'>
+		/// The references to a (possibly related) resource.
+		/// </param>
+		protected NameHrefBase (string name, string href) : base(name) {
+			this.Href = href;
 		}
 
 	}
+
 }
 

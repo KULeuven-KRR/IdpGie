@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
-    <Commandlineparameters>-d ../../testinput/test1.idpd -m httpserver</Commandlineparameters>
+    <Commandlineparameters>--serverfolder=serverfolder --m httpserver -d ../../testinput/test1.idpd</Commandlineparameters>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="bash buildparser.sh" workingdir="${SolutionDir}" />
@@ -303,6 +303,25 @@
     <Compile Include="Geometry\IStripGeometry.cs" />
     <Compile Include="Geometry\Point3.cs" />
     <Compile Include="Geometry\IPoint3.cs" />
+    <Compile Include="Abstract\IHref.cs" />
+    <Compile Include="Abstract\INameHref.cs" />
+    <Compile Include="Abstract\NameHrefBase.cs" />
+    <Compile Include="OutputDevices\Web\INavbar.cs" />
+    <Compile Include="OutputDevices\Web\Navbar.cs" />
+    <Compile Include="OutputDevices\Web\WebPage.cs" />
+    <Compile Include="OutputDevices\Web\IWebPage.cs" />
+    <Compile Include="OutputDevices\Web\IFavIcon.cs" />
+    <Compile Include="OutputDevices\Web\FavIcon.cs" />
+    <Compile Include="OutputDevices\Web\Shapes\IWebShape.cs" />
+    <Compile Include="OutputDevices\Web\Shapes\WebShape.cs" />
+    <Compile Include="OutputDevices\Web\Shapes\WebPredicateTable.cs" />
+    <Compile Include="Interaction\IdpTable.cs" />
+    <Compile Include="Interaction\IIDpTable.cs" />
+    <Compile Include="Interaction\IIdpStructure.cs" />
+    <Compile Include="Interaction\IIdpPredicate.cs" />
+    <Compile Include="Interaction\IIdpTuple.cs" />
+    <Compile Include="Interaction\IIdpInference.cs" />
+    <Compile Include="Interaction\IIdpTheory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -312,6 +331,7 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="resources\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="glsharp\GLSharp\GLSharp.csproj">
@@ -332,5 +352,8 @@
     <Folder Include="UserInterface\" />
     <Folder Include="Utils\" />
     <Folder Include="Parser\" />
+    <Folder Include="OutputDevices\Web\" />
+    <Folder Include="resources\" />
+    <Folder Include="OutputDevices\Web\Shapes\" />
   </ItemGroup>
 </Project>

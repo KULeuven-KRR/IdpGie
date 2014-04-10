@@ -95,6 +95,7 @@ namespace IdpGie.Shapes {
 			}
 		}
 
+		[ShapeState ("CairoTransformations")]
 		public Matrix CairoTransformations {
 			get {
 				return this.CalcCairoTransformations ();

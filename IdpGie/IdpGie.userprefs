@@ -1,15 +1,29 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Engines/HttpEngine.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/IIdpInference.cs">
     <Files>
-      <File FileName="Engines/CairoEngine.cs" Line="58" Column="4" />
-      <File FileName="Engines/IEngine.cs" Line="26" Column="1" />
-      <File FileName="Engines/NamespaceDoc.cs" Line="25" Column="1" />
-      <File FileName="Engines/Engine.cs" Line="52" Column="1" />
-      <File FileName="Engines/IRenderEngine.cs" Line="30" Column="138" />
-      <File FileName="Engines/HttpEngine.cs" Line="21" Column="13" />
-      <File FileName="Engines/HttpEngine.cs" Line="56" Column="19" />
-      <File FileName="Engines/IWebEngine.cs" Line="24" Column="39" />
+      <File FileName="OutputDevices/OutputHttpServerDevice.cs" Line="50" Column="52" />
+      <File FileName="OutputDevices/Web/Navbar.cs" Line="261" Column="58" />
+      <File FileName="OutputDevices/Web/INavbar.cs" Line="50" Column="4" />
+      <File FileName="OutputDevices/Web/IWebPage.cs" Line="49" Column="15" />
+      <File FileName="OutputDevices/Web/IFavIcon.cs" Line="36" Column="2" />
+      <File FileName="OutputDevices/Web/WebPage.cs" Line="99" Column="154" />
+      <File FileName="OutputDevices/Web/FavIcon.cs" Line="23" Column="25" />
+      <File FileName="Engines/HttpEngine.cs" Line="109" Column="50" />
+      <File FileName="Core/ProgramManager.cs" Line="602" Column="43" />
+      <File FileName="Engines/IWebEngine.cs" Line="1" Column="1" />
+      <File FileName="OutputDevices/Web/Shapes/IWebShape.cs" Line="23" Column="35" />
+      <File FileName="OutputDevices/Web/Shapes/WebShape.cs" Line="32" Column="3" />
+      <File FileName="OutputDevices/Web/Shapes/WebPredicateTable.cs" Line="35" Column="4" />
+      <File FileName="Core/ProcessSession.cs" Line="30" Column="34" />
+      <File FileName="Interaction/IdpInteraction.cs" Line="78" Column="61" />
+      <File FileName="Interaction/IdpTable.cs" Line="1" Column="1" />
+      <File FileName="Interaction/IIDpTable.cs" Line="24" Column="28" />
+      <File FileName="Interaction/IIdpStructure.cs" Line="83" Column="88" />
+      <File FileName="Interaction/IIdpPredicate.cs" Line="1" Column="1" />
+      <File FileName="Interaction/IIdpTuple.cs" Line="1" Column="1" />
+      <File FileName="Interaction/IIdpInference.cs" Line="30" Column="16" />
+      <File FileName="Interaction/IIdpTheory.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -19,4 +33,32 @@
   <MonoDevelop.Ide.BookmarkService.Bookmarks>
     <BookmarkCollection />
   </MonoDevelop.Ide.BookmarkService.Bookmarks>
+  <MonoDevelop.Ide.ItemProperties.IdpGie>
+    <MonoDevelop.Ide.CustomExecutionModes>
+      <Data Name="pdfstrip" Id="4c9367ce-e620-4402-9ad6-f8cd54a2df24" ModeId="Default">
+        <CommandData>
+          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
+            <Value Arguments="-d ../../testinput/test1.idpd -m pdfstrip -g 2x20 -o thefile.pdf" ctype="CustomArgsExecutionModeData">
+              <EnvironmentVariables />
+            </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
+        </CommandData>
+      </Data>
+      <Data Name="customserver" Id="ca7f9220-fd3d-4f26-938d-166cb31f223c" ModeId="Default">
+        <CommandData>
+          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
+            <Value Arguments="--serverfolder=serverfolder --m httpserver -d ../../testinput/test1.idpd" ctype="CustomArgsExecutionModeData">
+              <EnvironmentVariables />
+            </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
+        </CommandData>
+      </Data>
+    </MonoDevelop.Ide.CustomExecutionModes>
+  </MonoDevelop.Ide.ItemProperties.IdpGie>
 </Properties>

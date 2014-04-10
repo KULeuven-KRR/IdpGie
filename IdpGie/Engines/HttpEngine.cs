@@ -20,12 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Net.Sockets;
+using System.Linq;
 using System.IO;
+using System.Net.Sockets;
 using System.Text;
 using System.Web.UI;
 using IdpGie.Core;
 using IdpGie.OutputDevices;
+using IdpGie.OutputDevices.Web;
 
 namespace IdpGie.Engines {
 
@@ -33,7 +35,13 @@ namespace IdpGie.Engines {
 	/// An engine that generates webpages based on the logical descripiton.
 	/// </summary>
 	public class HttpEngine : Engine, IWebEngine {
+
+		/// <summary>
+		/// The file name of the icon.
+		/// </summary>
+		public const string IconName = @"favicon.ico";
 		private readonly TcpClient client;
+		private readonly OutputHttpServerDevice device;
 
 		#region IWebEngine implementation
 		/// <summary>
@@ -59,6 +67,7 @@ namespace IdpGie.Engines {
 		/// A <see cref="OutputHttpServerDevice"/> instance that contains the <see cref="IDrawTheory"/>.
 		/// </param>
 		public HttpEngine (TcpClient client, OutputHttpServerDevice device) : this(client,device.Theory) {
+			this.device = device;
 		}
 
 		/// <summary>
@@ -92,22 +101,26 @@ namespace IdpGie.Engines {
 				} while(line != string.Empty && line != null);
 				//string http_url = tokens [1];
 				string http_filename = tokens [1];
-				Console.WriteLine (http_filename);
-				using (StreamWriter sw = new StreamWriter (client.GetStream ())) {
-					using (Html32TextWriter tw = new Html32TextWriter (sw)) {
-						tw.WriteLine ("<!DOCTYPE html>");
-						tw.RenderBeginTag (HtmlTextWriterTag.Html);
-						tw.RenderBeginTag (HtmlTextWriterTag.Head);
-						this.WriteHeader (tw);
-						tw.RenderEndTag ();
-						tw.RenderBeginTag (HtmlTextWriterTag.Body);
-						this.WriteBody (tw);
-						this.WriteJavascript (tw);
-						tw.RenderEndTag ();
-						tw.RenderEndTag ();
-						tw.Close ();
+				Console.WriteLine ("\"{0}\"", http_filename);
+				
+				if (http_filename == "/" + IconName) {
+					this.device.Navigationbar.FavIcon.RenderIcon (this, client.GetStream ());
+				} else {
+					IWebPage wp = this.device.Navigationbar.GetPage (http_filename.Substring (0x01));
+					using (StreamWriter sw = new StreamWriter (client.GetStream ())) {
+						using (Html32TextWriter tw = new Html32TextWriter (sw)) {
+							tw.WriteLine ("<!DOCTYPE html>");
+							tw.RenderBeginTag (HtmlTextWriterTag.Html);
+							tw.RenderBeginTag (HtmlTextWriterTag.Head);
+							this.WriteHeader (tw);
+							tw.RenderEndTag ();
+							tw.RenderBeginTag (HtmlTextWriterTag.Body);
+							this.WriteBody (tw, wp);
+							this.WriteJavascript (tw);
+							tw.RenderEndTag ();
+							tw.RenderEndTag ();
+						}
 					}
-					sw.Close ();
 				}
 			}
 		}
@@ -116,7 +129,7 @@ namespace IdpGie.Engines {
 
 		private void WriteHeader (Html32TextWriter htw) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Title);
-			htw.Write (this.Theory.Name);
+			htw.Write (this.device.Navigationbar.Name);
 			htw.RenderEndTag ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Name, "generator");
 			htw.AddAttribute (HtmlTextWriterAttribute.Content, ProgramManager.ProgramNameVersion);
@@ -131,12 +144,21 @@ namespace IdpGie.Engines {
 			htw.AddAttribute (HtmlTextWriterAttribute.Href, "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
 			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "stylesheet");
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
+			htw.RenderEndTag ();
+			htw.WriteLine ();
+			htw.AddAttribute (HtmlTextWriterAttribute.Href, IconName);
+			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "icon");
+			htw.AddAttribute (HtmlTextWriterAttribute.Type, "image/x-icon");
+			htw.RenderBeginTag (HtmlTextWriterTag.Link);
+			htw.WriteLine ();
+			htw.RenderBeginTag (HtmlTextWriterTag.Style);
 			htw.Write ("body {min-height: 2000px;padding-top: 70px;}");
 			htw.RenderEndTag ();
 			htw.WriteLine ();
 		}
 
-		private void WriteMasthead (Html32TextWriter htw) {
+		private void WriteMasthead (Html32TextWriter htw, IWebPage webpage) {
+			INavbar navbar = this.device.Navigationbar;
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "navbar navbar-default navbar-fixed-top");
 			htw.AddAttribute ("role", "navigation");
 			htw.RenderBeginTag (HtmlTextWriterTag.Div);
@@ -151,7 +173,7 @@ namespace IdpGie.Engines {
 						htw.AddAttribute (HtmlTextWriterAttribute.Href, "#");
 						htw.RenderBeginTag (HtmlTextWriterTag.A);
 						{
-							htw.Write (this.Theory.Name);
+							htw.Write (navbar.Name);
 						}
 						htw.RenderEndTag ();
 					}
@@ -162,19 +184,16 @@ namespace IdpGie.Engines {
 						htw.AddAttribute (HtmlTextWriterAttribute.Class, "nav navbar-nav");
 						htw.RenderBeginTag (HtmlTextWriterTag.Ul);
 						{
-							bool active = true;
-							string[] ss = {"Foo","Bar","Baz"};
-							foreach (string s in ss) {
-								if (active) {
+							foreach (IWebPage wp in navbar.Pages) {
+								if (wp == webpage) {
 									htw.AddAttribute (HtmlTextWriterAttribute.Class, "active");
 								}
 								htw.RenderBeginTag (HtmlTextWriterTag.Li);
-								htw.AddAttribute (HtmlTextWriterAttribute.Href, "#");
+								htw.AddAttribute (HtmlTextWriterAttribute.Href, wp.Href);
 								htw.RenderBeginTag (HtmlTextWriterTag.A);
-								htw.Write (s);
+								htw.Write (wp.Name);
 								htw.RenderEndTag ();
 								htw.RenderEndTag ();
-								active = false;
 							}
 						}
 						htw.RenderEndTag ();
@@ -186,12 +205,15 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 		}
 
-		private void WriteBody (Html32TextWriter htw) {
-			this.WriteMasthead (htw);
+		private void WriteBody (Html32TextWriter htw, IWebPage webpage) {
+			this.WriteMasthead (htw, webpage);
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "container");
 			htw.RenderBeginTag (HtmlTextWriterTag.Div);
 			htw.RenderBeginTag (HtmlTextWriterTag.Hr);
 			htw.RenderEndTag ();
+
+			webpage.Render (this.device.Manager.ServerFolder, this, htw);
+
 			this.WriteFooter (htw);
 			htw.RenderEndTag ();
 		}
