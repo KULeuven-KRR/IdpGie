@@ -31,11 +31,29 @@ namespace IdpGie.Geometry {
 	/// </summary>
 	public class CanvasSize : CloneableBase<ICanvasSize>, ICanvasSize {
 
-		private const string identifier_width = @"w", identifier_heigh = @"h", identifier_margi = @"m";
 		private double width = DefaultWidth, height = DefaultHeight, margin = DefaultMargin;
-		private static readonly Regex regex = RegexDevelopment.DoubleRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_heigh + ~("[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_margi);
 
 		#region Constants
+		/// <summary>
+		/// Gets the identifier of the <see cref="ParserRegex"/> for the <see cref="Width"/> value.
+		/// </summary>
+		public const string IdentifierWidth = @"w";
+
+		/// <summary>
+		/// Gets the identifier of the <see cref="ParserRegex"/> for the <see cref="Height"/> value.
+		/// </summary>
+		public const string IdentifierHeight = @"h";
+
+		/// <summary>
+		/// Gets the identifier of the <see cref="ParserRegex"/> for the <see cref="Margin"/> value.
+		/// </summary>
+		public const string IdentifierMargin = @"m";
+
+		/// <summary>
+		/// The regular expression to parse <see cref="StripGeometry"/> instances.
+		/// </summary>
+		public static readonly Regex ParserRegex = RegexDevelopment.DoubleRegex / IdentifierWidth + "[^0-9+-.]+" + RegexDevelopment.DoubleRegex / IdentifierHeight + ~("[^0-9+-.]+" + RegexDevelopment.DoubleRegex / IdentifierMargin);
+
 		/// <summary>
 		/// The default value of the <see cref="ICanvasSize.Width"/>.
 		/// </summary>
@@ -188,12 +206,13 @@ namespace IdpGie.Geometry {
 		/// <param name='text'>
 		/// The textual representation to convert.
 		/// </param>
+		/// <exception cref="FormatException">If the given textual representation does not match the <see cref="ParserRegex"/> format.</exception>
 		public static CanvasSize Parse (string text) {
-			Match match = regex.Match (text);
+			Match match = ParserRegex.Match (text);
 			if (match.Success) {
-				double w = double.Parse (match.Groups [identifier_width].Value);
-				double h = double.Parse (match.Groups [identifier_heigh].Value);
-				Group gm = match.Groups [identifier_margi];
+				double w = double.Parse (match.Groups [IdentifierWidth].Value);
+				double h = double.Parse (match.Groups [IdentifierHeight].Value);
+				Group gm = match.Groups [IdentifierMargin];
 				if (gm.Success) {
 					double m = double.Parse (gm.Value);
 					return new CanvasSize (w, h, m);
