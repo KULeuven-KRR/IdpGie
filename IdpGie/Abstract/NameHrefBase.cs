@@ -27,10 +27,11 @@ namespace IdpGie.Abstract {
 	/// An implementation of the <see cref="INameHref"/> interface that contains both the name of the instance and a (possibly related)
 	/// reference to a resource.
 	/// </summary>
-	public class NameHrefBase : NameBase, INameHref {
+	public abstract class NameHrefBase : NameBase, INameHref {
 
 		private string href;
 
+		#region IHref implementation
 		/// <summary>
 		///  Gets the reference to the resource to store. 
 		/// </summary>
@@ -46,6 +47,7 @@ namespace IdpGie.Abstract {
 				this.href = value;
 			}
 		}
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameHrefBase"/> class.

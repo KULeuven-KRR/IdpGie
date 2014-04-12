@@ -29,6 +29,7 @@ namespace IdpGie.Abstract {
 		private double min;
 		private double max;
 
+		#region IInterval implementation
 		/// <summary>
 		///  Gets or sets the maximum of the interval. 
 		/// </summary>
@@ -58,6 +59,7 @@ namespace IdpGie.Abstract {
 				this.min = value;
 			}
 		}
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.DoubleInterval"/> struct with a given minimum  and maximum.
@@ -73,6 +75,7 @@ namespace IdpGie.Abstract {
 			this.max = max;
 		}
 
+		#region IInterval implementation
 		/// <summary>
 		///  Checks if the interval contains the specified value. 
 		/// </summary>
@@ -85,6 +88,7 @@ namespace IdpGie.Abstract {
 		public bool Contains (double value) {
 			return (min <= value && value <= max);
 		}
+		#endregion
 
 	}
 }

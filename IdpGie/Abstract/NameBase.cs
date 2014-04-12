@@ -30,6 +30,7 @@ namespace IdpGie.Abstract {
 
 		private string name;
 
+		#region IName implementation
 		/// <summary>
 		///  Gets the name of this instance. 
 		/// </summary>
@@ -45,6 +46,7 @@ namespace IdpGie.Abstract {
 				this.name = value;
 			}
 		}
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameBase"/> class.

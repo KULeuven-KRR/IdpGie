@@ -35,6 +35,7 @@ namespace IdpGie.Abstract {
 		/// Creates a new instance with containing the same information as this object.
 		/// </summary>
 		new TResult Clone ();
+
 	}
 }
 

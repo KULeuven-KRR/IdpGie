@@ -1,5 +1,5 @@
 //
-//  IContentChangeableStream.cs
+//  IRuntimeFlagAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,32 +18,47 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
-using System.IO;
+using System.Collections.Generic;
 
 namespace IdpGie.Abstract {
 
 	/// <summary>
-	/// An interface that represents a stream where the content might change. The interface supports an <see cref="EventHandler"/>
-	/// that warns interested objects the content has changed.
+	/// An interface for an attribute to specify that the field corresponds to a runtime flag (this can be used to parse arguments).
 	/// </summary>
-	public interface IChangeableStream {
+	public interface IRuntimeFlagAttribute : INameDescription {
 
 		/// <summary>
-		/// Gets the stream of data that might change.
+		/// Gets the alternatives names for the flag.
 		/// </summary>
 		/// <value>
-		/// The stream of data that might change.
+		/// The alternatives names for the flag.
 		/// </value>
-		Stream Stream {
+		ICollection<string> Alternatives {
 			get;
 		}
 
 		/// <summary>
-		/// An event handler that warns interested object the content of the <see cref="IChangeableStream.Stream"/> has changed.
+		/// Gets the parser that parses the textual representation to the desired object.
 		/// </summary>
-		event EventHandler Changed;
+		/// <value>
+		/// The parser to convert the textual representation to the desired object.
+		/// </value>
+		Func<string,object> Parser {
+			get;
+		}
+
+		/// <summary>
+		/// Checks if the attribute comes with a parser.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if this instance has a parser; otherwise, <c>false</c>.
+		/// </value>
+		bool HasParser {
+			get;
+		}
 
 	}
+
 }
+

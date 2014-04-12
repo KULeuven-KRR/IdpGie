@@ -1,5 +1,5 @@
 //
-//  IContentChangeableStream.cs
+//  ICompact.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,31 +19,19 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.IO;
-
 namespace IdpGie.Abstract {
 
 	/// <summary>
-	/// An interface that represents a stream where the content might change. The interface supports an <see cref="EventHandler"/>
-	/// that warns interested objects the content has changed.
+	/// An interface that specifies that the instance can be represented more compactly. It provides a method that
+	/// forces the instance to compact its behavior.
 	/// </summary>
-	public interface IChangeableStream {
+	public interface ICompact {
 
 		/// <summary>
-		/// Gets the stream of data that might change.
+		/// Compact this instance by removing duplicated data.
 		/// </summary>
-		/// <value>
-		/// The stream of data that might change.
-		/// </value>
-		Stream Stream {
-			get;
-		}
-
-		/// <summary>
-		/// An event handler that warns interested object the content of the <see cref="IChangeableStream.Stream"/> has changed.
-		/// </summary>
-		event EventHandler Changed;
+		void Compact ();
 
 	}
 }
+
