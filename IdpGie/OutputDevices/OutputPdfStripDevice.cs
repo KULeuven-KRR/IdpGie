@@ -21,7 +21,7 @@ namespace IdpGie.OutputDevices {
 			using (PdfSurface surface = new PdfSurface (this.Manager.OutputFile, scs.TotalWidth, scs.TotalHeight)) {
 				using (Context ctx = new Context (surface)) {
 					int index = 0x00;
-					IdpGie.Geometry.Point3 p;
+					IPoint3 p;
 					foreach (double chapter in chapters) {
 						p = scs.GetCanvasOffset (index);
 						ctx.Save ();

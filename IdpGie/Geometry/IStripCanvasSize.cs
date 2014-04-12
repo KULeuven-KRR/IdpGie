@@ -1,5 +1,5 @@
 //
-//  NamespaceDoc.cs
+//  IStripCanvasSize.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,12 +18,16 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using IdpGie.Abstract;
+
 namespace IdpGie.Geometry {
 
 	/// <summary>
-	/// A namespace that contains a collection of classes to represent geometrical data, mainly used for graphical rendering purposes.
+	/// An interface that specifies a strip of several canvasses.
 	/// </summary>
-	public static class NamespaceDoc {
+	public interface IStripCanvasSize : ICloneable<ICanvasSize>, ICanvasSize {
+
 	}
 
 }
+

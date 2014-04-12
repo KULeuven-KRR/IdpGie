@@ -71,5 +71,5 @@ namespace IdpGie.Geometry {
 		}
 
 	}
-}
 
+}

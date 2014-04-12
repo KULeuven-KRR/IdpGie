@@ -327,6 +327,7 @@
     <Compile Include="Engines\ICairoContextSensitive.cs" />
     <Compile Include="Engines\ICairoEngine.cs" />
     <Compile Include="Core\DrawTheorySensitiveBase.cs" />
+    <Compile Include="Geometry\IStripCanvasSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

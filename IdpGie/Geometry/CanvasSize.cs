@@ -35,6 +35,7 @@ namespace IdpGie.Geometry {
 		private double width = DefaultWidth, height = DefaultHeight, margin = DefaultMargin;
 		private static readonly Regex regex = RegexDevelopment.DoubleRegex / identifier_width + "[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_heigh + ~("[^0-9+-.]+" + RegexDevelopment.DoubleRegex / identifier_margi);
 
+		#region Constants
 		/// <summary>
 		/// The default value of the <see cref="ICanvasSize.Width"/>.
 		/// </summary>
@@ -64,6 +65,7 @@ namespace IdpGie.Geometry {
 		/// The minimum value of the <see cref="ICanvasSize.Margin"/>.
 		/// </summary>
 		public const double MinMargin = 0.0d;
+		#endregion
 
 		#region ICanvasSize implementation
 		/// <summary>
@@ -160,6 +162,7 @@ namespace IdpGie.Geometry {
 		}
 
 		#endregion
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Geometry.CanvasSize"/> class with a given width, height and margin.
 		/// </summary>
@@ -178,6 +181,7 @@ namespace IdpGie.Geometry {
 			this.Margin = margin;
 		}
 
+		#region Parser method
 		/// <summary>
 		/// Converts the textual representation of the <see cref="CanvasSize"/> into an equivalent <see cref="CanvasSize"/> instance.
 		/// </summary>
@@ -200,6 +204,7 @@ namespace IdpGie.Geometry {
 				throw new FormatException (string.Format ("The document size \"{0}\" does not meet the format criteria.", text));
 			}
 		}
+		#endregion
 
 		#region ICanvasSize implementation
 		/// <summary>
@@ -211,7 +216,7 @@ namespace IdpGie.Geometry {
 		/// <param name='index'>
 		///  The index of the specified frame. 
 		/// </param>
-		public Point3 GetCanvasOffset (int index) {
+		public IPoint3 GetCanvasOffset (int index) {
 			return new Point3 (this.Margin, this.Margin);
 		}
 
@@ -245,6 +250,7 @@ namespace IdpGie.Geometry {
 		}
 		#endregion
 
+		#region ToString method
 		/// <summary>
 		/// Returns a <see cref="System.String"/> that represents the current <see cref="IdpGie.Geometry.CanvasSize"/>.
 		/// </summary>
@@ -254,6 +260,7 @@ namespace IdpGie.Geometry {
 		public override string ToString () {
 			return string.Format ("{0} x {1} x {2}", this.Width, this.Height, this.Margin);
 		}
+		#endregion
 
 		#region CloneableBase implementation
 		/// <summary>

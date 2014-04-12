@@ -26,7 +26,7 @@ namespace IdpGie.Geometry {
 	/// <summary>
 	/// An implementation with of the <see cref="ICanvasSize"/> interface with multiple frames specified by <see cref="StripCanvasSize.StripGeometry"/>.
 	/// </summary>
-	public class StripCanvasSize : CloneableBase<ICanvasSize>, ICanvasSize {
+	public class StripCanvasSize : CloneableBase<ICanvasSize>, IStripCanvasSize {
 
 		public ICanvasSize CanvasSize;
 		public IStripGeometry StripGeometry;
@@ -96,7 +96,7 @@ namespace IdpGie.Geometry {
 		public StripCanvasSize (ICanvasSize canvasSize, IStripGeometry geometry, int size) : this(canvasSize,geometry.CollapseClone (size)) {
 		}
 
-		public Point3 GetCanvasOffset (int index) {
+		public IPoint3 GetCanvasOffset (int index) {
 			int y = index / this.StripGeometry.Width;
 			int x = index - this.StripGeometry.Width * y;
 			return new Point3 (Margin + StrideWidth * x, Margin + StrideHeight * y);

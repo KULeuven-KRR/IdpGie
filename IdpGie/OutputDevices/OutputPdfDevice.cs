@@ -16,7 +16,7 @@ namespace IdpGie.OutputDevices {
 			StripCanvasSize scs = this.Manager.GenerateStripCanvasSize (0x01);
 			using (PdfSurface surface = new PdfSurface (this.Manager.OutputFile, scs.TotalWidth, scs.TotalHeight)) {
 				using (Context ctx = new Context (surface)) {
-					IdpGie.Geometry.Point3 p = scs.GetCanvasOffset (0x00);
+					IPoint3 p = scs.GetCanvasOffset (0x00);
 					ctx.Save ();
 					ctx.Translate (p.X, p.Y);
 					this.Theory.Time = this.Manager.Time;

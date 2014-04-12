@@ -25,6 +25,10 @@ using IdpGie.Logic;
 
 namespace IdpGie.Geometry {
 
+	/// <summary>
+	/// An implementation of <see cref="IPoint3"/> that contains maximally three dimensions and supports
+	/// reflection constors together with transformations.
+	/// </summary>
 	[FunctionStructure("point",TermType.Point)]
 	public struct Point3 : IPoint3 {
 
@@ -166,6 +170,7 @@ namespace IdpGie.Geometry {
 		}
 		#endregion
 
+		#region Equals method
 		/// <summary>
 		/// Determines whether the specified <see cref="System.Object"/> is equal to the current <see cref="IdpGie.Geometry.Point3"/>.
 		/// </summary>
@@ -183,7 +188,9 @@ namespace IdpGie.Geometry {
 			}
 			return base.Equals (obj);
 		}
+		#endregion
 
+		#region GetHashCode method
 		/// <summary>
 		/// Serves as a hash function for a <see cref="IdpGie.Geometry.Point3"/> object.
 		/// </summary>
@@ -193,7 +200,9 @@ namespace IdpGie.Geometry {
 		public override int GetHashCode () {
 			return base.GetHashCode () ^ this.X.GetHashCode () ^ (this.Y.GetHashCode () << 0x0b) ^ (this.Z.GetHashCode () << 0x16);
 		}
+		#endregion
 
+		#region ToString method
 		/// <summary>
 		/// Returns a <see cref="System.String"/> that represents the current <see cref="IdpGie.Geometry.Point3"/>.
 		/// </summary>
@@ -203,30 +212,69 @@ namespace IdpGie.Geometry {
 		public override string ToString () {
 			return string.Format ("({0} ; {1} ; {2})", this.X, this.Y, this.Z);
 		}
+		#endregion
 
+		#region converter operators
+		/// <summary>
+		/// Converts the given <see cref="Point3"/> to the <see cref="PointD"/>.
+		/// </summary>
+		/// <param name='v'>
+		/// The given <see cref="Point3"/> to convert.
+		/// </param>
 		public static explicit operator PointD (Point3 v) {
 			return new PointD (v.x, v.y);
 		}
 
+		/// <summary>
+		/// Converts the given <see cref="PointD"/> to the <see cref="Point3"/>.
+		/// </summary>
+		/// <param name='v'>
+		/// The given <see cref="PointD"/> to convert.
+		/// </param>
 		public static explicit operator Point3 (PointD v) {
 			return new Point3 (v.X, v.Y);
 		}
 
+		/// <summary>
+		/// Converts the given <see cref="Vector2"/> to the <see cref="Point3"/>.
+		/// </summary>
+		/// <param name='v'>
+		/// The given <see cref="Vector2"/> to convert.
+		/// </param>
 		public static explicit operator Point3 (Vector2 v) {
 			return new Point3 (v.X, v.Y);
 		}
 
+		/// <summary>
+		/// Converts the given <see cref="Vector2d"/> to the <see cref="Point3"/>.
+		/// </summary>
+		/// <param name='v'>
+		/// The given <see cref="Vector2d"/> to convert.
+		/// </param>
 		public static explicit operator Point3 (Vector2d v) {
 			return new Point3 (v.X, v.Y);
 		}
 
+		/// <summary>
+		/// Converts the given <see cref="Vector3"/> to the <see cref="Point3"/>.
+		/// </summary>
+		/// <param name='v'>
+		/// The given <see cref="Vector3"/> to convert.
+		/// </param>
 		public static explicit operator Point3 (Vector3 v) {
 			return new Point3 (v.X, v.Y, v.Z);
 		}
 
+		/// <summary>
+		/// Converts the given <see cref="Vector3d"/> to the <see cref="Point3"/>.
+		/// </summary>
+		/// <param name='v'>
+		/// The given <see cref="Vector3d"/> to convert.
+		/// </param>
 		public static explicit operator Point3 (Vector3d v) {
 			return new Point3 (v.X, v.Y, v.Z);
 		}
+		#endregion
 
 	}
 
