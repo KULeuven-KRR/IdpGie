@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Gdk;
 using IdpGie.Parser;
 using IdpGie.Abstract;
@@ -38,6 +37,7 @@ namespace IdpGie.Core {
 	/// A basic implementation of the <see cref="IDrawTheory"/> interface used to translate logic into drawing objects.
 	/// </summary>
 	public class DrawTheory : NameBase, IDrawTheory {
+
 		private readonly List<ITheoryItem> elements = new List<ITheoryItem> ();
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
 		private readonly Dictionary<EventType,LinkedList<IHook>> hooks = new Dictionary<EventType, LinkedList<IHook>> ();
@@ -45,7 +45,6 @@ namespace IdpGie.Core {
 		private double minTime = 0.0d;
 		private double maxTime = 0.0d;
 		private readonly SortedSet<double> chapters = new SortedSet<double> ();
-
 		private event EventHandler changed;
 		
 
@@ -497,5 +496,5 @@ namespace IdpGie.Core {
 		#endregion
 
 	}
-}
 
+}
