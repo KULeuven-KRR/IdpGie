@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -127,6 +126,13 @@ namespace IdpGie.Engines {
 
 		#endregion
 
+		#region Webpage writing
+		/// <summary>
+		/// Writes the header of the webpage. The header contains references to bootstrap, a favoicon and some stylefile.
+		/// </summary>
+		/// <param name='htw'>
+		/// A <see cref="Html32TextWriter"/> to write the content to.
+		/// </param>
 		private void WriteHeader (Html32TextWriter htw) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Title);
 			htw.Write (this.device.Navigationbar.Name);
@@ -157,6 +163,15 @@ namespace IdpGie.Engines {
 			htw.WriteLine ();
 		}
 
+		/// <summary>
+		/// Writes the navigation bar to the given <see cref="Html32TextWriter"/>.
+		/// </summary>
+		/// <param name='htw'>
+		/// The <see cref="Html32TextWriter"/> to write the content to.
+		/// </param>
+		/// <param name='webpage'>
+		/// The webpage that is currently displayed. This is needed to denote the current page.
+		/// </param>
 		private void WriteMasthead (Html32TextWriter htw, IWebPage webpage) {
 			INavbar navbar = this.device.Navigationbar;
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "navbar navbar-default navbar-fixed-top");
@@ -205,6 +220,15 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 		}
 
+		/// <summary>
+		/// Writes the body of the given <see cref="IWebPage"/> to the <see cref="Html32TextWriter"/>.
+		/// </summary>
+		/// <param name='htw'>
+		/// The <see cref="Html32TextWriter"/> to write the content to.
+		/// </param>
+		/// <param name='webpage'>
+		/// The <see cref="IWebPage"/> to write to the <see cref="Html32TextWriter"/>.
+		/// </param>
 		private void WriteBody (Html32TextWriter htw, IWebPage webpage) {
 			this.WriteMasthead (htw, webpage);
 			htw.AddAttribute (HtmlTextWriterAttribute.Class, "container");
@@ -218,6 +242,12 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 		}
 
+		/// <summary>
+		/// Writes references of some javascript libraries to the given <see cref="Html32TextWriter"/> to let the bootstrap work.
+		/// </summary>
+		/// <param name='htw'>
+		/// The <see cref="Html32TextWriter"/> to write the content to.
+		/// </param>
 		private void WriteJavascript (Html32TextWriter htw) {
 			htw.AddAttribute (HtmlTextWriterAttribute.Src, "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
 			htw.RenderBeginTag (HtmlTextWriterTag.Script);
@@ -228,6 +258,12 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 		}
 
+		/// <summary>
+		/// Writes a footer of every webpage to the given <see cref="Html32TextWriter"/> instance.
+		/// </summary>
+		/// <param name='htw'>
+		/// The <see cref="Html32TextWriter"/> to write the webpage to.
+		/// </param>
 		private void WriteFooter (Html32TextWriter htw) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Hr);
 			htw.RenderEndTag ();
@@ -238,6 +274,8 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 			htw.RenderEndTag ();
 		}
-	}
-}
+		#endregion
 
+	}
+
+}

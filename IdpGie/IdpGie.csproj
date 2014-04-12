@@ -324,6 +324,9 @@
     <Compile Include="Interaction\IIdpTheory.cs" />
     <Compile Include="Abstract\IRuntimeFlagAttribute.cs" />
     <Compile Include="Abstract\ICompact.cs" />
+    <Compile Include="Engines\ICairoContextSensitive.cs" />
+    <Compile Include="Engines\ICairoEngine.cs" />
+    <Compile Include="Core\DrawTheorySensitiveBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

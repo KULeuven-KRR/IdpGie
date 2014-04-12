@@ -26,23 +26,12 @@ namespace IdpGie.Engines {
 	/// <summary>
 	/// A basic implementation of a <see cref="IEngine"/> that stores the <see cref="IDrawTheory"/> that feeds the <see cref="IEngine"/> with the set of <see cref="IdpGie.Shapes.IShape"/> instances.
 	/// </summary>
-	public abstract class Engine : IEngine {
-
-		/// <summary>
-		/// Gets or sets the involved theory that feeds the engine with <see cref="IdpGie.Shapes.IShape"/> instances.
-		/// </summary>
-		/// <value>
-		/// The involved theory that feeds the engine with <see cref="IdpGie.Shapes.IShape"/> instances.
-		/// </value>
-		public IDrawTheory Theory {
-			get;
-			set;
-		}
+	public abstract class Engine : DrawTheorySensitiveBase, IEngine {
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Engines.Engine"/> class without an intial <see cref="IDrawTheory"/>.
 		/// </summary>
-		protected Engine () : this(null) {
+		protected Engine () : base() {
 		}
 
 		/// <summary>
@@ -51,8 +40,7 @@ namespace IdpGie.Engines {
 		/// <param name='theory'>
 		/// The given initial <see cref="IDrawTheory"/> that feeds the <see cref="IEngine"/> with <see cref="IdpGie.Shapes.IShape"/> instances.
 		/// </param>
-		protected Engine (IDrawTheory theory) {
-			this.Theory = theory;
+		protected Engine (IDrawTheory theory) : base(theory) {
 		}
 
 		#region IEngine implementation
@@ -61,7 +49,6 @@ namespace IdpGie.Engines {
 		/// </summary>
 		public abstract void Process ();
 		#endregion
-
 
 	}
 }

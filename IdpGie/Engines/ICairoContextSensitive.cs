@@ -1,5 +1,5 @@
 //
-//  IRenderEngine.cs
+//  ICairoContextSensitive.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,12 +19,26 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using Cairo;
+
 namespace IdpGie.Engines {
 
 	/// <summary>
-	/// An interface specifying that the engine provides graphical output.
+	/// An interface for instances that contain a reference to a <see cref="Context"/> such that it can paint graphics to it.
 	/// </summary>
-	public interface IRenderEngine : IEngine {
-	}
+	public interface ICairoContextSensitive {
 
+		/// <summary>
+		/// Gets or sets the context to paint graphics to.
+		/// </summary>
+		/// <value>
+		/// The context to paint graphics to.
+		/// </value>
+		Context Context {
+			get;
+			set;
+		}
+
+	}
 }
+

@@ -1,5 +1,5 @@
 //
-//  IRenderEngine.cs
+//  ICairoEngine.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -22,9 +22,10 @@
 namespace IdpGie.Engines {
 
 	/// <summary>
-	/// An interface specifying that the engine provides graphical output.
+	/// An interface that specifies a cairo engine. It is a render engine with a reference to
+	/// the <see cref="Cairo.Context"/> to paint graphics to.
 	/// </summary>
-	public interface IRenderEngine : IEngine {
+	public interface ICairoEngine : IRenderEngine, ICairoContextSensitive {
 	}
-
 }
+
