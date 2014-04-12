@@ -316,7 +316,6 @@
     <Compile Include="OutputDevices\Web\Shapes\WebShape.cs" />
     <Compile Include="OutputDevices\Web\Shapes\WebPredicateTable.cs" />
     <Compile Include="Interaction\IdpTable.cs" />
-    <Compile Include="Interaction\IIDpTable.cs" />
     <Compile Include="Interaction\IIdpStructure.cs" />
     <Compile Include="Interaction\IIdpPredicate.cs" />
     <Compile Include="Interaction\IIdpTuple.cs" />
@@ -328,6 +327,7 @@
     <Compile Include="Engines\ICairoEngine.cs" />
     <Compile Include="Core\DrawTheorySensitiveBase.cs" />
     <Compile Include="Geometry\IStripCanvasSize.cs" />
+    <Compile Include="Interaction\IIdpTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
