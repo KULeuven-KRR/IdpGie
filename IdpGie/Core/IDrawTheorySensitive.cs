@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace IdpGie.Core {
+
 	/// <summary>
 	/// An interface specifying that the instance is sensitive to modifications of the <see cref="IDrawTheory"/> and therefore contains a reference to it.
 	/// </summary>
@@ -35,6 +36,7 @@ namespace IdpGie.Core {
 			get;
 			set;
 		}
-	}
-}
 
+	}
+
+}
