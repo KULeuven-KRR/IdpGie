@@ -61,6 +61,8 @@ namespace IdpGie.Abstract {
 		protected NameArityPriorityBase (string name, int arity = 0x00, double priority = 1.0d) : base(name,arity) {
 			this.Priority = priority;
 		}
+
 	}
+
 }
 

@@ -175,6 +175,7 @@ namespace IdpGie.Abstract {
 		public RuntimeFlagAttribute (string name, string description, Func<string,object> parser, params string[] alternatives) : this(name,description,alternatives) {
 			this.parser = parser;
 		}
-	}
-}
 
+	}
+
+}

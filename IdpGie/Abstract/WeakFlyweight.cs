@@ -87,6 +87,7 @@ namespace IdpGie.Abstract {
 			}
 		}
         #endregion
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.WeakFlyweight`2"/> class with a given generator.
 		/// </summary>

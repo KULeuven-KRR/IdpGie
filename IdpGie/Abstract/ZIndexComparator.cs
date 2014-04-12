@@ -79,7 +79,6 @@ namespace IdpGie.Abstract {
 		}
         #endregion
 
-
 	}
 
 }

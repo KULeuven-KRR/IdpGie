@@ -19,13 +19,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
 namespace IdpGie.Abstract {
+
 	/// <summary>
 	/// An interface that specifies a description is associated with the object.
 	/// </summary>
 	public interface IDescription {
+
 		/// <summary>
 		/// Gets the description associated with this object.
 		/// </summary>

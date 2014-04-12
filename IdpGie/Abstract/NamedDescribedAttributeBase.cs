@@ -51,6 +51,7 @@ namespace IdpGie.Abstract {
 		protected NamedDescribedAttributeBase (string name, string description = "No description available") : base (name) {
 			this.description = description;
 		}
-	}
-}
 
+	}
+
+}
