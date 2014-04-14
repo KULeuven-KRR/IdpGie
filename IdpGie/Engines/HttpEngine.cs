@@ -180,9 +180,12 @@ namespace IdpGie.Engines {
 				htw.WriteLine ("        xmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");");
 				htw.WriteLine ("    }");
 				htw.WriteLine ("    xmlhttp.onreadystatechange=function() {");
-				htw.WriteLine ("        alert(\"\"+xmlhttp.readyState+\":\"+xmlhttp.status);");
-				htw.WriteLine ("        if (xmlhttp.readyState==4 && xmlhttp.status==200) {");
-				htw.WriteLine ("            document.getElementById(target).innerHTML=xmlhttp.responseText;");
+				htw.WriteLine ("        if (xmlhttp.readyState==4) {");
+				htw.WriteLine ("            if(xmlhttp.status==200) {");
+				htw.WriteLine ("                document.getElementById(target).innerHTML=xmlhttp.responseText;");
+				htw.WriteLine ("            } else {");
+				htw.WriteLine ("                document.getElementById(target).innerHTML=\"<div class='alert alert-warning'><strong>Warning:</strong> something went wrong during an AJAX call. Error code: \"+xmlhttp.status+\", Source: \"+source+\".</div>\";");
+				htw.WriteLine ("            }");
 				htw.WriteLine ("        }");
 				htw.WriteLine ("    }");
 				htw.WriteLine ("    xmlhttp.open(\"GET\",source,true);");
