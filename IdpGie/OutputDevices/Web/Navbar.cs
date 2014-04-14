@@ -277,10 +277,10 @@ namespace IdpGie.OutputDevices.Web {
 		}
 
 		/// <summary>
-		/// Adds the query page.
+		/// Adds the given <see cref="IQueryWebPage"/> page to the navigation page.
 		/// </summary>
 		/// <param name='webpage'>
-		/// Webpage.
+		/// The given <see cref="IQueryWebPage"/>.
 		/// </param>
 		public void AddQueryPage (IQueryWebPage webpage) {
 			if (webpage != null) {

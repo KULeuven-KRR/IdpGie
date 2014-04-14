@@ -19,15 +19,63 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using IdpGie.Engines;
+using System.Web.UI;
+using System.IO;
+
 namespace IdpGie.OutputDevices.Web {
 
 	/// <summary>
 	/// A default <see cref="IQueryWebPage"/> that is used when no other query page is available.
 	/// </summary>
-	public class DefaultQueryWebPage : WebPage, IQueryWebPage {
+	public class DefaultQueryWebPage : QueryWebPage {
 
-		public DefaultQueryWebPage () {
+		/// <summary>
+		/// The single instance of the <see cref="DefaultQueryWebPage"/>. A singleton for memory footprint reduction.
+		/// </summary>
+		public static readonly DefaultQueryWebPage SingleInstance = new DefaultQueryWebPage ();
+
+		/// <summary>
+		/// Gets the default value for a query that cannot be resolved.
+		/// </summary>
+		public const string Error404 = "<div class=\"alert alert-danger\"><strong>Error:</strong> corrupt query. Possible tampering with the webserver. A system administrator will be notified.</div>";
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.DefaultQueryWebPage"/> class.
+		/// </summary>
+		private DefaultQueryWebPage () : base("defaultquery") {
 		}
+
+		#region IWebPage
+		/// <summary>
+		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
+		/// </summary>
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
+		/// <returns>
+		/// A <see cref="TextReader"/> that reads the content of the web page.
+		/// </returns>
+		public override TextReader GetReader (string serverFolder) {
+			return new StringReader (Error404);
+		}
+
+		/// <summary>
+		///  Render the result of the query onto the give specified engine. 
+		/// </summary>
+		/// <param name='serverFolder'>
+		///  The root of the folder of the web server. 
+		/// </param>
+		/// <param name='engine'>
+		///  The given specified engine. 
+		/// </param>
+		/// <param name='writer'>
+		///  The html writer to write content to. 
+		/// </param>
+		public override void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
+			writer.WriteLine (Error404);
+		}
+		#endregion
 
 	}
 

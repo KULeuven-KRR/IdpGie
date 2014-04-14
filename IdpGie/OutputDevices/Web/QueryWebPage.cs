@@ -21,10 +21,26 @@
 
 namespace IdpGie.OutputDevices.Web {
 
-	public class QueryWebPage {
-		public QueryWebPage () {
+	/// <summary>
+	/// A basic implementation of the <see cref="IQueryWebPage"/> interface.
+	/// </summary>
+	public abstract class QueryWebPage : WebPage, IQueryWebPage {
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="QueryWebPage"/> class.
+		/// </summary>
+		protected QueryWebPage () : base() {
 		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="QueryWebPage"/> class with an href reference.
+		/// </summary>
+		/// <param name='href'>
+		/// The reference of the <see cref="IQueryWebPage"/>.
+		/// </param>
+		protected QueryWebPage (string href) : base(string.Empty,href) {
+		}
+
 	}
 
 }
-

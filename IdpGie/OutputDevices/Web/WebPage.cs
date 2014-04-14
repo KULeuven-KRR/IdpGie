@@ -33,6 +33,10 @@ namespace IdpGie.OutputDevices.Web {
 	public class WebPage : NameHrefBase, IWebPage {
 
 		private string content = null;
+		/// <summary>
+		/// The message when the webserver cannot find the corresponding webpage.
+		/// </summary>
+		public const string Error404 = "<div class=\"alert alert-danger\"><strong>Error:</strong> cannot find \"{0}\". Please contact the site administrator.</div>";
 
 		#region IWebPage implementation
 		/// <summary>
@@ -49,7 +53,7 @@ namespace IdpGie.OutputDevices.Web {
 		#endregion
 
 		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="IdpGie.OutputDevices.Web.WebPage"/> is the default page.
+		/// Gets or sets a value indicating whether this <see cref="WebPage"/> is the default page.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if this page is the default web page; otherwise, <c>false</c>.
@@ -61,13 +65,13 @@ namespace IdpGie.OutputDevices.Web {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.WebPage"/> class.
+		/// Initializes a new instance of the <see cref=".WebPage"/> class.
 		/// </summary>
 		public WebPage () : base() {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.WebPage"/> class.
+		/// Initializes a new instance of the <see cref="WebPage"/> class.
 		/// </summary>
 		/// <param name='name'>
 		/// The name of the navbar page.
@@ -76,7 +80,7 @@ namespace IdpGie.OutputDevices.Web {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.WebPage"/> class.
+		/// Initializes a new instance of the <see cref="WebPage"/> class.
 		/// </summary>
 		/// <param name='name'>
 		/// The name of the navbar page.
@@ -110,7 +114,7 @@ namespace IdpGie.OutputDevices.Web {
 						}
 					}
 				} else {
-					this.content = string.Format ("<div class=\"alert alert-danger\"><strong>Error:</strong> cannot find \"{0}\". Please contact the site administrator.</div>", this.Href);
+					this.content = string.Format (Error404, this.Href);
 				}
 			}
 			return new StringReader (this.content);

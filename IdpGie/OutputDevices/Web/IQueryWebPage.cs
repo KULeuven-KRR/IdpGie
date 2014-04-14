@@ -22,6 +22,7 @@
 namespace IdpGie.OutputDevices.Web {
 
 	public interface IQueryWebPage : IWebPage {
+
 	}
 
 }
