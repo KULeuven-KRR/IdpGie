@@ -328,6 +328,9 @@
     <Compile Include="Core\DrawTheorySensitiveBase.cs" />
     <Compile Include="Geometry\IStripCanvasSize.cs" />
     <Compile Include="Interaction\IIdpTable.cs" />
+    <Compile Include="OutputDevices\Web\IQueryWebPage.cs" />
+    <Compile Include="OutputDevices\Web\QueryWebPage.cs" />
+    <Compile Include="OutputDevices\Web\Shapes\WebShapeAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

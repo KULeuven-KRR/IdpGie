@@ -90,6 +90,14 @@ namespace IdpGie.OutputDevices.Web {
 		/// </remarks>
 		IWebPage GetPage (string href);
 
+		/// <summary>
+		/// Adds the given <see cref="IQueryWebPage"/> page to the navigation page.
+		/// </summary>
+		/// <param name='webpage'>
+		/// The given <see cref="IQueryWebPage"/>.
+		/// </param>
+		void AddQueryPage (IQueryWebPage webpage);
+
 	}
 }
 

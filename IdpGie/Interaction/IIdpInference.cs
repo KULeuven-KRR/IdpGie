@@ -43,6 +43,7 @@ namespace IdpGie.Interaction {
 		/// </param>
 		IIdpStructure CalculateDefintions (IIdpTheory theory, IIdpStructure structure);
 
+
 		IIdpTheory Ground (IIdpTheory theory, IIdpStructure structure);
 
 

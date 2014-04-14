@@ -34,6 +34,7 @@ namespace IdpGie.OutputDevices.Web {
 	public class Navbar : NameBase, INavbar {
 
 		private List<WebPage> pages = null;
+		private readonly List<IQueryWebPage> queries = new List<IQueryWebPage> ();
 		private string serverFolder;
 		private FavIcon favIcon;
 

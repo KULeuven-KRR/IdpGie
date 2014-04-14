@@ -20,16 +20,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Xml.Serialization;
 
-namespace IdpGie.Shapes {
+namespace IdpGie.OutputDevices.Web.Shapes {
 
 	/// <summary>
 	/// A webshape that displays a table that contains the values of the predicates.
 	/// </summary>
 	[XmlType("PredicateTable")]
+	[WebShape("PredicateTable")]
 	public class WebPredicateTable {
 
-		[XmlAttribute("Predicate")]
-		public string Predicate {
+		[XmlAttribute("query")]
+		public string Query {
 			get;
 			set;
 		}

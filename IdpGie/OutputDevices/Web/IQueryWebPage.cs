@@ -1,5 +1,5 @@
 //
-//  IWebShape.cs
+//  IQueryWebPage.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,17 +18,10 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Web.UI;
 
-namespace IdpGie.OutputDevices.Web.Shapes {
+namespace IdpGie.OutputDevices.Web {
 
-	/// <summary>
-	/// An interface describing an interactive object that is part of the webpage.
-	/// </summary>
-	public interface IWebShape {
-
-		void Translate (Html32TextWriter writer);
-
+	public interface IQueryWebPage : IWebPage {
 	}
 
 }

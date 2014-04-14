@@ -31,6 +31,16 @@ namespace IdpGie.OutputDevices.Web {
 	public interface IWebPage : INameHref {
 
 		/// <summary>
+		/// Gets the navbar to which the <see cref="IWebPage"/> belongs.
+		/// </summary>
+		/// <value>
+		/// The navbar to which the <see cref="IWebPage"/> belongs.
+		/// </value>
+		INavbar Navbar {
+			get;
+		}
+
+		/// <summary>
 		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
 		/// </summary>
 		/// <param name='serverFolder'>

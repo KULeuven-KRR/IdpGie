@@ -1,5 +1,5 @@
 //
-//  IWebShape.cs
+//  WebPageAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,18 +18,33 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Web.UI;
+
+using System;
+using IdpGie.Abstract;
 
 namespace IdpGie.OutputDevices.Web.Shapes {
 
 	/// <summary>
-	/// An interface describing an interactive object that is part of the webpage.
+	/// An attribute to register a web shape.
 	/// </summary>
-	public interface IWebShape {
+	[AttributeUsage(AttributeTargets.Class)]
+	public class WebShapeAttribute : NamedAttributeBase {
 
-		void Translate (Html32TextWriter writer);
+		/// <summary>
+		/// Gets the associated tag name of the web shape.
+		/// </summary>
+		/// <value>
+		/// The associated tag name of the web shape.
+		/// </value>
+		public string TagName {
+			get {
+				return this.Name;
+			}
+		}
+
+		public WebShapeAttribute (string tagname) {
+		}
 
 	}
 
 }
-
