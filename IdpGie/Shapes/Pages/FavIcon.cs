@@ -23,7 +23,7 @@ using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// An implementation of a favicon, an icon that represents the website.

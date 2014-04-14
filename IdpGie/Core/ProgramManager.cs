@@ -30,7 +30,7 @@ using System.Reflection;
 using IdpGie.Geometry;
 using IdpGie.Interaction;
 using IdpGie.OutputDevices;
-using IdpGie.OutputDevices.Web;
+using IdpGie.Shapes.Web;
 
 namespace IdpGie.Core {
 

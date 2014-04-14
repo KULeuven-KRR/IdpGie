@@ -1,5 +1,5 @@
 //
-//  WebPageAttribute.cs
+//  WebShape.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,39 +18,32 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using IdpGie.Shapes.Pages;
 
-using System;
-using IdpGie.Abstract;
-
-namespace IdpGie.OutputDevices.Web.Shapes {
+namespace IdpGie.Shapes.Web {
 
 	/// <summary>
-	/// An attribute to register a web shape.
+	/// A basic abstract implementation of a web shape.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Class)]
-	public class WebShapeAttribute : NamedAttributeBase {
+	public abstract class WebShape : IWebShape {
 
 		/// <summary>
-		/// Gets the associated tag name of the web shape.
+		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Web.WebShape"/> class.
 		/// </summary>
-		/// <value>
-		/// The associated tag name of the web shape.
-		/// </value>
-		public string TagName {
-			get {
-				return this.Name;
-			}
+		protected WebShape () {
 		}
 
+		#region IWebShape implementation
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WebShapeAttribute"/> class with a given tag name.
+		/// Translates the given <see cref="IWebShape"/> into a relevant <see cref="IQueryWebPage"/> instance.
 		/// </summary>
-		/// <param name='tagname'>
-		/// The name of the tag.
-		/// </param>
-		public WebShapeAttribute (string tagname) : base(tagname) {
-		}
+		/// <returns>
+		/// An <see cref="IQueryWebPage"/> instances that can produce dynamic content.
+		/// </returns>
+		public abstract IQueryWebPage GetShapePage ();
+		#endregion
+
 
 	}
-
 }
+

@@ -1,5 +1,5 @@
 //
-//  IFavIcon.cs
+//  WebPageAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,28 +19,38 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using IdpGie.Engines;
-using System.IO;
+using System;
+using IdpGie.Abstract;
 
-namespace IdpGie.OutputDevices.Web {
-
+namespace IdpGie.Shapes.Web {
 
 	/// <summary>
-	/// The web page that provides the favicon of the web server.
+	/// An attribute to register a web shape.
 	/// </summary>
-	public interface IFavIcon : IWebPage {
+	[AttributeUsage(AttributeTargets.Class)]
+	public class WebShapeAttribute : NamedAttributeBase {
 
 		/// <summary>
-		///  Render the webpage icon onto the give specified engine. 
+		/// Gets the associated tag name of the web shape.
 		/// </summary>
-		/// <param name='engine'>
-		///  The given specified engine. 
+		/// <value>
+		/// The associated tag name of the web shape.
+		/// </value>
+		public string TagName {
+			get {
+				return this.Name;
+			}
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WebShapeAttribute"/> class with a given tag name.
+		/// </summary>
+		/// <param name='tagname'>
+		/// The name of the tag.
 		/// </param>
-		/// <param name='stream'>
-		/// The stream to write the content to.
-		/// </param>
-		void RenderIcon (HttpEngine engine, Stream stream);
+		public WebShapeAttribute (string tagname) : base(tagname) {
+		}
 
 	}
-}
 
+}

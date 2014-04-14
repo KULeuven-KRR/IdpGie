@@ -26,7 +26,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// Navbar.

@@ -24,7 +24,7 @@ using System.IO;
 using System.Web.UI;
 using System.Xml.Serialization;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// An implementation of the <see cref="IWebPage"/> interface that has a name and a reference to the <c>.idpml</c> file.

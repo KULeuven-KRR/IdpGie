@@ -21,7 +21,7 @@
 
 using IdpGie.Core;
 using IdpGie.Engines;
-using IdpGie.OutputDevices.Web;
+using IdpGie.Shapes.Pages;
 using System;
 using System.IO;
 using System.Net;

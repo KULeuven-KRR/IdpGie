@@ -22,7 +22,7 @@
 using IdpGie.Abstract;
 using System.Collections.Generic;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// An interface that represents the navbar: a bar on top of every webpage.

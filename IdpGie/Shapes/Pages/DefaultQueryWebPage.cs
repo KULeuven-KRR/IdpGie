@@ -23,7 +23,7 @@ using IdpGie.Engines;
 using System.Web.UI;
 using System.IO;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// A default <see cref="IQueryWebPage"/> that is used when no other query page is available.

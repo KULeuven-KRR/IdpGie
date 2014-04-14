@@ -23,7 +23,7 @@ using System.IO;
 using System.Web.UI;
 using IdpGie.Engines;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// An interface that specified a web page. A web page has a name, reference and constructive content.

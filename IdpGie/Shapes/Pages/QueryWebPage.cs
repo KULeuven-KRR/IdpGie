@@ -1,5 +1,5 @@
 //
-//  WebPredicateTable.cs
+//  QueryWebPage.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,26 +18,29 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Xml.Serialization;
 
-namespace IdpGie.OutputDevices.Web.Shapes {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
-	/// A webshape that displays a table that contains the values of the predicates.
+	/// A basic implementation of the <see cref="IQueryWebPage"/> interface.
 	/// </summary>
-	[XmlType("PredicateTable")]
-	[WebShape("PredicateTable")]
-	public class WebPredicateTable {
+	public abstract class QueryWebPage : WebPage, IQueryWebPage {
 
-		[XmlAttribute("query")]
-		public string Query {
-			get;
-			set;
+		/// <summary>
+		/// Initializes a new instance of the <see cref="QueryWebPage"/> class.
+		/// </summary>
+		protected QueryWebPage () : base() {
 		}
 
-		public WebPredicateTable () {
+		/// <summary>
+		/// Initializes a new instance of the <see cref="QueryWebPage"/> class with an href reference.
+		/// </summary>
+		/// <param name='href'>
+		/// The reference of the <see cref="IQueryWebPage"/>.
+		/// </param>
+		protected QueryWebPage (string href) : base(string.Empty,href) {
 		}
 
 	}
-}
 
+}

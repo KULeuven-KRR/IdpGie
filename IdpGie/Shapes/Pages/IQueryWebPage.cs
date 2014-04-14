@@ -1,5 +1,5 @@
 //
-//  WebShape.cs
+//  IQueryWebPage.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,18 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
-namespace IdpGie.OutputDevices.Web.Shapes {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
-	/// A basic abstract implementation of a web shape.
+	/// An interface for <see cref="IWebPage"/> instances where the content depends on the state of the Idp program.
 	/// </summary>
-	public abstract class WebShape {
-
-		public WebShape () {
-		}
+	public interface IQueryWebPage : IWebPage {
 
 	}
+
 }
 

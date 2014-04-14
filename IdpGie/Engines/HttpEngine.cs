@@ -26,7 +26,7 @@ using System.Text;
 using System.Web.UI;
 using IdpGie.Core;
 using IdpGie.OutputDevices;
-using IdpGie.OutputDevices.Web;
+using IdpGie.Shapes.Pages;
 
 namespace IdpGie.Engines {
 

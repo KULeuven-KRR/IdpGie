@@ -306,15 +306,6 @@
     <Compile Include="Abstract\IHref.cs" />
     <Compile Include="Abstract\INameHref.cs" />
     <Compile Include="Abstract\NameHrefBase.cs" />
-    <Compile Include="OutputDevices\Web\INavbar.cs" />
-    <Compile Include="OutputDevices\Web\Navbar.cs" />
-    <Compile Include="OutputDevices\Web\WebPage.cs" />
-    <Compile Include="OutputDevices\Web\IWebPage.cs" />
-    <Compile Include="OutputDevices\Web\IFavIcon.cs" />
-    <Compile Include="OutputDevices\Web\FavIcon.cs" />
-    <Compile Include="OutputDevices\Web\Shapes\IWebShape.cs" />
-    <Compile Include="OutputDevices\Web\Shapes\WebShape.cs" />
-    <Compile Include="OutputDevices\Web\Shapes\WebPredicateTable.cs" />
     <Compile Include="Interaction\IdpTable.cs" />
     <Compile Include="Interaction\IIdpStructure.cs" />
     <Compile Include="Interaction\IIdpPredicate.cs" />
@@ -328,10 +319,19 @@
     <Compile Include="Core\DrawTheorySensitiveBase.cs" />
     <Compile Include="Geometry\IStripCanvasSize.cs" />
     <Compile Include="Interaction\IIdpTable.cs" />
-    <Compile Include="OutputDevices\Web\IQueryWebPage.cs" />
-    <Compile Include="OutputDevices\Web\QueryWebPage.cs" />
-    <Compile Include="OutputDevices\Web\Shapes\WebShapeAttribute.cs" />
-    <Compile Include="OutputDevices\Web\DefaultQueryWebPage.cs" />
+    <Compile Include="Shapes\Web\IWebShape.cs" />
+    <Compile Include="Shapes\Web\WebPredicateTable.cs" />
+    <Compile Include="Shapes\Web\WebShape.cs" />
+    <Compile Include="Shapes\Web\WebShapeAttribute.cs" />
+    <Compile Include="Shapes\Pages\DefaultQueryWebPage.cs" />
+    <Compile Include="Shapes\Pages\FavIcon.cs" />
+    <Compile Include="Shapes\Pages\IFavIcon.cs" />
+    <Compile Include="Shapes\Pages\INavbar.cs" />
+    <Compile Include="Shapes\Pages\IQueryWebPage.cs" />
+    <Compile Include="Shapes\Pages\IWebPage.cs" />
+    <Compile Include="Shapes\Pages\Navbar.cs" />
+    <Compile Include="Shapes\Pages\QueryWebPage.cs" />
+    <Compile Include="Shapes\Pages\WebPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -364,6 +364,7 @@
     <Folder Include="Parser\" />
     <Folder Include="OutputDevices\Web\" />
     <Folder Include="resources\" />
-    <Folder Include="OutputDevices\Web\Shapes\" />
+    <Folder Include="Shapes\Web\" />
+    <Folder Include="Shapes\Pages\" />
   </ItemGroup>
 </Project>
