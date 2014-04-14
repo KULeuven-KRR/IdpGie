@@ -151,7 +151,7 @@ namespace IdpGie.Engines {
 			{}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
-			htw.AddAttribute (HtmlTextWriterAttribute.Href, "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
+			htw.AddAttribute (HtmlTextWriterAttribute.Href, "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
 			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "stylesheet");
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
 			{}
@@ -167,6 +167,27 @@ namespace IdpGie.Engines {
 			htw.RenderBeginTag (HtmlTextWriterTag.Style);
 			{
 				htw.Write ("body {min-height: 2000px;padding-top: 70px;}");
+			}
+			htw.RenderEndTag ();
+			htw.AddAttribute ("language", "javascript");
+			htw.RenderBeginTag (HtmlTextWriterTag.Script);
+			{
+				htw.WriteLine ("function genericAjax (source, target) {");
+				htw.WriteLine ("    var xmlhttp;");
+				htw.WriteLine ("    if (window.XMLHttpRequest) {");
+				htw.WriteLine ("        xmlhttp=new XMLHttpRequest();");
+				htw.WriteLine ("    } else {");
+				htw.WriteLine ("        xmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");");
+				htw.WriteLine ("    }");
+				htw.WriteLine ("    xmlhttp.onreadystatechange=function() {");
+				htw.WriteLine ("        alert(\"\"+xmlhttp.readyState+\":\"+xmlhttp.status);");
+				htw.WriteLine ("        if (xmlhttp.readyState==4 && xmlhttp.status==200) {");
+				htw.WriteLine ("            document.getElementById(target).innerHTML=xmlhttp.responseText;");
+				htw.WriteLine ("        }");
+				htw.WriteLine ("    }");
+				htw.WriteLine ("    xmlhttp.open(\"GET\",source,true);");
+				htw.WriteLine ("    xmlhttp.send();");
+				htw.WriteLine ("}");
 			}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
@@ -258,12 +279,13 @@ namespace IdpGie.Engines {
 		/// The <see cref="Html32TextWriter"/> to write the content to.
 		/// </param>
 		private void WriteJavascript (Html32TextWriter htw) {
-			htw.AddAttribute (HtmlTextWriterAttribute.Src, "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
+			htw.AddAttribute (HtmlTextWriterAttribute.Src, "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
 			htw.RenderBeginTag (HtmlTextWriterTag.Script);
 			htw.RenderEndTag ();
 			htw.WriteLine ();
-			htw.AddAttribute (HtmlTextWriterAttribute.Src, "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+			htw.AddAttribute (HtmlTextWriterAttribute.Src, "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
 			htw.RenderBeginTag (HtmlTextWriterTag.Script);
+			{}
 			htw.RenderEndTag ();
 		}
 
