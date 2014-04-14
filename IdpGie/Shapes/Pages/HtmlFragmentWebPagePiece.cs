@@ -1,5 +1,5 @@
 //
-//  IWebPagePiece.cs
+//  StringWebPagePiece.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,41 +19,56 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using IdpGie.Engines;
 using System.Collections.Generic;
 using System.Web.UI;
-using IdpGie.Engines;
 
 namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
-	/// A piece of a <see cref="IWebPage"/>. This can be default html or some <see cref="IDynamicWebPagePiece"/>
+	/// A <see cref="IWebPagePiece"/> that contains a small fragment of static HTML.
 	/// </summary>
-	public interface IWebPagePiece {
+	public class HtmlFragmentWebPagePiece : IWebPagePiece {
 
+		private readonly string fragment;
+
+		#region IWebPagePiece implementation
 		/// <summary>
 		/// Gets the pieces that compose the <see cref="IWebPage"/>.
 		/// </summary>
 		/// <value>
 		/// The pieces that compose the <see cref="IWebPage"/>.
 		/// </value>
-		IList<IWebPagePiece> Pieces {
-			get;
+		public IList<IWebPagePiece> Pieces {
+			get {
+				return new IWebPagePiece[0x00];//TODO: subpieces
+			}
+		}
+		#endregion
+
+		public HtmlFragmentWebPagePiece (string fragment) {
+			this.fragment = fragment;
 		}
 
+		#region IWebPagePiece implementation
 		/// <summary>
-		/// Render the webpage onto the give specified engine.
+		///  Render the webpage onto the give specified engine. 
 		/// </summary>
 		/// <param name='serverFolder'>
-		/// The root of the folder of the web server.
+		///  The root of the folder of the web server. 
 		/// </param>
 		/// <param name='engine'>
-		/// The given specified engine.
+		///  The given specified engine. 
 		/// </param>
 		/// <param name='writer'>
-		/// The html writer to write content to.
+		///  The html writer to write content to. 
 		/// </param>
-		void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer);
+		public void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
+			writer.WriteLine (this.fragment);
+		}
+		#endregion
+
 
 	}
-
 }
+

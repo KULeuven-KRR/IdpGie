@@ -41,16 +41,6 @@ namespace IdpGie.Shapes.Pages {
 		}
 
 		/// <summary>
-		/// Gets the pieces that compose the <see cref="IWebPage"/>.
-		/// </summary>
-		/// <value>
-		/// The pieces that compose the <see cref="IWebPage"/>.
-		/// </value>
-		IList<IWebPagePiece> Pieces {
-			get;
-		}
-
-		/// <summary>
 		/// Loading the page from the given server folder.
 		/// </summary>
 		/// <param name='serverFolder'>

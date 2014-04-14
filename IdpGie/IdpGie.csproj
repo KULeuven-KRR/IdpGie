@@ -336,6 +336,8 @@
     <Compile Include="Shapes\Pages\QueryWebPage.cs" />
     <Compile Include="Shapes\Pages\WebPage.cs" />
     <Compile Include="Shapes\Pages\IWebPagePiece.cs" />
+    <Compile Include="Shapes\Pages\DefaultWebPagePiece.cs" />
+    <Compile Include="Shapes\Pages\HtmlFragmentWebPagePiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

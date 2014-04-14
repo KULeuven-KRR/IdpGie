@@ -20,11 +20,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
 using IdpGie.Engines;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 using System.Web.UI;
 using System.Xml.Serialization;
+using HtmlAgilityPack;
 
 namespace IdpGie.Shapes.Pages {
 
@@ -35,10 +36,6 @@ namespace IdpGie.Shapes.Pages {
 	public class WebPage : NameHrefBase, IWebPage {
 
 		private IList<IWebPagePiece> pieces = null;
-		/// <summary>
-		/// The message when the webserver cannot find the corresponding webpage.
-		/// </summary>
-		public const string Error404 = "<div class=\"alert alert-danger\"><strong>Error:</strong> cannot find \"{0}\". Please contact the site administrator.</div>";
 
 		#region IWebPage implementation
 		/// <summary>
@@ -120,16 +117,23 @@ namespace IdpGie.Shapes.Pages {
 			if (this.pieces == null) {
 				string filename = Path.Combine (serverFolder, this.Href);
 				if (File.Exists (filename)) {
-					using (FileStream fs = File.Open(filename,FileMode.Open,FileAccess.Read,FileShare.Read)) {
+					HtmlDocument doc = new HtmlDocument ();
+					doc.Load (filename);
+					HtmlNode node = doc.DocumentNode;
+					Console.WriteLine (node);
+					/*using (FileStream fs = File.Open(filename,FileMode.Open,FileAccess.Read,FileShare.Read)) {
 						using (TextReader tr = new StreamReader(fs)) {
+
 							this.pieces = tr.ReadToEnd ();
 						}
 					}
 				} else {
-					this.pieces = string.Format (Error404, this.Href);
+					this.pieces = string.Format (Error404, this.Href);*/
+					this.pieces = new List<IWebPagePiece> ();
+				} else {
+					this.pieces = new IWebPagePiece[] {DefaultWebPagePiece.SingleInstance};
 				}
 			}
-			return new StringReader (this.pieces);
 		}
 
 		/// <summary>
