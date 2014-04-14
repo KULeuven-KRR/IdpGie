@@ -33,13 +33,16 @@ namespace IdpGie.Shapes.Pages {
 		/// <summary>
 		///  Render the webpage icon onto the give specified engine. 
 		/// </summary>
+		/// <param name='serverFolder'>
+		/// The root of the server folder that contains the custom favoicon.
+		/// </param>
 		/// <param name='engine'>
 		///  The given specified engine. 
 		/// </param>
 		/// <param name='stream'>
 		/// The stream to write the content to.
 		/// </param>
-		void RenderIcon (HttpEngine engine, Stream stream);
+		void RenderIcon (string serverFolder, HttpEngine engine, Stream stream);
 
 	}
 }

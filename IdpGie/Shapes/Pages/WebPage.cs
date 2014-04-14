@@ -34,7 +34,6 @@ namespace IdpGie.Shapes.Pages {
 	[XmlType("WebPage")]
 	public class WebPage : NameHrefBase, IWebPage {
 
-		private string content = null;
 		private IList<IWebPagePiece> pieces = null;
 		/// <summary>
 		/// The message when the webserver cannot find the corresponding webpage.
@@ -112,28 +111,25 @@ namespace IdpGie.Shapes.Pages {
 
 		#region IWebPage implementation
 		/// <summary>
-		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
+		///  Loading the page from the given server folder. 
 		/// </summary>
 		/// <param name='serverFolder'>
-		/// The root of the folder of the web server.
+		///  The root of the folder of the web server. 
 		/// </param>
-		/// <returns>
-		/// A <see cref="TextReader"/> that reads the content of the web page.
-		/// </returns>
-		public virtual TextReader GetReader (string serverFolder) {
-			if (this.content == null) {
+		public virtual void Load (string serverFolder) {
+			if (this.pieces == null) {
 				string filename = Path.Combine (serverFolder, this.Href);
 				if (File.Exists (filename)) {
 					using (FileStream fs = File.Open(filename,FileMode.Open,FileAccess.Read,FileShare.Read)) {
 						using (TextReader tr = new StreamReader(fs)) {
-							this.content = tr.ReadToEnd ();
+							this.pieces = tr.ReadToEnd ();
 						}
 					}
 				} else {
-					this.content = string.Format (Error404, this.Href);
+					this.pieces = string.Format (Error404, this.Href);
 				}
 			}
-			return new StringReader (this.content);
+			return new StringReader (this.pieces);
 		}
 
 		/// <summary>
@@ -149,11 +145,11 @@ namespace IdpGie.Shapes.Pages {
 		/// The html writer to write content to.
 		/// </param>
 		public virtual void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
-			TextReader tr = GetReader (serverFolder);
-			string line = tr.ReadLine ();
-			while (line != null) {
-				writer.WriteLine (line);
-				line = tr.ReadLine ();
+			this.Load (serverFolder);
+			if (this.pieces != null) {
+				foreach (IWebPagePiece piece in this.Pieces) {
+					piece.Render (serverFolder, engine, writer);
+				}
 			}
 		}
 		#endregion

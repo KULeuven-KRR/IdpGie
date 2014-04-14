@@ -103,7 +103,7 @@ namespace IdpGie.Engines {
 				Console.WriteLine ("\"{0}\"", http_filename);
 				
 				if (http_filename == "/" + IconName) {
-					this.device.Navigationbar.FavIcon.RenderIcon (this, client.GetStream ());
+					this.device.Navigationbar.FavIcon.RenderIcon (this.device.Manager.ServerFolder, this, client.GetStream ());
 				} else {
 					IWebPage wp = this.device.Navigationbar.GetPage (http_filename.Substring (0x01));
 					using (StreamWriter sw = new StreamWriter (client.GetStream ())) {

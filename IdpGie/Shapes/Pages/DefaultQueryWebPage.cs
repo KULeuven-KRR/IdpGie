@@ -46,18 +46,14 @@ namespace IdpGie.Shapes.Pages {
 		private DefaultQueryWebPage () : base("defaultquery") {
 		}
 
-		#region IWebPage
+		#region IWebPage implementation
 		/// <summary>
-		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
+		///  Loading the page from the given server folder. 
 		/// </summary>
 		/// <param name='serverFolder'>
-		/// The root of the folder of the web server.
+		///  The root of the folder of the web server. 
 		/// </param>
-		/// <returns>
-		/// A <see cref="TextReader"/> that reads the content of the web page.
-		/// </returns>
-		public override TextReader GetReader (string serverFolder) {
-			return new StringReader (Error404);
+		public override void Load (string serverFolder) {
 		}
 
 		/// <summary>

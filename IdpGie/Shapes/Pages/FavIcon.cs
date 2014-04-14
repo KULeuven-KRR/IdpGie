@@ -39,16 +39,14 @@ namespace IdpGie.Shapes.Pages {
 		public FavIcon () {
 		}
 
+		#region IWebPage implementation
 		/// <summary>
-		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
+		///  Loading the page from the given server folder. 
 		/// </summary>
 		/// <param name='serverFolder'>
-		/// The root of the folder of the web server.
+		///  The root of the folder of the web server. 
 		/// </param>
-		/// <returns>
-		/// A <see cref="TextReader"/> that reads the content of the web page.
-		/// </returns>
-		public override TextReader GetReader (string serverFolder) {
+		public override void Load (string serverFolder) {
 			if (data == null) {
 				if (this.Href == null) {
 					Stream s = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("IdpGie.resources.favicon.ico");
@@ -60,25 +58,27 @@ namespace IdpGie.Shapes.Pages {
 					//TODO: implement customly specified favicon
 				}
 			}
-			MemoryStream ms = new MemoryStream (this.data);
-			return new StreamReader (ms);
 		}
 
 		/// <summary>
 		///  Render the webpage icon onto the give specified engine. 
 		/// </summary>
+		/// <param name='serverFolder'>
+		/// The root of the server folder that contains the custom favoicon.
+		/// </param>
 		/// <param name='engine'>
 		///  The given specified engine. 
 		/// </param>
 		/// <param name='stream'>
 		/// The stream to write the content to.
 		/// </param>
-		public void RenderIcon (HttpEngine engine, Stream stream) {
-			this.GetReader (null);
+		public void RenderIcon (string serverFolder, HttpEngine engine, Stream stream) {
+			this.Load (serverFolder);
 			using (BinaryWriter bw = new BinaryWriter (stream)) {
 				bw.Write (this.data);
 			}
 		}
+		#endregion
 
 	}
 }
