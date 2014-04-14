@@ -1,5 +1,5 @@
 //
-//  IWebShape.cs
+//  IWebPagePiece.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,22 +19,29 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using IdpGie.Shapes.Pages;
+using System.Web.UI;
+using IdpGie.Engines;
 
-namespace IdpGie.Shapes.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
-	/// An interface describing an interactive object that is part of the webpage.
+	/// A piece of a <see cref="IWebPage"/>. This can be default html or some <see cref="IDynamicWebPagePiece"/>
 	/// </summary>
-	public interface IWebShape {
+	public interface IWebPagePiece {
 
 		/// <summary>
-		/// Translates the given <see cref="IWebShape"/> into a relevant <see cref="IQueryWebPage"/> instance.
+		/// Render the webpage onto the give specified engine.
 		/// </summary>
-		/// <returns>
-		/// An <see cref="IQueryWebPage"/> instances that can produce dynamic content.
-		/// </returns>
-		IQueryWebPage GetShapePage ();
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
+		/// <param name='engine'>
+		/// The given specified engine.
+		/// </param>
+		/// <param name='writer'>
+		/// The html writer to write content to.
+		/// </param>
+		void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer);
 
 	}
 

@@ -20,6 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
 using IdpGie.Engines;
+using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using System.Web.UI;
 using System.Xml.Serialization;
@@ -33,6 +35,7 @@ namespace IdpGie.Shapes.Pages {
 	public class WebPage : NameHrefBase, IWebPage {
 
 		private string content = null;
+		private IList<IWebPagePiece> pieces = null;
 		/// <summary>
 		/// The message when the webserver cannot find the corresponding webpage.
 		/// </summary>
@@ -49,6 +52,19 @@ namespace IdpGie.Shapes.Pages {
 		public INavbar Navbar {
 			get;
 			set;
+		}
+
+		/// <summary>
+		/// Gets the pieces that compose the <see cref="IWebPage"/>.
+		/// </summary>
+		/// <value>
+		/// The pieces that compose the <see cref="IWebPage"/>.
+		/// </value>
+		[XmlIgnore]
+		public IList<IWebPagePiece> Pieces {
+			get {
+				return this.pieces;
+			}
 		}
 		#endregion
 

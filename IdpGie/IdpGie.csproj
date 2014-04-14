@@ -80,6 +80,9 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Web" />
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>libs\HtmlAgilityPack.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -332,6 +335,7 @@
     <Compile Include="Shapes\Pages\Navbar.cs" />
     <Compile Include="Shapes\Pages\QueryWebPage.cs" />
     <Compile Include="Shapes\Pages\WebPage.cs" />
+    <Compile Include="Shapes\Pages\IWebPagePiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

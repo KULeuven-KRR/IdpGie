@@ -19,16 +19,15 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
+using System.Collections.Generic;
 using System.IO;
-using System.Web.UI;
-using IdpGie.Engines;
 
 namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// An interface that specified a web page. A web page has a name, reference and constructive content.
 	/// </summary>
-	public interface IWebPage : INameHref {
+	public interface IWebPage : INameHref, IWebPagePiece {
 
 		/// <summary>
 		/// Gets or sets the navbar to which the <see cref="IWebPage"/> belongs.
@@ -42,29 +41,22 @@ namespace IdpGie.Shapes.Pages {
 		}
 
 		/// <summary>
-		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
+		/// Gets the pieces that compose the <see cref="IWebPage"/>.
 		/// </summary>
-		/// <param name='serverFolder'>
-		/// The root of the folder of the web server.
-		/// </param>
-		/// <returns>
-		/// A <see cref="TextReader"/> that reads the content of the web page.
-		/// </returns>
-		TextReader GetReader (string serverFolder);
+		/// <value>
+		/// The pieces that compose the <see cref="IWebPage"/>.
+		/// </value>
+		IList<IWebPagePiece> Pieces {
+			get;
+		}
 
 		/// <summary>
-		/// Render the webpage onto the give specified engine.
+		/// Loading the page from the given server folder.
 		/// </summary>
 		/// <param name='serverFolder'>
 		/// The root of the folder of the web server.
 		/// </param>
-		/// <param name='engine'>
-		/// The given specified engine.
-		/// </param>
-		/// <param name='writer'>
-		/// The html writer to write content to.
-		/// </param>
-		void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer);
+		void Load (string serverFolder);
 
 	}
 
