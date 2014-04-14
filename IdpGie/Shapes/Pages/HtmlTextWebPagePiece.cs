@@ -28,25 +28,11 @@ namespace IdpGie.Shapes.Pages {
 	/// <summary>
 	/// A <see cref="IWebPagePiece"/> that contains a small fragment of static HTML.
 	/// </summary>
-	public class HtmlFragmentWebPagePiece : IWebPagePiece {
+	public class HtmlTextWebPagePiece : WebPagePieceBase {
 
 		private readonly string fragment;
 
-		#region IWebPagePiece implementation
-		/// <summary>
-		/// Gets the pieces that compose the <see cref="IWebPage"/>.
-		/// </summary>
-		/// <value>
-		/// The pieces that compose the <see cref="IWebPage"/>.
-		/// </value>
-		public IList<IWebPagePiece> Pieces {
-			get {
-				return new IWebPagePiece[0x00];//TODO: subpieces
-			}
-		}
-		#endregion
-
-		public HtmlFragmentWebPagePiece (string fragment) {
+		public HtmlTextWebPagePiece (string fragment) {
 			this.fragment = fragment;
 		}
 
@@ -63,8 +49,8 @@ namespace IdpGie.Shapes.Pages {
 		/// <param name='writer'>
 		///  The html writer to write content to. 
 		/// </param>
-		public void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
-			writer.WriteLine (this.fragment);
+		public override void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
+			writer.Write (this.fragment);
 		}
 		#endregion
 

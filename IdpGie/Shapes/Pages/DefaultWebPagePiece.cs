@@ -28,7 +28,7 @@ namespace IdpGie.Shapes.Pages {
 	/// <summary>
 	/// A default implementation of the <see cref="IWebPagePiece"/> in case no other content is found.
 	/// </summary>
-	public class DefaultWebPagePiece : IWebPagePiece {
+	public class DefaultWebPagePiece : WebPagePieceBase {
 
 		/// <summary>
 		/// Gets the single instance of the <see cref="DefaultWebPagePiece"/>. The singleton pattern is used for memory
@@ -42,20 +42,6 @@ namespace IdpGie.Shapes.Pages {
 		public const string Error404 = "<div class=\"alert alert-danger\"><strong>Error:</strong> cannot find the " +
 				"webpage piece. Please contact the site administrator.</div>";
 
-		#region IWebPagePiece implementation
-		/// <summary>
-		/// Gets the pieces that compose the <see cref="IWebPage"/>.
-		/// </summary>
-		/// <value>
-		/// The pieces that compose the <see cref="IWebPage"/>.
-		/// </value>
-		public IList<IWebPagePiece> Pieces {
-			get {
-				return new IWebPagePiece[0x00];
-			}
-		}
-
-		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Pages.DefaultWebPagePiece"/> class.
 		/// </summary>
@@ -75,7 +61,7 @@ namespace IdpGie.Shapes.Pages {
 		/// <param name='writer'>
 		///  The html writer to write content to. 
 		/// </param>
-		public void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
+		public override void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
 			writer.WriteLine (Error404);
 		}
 		#endregion

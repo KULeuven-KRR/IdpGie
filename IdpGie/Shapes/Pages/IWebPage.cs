@@ -40,14 +40,6 @@ namespace IdpGie.Shapes.Pages {
 			set;
 		}
 
-		/// <summary>
-		/// Loading the page from the given server folder.
-		/// </summary>
-		/// <param name='serverFolder'>
-		/// The root of the folder of the web server.
-		/// </param>
-		void Load (string serverFolder);
-
 	}
 
 }

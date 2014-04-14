@@ -41,6 +41,14 @@ namespace IdpGie.Shapes.Pages {
 		}
 
 		/// <summary>
+		/// Loading the page from the given server folder.
+		/// </summary>
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
+		void Load (string serverFolder);
+
+		/// <summary>
 		/// Render the webpage onto the give specified engine.
 		/// </summary>
 		/// <param name='serverFolder'>

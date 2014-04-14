@@ -119,23 +119,11 @@ namespace IdpGie.Shapes.Pages {
 				if (File.Exists (filename)) {
 					HtmlDocument doc = new HtmlDocument ();
 					doc.Load (filename);
-					HtmlNode node = doc.DocumentNode;
-					translateFragment (node);
-					this.pieces = new List<IWebPagePiece> ();
+					this.pieces = WebPagePieceBase.Expand (doc.DocumentNode);
 				} else {
 					this.pieces = new IWebPagePiece[] {DefaultWebPagePiece.SingleInstance};
 				}
 			}
-		}
-
-		private static IWebPagePiece translateFragment (HtmlNode node) {
-			Console.WriteLine ("{0}/{1}/{2}/{3}", node.NodeType, node.Attributes, node.InnerHtml, node.OriginalName);
-			Console.WriteLine (">");
-			foreach (HtmlNode child in node.ChildNodes) {
-				translateFragment (child);
-			}
-			Console.WriteLine ("<");
-			return null;
 		}
 
 		/// <summary>

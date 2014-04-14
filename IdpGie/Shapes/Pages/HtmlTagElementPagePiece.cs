@@ -19,19 +19,23 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Engines;
+using System.Linq;
 using System.Web.UI;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 
 namespace IdpGie.Shapes.Pages {
 
-	public class HtmlTagWebPagePiece : IWebPagePiece {
+	public class HtmlTagElementPagePiece : WebPagePieceBase {
 
 		private readonly HtmlNode node;
 
+		private IList<IWebPagePiece> pieces = null;
+
 		public IList<IWebPagePiece> Pieces {
 			get {
-				throw new System.NotImplementedException ();
+				this.Load (null);
+				return this.pieces;
 			}
 		}
 
@@ -41,13 +45,44 @@ namespace IdpGie.Shapes.Pages {
 		/// <param name='node'>
 		/// The node to print.
 		/// </param>
-		public HtmlTagWebPagePiece (HtmlNode node) {
+		public HtmlTagElementPagePiece (HtmlNode node) {
 			this.node = node;
 		}
 
 		#region IWebPagePiece implementation
-		public void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
-			writer.WriteLine (node.OuterHtml);
+		/// <summary>
+		///  Loading the page from the given server folder. 
+		/// </summary>
+		/// <param name='serverFolder'>
+		///  The root of the folder of the web server. 
+		/// </param>
+		public override void Load (string serverFolder) {
+			this.pieces = this.node.ChildNodes.Select (WebPagePieceBase.Expand);
+			base.Load (serverFolder);
+		}
+
+		/// <summary>
+		///  Render the webpage onto the give specified engine. 
+		/// </summary>
+		/// <param name='serverFolder'>
+		///  The root of the folder of the web server. 
+		/// </param>
+		/// <param name='engine'>
+		///  The given specified engine. 
+		/// </param>
+		/// <param name='writer'>
+		///  The html writer to write content to. 
+		/// </param>
+		public override void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
+			writer.RenderBeginTag (node);
+			if (this.pieces != null) {
+				foreach (IWebPagePiece piece in this.pieces) {
+					piece.Render (serverFolder, engine, writer);
+				}
+			}
+			if (node.Closed) {
+				writer.RenderEndTag ();
+			}
 		}
 		#endregion
 

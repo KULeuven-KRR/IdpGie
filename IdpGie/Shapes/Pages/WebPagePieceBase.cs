@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Engines;
+using System.Linq;
 using System.Web.UI;
 using System.Collections.Generic;
 using HtmlAgilityPack;
@@ -41,10 +42,22 @@ namespace IdpGie.Shapes.Pages {
 		}
 		#endregion
 
-		public WebPagePieceBase () {
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Pages.WebPagePieceBase"/> class.
+		/// </summary>
+		protected WebPagePieceBase () {
 		}
 
 		#region IWebPagePiece implementation
+		/// <summary>
+		/// Loading the page from the given server folder.
+		/// </summary>
+		/// <param name='serverFolder'>
+		/// The root of the folder of the web server.
+		/// </param>
+		public virtual void Load (string serverFolder) {
+		}
+
 		/// <summary>
 		///  Render the webpage onto the give specified engine. 
 		/// </summary>
@@ -59,6 +72,40 @@ namespace IdpGie.Shapes.Pages {
 		/// </param>
 		public abstract void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer);
 		#endregion
+
+		/// <summary>
+		/// Translates the given node into a <see cref="IWebPagePiece"/>.
+		/// </summary>
+		/// <returns>
+		/// An <see cref="IWebPagePiece"/> that corresponds to the given node.
+		/// </returns>
+		/// <param name='node'>
+		/// The given <see cref="HtmlNode"/> to translate.
+		/// </param>
+		public static IWebPagePiece Translate (HtmlNode node) {
+			switch (node.NodeType) {
+				case HtmlNodeType.Element:
+					return new HtmlTagElementPagePiece (node);
+				case HtmlNodeType.Text:
+					return new HtmlTextWebPagePiece (node.InnerText);
+				default :
+					return DefaultWebPagePiece.SingleInstance;
+			}
+		}
+
+		/// <summary>
+		/// Translates the given node into a <see cref="IWebPagePiece"/>.
+		/// </summary>
+		/// <returns>
+		/// An <see cref="System.Array"/> of <see cref="IWebPagePiece"/> instances that
+		/// corresponds to the children of the given node.
+		/// </returns>
+		/// <param name='node'>
+		/// The given <see cref="HtmlNode"/> to expand.
+		/// </param>
+		public static IList<IWebPagePiece> Expand (HtmlNode parent) {
+			return parent.ChildNodes.Select (Translate).ToArray ();
+		}
 
 	}
 
