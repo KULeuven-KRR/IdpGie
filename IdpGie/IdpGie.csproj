@@ -339,7 +339,7 @@
     <Compile Include="Shapes\Pages\DefaultWebPagePiece.cs" />
     <Compile Include="Shapes\Pages\WebPagePieceBase.cs" />
     <Compile Include="Shapes\Pages\HtmlTextWebPagePiece.cs" />
-    <Compile Include="Shapes\Pages\HtmlTagElementPagePiece.cs" />
+    <Compile Include="Shapes\Pages\HtmlElementPagePiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

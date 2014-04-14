@@ -35,7 +35,7 @@ namespace IdpGie.Shapes.Pages {
 		/// <value>
 		/// The pieces that compose the <see cref="IWebPage"/>.
 		/// </value>
-		public IList<IWebPagePiece> Pieces {
+		public virtual IList<IWebPagePiece> Pieces {
 			get {
 				return new IWebPagePiece[0x00];
 			}
@@ -85,9 +85,9 @@ namespace IdpGie.Shapes.Pages {
 		public static IWebPagePiece Translate (HtmlNode node) {
 			switch (node.NodeType) {
 				case HtmlNodeType.Element:
-					return new HtmlTagElementPagePiece (node);
+					return new HtmlElementPagePiece (node);
 				case HtmlNodeType.Text:
-					return new HtmlTextWebPagePiece (node.InnerText);
+					return new HtmlTextWebPagePiece (node.InnerHtml);
 				default :
 					return DefaultWebPagePiece.SingleInstance;
 			}

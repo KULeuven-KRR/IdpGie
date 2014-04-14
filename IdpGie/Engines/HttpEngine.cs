@@ -135,30 +135,39 @@ namespace IdpGie.Engines {
 		/// </param>
 		private void WriteHeader (Html32TextWriter htw) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Title);
-			htw.Write (this.device.Navigationbar.Name);
+			{
+				htw.Write (this.device.Navigationbar.Name);
+			}
 			htw.RenderEndTag ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Name, "generator");
 			htw.AddAttribute (HtmlTextWriterAttribute.Content, ProgramManager.ProgramNameVersion);
 			htw.RenderBeginTag (HtmlTextWriterTag.Meta);
+			{}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Name, "viewport");
 			htw.AddAttribute (HtmlTextWriterAttribute.Content, "width=device-width, initial-scale=1.0");
 			htw.RenderBeginTag (HtmlTextWriterTag.Meta);
+			{}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Href, "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
 			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "stylesheet");
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
+			{}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Href, IconName);
 			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "icon");
 			htw.AddAttribute (HtmlTextWriterAttribute.Type, "image/x-icon");
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
+			{}
+			htw.RenderEndTag ();
 			htw.WriteLine ();
 			htw.RenderBeginTag (HtmlTextWriterTag.Style);
-			htw.Write ("body {min-height: 2000px;padding-top: 70px;}");
+			{
+				htw.Write ("body {min-height: 2000px;padding-top: 70px;}");
+			}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
 		}

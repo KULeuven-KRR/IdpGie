@@ -19,33 +19,44 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Engines;
-using System.Linq;
+using System;
 using System.Web.UI;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 
 namespace IdpGie.Shapes.Pages {
 
-	public class HtmlTagElementPagePiece : WebPagePieceBase {
+	/// <summary>
+	/// An <see cref="IWebPagePieceBase"/> that describes a html tag.
+	/// </summary>
+	public class HtmlElementPagePiece : WebPagePieceBase {
 
 		private readonly HtmlNode node;
 
 		private IList<IWebPagePiece> pieces = null;
 
-		public IList<IWebPagePiece> Pieces {
+		#region IWebPagePiece implementation
+		/// <summary>
+		/// Gets the pieces that compose the <see cref="IWebPage"/>.
+		/// </summary>
+		/// <value>
+		/// The pieces that compose the <see cref="IWebPage"/>.
+		/// </value>
+		public override IList<IWebPagePiece> Pieces {
 			get {
 				this.Load (null);
 				return this.pieces;
 			}
 		}
+		#endregion
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="HtmlTagWebPagePiece"/> class with a given <see cref="HtmlNode"/>.
+		/// Initializes a new instance of the <see cref="HtmlElementPagePiece"/> class with a given <see cref="HtmlNode"/>.
 		/// </summary>
 		/// <param name='node'>
 		/// The node to print.
 		/// </param>
-		public HtmlTagElementPagePiece (HtmlNode node) {
+		public HtmlElementPagePiece (HtmlNode node) {
 			this.node = node;
 		}
 
@@ -57,7 +68,7 @@ namespace IdpGie.Shapes.Pages {
 		///  The root of the folder of the web server. 
 		/// </param>
 		public override void Load (string serverFolder) {
-			this.pieces = this.node.ChildNodes.Select (WebPagePieceBase.Expand);
+			this.pieces = WebPagePieceBase.Expand (this.node);
 			base.Load (serverFolder);
 		}
 
@@ -74,18 +85,19 @@ namespace IdpGie.Shapes.Pages {
 		///  The html writer to write content to. 
 		/// </param>
 		public override void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
-			writer.RenderBeginTag (node);
+			this.Load (serverFolder);
+			foreach (HtmlAttribute ha in this.node.Attributes) {
+				writer.AddAttribute (ha.Name, ha.Value);
+			}
+			writer.RenderBeginTag (this.node.Name);
 			if (this.pieces != null) {
 				foreach (IWebPagePiece piece in this.pieces) {
 					piece.Render (serverFolder, engine, writer);
 				}
 			}
-			if (node.Closed) {
-				writer.RenderEndTag ();
-			}
+			writer.RenderEndTag ();
 		}
 		#endregion
-
 
 	}
 
