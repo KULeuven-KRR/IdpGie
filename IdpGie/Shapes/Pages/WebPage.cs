@@ -120,20 +120,22 @@ namespace IdpGie.Shapes.Pages {
 					HtmlDocument doc = new HtmlDocument ();
 					doc.Load (filename);
 					HtmlNode node = doc.DocumentNode;
-					Console.WriteLine (node);
-					/*using (FileStream fs = File.Open(filename,FileMode.Open,FileAccess.Read,FileShare.Read)) {
-						using (TextReader tr = new StreamReader(fs)) {
-
-							this.pieces = tr.ReadToEnd ();
-						}
-					}
-				} else {
-					this.pieces = string.Format (Error404, this.Href);*/
+					translateFragment (node);
 					this.pieces = new List<IWebPagePiece> ();
 				} else {
 					this.pieces = new IWebPagePiece[] {DefaultWebPagePiece.SingleInstance};
 				}
 			}
+		}
+
+		private static IWebPagePiece translateFragment (HtmlNode node) {
+			Console.WriteLine ("{0}/{1}/{2}/{3}", node.NodeType, node.Attributes, node.InnerHtml, node.OriginalName);
+			Console.WriteLine (">");
+			foreach (HtmlNode child in node.ChildNodes) {
+				translateFragment (child);
+			}
+			Console.WriteLine ("<");
+			return null;
 		}
 
 		/// <summary>

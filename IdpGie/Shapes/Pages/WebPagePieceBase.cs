@@ -1,5 +1,5 @@
 //
-//  DefaultWebPagePiece.cs
+//  WebPagePieceBase.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,29 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using IdpGie.Engines;
 using System.Web.UI;
 using System.Collections.Generic;
+using HtmlAgilityPack;
 
 namespace IdpGie.Shapes.Pages {
 
-	/// <summary>
-	/// A default implementation of the <see cref="IWebPagePiece"/> in case no other content is found.
-	/// </summary>
-	public class DefaultWebPagePiece : IWebPagePiece {
-
-		/// <summary>
-		/// Gets the single instance of the <see cref="DefaultWebPagePiece"/>. The singleton pattern is used for memory
-		/// footprint reduction reasons.
-		/// </summary>
-		public static readonly DefaultWebPagePiece SingleInstance = new DefaultWebPagePiece ();
-
-		/// <summary>
-		/// The message when the webserver cannot find the corresponding webpage.
-		/// </summary>
-		public const string Error404 = "<div class=\"alert alert-danger\"><strong>Error:</strong> cannot find the " +
-				"webpage piece. Please contact the site administrator.</div>";
+	public abstract class WebPagePieceBase : IWebPagePiece {
 
 		#region IWebPagePiece implementation
 		/// <summary>
@@ -54,12 +39,9 @@ namespace IdpGie.Shapes.Pages {
 				return new IWebPagePiece[0x00];
 			}
 		}
-
 		#endregion
-		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Pages.DefaultWebPagePiece"/> class.
-		/// </summary>
-		private DefaultWebPagePiece () {
+
+		public WebPagePieceBase () {
 		}
 
 		#region IWebPagePiece implementation
@@ -75,12 +57,9 @@ namespace IdpGie.Shapes.Pages {
 		/// <param name='writer'>
 		///  The html writer to write content to. 
 		/// </param>
-		public void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
-			writer.WriteLine (Error404);
-		}
+		public abstract void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer);
 		#endregion
 
-
 	}
-}
 
+}
