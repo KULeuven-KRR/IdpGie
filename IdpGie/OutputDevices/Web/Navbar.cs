@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
+using IdpGie.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -123,6 +124,13 @@ namespace IdpGie.OutputDevices.Web {
 			}
 			set {
 				this.pages = value;
+				if (value != null) {
+					foreach (WebPage wp in value) {
+						if (wp != null) {
+							wp.Navbar = this;
+						}
+					}
+				}
 			}
 		}
 
@@ -260,12 +268,25 @@ namespace IdpGie.OutputDevices.Web {
 			IWebPage result = null;
 			if (href != null && href != string.Empty) {
 				string path = Path.Combine (this.serverFolder, href);
-				result = this.pages.FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == path);
+				result = this.pages.Append<IWebPage> (this.queries).FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == path);
 			}
 			if (result == null) {
 				result = this.DefaultPage;
 			}
 			return result;
+		}
+
+		/// <summary>
+		/// Adds the query page.
+		/// </summary>
+		/// <param name='webpage'>
+		/// Webpage.
+		/// </param>
+		public void AddQueryPage (IQueryWebPage webpage) {
+			if (webpage != null) {
+				webpage.Navbar = this;
+				this.queries.Add (webpage);
+			}
 		}
 		#endregion
 

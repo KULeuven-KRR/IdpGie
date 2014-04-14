@@ -331,6 +331,7 @@
     <Compile Include="OutputDevices\Web\IQueryWebPage.cs" />
     <Compile Include="OutputDevices\Web\QueryWebPage.cs" />
     <Compile Include="OutputDevices\Web\Shapes\WebShapeAttribute.cs" />
+    <Compile Include="OutputDevices\Web\DefaultQueryWebPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

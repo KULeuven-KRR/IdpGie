@@ -31,13 +31,14 @@ namespace IdpGie.OutputDevices.Web {
 	public interface IWebPage : INameHref {
 
 		/// <summary>
-		/// Gets the navbar to which the <see cref="IWebPage"/> belongs.
+		/// Gets or sets the navbar to which the <see cref="IWebPage"/> belongs.
 		/// </summary>
 		/// <value>
 		/// The navbar to which the <see cref="IWebPage"/> belongs.
 		/// </value>
 		INavbar Navbar {
 			get;
+			set;
 		}
 
 		/// <summary>

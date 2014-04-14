@@ -27,6 +27,12 @@ namespace IdpGie.OutputDevices.Web.Shapes {
 	/// </summary>
 	public interface IWebShape {
 
+		/// <summary>
+		/// Translate the specified writer.
+		/// </summary>
+		/// <param name='writer'>
+		/// Writer.
+		/// </param>
 		void Translate (Html32TextWriter writer);
 
 	}

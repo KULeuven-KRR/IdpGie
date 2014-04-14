@@ -1,5 +1,5 @@
 //
-//  WebPageAttribute.cs
+//  DefaultQueryWebPage.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,36 +19,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using IdpGie.Abstract;
-
-namespace IdpGie.OutputDevices.Web.Shapes {
+namespace IdpGie.OutputDevices.Web {
 
 	/// <summary>
-	/// An attribute to register a web shape.
+	/// A default <see cref="IQueryWebPage"/> that is used when no other query page is available.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Class)]
-	public class WebShapeAttribute : NamedAttributeBase {
+	public class DefaultQueryWebPage : WebPage, IQueryWebPage {
 
-		/// <summary>
-		/// Gets the associated tag name of the web shape.
-		/// </summary>
-		/// <value>
-		/// The associated tag name of the web shape.
-		/// </value>
-		public string TagName {
-			get {
-				return this.Name;
-			}
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="WebShapeAttribute"/> class with a given tag name.
-		/// </summary>
-		/// <param name='tagname'>
-		/// The name of the tag.
-		/// </param>
-		public WebShapeAttribute (string tagname) : base(tagname) {
+		public DefaultQueryWebPage () {
 		}
 
 	}

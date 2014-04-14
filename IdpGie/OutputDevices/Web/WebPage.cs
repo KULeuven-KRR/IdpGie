@@ -34,6 +34,20 @@ namespace IdpGie.OutputDevices.Web {
 
 		private string content = null;
 
+		#region IWebPage implementation
+		/// <summary>
+		/// Gets or sets the navbar to which the <see cref="IWebPage"/> belongs.
+		/// </summary>
+		/// <value>
+		/// The navbar to which the <see cref="IWebPage"/> belongs.
+		/// </value>
+		[XmlIgnore]
+		public INavbar Navbar {
+			get;
+			set;
+		}
+		#endregion
+
 		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="IdpGie.OutputDevices.Web.WebPage"/> is the default page.
 		/// </summary>
