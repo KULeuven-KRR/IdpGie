@@ -1,5 +1,5 @@
 //
-//  WebPageAttribute.cs
+//  WebPredicateTable.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,33 +18,26 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System.Xml.Serialization;
 
-using System;
-using IdpGie.Abstract;
-
-namespace IdpGie.OutputDevices.Web.Shapes {
+namespace IdpGie.Shapes.Web {
 
 	/// <summary>
-	/// An attribute to register a web shape.
+	/// A webshape that displays a table that contains the values of the predicates.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Class)]
-	public class WebShapeAttribute : NamedAttributeBase {
+	[XmlType("PredicateTable")]
+	[WebShape("PredicateTable")]
+	public class WebPredicateTable {
 
-		/// <summary>
-		/// Gets the associated tag name of the web shape.
-		/// </summary>
-		/// <value>
-		/// The associated tag name of the web shape.
-		/// </value>
-		public string TagName {
-			get {
-				return this.Name;
-			}
+		[XmlAttribute("query")]
+		public string Query {
+			get;
+			set;
 		}
 
-		public WebShapeAttribute (string tagname) {
+		public WebPredicateTable () {
 		}
 
 	}
-
 }
+

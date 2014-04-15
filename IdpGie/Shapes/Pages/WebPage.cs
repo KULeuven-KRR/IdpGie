@@ -20,11 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
 using IdpGie.Engines;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.UI;
 using System.Xml.Serialization;
+using HtmlAgilityPack;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// An implementation of the <see cref="IWebPage"/> interface that has a name and a reference to the <c>.idpml</c> file.
@@ -32,10 +35,37 @@ namespace IdpGie.OutputDevices.Web {
 	[XmlType("WebPage")]
 	public class WebPage : NameHrefBase, IWebPage {
 
-		private string content = null;
+		private IList<IWebPagePiece> pieces = null;
+
+		#region IWebPage implementation
+		/// <summary>
+		/// Gets or sets the navbar to which the <see cref="IWebPage"/> belongs.
+		/// </summary>
+		/// <value>
+		/// The navbar to which the <see cref="IWebPage"/> belongs.
+		/// </value>
+		[XmlIgnore]
+		public INavbar Navbar {
+			get;
+			set;
+		}
 
 		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="IdpGie.OutputDevices.Web.WebPage"/> is the default page.
+		/// Gets the pieces that compose the <see cref="IWebPage"/>.
+		/// </summary>
+		/// <value>
+		/// The pieces that compose the <see cref="IWebPage"/>.
+		/// </value>
+		[XmlIgnore]
+		public IList<IWebPagePiece> Pieces {
+			get {
+				return this.pieces;
+			}
+		}
+		#endregion
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="WebPage"/> is the default page.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if this page is the default web page; otherwise, <c>false</c>.
@@ -47,13 +77,13 @@ namespace IdpGie.OutputDevices.Web {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.WebPage"/> class.
+		/// Initializes a new instance of the <see cref=".WebPage"/> class.
 		/// </summary>
 		public WebPage () : base() {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.WebPage"/> class.
+		/// Initializes a new instance of the <see cref="WebPage"/> class.
 		/// </summary>
 		/// <param name='name'>
 		/// The name of the navbar page.
@@ -62,7 +92,7 @@ namespace IdpGie.OutputDevices.Web {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.WebPage"/> class.
+		/// Initializes a new instance of the <see cref="WebPage"/> class.
 		/// </summary>
 		/// <param name='name'>
 		/// The name of the navbar page.
@@ -78,28 +108,22 @@ namespace IdpGie.OutputDevices.Web {
 
 		#region IWebPage implementation
 		/// <summary>
-		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
+		///  Loading the page from the given server folder. 
 		/// </summary>
 		/// <param name='serverFolder'>
-		/// The root of the folder of the web server.
+		///  The root of the folder of the web server. 
 		/// </param>
-		/// <returns>
-		/// A <see cref="TextReader"/> that reads the content of the web page.
-		/// </returns>
-		public virtual TextReader GetReader (string serverFolder) {
-			if (this.content == null) {
+		public virtual void Load (string serverFolder) {
+			if (this.pieces == null) {
 				string filename = Path.Combine (serverFolder, this.Href);
 				if (File.Exists (filename)) {
-					using (FileStream fs = File.Open(filename,FileMode.Open,FileAccess.Read,FileShare.Read)) {
-						using (TextReader tr = new StreamReader(fs)) {
-							this.content = tr.ReadToEnd ();
-						}
-					}
+					HtmlDocument doc = new HtmlDocument ();
+					doc.Load (filename);
+					this.pieces = WebPagePieceBase.Expand (doc.DocumentNode);
 				} else {
-					this.content = string.Format ("<div class=\"alert alert-danger\"><strong>Error:</strong> cannot find \"{0}\". Please contact the site administrator.</div>", this.Href);
+					this.pieces = new IWebPagePiece[] {DefaultWebPagePiece.SingleInstance};
 				}
 			}
-			return new StringReader (this.content);
 		}
 
 		/// <summary>
@@ -115,11 +139,11 @@ namespace IdpGie.OutputDevices.Web {
 		/// The html writer to write content to.
 		/// </param>
 		public virtual void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
-			TextReader tr = GetReader (serverFolder);
-			string line = tr.ReadLine ();
-			while (line != null) {
-				writer.WriteLine (line);
-				line = tr.ReadLine ();
+			this.Load (serverFolder);
+			if (this.pieces != null) {
+				foreach (IWebPagePiece piece in this.Pieces) {
+					piece.Render (serverFolder, engine, writer);
+				}
 			}
 		}
 		#endregion

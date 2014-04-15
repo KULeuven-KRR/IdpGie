@@ -1,5 +1,5 @@
 //
-//  WebPredicateTable.cs
+//  INavbarPage.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,26 +18,29 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Xml.Serialization;
+using IdpGie.Abstract;
+using System.Collections.Generic;
+using System.IO;
 
-namespace IdpGie.OutputDevices.Web.Shapes {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
-	/// A webshape that displays a table that contains the values of the predicates.
+	/// An interface that specified a web page. A web page has a name, reference and constructive content.
 	/// </summary>
-	[XmlType("PredicateTable")]
-	[WebShape("PredicateTable")]
-	public class WebPredicateTable {
+	public interface IWebPage : INameHref, IWebPagePiece {
 
-		[XmlAttribute("query")]
-		public string Query {
+		/// <summary>
+		/// Gets or sets the navbar to which the <see cref="IWebPage"/> belongs.
+		/// </summary>
+		/// <value>
+		/// The navbar to which the <see cref="IWebPage"/> belongs.
+		/// </value>
+		INavbar Navbar {
 			get;
 			set;
 		}
 
-		public WebPredicateTable () {
-		}
-
 	}
+
 }
 

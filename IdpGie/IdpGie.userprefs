@@ -1,20 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/IIdpTable.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/IIdpInference.cs">
     <Files>
-      <File FileName="Geometry/CanvasSize.cs" Line="209" Column="129" />
-      <File FileName="Geometry/StripGeometry.cs" Line="157" Column="13" />
-      <File FileName="Geometry/IBox2d.cs" Line="75" Column="2" />
-      <File FileName="Geometry/ICanvasSize.cs" Line="119" Column="15" />
-      <File FileName="Geometry/IGeometry2dSpace.cs" Line="1" Column="1" />
-      <File FileName="Geometry/IPoint3.cs" Line="1" Column="1" />
-      <File FileName="Geometry/IStripCanvasSize.cs" Line="28" Column="68" />
-      <File FileName="Geometry/IStripGeometry.cs" Line="60" Column="3" />
-      <File FileName="Geometry/NamespaceDoc.cs" Line="28" Column="1" />
-      <File FileName="Geometry/Point3.cs" Line="30" Column="55" />
-      <File FileName="Geometry/StripCanvasSize.cs" Line="182" Column="3" />
-      <File FileName="Interaction/NamespaceDoc.cs" Line="27" Column="51" />
-      <File FileName="Interaction/IIdpTable.cs" Line="28" Column="1" />
+      <File FileName="Interaction/IdpInteraction.cs" Line="1" Column="1" />
+      <File FileName="Interaction/IIdpInference.cs" Line="46" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

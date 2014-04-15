@@ -19,13 +19,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Abstract;
+using IdpGie.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
 	/// Navbar.
@@ -123,6 +124,13 @@ namespace IdpGie.OutputDevices.Web {
 			}
 			set {
 				this.pages = value;
+				if (value != null) {
+					foreach (WebPage wp in value) {
+						if (wp != null) {
+							wp.Navbar = this;
+						}
+					}
+				}
 			}
 		}
 
@@ -256,16 +264,28 @@ namespace IdpGie.OutputDevices.Web {
 		///  The given reference. 
 		/// </param>
 		public IWebPage GetPage (string href) {
-			Console.WriteLine (href);
 			IWebPage result = null;
 			if (href != null && href != string.Empty) {
 				string path = Path.Combine (this.serverFolder, href);
-				result = this.pages.FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == path);
+				result = this.pages.Append<IWebPage> (this.queries).FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == path);
 			}
 			if (result == null) {
 				result = this.DefaultPage;
 			}
 			return result;
+		}
+
+		/// <summary>
+		/// Adds the given <see cref="IQueryWebPage"/> page to the navigation page.
+		/// </summary>
+		/// <param name='webpage'>
+		/// The given <see cref="IQueryWebPage"/>.
+		/// </param>
+		public void AddQueryPage (IQueryWebPage webpage) {
+			if (webpage != null) {
+				webpage.Navbar = this;
+				this.queries.Add (webpage);
+			}
 		}
 		#endregion
 

@@ -1,5 +1,5 @@
 //
-//  INavbarPage.cs
+//  IWebPagePiece.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,38 +18,35 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using IdpGie.Abstract;
-using System.IO;
+
+using System.Collections.Generic;
 using System.Web.UI;
 using IdpGie.Engines;
 
-namespace IdpGie.OutputDevices.Web {
+namespace IdpGie.Shapes.Pages {
 
 	/// <summary>
-	/// An interface that specified a web page. A web page has a name, reference and constructive content.
+	/// A piece of a <see cref="IWebPage"/>. This can be default html or some <see cref="IDynamicWebPagePiece"/>
 	/// </summary>
-	public interface IWebPage : INameHref {
+	public interface IWebPagePiece {
 
 		/// <summary>
-		/// Gets the navbar to which the <see cref="IWebPage"/> belongs.
+		/// Gets the pieces that compose the <see cref="IWebPage"/>.
 		/// </summary>
 		/// <value>
-		/// The navbar to which the <see cref="IWebPage"/> belongs.
+		/// The pieces that compose the <see cref="IWebPage"/>.
 		/// </value>
-		INavbar Navbar {
+		IList<IWebPagePiece> Pieces {
 			get;
 		}
 
 		/// <summary>
-		/// Gets a <see cref="TextReader"/> that reads the content of the web page.
+		/// Loading the page from the given server folder.
 		/// </summary>
 		/// <param name='serverFolder'>
 		/// The root of the folder of the web server.
 		/// </param>
-		/// <returns>
-		/// A <see cref="TextReader"/> that reads the content of the web page.
-		/// </returns>
-		TextReader GetReader (string serverFolder);
+		void Load (string serverFolder);
 
 		/// <summary>
 		/// Render the webpage onto the give specified engine.
@@ -68,4 +65,3 @@ namespace IdpGie.OutputDevices.Web {
 	}
 
 }
-

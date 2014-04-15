@@ -1,5 +1,5 @@
 //
-//  WebShape.cs
+//  WebPageAttribute.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,18 +18,39 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
-namespace IdpGie.OutputDevices.Web.Shapes {
+using System;
+using IdpGie.Abstract;
+
+namespace IdpGie.Shapes.Web {
 
 	/// <summary>
-	/// A basic abstract implementation of a web shape.
+	/// An attribute to register a web shape.
 	/// </summary>
-	public abstract class WebShape {
+	[AttributeUsage(AttributeTargets.Class)]
+	public class WebShapeAttribute : NamedAttributeBase {
 
-		public WebShape () {
+		/// <summary>
+		/// Gets the associated tag name of the web shape.
+		/// </summary>
+		/// <value>
+		/// The associated tag name of the web shape.
+		/// </value>
+		public string TagName {
+			get {
+				return this.Name;
+			}
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WebShapeAttribute"/> class with a given tag name.
+		/// </summary>
+		/// <param name='tagname'>
+		/// The name of the tag.
+		/// </param>
+		public WebShapeAttribute (string tagname) : base(tagname) {
 		}
 
 	}
-}
 
+}

@@ -18,18 +18,24 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Web.UI;
 
-namespace IdpGie.OutputDevices.Web.Shapes {
+using IdpGie.Shapes.Pages;
+
+namespace IdpGie.Shapes.Web {
 
 	/// <summary>
 	/// An interface describing an interactive object that is part of the webpage.
 	/// </summary>
 	public interface IWebShape {
 
-		void Translate (Html32TextWriter writer);
+		/// <summary>
+		/// Translates the given <see cref="IWebShape"/> into a relevant <see cref="IQueryWebPage"/> instance.
+		/// </summary>
+		/// <returns>
+		/// An <see cref="IQueryWebPage"/> instances that can produce dynamic content.
+		/// </returns>
+		IQueryWebPage GetShapePage ();
 
 	}
 
 }
-

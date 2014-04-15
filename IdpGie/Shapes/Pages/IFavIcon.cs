@@ -1,5 +1,5 @@
 //
-//  IQueryWebPage.cs
+//  IFavIcon.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -19,10 +19,31 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace IdpGie.OutputDevices.Web {
+using IdpGie.Engines;
+using System.IO;
 
-	public interface IQueryWebPage : IWebPage {
+namespace IdpGie.Shapes.Pages {
+
+
+	/// <summary>
+	/// The web page that provides the favicon of the web server.
+	/// </summary>
+	public interface IFavIcon : IWebPage {
+
+		/// <summary>
+		///  Render the webpage icon onto the give specified engine. 
+		/// </summary>
+		/// <param name='serverFolder'>
+		/// The root of the server folder that contains the custom favoicon.
+		/// </param>
+		/// <param name='engine'>
+		///  The given specified engine. 
+		/// </param>
+		/// <param name='stream'>
+		/// The stream to write the content to.
+		/// </param>
+		void RenderIcon (string serverFolder, HttpEngine engine, Stream stream);
+
 	}
-
 }
 

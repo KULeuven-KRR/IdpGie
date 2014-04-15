@@ -26,7 +26,7 @@ using System.Text;
 using System.Web.UI;
 using IdpGie.Core;
 using IdpGie.OutputDevices;
-using IdpGie.OutputDevices.Web;
+using IdpGie.Shapes.Pages;
 
 namespace IdpGie.Engines {
 
@@ -103,7 +103,7 @@ namespace IdpGie.Engines {
 				Console.WriteLine ("\"{0}\"", http_filename);
 				
 				if (http_filename == "/" + IconName) {
-					this.device.Navigationbar.FavIcon.RenderIcon (this, client.GetStream ());
+					this.device.Navigationbar.FavIcon.RenderIcon (this.device.Manager.ServerFolder, this, client.GetStream ());
 				} else {
 					IWebPage wp = this.device.Navigationbar.GetPage (http_filename.Substring (0x01));
 					using (StreamWriter sw = new StreamWriter (client.GetStream ())) {
@@ -135,30 +135,63 @@ namespace IdpGie.Engines {
 		/// </param>
 		private void WriteHeader (Html32TextWriter htw) {
 			htw.RenderBeginTag (HtmlTextWriterTag.Title);
-			htw.Write (this.device.Navigationbar.Name);
+			{
+				htw.Write (this.device.Navigationbar.Name);
+			}
 			htw.RenderEndTag ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Name, "generator");
 			htw.AddAttribute (HtmlTextWriterAttribute.Content, ProgramManager.ProgramNameVersion);
 			htw.RenderBeginTag (HtmlTextWriterTag.Meta);
+			{}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Name, "viewport");
 			htw.AddAttribute (HtmlTextWriterAttribute.Content, "width=device-width, initial-scale=1.0");
 			htw.RenderBeginTag (HtmlTextWriterTag.Meta);
+			{}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
-			htw.AddAttribute (HtmlTextWriterAttribute.Href, "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
+			htw.AddAttribute (HtmlTextWriterAttribute.Href, "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
 			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "stylesheet");
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
+			{}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
 			htw.AddAttribute (HtmlTextWriterAttribute.Href, IconName);
 			htw.AddAttribute (HtmlTextWriterAttribute.Rel, "icon");
 			htw.AddAttribute (HtmlTextWriterAttribute.Type, "image/x-icon");
 			htw.RenderBeginTag (HtmlTextWriterTag.Link);
+			{}
+			htw.RenderEndTag ();
 			htw.WriteLine ();
 			htw.RenderBeginTag (HtmlTextWriterTag.Style);
-			htw.Write ("body {min-height: 2000px;padding-top: 70px;}");
+			{
+				htw.Write ("body {min-height: 2000px;padding-top: 70px;}");
+			}
+			htw.RenderEndTag ();
+			htw.AddAttribute ("language", "javascript");
+			htw.RenderBeginTag (HtmlTextWriterTag.Script);
+			{
+				htw.WriteLine ("function genericAjax (source, target) {");
+				htw.WriteLine ("    var xmlhttp;");
+				htw.WriteLine ("    if (window.XMLHttpRequest) {");
+				htw.WriteLine ("        xmlhttp=new XMLHttpRequest();");
+				htw.WriteLine ("    } else {");
+				htw.WriteLine ("        xmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");");
+				htw.WriteLine ("    }");
+				htw.WriteLine ("    xmlhttp.onreadystatechange=function() {");
+				htw.WriteLine ("        if (xmlhttp.readyState==4) {");
+				htw.WriteLine ("            if(xmlhttp.status==200) {");
+				htw.WriteLine ("                document.getElementById(target).innerHTML=xmlhttp.responseText;");
+				htw.WriteLine ("            } else {");
+				htw.WriteLine ("                document.getElementById(target).innerHTML=\"<div class='alert alert-warning'><strong>Warning:</strong> something went wrong during an AJAX call. Error code: \"+xmlhttp.status+\", Source: \"+source+\".</div>\";");
+				htw.WriteLine ("            }");
+				htw.WriteLine ("        }");
+				htw.WriteLine ("    }");
+				htw.WriteLine ("    xmlhttp.open(\"GET\",source,true);");
+				htw.WriteLine ("    xmlhttp.send();");
+				htw.WriteLine ("}");
+			}
 			htw.RenderEndTag ();
 			htw.WriteLine ();
 		}
@@ -249,12 +282,13 @@ namespace IdpGie.Engines {
 		/// The <see cref="Html32TextWriter"/> to write the content to.
 		/// </param>
 		private void WriteJavascript (Html32TextWriter htw) {
-			htw.AddAttribute (HtmlTextWriterAttribute.Src, "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
+			htw.AddAttribute (HtmlTextWriterAttribute.Src, "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js");
 			htw.RenderBeginTag (HtmlTextWriterTag.Script);
 			htw.RenderEndTag ();
 			htw.WriteLine ();
-			htw.AddAttribute (HtmlTextWriterAttribute.Src, "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+			htw.AddAttribute (HtmlTextWriterAttribute.Src, "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
 			htw.RenderBeginTag (HtmlTextWriterTag.Script);
+			{}
 			htw.RenderEndTag ();
 		}
 

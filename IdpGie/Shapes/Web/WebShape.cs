@@ -1,5 +1,5 @@
 //
-//  IFavIcon.cs
+//  WebShape.cs
 //
 //  Author:
 //       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
@@ -18,28 +18,31 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using IdpGie.Shapes.Pages;
 
-using IdpGie.Engines;
-using System.IO;
-
-namespace IdpGie.OutputDevices.Web {
-
+namespace IdpGie.Shapes.Web {
 
 	/// <summary>
-	/// The web page that provides the favicon of the web server.
+	/// A basic abstract implementation of a web shape.
 	/// </summary>
-	public interface IFavIcon : IWebPage {
+	public abstract class WebShape : IWebShape {
 
 		/// <summary>
-		///  Render the webpage icon onto the give specified engine. 
+		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Web.WebShape"/> class.
 		/// </summary>
-		/// <param name='engine'>
-		///  The given specified engine. 
-		/// </param>
-		/// <param name='stream'>
-		/// The stream to write the content to.
-		/// </param>
-		void RenderIcon (HttpEngine engine, Stream stream);
+		protected WebShape () {
+		}
+
+		#region IWebShape implementation
+		/// <summary>
+		/// Translates the given <see cref="IWebShape"/> into a relevant <see cref="IQueryWebPage"/> instance.
+		/// </summary>
+		/// <returns>
+		/// An <see cref="IQueryWebPage"/> instances that can produce dynamic content.
+		/// </returns>
+		public abstract IQueryWebPage GetShapePage ();
+		#endregion
+
 
 	}
 }
