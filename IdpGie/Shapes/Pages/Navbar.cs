@@ -264,7 +264,6 @@ namespace IdpGie.Shapes.Pages {
 		///  The given reference. 
 		/// </param>
 		public IWebPage GetPage (string href) {
-			Console.WriteLine (href);
 			IWebPage result = null;
 			if (href != null && href != string.Empty) {
 				string path = Path.Combine (this.serverFolder, href);
