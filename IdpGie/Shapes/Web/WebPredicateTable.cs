@@ -27,9 +27,9 @@ namespace IdpGie.Shapes.Web {
 	/// <summary>
 	/// A webshape that displays a table that contains the values of the predicates.
 	/// </summary>
-	[XmlType("PredicateTable")]
-	[WebShape("PredicateTable")]
-	public class WebPredicateTable : WebShapeBase {														//TODO: interface
+	[XmlRoot("predicatetable")]
+	[WebShape("predicatetable")]
+	public class WebPredicateTable : WebShapeBase {																						//TODO: interface
 		/// <summary>
 		/// Gets or sets the query that should be resolved using the interactive lua shell.
 		/// </summary>
@@ -44,8 +44,8 @@ namespace IdpGie.Shapes.Web {
 		/// Gets or sets the columns of the resulting table.
 		/// </summary>
 		/// <value>The columns of the resulting table.</value>
-		[XmlArray("Columns")]
-		[XmlArrayItem("Column")]
+		[XmlArray("columns")]
+		[XmlArrayItem("column")]
 		public List<WebPredicateTableColumn> Columns {
 			get;
 			set;

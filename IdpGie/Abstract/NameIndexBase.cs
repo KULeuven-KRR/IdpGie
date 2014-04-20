@@ -25,7 +25,7 @@ namespace IdpGie.Abstract {
 	/// <summary>
 	/// A basic implementation of the <see cref="INameIndex"/> inte.
 	/// </summary>
-	public class NameIndexBase : NameBase, INameIndex {
+	public abstract class NameIndexBase : NameBase, INameIndex {
 
 		#region IIndex implementation
 		/// <summary>

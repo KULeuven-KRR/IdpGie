@@ -33,7 +33,6 @@ using IdpGie.OutputDevices;
 using IdpGie.Shapes.Web;
 
 namespace IdpGie.Core {
-
 	/// <summary>
 	/// The program manager that parses the input arguments and interacts with the domain space in the specified way.
 	/// </summary>
@@ -92,7 +91,6 @@ namespace IdpGie.Core {
 				return string.Format ("{0} version {1}", ProgramManager.ProgramName, ProgramManager.ProgramVersion);
 			}
 		}
-
 		#region IProgramManager implementation
 		/// <summary>
 		///  Gets or sets the geometry of the output. 
@@ -461,7 +459,6 @@ namespace IdpGie.Core {
 				}, {"serverfolder","The root of the folder of the web server.", x => this.ServerFolder = x}
 			};
 		}
-
 		#region IProgramManager implementation
 		/// <summary>
 		/// Generates a <see cref="StripCanvasSize"/> with the given number of windows.
@@ -588,7 +585,6 @@ namespace IdpGie.Core {
 				Application.Quit ();
 			}
 		}
-
 		#endregion
 		/// <summary>
 		/// The entry point of the program, where the program control starts and ends.
@@ -602,6 +598,7 @@ namespace IdpGie.Core {
 		public static int Main (string[] args) {
 			Catalog.Init ("IdpGie", "./locale");
 			OutputDevice.AnalyzeAssembly (Assembly.GetExecutingAssembly ());
+			WebShapeBase.AnalyzeAssembly (Assembly.GetExecutingAssembly ());
 			ProgramManager manager = new ProgramManager ();
 			try {
 				manager.Run (args);

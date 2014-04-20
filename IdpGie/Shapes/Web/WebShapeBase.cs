@@ -26,6 +26,7 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Xml;
 using HtmlAgilityPack;
+using System.IO;
 
 namespace IdpGie.Shapes.Web {
 	/// <summary>
@@ -59,6 +60,15 @@ namespace IdpGie.Shapes.Web {
 		#endregion
 		#region Static methods
 		/// <summary>
+		/// Check if a <see cref="IWebShape"/> is registered with the given <paramref name="tagname"/>.
+		/// </summary>
+		/// <returns><c>true</c>, if the given tag name is registered, <c>false</c> otherwise.</returns>
+		/// <param name="tagname">The given tag name to check for.</param>
+		public static bool ContainsTag (string tagname) {
+			return xmlSerializers.ContainsKey (tagname);
+		}
+
+		/// <summary>
 		/// Decodes the given HTML tag into a corresponding the web shape.
 		/// </summary>
 		/// <returns>A webshape corresponding to the given HTML content.</returns>
@@ -67,8 +77,13 @@ namespace IdpGie.Shapes.Web {
 		/// <para>If the tagname cannot be found or the content cannot be deserialized, <c>null</c> is returned.</para>
 		/// </remarks>
 		public static IWebShape DecodeWebShape (HtmlNode htmlNode) {
-			//htmlNode.
-			return null;
+			string tagname = htmlNode.Name;
+			string data = htmlNode.WriteTo ();
+			using (StringReader sr = new StringReader(data)) {
+				using (XmlReader xr = XmlReader.Create (sr)) {
+					return DecodeWebShape (tagname, xr);
+				}
+			}
 		}
 
 		/// <summary>

@@ -23,9 +23,9 @@ using System.Linq;
 using System.Web.UI;
 using System.Collections.Generic;
 using HtmlAgilityPack;
+using System;
 
 namespace IdpGie.Shapes.Pages {
-
 	public abstract class WebPagePieceBase : IWebPagePiece {
 
 		#region IWebPagePiece implementation
@@ -41,13 +41,11 @@ namespace IdpGie.Shapes.Pages {
 			}
 		}
 		#endregion
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Pages.WebPagePieceBase"/> class.
 		/// </summary>
 		protected WebPagePieceBase () {
 		}
-
 		#region IWebPagePiece implementation
 		/// <summary>
 		/// Loading the page from the given server folder.
@@ -72,7 +70,6 @@ namespace IdpGie.Shapes.Pages {
 		/// </param>
 		public abstract void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer);
 		#endregion
-
 		/// <summary>
 		/// Translates the given node into a <see cref="IWebPagePiece"/>.
 		/// </summary>
@@ -104,9 +101,9 @@ namespace IdpGie.Shapes.Pages {
 		/// The given <see cref="HtmlNode"/> to expand.
 		/// </param>
 		public static IList<IWebPagePiece> Expand (HtmlNode parent) {
+			Console.WriteLine (parent.WriteTo ());
+			Console.WriteLine ("---");
 			return parent.ChildNodes.Select (Translate).ToArray ();
 		}
-
 	}
-
 }
