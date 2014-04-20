@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using IdpGie.Shapes.Pages;
+using System.Reflection;
+using System;
 
 namespace IdpGie.Shapes.Web {
 	/// <summary>
@@ -46,6 +48,26 @@ namespace IdpGie.Shapes.Web {
 		/// </summary>
 		/// <returns>A page piece to inject in the generated page to bind with the generated <see cref="IQueryWebPage"/>.</returns>
 		public abstract IWebPagePiece GetPagePiece ();
+		#endregion
+		#region Static methods
+		/// <summary>
+		/// Analyzes the given assembly and adds stores the founded webshape tags. They are then used to translate
+		/// specific inline tags into the corresponding webshapes.
+		/// </summary>
+		/// <param name="assembly">The assembly to analyze.</param>
+		public static void AnalyzeAssembly (Assembly assembly) {
+			foreach (Type t in assembly.GetTypes ()) {
+				analyzeType (t);
+			}
+		}
+
+		/// <summary>
+		/// Analyzes the type.
+		/// </summary>
+		/// <param name="type">Type.</param>
+		private static void analyzeType (Type type) {
+
+		}
 		#endregion
 	}
 }
