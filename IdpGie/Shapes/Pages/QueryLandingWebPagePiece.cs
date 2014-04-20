@@ -18,9 +18,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-using IdpGie.Pages;
-
 namespace IdpGie.Shapes.Pages {
 	/// <summary>
 	/// An implementation of the <see cref="IQueryLandingWebPagePiece"/> interface, a <see cref="IWebPagePiece"/>
@@ -28,9 +25,24 @@ namespace IdpGie.Shapes.Pages {
 	/// </summary>
 	public class QueryLandingWebPagePiece : WebPagePieceBase, IQueryLandingWebPagePiece {
 
+		#region IQueryLandingWebPagePiece implementation
+		/// <summary>
+		/// Gets the query page that should be queried.
+		/// </summary>
+		/// <value>The query page that should be queried.</value>
+		public IQueryWebPage QueryPage {
+			get;
+			protected set;
+		}
+		#endregion
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="QueryLandingWebPagePiece"/> class.
+		/// </summary>
 		public QueryLandingWebPagePiece () {
 			
 		}
+		#endregion
 	}
 }
 

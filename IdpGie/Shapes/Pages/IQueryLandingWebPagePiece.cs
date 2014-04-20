@@ -21,17 +21,17 @@
 
 using IdpGie.Shapes.Pages;
 
-namespace IdpGie.Pages {
+namespace IdpGie.Shapes.Pages {
 	/// <summary>
 	/// An <see cref="IWebPagePiece"/> that is a landing place for an ajax query.
 	/// </summary>
-	public class IQueryLandingWebPagePiece : IWebPagePiece {
+	public interface IQueryLandingWebPagePiece : IWebPagePiece {
 
 		/// <summary>
 		/// Gets the query page that should be queried.
 		/// </summary>
 		/// <value>The query page that should be queried.</value>
-		public IQueryWebPage QueryPage {
+		IQueryWebPage QueryPage {
 			get;
 		}
 	}
