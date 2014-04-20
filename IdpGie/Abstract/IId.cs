@@ -1,5 +1,5 @@
 //
-//  IQueryLandingPagePiece.cs
+//  IId.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,27 +18,17 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using IdpGie.Abstract;
-
-namespace IdpGie.Shapes.Pages {
+namespace IdpGie.Abstract {
 	/// <summary>
-	/// An <see cref="IWebPagePiece"/> that is a landing place for an ajax query.
+	/// An interface specifying that the instance has an id, a number that is unique.
 	/// </summary>
-	public interface IQueryLandingWebPagePiece : IWebPagePiece, IId {
+	public interface IId {
 
 		/// <summary>
-		/// Gets the name of the landing object in the webpage.
+		/// Gets the id of this instance.
 		/// </summary>
-		/// <value>The name of the landing object in the webpage.</value>
-		string LandingName {
-			get;
-		}
-
-		/// <summary>
-		/// Gets the query page that should be queried.
-		/// </summary>
-		/// <value>The query page that should be queried.</value>
-		IQueryWebPage QueryPage {
+		/// <value>The id of this instance, a unique number.</value>
+		ulong Id {
 			get;
 		}
 	}
