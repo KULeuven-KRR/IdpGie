@@ -21,6 +21,11 @@
 using IdpGie.Shapes.Pages;
 using System.Reflection;
 using System;
+using System.Linq;
+using System.Xml.Serialization;
+using System.Collections.Generic;
+using System.Xml;
+using HtmlAgilityPack;
 
 namespace IdpGie.Shapes.Web {
 	/// <summary>
@@ -28,6 +33,9 @@ namespace IdpGie.Shapes.Web {
 	/// </summary>
 	public abstract class WebShapeBase : IWebShape {
 
+		#region Static fields
+		private static readonly Dictionary<string,XmlSerializer> xmlSerializers = new Dictionary<string, XmlSerializer> ();
+		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WebShape"/> class.
 		/// </summary>
@@ -51,22 +59,71 @@ namespace IdpGie.Shapes.Web {
 		#endregion
 		#region Static methods
 		/// <summary>
+		/// Decodes the given HTML tag into a corresponding the web shape.
+		/// </summary>
+		/// <returns>A webshape corresponding to the given HTML content.</returns>
+		/// <param name="htmlNode">The given node to decode.</param>
+		/// <remarks>
+		/// <para>If the tagname cannot be found or the content cannot be deserialized, <c>null</c> is returned.</para>
+		/// </remarks>
+		public static IWebShape DecodeWebShape (HtmlNode htmlNode) {
+			//htmlNode.
+			return null;
+		}
+
+		/// <summary>
+		/// Decodes the given XML content into a corresponding the web shape.
+		/// </summary>
+		/// <returns>A webshape corresponding to the given tag name and XML content.</returns>
+		/// <param name="tag">The name of the tag to decode.</param>
+		/// <param name="reader">The XML stream containing the information that should be stored in the webshape.</param>
+		/// <remarks>
+		/// <para>If the tagname cannot be found or the content cannot be deserialized, <c>null</c> is returned.</para>
+		/// </remarks>
+		public static IWebShape DecodeWebShape (string tag, XmlReader reader) {
+			XmlSerializer ser;
+			if (xmlSerializers.TryGetValue (tag, out ser)) {
+				try {
+					return (IWebShape)ser.Deserialize (reader);
+				} catch (Exception e) {
+					Console.Error.WriteLine (e);
+					return null;
+				}
+			} else {
+				return null;
+			}
+		}
+
+		/// <summary>
 		/// Analyzes the given assembly and adds stores the founded webshape tags. They are then used to translate
 		/// specific inline tags into the corresponding webshapes.
 		/// </summary>
 		/// <param name="assembly">The assembly to analyze.</param>
 		public static void AnalyzeAssembly (Assembly assembly) {
 			foreach (Type t in assembly.GetTypes ()) {
-				analyzeType (t);
+				AnalyzeType (t);
 			}
 		}
 
 		/// <summary>
-		/// Analyzes the type.
+		/// Analyzes the type and stores <see cref="IWebShape"/> types that support the <see cref="WebShapeAttribute"/>
+		/// in a store to generate them from static <see cref="IWebPage"/> instances.
 		/// </summary>
-		/// <param name="type">Type.</param>
-		private static void analyzeType (Type type) {
-
+		/// <param name="type">The type to analyze.</param>
+		public static void AnalyzeType (Type type) {
+			if (!type.IsAbstract && type.IsClass && !type.IsGenericType && type.IsPublic && typeof(IWebShape).IsAssignableFrom (type)) {
+				XmlSerializer ser = null;
+				foreach (WebShapeAttribute att in type.GetCustomAttributes (typeof(WebShapeAttribute),false).Cast<WebShapeAttribute>()) {
+					try {
+						if (ser == null) {
+							ser = new XmlSerializer (type);
+						}
+						xmlSerializers.Add (att.TagName, ser);
+					} catch (Exception e) {
+						Console.Error.WriteLine (e);
+					}
+				}
+			}
 		}
 		#endregion
 	}
