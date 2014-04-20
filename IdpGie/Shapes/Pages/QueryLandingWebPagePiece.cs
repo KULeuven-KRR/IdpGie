@@ -82,9 +82,11 @@ namespace IdpGie.Shapes.Pages {
 			writer.AddAttribute (HtmlTextWriterAttribute.Id, landingName);
 			writer.RenderBeginTag (HtmlTextWriterTag.Div);
 			writer.RenderEndTag ();
-			writer.RenderBeginTag (HtmlTextWriterTag.Script);
-			writer.WriteLine ("genericAjax (\"{0}\", \"{1}\");", this.QueryPage.Href, landingName);
-			writer.RenderEndTag ();
+			if (this.QueryPage != null) {
+				writer.RenderBeginTag (HtmlTextWriterTag.Script);
+				writer.WriteLine ("genericAjax (\"{0}\", \"{1}\");", this.QueryPage.Href, landingName);
+				writer.RenderEndTag ();
+			}
 		}
 		#endregion
 	}

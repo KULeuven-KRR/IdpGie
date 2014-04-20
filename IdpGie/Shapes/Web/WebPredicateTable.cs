@@ -23,13 +23,14 @@ using System.Xml.Serialization;
 using IdpGie.Shapes.Pages;
 using Gtk;
 
+//TODO: interface
 namespace IdpGie.Shapes.Web {
 	/// <summary>
 	/// A webshape that displays a table that contains the values of the predicates.
 	/// </summary>
 	[XmlRoot("predicatetable")]
 	[WebShape("predicatetable")]
-	public class WebPredicateTable : WebShapeBase {																						//TODO: interface
+	public class WebPredicateTable : WebShapeBase {
 		/// <summary>
 		/// Gets or sets the query that should be resolved using the interactive lua shell.
 		/// </summary>
@@ -98,7 +99,7 @@ namespace IdpGie.Shapes.Web {
 		/// </summary>
 		/// <returns>A page piece to inject in the generated page to bind with the generated <see cref="IQueryWebPage"/>.</returns>
 		public override IWebPagePiece GetPagePiece () {
-			return null;
+			return new QueryLandingWebPagePiece (null);
 		}
 		#endregion
 	}

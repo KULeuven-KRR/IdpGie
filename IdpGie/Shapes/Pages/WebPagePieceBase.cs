@@ -24,6 +24,7 @@ using System.Web.UI;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using System;
+using IdpGie.Shapes.Web;
 
 namespace IdpGie.Shapes.Pages {
 	public abstract class WebPagePieceBase : IWebPagePiece {
@@ -82,7 +83,11 @@ namespace IdpGie.Shapes.Pages {
 		public static IWebPagePiece Translate (HtmlNode node) {
 			switch (node.NodeType) {
 				case HtmlNodeType.Element:
-					return new HtmlElementPagePiece (node);
+					if (WebShapeBase.ContainsTag (node.Name)) {
+						return WebShapeBase.DecodeWebShape (node).GetPagePiece ();
+					} else {
+						return new HtmlElementPagePiece (node);
+					}
 				case HtmlNodeType.Text:
 					return new HtmlTextWebPagePiece (node.InnerHtml);
 				default :
@@ -97,7 +102,7 @@ namespace IdpGie.Shapes.Pages {
 		/// An <see cref="System.Array"/> of <see cref="IWebPagePiece"/> instances that
 		/// corresponds to the children of the given node.
 		/// </returns>
-		/// <param name='node'>
+		/// <param name='parent'>
 		/// The given <see cref="HtmlNode"/> to expand.
 		/// </param>
 		public static IList<IWebPagePiece> Expand (HtmlNode parent) {

@@ -347,6 +347,8 @@
     <Compile Include="Shapes\Pages\IQueryLandingWebPagePiece.cs" />
     <Compile Include="Shapes\Pages\QueryLandingWebPagePiece.cs" />
     <Compile Include="Abstract\IId.cs" />
+    <Compile Include="Shapes\Web\IQueryWebPageShape.cs" />
+    <Compile Include="Shapes\Web\QueryWebPageShapeBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
