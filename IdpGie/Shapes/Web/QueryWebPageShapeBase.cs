@@ -23,13 +23,25 @@ using System.Collections.Generic;
 using System.Web.UI;
 using IdpGie.Engines;
 using IdpGie.Shapes.Pages;
+using IdpGie.Abstract;
 
 namespace IdpGie.Shapes.Web {
 	/// <summary>
 	/// An implementation of the <see cref="IQueryWebPageShape"/> interface.
 	/// </summary>
-	public abstract class QueryWebPageShapeBase : WebShapeBase, IQueryWebPageShape {
+	public abstract class QueryWebPageShapeBase : WebShapeBase, IQueryWebPageShape, IId {
 
+		private static ulong idDispatcher = 0x00;
+		#region IId implementation
+		/// <summary>
+		/// Gets the id of this instance.
+		/// </summary>
+		/// <value>The id of this instance, a unique number.</value>
+		public ulong Id {
+			get;
+			private set;
+		}
+		#endregion
 		#region IWebPagePiece implementation
 		/// <summary>
 		/// Gets the subpieces of the current <see cref="IWebPagePiece"/>.
@@ -56,8 +68,10 @@ namespace IdpGie.Shapes.Web {
 		/// Gets the reference to the resource to store.
 		/// </summary>
 		/// <value>The reference to the resource to store.</value>
-		public abstract string Href {
-			get;
+		public virtual string Href {
+			get {
+				return string.Format ("query{0}.idpql", this.Id);
+			}
 		}
 		#endregion
 		#region IName implementation
@@ -65,8 +79,10 @@ namespace IdpGie.Shapes.Web {
 		/// Gets the name of this instance.
 		/// </summary>
 		/// <value>The name of this instance.</value>
-		public abstract string Name {
-			get;
+		public virtual string Name {
+			get {
+				return string.Format ("#query{0}", this.Id);
+			}
 		}
 		#endregion
 		#region Constructors
@@ -74,6 +90,7 @@ namespace IdpGie.Shapes.Web {
 		/// Initializes a new instance of the <see cref="QueryWebPageShapeBase"/> class.
 		/// </summary>
 		protected QueryWebPageShapeBase () {
+			this.Id = idDispatcher++;
 		}
 		#endregion
 		#region IWebPagePiece implementation

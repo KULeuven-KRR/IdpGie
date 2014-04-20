@@ -30,7 +30,7 @@ namespace IdpGie.Shapes.Web {
 	/// </summary>
 	[XmlRoot("predicatetable")]
 	[WebShape("predicatetable")]
-	public class WebPredicateTable : WebShapeBase {
+	public class WebPredicateTable : QueryWebPageShapeBase {
 		/// <summary>
 		/// Gets or sets the query that should be resolved using the interactive lua shell.
 		/// </summary>

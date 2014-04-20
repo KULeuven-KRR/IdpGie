@@ -1,14 +1,19 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Shapes/Web/WebPredicateTable.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Shapes/Web/QueryWebPageShapeBase.cs">
     <Files>
-      <File FileName="Shapes/Web/WebShapeBase.cs" Line="30" Column="52" />
-      <File FileName="Shapes/Web/IWebShape.cs" Line="43" Column="18" />
-      <File FileName="Shapes/Web/WebPredicateTable.cs" Line="32" Column="24" />
-      <File FileName="Shapes/Web/WebPredicateTableColumn.cs" Line="50" Column="91" />
-      <File FileName="Abstract/IIndex.cs" Line="33" Column="26" />
-      <File FileName="Abstract/INameIndex.cs" Line="24" Column="23" />
-      <File FileName="Abstract/NameIndexBase.cs" Line="22" Column="1" />
+      <File FileName="Shapes/Pages/QueryLandingWebPagePiece.cs" Line="69" Column="29" />
+      <File FileName="Shapes/Pages/IQueryLandingWebPagePiece.cs" Line="34" Column="8" />
+      <File FileName="Abstract/IId.cs" Line="30" Column="54" />
+      <File FileName="Shapes/Web/WebShapeBase.cs" Line="78" Column="17" />
+      <File FileName="Shapes/Pages/WebPage.cs" Line="28" Column="22" />
+      <File FileName="Shapes/Pages/WebPagePieceBase.cs" Line="112" Column="4" />
+      <File FileName="Core/ProgramManager.cs" Line="601" Column="66" />
+      <File FileName="Abstract/NameIndexBase.cs" Line="28" Column="17" />
+      <File FileName="Shapes/Web/WebPredicateTableColumn.cs" Line="36" Column="35" />
+      <File FileName="Shapes/Web/WebPredicateTable.cs" Line="33" Column="15" />
+      <File FileName="Shapes/Web/IQueryWebPageShape.cs" Line="28" Column="31" />
+      <File FileName="Shapes/Web/QueryWebPageShapeBase.cs" Line="82" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
