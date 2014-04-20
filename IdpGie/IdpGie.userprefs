@@ -1,14 +1,14 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Shapes/Pages/Navbar.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Shapes/Web/WebPredicateTable.cs">
     <Files>
-      <File FileName="Shapes/Pages/WebPagePieceBase.cs" Line="90" Column="53" />
-      <File FileName="Engines/HttpEngine.cs" Line="103" Column="50" />
-      <File FileName="Shapes/Pages/HtmlElementPagePiece.cs" Line="88" Column="29" />
-      <File FileName="Shapes/Pages/HtmlTextWebPagePiece.cs" Line="52" Column="18" />
-      <File FileName="Shapes/Pages/WebPage.cs" Line="143" Column="30" />
-      <File FileName="Shapes/Pages/DefaultWebPagePiece.cs" Line="43" Column="65" />
-      <File FileName="Shapes/Pages/Navbar.cs" Line="266" Column="42" />
+      <File FileName="Shapes/Web/WebShapeBase.cs" Line="30" Column="52" />
+      <File FileName="Shapes/Web/IWebShape.cs" Line="43" Column="18" />
+      <File FileName="Shapes/Web/WebPredicateTable.cs" Line="32" Column="24" />
+      <File FileName="Shapes/Web/WebPredicateTableColumn.cs" Line="50" Column="91" />
+      <File FileName="Abstract/IIndex.cs" Line="33" Column="26" />
+      <File FileName="Abstract/INameIndex.cs" Line="24" Column="23" />
+      <File FileName="Abstract/NameIndexBase.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

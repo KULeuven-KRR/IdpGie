@@ -344,6 +344,8 @@
     <Compile Include="Abstract\IIndex.cs" />
     <Compile Include="Abstract\INameIndex.cs" />
     <Compile Include="Abstract\NameIndexBase.cs" />
+    <Compile Include="Shapes\Pages\IQueryLandingWebPagePiece.cs" />
+    <Compile Include="Shapes\Pages\QueryLandingWebPagePiece.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

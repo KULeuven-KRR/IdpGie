@@ -34,16 +34,26 @@ namespace IdpGie.Shapes.Web {
 	/// </para>
 	/// </remarks>
 	[XmlType("PredicateTableColumn")]
-	public class WebPredicateTableColumn : IName {
+	public class WebPredicateTableColumn : NameIndexBase {
 
+		#region Constructors
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Web.WebPredicateTableColumn"/> class.
+		/// Initializes a new instance of the <see cref="WebPredicateTableColumn"/> class.
 		/// </summary>
 		/// <remarks>
 		/// <para>Used for XML serialization purposes.</para>
 		/// </remarks>
 		public WebPredicateTableColumn () {
 		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WebPredicateTableColumn"/> class with a name and index.
+		/// </summary>
+		/// <param name="name">The name of the column.</param>
+		/// <param name="index">The index of the predicate queried for this column.</param>
+		public WebPredicateTableColumn (string name, int index) {
+		}
+		#endregion
 	}
 }
 
