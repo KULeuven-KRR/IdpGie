@@ -324,7 +324,6 @@
     <Compile Include="Interaction\IIdpTable.cs" />
     <Compile Include="Shapes\Web\IWebShape.cs" />
     <Compile Include="Shapes\Web\WebPredicateTable.cs" />
-    <Compile Include="Shapes\Web\WebShape.cs" />
     <Compile Include="Shapes\Web\WebShapeAttribute.cs" />
     <Compile Include="Shapes\Pages\DefaultQueryWebPage.cs" />
     <Compile Include="Shapes\Pages\FavIcon.cs" />
@@ -340,6 +339,11 @@
     <Compile Include="Shapes\Pages\WebPagePieceBase.cs" />
     <Compile Include="Shapes\Pages\HtmlTextWebPagePiece.cs" />
     <Compile Include="Shapes\Pages\HtmlElementPagePiece.cs" />
+    <Compile Include="Shapes\Web\WebShapeBase.cs" />
+    <Compile Include="Shapes\Web\WebPredicateTableColumn.cs" />
+    <Compile Include="Abstract\IIndex.cs" />
+    <Compile Include="Abstract\INameIndex.cs" />
+    <Compile Include="Abstract\NameIndexBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

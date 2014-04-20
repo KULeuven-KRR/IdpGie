@@ -1,8 +1,8 @@
 //
-//  INameHref.cs
+//  IIndex.cs
 //
 //  Author:
-//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
+//       Willem Van Onsem <vanonsem.willem@gmail.com>
 //
 //  Copyright (c) 2014 Willem Van Onsem
 //
@@ -18,10 +18,21 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+using System.Xml.Serialization;
 
-namespace IdpGie {
-	public interface INameHref {
+namespace IdpGie.Abstract {
+	/// <summary>
+	/// An interface describing that the object has an index.
+	/// </summary>
+	public interface IIndex {
+
+		/// <summary>
+		/// Gets the index of this instance.
+		/// </summary>
+		/// <value>The index of this instance.</value>
+		[XmlAttribute("index")]
+		int Index {
+			get;
+		}
 	}
 }
-

@@ -1,8 +1,8 @@
 //
-//  WebShape.cs
+//  WebPredicateTableColumn.cs
 //
 //  Author:
-//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
+//       Willem Van Onsem <vanonsem.willem@gmail.com>
 //
 //  Copyright (c) 2014 Willem Van Onsem
 //
@@ -18,32 +18,32 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using IdpGie.Shapes.Pages;
+
+using System;
+using System.Xml.Serialization;
+using IdpGie.Abstract;
 
 namespace IdpGie.Shapes.Web {
-
 	/// <summary>
-	/// A basic abstract implementation of a web shape.
+	/// A class representing a table in the <see cref="WebPredicateTable"/> class.
 	/// </summary>
-	public abstract class WebShape : IWebShape {
+	/// <remarks>
+	/// <para>
+	/// The columns contain the text that should be displayed in the table header together withe the index
+	/// of the queried predicate.
+	/// </para>
+	/// </remarks>
+	[XmlType("PredicateTableColumn")]
+	public class WebPredicateTableColumn : IName {
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Web.WebShape"/> class.
+		/// Initializes a new instance of the <see cref="IdpGie.Shapes.Web.WebPredicateTableColumn"/> class.
 		/// </summary>
-		protected WebShape () {
+		/// <remarks>
+		/// <para>Used for XML serialization purposes.</para>
+		/// </remarks>
+		public WebPredicateTableColumn () {
 		}
-
-		#region IWebShape implementation
-		/// <summary>
-		/// Translates the given <see cref="IWebShape"/> into a relevant <see cref="IQueryWebPage"/> instance.
-		/// </summary>
-		/// <returns>
-		/// An <see cref="IQueryWebPage"/> instances that can produce dynamic content.
-		/// </returns>
-		public abstract IQueryWebPage GetShapePage ();
-		#endregion
-
-
 	}
 }
 
