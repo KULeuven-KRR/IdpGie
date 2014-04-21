@@ -27,7 +27,6 @@ using System.Linq;
 using System.Xml.Serialization;
 
 namespace IdpGie.Shapes.Pages {
-
 	/// <summary>
 	/// Navbar.
 	/// </summary>
@@ -38,7 +37,6 @@ namespace IdpGie.Shapes.Pages {
 		private readonly List<IQueryWebPage> queries = new List<IQueryWebPage> ();
 		private string serverFolder;
 		private FavIcon favIcon;
-
 		#region INavbar implementation
 		/// <summary>
 		/// Gets the list of pages that should be listed in the navbar.
@@ -109,7 +107,6 @@ namespace IdpGie.Shapes.Pages {
 			}
 		}
 		#endregion
-
 		/// <summary>
 		/// Gets or sets the pages for the XML serialization.
 		/// </summary>
@@ -124,24 +121,17 @@ namespace IdpGie.Shapes.Pages {
 			}
 			set {
 				this.pages = value;
-				if (value != null) {
-					foreach (WebPage wp in value) {
-						if (wp != null) {
-							wp.Navbar = this;
-						}
-					}
-				}
 			}
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.Navbar"/> class.
+		/// Initializes a new instance of the <see cref="Navbar"/> class.
 		/// </summary>
 		public Navbar () : base() {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.Navbar"/> class.
+		/// Initializes a new instance of the <see cref="Navbar"/> class.
 		/// </summary>
 		/// <param name='name'>
 		/// The name of the application.
@@ -150,7 +140,7 @@ namespace IdpGie.Shapes.Pages {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.OutputDevices.Web.Navbar"/> class.
+		/// Initializes a new instance of the <see cref="Navbar"/> class.
 		/// </summary>
 		/// <param name='name'>
 		/// The name of the application.
@@ -252,7 +242,6 @@ namespace IdpGie.Shapes.Pages {
 				ToStream (stream);
 			}
 		}
-
 		#region INavbar implementation
 		/// <summary>
 		///  Gets the web page associated with the given reference. 
@@ -288,9 +277,18 @@ namespace IdpGie.Shapes.Pages {
 			}
 		}
 		#endregion
-
-
+		#region IPostDeserialize implementation
+		/// <summary>
+		/// Perform tasks that should be done once the deserialization is done.
+		/// </summary>
+		public void PostDeserialize () {
+			if (this.pages != null) {
+				foreach (IWebPage page in this.pages) {
+					page.Navbar = this;
+				}
+			}
+		}
+		#endregion
 	}
-
 }
 

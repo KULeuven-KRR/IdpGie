@@ -28,7 +28,6 @@ using System.Xml.Serialization;
 using HtmlAgilityPack;
 
 namespace IdpGie.Shapes.Pages {
-
 	/// <summary>
 	/// An implementation of the <see cref="IWebPage"/> interface that has a name and a reference to the <c>.idpml</c> file.
 	/// </summary>
@@ -36,7 +35,17 @@ namespace IdpGie.Shapes.Pages {
 	public class WebPage : NameHrefBase, IWebPage {
 
 		private IList<IWebPagePiece> pieces = null;
-
+		#region IId implementation
+		/// <summary>
+		/// Gets the id of this instance.
+		/// </summary>
+		/// <value>The id of this instance, a unique number.</value>
+		[XmlIgnore]
+		public virtual ulong Id {
+			get;
+			private set;
+		}
+		#endregion
 		#region IWebPage implementation
 		/// <summary>
 		/// Gets or sets the navbar to which the <see cref="IWebPage"/> belongs.
@@ -63,7 +72,6 @@ namespace IdpGie.Shapes.Pages {
 			}
 		}
 		#endregion
-
 		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="WebPage"/> is the default page.
 		/// </summary>
@@ -77,9 +85,10 @@ namespace IdpGie.Shapes.Pages {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref=".WebPage"/> class.
+		/// Initializes a new instance of the <see cref="WebPage"/> class.
 		/// </summary>
 		public WebPage () : base() {
+			this.Id = IdDispatcher.getId ();
 		}
 
 		/// <summary>
@@ -105,7 +114,6 @@ namespace IdpGie.Shapes.Pages {
 		/// </param>
 		public WebPage (string name, string href, bool defaultPage = false) : base(name,href) {
 		}
-
 		#region IWebPage implementation
 		/// <summary>
 		///  Loading the page from the given server folder. 
@@ -113,6 +121,9 @@ namespace IdpGie.Shapes.Pages {
 		/// <param name='serverFolder'>
 		///  The root of the folder of the web server. 
 		/// </param>
+		/// <remarks>
+		/// <para>Query pages are registered to the <see cref="Navbar"/> as well.</para>
+		/// </remarks>
 		public virtual void Load (string serverFolder) {
 			if (this.pieces == null) {
 				string filename = Path.Combine (serverFolder, this.Href);
@@ -121,8 +132,11 @@ namespace IdpGie.Shapes.Pages {
 					doc.Load (filename);
 					this.pieces = WebPagePieceBase.Expand (doc.DocumentNode);
 				} else {
-					this.pieces = new IWebPagePiece[] {DefaultWebPagePiece.SingleInstance};
+					this.pieces = new IWebPagePiece[] { DefaultWebPagePiece.SingleInstance };
 				}
+			}
+			if (this.Navbar != null) {
+				this.RegisterQueryPages (this.Navbar);
 			}
 		}
 
@@ -147,8 +161,19 @@ namespace IdpGie.Shapes.Pages {
 			}
 		}
 		#endregion
-
-
+		#region IWebPagePiece implementation
+		/// <summary>
+		/// Registers the query pages that can be activated in the specified <see cref="INavbar"/>.
+		/// </summary>
+		/// <param name="navbar">The <see cref="INavbar"/> to register <see cref="IQueryWebPage"/> instance.</param>
+		public virtual void RegisterQueryPages (INavbar navbar) {
+			if (this.pieces != null) {
+				foreach (IWebPagePiece piece in this.pieces) {
+					piece.RegisterQueryPages (navbar);
+				}
+			}
+		}
+		#endregion
 	}
 }
 

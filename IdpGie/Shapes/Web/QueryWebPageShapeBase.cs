@@ -24,29 +24,19 @@ using System.Web.UI;
 using IdpGie.Engines;
 using IdpGie.Shapes.Pages;
 using IdpGie.Abstract;
+using System.Xml.Serialization;
 
 namespace IdpGie.Shapes.Web {
 	/// <summary>
 	/// An implementation of the <see cref="IQueryWebPageShape"/> interface.
 	/// </summary>
-	public abstract class QueryWebPageShapeBase : WebShapeBase, IQueryWebPageShape, IId {
-
-		private static ulong idDispatcher = 0x00;
-		#region IId implementation
-		/// <summary>
-		/// Gets the id of this instance.
-		/// </summary>
-		/// <value>The id of this instance, a unique number.</value>
-		public ulong Id {
-			get;
-			private set;
-		}
-		#endregion
+	public abstract class QueryWebPageShapeBase : WebShapeBase, IQueryWebPageShape {
 		#region IWebPagePiece implementation
 		/// <summary>
 		/// Gets the subpieces of the current <see cref="IWebPagePiece"/>.
 		/// </summary>
 		/// <value>The subpieces of the current <see cref="IWebPagePiece"/>.</value>
+		[XmlIgnore]
 		public virtual IList<IWebPagePiece> Pieces {
 			get {
 				return new IWebPagePiece[0x00];
@@ -58,6 +48,7 @@ namespace IdpGie.Shapes.Web {
 		/// Gets or sets the navigation bar of the current <see cref="IWebPage"/>.
 		/// </summary>
 		/// <value>The navbar.</value>
+		[XmlIgnore]
 		public virtual INavbar Navbar {
 			get;
 			set;
@@ -68,6 +59,7 @@ namespace IdpGie.Shapes.Web {
 		/// Gets the reference to the resource to store.
 		/// </summary>
 		/// <value>The reference to the resource to store.</value>
+		[XmlIgnore]
 		public virtual string Href {
 			get {
 				return string.Format ("query{0}.idpql", this.Id);
@@ -79,6 +71,7 @@ namespace IdpGie.Shapes.Web {
 		/// Gets the name of this instance.
 		/// </summary>
 		/// <value>The name of this instance.</value>
+		[XmlIgnore]
 		public virtual string Name {
 			get {
 				return string.Format ("#query{0}", this.Id);
@@ -90,7 +83,6 @@ namespace IdpGie.Shapes.Web {
 		/// Initializes a new instance of the <see cref="QueryWebPageShapeBase"/> class.
 		/// </summary>
 		protected QueryWebPageShapeBase () {
-			this.Id = idDispatcher++;
 		}
 		#endregion
 		#region IWebPagePiece implementation
@@ -112,17 +104,28 @@ namespace IdpGie.Shapes.Web {
 		/// </remarks>
 		public virtual void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
 		}
-		#endregion
+
 		/// <summary>
-		/// Gets the query page of this <see cref="IWebShape"/>.
+		/// Registers the query pages that can be activated in the specified <see cref="INavbar"/>.
 		/// </summary>
-		/// <returns>The query page of the <see cref="IWebShape"/>.</returns>
-		/// <remarks>
-		/// <para>By default, this instance is returned.</para>
-		/// </remarks>
-		public override IQueryWebPage GetQueryPage () {
-			return this;
+		/// <param name="navbar">The <see cref="INavbar"/> to register <see cref="IQueryWebPage"/> instance.</param>
+		public virtual void RegisterQueryPages (INavbar navbar) {
+			if (this.Pieces != null) {
+				foreach (IWebPagePiece piece in this.Pieces) {
+					piece.RegisterQueryPages (navbar);
+				}
+			}
 		}
+		#endregion
+		#region IWebShape implementation
+		/// <summary>
+		/// Gets the <see cref="IQueryWebPage"/> instances associated with this <see cref="IWebPage"/>.
+		/// </summary>
+		/// <returns>The <see cref="IQueryWebPage"/> instances associated with this <see cref="IWebPage"/>.</returns>
+		public override IEnumerable<IQueryWebPage> GetQueryPages () {
+			yield return this;
+		}
+		#endregion
 	}
 }
 

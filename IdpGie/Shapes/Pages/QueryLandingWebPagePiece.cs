@@ -29,24 +29,14 @@ namespace IdpGie.Shapes.Pages {
 	/// </summary>
 	public class QueryLandingWebPagePiece : WebPagePieceBase, IQueryLandingWebPagePiece {
 
-		private static ulong idDispatcher = 0x00;
-		#region IId implementation
-		/// <summary>
-		/// Gets the id of this instance.
-		/// </summary>
-		/// <value>The id of this instance, a unique number.</value>
-		public ulong Id {
-			get;
-			private set;
-		}
-
+		#region IQueryLandingWebPagePiece
 		/// <summary>
 		/// Gets the name of the landing object in the webpage.
 		/// </summary>
 		/// <value>The name of the landing object in the webpage.</value>
 		public string LandingName {
 			get {
-				return string.Format ("landing{0}", this.Id);
+				return string.Format ("landing{0}", this.QueryPage.Id);
 			}
 		}
 		#endregion
@@ -66,7 +56,6 @@ namespace IdpGie.Shapes.Pages {
 		/// </summary>
 		/// <param name="queryPage">The initial query page.</param>
 		public QueryLandingWebPagePiece (IQueryWebPage queryPage) {
-			this.Id = idDispatcher++;
 			this.QueryPage = queryPage;
 		}
 		#endregion
@@ -87,6 +76,15 @@ namespace IdpGie.Shapes.Pages {
 				writer.WriteLine ("genericAjax (\"{0}\", \"{1}\");", this.QueryPage.Href, landingName);
 				writer.RenderEndTag ();
 			}
+		}
+
+		/// <summary>
+		/// Registers the query pages that can be activated in the specified <see cref="INavbar"/>.
+		/// </summary>
+		/// <param name="navbar">The <see cref="INavbar"/> to register <see cref="IQueryWebPage"/> instance.</param>
+		public override void RegisterQueryPages (INavbar navbar) {
+			base.RegisterQueryPages (navbar);
+			navbar.AddQueryPage (this.QueryPage);
 		}
 		#endregion
 	}

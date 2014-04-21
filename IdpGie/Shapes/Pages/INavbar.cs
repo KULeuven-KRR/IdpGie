@@ -23,11 +23,10 @@ using IdpGie.Abstract;
 using System.Collections.Generic;
 
 namespace IdpGie.Shapes.Pages {
-
 	/// <summary>
 	/// An interface that represents the navbar: a bar on top of every webpage.
 	/// </summary>
-	public interface INavbar : IName {
+	public interface INavbar : IName, IPostDeserialize {
 
 		/// <summary>
 		/// Gets the list of pages that should be listed in the navbar.
@@ -97,7 +96,6 @@ namespace IdpGie.Shapes.Pages {
 		/// The given <see cref="IQueryWebPage"/>.
 		/// </param>
 		void AddQueryPage (IQueryWebPage webpage);
-
 	}
 }
 

@@ -24,9 +24,8 @@ using System.Web.UI;
 using IdpGie.Engines;
 
 namespace IdpGie.Shapes.Pages {
-
 	/// <summary>
-	/// A piece of a <see cref="IWebPage"/>. This can be default html or some <see cref="IDynamicWebPagePiece"/>
+	/// A piece of a <see cref="IWebPage"/>. This can be default html or dynamic content.
 	/// </summary>
 	public interface IWebPagePiece {
 
@@ -62,6 +61,10 @@ namespace IdpGie.Shapes.Pages {
 		/// </param>
 		void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer);
 
+		/// <summary>
+		/// Registers the query pages that can be activated in the specified <see cref="INavbar"/>.
+		/// </summary>
+		/// <param name="navbar">The <see cref="INavbar"/> to register <see cref="IQueryWebPage"/> instance.</param>
+		void RegisterQueryPages (INavbar navbar);
 	}
-
 }

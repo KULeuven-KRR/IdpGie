@@ -1,8 +1,8 @@
 //
-//  IQueryWebPage.cs
+//  PostDeserialize.cs
 //
 //  Author:
-//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
+//       Willem Van Onsem <vanonsem.willem@gmail.com>
 //
 //  Copyright (c) 2014 Willem Van Onsem
 //
@@ -18,13 +18,20 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using IdpGie.Abstract;
 
-namespace IdpGie.Shapes.Pages {
+using System;
+
+namespace IdpGie.Abstract {
 	/// <summary>
-	/// An interface for <see cref="IWebPage"/> instances where the content depends on the state of the Idp program.
+	/// In interface specifying that the object should perform additional tasks, once the object is deserialized
+	/// (for instance from an XML stream).
 	/// </summary>
-	public interface IQueryWebPage : IWebPage, IId {
+	public interface IPostDeserialize {
 
+		/// <summary>
+		/// Perform tasks that should be done once the deserialization is done.
+		/// </summary>
+		void PostDeserialize ();
 	}
 }
+

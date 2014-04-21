@@ -332,7 +332,6 @@
     <Compile Include="Shapes\Pages\IQueryWebPage.cs" />
     <Compile Include="Shapes\Pages\IWebPage.cs" />
     <Compile Include="Shapes\Pages\Navbar.cs" />
-    <Compile Include="Shapes\Pages\QueryWebPage.cs" />
     <Compile Include="Shapes\Pages\WebPage.cs" />
     <Compile Include="Shapes\Pages\IWebPagePiece.cs" />
     <Compile Include="Shapes\Pages\DefaultWebPagePiece.cs" />
@@ -349,6 +348,9 @@
     <Compile Include="Abstract\IId.cs" />
     <Compile Include="Shapes\Web\IQueryWebPageShape.cs" />
     <Compile Include="Shapes\Web\QueryWebPageShapeBase.cs" />
+    <Compile Include="Shapes\Pages\QueryWebPageBase.cs" />
+    <Compile Include="Abstract\IdDispatcher.cs" />
+    <Compile Include="Abstract\PostDeserialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

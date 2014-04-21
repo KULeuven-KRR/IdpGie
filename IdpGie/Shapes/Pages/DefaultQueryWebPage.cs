@@ -28,7 +28,7 @@ namespace IdpGie.Shapes.Pages {
 	/// <summary>
 	/// A default <see cref="IQueryWebPage"/> that is used when no other query page is available.
 	/// </summary>
-	public class DefaultQueryWebPage : QueryWebPage {
+	public class DefaultQueryWebPage : QueryWebPageBase {
 
 		/// <summary>
 		/// The single instance of the <see cref="DefaultQueryWebPage"/>. A singleton for memory footprint reduction.

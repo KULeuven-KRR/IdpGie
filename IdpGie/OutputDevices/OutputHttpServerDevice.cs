@@ -30,7 +30,6 @@ using System.Threading;
 using System.Web;
 
 namespace IdpGie.OutputDevices {
-
 	[OutputDevice ("httpserver", "A HTTP server that runs on a specified port and handle user request using AJAX.")]
 	public class OutputHttpServerDevice : OutputDevice, IHttpGieServer {
 		private int port;
@@ -48,21 +47,18 @@ namespace IdpGie.OutputDevices {
 			string navbarfile = Path.Combine (serverFolder, "navbar.idpml");
 			if (File.Exists (navbarfile)) {
 				this.navbar = Navbar.FromStream (serverFolder, navbarfile);
+				this.navbar.PostDeserialize ();
 			} else {
 				throw new ArgumentException ("The navbar file does not exists!");
 			}
 		}
-
 		#region implemented abstract members of OutputDevice
-
 		public override void Run () {
 			this.port = this.Manager.Port;
 			Thread thread = new Thread (this.Listen);
 			thread.Start ();
 		}
-
 		#endregion
-
 		public void Listen () {
 			this.listener = new TcpListener (IPAddress.Loopback, this.port);
 			this.listener.Start ();
@@ -74,9 +70,7 @@ namespace IdpGie.OutputDevices {
 				Thread.Sleep (1);
 			}
 		}
-
 		#region IHttpHandler implementation
-
 		public void ProcessRequest (HttpContext context) {
 			HttpRequest rq = context.Request;
 			HttpResponse rp = context.Response;
@@ -96,8 +90,6 @@ namespace IdpGie.OutputDevices {
 				return true;
 			}
 		}
-
 		#endregion
-
 	}
 }

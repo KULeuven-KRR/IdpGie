@@ -1,8 +1,8 @@
 //
-//  QueryWebPage.cs
+//  IdDispatcher.cs
 //
 //  Author:
-//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
+//       Willem Van Onsem <vanonsem.willem@gmail.com>
 //
 //  Copyright (c) 2014 Willem Van Onsem
 //
@@ -19,28 +19,27 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace IdpGie.Shapes.Pages {
+using System;
+using System.Runtime.CompilerServices;
 
+namespace IdpGie.Abstract {
 	/// <summary>
-	/// A basic implementation of the <see cref="IQueryWebPage"/> interface.
+	/// A static class that dispatches unique global identifiers.
 	/// </summary>
-	public abstract class QueryWebPage : WebPage, IQueryWebPage {
+	public static class IdDispatcher {
+
+		private static ulong idDispatcher = 0x00;
+		private static object locker = new object ();
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="QueryWebPage"/> class.
+		/// Generates a new unique identifier.
 		/// </summary>
-		protected QueryWebPage () : base() {
+		/// <returns>The newly generated identifier.</returns>
+		public static ulong getId () {
+			lock (locker) {
+				return idDispatcher++;
+			}
 		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="QueryWebPage"/> class with an href reference.
-		/// </summary>
-		/// <param name='href'>
-		/// The reference of the <see cref="IQueryWebPage"/>.
-		/// </param>
-		protected QueryWebPage (string href) : base(string.Empty,href) {
-		}
-
 	}
-
 }
+
