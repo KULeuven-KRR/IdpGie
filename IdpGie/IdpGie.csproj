@@ -350,6 +350,10 @@
     <Compile Include="Interaction\IVocabularyPredicate.cs" />
     <Compile Include="Interaction\IPredicateInterpretation.cs" />
     <Compile Include="Interaction\IPredicateTable.cs" />
+    <Compile Include="Interaction\ITuple.cs" />
+    <Compile Include="Interaction\Tuple.cs" />
+    <Compile Include="Interaction\IIdentifier.cs" />
+    <Compile Include="Interaction\Identifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

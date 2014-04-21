@@ -21,7 +21,6 @@
 using System;
 
 namespace IdpGie.Interaction {
-
 	/// <summary>
 	/// An interface that enables the different types if IDP inference.
 	/// </summary>
@@ -41,13 +40,8 @@ namespace IdpGie.Interaction {
 		/// <param name='structure'>
 		/// The given structure to make more precise.
 		/// </param>
-		IIdpStructure CalculateDefintions (IIdpTheory theory, IIdpStructure structure);
-
-
-		IIdpTheory Ground (IIdpTheory theory, IIdpStructure structure);
-
-
+		//IIdpStructure CalculateDefintions (IIdpTheory theory, IIdpStructure structure);
+		//IIdpTheory Ground (IIdpTheory theory, IIdpStructure structure);
 	}
-
 }
 
