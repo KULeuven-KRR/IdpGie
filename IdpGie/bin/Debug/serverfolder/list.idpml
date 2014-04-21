@@ -2,6 +2,7 @@
 <PredicateTable query="foo">
 <Columns>
 <Column name="Name" index="0"/>
-<Column name="Maximum students" index="2"/>
+<Column name="Promotor" index="1"/>
+<Column name="#students" index="2"/>
 </Columns>
 </PredicateTable>

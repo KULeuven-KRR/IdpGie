@@ -19,14 +19,16 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Web.UI;
+using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using IdpGie.Shapes.Pages;
 using IdpGie.Engines;
-using System.Linq;
-using IdpGie.Abstract;
+using IdpGie.Utils;
 
 //TODO: interface
+using System;
+
 namespace IdpGie.Shapes.Web {
 	/// <summary>
 	/// A webshape that displays a table that contains the values of the predicates.
@@ -44,9 +46,25 @@ namespace IdpGie.Shapes.Web {
 			set;
 		}
 
+		/// <summary>
+		/// Gets the source of the data to be rendered.
+		/// </summary>
+		/// <value>The source of the data to be rendered.</value>
 		public IEnumerable<IEnumerable<object>> Source {
 			get {
-				return new object[][] { new object[] {"Het beste thesisonderwerp ooit","Bart Demoen",2} };
+				if (DateTime.Now.Ticks % 1000 < 500) {
+					return new object[][] {
+						new object[] {"Het beste thesisonderwerp ooit","Bart Demoen",2},
+						new object[] {"Documenteren van de Lua interface in IDP","Marc Denecker",1},
+						new object[] {"Documenteren van de rest van IDP","Marc Denecker",1}
+					};
+				} else {
+					return new object[][] {
+						new object[] {"Foo versus Bar, what is the best FooBar instance?","Ricardo Scandriato",2},
+						new object[] {"Arthur and Merlin, who met Dumbledore?","Harry Potter",1},
+						new object[] {"Het visualiseren van visualisatie","Erik Duval",1}
+					};
+				}//TODO: real binding
 			}
 		}
 
@@ -109,6 +127,7 @@ namespace IdpGie.Shapes.Web {
 		/// <param name="engine">The given specified engine.</param>
 		/// <param name="writer">The html writer to write content to.</param>
 		public override void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
+			writer.AddAttribute (HtmlTextWriterAttribute.Class, "table table-hover table-condensed bordered-table");
 			writer.RenderBeginTag (HtmlTextWriterTag.Table);
 			{
 				writer.RenderBeginTag (HtmlTextWriterTag.Thead);
@@ -120,16 +139,22 @@ namespace IdpGie.Shapes.Web {
 							writer.Write (column.Name);
 							writer.RenderEndTag ();
 						}
+						writer.AddAttribute (HtmlTextWriterAttribute.Onclick, string.Format ("genericAjax (\"{0}\", \"landing{1}\");", this.Href, this.Id));
+						writer.AddAttribute (HtmlTextWriterAttribute.Class, "btn btn-info btn-xs");
+						writer.RenderBeginTag (HtmlTextWriterTag.Button);
+						writer.WriteLine ("<i class=\"glyphicon glyphicon-refresh\"></i>");
+						writer.RenderEndTag ();
 					}
 					writer.RenderEndTag ();
 				}
 				writer.RenderEndTag ();
 				writer.RenderBeginTag (HtmlTextWriterTag.Tbody);
 				{
+					IEnumerable<int> indices = this.Columns.Select (x => x.Index).ToArray ();
 					foreach (IEnumerable<object> row in this.Source) {
 						writer.WriteLine ();
 						writer.RenderBeginTag (HtmlTextWriterTag.Tr);
-						foreach (object item in row) {
+						foreach (object item in row.IndicesOrdered (indices)) {
 							writer.RenderBeginTag (HtmlTextWriterTag.Td);
 							writer.Write (item);
 							writer.RenderEndTag ();
