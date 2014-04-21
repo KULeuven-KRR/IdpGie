@@ -348,6 +348,8 @@
     <Compile Include="Abstract\ITable.cs" />
     <Compile Include="Interaction\IVocabulary.cs" />
     <Compile Include="Interaction\IVocabularyPredicate.cs" />
+    <Compile Include="Interaction\IPredicateInterpretation.cs" />
+    <Compile Include="Interaction\IPredicateTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
