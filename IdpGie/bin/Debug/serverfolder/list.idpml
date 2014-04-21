@@ -2,6 +2,6 @@
 <PredicateTable query="foo">
 <Columns>
 <Column name="Name" index="0"/>
-<Column name="Maximum students" index="1"/>
+<Column name="Maximum students" index="2"/>
 </Columns>
 </PredicateTable>

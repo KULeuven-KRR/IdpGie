@@ -350,7 +350,8 @@
     <Compile Include="Shapes\Web\QueryWebPageShapeBase.cs" />
     <Compile Include="Shapes\Pages\QueryWebPageBase.cs" />
     <Compile Include="Abstract\IdDispatcher.cs" />
-    <Compile Include="Abstract\PostDeserialize.cs" />
+    <Compile Include="Abstract\IPostDeserialize.cs" />
+    <Compile Include="Abstract\Table.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
