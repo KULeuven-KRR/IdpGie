@@ -309,19 +309,13 @@
     <Compile Include="Abstract\IHref.cs" />
     <Compile Include="Abstract\INameHref.cs" />
     <Compile Include="Abstract\NameHrefBase.cs" />
-    <Compile Include="Interaction\IdpTable.cs" />
-    <Compile Include="Interaction\IIdpStructure.cs" />
-    <Compile Include="Interaction\IIdpPredicate.cs" />
-    <Compile Include="Interaction\IIdpTuple.cs" />
     <Compile Include="Interaction\IIdpInference.cs" />
-    <Compile Include="Interaction\IIdpTheory.cs" />
     <Compile Include="Abstract\IRuntimeFlagAttribute.cs" />
     <Compile Include="Abstract\ICompact.cs" />
     <Compile Include="Engines\ICairoContextSensitive.cs" />
     <Compile Include="Engines\ICairoEngine.cs" />
     <Compile Include="Core\DrawTheorySensitiveBase.cs" />
     <Compile Include="Geometry\IStripCanvasSize.cs" />
-    <Compile Include="Interaction\IIdpTable.cs" />
     <Compile Include="Shapes\Web\IWebShape.cs" />
     <Compile Include="Shapes\Web\WebPredicateTable.cs" />
     <Compile Include="Shapes\Web\WebShapeAttribute.cs" />
@@ -351,7 +345,9 @@
     <Compile Include="Shapes\Pages\QueryWebPageBase.cs" />
     <Compile Include="Abstract\IdDispatcher.cs" />
     <Compile Include="Abstract\IPostDeserialize.cs" />
-    <Compile Include="Abstract\Table.cs" />
+    <Compile Include="Abstract\ITable.cs" />
+    <Compile Include="Interaction\IVocabulary.cs" />
+    <Compile Include="Interaction\IVocabularyPredicate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

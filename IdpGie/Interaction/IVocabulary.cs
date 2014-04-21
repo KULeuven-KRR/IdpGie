@@ -1,8 +1,8 @@
 //
-//  IIDpTable.cs
+//  IVocabulary.cs
 //
 //  Author:
-//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
+//       Willem Van Onsem <vanonsem.willem@gmail.com>
 //
 //  Copyright (c) 2014 Willem Van Onsem
 //
@@ -18,10 +18,22 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using IdpGie.Abstract;
 
 namespace IdpGie.Interaction {
-	public interface IIdpTable {
+	/// <summary>
+	/// The vocabulary, a collection of predicates and there specification.
+	/// </summary>
+	public interface IVocabulary : IName {
+
+		/// <summary>
+		/// Gets the <see cref="IVocabularyPredicate"/> with the specified predicate name.
+		/// </summary>
+		/// <param name="predicatename">The name of the predicate in the vocabulary.</param>
+		IVocabularyPredicate this [string predicatename] {
+			get;
+		}
 	}
 }
-

@@ -1,8 +1,8 @@
 //
-//  IIdpPredicate.cs
+//  IVocabularyPredicate.cs
 //
 //  Author:
-//       Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>
+//       Willem Van Onsem <vanonsem.willem@gmail.com>
 //
 //  Copyright (c) 2014 Willem Van Onsem
 //
@@ -18,10 +18,16 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using IdpGie.Abstract;
 
 namespace IdpGie.Interaction {
-	public interface IIdpPredicate {
+	/// <summary>
+	/// An interface specifying a predicate in an <see cref="IVocabulary"/>.
+	/// </summary>
+	public interface IVocabularyPredicate : IName {
+
 	}
 }
 

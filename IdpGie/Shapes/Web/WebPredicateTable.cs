@@ -127,7 +127,7 @@ namespace IdpGie.Shapes.Web {
 		/// <param name="engine">The given specified engine.</param>
 		/// <param name="writer">The html writer to write content to.</param>
 		public override void Render (string serverFolder, HttpEngine engine, Html32TextWriter writer) {
-			writer.AddAttribute (HtmlTextWriterAttribute.Class, "table table-hover table-condensed bordered-table");
+			writer.AddAttribute (HtmlTextWriterAttribute.Class, "table table-hover table-condensed table-bordered");
 			writer.RenderBeginTag (HtmlTextWriterTag.Table);
 			{
 				writer.RenderBeginTag (HtmlTextWriterTag.Thead);
@@ -139,10 +139,21 @@ namespace IdpGie.Shapes.Web {
 							writer.Write (column.Name);
 							writer.RenderEndTag ();
 						}
-						writer.AddAttribute (HtmlTextWriterAttribute.Onclick, string.Format ("genericAjax (\"{0}\", \"landing{1}\");", this.Href, this.Id));
-						writer.AddAttribute (HtmlTextWriterAttribute.Class, "btn btn-info btn-xs");
-						writer.RenderBeginTag (HtmlTextWriterTag.Button);
-						writer.WriteLine ("<i class=\"glyphicon glyphicon-refresh\"></i>");
+						writer.RenderBeginTag (HtmlTextWriterTag.Th);
+						writer.AddAttribute (HtmlTextWriterAttribute.Class, "btn-group");
+						writer.RenderBeginTag (HtmlTextWriterTag.Div);
+						{
+							writer.AddAttribute (HtmlTextWriterAttribute.Onclick, string.Format ("genericAjax (\"{0}\", \"landing{1}\");", this.Href, this.Id));
+							writer.AddAttribute (HtmlTextWriterAttribute.Class, "btn btn-info btn-xs");
+							writer.RenderBeginTag (HtmlTextWriterTag.Button);
+							writer.WriteLine ("<i class=\"glyphicon glyphicon-refresh\"></i>");
+							writer.RenderEndTag ();
+							writer.AddAttribute (HtmlTextWriterAttribute.Class, "btn btn-success btn-xs");
+							writer.RenderBeginTag (HtmlTextWriterTag.Button);
+							writer.WriteLine ("<i class=\"glyphicon glyphicon-plus\"></i>");
+							writer.RenderEndTag ();
+						}
+						writer.RenderEndTag ();
 						writer.RenderEndTag ();
 					}
 					writer.RenderEndTag ();
@@ -159,6 +170,22 @@ namespace IdpGie.Shapes.Web {
 							writer.Write (item);
 							writer.RenderEndTag ();
 						}
+						writer.RenderBeginTag (HtmlTextWriterTag.Td);
+						writer.AddAttribute (HtmlTextWriterAttribute.Class, "btn-group");
+						writer.RenderBeginTag (HtmlTextWriterTag.Div);
+						{
+							writer.AddAttribute (HtmlTextWriterAttribute.Onclick, string.Format ("genericAjax (\"{0}\", \"landing{1}\");", this.Href, this.Id));
+							writer.AddAttribute (HtmlTextWriterAttribute.Class, "btn btn-warning btn-xs");
+							writer.RenderBeginTag (HtmlTextWriterTag.Button);
+							writer.WriteLine ("<i class=\"glyphicon glyphicon-edit\"></i>");
+							writer.RenderEndTag ();
+							writer.AddAttribute (HtmlTextWriterAttribute.Class, "btn btn-danger btn-xs");
+							writer.RenderBeginTag (HtmlTextWriterTag.Button);
+							writer.WriteLine ("<i class=\"glyphicon glyphicon-remove\"></i>");
+							writer.RenderEndTag ();
+						}
+						writer.RenderEndTag ();
+						writer.RenderEndTag ();
 						writer.RenderEndTag ();
 					}
 				}
