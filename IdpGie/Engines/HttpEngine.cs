@@ -29,7 +29,6 @@ using IdpGie.OutputDevices;
 using IdpGie.Shapes.Pages;
 
 namespace IdpGie.Engines {
-
 	/// <summary>
 	/// An engine that generates webpages based on the logical descripiton.
 	/// </summary>
@@ -41,7 +40,6 @@ namespace IdpGie.Engines {
 		public const string IconName = @"favicon.ico";
 		private readonly TcpClient client;
 		private readonly OutputHttpServerDevice device;
-
 		#region IWebEngine implementation
 		/// <summary>
 		/// Gets the <see cref="TcpClient"/> that contains data about the requested page and a stream to send a response.
@@ -55,7 +53,6 @@ namespace IdpGie.Engines {
 			}
 		}
 		#endregion
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Engines.HttpEngine"/> class with a specified <see cref="TcpClient"/> and <see cref="OutputHttpServerDevice"/>.
 		/// </summary>
@@ -81,7 +78,6 @@ namespace IdpGie.Engines {
 		public HttpEngine (TcpClient client, IDrawTheory theory) : base(theory) {
 			this.client = client;
 		}
-
 		#region IEngine implementation
 		/// <summary>
 		/// Converts the set of <see cref="IdpGie.Shapes.IShape"/> by converting it into a readable format.
@@ -105,27 +101,30 @@ namespace IdpGie.Engines {
 				if (http_filename == "/" + IconName) {
 					this.device.Navigationbar.FavIcon.RenderIcon (this.device.Manager.ServerFolder, this, client.GetStream ());
 				} else {
-					IWebPage wp = this.device.Navigationbar.GetPage (http_filename.Substring (0x01));
+					bool border;
+					IWebPage wp = this.device.Navigationbar.GetPage (http_filename.Substring (0x01), out border);
 					using (StreamWriter sw = new StreamWriter (client.GetStream ())) {
 						using (Html32TextWriter tw = new Html32TextWriter (sw)) {
-							tw.WriteLine ("<!DOCTYPE html>");
-							tw.RenderBeginTag (HtmlTextWriterTag.Html);
-							tw.RenderBeginTag (HtmlTextWriterTag.Head);
-							this.WriteHeader (tw);
-							tw.RenderEndTag ();
-							tw.RenderBeginTag (HtmlTextWriterTag.Body);
-							this.WriteBody (tw, wp);
-							this.WriteJavascript (tw);
-							tw.RenderEndTag ();
-							tw.RenderEndTag ();
+							if (border) {
+								tw.WriteLine ("<!DOCTYPE html>");
+								tw.RenderBeginTag (HtmlTextWriterTag.Html);
+								tw.RenderBeginTag (HtmlTextWriterTag.Head);
+								this.WriteHeader (tw);
+								tw.RenderEndTag ();
+								tw.RenderBeginTag (HtmlTextWriterTag.Body);
+								this.WriteBody (tw, wp);
+								this.WriteJavascript (tw);
+								tw.RenderEndTag ();
+								tw.RenderEndTag ();
+							} else {
+								wp.Render (this.device.Manager.ServerFolder, this, tw);
+							}
 						}
 					}
 				}
 			}
 		}
-
 		#endregion
-
 		#region Webpage writing
 		/// <summary>
 		/// Writes the header of the webpage. The header contains references to bootstrap, a favoicon and some stylefile.
@@ -309,7 +308,5 @@ namespace IdpGie.Engines {
 			htw.RenderEndTag ();
 		}
 		#endregion
-
 	}
-
 }

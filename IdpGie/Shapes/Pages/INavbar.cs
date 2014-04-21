@@ -82,12 +82,15 @@ namespace IdpGie.Shapes.Pages {
 		/// <param name='href'>
 		/// The given reference.
 		/// </param>
+		/// <param name='bordered'>
+		/// A boolean returning whether the page should be bordered (with a navigation bar and footer).
+		/// </param>
 		/// <remarks>
 		/// <para>
 		/// If null is provided, or the root, the default page element is returned.
 		/// </para>
 		/// </remarks>
-		IWebPage GetPage (string href);
+		IWebPage GetPage (string href, out bool bordered);
 
 		/// <summary>
 		/// Adds the given <see cref="IQueryWebPage"/> page to the navigation page.

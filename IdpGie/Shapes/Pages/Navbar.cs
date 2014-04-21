@@ -252,11 +252,19 @@ namespace IdpGie.Shapes.Pages {
 		/// <param name='href'>
 		///  The given reference. 
 		/// </param>
-		public IWebPage GetPage (string href) {
+		/// <param name='bordered'>
+		///  A boolean indicating whether the page should be surrounded with a header, navbar and footer. 
+		/// </param>
+		public IWebPage GetPage (string href, out bool bordered) {
 			IWebPage result = null;
+			bordered = true;
 			if (href != null && href != string.Empty) {
 				string path = Path.Combine (this.serverFolder, href);
-				result = this.pages.Append<IWebPage> (this.queries).FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == path);
+				result = this.pages.FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == path);
+				if (result == null) {
+					result = this.queries.FirstOrDefault (x => Path.Combine (this.serverFolder, x.Href) == path);
+					bordered = false;
+				}
 			}
 			if (result == null) {
 				result = this.DefaultPage;
