@@ -354,6 +354,9 @@
     <Compile Include="Interaction\Tuple.cs" />
     <Compile Include="Interaction\IIdentifier.cs" />
     <Compile Include="Interaction\Identifier.cs" />
+    <Compile Include="Interaction\PredicateTable.cs" />
+    <Compile Include="Interaction\Vocabulary.cs" />
+    <Compile Include="Interaction\ClingoSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

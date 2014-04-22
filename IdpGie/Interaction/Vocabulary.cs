@@ -1,5 +1,5 @@
 //
-//  ITuple.cs
+//  Vocabulary.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,12 +19,31 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
+using System;
 
 namespace IdpGie.Interaction {
 	/// <summary>
-	/// An interface that contains a list of items, in other words, a tuple.
+	/// An implementation of the <see cref="IVocabulary"/> interface. The default implementation to interact with
+	/// the IDP system.
 	/// </summary>
-	public interface ITuple : IList<object> {
+	public class Vocabulary : IVocabulary {
+
+		#region IVocabulary implementation
+		public IVocabularyPredicate this [string predicatename] {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+		#endregion
+		#region IName implementation
+		public string Name {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+		#endregion
+		public Vocabulary () {
+		}
 	}
 }
+

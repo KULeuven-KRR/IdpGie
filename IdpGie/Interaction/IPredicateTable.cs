@@ -19,13 +19,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+using System.Collections.Generic;
 
 namespace IdpGie.Interaction {
 	/// <summary>
 	/// A table related to a <see cref="IPredicateInterpretation"/> that contains tuples that are true or false.
 	/// </summary>
-	public interface IPredicateTable {
+	public interface IPredicateTable : IList<ITuple> {
 	}
 }
 
