@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/ClingoSession.cs">
     <Files>
-      <File FileName="Interaction/IdpInteraction.cs" Line="95" Column="4" />
+      <File FileName="Interaction/IdpInteraction.cs" Line="1" Column="1" />
       <File FileName="Interaction/ClingoSession.cs" Line="32" Column="20" />
-      <File FileName="Core/ProcessSession.cs" Line="30" Column="2" />
+      <File FileName="Core/ProcessSession.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
