@@ -4,7 +4,7 @@ using System.IO;
 namespace IdpGie.Interaction {
 	public class IdpInteractiveStream : AlterableContentChangeableStreamBase<MemoryStream,string> {
 		private readonly IdpInteraction inter;
-		private readonly IdpInteraction.IdpSession ses;
+		private readonly IdpSession ses;
 		private readonly string aspContent, hookContent;
 
 		public IdpInteractiveStream (string idpFile, string theory, string structure, string vocabulary, string aspContent, string hookContent) : base (null) {

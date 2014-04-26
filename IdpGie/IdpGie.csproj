@@ -358,6 +358,9 @@
     <Compile Include="Interaction\Vocabulary.cs" />
     <Compile Include="Interaction\ClingoSession.cs" />
     <Compile Include="Interaction\IdpSession.cs" />
+    <Compile Include="Interaction\IIdpSession.cs" />
+    <Compile Include="Interaction\IStructure.cs" />
+    <Compile Include="Interaction\ITheory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

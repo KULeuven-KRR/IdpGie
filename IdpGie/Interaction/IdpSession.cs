@@ -20,11 +20,28 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using IdpGie.Core;
+using IdpGie.Utils;
+using System.Text;
 
 namespace IdpGie.Interaction {
+	//TODO: interface
+	/// <summary>
+	/// A class representing an interactive session with the idp system.
+	/// </summary>
 	public class IdpSession : ProcessSession {
+
 		private readonly string theory, structure, vocabulary;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IdpGie.Interaction.IdpSession"/> class.
+		/// </summary>
+		/// <param name="interaction">An <see cref="IdpInteraction"/> configuration class that describes which executable that should be called
+		/// together with the settings of the idp session.</param>
+		/// <param name="filename">The name of the <c>.idp</c>-file to execute.</param>
+		/// <param name="theory">The name of the theory to be used.</param>
+		/// <param name="structure">The name of the structure to be used.</param>
+		/// <param name="vocabulary">The name of the vocabulary to be used.</param>
 		public IdpSession (IdpInteraction interaction, string filename, string theory, string structure, string vocabulary) : base (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", filename)) {
 			this.theory = theory;
 			this.structure = structure;
@@ -49,6 +66,10 @@ namespace IdpGie.Interaction {
 			this.Stdin.Flush ();
 		}
 
+		/// <summary>
+		/// Echos the current model in the session.
+		/// </summary>
+		/// <returns>A textual representation of the currently generated model.</returns>
 		public string EchoModel () {
 			this.Stdin.WriteLine ("struc = ps[1];");
 			this.Stdin.WriteLine (@"print(string.format(""\a%s\n\a"",tostring (struc)));");
