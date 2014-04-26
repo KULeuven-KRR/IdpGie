@@ -361,6 +361,8 @@
     <Compile Include="Interaction\IIdpSession.cs" />
     <Compile Include="Interaction\IStructure.cs" />
     <Compile Include="Interaction\ITheory.cs" />
+    <Compile Include="Interaction\IVocabularySensitive.cs" />
+    <Compile Include="Abstract\ICleanable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

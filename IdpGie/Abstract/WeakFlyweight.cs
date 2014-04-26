@@ -23,14 +23,13 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie.Abstract {
-
 	/// <summary>
 	/// The implementation of a weak flyweight.
 	/// </summary>
 	/// <remarks>
 	/// <para>A flyweight pattern is used to reduce the memory footprint and sometimes the computation overhead (for instance to compare two objects).
 	/// A drawback of the method is that the flyweight requires additional memory and the computational overhead when creating an object.</para>
-	/// <para>The <see cref="WeakFlyweight"/> objects are sensible to the garbage collector of the runtime environment.</para>
+	/// <para>The <see cref="T:WeakFlyweight`2"/> objects are sensible to the garbage collector of the runtime environment.</para>
 	/// </remarks>
 	/// <typeparam name="TKey">
 	/// The type of parameter from which objects are created.
@@ -42,8 +41,7 @@ namespace IdpGie.Abstract {
 
 		private readonly Dictionary<TKey,WeakReference> cache = new Dictionary<TKey, WeakReference> ();
 		private readonly Func<TKey,TValue> generator;
-
-        #region IFlyWeight implementation
+		#region IFlyWeight implementation
 		/// <summary>
 		///  Gets the generator of the flyweight. 
 		/// </summary>
@@ -73,7 +71,7 @@ namespace IdpGie.Abstract {
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether this <see cref="IdpGie.Abstract.WeakFlyweight`2"/> supports <see cref="IDispose"/>.
+		/// Gets a value indicating whether this <see cref="T:WeakFlyweight`2"/> supports <see cref="IDispose"/>.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if this flyweight supports <see cref="IDispose"/>; otherwise, <c>false</c>.
@@ -86,8 +84,7 @@ namespace IdpGie.Abstract {
 				return false;
 			}
 		}
-        #endregion
-
+		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.WeakFlyweight`2"/> class with a given generator.
 		/// </summary>
@@ -97,8 +94,7 @@ namespace IdpGie.Abstract {
 		public WeakFlyweight (Func<TKey,TValue> generator) {
 			this.generator = generator;
 		}
-
-        #region IFlyWeight implementation
+		#region IFlyWeight implementation
 		/// <summary>
 		/// Gets a pointer to an earlier generated object associated with the given <paramref name="key"/>, otherwise uses the <see cref="IFlyweight`2.Generator"/> to generate
 		/// a new object.
@@ -141,8 +137,7 @@ namespace IdpGie.Abstract {
 			WeakReference wr;
 			return (this.cache.TryGetValue (key, out wr) && wr.IsAlive);
 		}
-        #endregion
-
+		#endregion
 		#region ICompact implementation
 		/// <summary>
 		/// Compact this instance by removing all information from the instance corresponding to objects already collected.
@@ -159,7 +154,5 @@ namespace IdpGie.Abstract {
 			}
 		}
 		#endregion
-
 	}
-
 }

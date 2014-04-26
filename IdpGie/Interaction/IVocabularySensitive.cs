@@ -1,5 +1,5 @@
 //
-//  IStructure.cs
+//  IVocabularySensitive.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,21 +18,17 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-using IdpGie.Abstract;
-
 namespace IdpGie.Interaction {
 	/// <summary>
-	/// An interface representing a logical structure: a set of truth values for predicates defined by
-	/// a <see cref="IVocabulary"/> satsifying the rules of a specified <see cref="ITheory"/>.
+	/// An interface specifying that this instance is related to a certain <see cref="IVocabulary"/> instance.
 	/// </summary>
-	public interface IStructure : IName, ICloneable<IStructure>, IVocabularySensitive, ICleanable {
+	public interface IVocabularySensitive {
 
 		/// <summary>
-		/// Gets a value indicating whether this <see cref="IdpGie.Interaction.IStructure"/> is consistent.
+		/// Returns the <see cref="IVocabulary"/> relevant for this <see cref="IVocabularySensitive"/>.
 		/// </summary>
-		/// <value><c>true</c> if consistent; otherwise, <c>false</c>.</value>
-		bool Consistent {
+		/// <value>An <see cref="IVocabulary"/> instance that describes the vocabulary of this <see cref="IVocabularySensitive"/>.</value>
+		IVocabulary Vocabulary {
 			get;
 		}
 	}

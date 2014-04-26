@@ -19,14 +19,43 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+using IdpGie.Abstract;
 
 namespace IdpGie.Interaction {
 	/// <summary>
 	/// An interface specifying a theory: a set of constraints that specify the <see cref="IStructure"/> of a specified
 	/// <see cref="IVocabulary"/>.
 	/// </summary>
-	public enum ITheory {
+	public interface ITheory : IName, ICloneable<ITheory>, IVocabularySensitive {
+
+		/// <summary>
+		/// Adds definitional completion of all the definitions in the theory.
+		/// </summary>
+		void Completion ();
+
+		/// <summary>
+		/// Rewrites the formulas with the same operations in their children formulas by reducing the nesting.
+		/// </summary>
+		/// <example>
+		/// Given a clause <c>a and (b and c)</c> is rewritten to <c>a and b and c</c>.
+		/// </example>
+		void Flatten ();
+
+		/// <summary>
+		/// Creates a new theory which is the result of combining (the conjunction) of this and the given <see cref="ITheory"/>.
+		/// </summary>
+		/// <param name="other">The given <see cref="ITheory"/> to merge with.</param>
+		ITheory Merge (ITheory other);
+
+		/// <summary>
+		/// Push negations inwards until they are right in from of literals.
+		/// </summary>
+		void PushNegations ();
+
+		/// <summary>
+		/// Move nested terms out of predicates (except for the equality-predicate) and functions.
+		/// </summary>
+		void RemoveNesting ();
 	}
 }
 

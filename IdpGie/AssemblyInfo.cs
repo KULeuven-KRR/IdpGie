@@ -30,8 +30,8 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>, KU Leuven")]
 [assembly: AssemblyProduct ("IDP-GIE")]
-[assembly: AssemblyCopyright ("2013 KU Leuven, Celestijnenlaan 200A, 3001 Heverlee, Belgium")]
-[assembly: AssemblyTrademark ("Declarative Languages and Artificial Intelligence (DTAI)")]
+[assembly: AssemblyCopyright ("2013-2014 (c) KU Leuven, Celestijnenlaan 200A, 3001 Heverlee, Belgium")]
+[assembly: AssemblyTrademark ("Declarative Languages and Artificial Intelligence (DTAI), Knowledge Representation and Reasoning Group (KRR)")]
 [assembly: AssemblyCulture ("")]
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,

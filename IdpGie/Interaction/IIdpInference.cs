@@ -32,7 +32,7 @@ namespace IdpGie.Interaction {
 		/// calculates the definition (possibly deriving open symbols or other defnitions).
 		/// </summary>
 		/// <returns>
-		/// The a structure that is more precise than the given one.
+		/// A structure that is more precise than the given one.
 		/// </returns>
 		/// <param name='theory'>
 		/// The given theory that contains the definitions to calculate.
@@ -40,7 +40,7 @@ namespace IdpGie.Interaction {
 		/// <param name='structure'>
 		/// The given structure to make more precise.
 		/// </param>
-		//IIdpStructure CalculateDefintions (IIdpTheory theory, IIdpStructure structure);
+		IStructure CalculateDefintions (ITheory theory, IStructure structure);
 		//IIdpTheory Ground (IIdpTheory theory, IIdpStructure structure);
 	}
 }
