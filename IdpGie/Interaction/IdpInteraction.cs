@@ -93,48 +93,5 @@ namespace IdpGie.Interaction {
 				return cs.Output;
 			}
 		}
-
-		public class IdpSession : ProcessSession {
-			private readonly string theory, structure, vocabulary;
-
-			public IdpSession (IdpInteraction interaction, string filename, string theory, string structure, string vocabulary) : base (interaction.IdpExecutable, string.Format ("--nowarnings -i {0}", filename)) {
-				this.theory = theory;
-				this.structure = structure;
-				this.vocabulary = vocabulary;
-				this.Stdin.WriteLine ("stdoptions.xsb={0}", interaction.Xsb.ToString ().ToLower ());
-				this.Stdin.WriteLine ("stdoptions.groundwithbounds={0}", interaction.Groundwithbounds.ToString ().ToLower ());
-				this.Stdin.WriteLine ("stdoptions.liftedunitpropagation={0}", interaction.Liftedunitpropagation.ToString ().ToLower ());
-				this.Stdin.WriteLine ("stdoptions.nbmodels={0}", interaction.Nbmodels);
-				this.Stdin.WriteLine ("stdoptions.language=\"asp\"");
-				this.Stdin.WriteLine ("cs = calculatedefinitions({0},{1})", this.theory, this.structure);
-				this.Stdin.WriteLine ("ps, a, b, iv = initialise({0},cs)", this.theory);
-				this.Stdin.Flush ();
-			}
-
-			/// <summary>
-			/// Executes the given command in the given IDP session.
-			/// </summary>
-			/// <param name="command">The given command to execute.</param>
-			public void Execute (string command) {
-				Console.Error.WriteLine (StringUtils.ReplaceDollar (command, "the", this.theory, "str", this.structure, "voc", this.vocabulary));
-				this.Stdin.WriteLine (StringUtils.ReplaceDollar (command, "the", this.theory, "str", this.structure, "voc", this.vocabulary));
-				this.Stdin.Flush ();
-			}
-
-			public string EchoModel () {
-				this.Stdin.WriteLine ("struc = ps[1];");
-				this.Stdin.WriteLine (@"print(string.format(""\a%s\n\a"",tostring (struc)));");
-				this.Stdin.Flush ();
-				while (this.Stdout.Read () != 0x07)
-					;
-				this.Stdout.Read ();
-				StringBuilder sb = new StringBuilder ();
-				while (this.Stdout.Peek () != 0x07) {
-					sb.AppendLine (this.Stdout.ReadLine ());
-				}
-				this.Stdout.Read ();
-				return sb.ToString ();
-			}
-		}
 	}
 }

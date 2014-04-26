@@ -357,6 +357,7 @@
     <Compile Include="Interaction\PredicateTable.cs" />
     <Compile Include="Interaction\Vocabulary.cs" />
     <Compile Include="Interaction\ClingoSession.cs" />
+    <Compile Include="Interaction\IdpSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
