@@ -75,7 +75,6 @@ namespace IdpGie.Core {
 		}
 
 		#region IDisposable implementation
-
 		/// <summary>
 		/// Releases all resource used by the <see cref="IdpGie.Core.ProcessSession"/> object.
 		/// </summary>
@@ -91,7 +90,6 @@ namespace IdpGie.Core {
 			this.Stderr.Close ();
 			this.Process.Close ();
 		}
-
 		#endregion
 
 	}

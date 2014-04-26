@@ -65,7 +65,6 @@ namespace IdpGie.Abstract {
 		}
         #endregion
 
-
 	}
 
 }

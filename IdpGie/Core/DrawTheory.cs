@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Gdk;
 using IdpGie.Parser;
 using IdpGie.Abstract;
@@ -33,11 +32,11 @@ using IdpGie.Utils;
 using IdpGie.Shapes;
 
 namespace IdpGie.Core {
-
 	/// <summary>
 	/// A basic implementation of the <see cref="IDrawTheory"/> interface used to translate logic into drawing objects.
 	/// </summary>
 	public class DrawTheory : NameBase, IDrawTheory {
+
 		private readonly List<ITheoryItem> elements = new List<ITheoryItem> ();
 		private readonly Dictionary<IFunctionInstance,IShape> objects = new Dictionary<IFunctionInstance, IShape> ();
 		private readonly Dictionary<EventType,LinkedList<IHook>> hooks = new Dictionary<EventType, LinkedList<IHook>> ();
@@ -47,8 +46,6 @@ namespace IdpGie.Core {
 		private readonly SortedSet<double> chapters = new SortedSet<double> ();
 
 		private event EventHandler changed;
-		
-
 		#region IDrawTheory implementation
 		/// <summary>
 		/// Gets the source of the logical statements.
@@ -153,7 +150,6 @@ namespace IdpGie.Core {
 			}
 		}
 		#endregion
-
 		#region IClearable implementation
 		/// <summary>
 		///  Sets the state of the object again in its original state. 
@@ -166,7 +162,6 @@ namespace IdpGie.Core {
 			this.maxTime = 0.0d;
 		}
 		#endregion
-
 		#region ITimesensitive implementation
 		/// <summary>
 		///  Gets the tick when the event will take place. 
@@ -196,9 +191,7 @@ namespace IdpGie.Core {
 				}
 			}
 		}
-
 		#endregion
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Core.DrawTheory"/> class .
 		/// </summary>
@@ -213,9 +206,7 @@ namespace IdpGie.Core {
 			this.source.Changed += HandleChanged;
 			this.HandleChanged (null, null);
 		}
-
 		#region INameSet implementation
-
 		/// <summary>
 		/// Sets the name of this instance.
 		/// </summary>
@@ -225,11 +216,8 @@ namespace IdpGie.Core {
 		public void SetName (string name) {
 			this.Name = name;
 		}
-
 		#endregion
-
 		#region ITimesensitive implementation
-
 		/// <summary>
 		///  Sets the time of the event to the given time. 
 		/// </summary>
@@ -239,15 +227,12 @@ namespace IdpGie.Core {
 		public void SetTime (double time) {
 			this.Time = time;
 		}
-
 		#endregion
-
 		#region IWriteable implementation
-
 		/// <summary>
 		/// Write the data of the instance to the specified <see cref="TextWriter"/>.
 		/// </summary>
-		/// <param name='stream'>
+		/// <param name='writer'>
 		/// The <see cref="TextWriter"/> to write the data to.
 		/// </param>
 		public void Write (TextWriter writer) {
@@ -256,9 +241,7 @@ namespace IdpGie.Core {
 				writer.WriteLine ();
 			}
 		}
-
 		#endregion
-
 		#region IDrawTheory implementation
 		/// <summary>
 		/// Gets the shape associated with the given name if the shape is of the type <typeparamref name="TShape"/>, otherwise the default value associated with <typeparamref name="TShape"/> is returned.
@@ -266,7 +249,7 @@ namespace IdpGie.Core {
 		/// <returns>
 		/// The shape associated with the given name if the shape is of the type <typeparamref name="TShape"/>, otherwise the default value associated with <typeparamref name="TShape"/> is returned.
 		/// </returns>
-		/// <param name='name'>
+		/// <param name='key'>
 		/// The name of the shape to look for.
 		/// </param>
 		/// <typeparam name='TShape'>
@@ -472,7 +455,6 @@ namespace IdpGie.Core {
 			return this.hooks.Keys;
 		}
 		#endregion
-
 		#region IComparable implementation
 		/// <summary>
 		/// Compares this <see cref="ITimeSensitive"/> instance with the given one.
@@ -495,7 +477,5 @@ namespace IdpGie.Core {
 			}
 		}
 		#endregion
-
 	}
 }
-

@@ -22,14 +22,13 @@
 using System.Xml.Serialization;
 
 namespace IdpGie.Abstract {
-
 	/// <summary>
 	/// A basic implementation of the <see cref="IName"/> interface. This class is used as a coninient basic implementation.
 	/// </summary>
 	public abstract class NameBase : IName {
 
 		private string name;
-
+		#region IName implementation
 		/// <summary>
 		///  Gets the name of this instance. 
 		/// </summary>
@@ -45,7 +44,7 @@ namespace IdpGie.Abstract {
 				this.name = value;
 			}
 		}
-
+		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NameBase"/> class.
 		/// </summary>
@@ -73,11 +72,10 @@ namespace IdpGie.Abstract {
 		/// </returns>
 		/// <remarks>
 		/// <para>The textual representation of a <see cref="IName"/> object is by default its name.</para>
-		/// <c/remarks>
+		/// </remarks>
 		public override string ToString () {
 			return this.Name;
 		}
-
 	}
 }
 

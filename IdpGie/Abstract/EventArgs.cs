@@ -36,6 +36,7 @@ namespace IdpGie.Abstract {
 
 		private readonly TTag tag;
 
+		#region ITagable implementation
 		/// <summary>
 		/// Gets the tag, data that comes along with the <see cref="EventArgs"/>.
 		/// </summary>
@@ -47,6 +48,7 @@ namespace IdpGie.Abstract {
 				return this.tag;
 			}
 		}
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.EventArgs`1"/> class with a given tag item.

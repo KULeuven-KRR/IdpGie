@@ -21,7 +21,7 @@
 namespace IdpGie.Engines {
 
 	/// <summary>
-	/// <para>This namespace contains algorithms that transform a set of <see cref="IdpGie.Shapes.IShape"/> instances into a readable format by converting them into HTML, Cairo Graphics, etc.<c/para>
+	/// <para>This namespace contains algorithms that transform a set of <see cref="IdpGie.Shapes.IShape"/> instances into a readable format by converting them into HTML, Cairo Graphics, etc.</para>
 	/// <para>The <see cref="IEngine"/> is the core interface of this namespace. Several engines for Cairo, HTTP and OpenGL exist.</para>
 	/// </summary>
 	public static class NamespaceDoc {

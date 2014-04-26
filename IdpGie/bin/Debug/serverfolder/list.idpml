@@ -1,2 +1,8 @@
 <h1>List of thesis proposals</h1>
-<checktable source=""/>
+<PredicateTable query="foo">
+<Columns>
+<Column name="Name" index="0"/>
+<Column name="Promotor" index="1"/>
+<Column name="#students" index="2"/>
+</Columns>
+</PredicateTable>

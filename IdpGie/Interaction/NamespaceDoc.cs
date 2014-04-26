@@ -18,10 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Interaction {
+
+	/// <summary>
+	/// A namespace that organizes the interaction with the IDP system. Therefore several interfaces
+	/// and classes are implemented representing the several concepts in the IDP system. We use
+	/// the Lua binding in order to make things work.
+	/// </summary>
 	public static class NamespaceDoc {
 	}
-}
 
+}

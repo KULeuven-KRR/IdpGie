@@ -44,5 +44,6 @@ namespace IdpGie.Abstract {
 		/// An event handler that warns interested object the content of the <see cref="IChangeableStream.Stream"/> has changed.
 		/// </summary>
 		event EventHandler Changed;
+
 	}
 }

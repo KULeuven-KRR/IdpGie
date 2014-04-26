@@ -30,5 +30,6 @@ namespace IdpGie.Abstract {
 	/// </remarks>
 	public interface INameDescription : IName, IDescription {
 	}
+
 }
 

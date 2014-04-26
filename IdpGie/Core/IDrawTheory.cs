@@ -27,6 +27,7 @@ using IdpGie.Shapes;
 using Gdk;
 
 namespace IdpGie.Core {
+
 	/// <summary>
 	/// An interface describing a theory to be drawn, rendered, executed or a webapp.
 	/// </summary>
@@ -105,10 +106,10 @@ namespace IdpGie.Core {
 		}
 
 		/// <summary>
-		/// Gets the <see cref="ICollection`1"/> of chapters.
+		/// Gets the <see cref="T:System.Collections.Generic.ICollection`1{double}"/> of chapters.
 		/// </summary>
 		/// <value>
-		/// The <see cref="ICollection`1"/> of chapters.
+		/// The <see cref="T:System.Collections.Generic.ICollection`1{double}"/> of chapters.
 		/// </value>
 		/// <remarks>
 		/// <para>Chapters are time events where a significant change occurs. They are used for more convinient seeking.</para>
@@ -192,7 +193,7 @@ namespace IdpGie.Core {
 		void AddShape (IShape obj);
 
 		/// <summary>
-		/// Generates a <see cref="IEnumerable`1"/> of all the <see cref="IShapes"/> who are a <paramref name="TShape"/> as well.
+		/// Generates a <see cref="T:IEnumerable`1{TShape}"/> of all the <see cref="IShape"/>s who are a <paramref name="TShape"/> as well.
 		/// </summary>
 		/// <typeparam name='TShape'>
 		/// The type of the desired <see cref="IShape"/> instances.
@@ -200,7 +201,7 @@ namespace IdpGie.Core {
 		IEnumerable<TShape> Objects<TShape> () where TShape : IShape;
 
 		/// <summary>
-		/// Converts the list of stored <see cref="ITheoryItems"/> into a set of <see cref="IShape"/> instances.
+		/// Converts the list of stored <see cref="ITheoryItem"/>s into a set of <see cref="IShape"/> instances.
 		/// </summary>
 		void Execute ();
 

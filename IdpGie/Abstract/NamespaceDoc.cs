@@ -18,10 +18,14 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace IdpGie.Abstract {
+
+	/// <summary>
+	/// A namespace that provides interfaces and basic implementations for several aspects that don't have
+	/// that much to do with the program itself but are useful for any program.
+	/// </summary>
 	public static class NamespaceDoc {
 	}
-}
 
+}

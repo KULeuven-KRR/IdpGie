@@ -25,5 +25,5 @@ namespace IdpGie.Geometry {
 	/// </summary>
 	public static class NamespaceDoc {
 	}
-}
 
+}

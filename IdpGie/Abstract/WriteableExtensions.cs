@@ -27,7 +27,7 @@ namespace IdpGie.Abstract {
 	/// </summary>
 	public static class WriteableExtensions {
 
-
+		#region Extension methods
 		/// <summary>
 		/// Write the content of the specified <see cref="IWriteable"/> to the given <see cref="Stream"/>.
 		/// </summary>
@@ -55,7 +55,8 @@ namespace IdpGie.Abstract {
 				return sw.GetStringBuilder ().ToString ();
 			}
 		}
+		#endregion
 
 	}
-}
 
+}

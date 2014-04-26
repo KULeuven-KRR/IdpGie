@@ -80,6 +80,9 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Web" />
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>libs\HtmlAgilityPack.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -306,22 +309,58 @@
     <Compile Include="Abstract\IHref.cs" />
     <Compile Include="Abstract\INameHref.cs" />
     <Compile Include="Abstract\NameHrefBase.cs" />
-    <Compile Include="OutputDevices\Web\INavbar.cs" />
-    <Compile Include="OutputDevices\Web\Navbar.cs" />
-    <Compile Include="OutputDevices\Web\WebPage.cs" />
-    <Compile Include="OutputDevices\Web\IWebPage.cs" />
-    <Compile Include="OutputDevices\Web\IFavIcon.cs" />
-    <Compile Include="OutputDevices\Web\FavIcon.cs" />
-    <Compile Include="OutputDevices\Web\Shapes\IWebShape.cs" />
-    <Compile Include="OutputDevices\Web\Shapes\WebShape.cs" />
-    <Compile Include="OutputDevices\Web\Shapes\WebPredicateTable.cs" />
-    <Compile Include="Interaction\IdpTable.cs" />
-    <Compile Include="Interaction\IIDpTable.cs" />
-    <Compile Include="Interaction\IIdpStructure.cs" />
-    <Compile Include="Interaction\IIdpPredicate.cs" />
-    <Compile Include="Interaction\IIdpTuple.cs" />
     <Compile Include="Interaction\IIdpInference.cs" />
-    <Compile Include="Interaction\IIdpTheory.cs" />
+    <Compile Include="Abstract\IRuntimeFlagAttribute.cs" />
+    <Compile Include="Abstract\ICompact.cs" />
+    <Compile Include="Engines\ICairoContextSensitive.cs" />
+    <Compile Include="Engines\ICairoEngine.cs" />
+    <Compile Include="Core\DrawTheorySensitiveBase.cs" />
+    <Compile Include="Geometry\IStripCanvasSize.cs" />
+    <Compile Include="Shapes\Web\IWebShape.cs" />
+    <Compile Include="Shapes\Web\WebPredicateTable.cs" />
+    <Compile Include="Shapes\Web\WebShapeAttribute.cs" />
+    <Compile Include="Shapes\Pages\DefaultQueryWebPage.cs" />
+    <Compile Include="Shapes\Pages\FavIcon.cs" />
+    <Compile Include="Shapes\Pages\IFavIcon.cs" />
+    <Compile Include="Shapes\Pages\INavbar.cs" />
+    <Compile Include="Shapes\Pages\IQueryWebPage.cs" />
+    <Compile Include="Shapes\Pages\IWebPage.cs" />
+    <Compile Include="Shapes\Pages\Navbar.cs" />
+    <Compile Include="Shapes\Pages\WebPage.cs" />
+    <Compile Include="Shapes\Pages\IWebPagePiece.cs" />
+    <Compile Include="Shapes\Pages\DefaultWebPagePiece.cs" />
+    <Compile Include="Shapes\Pages\WebPagePieceBase.cs" />
+    <Compile Include="Shapes\Pages\HtmlTextWebPagePiece.cs" />
+    <Compile Include="Shapes\Pages\HtmlElementPagePiece.cs" />
+    <Compile Include="Shapes\Web\WebShapeBase.cs" />
+    <Compile Include="Shapes\Web\WebPredicateTableColumn.cs" />
+    <Compile Include="Abstract\IIndex.cs" />
+    <Compile Include="Abstract\INameIndex.cs" />
+    <Compile Include="Abstract\NameIndexBase.cs" />
+    <Compile Include="Shapes\Pages\IQueryLandingWebPagePiece.cs" />
+    <Compile Include="Shapes\Pages\QueryLandingWebPagePiece.cs" />
+    <Compile Include="Abstract\IId.cs" />
+    <Compile Include="Shapes\Web\IQueryWebPageShape.cs" />
+    <Compile Include="Shapes\Web\QueryWebPageShapeBase.cs" />
+    <Compile Include="Shapes\Pages\QueryWebPageBase.cs" />
+    <Compile Include="Abstract\IdDispatcher.cs" />
+    <Compile Include="Abstract\IPostDeserialize.cs" />
+    <Compile Include="Abstract\ITable.cs" />
+    <Compile Include="Interaction\IVocabulary.cs" />
+    <Compile Include="Interaction\IVocabularyPredicate.cs" />
+    <Compile Include="Interaction\IPredicateInterpretation.cs" />
+    <Compile Include="Interaction\IPredicateTable.cs" />
+    <Compile Include="Interaction\ITuple.cs" />
+    <Compile Include="Interaction\Tuple.cs" />
+    <Compile Include="Interaction\IIdentifier.cs" />
+    <Compile Include="Interaction\Identifier.cs" />
+    <Compile Include="Interaction\PredicateTable.cs" />
+    <Compile Include="Interaction\Vocabulary.cs" />
+    <Compile Include="Interaction\ClingoSession.cs" />
+    <Compile Include="Interaction\IdpSession.cs" />
+    <Compile Include="Interaction\IIdpSession.cs" />
+    <Compile Include="Interaction\IStructure.cs" />
+    <Compile Include="Interaction\ITheory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -354,6 +393,7 @@
     <Folder Include="Parser\" />
     <Folder Include="OutputDevices\Web\" />
     <Folder Include="resources\" />
-    <Folder Include="OutputDevices\Web\Shapes\" />
+    <Folder Include="Shapes\Web\" />
+    <Folder Include="Shapes\Pages\" />
   </ItemGroup>
 </Project>

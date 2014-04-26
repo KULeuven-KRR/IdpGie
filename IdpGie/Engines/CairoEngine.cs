@@ -31,8 +31,9 @@ namespace IdpGie.Engines {
 	/// <summary>
 	/// An <see cref="IRenderEngine"/> that produces Cairo graphics.
 	/// </summary>
-	public class CairoEngine : Engine, IRenderEngine {
+	public class CairoEngine : Engine, ICairoEngine {
 
+		#region ICairoContextSensitive region
 		/// <summary>
 		/// Gets or sets the context, the target on which the data is rendered.
 		/// </summary>
@@ -43,6 +44,7 @@ namespace IdpGie.Engines {
 			get;
 			set;
 		}
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Engines.CairoEngine"/> class with a specified initial <see cref="IDrawTheory"/>.

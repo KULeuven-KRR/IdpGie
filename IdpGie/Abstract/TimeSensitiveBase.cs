@@ -30,6 +30,7 @@ namespace IdpGie.Abstract {
 
 		private double time;
 
+		#region ITimeSensitive implementation
 		/// <summary>
 		///  Gets the tick when the event will take place. 
 		/// </summary>
@@ -51,6 +52,7 @@ namespace IdpGie.Abstract {
 				}
 			}
 		}
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.TimeSensitiveBase"/> class with the given tick when the event will take place.

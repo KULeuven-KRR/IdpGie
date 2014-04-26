@@ -21,9 +21,12 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Collections;
 
 namespace IdpGie.Utils {
+	/// <summary>
+	/// A static utility class that enriches the number of functions on <see cref="IEnumerable"/> instances.
+	/// In other words an expansion on the <see cref="System.Linq"/> functions.
+	/// </summary>
 	public static class EnumerableUtils {
 		public static T SplitHead<T> (this IEnumerable<T> source, out IEnumerable<T> tail) {
 			tail = source.Tail ();
@@ -198,6 +201,18 @@ namespace IdpGie.Utils {
 				yield return cache [teller];
 				cache [teller++] = enumer.Current;
 				teller %= count;
+			}
+		}
+
+		public static IEnumerable<T> IndicesOrdered<T> (this IEnumerable<T> source, IEnumerable<int> indices) {
+			int currentIndex = -0x01;
+			IEnumerator<T> sourceenum = source.GetEnumerator ();
+			T cur;
+			foreach (int index in indices) {
+				while (currentIndex < index && sourceenum.MoveNext ()) {
+					currentIndex++;
+				}
+				yield return sourceenum.Current;
 			}
 		}
 	}

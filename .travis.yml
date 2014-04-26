@@ -1,0 +1,14 @@
+# Travis-CI Build for libgit2sharp
+# see travis-ci.org for details
+
+language: c
+
+# Make sure CMake and Mono are installed
+install:
+ - sudo apt-get install cmake mono-devel mono-gmcs
+
+# Build libgit2, LibGit2Sharp and run the tests
+script:
+ - cd IdpGie
+ - ./configure
+ - make

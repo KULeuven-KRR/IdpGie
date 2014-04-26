@@ -27,10 +27,11 @@ namespace IdpGie.Abstract {
 	/// <summary>
 	/// The implementation of a <see cref="Attribute"/> that has a <see cref="IName.Name"/> attached to it.
 	/// </summary>
-	public class NamedAttributeBase : Attribute, IName {
+	public abstract class NamedAttributeBase : Attribute, IName {
 
 		private readonly string name;
 
+		#region IName implementation
 		/// <summary>
 		///  Gets the name associated with the attribute.
 		/// </summary>
@@ -43,6 +44,7 @@ namespace IdpGie.Abstract {
 				return this.name;
 			}
 		}
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NamedAttributeBase"/> class with a given name.

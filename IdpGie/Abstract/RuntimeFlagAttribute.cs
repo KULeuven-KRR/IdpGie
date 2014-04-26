@@ -25,14 +25,15 @@ using System.Linq;
 namespace IdpGie.Abstract {
 
 	/// <summary>
-	/// An attribute to specify that the field corresponds to a that of a runtime flag (this can be used to parse arguments).
+	/// An attribute to specify that the field corresponds to a runtime flag (this can be used to parse arguments).
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Property)]
-	public class RuntimeFlagAttribute : NamedDescribedAttributeBase {
+	public class RuntimeFlagAttribute : NamedDescribedAttributeBase, IRuntimeFlagAttribute {
 
 		private readonly string[] alternatives;
 		private Func<string,object> parser = null;
 
+		#region IRuntimeFlagAttribute implementation
 		/// <summary>
 		/// Gets the alternatives names for the flag.
 		/// </summary>
@@ -71,6 +72,7 @@ namespace IdpGie.Abstract {
 				return (this.parser != null);
 			}
 		}
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.RuntimeFlagAttribute"/> class with the given name of the flag.
@@ -175,6 +177,7 @@ namespace IdpGie.Abstract {
 		public RuntimeFlagAttribute (string name, string description, Func<string,object> parser, params string[] alternatives) : this(name,description,alternatives) {
 			this.parser = parser;
 		}
-	}
-}
 
+	}
+
+}
