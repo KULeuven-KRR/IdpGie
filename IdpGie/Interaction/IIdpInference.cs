@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace IdpGie.Interaction {
 	/// <summary>
@@ -41,7 +42,82 @@ namespace IdpGie.Interaction {
 		/// The given structure to make more precise.
 		/// </param>
 		IStructure CalculateDefintions (ITheory theory, IStructure structure);
-		//IIdpTheory Ground (IIdpTheory theory, IIdpStructure structure);
+
+		/// <summary>
+		/// Create the reduced grounding of the given theory and structure.
+		/// </summary>
+		/// <param name="theory">The given theory that shapes the structure.</param>
+		/// <param name="structure">The given structure to ground.</param>
+		ITheory Ground (ITheory theory, IStructure structure);
+
+		/// <summary>
+		/// Prints the reduced grounding of the given theory and structure.
+		/// </summary>
+		/// <returns>The grounding.</returns>
+		/// <param name="theory">The given theory that shapes the structure.</param>
+		/// <param name="structure">The given structure to ground.</param>
+		/// <remarks>This method improves the memory efficiency since the grounding is not stored internally.</remarks>
+		string PrintGrounding (ITheory theory, IStructure structure);
+
+		/// <summary>
+		/// Returns a structure, made more precise than the input by grounding and unit propagation on the theory.
+		/// </summary>
+		/// <returns>A structure that is more precise than the input by grounding and unit propagation.</returns>
+		/// <param name="theory">The given theory that shapes the structure.</param>
+		/// <param name="structure">The given structure to propagate.</param>
+		/// <remarks>
+		/// <para>Returns nil when propagation makes the given structure inconsistent.</para>
+		/// </remarks>
+		IStructure GroundPropagate (ITheory theory, IStructure structure);
+
+		/// <summary>
+		/// Returns a structure, made more precise than the input by generating all the models and checking which
+		/// literals always have the same truth value.
+		/// </summary>
+		/// <returns>A structure that is more precise than the input by grounding and unit propagation.</returns>
+		/// <param name="theory">The given theory that shapes the structure.</param>
+		/// <param name="structure">The given structure to propagate.</param>
+		/// <remarks>
+		/// <para>This grounding is complete: everything that can be derived from the theory will be derived.</para>
+		/// <para>Returns nil when propagation makes the given structure inconsistent.</para>
+		/// </remarks>
+		IStructure OptimalPropagate (ITheory theory, IStructure structure);
+
+		/// <summary>
+		/// Returns a structure, made more precise than the input by doing symbolic propagation on the theory.
+		/// </summary>
+		/// <returns>A structure that is more precise than the input by grounding and unit propagation.</returns>
+		/// <param name="theory">The given theory that shapes the structure.</param>
+		/// <param name="structure">The given structure to propagate.</param>
+		/// <remarks>
+		/// <para>Returns nil when propagation makes the given structure inconsistent.</para>
+		/// </remarks>
+		IStructure Propagate (ITheory theory, IStructure structure);
+
+		/// <summary>
+		/// Performs initialisation for the progression inference.
+		/// </summary>
+		/// <returns>A tuple containing an <see cref="T:IEnumerable`1"/> of direct new structures, two structures
+		/// and a vocabulary.</returns>
+		/// <param name="theory">The given theory that shapes the structure.</param>
+		/// <param name="structure">The given structure to propagate.</param>
+		/// <remarks>
+		/// <para>Can only be called with an LTC theory.</para>
+		/// <para>The first and second <see cref="ITheory"/> are respectively the bistate and onestate variants of the
+		/// structure.</para>
+		/// <para>The first and second <see cref="IVocabulary"/> are respectively the bistate and onestate variants of the
+		/// structure.</para>
+		/// </remarks>
+		System.Tuple<IEnumerable<IStructure>,ITheory,ITheory,IVocabulary,IVocabulary> Initialise (ITheory theory, IStructure structure);
+
+		/// <summary>
+		/// Performs one progression step for the progression inference.
+		/// </summary>
+		/// <param name="theory">The given theory that shapes the structure.</param>
+		/// <param name="structure">The given structure to propagate.</param>
+		/// <remarks>
+		/// <para>Can only be called with an LTC theory.</para>
+		/// </remarks>
+		IEnumerable<IStructure> Progress (ITheory theory, IStructure structure);
 	}
 }
-
