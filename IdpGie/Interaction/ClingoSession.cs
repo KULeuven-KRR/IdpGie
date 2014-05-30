@@ -29,8 +29,8 @@ namespace IdpGie.Interaction {
 	/// </summary>
 	public class ClingoSession : ProcessSession {
 
-		//TODO: interface
 		/// <summary>
+		//TODO: interface
 		/// Gets the output of the process when until termination.
 		/// </summary>
 		/// <value>The output of the process until termination.</value>
