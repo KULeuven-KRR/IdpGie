@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/ClingoSession.cs">
     <Files>
       <File FileName="Interaction/IdpInteraction.cs" Line="1" Column="1" />
-      <File FileName="Interaction/ClingoSession.cs" Line="52" Column="27" />
+      <File FileName="Interaction/ClingoSession.cs" Line="58" Column="1" />
       <File FileName="Core/ProcessSession.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
