@@ -25,24 +25,28 @@ namespace IdpGie.Interaction.Idp {
 	/// An implementation of the <see cref="IVocabulary"/> interface. The default implementation to interact with
 	/// the IDP system.
 	/// </summary>
-	public class Vocabulary : IVocabulary {
+	public class Vocabulary : IdpIdentifier, IVocabulary {
 
 		#region IVocabulary implementation
+		/// <summary>
+		/// Gets the <see cref="Vocabulary"/> with the specified predicatename.
+		/// </summary>
+		/// <param name="predicatename">The name of the predicate to query.</param>
 		public IVocabularyPredicate this [string predicatename] {
 			get {
 				throw new NotImplementedException ();
 			}
 		}
 		#endregion
-		#region IName implementation
-		public string Name {
-			get {
-				throw new NotImplementedException ();
-			}
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Vocabulary"/> class with a given name and idp session.
+		/// </summary>
+		/// <param name="name">The name of the identifier.</param>
+		/// <param name="session">The idp session that is the origin of the identifier.</param>
+		public Vocabulary (string name, IIdpSession session) : base(name,session) {
 		}
 		#endregion
-		public Vocabulary () {
-		}
 	}
 }
 

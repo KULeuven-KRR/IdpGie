@@ -29,10 +29,43 @@ namespace IdpGie.Interaction.Idp {
 	/// <summary>
 	/// A class representing an interactive session with the idp system.
 	/// </summary>
-	public class IdpSession : ProcessSession {
+	public class IdpSession : ProcessSession, IIdpSession {
 
+		#region Fields
 		private readonly string theory, structure, vocabulary;
+		#endregion
+		#region IIdpSession implementation
+		/// <summary>
+		/// Gets the name of the default structure of the session.
+		/// </summary>
+		/// <value>The name of the default structure of the session.</value>
+		public string StructureName {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
 
+		/// <summary>
+		/// Gets the name of the default theory of the session.
+		/// </summary>
+		/// <value>The name of the default theory of the session.</value>
+		public string TheoryName {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+
+		/// <summary>
+		/// Gets the name of the default vocabulary of the session.
+		/// </summary>
+		/// <value>The name of the default vocabulary of the session.</value>
+		public string VocabularyName {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+		#endregion
+		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Interaction.IdpSession"/> class.
 		/// </summary>
@@ -55,7 +88,7 @@ namespace IdpGie.Interaction.Idp {
 			this.Stdin.WriteLine ("ps, a, b, iv = initialise({0},cs)", this.theory);
 			this.Stdin.Flush ();
 		}
-
+		#endregion
 		/// <summary>
 		/// Executes the given command in the given IDP session.
 		/// </summary>
@@ -84,6 +117,64 @@ namespace IdpGie.Interaction.Idp {
 			this.Stdout.Read ();
 			return sb.ToString ();
 		}
+		#region IIdpSession implementation
+		public IVocabulary getVocabulary () {
+			return new Vocabulary (this.VocabularyName, this);
+		}
+
+		public IVocabulary getVocabulary (string name) {
+			return new Vocabulary (name, this);
+		}
+
+		public IStructure getStructure () {
+			throw new NotImplementedException ();
+		}
+
+		public IStructure getStructure (string name) {
+			throw new NotImplementedException ();
+		}
+
+		public ITheory getTheory () {
+			throw new NotImplementedException ();
+		}
+
+		public ITheory getTheory (string name) {
+			throw new NotImplementedException ();
+		}
+		#endregion
+		#region IIdpInference implementation
+		public IStructure CalculateDefintions (ITheory theory, IStructure structure) {
+			throw new NotImplementedException ();
+		}
+
+		public ITheory Ground (ITheory theory, IStructure structure) {
+			throw new NotImplementedException ();
+		}
+
+		public string PrintGrounding (ITheory theory, IStructure structure) {
+			throw new NotImplementedException ();
+		}
+
+		public IStructure GroundPropagate (ITheory theory, IStructure structure) {
+			throw new NotImplementedException ();
+		}
+
+		public IStructure OptimalPropagate (ITheory theory, IStructure structure) {
+			throw new NotImplementedException ();
+		}
+
+		public IStructure Propagate (ITheory theory, IStructure structure) {
+			throw new NotImplementedException ();
+		}
+
+		public Tuple<System.Collections.Generic.IEnumerable<IStructure>, ITheory, ITheory, IVocabulary, IVocabulary> Initialise (ITheory theory, IStructure structure) {
+			throw new NotImplementedException ();
+		}
+
+		public System.Collections.Generic.IEnumerable<IStructure> Progress (ITheory theory, IStructure structure) {
+			throw new NotImplementedException ();
+		}
+		#endregion
 	}
 }
 

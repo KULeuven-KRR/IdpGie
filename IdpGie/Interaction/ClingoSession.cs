@@ -21,6 +21,7 @@
 
 using System;
 using IdpGie.Core;
+using IdpGie.Interaction.Idp;
 
 namespace IdpGie.Interaction {
 	/// <summary>

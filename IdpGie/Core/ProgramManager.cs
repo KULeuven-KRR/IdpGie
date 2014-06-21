@@ -29,6 +29,7 @@ using IdpGie.Utils;
 using System.Reflection;
 using IdpGie.Geometry;
 using IdpGie.Interaction;
+using IdpGie.Interaction.Idp;
 using IdpGie.OutputDevices;
 using IdpGie.Shapes.Web;
 

@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using IdpGie.Abstract;
 
 namespace IdpGie.Interaction.Idp {
@@ -26,6 +25,7 @@ namespace IdpGie.Interaction.Idp {
 	/// An interface that specifies an identifier: an object that contains a name that refers to something.
 	/// </summary>
 	public interface IIdentifier : IName {
+
 	}
 }
 

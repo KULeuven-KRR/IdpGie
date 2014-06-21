@@ -25,7 +25,7 @@ namespace IdpGie.Interaction.Idp {
 	/// <summary>
 	/// The vocabulary, a collection of predicates and there specification.
 	/// </summary>
-	public interface IVocabulary : IName {
+	public interface IVocabulary : IIdpIdentifier {
 
 		/// <summary>
 		/// Gets the <see cref="IVocabularyPredicate"/> with the specified predicate name.

@@ -364,6 +364,9 @@
     <Compile Include="Interaction\Idp\IdpSession.cs" />
     <Compile Include="Interaction\Idp\IdpInteraction.cs" />
     <Compile Include="Interaction\Idp\IdpInteractiveStream.cs" />
+    <Compile Include="Interaction\Idp\IIdpIdentifier.cs" />
+    <Compile Include="Interaction\Idp\IdpIdentifier.cs" />
+    <Compile Include="Interaction\Idp\VocabularyPredicate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

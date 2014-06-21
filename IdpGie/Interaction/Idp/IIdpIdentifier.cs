@@ -1,5 +1,5 @@
 //
-//  IVocabularyPredicate.cs
+//  IIdpIdentifier.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,15 +18,23 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
-using IdpGie.Abstract;
 
 namespace IdpGie.Interaction.Idp {
 	/// <summary>
-	/// An interface specifying a predicate in an <see cref="IVocabulary"/>.
+	/// An interface specifying that the instance is an identifier in some weird environment that never works
+	/// developed by the a team that takes more holidays than working days and has no documentation whatsoever.
 	/// </summary>
-	public interface IVocabularyPredicate : IIdpIdentifier, IVocabularySensitive {
+	public interface IIdpIdentifier : IIdentifier {
 
+		/// <summary>
+		/// Gets the <see cref="IIdpSession"/> that is the origin of the identifier.
+		/// </summary>
+		/// <value>The idp session that is the origin of the identifier.</value>
+		IIdpSession IdpSession {
+			get;
+		}
 	}
 }
 

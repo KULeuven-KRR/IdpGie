@@ -7,7 +7,8 @@ namespace IdpGieTest.Interaction.Idp {
 	public class IdpSessionTest {
 		[Test()]
 		public void ScenarioTest () {
-			IdpSession session = new IdpSession()
+			IdpInteraction ii = new IdpInteraction ();
+			IdpSession session = new IdpSession (ii, "/home/kommusoft/Projects/IdpGie/IdpGie/testinput/us.idp", "T", "S", "V");
 		}
 	}
 }

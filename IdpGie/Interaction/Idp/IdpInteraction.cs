@@ -4,7 +4,7 @@ using System.Text;
 using IdpGie.Utils;
 using IdpGie.Core;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
 	/// A class that handles the interaction with the IDP system and some relevant programs to translate the structure
 	/// into shapes.
