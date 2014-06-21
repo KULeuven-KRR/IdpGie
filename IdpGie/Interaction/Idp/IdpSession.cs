@@ -118,10 +118,19 @@ namespace IdpGie.Interaction.Idp {
 			return sb.ToString ();
 		}
 		#region IIdpSession implementation
+		/// <summary>
+		/// Gets the default vocabulary of the idp session.
+		/// </summary>
+		/// <returns>The default <see cref="IVocabulary"/> of the idp session.</returns>
 		public IVocabulary getVocabulary () {
 			return new Vocabulary (this.VocabularyName, this);
 		}
 
+		/// <summary>
+		/// Gets the vocabulary of the idp session with the given name.
+		/// </summary>
+		/// <returns>The <see cref="IVocabulary"/> in the idp file with the given name.</returns>
+		/// <param name="name">The given name of the vocabulary.</param>
 		public IVocabulary getVocabulary (string name) {
 			return new Vocabulary (name, this);
 		}
