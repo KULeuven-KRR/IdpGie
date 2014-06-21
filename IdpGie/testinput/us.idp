@@ -1,0 +1,81 @@
+vocabulary V{
+	type SAbbr
+	type SName
+	StateName(SAbbr,SName)
+}
+
+structure S:V{
+	SAbbr={"AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"}
+	SName={"Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Vermont","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Orego","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"}
+	P<ct> = {0,1;1,0}
+}
+
+
+include <table_utils>
+procedure main(){
+	print(S)
+	
+	//Het uitlezen van tabellen voor bepaalde predicaten. 
+	leesP()
+	
+	//Het veranderen van een zekere waarde in een predicaat. M.a.w. het waar maken van een item.
+	veranderP()
+	
+	print("Na wijzigen:")
+	print(S)
+	
+	//Het uitbreiden van het domein. M.a.w. als iemand id's tot 5 heeft ingevuld, toelaten dat ook een tuple met id=6 kan worden toegevoegd.
+	groterDomein()
+	print(S)
+	groterDomein()
+	print(S)
+	
+	//	 - In welke mate is het mogelijk queries uit te voeren op tabellen?
+	//Queries op tabellen uitvoeren gaat niet, op structuren wel
+	queryS()
+	
+	
+}
+
+procedure leesP(){
+//Het uitlezen van tabellen voor bepaalde predicaten. 
+	Pinter = S[V::P] //De interpretatie van V::P in S
+	Ptrues = Pinter.ct //de true dingen in P analoog:	Pfalses = Pinter.cf
+	//Ptrues is een object waar je nog weinig mee kan doen. Als je dit wil omzetten naar een lua tabel:
+	Ptruestable = totable(Ptrues) //totable zit in table_utils
+	for i=1,#Ptruestable do
+		currenttuple = Ptruestable[i]
+		print("In P zit het tuple")
+		for j=1, #currenttuple do
+			print(currenttuple[j])
+		end
+	end
+}
+
+procedure veranderP(){
+	//Het veranderen van een zekere waarde in een predicaat. M.a.w. het waar maken van een item.
+	nieuwtuple = {1,1} //Een tuple (lua tabel) die ik waar wil maken in P
+	maketrue(S[V::P],nieuwtuple)
+}
+
+procedure groterDomein(){
+	//PAS OP: dit is gevaarlijk: domeinen veranderen via Lua gaat soms nog mis. Daar is een issue over. 
+	//In het bijzonder: gaan van een leeg domein naar een niet leeg domein levert soms problemen op door interne voorstellingen van bepaalde tabellen
+	
+	typeT = V::T.type
+	maxTfunctie = V::MAX[{typeT}]
+	
+	currentmax = S[maxTfunctie]() //De interpretatie van een functie is een lua-functie, pas die toe en je krijgt de MAX waarde van huidige type
+	S[V::T.type]= range(0,currentmax+1) //stel een nieuwe interpretatie (eentje meer) in
+	
+}
+
+procedure queryS(){
+//LET OP: het queryen van driewaardige structuren is nog niet 100% in orde (in het bijzonder: als er functies in voorkomen)
+	querytabel = query(Q,S)
+	print(querytabel)
+}
+
+query Q:V{
+	{ x: ? y y': P(y,x) & P(y',x) & y ~= y'}
+}
