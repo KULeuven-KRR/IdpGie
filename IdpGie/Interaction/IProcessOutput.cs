@@ -1,5 +1,5 @@
 //
-//  ClingoSession.cs
+//  IProcessOutput.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -20,14 +20,13 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using IdpGie.Core;
 
 namespace IdpGie.Interaction {
 	/// <summary>
-	/// A class representing an (interactive) session with the clingo program: a program that users
-	/// the answer set programming semantic to generate, based on conversion rules more facts.
+	/// An interfacing specifying that the process produces output and that this output can
+	/// be consumed by another program.
 	/// </summary>
-	public class ClingoSession : ProcessSession, IProcessOutput {
+	public interface IProcessOutput {
 
 		/// <summary>
 		/// Gets the output of the process up till termination.
@@ -37,23 +36,8 @@ namespace IdpGie.Interaction {
 		/// <para>When the program has not yet finished (or is stuck in an infinite loop),
 		/// this method will block as well.</para>
 		/// </remarks>
-		public string ProcessOutput {
-			get {
-				return this.Stdout.ReadToEnd ();
-			}
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="ClingoSession"/> class with a given class of interaction flags,
-		/// an original answer set program and the input to translate.
-		/// </summary>
-		/// <param name="interaction">A <see cref="IdpInteraction"/> instance that describes how the program should run.</param>
-		/// <param name="aspContent">An asp-program that specifies how the new facts should be generated.</param>
-		/// <param name="inp">The given input to transform.</param>
-		public ClingoSession (IdpInteraction interaction, string aspContent, string inp) : base (interaction.ClingoExecutable, string.Format ("-n 1 --verbose=0")) {
-			this.Stdin.Write (aspContent);
-			this.Stdin.Write (inp);
-			this.Stdin.Close ();
+		string ProcessOutput {
+			get;
 		}
 	}
 }

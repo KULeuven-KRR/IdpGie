@@ -363,6 +363,7 @@
     <Compile Include="Interaction\ITheory.cs" />
     <Compile Include="Interaction\IVocabularySensitive.cs" />
     <Compile Include="Abstract\ICleanable.cs" />
+    <Compile Include="Interaction\IProcessOutput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
