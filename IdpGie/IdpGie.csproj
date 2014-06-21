@@ -146,8 +146,6 @@
     <Compile Include="Interaction\AlterableContentChangeableStreamBase.cs" />
     <Compile Include="Interaction\ContentChangeableStreamBase.cs" />
     <Compile Include="Interaction\IAlterableReloadableChangeableStream.cs" />
-    <Compile Include="Interaction\IdpInteraction.cs" />
-    <Compile Include="Interaction\IdpInteractiveStream.cs" />
     <Compile Include="Logic\ArrayFunction.cs" />
     <Compile Include="Logic\ArrayHeadTailFunctionInstance.cs" />
     <Compile Include="Logic\ArrayTailFunction.cs" />
@@ -364,6 +362,8 @@
     <Compile Include="Interaction\Idp\Vocabulary.cs" />
     <Compile Include="Interaction\Idp\Identifier.cs" />
     <Compile Include="Interaction\Idp\IdpSession.cs" />
+    <Compile Include="Interaction\Idp\IdpInteraction.cs" />
+    <Compile Include="Interaction\Idp\IdpInteractiveStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />

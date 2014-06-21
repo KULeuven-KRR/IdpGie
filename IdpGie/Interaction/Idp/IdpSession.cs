@@ -24,7 +24,7 @@ using IdpGie.Core;
 using IdpGie.Utils;
 using System.Text;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	//TODO: interface
 	/// <summary>
 	/// A class representing an interactive session with the idp system.

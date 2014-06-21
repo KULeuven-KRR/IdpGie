@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="IFunctionInstanceTest.cs" />
     <Compile Include="DocumentSizeTest.cs" />
+    <Compile Include="Interaction\Idp\IdpSessionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IdpGie.csproj">
