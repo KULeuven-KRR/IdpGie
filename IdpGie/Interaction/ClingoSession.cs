@@ -29,6 +29,7 @@ namespace IdpGie.Interaction {
 	/// </summary>
 	public class ClingoSession : ProcessSession, IProcessOutput {
 
+		#region IProcessOutput implementation
 		/// <summary>
 		/// Gets the output of the process up till termination.
 		/// </summary>
@@ -42,7 +43,7 @@ namespace IdpGie.Interaction {
 				return this.Stdout.ReadToEnd ();
 			}
 		}
-
+		#endregion
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ClingoSession"/> class with a given class of interaction flags,
 		/// an original answer set program and the input to translate.
