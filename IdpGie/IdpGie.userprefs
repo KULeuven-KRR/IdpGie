@@ -1,11 +1,41 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/ClingoSession.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/Idp/IdpSession.cs">
     <Files>
-      <File FileName="Interaction/IdpInteraction.cs" Line="1" Column="1" />
-      <File FileName="Interaction/ClingoSession.cs" Line="58" Column="1" />
-      <File FileName="Core/ProcessSession.cs" Line="1" Column="1" />
+      <File FileName="IdpGieTest/Interaction/Idp/IdpSessionTest.cs" Line="15" Column="1" />
+      <File FileName="Interaction/Idp/IdpSession.cs" Line="130" Column="32" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="IdpGie" expanded="True">
+            <Node name="Core" expanded="True" />
+            <Node name="Interaction" expanded="True">
+              <Node name="Idp" expanded="True">
+                <Node name="IdpSession.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="OutputDevices" expanded="True" />
+            <Node name="Shapes" expanded="True">
+              <Node name="Pages" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="IdpGieTest" expanded="True">
+            <Node name="Interaction" expanded="True">
+              <Node name="Idp" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True">
+          <Node name="IdpGie" expanded="True" />
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
