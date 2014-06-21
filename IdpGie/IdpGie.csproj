@@ -394,7 +394,6 @@
     <Folder Include="UserInterface\" />
     <Folder Include="Utils\" />
     <Folder Include="Parser\" />
-    <Folder Include="OutputDevices\Web\" />
     <Folder Include="resources\" />
     <Folder Include="Shapes\Web\" />
     <Folder Include="Shapes\Pages\" />

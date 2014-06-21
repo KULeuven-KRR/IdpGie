@@ -90,7 +90,7 @@ namespace IdpGie.Interaction {
 		/// <param name="aspContent">The asp content that describes how to translate the input to the output.</param>
 		public string TranslateClingo (string original, string aspContent) {
 			using (ClingoSession cs = new ClingoSession (this, aspContent, original)) {
-				return cs.Output;
+				return cs.ProcessOutput;
 			}
 		}
 	}

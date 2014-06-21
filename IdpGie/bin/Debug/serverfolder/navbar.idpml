@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Navbar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Thesis app">
+<Navbar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Generic web server demo">
   <Pages>
-    <Page name="Thesis List" href="list.idpml" default="true" />
-    <Page name="Submit" href="submit.idpml" />
-    <Page name="Current assignment" href="current.idpml" />
+    <Page name="Table edit" href="table.idpml" default="true"/>
+    <Page name="Visualization" href="visualize.idpml"/>
   </Pages>
 </Navbar>
