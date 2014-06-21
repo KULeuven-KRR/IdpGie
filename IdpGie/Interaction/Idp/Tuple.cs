@@ -18,12 +18,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
 	/// A basic implementation of the <see cref="ITuple"/> interface. A <see cref="T:List`1"/> is used
 	/// to store the elements.

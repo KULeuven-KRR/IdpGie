@@ -18,10 +18,9 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using IdpGie.Abstract;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
 	/// An interface specifying a theory: a set of constraints that specify the <see cref="IStructure"/> of a specified
 	/// <see cref="IVocabulary"/>.

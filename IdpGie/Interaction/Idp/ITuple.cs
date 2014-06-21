@@ -1,5 +1,5 @@
 //
-//  IVocabularyPredicate.cs
+//  ITuple.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,16 +18,12 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System.Collections.Generic;
 
-using System;
-using IdpGie.Abstract;
-
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
-	/// An interface specifying a predicate in an <see cref="IVocabulary"/>.
+	/// An interface that contains a list of items, in other words, a tuple.
 	/// </summary>
-	public interface IVocabularyPredicate : IName {
-
+	public interface ITuple : IList<object> {
 	}
 }
-

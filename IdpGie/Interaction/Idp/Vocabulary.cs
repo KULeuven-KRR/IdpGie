@@ -1,5 +1,5 @@
 //
-//  Identifier.cs
+//  Vocabulary.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,22 +18,31 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
-using IdpGie.Abstract;
-
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
-	/// An implementation of the <see cref="IIdentifier"/> interface, a name that refers to something.
+	/// An implementation of the <see cref="IVocabulary"/> interface. The default implementation to interact with
+	/// the IDP system.
 	/// </summary>
-	public class Identifier : NameBase, IIdentifier {
+	public class Vocabulary : IVocabulary {
 
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Identifier"/> class with a name.
-		/// </summary>
-		/// <param name="name">The name of the identifier.</param>
-		public Identifier (string name) : base(name) {
+		#region IVocabulary implementation
+		public IVocabularyPredicate this [string predicatename] {
+			get {
+				throw new NotImplementedException ();
+			}
 		}
 		#endregion
+		#region IName implementation
+		public string Name {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+		#endregion
+		public Vocabulary () {
+		}
 	}
 }
+

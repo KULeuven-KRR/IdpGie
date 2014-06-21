@@ -18,11 +18,10 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using IdpGie.Core;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
 	/// An interface describing an interactive session with the idp system, since this interface is an interactive
 	/// session, the <see cref="IIdpInference"/> interface is supported as well.

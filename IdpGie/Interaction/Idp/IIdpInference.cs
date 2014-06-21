@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
 	/// An interface that enables the different types if IDP inference.
 	/// </summary>

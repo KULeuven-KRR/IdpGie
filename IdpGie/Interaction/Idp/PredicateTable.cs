@@ -18,12 +18,11 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
 	/// An implementation of the <see cref="IPredicateTable"/> interface. In other words a list of tuples. The
 	/// default way to interact with the IDP system.

@@ -1,5 +1,5 @@
 //
-//  ITuple.cs
+//  IStructure.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,13 +18,22 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using IdpGie.Abstract;
 
-using System.Collections.Generic;
-
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
-	/// An interface that contains a list of items, in other words, a tuple.
+	/// An interface representing a logical structure: a set of truth values for predicates defined by
+	/// a <see cref="IVocabulary"/> satsifying the rules of a specified <see cref="ITheory"/>.
 	/// </summary>
-	public interface ITuple : IList<object> {
+	public interface IStructure : IName, ICloneable<IStructure>, IVocabularySensitive, ICleanable {
+
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="IdpGie.Interaction.IStructure"/> is consistent.
+		/// </summary>
+		/// <value><c>true</c> if consistent; otherwise, <c>false</c>.</value>
+		bool Consistent {
+			get;
+		}
 	}
 }
+

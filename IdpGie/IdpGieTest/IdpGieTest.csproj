@@ -45,4 +45,8 @@
       <Name>IdpGie</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interaction\" />
+    <Folder Include="Interaction\Idp\" />
+  </ItemGroup>
 </Project>

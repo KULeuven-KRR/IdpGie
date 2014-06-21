@@ -1,5 +1,5 @@
 //
-//  IVocabulary.cs
+//  IVocabularySensitive.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,22 +18,19 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-using System;
-using IdpGie.Abstract;
-
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
-	/// The vocabulary, a collection of predicates and there specification.
+	/// An interface specifying that this instance is related to a certain <see cref="IVocabulary"/> instance.
 	/// </summary>
-	public interface IVocabulary : IName {
+	public interface IVocabularySensitive {
 
 		/// <summary>
-		/// Gets the <see cref="IVocabularyPredicate"/> with the specified predicate name.
+		/// Returns the <see cref="IVocabulary"/> relevant for this <see cref="IVocabularySensitive"/>.
 		/// </summary>
-		/// <param name="predicatename">The name of the predicate in the vocabulary.</param>
-		IVocabularyPredicate this [string predicatename] {
+		/// <value>An <see cref="IVocabulary"/> instance that describes the vocabulary of this <see cref="IVocabularySensitive"/>.</value>
+		IVocabulary Vocabulary {
 			get;
 		}
 	}
 }
+

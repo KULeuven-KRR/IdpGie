@@ -345,25 +345,25 @@
     <Compile Include="Abstract\IdDispatcher.cs" />
     <Compile Include="Abstract\IPostDeserialize.cs" />
     <Compile Include="Abstract\ITable.cs" />
-    <Compile Include="Interaction\Identifier.cs" />
     <Compile Include="Interaction\ClingoSession.cs" />
     <Compile Include="Interaction\IdpSession.cs" />
     <Compile Include="Abstract\ICleanable.cs" />
     <Compile Include="Interaction\IProcessOutput.cs" />
-    <Compile Include="Interaction\idp\IIdentifier.cs" />
-    <Compile Include="Interaction\idp\IIdpInference.cs" />
-    <Compile Include="Interaction\idp\IIdpSession.cs" />
-    <Compile Include="Interaction\idp\IPredicateInterpretation.cs" />
-    <Compile Include="Interaction\idp\IPredicateTable.cs" />
-    <Compile Include="Interaction\idp\IStructure.cs" />
-    <Compile Include="Interaction\idp\ITheory.cs" />
-    <Compile Include="Interaction\idp\ITuple.cs" />
-    <Compile Include="Interaction\idp\IVocabulary.cs" />
-    <Compile Include="Interaction\idp\IVocabularyPredicate.cs" />
-    <Compile Include="Interaction\idp\IVocabularySensitive.cs" />
-    <Compile Include="Interaction\idp\PredicateTable.cs" />
-    <Compile Include="Interaction\idp\Tuple.cs" />
-    <Compile Include="Interaction\idp\Vocabulary.cs" />
+    <Compile Include="Interaction\Idp\IIdentifier.cs" />
+    <Compile Include="Interaction\Idp\IIdpInference.cs" />
+    <Compile Include="Interaction\Idp\IIdpSession.cs" />
+    <Compile Include="Interaction\Idp\IPredicateInterpretation.cs" />
+    <Compile Include="Interaction\Idp\IPredicateTable.cs" />
+    <Compile Include="Interaction\Idp\IStructure.cs" />
+    <Compile Include="Interaction\Idp\ITheory.cs" />
+    <Compile Include="Interaction\Idp\ITuple.cs" />
+    <Compile Include="Interaction\Idp\IVocabulary.cs" />
+    <Compile Include="Interaction\Idp\IVocabularyPredicate.cs" />
+    <Compile Include="Interaction\Idp\IVocabularySensitive.cs" />
+    <Compile Include="Interaction\Idp\PredicateTable.cs" />
+    <Compile Include="Interaction\Idp\Tuple.cs" />
+    <Compile Include="Interaction\Idp\Vocabulary.cs" />
+    <Compile Include="Interaction\Idp\Identifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
@@ -397,6 +397,6 @@
     <Folder Include="resources\" />
     <Folder Include="Shapes\Web\" />
     <Folder Include="Shapes\Pages\" />
-    <Folder Include="Interaction\idp\" />
+    <Folder Include="Interaction\Idp\" />
   </ItemGroup>
 </Project>

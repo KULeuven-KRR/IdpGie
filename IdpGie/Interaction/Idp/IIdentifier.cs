@@ -1,5 +1,5 @@
 //
-//  IStructure.cs
+//  IIdentifier.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -21,20 +21,11 @@
 
 using IdpGie.Abstract;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
-	/// An interface representing a logical structure: a set of truth values for predicates defined by
-	/// a <see cref="IVocabulary"/> satsifying the rules of a specified <see cref="ITheory"/>.
+	/// An interface that specifies an identifier: an object that contains a name that refers to something.
 	/// </summary>
-	public interface IStructure : IName, ICloneable<IStructure>, IVocabularySensitive, ICleanable {
-
-		/// <summary>
-		/// Gets a value indicating whether this <see cref="IdpGie.Interaction.IStructure"/> is consistent.
-		/// </summary>
-		/// <value><c>true</c> if consistent; otherwise, <c>false</c>.</value>
-		bool Consistent {
-			get;
-		}
+	public interface IIdentifier : IName {
 	}
 }
 

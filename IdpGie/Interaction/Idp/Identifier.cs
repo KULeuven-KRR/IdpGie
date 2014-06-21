@@ -1,5 +1,5 @@
 //
-//  IPredicateTable.cs
+//  Identifier.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -19,13 +19,21 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
+using IdpGie.Abstract;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
-	/// A table related to a <see cref="IPredicateInterpretation"/> that contains tuples that are true or false.
+	/// An implementation of the <see cref="IIdentifier"/> interface, a name that refers to something.
 	/// </summary>
-	public interface IPredicateTable : IList<ITuple> {
+	public class Identifier : NameBase, IIdentifier {
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Identifier"/> class with a name.
+		/// </summary>
+		/// <param name="name">The name of the identifier.</param>
+		public Identifier (string name) : base(name) {
+		}
+		#endregion
 	}
 }
-

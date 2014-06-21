@@ -1,5 +1,5 @@
 //
-//  IIdentifier.cs
+//  IVocabularyPredicate.cs
 //
 //  Author:
 //       Willem Van Onsem <vanonsem.willem@gmail.com>
@@ -18,14 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System;
 using IdpGie.Abstract;
 
-namespace IdpGie.Interaction {
+namespace IdpGie.Interaction.Idp {
 	/// <summary>
-	/// An interface that specifies an identifier: an object that contains a name that refers to something.
+	/// An interface specifying a predicate in an <see cref="IVocabulary"/>.
 	/// </summary>
-	public interface IIdentifier : IName {
+	public interface IVocabularyPredicate : IName {
+
 	}
 }
 
