@@ -346,7 +346,6 @@
     <Compile Include="Abstract\IPostDeserialize.cs" />
     <Compile Include="Abstract\ITable.cs" />
     <Compile Include="Interaction\ClingoSession.cs" />
-    <Compile Include="Interaction\IdpSession.cs" />
     <Compile Include="Abstract\ICleanable.cs" />
     <Compile Include="Interaction\IProcessOutput.cs" />
     <Compile Include="Interaction\Idp\IIdentifier.cs" />
@@ -364,6 +363,7 @@
     <Compile Include="Interaction\Idp\Tuple.cs" />
     <Compile Include="Interaction\Idp\Vocabulary.cs" />
     <Compile Include="Interaction\Idp\Identifier.cs" />
+    <Compile Include="Interaction\Idp\IdpSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lex.ll" />
