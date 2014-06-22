@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/Idp/IdpSession.cs">
     <Files>
-      <File FileName="IdpGieTest/Interaction/Idp/IdpSessionTest.cs" Line="15" Column="1" />
+      <File FileName="IdpGieTest/Interaction/Idp/IdpSessionTest.cs" Line="1" Column="1" />
       <File FileName="Interaction/Idp/IdpSession.cs" Line="130" Column="32" />
     </Files>
     <Pads>
