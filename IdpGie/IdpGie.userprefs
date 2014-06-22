@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/Idp/IdpSession.cs">
     <Files>
       <File FileName="IdpGieTest/Interaction/Idp/IdpSessionTest.cs" Line="1" Column="1" />
-      <File FileName="Interaction/Idp/IdpSession.cs" Line="130" Column="32" />
+      <File FileName="Interaction/Idp/IdpSession.cs" Line="117" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
