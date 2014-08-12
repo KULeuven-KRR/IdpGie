@@ -19,8 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace IdpGie.Abstract {
+using System;
 
+namespace IdpGie.Abstract {
 	/// <summary>
 	/// An interface that specifies that besides being time sensitive, the action can be reversed.
 	/// </summary>
@@ -45,8 +46,6 @@ namespace IdpGie.Abstract {
 		/// </param>
 		/// <exception cref="ArgumentException">If the instance cannot be reversed to the given <paramref name="time"/>.</exception>
 		void Reverse (double time);
-
 	}
-
 }
 

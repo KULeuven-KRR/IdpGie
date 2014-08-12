@@ -22,9 +22,8 @@
 using System.Collections.Generic;
 
 namespace IdpGie.Abstract {
-
 	/// <summary>
-	/// The implementation of a <see cref="IComparer`1"/> that compares two <see cref="IPriority"/> objects.
+	/// The implementation of a <see cref="T:IComparer`1"/> that compares two <see cref="IPriority"/> objects.
 	/// </summary>
 	public class PriorityComparator : IComparer<IPriority> {
 
@@ -48,13 +47,12 @@ namespace IdpGie.Abstract {
 		/// </remarks>
 		protected PriorityComparator () {
 		}
-
-        #region IComparer implementation
+		#region IComparer implementation
 		/// <summary>
-		/// Compares the two <see cref="IPrioirity"/> objects.
+		/// Compares the two <see cref="IPriority"/> objects.
 		/// </summary>
 		/// <param name='x'>
-		/// The first <see cref="IPrioirity"/> instance to compare.
+		/// The first <see cref="IPriority"/> instance to compare.
 		/// </param>
 		/// <param name='y'>
 		/// The second <see cref="IPriority"/> instance to compare.
@@ -77,8 +75,6 @@ namespace IdpGie.Abstract {
 				return x.Priority.CompareTo (y.Priority);
 			}
 		}
-        #endregion
-
+		#endregion
 	}
-
 }

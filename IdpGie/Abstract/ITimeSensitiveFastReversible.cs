@@ -19,8 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace IdpGie.Abstract {
+using System;
 
+namespace IdpGie.Abstract {
 	/// <summary>
 	/// An interface that states that besides being time sensitive and reversible, there is a checkpoint on which the object can be reversed fast.
 	/// </summary>
@@ -49,8 +50,6 @@ namespace IdpGie.Abstract {
 		/// The time to which the object should be reversed.
 		/// </param>
 		bool CanFastReverse (double time);
-
 	}
-
 }
 

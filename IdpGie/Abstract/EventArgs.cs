@@ -22,7 +22,6 @@
 using System;
 
 namespace IdpGie.Abstract {
-
 	/// <summary>
 	/// A utility class that provides tags when using a <see cref="EventArgs"/> instance.
 	/// </summary>
@@ -35,7 +34,6 @@ namespace IdpGie.Abstract {
 	public class EventArgs<TTag> : EventArgs, ITagable<TTag> {
 
 		private readonly TTag tag;
-
 		#region ITagable implementation
 		/// <summary>
 		/// Gets the tag, data that comes along with the <see cref="EventArgs"/>.
@@ -49,9 +47,8 @@ namespace IdpGie.Abstract {
 			}
 		}
 		#endregion
-
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Abstract.EventArgs`1"/> class with a given tag item.
+		/// Initializes a new instance of the <see cref="T:IdpGie.Abstract.EventArgs`1"/> class with a given tag item.
 		/// </summary>
 		/// <param name='tag'>
 		/// The given tag to pass with the <see cref="EventArgs"/>.
@@ -61,14 +58,12 @@ namespace IdpGie.Abstract {
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Abstract.EventArgs`1"/> class.
+		/// Initializes a new instance of the <see cref="T:IdpGie.Abstract.EventArgs`1"/> class.
 		/// </summary>
 		/// <remarks>
 		/// <para>The tags is set to the default of the type variable.</para>
 		/// </remarks>
 		public EventArgs () : this(default(TTag)) {
 		}
-
 	}
-
 }

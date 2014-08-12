@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 
 namespace IdpGie.Abstract {
-
 	/// <summary>
 	/// A generic flyweight pattern where all the generated instance are stored until the program exits.
 	/// </summary>
@@ -37,8 +36,7 @@ namespace IdpGie.Abstract {
 
 		private readonly Dictionary<TKey,TValue> cache = new Dictionary<TKey, TValue> ();
 		private readonly Func<TKey,TValue> generator;
-
-        #region IFlyWeight implementation
+		#region IFlyWeight implementation
 		/// <summary>
 		/// Gets the generator that generates a new object in case the object is not generated yet.
 		/// </summary>
@@ -67,23 +65,22 @@ namespace IdpGie.Abstract {
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether this <see cref="IdpGie.Abstract.HardFlyweight`2"/> supports <see cref="IDispose"/>.
+		/// Gets a value indicating whether this <see cref="T:IdpGie.Abstract.HardFlyweight`2"/> supports <see cref="IDisposable"/>.
 		/// </summary>
 		/// <value>
-		/// <c>true</c> if this flyweight supports <see cref="IDispose"/>; otherwise, <c>false</c>.
+		/// <c>true</c> if this flyweight supports <see cref="IDisposable"/>; otherwise, <c>false</c>.
 		/// </value>
 		/// <remarks>
-		/// <para>This implementation of the <see cref="IFlyweight`2"/> pattern does not support <see cref="IDispose"/>, the value is always <c>false</c>.</para>
+		/// <para>This implementation of the <see cref="T:IFlyweight`2"/> pattern does not support <see cref="IDisposable"/>, the value is always <c>false</c>.</para>
 		/// </remarks>
 		public bool DisposeSupport {
 			get {
 				return false;
 			}
 		}
-        #endregion
-
+		#endregion
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Abstract.HardFlyweight`2"/> class with a given generator.
+		/// Initializes a new instance of the <see cref="T:IdpGie.Abstract.HardFlyweight`2"/> class with a given generator.
 		/// </summary>
 		/// <param name='generator'>
 		/// The generator that generates a new instance in case no object for the given parameters has been generated yet.
@@ -91,10 +88,9 @@ namespace IdpGie.Abstract {
 		public HardFlyweight (Func<TKey,TValue> generator) {
 			this.generator = generator;
 		}
-
-        #region IFlyWeight implementation
+		#region IFlyWeight implementation
 		/// <summary>
-		/// Gets a pointer to an earlier generated object associated with the given <paramref name="key"/>, otherwise uses the <see cref="IFlyweight.Generator"/> to generate
+		/// Gets a pointer to an earlier generated object associated with the given <paramref name="key"/>, otherwise uses the <see cref="M:IFlyweight`2.Generator"/> to generate
 		/// a new object.
 		/// </summary>
 		/// <returns>
@@ -119,7 +115,7 @@ namespace IdpGie.Abstract {
 		/// The given parameter.
 		/// </param>
 		/// <returns>
-		/// <c>true</c> if the <see cref="IFlyweight`2"/> already contains an object associated with the given <paramref name="key"/>, <c>false</c> otherwise.
+		/// <c>true</c> if the <see cref="T:IFlyweight`2"/> already contains an object associated with the given <paramref name="key"/>, <c>false</c> otherwise.
 		/// </returns>
 		/// <remarks>
 		/// <para>In case of a hard flyweight, once an object is generated based on the given <paramref name="key"/>, this method will always return <c>true</c> for this key.</para>
@@ -127,8 +123,7 @@ namespace IdpGie.Abstract {
 		public bool Contains (TKey key) {
 			return this.cache.ContainsKey (key);
 		}
-        #endregion
-
+		#endregion
 	}
 }
 

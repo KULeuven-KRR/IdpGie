@@ -64,7 +64,7 @@ namespace IdpGie.Abstract {
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether this flyweight <see cref="IdpGie.Abstract.IFlyWeight`2"/> supports the <see cref="IDispose"/> functionality.
+		/// Gets a value indicating whether this flyweight <see cref="IdpGie.Abstract.IFlyWeight`2"/> supports the <see cref="IDisposable"/> functionality.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if the <see cref="IFlyweight'2"/> supports the <see cref="IDisposable"/> functionality; otherwise, <c>false</c>.

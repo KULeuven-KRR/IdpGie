@@ -30,19 +30,16 @@ namespace IdpGie.Abstract {
 	/// </typeparam>
 	public abstract class CloneableBase<TResult> : ICloneable<TResult> where TResult : class {
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IdpGie.Abstract.CloneableBase`1"/> class.
+		/// Initializes a new instance of the <see cref="T:CloneableBase`1"/> class.
 		/// </summary>
 		protected CloneableBase () {
 		}
-
 		#region ICloneable implementation
 		/// <summary>
 		/// Clone this instance into a new object containing the same data.
 		/// </summary>
 		public abstract TResult Clone ();
-
 		#endregion
-
 		#region ICloneable implementation
 		/// <summary>
 		/// Clone this instance.
@@ -54,9 +51,7 @@ namespace IdpGie.Abstract {
 		object ICloneable.Clone () {
 			return this.Clone ();
 		}
-
 		#endregion
-
 	}
 }
 

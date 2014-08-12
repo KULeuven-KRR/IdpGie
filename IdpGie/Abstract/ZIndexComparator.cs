@@ -22,9 +22,8 @@
 using System.Collections.Generic;
 
 namespace IdpGie.Abstract {
-
 	/// <summary>
-	/// The implementation of a <see cref="IComparer`1"/> that compares two <see cref="IZIndex"/> objects.
+	/// The implementation of a <see cref="T:IComparer`1"/> that compares two <see cref="IZIndex"/> objects.
 	/// </summary>
 	public class ZIndexComparator : IComparer<IZIndex> {
 
@@ -48,8 +47,7 @@ namespace IdpGie.Abstract {
 		/// </remarks>
 		protected ZIndexComparator () {
 		}
-
-        #region IComparer implementation
+		#region IComparer implementation
 		/// <summary>
 		/// Compares the two <see cref="IZIndex"/> objects.
 		/// </summary>
@@ -77,8 +75,6 @@ namespace IdpGie.Abstract {
 				return x.ZIndex.CompareTo (y.ZIndex);
 			}
 		}
-        #endregion
-
+		#endregion
 	}
-
 }

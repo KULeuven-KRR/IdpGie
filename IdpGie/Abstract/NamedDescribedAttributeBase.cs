@@ -19,14 +19,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace IdpGie.Abstract {
+using System;
 
+namespace IdpGie.Abstract {
 	/// <summary>
 	/// An implementation of a <see cref="Attribute"/> that comes with a <see cref="IName.Name"/> and <see cref="IDescription.Description"/>.
 	/// </summary>
 	public abstract class NamedDescribedAttributeBase : NamedAttributeBase, INameDescription {
 		private readonly string description;
-
 		#region IDescription implementation
 		/// <summary>
 		///  Gets the description associated with this attribute.
@@ -40,7 +40,6 @@ namespace IdpGie.Abstract {
 			}
 		}
 		#endregion
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IdpGie.Abstract.NamedDescribedAttributeBase"/> class with a specified name and description.
 		/// </summary>
@@ -53,7 +52,5 @@ namespace IdpGie.Abstract {
 		protected NamedDescribedAttributeBase (string name, string description = "No description available") : base (name) {
 			this.description = description;
 		}
-
 	}
-
 }

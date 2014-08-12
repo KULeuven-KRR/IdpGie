@@ -1,17 +1,23 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/Idp/IdpSession.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/IAlterableReloadableChangeableStream.cs">
     <Files>
-      <File FileName="IdpGieTest/Interaction/Idp/IdpSessionTest.cs" Line="1" Column="1" />
-      <File FileName="Interaction/Idp/IdpSession.cs" Line="101" Column="3" />
+      <File FileName="Abstract/PriorityComparator.cs" Line="52" Column="44" />
+      <File FileName="Abstract/WeakFlyweight.cs" Line="99" Column="135" />
+      <File FileName="Abstract/ZIndexComparator.cs" Line="26" Column="43" />
+      <File FileName="Core/DrawTheory.cs" Line="388" Column="61" />
+      <File FileName="Interaction/AlterableContentChangeableStreamBase.cs" Line="41" Column="16" />
+      <File FileName="Interaction/IAlterableReloadableChangeableStream.cs" Line="26" Column="15" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True" selected="True">
+          <Node name="IdpGie" expanded="True">
+            <Node name="Abstract" expanded="True" />
             <Node name="Core" expanded="True" />
             <Node name="Interaction" expanded="True">
               <Node name="Idp" expanded="True" />
+              <Node name="IAlterableReloadableChangeableStream.cs" selected="True" />
             </Node>
             <Node name="OutputDevices" expanded="True" />
             <Node name="Shapes" expanded="True">
