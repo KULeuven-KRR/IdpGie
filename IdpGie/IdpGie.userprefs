@@ -3,17 +3,15 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Interaction/Idp/IdpSession.cs">
     <Files>
       <File FileName="IdpGieTest/Interaction/Idp/IdpSessionTest.cs" Line="1" Column="1" />
-      <File FileName="Interaction/Idp/IdpSession.cs" Line="111" Column="5" />
+      <File FileName="Interaction/Idp/IdpSession.cs" Line="101" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="IdpGie" expanded="True">
+          <Node name="IdpGie" expanded="True" selected="True">
             <Node name="Core" expanded="True" />
             <Node name="Interaction" expanded="True">
-              <Node name="Idp" expanded="True">
-                <Node name="IdpSession.cs" selected="True" />
-              </Node>
+              <Node name="Idp" expanded="True" />
             </Node>
             <Node name="OutputDevices" expanded="True" />
             <Node name="Shapes" expanded="True">
