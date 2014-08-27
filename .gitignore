@@ -1,4 +1,6 @@
 *.exe
+!Libraries/gplex.exe
+!Libraries/gppg.exe
 *.dll
 *.mdb
 *.*~*
