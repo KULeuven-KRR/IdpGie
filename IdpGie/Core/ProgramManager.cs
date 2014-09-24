@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using Mono.Unix;
 using System.IO;
 using Gtk;
-using Mono.Options;
+using NDesk.Options;
 using IdpGie.Utils;
 using System.Reflection;
 using IdpGie.Geometry;
@@ -545,30 +545,39 @@ namespace IdpGie.Core {
 		///  The specified arguments to run the program with. 
 		/// </param>
 		public void Run (string[] args) {
-			options.Parse (args);
-			this.Validate ();
-
-			if (this.HelpOrLists) {
-				if (this.ShowHelp) {
-					Console.Error.WriteLine (ProgramManager.ProgramNameVersion);
-					Console.Error.WriteLine ("Usage: idpgie [Options]+");
-					Console.Error.WriteLine ("IDP-GIE is a Graphical Interactive Environment (GIE) for the IDP system.");
-					Console.Error.WriteLine ();
-					Console.Error.WriteLine ("Options:");
-					options.WriteOptionDescriptions (Console.Error);
-					Console.Error.WriteLine ();
-					Console.Error.WriteLine ("Authors:");
-					Console.Error.WriteLine (" idpgie is maintained by Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>");
-					Console.Error.WriteLine (" idp is a program of the KRR Research Group of the KU Leuven <krr@cs.kuleuven.be>.");
-					Console.Error.WriteLine ();
-					Console.Error.WriteLine ("License:");
-					Console.Error.WriteLine (" Copyright (c) 2014 Willem Van Onsem\n\n This program is free software: you can redistribute it and/or modify\n it under the terms of the GNU General Public License as published by\n the Free Software Foundation, either version 3 of the License, or\n (at your option) any later version.");
-				} else if (this.ListDevices) {
-					foreach (Tuple<string,string> ss in OutputDevice.ListDevices ()) {
-						Console.Error.WriteLine ("{0}\t{1}", ss.Item1, ss.Item2);
-					}
+			List<string> unrecognized = options.Parse(args);
+			if (!unrecognized.Empty()) {
+				foreach (var item in unrecognized) {
+					Console.WriteLine ("unrecognized option: {0}", item);
 				}
-
+				Console.Error.WriteLine ();
+				this.ShowHelp = true;
+			}
+			try {
+				this.Validate ();
+			} catch (IdpGieException ex) {
+				Console.Error.WriteLine (ex.Message);
+				Console.Error.WriteLine ();
+				this.ShowHelp = true;
+			}
+			if (this.ShowHelp) {
+				Console.Error.WriteLine (ProgramManager.ProgramNameVersion);
+				Console.Error.WriteLine ("Usage: idpgie [Options]+");
+				Console.Error.WriteLine ("IDP-GIE is a Graphical Interactive Environment (GIE) for the IDP system.");
+				Console.Error.WriteLine ();
+				Console.Error.WriteLine ("Options:");
+				options.WriteOptionDescriptions (Console.Error);
+				Console.Error.WriteLine ();
+				Console.Error.WriteLine ("Authors:");
+				Console.Error.WriteLine (" idpgie is maintained by Willem Van Onsem <Willem.VanOnsem@cs.kuleuven.be>");
+				Console.Error.WriteLine (" idp is a program of the KRR Research Group of the KU Leuven <krr@cs.kuleuven.be>.");
+				Console.Error.WriteLine ();
+				Console.Error.WriteLine ("License:");
+				Console.Error.WriteLine (" Copyright (c) 2014 Willem Van Onsem\n\n This program is free software: you can redistribute it and/or modify\n it under the terms of the GNU General Public License as published by\n the Free Software Foundation, either version 3 of the License, or\n (at your option) any later version.");
+			} else if (this.ListDevices) {
+				foreach (Tuple<string,string> ss in OutputDevice.ListDevices ()) {
+					Console.Error.WriteLine ("{0}\t{1}", ss.Item1, ss.Item2);
+				}
 			} else {
 				//Application.Init ("idpgie", ref args);
 				IAlterableReloadableChangeableStream<string> strm;
